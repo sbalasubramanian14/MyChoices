@@ -164,7 +164,6 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         });
 
         //Load default values
-        debugger;
         this.caseBook.Case.MaritalStatusLookupId = "4";
         this.casePrimaryForm.get('primaryInfo').get('MaritalStatusLookupId').setValue("Married");
 
