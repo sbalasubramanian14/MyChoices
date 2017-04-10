@@ -1,0 +1,51 @@
+<div class="row">
+    <ng-table [config]="config"
+               (tableChanged)="onChangeTable(config)"
+               (cellClicked)="onCellClick($event)"
+              (editClicked)="onEditClick($event)"
+              (viewClicked)="onViewClick($event)"
+              (deleteClicked)="onDeleteClick($event)"
+               [rows]="rows" [columns]="columns" id="test-results-table">
+    </ng-table>
+    <pagination *ngIf="config.paging"
+                class="pagination-sm"
+                [(ngModel)]="page"
+                [totalItems]="length"
+                [itemsPerPage]="itemsPerPage"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+                [rotate]="false"
+                (pageChanged)="onChangeTable(config, $event)"
+                (numPages)="numPages = $event">
+    </pagination>
+
+</div>
+
+<div bsModal #moveModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <!--<div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Move Case</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="PeacemakerId">Current Status</label>
+                    <span class="form-control">{{selectedCaseHeader.CaseStatus}}</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="PeacemakerId">Change To *</label>
+                    <input placeholder="First Name" [(ngModel)]="NewCaseStatusId" class="form-control" />
+                    <div>
+                        <small *ngIf="casePrimaryForm.controls['primaryInfo'].controls['ClientFirstName'].hasError('required') && casePrimaryForm.controls['primaryInfo'].controls['ClientFirstName'].touched" class="mat-text-warn">First Name is required.</small>
+                    </div>
+                </div>
+
+                I am a child modal, opened from parent component!
+            </div>
+        </div>
+    </div>-->
+</div>

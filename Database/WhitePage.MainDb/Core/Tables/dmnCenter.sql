@@ -1,0 +1,7 @@
+﻿CREATE TABLE [Core].[dmnCenter]
+(
+	[CenterId] SMALLINT NOT NULL PRIMARY KEY,
+	[Title] VARCHAR(200) NOT NULL,
+	Code VARCHAR(75) NOT NULL,
+	IsActive BIT NOT NULL DEFAULT(1)
+)

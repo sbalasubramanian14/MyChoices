@@ -1,0 +1,7 @@
+﻿CREATE TABLE [Core].[dmnCaseStatus]
+(
+	[CaseStatusId] TINYINT NOT NULL PRIMARY KEY,
+	[Title] VARCHAR(200) NOT NULL,
+	[Level] TINYINT NOT NULL,
+	[IsActive] BIT DEFAULT(1)
+)

@@ -1,0 +1,7 @@
+Web/WhitePage.MyWeb.UI/wwwroot/*
+Web/WhitePage.MyWeb.UI/node_modules/*
+packages/*
+**/**/bin/*
+**/**/obj/*
+**/**/WhitePage.MainDb.sqlproj.user
+**/**/WhitePage.MainDb.dbmdl

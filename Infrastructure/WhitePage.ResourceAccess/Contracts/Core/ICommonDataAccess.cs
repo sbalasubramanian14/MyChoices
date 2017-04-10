@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+using WhitePage.Entities.CaseManagement;
+
+namespace WhitePage.ResourceAccess.Contracts.Core
+{
+    public interface ICommonDataAccess
+    {
+        List<Center> GetAllCenters();
+        List<PeaceMaker> GetAllPeaceMakers();
+        List<Counselor> GetAllCounselors();
+        List<CaseStatus> GetAllCaseStatuses();
+        List<Lookup> GetAllLookups();
+        List<State> GetAllStates();
+    }
+}

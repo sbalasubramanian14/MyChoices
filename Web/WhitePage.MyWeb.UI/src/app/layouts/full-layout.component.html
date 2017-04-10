@@ -1,0 +1,42 @@
+<header class="app-header navbar navbar-inverse">
+    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+    <a class="navbar-brand" href="#"></a>
+    <ul class="nav navbar-nav hidden-md-down">
+        <li class="nav-item">
+            <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
+        </li>
+
+        <li class="nav-item">
+            <button class="btn btn-link" (click)="onSignout()">
+                Sign Out
+            </button>
+        </li>
+    </ul>
+</header>
+<div class="app-body d-flex">
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']"><i class="icon-speedometer"></i><span> Dashboard</span></a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/cases/create']"><i class="icon-plus"></i><span>  New Case</span> </a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/cases/list']"><i class="icon-notebook"></i><span>  All Cases </span><span class="badge badge-info">NEW</span></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Main content -->
+    <main class="main">
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <breadcrumbs></breadcrumbs>
+        </ol>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.conainer-fluid -->
+    </main>
+</div>
+<!--<footer class="app-footer">
+    <a href="http://mychoicesfoundation.org">My Choices Foundation</a> &copy; 2017.
+</footer>-->

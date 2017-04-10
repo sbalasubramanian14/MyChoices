@@ -1,0 +1,9 @@
+﻿CREATE TABLE [Ops].[trPeacemaker]
+(
+	PeaceMakerId INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	FirstName VARCHAR(200) NOT NULL,
+	LastName VARCHAR(200) NOT NULL,
+	Email VARCHAR(200) NULL,
+	CenterId SMALLINT NULL,
+	IsActive BIT NOT NULL default(0)
+)

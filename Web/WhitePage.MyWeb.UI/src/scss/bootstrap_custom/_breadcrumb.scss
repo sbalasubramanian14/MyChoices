@@ -1,0 +1,14 @@
+.breadcrumb {
+  position: relative;
+  margin-bottom: 1.5 * $spacer-y;
+  background : $breadcrumb-bg;
+  display: flex;
+  justify-content: center;
+
+  //@include borders($breadcrumb-borders);
+}
+
+.breadcrumb-item.active {
+    font-size: 18px;
+    color: $brand-primary;
+}

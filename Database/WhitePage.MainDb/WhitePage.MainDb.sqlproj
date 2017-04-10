@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>WhitePage.MainDb</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ea6f1b4d-37b9-48f3-9c46-3e0e7b1a2dbb}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>WhitePage.MainDb</RootNamespace>
+    <AssemblyName>WhitePage.MainDb</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security" />
+    <Folder Include="Core" />
+    <Folder Include="Auth" />
+    <Folder Include="Ops" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Functions" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="Auth\Functions" />
+    <Folder Include="Auth\Tables" />
+    <Folder Include="Auth\Stored Procedures" />
+    <Folder Include="Core\Functions" />
+    <Folder Include="Core\Stored Procedures" />
+    <Folder Include="Core\Tables" />
+    <Folder Include="Ops\Functions" />
+    <Folder Include="Ops\Stored Procedures" />
+    <Folder Include="Ops\Tables" />
+    <Folder Include="Ops\Views" />
+    <Folder Include="Ops\User Defined Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\Auth.sql" />
+    <Build Include="Security\Core.sql" />
+    <Build Include="Security\Ops.sql" />
+    <Build Include="Auth\Tables\trUser.sql" />
+    <Build Include="Core\Tables\dmnLookup.sql" />
+    <Build Include="Core\Tables\dmnLookupDetail.sql" />
+    <Build Include="Auth\Tables\dmnRole.sql" />
+    <Build Include="Auth\Tables\trMapUserRole.sql" />
+    <Build Include="Auth\Stored Procedures\validateUserCredentials.sql" />
+    <Build Include="Auth\Tables\trUserLoginLog.sql" />
+    <Build Include="dbo\Functions\getAppDate.sql" />
+    <Build Include="dbo\Functions\udf_TitleCase.sql" />
+    <Build Include="Ops\Tables\trDataSetSchema.sql" />
+    <Build Include="Ops\Tables\dmnInputControlType.sql" />
+    <Build Include="Core\Tables\trSerialNumber.sql" />
+    <Build Include="Core\Tables\trSerialNumberTracker.sql" />
+    <Build Include="Ops\Tables\trDataSetSchemaDetail.sql" />
+    <Build Include="Ops\Tables\trCounselor.sql" />
+    <Build Include="Ops\Tables\trPeacemaker.sql" />
+    <Build Include="Core\Tables\dmnCenter.sql" />
+    <Build Include="Core\Tables\dmnCaseStatus.sql" />
+    <Build Include="Ops\Stored Procedures\savePrimaryCase.sql" />
+    <Build Include="Core\Tables\dmnState.sql" />
+    <Build Include="Core\Tables\dmnCity.sql" />
+    <Build Include="Ops\Views\vCaseHeader.sql" />
+    <Build Include="Ops\Tables\trCase.sql" />
+    <Build Include="Ops\Tables\trCaseAddress.sql" />
+    <Build Include="Ops\Tables\trCaseRegistration.sql" />
+    <Build Include="Ops\User Defined Types\CaseType.sql" />
+    <Build Include="Ops\User Defined Types\CaseAddressType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+</Project>
