@@ -5,3 +5,4 @@ packages/*
 **/**/obj/*
 **/**/WhitePage.MainDb.sqlproj.user
 **/**/WhitePage.MainDb.dbmdl
+.vs/*
