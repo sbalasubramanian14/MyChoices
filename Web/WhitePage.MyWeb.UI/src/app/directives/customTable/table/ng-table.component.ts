@@ -4,37 +4,52 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'ng-table',
   template: `
+    <style>
+        .table-fa-icon{
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .table-fa-icon:hover{
+            color: rgb(60, 222, 205);
+        }
+    </style>
     <table class="table dataTable" ngClass="{{config.className || ''}}"
            role="grid" style="width: 100%;">
-      <thead>
-        <tr role="row">
-          <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column" 
-              (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}">
-            {{column.title}}
-            <i *ngIf="config && column.sort" class="pull-right fa"
-              [ngClass]="{'fa-chevron-down': column.sort === 'desc', 'fa-chevron-up': column.sort === 'asc'}"></i>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr *ngIf="showFilterRow">
-        <td *ngFor="let column of columns">
-          <input *ngIf="column.filtering" placeholder="{{column.filtering.placeholder}}"
-                 [ngTableFiltering]="column.filtering"
-                 class="form-control"
-                 style="width: auto;"
-                 (tableChanged)="onChangeTable(config)"/>
-        </td>
-      </tr>
-        <tr *ngFor="let row of rows">
-          <div>
-                <a (click)="editClick(row)" style="cursor: pointer">Edit</a>
-                <a (click)="viewClick(row)" style="cursor: pointer">View</a>
-                <a (click)="deleteClick(row)" style="cursor: pointer">Delete</a>
-          </div>
-          <td (click)="cellClick(row, column.name)" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr role="row">
+                <th style="text-align:center">Actions</th>
+                <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column"
+                    (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}">
+                    {{column.title}}
+                    <i *ngIf="config && column.sort" class="pull-right fa"
+                       [ngClass]="{'fa-chevron-down': column.sort === 'desc', 'fa-chevron-up': column.sort === 'asc'}"></i>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="showFilterRow">
+                <td style="text-align:center">
+                    Edit /
+                    View /
+                    Delete
+                </td>
+                <td *ngFor="let column of columns">
+                    <input *ngIf="column.filtering" placeholder="{{column.filtering.placeholder}}"
+                           [ngTableFiltering]="column.filtering"
+                           class="form-control"
+                           style="width: auto;"
+                           (tableChanged)="onChangeTable(config)" />
+                </td>
+            </tr>
+            <tr *ngFor="let row of rows">
+                <td style="text-align:center">
+                    <i class="fa fa-lg fa-pencil-square table-fa-icon" (click)="editClick(row)" tooltip="Edit"></i>
+                    <i class="fa fa-lg fa-eye table-fa-icon" (click)="viewClick(row)" tooltip="View"></i>
+                    <i class="fa fa-lg fa-trash table-fa-icon" (click)="deleteClick(row)" tooltip="Delete"></i>
+                </td>
+                <td (click)="cellClick(row, column.name)" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
+            </tr>
+        </tbody>
     </table>
   `
 })
@@ -45,7 +60,7 @@ export class NgTableComponent {
   @Input()
   public set config(conf:any) {
     if (!conf.className) {
-      conf.className = 'table-striped table-bordered';
+      conf.className = 'table-bordered';
     }
     if (conf.className instanceof Array) {
       conf.className = conf.className.join(' ');

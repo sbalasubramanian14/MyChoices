@@ -33,3 +33,32 @@ input {
 .flex-fill{
     flex: 1;
 }
+
+.mat-text-warn {
+    color: #f8cb00;
+}
+
+.case-list-table {
+    color: white;
+
+    tr {
+        &:hover {
+            background-color: rgba(0,0,0,.1);
+        }
+    }
+}
+
+.pagination{
+    li a {
+        background-color: transparent !important;
+        color: white !important;
+    }
+    li.active a{
+        border-color: white !important;
+        background-color: $brand-primary !important;
+    }
+
+    li.disabled a{
+        color: darkgrey !important;
+    }
+}

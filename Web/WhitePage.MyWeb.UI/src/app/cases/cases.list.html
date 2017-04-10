@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row flex-column">
     <ng-table [config]="config"
                (tableChanged)="onChangeTable(config)"
                (cellClicked)="onCellClick($event)"
@@ -7,18 +7,19 @@
               (deleteClicked)="onDeleteClick($event)"
                [rows]="rows" [columns]="columns" id="test-results-table">
     </ng-table>
-    <pagination *ngIf="config.paging"
-                class="pagination-sm"
-                [(ngModel)]="page"
-                [totalItems]="length"
-                [itemsPerPage]="itemsPerPage"
-                [maxSize]="maxSize"
-                [boundaryLinks]="true"
-                [rotate]="false"
-                (pageChanged)="onChangeTable(config, $event)"
-                (numPages)="numPages = $event">
-    </pagination>
-
+    <div class="d-flex" style="justify-content: center; margin-top: 15px;">
+        <pagination *ngIf="config.paging"
+                    class="pagination-sm"
+                    [(ngModel)]="page"
+                    [totalItems]="length"
+                    [itemsPerPage]="itemsPerPage"
+                    [maxSize]="maxSize"
+                    [boundaryLinks]="true"
+                    [rotate]="false"
+                    (pageChanged)="onChangeTable(config, $event)"
+                    (numPages)="numPages = $event">
+        </pagination>
+    </div>
 </div>
 
 <div bsModal #moveModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
