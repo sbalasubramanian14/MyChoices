@@ -38,6 +38,18 @@ input {
     color: #f8cb00;
 }
 
+.sign-out-icon {
+    margin-left: auto;
+    margin-right: 15px;
+    margin-top: 15px;
+    color: whitesmoke;
+    cursor: pointer;
+
+    &:hover{
+        color: $brand-primary;
+    }
+}
+
 .case-list-table {
     color: white;
 
@@ -45,21 +57,6 @@ input {
         &:hover {
             background-color: rgba(0,0,0,.1);
         }
-    }
-}
-
-.pagination{
-    li a {
-        background-color: transparent !important;
-        color: white !important;
-    }
-    li.active a{
-        border-color: white !important;
-        background-color: $brand-primary !important;
-    }
-
-    li.disabled a{
-        color: darkgrey !important;
     }
 }
 
@@ -74,7 +71,8 @@ input {
 
     ul.nav.nav-tabs {
         justify-content: space-around;
-        margin-bottom: 15px;
+        flex-wrap: wrap;
+
     }
 
     li {
@@ -82,7 +80,8 @@ input {
         border-radius: 5px;
         color: whitesmoke;
         cursor: pointer;
-
+        margin-bottom: 15px;
+        margin-right: 5px;
         &.active {
             background-color: $brand-primary;
         }

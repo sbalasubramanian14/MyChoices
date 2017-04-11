@@ -7,6 +7,7 @@ import { HttpModule, Http } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { TooltipModule } from 'ng2-bootstrap/tooltip';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 
@@ -40,6 +41,7 @@ import { AuthenticationService } from './services/authentication.service'
         BrowserAnimationsModule,
         DropdownModule.forRoot(),
         TabsModule.forRoot(),
+        TooltipModule.forRoot(),
         ChartsModule,
         RouterModule.forRoot(AppRoutes),
         FormsModule,
