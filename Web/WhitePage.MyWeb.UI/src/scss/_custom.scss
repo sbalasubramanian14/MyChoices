@@ -62,3 +62,29 @@ input {
         color: darkgrey !important;
     }
 }
+
+.nav-tabs{
+    border-bottom: none !important;
+}
+
+.case-detail-container {
+    .tabset {
+        width: 100%;
+    }
+
+    ul.nav.nav-tabs {
+        justify-content: space-around;
+        margin-bottom: 15px;
+    }
+
+    li {
+        border: 2px solid whitesmoke;
+        border-radius: 5px;
+        color: whitesmoke;
+        cursor: pointer;
+
+        &.active {
+            background-color: $brand-primary;
+        }
+    }
+}
