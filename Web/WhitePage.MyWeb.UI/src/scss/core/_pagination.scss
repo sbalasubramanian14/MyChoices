@@ -1,0 +1,15 @@
+﻿.pagination {
+    li a {
+        background-color: transparent !important;
+        color: white !important;
+    }
+
+    li.active a {
+        border-color: white !important;
+        background-color: $brand-primary !important;
+    }
+
+    li.disabled a {
+        color: darkgrey !important;
+    }
+}
