@@ -34,8 +34,7 @@
                         <div class="card-header">
                             Primary Info
                         </div>
-                        <div class="card-block">
-                            {{centerOptionList | json}}
+                        <div class="card-block">                            
                             <div class="form-group">
                                 <label for="CenterId">Center *</label>
                                 <ng-select [options]="centerOptionList"
@@ -48,6 +47,60 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label for="CenterId">Peace Maker *</label>
+                                <ng-select [options]="peaceMakerOptionsList"
+                                           placeholder="Select Peace Maker"
+                                           [(ngModel)]="caseBook.Case.PeaceMakerId"
+                                           formControlName="PeaceMakerId"
+                                           [allowClear]="true">
+                                </ng-select>
+                                <div>
+                                    <small *ngIf="casePrimaryForm.controls['PeaceMakerId'].hasError('required') && casePrimaryForm.controls['PeaceMakerId'].touched" class="mat-text-warn">Peace Maker is required.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Counselor *</label>
+                                <ng-select [options]="counselorOptionsList"
+                                           placeholder="Select Peace Maker"
+                                           [(ngModel)]="caseBook.Case.CounselorId"
+                                           formControlName="CounselorId"
+                                           [allowClear]="true">
+                                </ng-select>
+                                <div>
+                                    <small *ngIf="casePrimaryForm.controls['CounselorId'].hasError('required') && casePrimaryForm.controls['CounselorId'].touched" class="mat-text-warn">Peace Maker is required.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeacemakerId">First Name *</label>
+                                <input placeholder="First Name" [formControl]="casePrimaryForm.controls['ClientFirstName']" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
+                                <div>
+                                    <small *ngIf="casePrimaryForm.controls['ClientFirstName'].hasError('required') && casePrimaryForm.controls['ClientFirstName'].touched" class="mat-text-warn">First Name is required.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeacemakerId">Last Name *</label>
+                                <input placeholder="Last Name" [formControl]="casePrimaryForm.controls['ClientLastName']" [(ngModel)]="caseBook.Case.ClientLastName" class="form-control" />
+                                <div>
+                                    <small *ngIf="casePrimaryForm.controls['ClientLastName'].hasError('required') && casePrimaryForm.controls['ClientLastName'].touched" class="mat-text-warn">Last Name is required.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeacemakerId">M.I.</label>
+                                <textarea placeholder="Middle Initials" [formControl]="casePrimaryForm.controls['Mi']" [(ngModel)]="caseBook.Case.Mi" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeacemakerId">Father / Husband Name *</label>
+                                <input placeholder="Father / Husband Name" [formControl]="casePrimaryForm.controls['FatherName']" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
+                                <div>
+                                    <small *ngIf="casePrimaryForm.controls['FatherName'].hasError('required') && casePrimaryForm.controls['FatherName'].touched" class="mat-text-warn">Father / Husband Name is required.</small>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
