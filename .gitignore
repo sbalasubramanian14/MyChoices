@@ -6,3 +6,4 @@ packages/*
 **/**/WhitePage.MainDb.sqlproj.user
 **/**/WhitePage.MainDb.dbmdl
 .vs/*
+**/**/WhitePage.MainDb.jfm
