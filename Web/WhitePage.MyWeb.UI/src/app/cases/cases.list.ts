@@ -188,8 +188,8 @@ export class CasesListComponent implements OnInit {
         console.log(data);
     }
 
-    public onEditClick(data: CaseHeader): any {
-        var url = '/cases/detailed/' + data.CaseId;
+    public onEditClick(data: any): any {        
+        var url = '/cases/detailed/' + data.row.CaseId;
         this.router.navigate([url]);        
     }
 

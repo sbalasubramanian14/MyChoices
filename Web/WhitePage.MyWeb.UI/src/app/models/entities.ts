@@ -3,7 +3,7 @@ class Center
 {
     constructor() { }
 
-    CenterId: number;
+    CenterId: any;
     Title: string;
     Code: string;
     IsActive: boolean;
@@ -12,7 +12,7 @@ class Center
 class PeaceMaker {
     constructor() { }
 
-    PeaceMakerId: number;
+    PeaceMakerId: any;
     FirstName: string;
     LastName: string;
     Email: string;

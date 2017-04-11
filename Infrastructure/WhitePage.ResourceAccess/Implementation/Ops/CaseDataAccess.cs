@@ -16,7 +16,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public List<CaseHeader> GetAllCases()
         {
-            return this.unitOfWork.DbContext.CaseHeaders.ToList();
+            return this.unitOfWork.DbContext.CaseHeaders.OrderByDescending(ch => ch.RegisterDate).OrderBy(ch => ch.CaseStatusId).ToList();
         }
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
@@ -35,11 +35,13 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Case.Mi,
                 caseBook.Case.FatherName,
                 caseBook.Case.GenderLookupId,
+
                 caseBook.Case.RequireAssistanceLookupId,
                 caseBook.Case.MaritalStatusLookupId,
                 caseBook.Case.Remarks,
                 caseBook.Case.RegisterDate,
                 caseBook.Case.MobileNumber,
+
                 caseBook.Case.CreatedBy,
                 caseBook.Case.CreatedDateTime,
                 caseBook.Case.ModifiedBy,
@@ -55,7 +57,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Addresses[0].Area,
                 caseBook.Addresses[0].CityId,
                 caseBook.Addresses[0].StateId,
-                caseBook.Addresses[0].PIN,            
+                caseBook.Addresses[0].PIN,
                 caseBook.Addresses[0].CreatedBy,
                 caseBook.Addresses[0].CreatedDateTime,
                 caseBook.Addresses[0].ModifiedBy,
@@ -70,6 +72,17 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 ).First();
 
             return updatedCase;
+        }
+
+        public CaseBook GetCaseById(int caseId)
+        {
+            var result = new CaseBook();
+
+            result.Case = this.unitOfWork.DbContext.Cases.Single(c => c.CaseId == caseId);
+            result.CaseHeader = this.unitOfWork.DbContext.CaseHeaders.First(c => c.CaseId == caseId);
+            result.Addresses = this.unitOfWork.DbContext.Addresses.Where(c => c.CaseId == caseId).ToList();
+
+            return result;
         }
     }
 }

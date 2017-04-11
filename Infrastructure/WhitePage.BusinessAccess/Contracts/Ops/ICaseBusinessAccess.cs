@@ -7,5 +7,6 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
     {
         CaseHeader SavePrimaryCase(CaseBook caseBook);
         List<CaseHeader> GetAllCases();
+        CaseBook GetCaseById(int caseId);
     }
 }

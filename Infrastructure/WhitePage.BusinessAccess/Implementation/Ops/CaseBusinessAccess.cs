@@ -23,5 +23,10 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             return this.caseDataAccess.SavePrimaryCase(caseBook);
         }
+
+        public CaseBook GetCaseById(int caseId)
+        {
+            return this.caseDataAccess.GetCaseById(caseId);
+        }
     }
 }

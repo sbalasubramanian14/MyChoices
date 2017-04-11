@@ -23,8 +23,8 @@ export class CasesService extends BaseService {
         return this.authHttp.get('/api/cases/GetAll/', this.getRequestOptions()).map((response: Response) => <CaseHeader[]>response.json());
     }
 
-    public GetCaseById = (caseId: number): Observable<Object> => {
-        return this.authHttp.get('/api/cases/GetCaseById/' + caseId, this.getRequestOptions()).map((response: Response) => <Object>response.json());
+    public GetCaseById = (caseId: number): Observable<CaseBook> => {
+        return this.authHttp.get('/api/cases/GetCaseById/' + caseId, this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
     }
 
 }

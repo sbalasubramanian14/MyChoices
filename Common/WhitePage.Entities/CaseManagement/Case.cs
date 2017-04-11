@@ -23,14 +23,7 @@ namespace WhitePage.Entities.CaseManagement
         public int? GenderLookupId { get; set; }
 
         public int? RequireAssistanceLookupId { get; set; }
-
-        public string Address { get; set; }
-        public string Area { get; set; }
-        public short CityId { get; set; }
-        public short StateId { get; set; }
-        public string PIN { get; set; }
-        public string Mobile { get; set; }
-        public int MaritalStatusLookupId { get; set; }
+        public int? MaritalStatusLookupId { get; set; }
         public string Remarks { get; set; }
         public DateTime RegisterDate { get; set; }
         public string MobileNumber { get; set; }

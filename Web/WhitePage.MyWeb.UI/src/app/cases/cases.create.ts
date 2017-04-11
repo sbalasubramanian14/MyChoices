@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { SelectModule, IOption } from 'ng-select';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import { Case, CaseAddress, CaseBook } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     templateUrl: 'cases.create.html',
@@ -23,7 +24,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         private routerObj: Router,
         public toastr: ToastsManager,
         vRef: ViewContainerRef) {
-        super(casesService, commonService)
+        super(casesService, commonService);
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
 
@@ -166,7 +167,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
 
         //Load default values
         this.caseBook.Case.MaritalStatusLookupId = "4";
-        this.casePrimaryForm.get('primaryInfo').get('MaritalStatusLookupId').setValue("Married");
+        //this.casePrimaryForm.get('primaryInfo').get('MaritalStatusLookupId').setValue("4");
 
     }
 
@@ -174,10 +175,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         this.casesService
             .addCasePrimary(this.caseBook).subscribe(data => {
                 this.toastr.success(data.CaseNumber + ' has been created successfully');
-
-                setTimeout(() => {
-                    this.router.navigate(['/cases/list']);
-                }, 3000);
+                this.router.navigate(['/cases/list']);                
 
             }, (error: any) => {
                 this.toastr.success("Error while creating case, " + error);

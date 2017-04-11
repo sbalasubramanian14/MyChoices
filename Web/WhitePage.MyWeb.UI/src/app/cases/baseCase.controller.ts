@@ -13,7 +13,7 @@ export class BaseCaseController {
         public commonService: CommonService) {
 
         this.observerDataSubject = new Subject<string>();
-
+        console.log("calling super constructor");
         this.LoadCenters();
         this.LoadPeaceMakers();
         this.LoadCounselors();
@@ -31,12 +31,12 @@ export class BaseCaseController {
 
     public observerDataSubject: Subject<string>;
 
-    private LoadCenters(): any {
+    private LoadCenters(): any {        
         this.commonService.getAllCenters().subscribe(data => {
             data.forEach(
                 center =>
                     this.centersList.push(center)
-            );
+            );            
             localStorage.setItem("getAllCenters", JSON.stringify(this.centersList));
             this.observerDataSubject.next("Centers");
         });

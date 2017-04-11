@@ -53,7 +53,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpGet]
         public IActionResult GetCaseById(int id)
         {
-            var selectedCase = this.caseBusinessAccess.GetAllCases().Where(c => c.CaseId == id).FirstOrDefault();
+            var selectedCase = this.caseBusinessAccess.GetCaseById(id);
             return Ok(selectedCase);
         }
 

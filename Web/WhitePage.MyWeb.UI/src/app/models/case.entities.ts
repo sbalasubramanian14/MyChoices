@@ -1,20 +1,20 @@
 ﻿export class Case {
     constructor() { }
 
-    CaseId?: number;
+    CaseId?: any;
     CaseNumber: string;
-    CenterId?: number;
-    CaseStausId?: number;
-    CounselorId?: number;
+    CenterId?: any;
+    CaseStausId?: any;
+    CounselorId?: any;
 
-    PeaceMakerId?: number;
+    PeaceMakerId?: any;
     ClientFirstName?: string;
     ClientLastName?: string;
     Mi?: string;
     FatherName?: string;
-    GenderLookupId?: number;
+    GenderLookupId?: any;
 
-    RequireAssistanceLookupId?: number;
+    RequireAssistanceLookupId?: any;
     MaritalStatusLookupId?: any;
     Remarks?: string;
 
@@ -64,6 +64,8 @@ export class CaseBook {
     constructor() { }
 
     Case: Case;
+    CaseHeader: CaseHeader;
+
     Addresses: Array<CaseAddress>;
 
     SelectedAddress: CaseAddress;
