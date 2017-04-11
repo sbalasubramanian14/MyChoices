@@ -3,11 +3,11 @@
 
     CaseId?: any;
     CaseNumber: string;
-    CenterId?: any;
+    CenterId?: number;
     CaseStausId?: any;
-    CounselorId?: any;
+    CounselorId?: number;
 
-    PeaceMakerId?: any;
+    PeaceMakerId?: number;
     ClientFirstName?: string;
     ClientLastName?: string;
     Mi?: string;

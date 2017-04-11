@@ -73,17 +73,17 @@ input {
         justify-content: space-around;
         flex-wrap: wrap;
 
-    }
+        li {
+            border: 2px solid whitesmoke;
+            border-radius: 5px;
+            color: whitesmoke;
+            cursor: pointer;
+            margin-bottom: 15px;
+            margin-right: 5px;
 
-    li {
-        border: 2px solid whitesmoke;
-        border-radius: 5px;
-        color: whitesmoke;
-        cursor: pointer;
-        margin-bottom: 15px;
-        margin-right: 5px;
-        &.active {
-            background-color: $brand-primary;
+            &.active {
+                background-color: $brand-primary;
+            }
         }
     }
 }

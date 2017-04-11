@@ -25,7 +25,6 @@
 
 <div class="container case-detail-container" style="width:100%" *ngIf="casePrimaryForm">
     <!-- regular tabs -->  
-    hello{{isPrimaryDataLoaded}}
     <tabset class="nav nav-tabs" style="width:100%">
         <tab title="Primary Info" class="active" style="width:100%">
             <form [formGroup]="casePrimaryForm" *ngIf="isPrimaryDataLoaded">
@@ -51,7 +50,6 @@
                                 <label for="CenterId">Peace Maker *</label>
                                 <ng-select [options]="peaceMakerOptionsList"
                                            placeholder="Select Peace Maker"
-                                           [(ngModel)]="caseBook.Case.PeaceMakerId"
                                            formControlName="PeaceMakerId"
                                            [allowClear]="true">
                                 </ng-select>
@@ -64,7 +62,6 @@
                                 <label for="CenterId">Counselor *</label>
                                 <ng-select [options]="counselorOptionsList"
                                            placeholder="Select Peace Maker"
-                                           [(ngModel)]="caseBook.Case.CounselorId"
                                            formControlName="CounselorId"
                                            [allowClear]="true">
                                 </ng-select>

@@ -110,14 +110,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     private loadPrimayCaseTab()
     {
         this.casePrimaryForm = this.fb.group({
-            CenterId: new FormControl(this.caseBook.Case.CenterId, Validators.required),
-            //PeaceMakerId: new FormControl(this.caseBook.Case.PeaceMakerId, Validators.required),
-            //CounselorId: new FormControl(this.caseBook.Case.CounselorId, Validators.required),
+            CenterId: new FormControl(this.caseBook.Case.CenterId.toString(), Validators.required),
+            PeaceMakerId: new FormControl(this.caseBook.Case.PeaceMakerId.toString(), Validators.required),
+            CounselorId: new FormControl(this.caseBook.Case.CounselorId.toString(), Validators.required),
 
-            //ClientFirstName: new FormControl(this.caseBook.Case.ClientFirstName, Validators.required),
-            //ClientLastName: new FormControl(this.caseBook.Case.ClientLastName, Validators.required),
-            //FatherName: new FormControl(this.caseBook.Case.FatherName, Validators.required),
-            //Mi: new FormControl(this.caseBook.Case.Mi),
+            ClientFirstName: new FormControl(this.caseBook.Case.ClientFirstName, Validators.required),
+            ClientLastName: new FormControl(this.caseBook.Case.ClientLastName, Validators.required),
+            FatherName: new FormControl(this.caseBook.Case.FatherName, Validators.required),
+            Mi: new FormControl(this.caseBook.Case.Mi),
             //GenderLookupId: new FormControl(this.caseBook.Case.GenderLookupId, Validators.required),
 
             //MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId, Validators.required),
