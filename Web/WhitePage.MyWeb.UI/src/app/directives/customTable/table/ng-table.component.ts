@@ -13,8 +13,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
             color: rgb(60, 222, 205);
         }
     </style>
-    <table class="table dataTable" ngClass="{{config.className || ''}}"
-           role="grid" style="width: 100%;">
+    <table class="table table-responsive" ngClass="{{config.className || ''}}">
         <thead>
             <tr role="row">
                 <th style="text-align:center">Actions</th>
@@ -35,7 +34,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                     <input *ngIf="column.filtering" placeholder="{{column.filtering.placeholder}}"
                            [ngTableFiltering]="column.filtering"
                            class="form-control"
-                           style="width: auto;"
+                           style=""
                            (tableChanged)="onChangeTable(config)" />
                 </td>
             </tr>
