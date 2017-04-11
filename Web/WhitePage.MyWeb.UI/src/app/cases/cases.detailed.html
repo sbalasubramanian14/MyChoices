@@ -24,7 +24,7 @@
 </table>
 
 <div class="container case-detail-container" style="width:100%" *ngIf="casePrimaryForm">
-    <!-- regular tabs -->  
+    <!-- regular tabs -->
     <tabset class="nav nav-tabs" style="width:100%">
         <tab title="Primary Info" class="active" style="width:100%">
             <form [formGroup]="casePrimaryForm" *ngIf="isPrimaryDataLoaded">
@@ -33,12 +33,13 @@
                         <div class="card-header">
                             Primary Info
                         </div>
-                        <div class="card-block">                            
+                        <div class="card-block">
                             <div class="form-group">
                                 <label for="CenterId">Center *</label>
                                 <ng-select [options]="centerOptionList"
                                            placeholder="Select Center"
-                                           formControlName="CenterId"                                                                                      
+                                           formControlName="CenterId"                                           
+                                           (selected)="onCenterSelected($event)"
                                            [allowClear]="true">
                                 </ng-select>
                                 <div>

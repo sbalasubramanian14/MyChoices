@@ -49,9 +49,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                             label: this.centersList[i].Title
                         });
                     }
-                    this.centerOptionList = localCenterOptionList;
-                    console.log("load centers");
-                    this.isPrimaryDataLoaded = true;
+                    this.centerOptionList = localCenterOptionList;                                        
+                    if (this.centersList.length > 0 && this.centerOptionList.length > 0 && this.counselorOptionsList.length > 0) {
+                        this.isPrimaryDataLoaded = true;
+                    }
                     break;
                 case "States":
                     var localStatesOptionList = new Array<IOption>();
@@ -76,11 +77,42 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     ngOnInit() {
-        console.log("calling ng");
         this.activatedRoute.params.subscribe((params: Params) => {
             this.selectedCaseId = params['id'];
             this.getCaseById();
         });
+    }
+
+    private onCenterSelected(center: any) {
+        if (this.caseBook.Case.CenterId == null || this.caseBook.Case.CenterId <= 0) {
+            this.peaceMakerOptionsList = new Array<IOption>();
+            this.counselorOptionsList = new Array<IOption>();
+            return;
+        }
+
+        //Peace Maker
+        var localPeaceMakerOptionsList = new Array<IOption>();
+        for (var i = 0; i < this.peaceMakersList.length; i++) {
+            if (this.peaceMakersList[i].CenterId == this.caseBook.Case.CenterId) {
+                localPeaceMakerOptionsList.push({
+                    value: this.peaceMakersList[i].PeaceMakerId.toString(),
+                    label: this.peaceMakersList[i].FirstName
+                });
+            }
+        }
+        this.peaceMakerOptionsList = localPeaceMakerOptionsList;
+
+        //Counselor
+        var localCounselorOptionsList = new Array<IOption>();
+        for (var i = 0; i < this.counselorsList.length; i++) {
+            if (this.counselorsList[i].CenterId == this.caseBook.Case.CenterId || this.counselorsList[i].IsGlobal) {
+                localCounselorOptionsList.push({
+                    value: this.counselorsList[i].CounselorId.toString(),
+                    label: this.counselorsList[i].FirstName
+                });
+            }
+        }
+        this.counselorOptionsList = localCounselorOptionsList;
     }
 
     private getCaseById() {        
@@ -89,23 +121,26 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             .subscribe(data => {
                 this.caseBook = data;
 
-                this.loadPrimayCaseTab();
+                this.onCenterSelected(null);
+                console.log("load centers");
 
-                
+                if (this.centersList.length > 0 && this.centerOptionList.length > 0 && this.counselorOptionsList.length > 0) {
+                    this.isPrimaryDataLoaded = true;
+                }
+                this.loadPrimayCaseTab();
             });
     }
 
     /* Primary Info */
-    public centerOptionList: Array<IOption>;
-    public peaceMakerOptionsList: Array<IOption>;
-    public counselorOptionsList: Array<IOption>;
-    public stateOptionsList: Array<IOption>;
-    public cityOptionsList: Array<IOption>;
+    public centerOptionList: Array<IOption> = [];
+    public peaceMakerOptionsList: Array<IOption> = [];
+    public counselorOptionsList: Array<IOption> = [];
+    public stateOptionsList: Array<IOption> = [];
+    public cityOptionsList: Array<IOption> = [];
 
-    public genderLookupOptionsList: Array<IOption>;
-    public maritalStatusLookupOptionsList: Array<IOption>;
-    public requireAssistanceLookupOptionsList: Array<IOption>;
-    
+    public genderLookupOptionsList: Array<IOption> = [];
+    public maritalStatusLookupOptionsList: Array<IOption> = [];
+    public requireAssistanceLookupOptionsList: Array<IOption> = [];
 
     private loadPrimayCaseTab()
     {
