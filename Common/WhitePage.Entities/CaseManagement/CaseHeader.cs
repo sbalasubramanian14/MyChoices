@@ -14,6 +14,8 @@ namespace WhitePage.Entities.CaseManagement
         public byte CaseStatusId { get; set; }
         public string CaseStatus { get; set; }
         public DateTime RegisterDate { get; set; }
+        [NotMapped]
+        public string RegisterDateString { get { return RegisterDate.ToString("dd-MMM-yyyy"); } }
         public string CenterTitle { get; set; }
         public string PeaceMaker { get; set; }
         public string MobileNumber { get; set; }

@@ -36,6 +36,7 @@ export class CaseHeader {
     CaseStatusId: number;
     CaseStatus: string;
     RegisterDate: Date;
+    RegisterDateString: string;
     CenterTitle: string;
     PeaceMaker: string;
     MobileNumber: string;

@@ -53,7 +53,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                     this.genderLookupOptionsList = this.ParseLookups("Gender");
                     this.maritalStatusLookupOptionsList = this.ParseLookups("MaritalStatus");
                     this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");
-                    
+                    this.isDataLoaded = true;
                     break;
                 default:
                     break;
@@ -63,6 +63,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
 
     public casePrimaryForm: FormGroup;
     public router: Router;
+    public isDataLoaded = false;
 
     public caseBook: CaseBook;
 

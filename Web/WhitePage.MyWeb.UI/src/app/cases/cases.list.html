@@ -1,11 +1,12 @@
 <div class="row flex-column">
     <ng-table [config]="config"
-               (tableChanged)="onChangeTable(config)"
-               (cellClicked)="onCellClick($event)"
+              (tableChanged)="onChangeTable(config)"
+              (moveClicked)="onMoveClick($event)"
+              (cellClicked)="onCellClick($event)"
               (editClicked)="onEditClick($event)"
               (viewClicked)="onViewClick($event)"
               (deleteClicked)="onDeleteClick($event)"
-               [rows]="rows" [columns]="columns" id="test-results-table">
+              [rows]="rows" [columns]="columns" id="test-results-table">
     </ng-table>
     <div class="d-flex" style="justify-content: center; margin-top: 15px;">
         <pagination *ngIf="config.paging"

@@ -8,8 +8,6 @@ import { Router } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap';
 import { Case, CaseAddress, CaseBook, CaseHeader } from '../models/case.entities';
 
-import { TableData } from './table-data';
-
 @Component({
     templateUrl: 'cases.list.html'
 })
@@ -23,7 +21,7 @@ export class CasesListComponent implements OnInit {
 
     constructor(private casesService: CasesService, private routerObj: Router) {
         this.router = routerObj;
-        this.length = this.data.length;
+        this.length = this.casesList.length;
     }
 
     ngOnInit() {
@@ -37,6 +35,8 @@ export class CasesListComponent implements OnInit {
             .GetAll()
             .subscribe(data => {
                 data.forEach(d => this.casesList.push(d));
+                this.length = this.casesList.length;
+                this.onChangeTable(this.config);
             });
     }
 
@@ -69,17 +69,13 @@ export class CasesListComponent implements OnInit {
 
     public rows: Array<any> = [];
     public columns: Array<any> = [
-        { title: 'Name', name: 'name', filtering: { filterString: '', placeholder: 'Filter by name' } },
-        {
-            title: 'Position',
-            name: 'position',
-            sort: false,
-            filtering: { filterString: '', placeholder: 'Filter by position' }
-        },
-        { title: 'Office', name: 'office', sort: 'asc' },
-        { title: 'Extn.', name: 'ext', sort: '', filtering: { filterString: '', placeholder: 'Filter by extn.' } },
-        { title: 'Start date', name: 'startDate' },
-        { title: 'Salary ($)', name: 'salary' }
+        { title: 'No#', name: 'CaseNumber', sort: true, filtering: { filterString: '', placeholder: 'No#' } },
+        { title: 'Name', name: 'ClientName', sort: true, filtering: { filterString: '', placeholder: 'Name#' } },
+        { title: 'Status', name: 'CaseStatus', sort: true, filtering: { filterString: '', placeholder: 'Status' } },
+        { title: 'Date', name: 'RegisterDateString', sort: true, filtering: { filterString: '', placeholder: 'Date' } },
+        { title: 'Center', name: 'CenterTitle', sort: true, filtering: { filterString: '', placeholder: 'Center' } },
+        { title: 'Peace Maker', name: 'PeaceMaker', sort: true, filtering: { filterString: '', placeholder: 'Peace Maker' } },
+        { title: 'Mobile', name: 'MobileNumber', sort: true, filtering: { filterString: '', placeholder: 'Mobile' } }
     ];
     public page: number = 1;
     public itemsPerPage: number = 10;
@@ -94,9 +90,7 @@ export class CasesListComponent implements OnInit {
         className: ['case-list-table', 'table-bordered']
     };
 
-    private data: Array<any> = TableData;
-
-    public changePage(page: any, data: Array<any> = this.data): Array<any> {
+    public changePage(page: any, data: Array<any> = this.casesList): Array<any> {
         let start = (page.page - 1) * page.itemsPerPage;
         let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
         return data.slice(start, end);
@@ -138,7 +132,7 @@ export class CasesListComponent implements OnInit {
         this.columns.forEach((column: any) => {
             if (column.filtering) {
                 filteredData = filteredData.filter((item: any) => {
-                    return item[column.name].match(column.filtering.filterString);
+                    return item[column.name].toLowerCase().match(column.filtering.filterString.toLowerCase());
                 });
             }
         });
@@ -149,14 +143,14 @@ export class CasesListComponent implements OnInit {
 
         if (config.filtering.columnName) {
             return filteredData.filter((item: any) =>
-                item[config.filtering.columnName].match(this.config.filtering.filterString));
+                item[config.filtering.columnName].match(this.config.filtering.filterString.toLowerCase()));
         }
 
         let tempArray: Array<any> = [];
         filteredData.forEach((item: any) => {
             let flag = false;
             this.columns.forEach((column: any) => {
-                if (item[column.name].toString().match(this.config.filtering.filterString)) {
+                if (item[column.name].toString().match(this.config.filtering.filterString.toLowerCase())) {
                     flag = true;
                 }
             });
@@ -178,28 +172,33 @@ export class CasesListComponent implements OnInit {
             Object.assign(this.config.sorting, config.sorting);
         }
 
-        let filteredData = this.changeFilter(this.data, this.config);
+        let filteredData = this.changeFilter(this.casesList, this.config);
         let sortedData = this.changeSort(filteredData, this.config);
         this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
         this.length = sortedData.length;
     }
 
-    public onCellClick(data: any): any {
+    public onCellClick(data: CaseHeader): any {
         console.log("cell click");
         console.log(data);
     }
 
-    public onEditClick(data: any): any {
-        console.log("edit click");
+    public onMoveClick(data: CaseHeader): any {
+        console.log("move click");
         console.log(data);
     }
 
-    public onViewClick(data: any): any {
+    public onEditClick(data: CaseHeader): any {
+        var url = '/cases/detailed/' + data.CaseId;
+        this.router.navigate([url]);        
+    }
+
+    public onViewClick(data: CaseHeader): any {
         console.log("view click");
         console.log(data);
     }
 
-    public onDeleteClick(data: any): any {
+    public onDeleteClick(data: CaseHeader): any {
         console.log("delete click");
         console.log(data);
     }

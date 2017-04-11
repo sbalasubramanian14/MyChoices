@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
-  selector: 'ng-table',
-  template: `
+    selector: 'ng-table',
+    template: `
     <style>
         .table-fa-icon{
             cursor: pointer;
@@ -29,9 +29,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
         <tbody>
             <tr *ngIf="showFilterRow">
                 <td style="text-align:center">
-                    Edit /
-                    View /
-                    Delete
+                    Manage
                 </td>
                 <td *ngFor="let column of columns">
                     <input *ngIf="column.filtering" placeholder="{{column.filtering.placeholder}}"
@@ -43,9 +41,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
             </tr>
             <tr *ngFor="let row of rows">
                 <td style="text-align:center">
+                    <i class="fa fa-lg fa-wrench table-fa-icon" (click)="moveClick(row)" tooltip="Move"></i>
                     <i class="fa fa-lg fa-pencil-square table-fa-icon" (click)="editClick(row)" tooltip="Edit"></i>
                     <i class="fa fa-lg fa-eye table-fa-icon" (click)="viewClick(row)" tooltip="View"></i>
-                    <i class="fa fa-lg fa-trash table-fa-icon" (click)="deleteClick(row)" tooltip="Delete"></i>
+                    <i class="fa fa-lg fa-trash table-fa-icon" (click)="deleteClick(row)" tooltip="Delete"></i>                    
                 </td>
                 <td (click)="cellClick(row, column.name)" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
             </tr>
@@ -54,104 +53,109 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   `
 })
 export class NgTableComponent {
-  // Table values
-  @Input() public rows:Array<any> = [];
+    // Table values
+    @Input() public rows: Array<any> = [];
 
-  @Input()
-  public set config(conf:any) {
-    if (!conf.className) {
-      conf.className = 'table-bordered';
+    @Input()
+    public set config(conf: any) {
+        if (!conf.className) {
+            conf.className = 'table-bordered';
+        }
+        if (conf.className instanceof Array) {
+            conf.className = conf.className.join(' ');
+        }
+        this._config = conf;
     }
-    if (conf.className instanceof Array) {
-      conf.className = conf.className.join(' ');
+
+    // Outputs (Events)
+    @Output() public tableChanged: EventEmitter<any> = new EventEmitter();
+    @Output() public cellClicked: EventEmitter<any> = new EventEmitter();
+    @Output() public viewClicked: EventEmitter<any> = new EventEmitter();
+    @Output() public editClicked: EventEmitter<any> = new EventEmitter();
+    @Output() public moveClicked: EventEmitter<any> = new EventEmitter();
+    @Output() public deleteClicked: EventEmitter<any> = new EventEmitter();
+
+    public showFilterRow: Boolean = false;
+
+    @Input()
+    public set columns(values: Array<any>) {
+        values.forEach((value: any) => {
+            if (value.filtering) {
+                this.showFilterRow = true;
+            }
+            if (value.className && value.className instanceof Array) {
+                value.className = value.className.join(' ');
+            }
+            let column = this._columns.find((col: any) => col.name === value.name);
+            if (column) {
+                Object.assign(column, value);
+            }
+            if (!column) {
+                this._columns.push(value);
+            }
+        });
     }
-    this._config = conf;
-  }
 
-  // Outputs (Events)
-  @Output() public tableChanged:EventEmitter<any> = new EventEmitter();
-  @Output() public cellClicked: EventEmitter<any> = new EventEmitter();
-  @Output() public viewClicked: EventEmitter<any> = new EventEmitter();
-  @Output() public editClicked: EventEmitter<any> = new EventEmitter();
-  @Output() public deleteClicked: EventEmitter<any> = new EventEmitter();
+    private _columns: Array<any> = [];
+    private _config: any = {};
 
-  public showFilterRow:Boolean = false;
+    public constructor(private sanitizer: DomSanitizer) {
+    }
 
-  @Input()
-  public set columns(values:Array<any>) {
-    values.forEach((value:any) => {
-      if (value.filtering) {
-        this.showFilterRow = true;
-      }
-      if (value.className && value.className instanceof Array) {
-        value.className = value.className.join(' ');
-      }
-      let column = this._columns.find((col:any) => col.name === value.name);
-      if (column) {
-        Object.assign(column, value);
-      }
-      if (!column) {
-        this._columns.push(value);
-      }
-    });
-  }
+    public sanitize(html: string): SafeHtml {
+        return this.sanitizer.bypassSecurityTrustHtml(html);
+    }
 
-  private _columns:Array<any> = [];
-  private _config:any = {};
+    public get columns(): Array<any> {
+        return this._columns;
+    }
 
-  public constructor(private sanitizer:DomSanitizer) {
-  }
+    public get config(): any {
+        return this._config;
+    }
 
-  public sanitize(html:string):SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
+    public get configColumns(): any {
+        let sortColumns: Array<any> = [];
 
-  public get columns():Array<any> {
-    return this._columns;
-  }
+        this.columns.forEach((column: any) => {
+            if (column.sort) {
+                sortColumns.push(column);
+            }
+        });
 
-  public get config():any {
-    return this._config;
-  }
+        return { columns: sortColumns };
+    }
 
-  public get configColumns():any {
-    let sortColumns:Array<any> = [];
+    public onChangeTable(column: any): void {
+        this._columns.forEach((col: any) => {
+            if (col.name !== column.name && col.sort !== false) {
+                col.sort = '';
+            }
+        });
+        this.tableChanged.emit({ sorting: this.configColumns });
+    }
 
-    this.columns.forEach((column:any) => {
-      if (column.sort) {
-        sortColumns.push(column);
-      }
-    });
+    public getData(row: any, propertyName: string): string {
+        return propertyName.split('.').reduce((prev: any, curr: string) => prev[curr], row);
+    }
 
-    return {columns: sortColumns};
-  }
+    public cellClick(row: any, column: any): void {
+        this.cellClicked.emit({ row });
+    }
 
-  public onChangeTable(column:any):void {
-    this._columns.forEach((col:any) => {
-      if (col.name !== column.name && col.sort !== false) {
-        col.sort = '';
-      }
-    });
-    this.tableChanged.emit({sorting: this.configColumns});
-  }
+    public moveClick(row: any): void {
+        this.moveClicked.emit({ row });
+    }
 
-  public getData(row:any, propertyName:string):string {
-    return propertyName.split('.').reduce((prev:any, curr:string) => prev[curr], row);
-  }
+    public editClick(row: any): void {
+        this.editClicked.emit({ row });
+    }
 
-  public cellClick(row:any, column:any):void {
-    this.cellClicked.emit({row});
-  }
+    public deleteClick(row: any): void {
+        this.deleteClicked.emit({ row });
+    }
 
-  public editClick(row: any): void {
-      this.editClicked.emit({ row});
-  }
-
-  public deleteClick(row: any): void {
-      this.deleteClicked.emit({ row});
-  }
-
-  public viewClick(row: any): void {
-      this.viewClicked.emit({ row });
-  }
+    public viewClick(row: any): void {
+        this.viewClicked.emit({ row });
+    }
 }
