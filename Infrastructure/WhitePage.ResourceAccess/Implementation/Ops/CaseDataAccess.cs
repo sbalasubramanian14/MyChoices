@@ -51,17 +51,17 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             var caseAddressTable = UserDefinedTableTypes.CaseAddress;
             caseAddressTable.Rows.Add(new object[]{
-                caseBook.Addresses[0].CaseAddressId,
-                caseBook.Addresses[0].CaseId,
-                caseBook.Addresses[0].Address,
-                caseBook.Addresses[0].Area,
-                caseBook.Addresses[0].CityId,
-                caseBook.Addresses[0].StateId,
-                caseBook.Addresses[0].PIN,
-                caseBook.Addresses[0].CreatedBy,
-                caseBook.Addresses[0].CreatedDateTime,
-                caseBook.Addresses[0].ModifiedBy,
-                caseBook.Addresses[0].ModifiedDatetime,
+                caseBook.SelectedAddress.CaseAddressId,
+                caseBook.SelectedAddress.CaseId,
+                caseBook.SelectedAddress.Address,
+                caseBook.SelectedAddress.Area,
+                caseBook.SelectedAddress.CityId,
+                caseBook.SelectedAddress.StateId,
+                caseBook.SelectedAddress.PIN,
+                caseBook.SelectedAddress.CreatedBy,
+                caseBook.SelectedAddress.CreatedDateTime,
+                caseBook.SelectedAddress.ModifiedBy,
+                caseBook.SelectedAddress.ModifiedDatetime,
                 });
             caseAddressTable.AcceptChanges();
 
@@ -80,8 +80,9 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             result.Case = this.unitOfWork.DbContext.Cases.Single(c => c.CaseId == caseId);
             result.CaseHeader = this.unitOfWork.DbContext.CaseHeaders.First(c => c.CaseId == caseId);
-            result.Addresses = this.unitOfWork.DbContext.Addresses.Where(c => c.CaseId == caseId).ToList();
+            
             result.vAddresses = this.unitOfWork.DbContext.vAddresses.Where(c => c.CaseId == caseId).ToList();
+            result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
 
             return result;
         }
@@ -127,7 +128,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         public CaseHeader UpdateAddress(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
-            var caseTable = UserDefinedTableTypes.CaseAddress;
+            
             var caseAddressTable = UserDefinedTableTypes.CaseAddress;
             caseAddressTable.Rows.Add(new object[]{
                 caseBook.SelectedAddress.CaseAddressId,
@@ -150,6 +151,33 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 ).First();
 
             return updatedCase;            
+        }
+
+        public CaseHeader UpdateChildren(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+            
+            var caseChildrenTable = UserDefinedTableTypes.CaseChildren;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.SelectedChildren.CaseChildrenId,
+                caseBook.SelectedChildren.CaseId,
+                caseBook.SelectedChildren.Name,
+                caseBook.SelectedChildren.Age,
+                caseBook.SelectedChildren.GenderLookupId,
+                caseBook.SelectedChildren.RelationshipWithAbuserLookupId,                
+                caseBook.SelectedChildren.CreatedBy,
+                caseBook.SelectedChildren.CreatedDateTime,
+                caseBook.SelectedChildren.ModifiedBy,
+                caseBook.SelectedChildren.ModifiedDatetime,
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveChildren]",
+                parmsCollection
+                    .AddParm("@caseChildrenType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseChildrenType]")
+                ).First();
+
+            return updatedCase;
         }
     }
 }

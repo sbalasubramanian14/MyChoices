@@ -46,6 +46,7 @@
     <Compile Include="CaseManagement\Case.cs" />
     <Compile Include="CaseManagement\CaseAddress.cs" />
     <Compile Include="CaseManagement\CaseBook.cs" />
+    <Compile Include="CaseManagement\CaseChildren.cs" />
     <Compile Include="CaseManagement\CaseHeader.cs" />
     <Compile Include="CaseManagement\CaseStatus.cs" />
     <Compile Include="CaseManagement\Center.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="CaseManagement\PeaceMaker.cs" />
     <Compile Include="CaseManagement\State.cs" />
     <Compile Include="CaseManagement\vCaseAddress.cs" />
+    <Compile Include="CaseManagement\vCaseChildren.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Claim.cs" />
   </ItemGroup>

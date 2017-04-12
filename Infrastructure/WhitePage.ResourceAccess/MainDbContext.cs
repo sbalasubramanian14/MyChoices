@@ -32,7 +32,10 @@ namespace WhitePage.ResourceAccess
         public DbSet<Case> Cases { get; set; }
         public DbSet<CaseAddress> Addresses { get; set; }
         public DbSet<vCaseAddress> vAddresses { get; set; }
-        
+
+        public DbSet<CaseChildren> Children { get; set; }
+        public DbSet<vCaseChildren> vChildren { get; set; }
+
         public DbSet<CaseHeader> CaseHeaders { get; set; }
     }
 }

@@ -8,6 +8,8 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         CaseHeader SavePrimaryCase(CaseBook caseBook);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);
+        CaseHeader UpdateChildren(CaseBook caseBook);
+        
         List<CaseHeader> GetAllCases();
         CaseBook GetCaseById(int caseId);
     }

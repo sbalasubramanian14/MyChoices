@@ -66,6 +66,33 @@ namespace WhitePage.ResourceAccess
             }
         }
 
+        public static DataTable CaseChildren
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseChildrenId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+                    .AddColumn("Name", DbColumnType.String)
+                    .AddColumn("Age", DbColumnType.Byte)
+                    .AddColumn("GenderLookupId", DbColumnType.Int)
+                    .AddColumn("RelationshipWithAbuserLookupId", DbColumnType.Int)
+                    
+                    .AddColumn("CreatedBy", DbColumnType.Int)
+                    .AddColumn("CreatedDateTime", DbColumnType.DateTime)
+                    .AddColumn("ModifiedBy", DbColumnType.Int)
+                    .AddColumn("ModifiedDatetime", DbColumnType.DateTime)
+                    ;
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
+
 
     }
 }

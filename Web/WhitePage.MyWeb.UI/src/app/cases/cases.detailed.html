@@ -208,7 +208,35 @@
         </tab>
 
         <tab title="Children" style="width:100%">
+            <div class="row" *ngIf="caseBook">
+                <div class="col-md-8 d-flex flex-column">
+                    <button class="btn btn-primary" (click)="addNewChild()" style="width:200px; height:30px; ">Add New Children</button>
 
+                    <table class="table" style="color:whitesmoke">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Relationship With Abuser</th>                                
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let children of caseBook.vChildren; let i = index">
+                                <td>{{children.Name}}</td>
+                                <td>{{children.Age}}</td>
+                                <td>{{children.Gender}}</td>
+                                <td>{{children.Relation}}</td>                                
+                                <td class="text-right">
+                                    <button class="btn btn-link" (click)="editChild(children)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </tab>
     </tabset>
 
@@ -267,14 +295,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">City *</label>
+                                        <label for="CityId">City *</label>
                                         <ng-select [options]="cityOptionsList"
                                         placeholder="Select City"
                                         formControlName="CityId"
                                         [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseAddressForm.controls['CityId'].hasError('required') && caseAddressForm.controls['CityId'].touched" class="mat-text-warn">State is required.</small>
+                                            <small *ngIf="caseAddressForm.controls['CityId'].hasError('required') && caseAddressForm.controls['CityId'].touched" class="mat-text-warn">City is required.</small>
                                         </div>
                                     </div>
 
@@ -288,6 +316,80 @@
 
                                     <div class="form-group">
                                         <button class="btn btn-primary" [disabled]="!caseAddressForm.valid" (click)="saveAddress()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #childrenModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Case Children</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildrenModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="caseChildrenForm" *ngIf="caseChildrenForm">
+                    <div class="row">
+                        <div class="col-md-12 d-flex flex-column">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Manage Children Details
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Name *</label>
+                                        <textarea placeholder="Name" [formControl]="caseChildrenForm.controls['Name']" class="form-control"></textarea>
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['Name'].hasError('required') && caseChildrenForm.controls['Name'].touched" class="mat-text-warn">Name is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Age *</label>
+                                        <input placeholder="Age" [formControl]="caseChildrenForm.controls['Age']"
+                                               class="form-control" [min]="0" [max]="2" digits maxlength="2" />
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['Age'].hasError('required') && caseChildrenForm.controls['Age'].touched" class="mat-text-warn">Age is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Gender *</label>
+                                        <ng-select [options]="genderLookupOptionsList"
+                                                   placeholder="Select Gender"
+                                                   formControlName="GenderLookupId"                                                   
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['GenderLookupId'].hasError('required') && caseChildrenForm.controls['GenderLookupId'].touched" class="mat-text-warn">Gender is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Relationship With Abuser *</label>
+                                        <ng-select [options]="relationshipWithAbuserLookupOptionsList"
+                                                   placeholder="Select Relationship"
+                                                   formControlName="RelationshipWithAbuserLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['RelationshipWithAbuserLookupId'].hasError('required') && caseChildrenForm.controls['RelationshipWithAbuserLookupId'].touched" class="mat-text-warn">Relation is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" [disabled]="!caseChildrenForm.valid" (click)="saveChildren()">Save</button>
                                     </div>
                                 </div>
                             </div>

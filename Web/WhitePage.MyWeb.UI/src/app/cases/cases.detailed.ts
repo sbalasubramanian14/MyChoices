@@ -4,12 +4,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { SelectModule, IOption} from 'ng-select';
+import { SelectModule, IOption } from 'ng-select';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
-import { Case, CaseAddress, CaseBook, vCaseAddress } from '../models/case.entities';
+import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
@@ -23,14 +23,15 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     public casePrimaryForm: FormGroup;
     public caseAddressForm: FormGroup;
+    public caseChildrenForm: FormGroup;
 
     public router: Router;
     public isPrimaryDataLoaded: boolean = false;
 
-    constructor(public  fb: FormBuilder,
+    constructor(public fb: FormBuilder,
         public casesService: CasesService,
         public commonService: CommonService,
-        public  routerObj: Router,
+        public routerObj: Router,
         public toastr: ToastsManager,
         public vRef: ViewContainerRef,
         public activatedRoute: ActivatedRoute) {
@@ -70,7 +71,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                 case "Lookups":
                     this.genderLookupOptionsList = this.ParseLookups("Gender");
                     this.maritalStatusLookupOptionsList = this.ParseLookups("MaritalStatus");
-                    this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");                    
+                    this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");
+                    this.relationshipWithAbuserLookupOptionsList = this.ParseLookups("RelationshipWithAbuser");
+
                     break;
                 default:
                     break;
@@ -118,7 +121,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.counselorOptionsList = localCounselorOptionsList;
     }
 
-    private getCaseById() {        
+    private getCaseById() {
         this.casesService
             .GetCaseById(this.selectedCaseId)
             .subscribe(data => {
@@ -145,8 +148,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
 
-    private loadPrimayCaseTab()
-    {
+    private loadPrimayCaseTab() {
         this.casePrimaryForm = this.fb.group({
             CenterId: new FormControl(this.caseBook.Case.CenterId.toString(), Validators.required),
             PeaceMakerId: new FormControl(this.caseBook.Case.PeaceMakerId.toString(), Validators.required),
@@ -179,12 +181,12 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         caseBookNew.Case.GenderLookupId = this.casePrimaryForm.controls['GenderLookupId'].value;
         caseBookNew.Case.MaritalStatusLookupId = this.casePrimaryForm.controls['MaritalStatusLookupId'].value;
         caseBookNew.Case.Remarks = this.casePrimaryForm.controls['Remarks'].value;
-        caseBookNew.Case.MobileNumber = this.casePrimaryForm.controls['MobileNumber'].value;        
+        caseBookNew.Case.MobileNumber = this.casePrimaryForm.controls['MobileNumber'].value;
 
         this.casesService
             .updatePrimaryInfo(caseBookNew).subscribe(data => {
-                
-                this.toastr.success('Primary Info Updated Successfully');                
+
+                this.toastr.success('Primary Info Updated Successfully');
 
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
@@ -193,10 +195,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /* End of --- Primary Info */
 
-    /* Start - Addresses */    
+    /* Start - Addresses */
 
-    private onStateSelected(state: any) {
-        if (this.caseBook.SelectedAddress.StateId == null || this.caseBook.SelectedAddress.StateId <= 0) {
+    private onStateSelected(state: any) {        
+        if (state == undefined || state.value == undefined) {
             this.cityOptionsList = new Array<IOption>();
             return;
         }
@@ -204,7 +206,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         //Cities
         var localCityOptionsList = new Array<IOption>();
         for (var i = 0; i < this.statesList.length; i++) {
-            if (this.statesList[i].StateId == this.caseBook.SelectedAddress.StateId) {
+            if (this.statesList[i].StateId == state.value) {
                 for (var j = 0; j < this.statesList[i].Cities.length; j++) {
                     localCityOptionsList.push({
                         value: this.statesList[i].Cities[j].CityId.toString(),
@@ -221,13 +223,13 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public addNewAddress() {
         this.caseBook.SelectedAddress = new CaseAddress();
         this.caseBook.SelectedAddress.CaseId = this.caseBook.Case.CaseId;
-        
+
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
             Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
             PIN: new FormControl(this.caseBook.SelectedAddress.PIN, Validators.required),
-            StateId: new FormControl(this.caseBook.SelectedAddress.StateId.toString(), Validators.required),
-            CityId: new FormControl(this.caseBook.SelectedAddress.CityId.toString(), Validators.required)
+            StateId: new FormControl(this.caseBook.SelectedAddress.StateId == undefined ? null : this.caseBook.SelectedAddress.StateId.toString(), Validators.required),
+            CityId: new FormControl(this.caseBook.SelectedAddress.CityId == undefined ? null : this.caseBook.SelectedAddress.CityId.toString(), Validators.required)
         });
         this.addressModal.show();
     }
@@ -246,8 +248,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedAddress.ModifiedBy = address.ModifiedBy;
         this.caseBook.SelectedAddress.ModifiedDatetime = address.ModifiedDatetime;
 
-        this.onStateSelected(null);
+        this.onStateSelected({ value: address.StateId});
 
+        debugger;
+        console.log({ value: address.StateId });
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
             Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
@@ -263,12 +267,11 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public saveAddress(address: vCaseAddress) {
-        //this.caseBook.SelectedAddress = new CaseAddress();        
         this.caseBook.SelectedAddress.Address = this.caseAddressForm.controls['Address'].value;
         this.caseBook.SelectedAddress.Area = this.caseAddressForm.controls['Area'].value;
         this.caseBook.SelectedAddress.CityId = this.caseAddressForm.controls['CityId'].value;
         this.caseBook.SelectedAddress.StateId = this.caseAddressForm.controls['StateId'].value;
-        this.caseBook.SelectedAddress.PIN = this.caseAddressForm.controls['PIN'].value;        
+        this.caseBook.SelectedAddress.PIN = this.caseAddressForm.controls['PIN'].value;
 
         this.casesService
             .updateAddress(this.caseBook).subscribe(data => {
@@ -281,4 +284,66 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             });
     }
     /* End of - Addresses */
+
+    /* Start - Children */
+    public relationshipWithAbuserLookupOptionsList: Array<IOption> = [];
+    @ViewChild('childrenModal') public childrenModal: ModalDirective;
+
+    public addNewChild() {
+        this.caseBook.SelectedChildren = new CaseChildren();
+        this.caseBook.SelectedChildren.CaseId = this.caseBook.Case.CaseId;
+        
+        this.caseChildrenForm = this.fb.group({
+            Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedChildren.Age, Validators.required),
+            GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId == undefined ? null : this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
+            RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId == undefined ? null : this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
+        });
+        this.childrenModal.show();
+    }
+
+    public editChild(children: vCaseChildren) {
+        this.caseBook.SelectedChildren = new CaseAddress();
+        this.caseBook.SelectedChildren.CaseChildrenId = children.CaseChildrenId;
+        this.caseBook.SelectedChildren.CaseId = children.CaseId;
+        this.caseBook.SelectedChildren.Name = children.Name;
+        this.caseBook.SelectedChildren.Age = children.Age;
+        this.caseBook.SelectedChildren.GenderLookupId = children.GenderLookupId;
+        this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId = children.RelationshipWithAbuserLookupId;
+
+        this.caseBook.SelectedChildren.CreatedBy = children.CreatedBy;
+        this.caseBook.SelectedChildren.CreatedDateTime = children.CreatedDateTime;
+        this.caseBook.SelectedChildren.ModifiedBy = children.ModifiedBy;
+        this.caseBook.SelectedChildren.ModifiedDatetime = children.ModifiedDatetime;        
+
+        this.caseChildrenForm = this.fb.group({
+            Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedChildren.Age, Validators.required),
+            GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
+            RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
+        });
+        this.childrenModal.show();
+    }
+
+    public hideChildrenModal(): void {
+        this.childrenModal.hide();
+    }
+
+    public saveChildren(address: vCaseChildren) {
+        this.caseBook.SelectedChildren.Name = this.caseChildrenForm.controls['Name'].value;
+        this.caseBook.SelectedChildren.Age = this.caseChildrenForm.controls['Age'].value;
+        this.caseBook.SelectedChildren.GenderLookupId = this.caseChildrenForm.controls['GenderLookupId'].value;
+        this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId = this.caseChildrenForm.controls['RelationshipWithAbuserLookupId'].value;
+
+        this.casesService
+            .updateChildren(this.caseBook).subscribe(data => {
+                this.addressModal.hide();
+                this.getCaseById();
+                this.toastr.success('Children updated successfully');
+
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
+    }
+    /* End of - Children */
 }

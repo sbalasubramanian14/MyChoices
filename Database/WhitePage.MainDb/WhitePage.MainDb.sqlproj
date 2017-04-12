@@ -111,6 +111,10 @@
     <Build Include="Ops\Stored Procedures\updatePrimaryInfo.sql" />
     <Build Include="Ops\Views\vCaseAddress.sql" />
     <Build Include="Ops\Stored Procedures\saveAddress.sql" />
+    <Build Include="Ops\Tables\trCaseChildren.sql" />
+    <Build Include="Ops\Views\vCaseChildren.sql" />
+    <Build Include="Ops\User Defined Types\CaseChildrenType.sql" />
+    <Build Include="Ops\Stored Procedures\saveChildren.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -80,15 +80,51 @@ export class vCaseAddress {
     ModifiedDatetime?: Date;
 }
 
+export class CaseChildren
+{
+    constructor() { }
+
+    CaseChildrenId?: number;
+    CaseId?: number;
+    Name?: string;
+    Age?: number;
+    GenderLookupId?: number;
+    RelationshipWithAbuserLookupId?: number;    
+
+    CreatedBy?: number;
+    CreatedDateTime?: Date;
+    ModifiedBy?: number;
+    ModifiedDatetime?: Date;
+}
+
+export class vCaseChildren {
+    constructor() { }
+
+    CaseChildrenId?: number;
+    CaseId?: number;
+    Name?: string;
+    Age?: number;
+    GenderLookupId?: number;
+    RelationshipWithAbuserLookupId?: number;
+
+    Gender: string;
+    Relation: string;
+
+    CreatedBy?: number;
+    CreatedDateTime?: Date;
+    ModifiedBy?: number;
+    ModifiedDatetime?: Date;
+}
+
 export class CaseBook {
     constructor() { }
 
     Case: Case;
-    CaseHeader: CaseHeader;
-
-    Addresses: Array<CaseAddress>;
+    CaseHeader: CaseHeader;    
 
     vCaseAddress: Array<vCaseAddress>;
+    vChildren: Array<vCaseChildren>;
 
     SelectedAddress: CaseAddress;
+    SelectedChildren: CaseChildren;
 }

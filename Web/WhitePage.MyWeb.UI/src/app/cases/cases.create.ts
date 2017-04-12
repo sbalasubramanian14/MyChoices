@@ -9,7 +9,7 @@ import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
-import { Case, CaseAddress, CaseBook } from '../models/case.entities';
+import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 
 @Component({
@@ -137,7 +137,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         //this.caseBook.Case.MaritalStatusLookupId = "4";
 
         this.caseBook.SelectedAddress = new CaseAddress();
-        this.caseBook.Addresses = new Array<CaseAddress>();
+        this.caseBook.vCaseAddress = new Array<vCaseAddress>();
 
         this.casePrimaryForm = this.fb.group({
             primaryInfo: new FormGroup({

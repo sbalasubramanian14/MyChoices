@@ -35,7 +35,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
             caseBook.Case.RegisterDate = DateTime.Now.Date;
 
-            caseBook.Addresses = new List<CaseAddress> { caseBook.SelectedAddress };
+            //caseBook.Addresses = new List<CaseAddress> { caseBook.SelectedAddress };
 
             var createdCase = this.caseBusinessAccess.SavePrimaryCase(caseBook);
             return Ok(createdCase);
@@ -79,6 +79,19 @@ namespace WhitePage.MyWeb.UI.Controllers
             caseBook.SelectedAddress.ModifiedDatetime = DateTime.Now;
 
             var updatedCase = this.caseBusinessAccess.UpdateAddress(caseBook);
+            return Ok(updatedCase);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateChildren([FromBody] CaseBook caseBook)
+        {
+            caseBook.SelectedChildren.CreatedBy = this.LoggedInUserId;
+            caseBook.SelectedChildren.ModifiedBy = this.LoggedInUserId;
+            caseBook.SelectedChildren.CreatedDateTime = DateTime.Now;
+            caseBook.SelectedChildren.ModifiedDatetime = DateTime.Now;
+
+            var updatedCase = this.caseBusinessAccess.UpdateChildren(caseBook);
             return Ok(updatedCase);
         }
 

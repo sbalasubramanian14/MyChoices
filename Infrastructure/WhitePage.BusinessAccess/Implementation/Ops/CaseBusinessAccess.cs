@@ -38,5 +38,10 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateAddress(caseBook);
         }
 
+        public CaseHeader UpdateChildren(CaseBook caseBook)
+        {
+            return this.caseDataAccess.UpdateChildren(caseBook);
+        }
+
     }
 }
