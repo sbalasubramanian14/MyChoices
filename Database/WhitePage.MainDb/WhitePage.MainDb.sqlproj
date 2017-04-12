@@ -115,6 +115,7 @@
     <Build Include="Ops\Views\vCaseChildren.sql" />
     <Build Include="Ops\User Defined Types\CaseChildrenType.sql" />
     <Build Include="Ops\Stored Procedures\saveChildren.sql" />
+    <Build Include="Ops\Tables\trCaseFamilyHouseHold.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

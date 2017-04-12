@@ -218,7 +218,7 @@
                                 <th>Name</th>
                                 <th>Age</th>
                                 <th>Gender</th>
-                                <th>Relationship With Abuser</th>                                
+                                <th>Relationship With Abuser</th>
                                 <th class="text-right"></th>
                             </tr>
                         </thead>
@@ -227,7 +227,7 @@
                                 <td>{{children.Name}}</td>
                                 <td>{{children.Age}}</td>
                                 <td>{{children.Gender}}</td>
-                                <td>{{children.Relation}}</td>                                
+                                <td>{{children.Relation}}</td>
                                 <td class="text-right">
                                     <button class="btn btn-link" (click)="editChild(children)">Edit</button>
                                 </td>
@@ -238,6 +238,131 @@
                 </div>
             </div>
         </tab>
+
+        <tab title="Client & Household" style="width:100%">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Family
+                        </div>
+                        <div class="card-block">
+
+                            <div class="form-group">
+                                <label for="CenterId">Any children deceased/miscarried/aborted?</label>
+                                <select type="text" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Household income</label>
+                                <select type="text" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Have you sought help for your issues before coming to My Choices?</label>
+                                <select type="text" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">yes, specify</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">If yes, what was the outcome of that help?</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of</label>
+                                <select type="text" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">If other, please specify</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Family (2)
+                        </div>
+                        <div class="card-block">
+
+                            <div class="form-group">
+                                <label for="CenterId">Would you like a Peacemaker to do follow up with you?</label>
+                                <select type="text" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Did the client sign the registration form?</label>
+                                <select type="text" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Client's Email</label>
+                                <input mdInput placeholder="email" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Religion</label>
+                                <select class="form-control" placeholder="Center"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Level of education</label>
+                                <select class="form-control" placeholder="Center"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Vocational skills</label>
+                                <select class="form-control" placeholder="Center"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Occupation</label>
+                                <select class="form-control" placeholder="Center"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">If self-employed or employed, please specify:</label>
+                                <input class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Client Income</label>
+                                <select class="form-control" placeholder="Center"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Household members living in same house</label>
+                                <select class="form-control" placeholder="Center"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">Year of marriage</label>
+                                <input class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PeaceMakerId">At what age did client have her first child?</label>
+                                <input class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+
     </tabset>
 
 
@@ -284,10 +409,10 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">State *</label>
                                         <ng-select [options]="stateOptionsList"
-                                        placeholder="Select State"
-                                        formControlName="StateId"
-                                        (selected)="onStateSelected($event)"
-                                        [allowClear]="true">
+                                                   placeholder="Select State"
+                                                   formControlName="StateId"
+                                                   (selected)="onStateSelected($event)"
+                                                   [allowClear]="true">
                                         </ng-select>
                                         <div>
                                             <small *ngIf="caseAddressForm.controls['StateId'].hasError('required') && caseAddressForm.controls['StateId'].touched" class="mat-text-warn">State is required.</small>
@@ -297,9 +422,9 @@
                                     <div class="form-group">
                                         <label for="CityId">City *</label>
                                         <ng-select [options]="cityOptionsList"
-                                        placeholder="Select City"
-                                        formControlName="CityId"
-                                        [allowClear]="true">
+                                                   placeholder="Select City"
+                                                   formControlName="CityId"
+                                                   [allowClear]="true">
                                         </ng-select>
                                         <div>
                                             <small *ngIf="caseAddressForm.controls['CityId'].hasError('required') && caseAddressForm.controls['CityId'].touched" class="mat-text-warn">City is required.</small>
@@ -368,7 +493,7 @@
                                         <label for="PeacemakerId">Gender *</label>
                                         <ng-select [options]="genderLookupOptionsList"
                                                    placeholder="Select Gender"
-                                                   formControlName="GenderLookupId"                                                   
+                                                   formControlName="GenderLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
