@@ -28,5 +28,15 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             return this.caseDataAccess.GetCaseById(caseId);
         }
+
+        public CaseHeader UpdatePrimaryInfo(CaseBook caseBook)
+        {
+            return this.caseDataAccess.UpdatePrimaryInfo(caseBook);
+        }
+        public CaseHeader UpdateAddress(CaseBook caseBook)
+        {
+            return this.caseDataAccess.UpdateAddress(caseBook);
+        }
+
     }
 }

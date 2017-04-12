@@ -60,6 +60,26 @@ export class CaseAddress {
     ModifiedDatetime?: Date;
 }
 
+export class vCaseAddress {
+    constructor() { }
+
+    CaseAddressId?: number;
+    CaseId?: number;
+    Address: string;
+    Area: string;
+    CityId?: number;
+    StateId?: number;
+    PIN: string;
+
+    City: string;
+    State: string;
+
+    CreatedBy?: number;
+    CreatedDateTime?: Date;
+    ModifiedBy?: number;
+    ModifiedDatetime?: Date;
+}
+
 export class CaseBook {
     constructor() { }
 
@@ -67,6 +87,8 @@ export class CaseBook {
     CaseHeader: CaseHeader;
 
     Addresses: Array<CaseAddress>;
+
+    vCaseAddress: Array<vCaseAddress>;
 
     SelectedAddress: CaseAddress;
 }

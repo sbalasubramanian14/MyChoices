@@ -1,10 +1,5 @@
 ﻿CREATE VIEW [Ops].[vCaseHeader]
 as
-	with fistAddress
-	as
-	(
-		select * from Ops.trCaseAddress
-	)
 	select C.CaseId, C.CaseNumber, C.CaseStausId
 	, (C.ClientFirstName + ' ' + C.ClientLastName) ClientName , CS.CaseStatusId, CS.Title as CaseStatus
 	, C.RegisterDate, Ce.Title as CenterTitle

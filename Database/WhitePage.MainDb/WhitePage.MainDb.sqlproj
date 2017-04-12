@@ -108,6 +108,9 @@
     <Build Include="Ops\Tables\trCaseRegistration.sql" />
     <Build Include="Ops\User Defined Types\CaseType.sql" />
     <Build Include="Ops\User Defined Types\CaseAddressType.sql" />
+    <Build Include="Ops\Stored Procedures\updatePrimaryInfo.sql" />
+    <Build Include="Ops\Views\vCaseAddress.sql" />
+    <Build Include="Ops\Stored Procedures\saveAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

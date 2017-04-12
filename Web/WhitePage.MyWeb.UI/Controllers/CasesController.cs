@@ -57,5 +57,30 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(selectedCase);
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdatePrimaryInfo([FromBody] CaseBook caseBook)
+        {
+            caseBook.Case.CreatedDateTime = DateTime.Now;
+            caseBook.Case.ModifiedDatetime = DateTime.Now;
+            caseBook.Case.RegisterDate = DateTime.Now.Date;
+
+            var updatedCase = this.caseBusinessAccess.UpdatePrimaryInfo(caseBook);
+            return Ok(updatedCase);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateAddress([FromBody] CaseBook caseBook)
+        {
+            caseBook.SelectedAddress.CreatedBy = this.LoggedInUserId;
+            caseBook.SelectedAddress.ModifiedBy = this.LoggedInUserId;
+            caseBook.SelectedAddress.CreatedDateTime = DateTime.Now;
+            caseBook.SelectedAddress.ModifiedDatetime = DateTime.Now;
+
+            var updatedCase = this.caseBusinessAccess.UpdateAddress(caseBook);
+            return Ok(updatedCase);
+        }
+
     }
 }

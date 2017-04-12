@@ -7,6 +7,7 @@ namespace WhitePage.Entities.CaseManagement
         public Case Case { get; set; }
         public CaseHeader CaseHeader { get; set; }
         public List<CaseAddress> Addresses { get; set; }
+        public List<vCaseAddress> vAddresses { get; set; }
         public CaseAddress SelectedAddress { get; set; }
     }
 }
