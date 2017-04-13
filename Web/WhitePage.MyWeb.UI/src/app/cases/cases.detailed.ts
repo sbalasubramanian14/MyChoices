@@ -25,10 +25,12 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public caseAddressForm: FormGroup;
     public caseChildrenForm: FormGroup;
     public clientAndHouseholdForm: FormGroup;
+    public spouseForm: FormGroup;
 
     public router: Router;
     public isPrimaryDataLoaded: boolean = false;
     public isHouseHoldDataLoaded: boolean = false;
+    public isSpouseDataLoaded: boolean = false;
 
     public childrenDeceasedLookupOptionsList: Array<IOption> = [];
     public incomeLookupOptionsList: Array<IOption> = [];
@@ -81,14 +83,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.stateOptionsList = localStatesOptionList;
                     break;
                 case "Lookups":
-                    
+
                     this.genderLookupOptionsList = this.ParseLookups("Gender");
                     this.maritalStatusLookupOptionsList = this.ParseLookups("MaritalStatus");
                     this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");
                     this.relationshipWithAbuserLookupOptionsList = this.ParseLookups("RelationshipWithAbuser");
-                    
+
                     this.childrenDeceasedLookupOptionsList = this.ParseLookups("ChildrenDeceased");
-                    this.incomeLookupOptionsList = this.ParseLookups("Income");                    
+                    this.incomeLookupOptionsList = this.ParseLookups("Income");
                     this.yesNoOptionsList = this.ParseLookups("YesNo");
                     this.peacemakerAssistanceOptionsList = this.ParseLookups("PeacemakerAssistance");
                     this.religionOptionsList = this.ParseLookups("Religion");
@@ -97,6 +99,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.occupationOptionsList = this.ParseLookups("Occupation");
                     this.householdMembersOptionsList = this.ParseLookups("HouseholdMembers");
                     this.isHouseHoldDataLoaded = true;
+
+
+                    this.isSpouseDataLoaded = true;
 
                     break;
                 default:
@@ -158,8 +163,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.isPrimaryDataLoaded = true;
                 }
                 this.loadPrimayCaseTab();
-                debugger;
                 this.loadHouseHoldFormGroup();
+                this.loadSpouseFormGroup();
             });
     }
 
@@ -223,7 +228,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /* Start - Addresses */
 
-    private onStateSelected(state: any) {        
+    private onStateSelected(state: any) {
         if (state == undefined || state.value == undefined) {
             this.cityOptionsList = new Array<IOption>();
             return;
@@ -274,7 +279,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedAddress.ModifiedBy = address.ModifiedBy;
         this.caseBook.SelectedAddress.ModifiedDatetime = address.ModifiedDatetime;
 
-        this.onStateSelected({ value: address.StateId});
+        this.onStateSelected({ value: address.StateId });
 
         debugger;
         console.log({ value: address.StateId });
@@ -318,7 +323,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public addNewChild() {
         this.caseBook.SelectedChildren = new CaseChildren();
         this.caseBook.SelectedChildren.CaseId = this.caseBook.Case.CaseId;
-        
+
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
             Age: new FormControl(this.caseBook.SelectedChildren.Age, Validators.required),
@@ -340,7 +345,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedChildren.CreatedBy = children.CreatedBy;
         this.caseBook.SelectedChildren.CreatedDateTime = children.CreatedDateTime;
         this.caseBook.SelectedChildren.ModifiedBy = children.ModifiedBy;
-        this.caseBook.SelectedChildren.ModifiedDatetime = children.ModifiedDatetime;        
+        this.caseBook.SelectedChildren.ModifiedDatetime = children.ModifiedDatetime;
 
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
@@ -373,15 +378,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
     /* End of - Children */
 
-    /* Start - client And Household */   
+    /* Start - client And Household */
 
     public onUpdateHouseHoldInfo() {
         console.log(this.caseBook);
     }
 
     private loadHouseHoldFormGroup() {
-        console.log(this.yesNoOptionsList);
-        this.clientAndHouseholdForm = this.fb.group({            
+        this.clientAndHouseholdForm = this.fb.group({
             ChildrenDeceasedLookupId: new FormControl(this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId.toString()),
             HouseHoldIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString()),
             SoughtHelpYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId.toString()),
@@ -404,4 +408,13 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         });
     }
     /* End of - client And Household */
+
+    /* Start - Spouse */
+
+    private loadSpouseFormGroup() {
+        this.spouseForm = this.fb.group({
+        });
+    }
+
+    /* End of - Spouse */
 }
