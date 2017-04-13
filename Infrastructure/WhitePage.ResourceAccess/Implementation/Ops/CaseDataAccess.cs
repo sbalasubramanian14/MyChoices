@@ -84,6 +84,9 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.vAddresses = this.unitOfWork.DbContext.vAddresses.Where(c => c.CaseId == caseId).ToList();
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
 
+            result.FamilyHouseHold= this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
+            if (result.FamilyHouseHold == null) result.FamilyHouseHold = new CaseFamilyHouseHold();
+
             return result;
         }
 
@@ -175,6 +178,44 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveChildren]",
                 parmsCollection
                     .AddParm("@caseChildrenType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseChildrenType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateHouseHold(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.HouseHold;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.FamilyHouseHold.CaseFamilyHouseHoldId,
+                caseBook.FamilyHouseHold.CaseId,
+                caseBook.FamilyHouseHold.ChildrenDeceasedLookupId,
+                caseBook.FamilyHouseHold.HouseHoldIncomeLookupId,
+                caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId,
+                caseBook.FamilyHouseHold.SoughtHelpDesc,
+                caseBook.FamilyHouseHold.SoughtHelpOutPut,
+                caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId,
+                caseBook.FamilyHouseHold.PeacemakerAssistanceDesc,
+                caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId,
+                caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId,
+                caseBook.FamilyHouseHold.ClientEmailId,
+                caseBook.FamilyHouseHold.ReligionLookupId,
+                caseBook.FamilyHouseHold.LevelOfEducationLookupId,
+                caseBook.FamilyHouseHold.VocationalSkillsLookupId,
+                caseBook.FamilyHouseHold.OccupationLookupId,
+                caseBook.FamilyHouseHold.OccupationDesc,
+                caseBook.FamilyHouseHold.ClientIncomeLookupId,
+                caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId,
+                caseBook.FamilyHouseHold.YearOfMarriage,
+                caseBook.FamilyHouseHold.ClientAgeAtFirstChild
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveHouseHold]",
+                parmsCollection
+                    .AddParm("@caseHouseHoldType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseHouseHoldType]")
                 ).First();
 
             return updatedCase;

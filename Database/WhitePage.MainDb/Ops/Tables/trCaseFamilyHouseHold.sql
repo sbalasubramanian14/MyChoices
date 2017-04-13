@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[trCaseFamilyHouseHold]
+﻿CREATE TABLE [Ops].[trCaseFamilyHouseHold]
 (
 	[CaseFamilyHouseHoldId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[CaseId] INT NOT NULL,
@@ -7,7 +7,7 @@
 	SoughtHelpYesNoLookupId INT NULL,
 	SoughtHelpDesc varchar(200) NULL,
 	SoughtHelpOutPut varchar(200) NULL,
-	PeacemakerAssistanceLookupId varchar(200) NULL,
+	PeacemakerAssistanceLookupId int NULL,
 	PeacemakerAssistanceDesc varchar(200),
 	PeacemakerFollowupYesNoLookupId INT NULL,
 	ClientSignedRegistrationFormYesNoLookupId INT NULL,

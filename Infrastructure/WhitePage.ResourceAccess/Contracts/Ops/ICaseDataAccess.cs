@@ -11,5 +11,6 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);
         CaseHeader UpdateChildren(CaseBook caseBook);
+        CaseHeader UpdateHouseHold(CaseBook caseBook);
     }
 }

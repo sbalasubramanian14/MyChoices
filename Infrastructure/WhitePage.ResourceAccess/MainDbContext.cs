@@ -35,6 +35,7 @@ namespace WhitePage.ResourceAccess
 
         public DbSet<CaseChildren> Children { get; set; }
         public DbSet<vCaseChildren> vChildren { get; set; }
+        public DbSet<CaseFamilyHouseHold> FamilyHouseHold { get; set; }
 
         public DbSet<CaseHeader> CaseHeaders { get; set; }
     }

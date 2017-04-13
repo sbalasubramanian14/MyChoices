@@ -24,9 +24,21 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public casePrimaryForm: FormGroup;
     public caseAddressForm: FormGroup;
     public caseChildrenForm: FormGroup;
+    public clientAndHouseholdForm: FormGroup;
 
     public router: Router;
     public isPrimaryDataLoaded: boolean = false;
+    public isHouseHoldDataLoaded: boolean = false;
+
+    public childrenDeceasedLookupOptionsList: Array<IOption> = [];
+    public incomeLookupOptionsList: Array<IOption> = [];
+    public yesNoOptionsList: Array<IOption> = [];
+    public peacemakerAssistanceOptionsList: Array<IOption> = [];
+    public religionOptionsList: Array<IOption> = [];
+    public levelOfEducationOptionsList: Array<IOption> = [];
+    public vocationalSkillsOptionsList: Array<IOption> = [];
+    public occupationOptionsList: Array<IOption> = [];
+    public householdMembersOptionsList: Array<IOption> = [];
 
     constructor(public fb: FormBuilder,
         public casesService: CasesService,
@@ -69,10 +81,22 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.stateOptionsList = localStatesOptionList;
                     break;
                 case "Lookups":
+                    
                     this.genderLookupOptionsList = this.ParseLookups("Gender");
                     this.maritalStatusLookupOptionsList = this.ParseLookups("MaritalStatus");
                     this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");
                     this.relationshipWithAbuserLookupOptionsList = this.ParseLookups("RelationshipWithAbuser");
+                    
+                    this.childrenDeceasedLookupOptionsList = this.ParseLookups("ChildrenDeceased");
+                    this.incomeLookupOptionsList = this.ParseLookups("Income");                    
+                    this.yesNoOptionsList = this.ParseLookups("YesNo");
+                    this.peacemakerAssistanceOptionsList = this.ParseLookups("PeacemakerAssistance");
+                    this.religionOptionsList = this.ParseLookups("Religion");
+                    this.levelOfEducationOptionsList = this.ParseLookups("LevelOfEducation");
+                    this.vocationalSkillsOptionsList = this.ParseLookups("VocationalSkills");
+                    this.occupationOptionsList = this.ParseLookups("Occupation");
+                    this.householdMembersOptionsList = this.ParseLookups("HouseholdMembers");
+                    this.isHouseHoldDataLoaded = true;
 
                     break;
                 default:
@@ -134,6 +158,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.isPrimaryDataLoaded = true;
                 }
                 this.loadPrimayCaseTab();
+                debugger;
+                this.loadHouseHoldFormGroup();
             });
     }
 
@@ -346,4 +372,36 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             });
     }
     /* End of - Children */
+
+    /* Start - client And Household */   
+
+    public onUpdateHouseHoldInfo() {
+        console.log(this.caseBook);
+    }
+
+    private loadHouseHoldFormGroup() {
+        console.log(this.yesNoOptionsList);
+        this.clientAndHouseholdForm = this.fb.group({            
+            ChildrenDeceasedLookupId: new FormControl(this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId.toString()),
+            HouseHoldIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString()),
+            SoughtHelpYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId.toString()),
+            SoughtHelpDesc: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpDesc),
+            SoughtHelpOutPut: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpOutPut),
+            PeacemakerAssistanceLookupId: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId.toString()),
+            PeacemakerAssistanceDesc: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc),
+            PeacemakerFollowupYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString()),
+            ClientSignedRegistrationFormYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString()),
+            ClientEmailId: new FormControl(this.caseBook.FamilyHouseHold.ClientEmailId),
+            ReligionLookupId: new FormControl(this.caseBook.FamilyHouseHold.ReligionLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ReligionLookupId.toString()),
+            LevelOfEducationLookupId: new FormControl(this.caseBook.FamilyHouseHold.LevelOfEducationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.LevelOfEducationLookupId.toString()),
+            VocationalSkillsLookupId: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsLookupId == undefined ? null : this.caseBook.FamilyHouseHold.VocationalSkillsLookupId.toString()),
+            OccupationLookupId: new FormControl(this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString()),
+            OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
+            ClientIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()),
+            HouseHoldMembersLivingLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()),
+            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage),
+            ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild)
+        });
+    }
+    /* End of - client And Household */
 }

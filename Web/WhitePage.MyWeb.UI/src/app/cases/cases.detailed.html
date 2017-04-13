@@ -239,128 +239,192 @@
             </div>
         </tab>
 
-        <tab title="Client & Household" style="width:100%">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            Family
-                        </div>
-                        <div class="card-block">
+        <tab title="Client & Household" style="width:100%" *ngIf="clientAndHouseholdForm">
+            <form [formGroup]="clientAndHouseholdForm" *ngIf="isHouseHoldDataLoaded">
+                <div class="row">
 
-                            <div class="form-group">
-                                <label for="CenterId">Any children deceased/miscarried/aborted?</label>
-                                <select type="text" class="form-control"></select>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Family
                             </div>
+                            <div class="card-block">
 
-                            <div class="form-group">
-                                <label for="CenterId">Household income</label>
-                                <select type="text" class="form-control"></select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Any children deceased/miscarried/aborted?</label>
+                                    <ng-select [options]="childrenDeceasedLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ChildrenDeceasedLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">Have you sought help for your issues before coming to My Choices?</label>
-                                <select type="text" class="form-control"></select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Household income</label>
+                                    <ng-select [options]="incomeLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="HouseHoldIncomeLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">yes, specify</label>
-                                <input type="text" class="form-control">
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Have you sought help for your issues before coming to My Choices?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SoughtHelpYesNoLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">If yes, what was the outcome of that help?</label>
-                                <input type="text" class="form-control">
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">yes, specify</label>
+                                    <input [formControl]="SoughtHelpDesc" class="form-control" />
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of</label>
-                                <select type="text" class="form-control"></select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">If yes, what was the outcome of that help?</label>
+                                    <input [formControl]="SoughtHelpOutPut" class="form-control" />
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">If other, please specify</label>
-                                <input type="text" class="form-control">
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of</label>
+                                    <ng-select [options]="peacemakerAssistanceOptionsList"
+                                               placeholder="Select"
+                                               formControlName="PeacemakerAssistanceLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                        </div>
-                    </div>
-                </div>
+                                <div class="form-group">
+                                    <label for="CenterId">If other, please specify</label>
+                                    <input [formControl]="PeacemakerAssistanceDesc" class="form-control" />
+                                </div>
 
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            Family (2)
-                        </div>
-                        <div class="card-block">
-
-                            <div class="form-group">
-                                <label for="CenterId">Would you like a Peacemaker to do follow up with you?</label>
-                                <select type="text" class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Did the client sign the registration form?</label>
-                                <select type="text" class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Client's Email</label>
-                                <input mdInput placeholder="email" class="form-control" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Religion</label>
-                                <select class="form-control" placeholder="Center"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Level of education</label>
-                                <select class="form-control" placeholder="Center"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Vocational skills</label>
-                                <select class="form-control" placeholder="Center"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Occupation</label>
-                                <select class="form-control" placeholder="Center"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">If self-employed or employed, please specify:</label>
-                                <input class="form-control" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Client Income</label>
-                                <select class="form-control" placeholder="Center"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Household members living in same house</label>
-                                <select class="form-control" placeholder="Center"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">Year of marriage</label>
-                                <input class="form-control" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="PeaceMakerId">At what age did client have her first child?</label>
-                                <input class="form-control" />
-                            </div>
-
-                            <div class="form-group">
-                                <button class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Family (2)
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="CenterId">Would you like a Peacemaker to do follow up with you?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="PeacemakerFollowupYesNoLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Did the client sign the registration form?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ClientSignedRegistrationFormYesNoLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Client's Email</label>
+                                    <input [formControl]="ClientEmailId" inputmode="email" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Religion</label>
+                                    <ng-select [options]="religionOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ReligionLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Level of education</label>
+                                    <ng-select [options]="levelOfEducationOptionsList"
+                                               placeholder="Select"
+                                               formControlName="LevelOfEducationLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Vocational skills</label>
+                                    <ng-select [options]="vocationalSkillsOptionsList"
+                                               placeholder="Select"
+                                               formControlName="VocationalSkillsLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Occupation</label>
+                                    <ng-select [options]="occupationOptionsList"
+                                               placeholder="Select"
+                                               formControlName="OccupationLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">If self-employed or employed, please specify:</label>
+                                    <input [formControl]="OccupationDesc" class="form-control" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Family (3)
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Client Income</label>
+                                    <ng-select [options]="incomeLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ClientIncomeLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Household members living in same house</label>
+                                    <ng-select [options]="householdMembersOptionsList"
+                                               placeholder="Select"
+                                               formControlName="HouseHoldMembersLivingLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Year of marriage</label>
+                                    <input [formControl]="YearOfMarriage" inputmode="numeric" maxlength="4" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">At what age did client have her first child?</label>
+                                    <input [formControl]="ClientAgeAtFirstChild" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" (click)="onUpdateHouseHoldInfo()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
-            </div>
+            </form>
         </tab>
 
     </tabset>

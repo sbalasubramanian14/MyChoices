@@ -31,12 +31,12 @@ export class BaseCaseController {
 
     public observerDataSubject: Subject<string>;
 
-    private LoadCenters(): any {        
+    private LoadCenters(): any {
         this.commonService.getAllCenters().subscribe(data => {
             data.forEach(
                 center =>
                     this.centersList.push(center)
-            );            
+            );
             localStorage.setItem("getAllCenters", JSON.stringify(this.centersList));
             this.observerDataSubject.next("Centers");
         });
@@ -99,7 +99,7 @@ export class BaseCaseController {
     private LoadStates(): any {
         this.commonService.getAllStates().subscribe(data => {
             data.forEach(
-                state => {                    
+                state => {
                     this.statesList.push(state);
                 }
             );
@@ -108,15 +108,22 @@ export class BaseCaseController {
         });
     }
 
-    public ParseLookups(lookupName: string): Array<IOption> {        
+    public ParseLookups(lookupName: string): Array<IOption> {
         var localOptionsList = new Array<IOption>();
-        var lookupDetailsList = this.lookupsList.filter(l => l.Title == lookupName)[0].LookupDetails;
-        for (var i = 0; i < lookupDetailsList.length; i++) {
-            localOptionsList.push({
-                value: lookupDetailsList[i].LookupDetailId.toString(),
-                label: lookupDetailsList[i].Value
-            });
+
+        if (this.lookupsList.filter(l => l.Title == lookupName) == undefined) {
+            console.log(lookupName);
         }
+        else {
+            var lookupDetailsList = this.lookupsList.filter(l => l.Title == lookupName)[0].LookupDetails;
+            for (var i = 0; i < lookupDetailsList.length; i++) {
+                localOptionsList.push({
+                    value: lookupDetailsList[i].LookupDetailId.toString(),
+                    label: lookupDetailsList[i].Value
+                });
+            }
+        }
+        console.log(lookupName);
         return localOptionsList;
     }
 }

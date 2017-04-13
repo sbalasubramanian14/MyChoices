@@ -80,8 +80,7 @@ export class vCaseAddress {
     ModifiedDatetime?: Date;
 }
 
-export class CaseChildren
-{
+export class CaseChildren {
     constructor() { }
 
     CaseChildrenId?: number;
@@ -89,7 +88,7 @@ export class CaseChildren
     Name?: string;
     Age?: number;
     GenderLookupId?: number;
-    RelationshipWithAbuserLookupId?: number;    
+    RelationshipWithAbuserLookupId?: number;
 
     CreatedBy?: number;
     CreatedDateTime?: Date;
@@ -116,15 +115,43 @@ export class vCaseChildren {
     ModifiedDatetime?: Date;
 }
 
+export class CaseFamilyHouseHold {
+    constructor() { }
+
+    CaseFamilyHouseHoldId?: number;
+    CaseId?: number;
+    ChildrenDeceasedLookupId?: number;
+    HouseHoldIncomeLookupId?: number;
+    SoughtHelpYesNoLookupId?: number;
+    SoughtHelpDesc?: string;
+    SoughtHelpOutPut?: string;
+    PeacemakerAssistanceLookupId?: number;
+    PeacemakerAssistanceDesc?: string;
+    PeacemakerFollowupYesNoLookupId?: number;
+    ClientSignedRegistrationFormYesNoLookupId?: number;
+    ClientEmailId?: string;
+    ReligionLookupId?: number;
+    LevelOfEducationLookupId?: number;
+    VocationalSkillsLookupId?: number;
+    OccupationLookupId?: number;
+    OccupationDesc?: string;
+    ClientIncomeLookupId?: number;
+    HouseHoldMembersLivingLookupId?: number;
+    YearOfMarriage?: number;
+    ClientAgeAtFirstChild?: number;
+}
+
 export class CaseBook {
     constructor() { }
 
     Case: Case;
-    CaseHeader: CaseHeader;    
+    CaseHeader: CaseHeader;
 
     vCaseAddress: Array<vCaseAddress>;
     vChildren: Array<vCaseChildren>;
 
     SelectedAddress: CaseAddress;
     SelectedChildren: CaseChildren;
+
+    FamilyHouseHold: CaseFamilyHouseHold;
 }

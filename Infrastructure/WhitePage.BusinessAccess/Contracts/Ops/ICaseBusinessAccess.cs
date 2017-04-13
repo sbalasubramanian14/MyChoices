@@ -12,5 +12,6 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         
         List<CaseHeader> GetAllCases();
         CaseBook GetCaseById(int caseId);
+        CaseHeader UpdateHouseHold(CaseBook caseBook);
     }
 }

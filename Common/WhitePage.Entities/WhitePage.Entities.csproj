@@ -52,6 +52,7 @@
     <Compile Include="CaseManagement\Center.cs" />
     <Compile Include="CaseManagement\City.cs" />
     <Compile Include="CaseManagement\Counselor.cs" />
+    <Compile Include="CaseManagement\CaseFamilyHouseHold.cs" />
     <Compile Include="CaseManagement\Lookup.cs" />
     <Compile Include="CaseManagement\LookupDetail.cs" />
     <Compile Include="CaseManagement\PeaceMaker.cs" />

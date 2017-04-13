@@ -95,5 +95,14 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(updatedCase);
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateHouseHold([FromBody] CaseBook caseBook)
+        {
+            caseBook.FamilyHouseHold.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateHouseHold(caseBook);
+            return Ok(updatedCase);
+        }
+
     }
 }
