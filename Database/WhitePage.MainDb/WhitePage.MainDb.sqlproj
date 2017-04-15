@@ -116,6 +116,13 @@
     <Build Include="Ops\User Defined Types\CaseChildrenType.sql" />
     <Build Include="Ops\Stored Procedures\saveChildren.sql" />
     <Build Include="Ops\Tables\trCaseFamilyHouseHold.sql" />
+    <Build Include="Ops\Tables\trCaseSpouse.sql" />
+    <Build Include="Ops\User Defined Types\CaseSpouseType.sql" />
+    <Build Include="Ops\Tables\trCasePhysicalHealth.sql" />
+    <Build Include="Ops\User Defined Types\CasePhysicalHealthType.sql" />
+    <Build Include="Ops\Tables\trCaseOffender.sql" />
+    <Build Include="Ops\Views\vCaseOffender.sql" />
+    <Build Include="Ops\User Defined Types\CaseOffenderType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

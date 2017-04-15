@@ -12,5 +12,10 @@ namespace WhitePage.Entities.CaseManagement
         public CaseChildren SelectedChildren { get; set; }
 
         public CaseFamilyHouseHold FamilyHouseHold { get; set; }
+        public CaseSpouse Spouse { get; set; }
+        public CasePhysicalHealth PhysicalHealth { get; set; }
+
+        public List<vCaseOffender> vOffender { get; set; }
+        public CaseOffender SelectedOffender { get; set; }
     }
 }

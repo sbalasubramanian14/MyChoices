@@ -429,17 +429,502 @@
         <tab title="Spouse" style="width:100%" *ngIf="spouseForm">
             <form [formGroup]="spouseForm" *ngIf="isSpouseDataLoaded">
                 <div class="row">
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Spouse Info
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="CenterId">Spouse Name</label>
+                                    <input [formControl]="spouseForm.controls['SpouseName']" maxlength="30" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Spouse Home phone</label>
+                                    <input [formControl]="spouseForm.controls['SpouseHomePhone']" maxlength="30" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Spouse Mobile phone</label>
+                                    <input [formControl]="spouseForm.controls['SpouseMobilePhone']" maxlength="30" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Spouse Occupation</label>
+                                    <input [formControl]="spouseForm.controls['SpouseOccupation']" maxlength="30" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Spouse Education</label>
+                                    <ng-select [options]="spouseEducationLookupIdLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SpouseEducationLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" (click)="onUpdateSpouse()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Spouse Address
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Spouse's full address</label>
+                                    <textarea type="text" [formControl]="spouseForm.controls['SpouseAddress']" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Area</label>
+                                    <input [formControl]="spouseForm.controls['Area']" maxlength="50" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">State</label>
+                                    <ng-select [options]="spouseStateOptionsList"
+                                               placeholder="Select State"
+                                               formControlName="StateLookupId"
+                                               (selected)="onSpouseStateSelected($event)"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">City</label>
+                                    <ng-select [options]="spouseCityOptionsList"
+                                               placeholder="Select"
+                                               formControlName="CityLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">PIN</label>
+                                    <input [formControl]="spouseForm.controls['PIN']" maxlength="6" class="form-control" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Emergency
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Primary Emergency Contact Name</label>
+                                    <input [formControl]="spouseForm.controls['PrimaryEmergencyContactName']" maxlength="6" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Relationship to client</label>
+                                    <ng-select [options]="emergencyRelationshipOptionsList"
+                                               placeholder="Select"
+                                               formControlName="PrimaryEmergencyRelationshipToClientLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Phone number</label>
+                                    <input [formControl]="spouseForm.controls['PrimaryEmergencyContactPhoneNumber']" maxlength="10" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Adress</label>
+                                    <input [formControl]="spouseForm.controls['PrimaryEmergencyContactAdress']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Secondary Emergency Contact Name</label>
+                                    <input [formControl]="spouseForm.controls['SecondaryEmergencyContactName']" maxlength="6" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Relationship to client</label>
+                                    <ng-select [options]="emergencyRelationshipOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SecondaryEmergencyRelationshipToClientLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Phone number</label>
+                                    <input [formControl]="spouseForm.controls['SecondaryEmergencyContactPhoneNumber']" maxlength="10" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Adress</label>
+                                    <input [formControl]="spouseForm.controls['PrimaryEmergencyContactAdress']" class="form-control" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </tab>
 
-        <tab title="Physical Health" style="width:100%" *ngIf="spouseForm">
+        <tab title="Physical Health" style="width:100%" *ngIf="physicalHealthForm">
+
+            <form [formGroup]="physicalHealthForm" *ngIf="isPhysicalHealthDataLoaded">
+                <div class="row">
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Health
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="CenterId">Are you suffering from any major illness?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SufferingFromAnyMajorIllnessLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If yes, please specify:?</label>
+                                    <input [formControl]="physicalHealthForm.controls['SufferingFromAnyMajorIllnessDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Do you have any diagnosed psychiatric illness?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="DiagnosedPsychiatricIllnessLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If yes, please specify:?</label>
+                                    <input [formControl]="physicalHealthForm.controls['DiagnosedPsychiatricIllnessDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">How much do you sleep per night?</label>
+                                    <ng-select [options]="sleepPerNightLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SleepPerNightLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="CenterId">How is your appetite?</label>
+                                    <ng-select [options]="appetiteLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="AppetiteLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Do you exercise?</label>
+                                    <ng-select [options]="exerciseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ExerciseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Are you on any medication?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="AnyMedicationLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If yes, what medication:?</label>
+                                    <input [formControl]="physicalHealthForm.controls['AnyMedicationDesc']" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Health (1)
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="CenterId">Are you on any substance?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="AnySubstanceLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Please specify:</label>
+                                    <input [formControl]="physicalHealthForm.controls['AnySubstanceDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Are you currently pregnant?</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="CurrentlyPregnantLookup"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If yes, give details:</label>
+                                    <input [formControl]="physicalHealthForm.controls['CurrentlyPregnantDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">What is the reason for seeking help?</label>
+                                    <ng-select [options]="reasonForSeekingHelpLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ReasonForSeekingHelpLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="CenterId">Who is abusing you?</label>
+                                    <ng-select [options]="whoIsAbusingYouLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="WhoIsAbusingYouLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If others, please specify </label>
+                                    <input [formControl]="physicalHealthForm.controls['WhoIsAbusingYouDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" (click)="onUpdatePhysicalHealth()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </tab>
 
         <tab title="Offender" style="width:100%" *ngIf="spouseForm">
+            <div class="row" *ngIf="caseBook">
+                <div class="col-md-8 d-flex flex-column">
+                    <button class="btn btn-primary" (click)="addNewOffender()" style="width:200px; height:30px; ">Add New Offender</button>
+
+                    <table class="table" style="color:whitesmoke">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Relationship With Abuser</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let offender of caseBook.vOffender; let i = index">
+                                <td>{{offender.Name}}</td>
+                                <td>{{offender.Age}}</td>
+                                <td>{{offender.Gender}}</td>
+                                <td>{{offender.RelationshipWithVictim}}</td>
+                                <td class="text-right">
+                                    <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </tab>
 
         <tab title="Abuse" style="width:100%" *ngIf="spouseForm">
+
+            <div class="row" *ngIf="caseBook">
+
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="card">
+                        <div class="card-header">
+                            Others
+                        </div>
+
+                        <div class="card-block">
+
+                            <div class="form-group">
+                                <label for="CenterId">Do you think you are suffering from abuse?</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">If no, please specify</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">If yes, how do you feel about the abuse?</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <hr />
+
+                            <div class="form-group">
+                                <label for="CenterId">How do your parents feel about the abuse?</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">How do your in laws feel about the abuse?</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Are there any signs of physical abuse? </label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Please specify</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Weapons used by abuser on victim</label>
+                                <select class="form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="CenterId">Please specify</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="card">
+                        <div class="card-header">
+                            Others (2)
+                        </div>
+                        <div class="card-block">
+                            <div class="form-group">
+                                <label for="CenterId">Types of physical abuse - tick all applicable situations</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Frequency of physical abuse</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Number of years physical abuse has been occuring</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Types of emotional abuse - tick all applicable situations</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Frequency of emotional abuse</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Number of years emotional abuse has been occurring</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Frequency of sexual abuse</label>
+                                <select class="form-control"></select>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="CenterId">Number of years sexual abuse has been occurring</label>
+                                <input type="text" class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="card">
+                        <div class="card-header">
+                            Others (3)
+                        </div>
+
+                        <div class="card-block">
+                            <div class="form-group">
+                                <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Frequency of economic abuse</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Number of years economic abuse has been occurring</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Reasons for abuse from abuser’s side</label>
+                                <select class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CenterId">Case resolution log</label>
+                                <textarea class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" (click)="onUpdatePhysicalHealth()">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </tab>
 
         <tab title="Sessions" style="width:100%" *ngIf="spouseForm">
@@ -516,7 +1001,7 @@
                                     <div class="form-group">
                                         <label for="CityId">City *</label>
                                         <ng-select [options]="cityOptionsList"
-                                                   placeholder="Select City"
+                                                   placeholder="Select"
                                                    formControlName="CityId"
                                                    [allowClear]="true">
                                         </ng-select>
@@ -609,6 +1094,80 @@
 
                                     <div class="form-group">
                                         <button class="btn btn-primary" [disabled]="!caseChildrenForm.valid" (click)="saveChildren()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #offenderModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Case Offender</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideOffenderModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="caseOffenderForm" *ngIf="caseOffenderForm">
+                    <div class="row">
+                        <div class="col-md-12 d-flex flex-column">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Manage Offender Details
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Name *</label>
+                                        <textarea placeholder="Name" [formControl]="caseOffenderForm.controls['Name']" class="form-control"></textarea>
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls['Name'].hasError('required') && caseOffenderForm.controls['Name'].touched" class="mat-text-warn">Name is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Age *</label>
+                                        <input placeholder="Age" [formControl]="caseOffenderForm.controls['Age']"
+                                               class="form-control" [min]="0" [max]="2" digits maxlength="2" />
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls['Age'].hasError('required') && caseOffenderForm.controls['Age'].touched" class="mat-text-warn">Age is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Gender *</label>
+                                        <ng-select [options]="genderLookupOptionsList"
+                                                   placeholder="Select Gender"
+                                                   formControlName="GenderLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls['GenderLookupId'].hasError('required') && caseOffenderForm.controls['GenderLookupId'].touched" class="mat-text-warn">Gender is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Relationship With Abuser *</label>
+                                        <ng-select [options]="relationshipWithAbuserLookupOptionsList"
+                                                   placeholder="Select Relationship"
+                                                   formControlName="RelationshipWithVictimLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls['RelationshipWithVictimLookupId'].hasError('required') && caseOffenderForm.controls['RelationshipWithVictimLookupId'].touched" class="mat-text-warn">Relation is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" [disabled]="!caseOffenderForm.valid" (click)="saveOffender()">Save</button>
                                     </div>
                                 </div>
                             </div>

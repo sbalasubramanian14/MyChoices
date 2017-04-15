@@ -104,5 +104,30 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(updatedCase);
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateSpouse([FromBody] CaseBook caseBook)
+        {
+            caseBook.Spouse.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateSpouse(caseBook);
+            return Ok(updatedCase);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdatePhysicalHealth(CaseBook caseBook)
+        {
+            caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdatePhysicalHealth(caseBook);
+            return Ok(updatedCase);
+        }
+
+        public IActionResult UpdateOffender(CaseBook caseBook)
+        {
+            caseBook.SelectedOffender.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateOffender(caseBook);
+            return Ok(updatedCase);
+        }
+
     }
 }

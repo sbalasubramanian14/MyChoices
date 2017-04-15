@@ -141,6 +141,88 @@ export class CaseFamilyHouseHold {
     ClientAgeAtFirstChild?: number;
 }
 
+export class CaseSpouse {
+    constructor() { }
+
+    CaseSpouseId?: number;
+    CaseId?: number;
+    SpouseName?: string;
+    SpouseDOB?: Date;
+    SpouseHomePhone?: string;
+    SpouseMobilePhone?: string;
+    SpouseOccupation?: string;
+    SpouseEducationLookupId?: number;
+    SpouseAddress?: string;
+    Area?: string;
+    CityLookupId?: number;
+    StateLookupId?: number;
+    PIN?: string;
+
+    PrimaryEmergencyContactName?: string;
+    PrimaryEmergencyRelationshipToClientLookupId?: number;
+    PrimaryEmergencyContactPhoneNumber?: string;
+    PrimaryEmergencyContactAdress?: string;
+
+    SecondaryEmergencyContactName?: string;
+    SecondaryEmergencyRelationshipToClientLookupId?: number;
+    SecondaryEmergencyContactPhoneNumber?: string;
+    SecondaryEmergencyContactAdress?: string;
+}
+
+export class CasePhysicalHealth {
+    constructor() { }
+
+    CasePhysicalHealthId?: number;
+    CaseId?: number;
+    SufferingFromAnyMajorIllnessLookupId?: number;
+    SufferingFromAnyMajorIllnessDesc?: string;
+
+    DiagnosedPsychiatricIllnessLookupId?: number;
+    DiagnosedPsychiatricIllnessDesc?: string;
+
+    SleepPerNightLookupId?: number;
+    AppetiteLookupId?: number;
+    ExerciseLookupId?: number;
+
+    AnyMedicationLookupId?: number;
+    AnyMedicationDesc?: string;
+
+    AnySubstanceLookupId?: number;
+    AnySubstanceDesc?: string;
+
+    CurrentlyPregnantLookup?: number;
+    CurrentlyPregnantDesc?: string;
+
+    ReasonForSeekingHelpLookupId?: number;
+    WhoIsAbusingYouLookupId?: number;
+    WhoIsAbusingYouDesc?: string;
+}
+
+export class CaseOffender {
+    constructor() { }
+
+    CaseOffenderId?: number;
+    CaseId?: number;
+    Name?: string;
+    Age?: number;
+    GenderLookupId?: number;
+    RelationshipWithVictimLookupId?: number;    
+}
+
+export class vCaseOffender {
+    constructor() { }
+
+    CaseOffenderId?: number;
+    CaseId?: number;
+    Name?: string;
+    Age?: number;
+    GenderLookupId?: number;
+    RelationshipWithVictimLookupId?: number;
+
+    Gender: string;
+    RelationshipWithVictim: string;    
+}
+
 export class CaseBook {
     constructor() { }
 
@@ -149,9 +231,15 @@ export class CaseBook {
 
     vCaseAddress: Array<vCaseAddress>;
     vChildren: Array<vCaseChildren>;
+    vOffender: Array<vCaseOffender>;
 
     SelectedAddress: CaseAddress;
     SelectedChildren: CaseChildren;
+    SelectedOffender: CaseOffender;
 
     FamilyHouseHold: CaseFamilyHouseHold;
+    Spouse: CaseSpouse;
+    PhysicalHealth: CasePhysicalHealth;
+
+
 }

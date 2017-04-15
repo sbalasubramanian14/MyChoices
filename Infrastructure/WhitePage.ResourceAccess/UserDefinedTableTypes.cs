@@ -131,6 +131,104 @@ namespace WhitePage.ResourceAccess
             }
         }
 
+        public static DataTable Spouse
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
 
+                columnCollection
+                    .AddColumn("CaseSpouseId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+                    .AddColumn("SpouseName", DbColumnType.String)
+                    .AddColumn("SpouseDOB", DbColumnType.DateTime)
+                    .AddColumn("SpouseHomePhone", DbColumnType.String)
+                    .AddColumn("SpouseMobilePhone", DbColumnType.String)
+
+                    .AddColumn("SpouseEducationLookupId", DbColumnType.Int)
+                    .AddColumn("SpouseAddress", DbColumnType.String)
+                    .AddColumn("Area", DbColumnType.String)
+                    .AddColumn("CityLookupId", DbColumnType.Int)
+                    .AddColumn("StateLookupId", DbColumnType.Int)
+                    .AddColumn("PIN", DbColumnType.String)
+
+                    .AddColumn("PrimaryEmergencyContactName", DbColumnType.String)
+                    .AddColumn("PrimaryEmergencyRelationshipToClientLookupId", DbColumnType.Int)
+                    .AddColumn("PrimaryEmergencyContactPhoneNumber", DbColumnType.String)
+                    .AddColumn("PrimaryEmergencyContactAdress", DbColumnType.String)
+
+                    .AddColumn("SecondaryEmergencyContactName", DbColumnType.String)
+                    .AddColumn("SecondaryEmergencyRelationshipToClientLookupId", DbColumnType.Int)
+                    .AddColumn("SecondaryEmergencyContactPhoneNumber", DbColumnType.String)
+                    .AddColumn("SecondaryEmergencyContactAdress", DbColumnType.String);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
+
+        public static DataTable PhysicalHealth
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CasePhysicalHealthId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+                    .AddColumn("SufferingFromAnyMajorIllnessLookupId", DbColumnType.Int)
+                    .AddColumn("SufferingFromAnyMajorIllnessDesc", DbColumnType.DateTime)
+
+                    .AddColumn("DiagnosedPsychiatricIllnessLookupId", DbColumnType.Int)
+                    .AddColumn("DiagnosedPsychiatricIllnessDesc", DbColumnType.String)
+
+                    .AddColumn("SleepPerNightLookupId", DbColumnType.Int)
+                    .AddColumn("AppetiteLookupId", DbColumnType.Int)
+                    .AddColumn("ExerciseLookupId", DbColumnType.Int)
+
+
+                    .AddColumn("AnyMedicationLookupId", DbColumnType.Int)
+                    .AddColumn("AnyMedicationDesc", DbColumnType.String)
+
+                    .AddColumn("AnySubstanceLookupId", DbColumnType.Int)
+                    .AddColumn("AnySubstanceDesc", DbColumnType.String)
+
+                    .AddColumn("CurrentlyPregnantLookup", DbColumnType.Int)
+                    .AddColumn("CurrentlyPregnantDesc", DbColumnType.String)
+
+                    .AddColumn("ReasonForSeekingHelpLookupId", DbColumnType.Int)
+                    .AddColumn("WhoIsAbusingYouLookupId", DbColumnType.Int)
+                    .AddColumn("WhoIsAbusingYouDesc", DbColumnType.String);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
+
+        public static DataTable Offender
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseOffenderId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+                    .AddColumn("Name", DbColumnType.String)
+                    .AddColumn("Age", DbColumnType.Short)
+
+                    .AddColumn("GenderLookupId", DbColumnType.Int)
+                    .AddColumn("RelationshipWithVictimLookupId", DbColumnType.Int);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
     }
 }

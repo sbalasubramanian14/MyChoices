@@ -85,7 +85,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
 
             result.FamilyHouseHold= this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
+            result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
+            result.PhysicalHealth = this.unitOfWork.DbContext.PhysicalHealth.Where(c => c.CaseId == caseId).FirstOrDefault();
+
             if (result.FamilyHouseHold == null) result.FamilyHouseHold = new CaseFamilyHouseHold();
+            if (result.Spouse == null) result.Spouse = new CaseSpouse();
+            if (result.PhysicalHealth == null) result.PhysicalHealth = new CasePhysicalHealth();
 
             return result;
         }
@@ -216,6 +221,112 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveHouseHold]",
                 parmsCollection
                     .AddParm("@caseHouseHoldType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseHouseHoldType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateSpouse(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Spouse;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.Spouse.CaseSpouseId,
+                caseBook.Spouse.CaseId,
+                caseBook.Spouse.SpouseName,
+                caseBook.Spouse.SpouseDOB,
+                caseBook.Spouse.SpouseHomePhone,
+                caseBook.Spouse.SpouseMobilePhone,
+                caseBook.Spouse.SpouseEducationLookupId,
+                caseBook.Spouse.SpouseAddress,
+                caseBook.Spouse.Area,
+                caseBook.Spouse.CityLookupId,
+                caseBook.Spouse.StateLookupId,
+                caseBook.Spouse.PIN,
+
+                caseBook.Spouse.PrimaryEmergencyContactName,
+                caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId,
+                caseBook.Spouse.PrimaryEmergencyContactPhoneNumber,
+                caseBook.Spouse.PrimaryEmergencyContactAdress,
+
+                caseBook.Spouse.SecondaryEmergencyContactName,
+                caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId,
+                caseBook.Spouse.SecondaryEmergencyContactPhoneNumber,
+                caseBook.Spouse.SecondaryEmergencyContactAdress,
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveSpouse]",
+                parmsCollection
+                    .AddParm("@caseSpouseType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSpouseType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdatePhysicalHealth(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.PhysicalHealth;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.PhysicalHealth.CasePhysicalHealthId,
+                caseBook.PhysicalHealth.CaseId,
+
+                caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId,
+                caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc,
+
+                caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId,
+                caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc,
+
+                caseBook.PhysicalHealth.SleepPerNightLookupId,
+                caseBook.PhysicalHealth.AppetiteLookupId,
+                caseBook.PhysicalHealth.ExerciseLookupId,
+
+                caseBook.PhysicalHealth.AnyMedicationLookupId,
+                caseBook.PhysicalHealth.AnyMedicationDesc,
+
+                caseBook.PhysicalHealth.AnySubstanceLookupId,
+                caseBook.PhysicalHealth.AnySubstanceDesc,
+
+                caseBook.PhysicalHealth.CurrentlyPregnantLookup,
+                caseBook.PhysicalHealth.CurrentlyPregnantDesc,
+
+                caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId,
+                caseBook.PhysicalHealth.WhoIsAbusingYouLookupId,
+                caseBook.PhysicalHealth.WhoIsAbusingYouDesc
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[savePhysicalHealth]",
+                parmsCollection
+                    .AddParm("@casePhysicalHealthType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CasePhysicalHealthType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateOffender(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Offender;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.SelectedOffender.CaseOffenderId,
+                caseBook.SelectedOffender.CaseId,
+
+                caseBook.SelectedOffender.Name,
+                caseBook.SelectedOffender.Age,
+
+                caseBook.SelectedOffender.GenderLookupId,
+                caseBook.SelectedOffender.RelationshipWithVictimLookupId
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveOffender]",
+                parmsCollection
+                    .AddParm("@caseOffenderType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseOffenderType]")
                 ).First();
 
             return updatedCase;

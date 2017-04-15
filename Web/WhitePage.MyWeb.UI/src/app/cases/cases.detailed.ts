@@ -9,7 +9,7 @@ import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
-import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
+import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
@@ -26,21 +26,36 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public caseChildrenForm: FormGroup;
     public clientAndHouseholdForm: FormGroup;
     public spouseForm: FormGroup;
+    public physicalHealthForm: FormGroup;
+    public caseOffenderForm: FormGroup;
 
     public router: Router;
     public isPrimaryDataLoaded: boolean = false;
     public isHouseHoldDataLoaded: boolean = false;
     public isSpouseDataLoaded: boolean = false;
+    public isPhysicalHealthDataLoaded: boolean = false;
 
     public childrenDeceasedLookupOptionsList: Array<IOption> = [];
     public incomeLookupOptionsList: Array<IOption> = [];
     public yesNoOptionsList: Array<IOption> = [];
+
     public peacemakerAssistanceOptionsList: Array<IOption> = [];
     public religionOptionsList: Array<IOption> = [];
     public levelOfEducationOptionsList: Array<IOption> = [];
     public vocationalSkillsOptionsList: Array<IOption> = [];
     public occupationOptionsList: Array<IOption> = [];
     public householdMembersOptionsList: Array<IOption> = [];
+
+    public spouseEducationLookupIdLookupOptionsList: Array<IOption> = [];
+    public spouseStateOptionsList: Array<IOption> = [];
+    public spouseCityOptionsList: Array<IOption> = [];
+    public emergencyRelationshipOptionsList: Array<IOption> = [];
+
+    public sleepPerNightLookupOptionsList: Array<IOption> = [];
+    public appetiteLookupOptionsList: Array<IOption> = [];
+    public exerciseLookupOptionsList: Array<IOption> = [];
+    public reasonForSeekingHelpLookupOptionsList: Array<IOption> = [];
+    public whoIsAbusingYouLookupOptionsList: Array<IOption> = [];
 
     constructor(public fb: FormBuilder,
         public casesService: CasesService,
@@ -81,6 +96,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                         });
                     }
                     this.stateOptionsList = localStatesOptionList;
+
+                    this.spouseStateOptionsList = localStatesOptionList;
                     break;
                 case "Lookups":
 
@@ -100,9 +117,16 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.householdMembersOptionsList = this.ParseLookups("HouseholdMembers");
                     this.isHouseHoldDataLoaded = true;
 
-
+                    this.spouseEducationLookupIdLookupOptionsList = this.ParseLookups("LevelOfEducation");
+                    this.emergencyRelationshipOptionsList = this.ParseLookups("RelationshipWithClient");
                     this.isSpouseDataLoaded = true;
 
+                    this.sleepPerNightLookupOptionsList = this.ParseLookups("SleepPerNight");
+                    this.appetiteLookupOptionsList = this.ParseLookups("Appetite");
+                    this.exerciseLookupOptionsList = this.ParseLookups("Exercise");
+                    this.reasonForSeekingHelpLookupOptionsList = this.ParseLookups("ReasonForSeekingHelp");
+                    this.whoIsAbusingYouLookupOptionsList = this.ParseLookups("AbusingPerson");
+                    this.isPhysicalHealthDataLoaded = true;
                     break;
                 default:
                     break;
@@ -165,6 +189,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                 this.loadPrimayCaseTab();
                 this.loadHouseHoldFormGroup();
                 this.loadSpouseFormGroup();
+                this.loadPhysicalHealthFromGroup();
             });
     }
 
@@ -410,11 +435,149 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /* End of - client And Household */
 
     /* Start - Spouse */
+    private onSpouseStateSelected(state: any) {
+        if (state == undefined || state.value == undefined) {
+            this.spouseCityOptionsList = new Array<IOption>();
+            return;
+        }
+
+        //Cities
+        var localCityOptionsList = new Array<IOption>();
+        for (var i = 0; i < this.statesList.length; i++) {
+            if (this.statesList[i].StateId == state.value) {
+                for (var j = 0; j < this.statesList[i].Cities.length; j++) {
+                    localCityOptionsList.push({
+                        value: this.statesList[i].Cities[j].CityId.toString(),
+                        label: this.statesList[i].Cities[j].Title
+                    });
+                }
+            }
+        }
+        this.spouseCityOptionsList = localCityOptionsList;
+    }
 
     private loadSpouseFormGroup() {
         this.spouseForm = this.fb.group({
+            SpouseName: new FormControl(this.caseBook.Spouse.SpouseName),
+            SpouseHomePhone: new FormControl(this.caseBook.Spouse.SpouseHomePhone),
+            SpouseMobilePhone: new FormControl(this.caseBook.Spouse.SpouseMobilePhone),
+            SpouseOccupation: new FormControl(this.caseBook.Spouse.SpouseOccupation),
+            SpouseEducationLookupId: new FormControl(this.caseBook.Spouse.SpouseEducationLookupId == undefined ? null : this.caseBook.Spouse.SpouseEducationLookupId.toString()),
+            SpouseAddress: new FormControl(this.caseBook.Spouse.SpouseAddress),
+            Area: new FormControl(this.caseBook.Spouse.Area),
+            CityLookupId: new FormControl(this.caseBook.Spouse.CityLookupId == undefined ? null : this.caseBook.Spouse.CityLookupId.toString()),
+            StateLookupId: new FormControl(this.caseBook.Spouse.StateLookupId == undefined ? null : this.caseBook.Spouse.StateLookupId.toString()),
+            PIN: new FormControl(this.caseBook.Spouse.PIN),
+
+            PrimaryEmergencyContactName: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactName),
+            PrimaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString()),
+            PrimaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber),
+            PrimaryEmergencyContactAdress: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactAdress),
+
+            SecondaryEmergencyContactName: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactName),
+            SecondaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId.toString()),
+            SecondaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber),
+            SecondaryEmergencyContactAdress: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactAdress)
+
         });
     }
 
+    public onUpdateSpouse() {
+        console.log(this.caseBook);
+    }
+
     /* End of - Spouse */
+
+    /* Physical Health */
+
+
+    private loadPhysicalHealthFromGroup() {        
+        this.physicalHealthForm = this.fb.group({
+            SufferingFromAnyMajorIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId.toString()),
+            SufferingFromAnyMajorIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc),
+
+            DiagnosedPsychiatricIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId.toString()),
+            DiagnosedPsychiatricIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc),
+
+            SleepPerNightLookupId: new FormControl(this.caseBook.PhysicalHealth.SleepPerNightLookupId == undefined ? null : this.caseBook.PhysicalHealth.SleepPerNightLookupId.toString()),
+            AppetiteLookupId: new FormControl(this.caseBook.PhysicalHealth.AppetiteLookupId == undefined ? null : this.caseBook.PhysicalHealth.AppetiteLookupId.toString()),
+            ExerciseLookupId: new FormControl(this.caseBook.PhysicalHealth.ExerciseLookupId == undefined ? null : this.caseBook.PhysicalHealth.ExerciseLookupId.toString()),
+
+            AnyMedicationLookupId: new FormControl(this.caseBook.PhysicalHealth.AnyMedicationLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnyMedicationLookupId.toString()),
+            AnyMedicationDesc: new FormControl(this.caseBook.PhysicalHealth.AnyMedicationDesc),
+
+            AnySubstanceLookupId: new FormControl(this.caseBook.PhysicalHealth.AnySubstanceLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnySubstanceLookupId.toString()),
+            AnySubstanceDesc: new FormControl(this.caseBook.PhysicalHealth.AnySubstanceDesc),
+
+            CurrentlyPregnantLookup: new FormControl(this.caseBook.PhysicalHealth.CurrentlyPregnantLookup == undefined ? null : this.caseBook.PhysicalHealth.CurrentlyPregnantLookup.toString()),
+            CurrentlyPregnantDesc: new FormControl(this.caseBook.PhysicalHealth.CurrentlyPregnantDesc),
+
+            ReasonForSeekingHelpLookupId: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId.toString()),
+            WhoIsAbusingYouLookupId: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString()),
+            WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString())
+
+        });
+    }
+
+    public onUpdatePhysicalHealth() {
+        console.log(this.caseBook);
+    }
+    /* End of - Physical Health */
+
+    /* Start - Offender */
+    
+    @ViewChild('offenderModal') public offenderModal: ModalDirective;
+
+    public addNewOffender() {
+        this.caseBook.SelectedOffender = new CaseOffender();
+        this.caseBook.SelectedOffender.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseOffenderForm = this.fb.group({
+            Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
+            GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
+            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required)
+        });
+        this.offenderModal.show();
+    }
+
+    public editOffender(offender: vCaseOffender) {
+        this.caseBook.SelectedOffender = new CaseOffender();
+        this.caseBook.SelectedOffender.CaseOffenderId = offender.CaseOffenderId;
+        this.caseBook.SelectedOffender.CaseId = offender.CaseId;
+        this.caseBook.SelectedOffender.Name = offender.Name;
+        this.caseBook.SelectedOffender.Age = offender.Age;
+        this.caseBook.SelectedOffender.GenderLookupId = offender.GenderLookupId;
+        this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = offender.RelationshipWithVictimLookupId;        
+
+        this.caseOffenderForm = this.fb.group({
+            Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
+            GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
+            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required)
+        });
+        this.offenderModal.show();
+    }
+
+    public hideOffenderModal(): void {
+        this.offenderModal.hide();
+    }
+
+    public saveOffender(offender: vCaseOffender) {
+        this.caseBook.SelectedOffender.Name = this.caseOffenderForm.controls['Name'].value;
+        this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
+        this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
+        this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+
+        this.casesService
+            .updateOffender(this.caseBook).subscribe(data => {
+                this.offenderModal.hide();
+                this.getCaseById();
+                this.toastr.success('Offender updated successfully');
+
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
+    }
+    /* End of - Offender */
 }
