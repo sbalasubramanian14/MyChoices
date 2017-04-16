@@ -72,5 +72,15 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             return this.caseDataAccess.UpdateCase(caseBook);
         }
+
+        public CaseHeader UpdateMental(CaseBook caseBook)
+        {
+            return this.caseDataAccess.UpdateMental(caseBook);
+        }
+
+        public CaseHeader UpdateSessionLog(CaseBook caseBook)
+        {
+            return this.caseDataAccess.UpdateSessionLog(caseBook);
+        }
     }
 }

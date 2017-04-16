@@ -17,7 +17,14 @@ namespace WhitePage.Entities.CaseManagement
 
         public List<vCaseOffender> vOffender { get; set; }
         public CaseOffender SelectedOffender { get; set; }
+
         public CaseAbuse Abuse { get; set; }
         public CaseManage Manage { get; set; }
+
+        public List<vCaseMental> vMental { get; set; }
+        public CaseMental SelectedMental { get; set; }
+
+        public List<CaseSessionLog> SessionLog { get; set; }
+        public CaseSessionLog SelectedSessionLog { get; set; }
     }
 }

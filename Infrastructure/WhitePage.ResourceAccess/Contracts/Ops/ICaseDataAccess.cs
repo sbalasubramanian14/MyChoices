@@ -17,5 +17,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdateOffender(CaseBook caseBook);
         CaseHeader UpdateAbuse(CaseBook caseBook);
         CaseHeader UpdateCase(CaseBook caseBook);
+        CaseHeader UpdateMental(CaseBook caseBook);
+        CaseHeader UpdateSessionLog(CaseBook caseBook);
     }
 }

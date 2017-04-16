@@ -599,6 +599,26 @@ INSERT INTO @lookupDetails VALUES(43, 'MentalAttention',		327, 'Moderately impai
 INSERT INTO @lookupDetails VALUES(43, 'MentalAttention',		328, 'Mildly impaired'	,	3,1)
 INSERT INTO @lookupDetails VALUES(43, 'MentalAttention',		96, 'Severely impaired'	,	4,1)
 
+INSERT INTO @lookupDetails VALUES(51, 'MentalInsight',		501, 'Good'		,	1,1)
+INSERT INTO @lookupDetails VALUES(51, 'MentalInsight',		502, 'Fair'		,	2,1)
+INSERT INTO @lookupDetails VALUES(51, 'MentalInsight',		503, 'Limited'	,	3,1)
+INSERT INTO @lookupDetails VALUES(51, 'MentalInsight',		504, 'Unmotivated'	,	4,1)
+
+INSERT INTO @lookupDetails VALUES(52, 'MentalJudgement',		505, 'Good'		,	1,1)
+INSERT INTO @lookupDetails VALUES(52, 'MentalJudgement',		506, 'Fair'		,	2,1)
+INSERT INTO @lookupDetails VALUES(52, 'MentalJudgement',		507, 'Impaired'	,	3,1)
+
+INSERT INTO @lookupDetails VALUES(53, 'MentalMemory',		508, 'Intact'		,	1,1)
+INSERT INTO @lookupDetails VALUES(53, 'MentalMemory',		509, 'Poor remote memory'		,	2,1)
+INSERT INTO @lookupDetails VALUES(53, 'MentalMemory',		510, 'Poor recent memory'	,	3,1)
+INSERT INTO @lookupDetails VALUES(53, 'MentalMemory',		511, 'Poor immediate recovery'	,	4,1)
+
+INSERT INTO @lookupDetails VALUES(54, 'MentalInformation',		512, 'Paucity of knowledge'		,	1,1)
+INSERT INTO @lookupDetails VALUES(54, 'MentalInformation',		513, 'Adequate knowledge'		,	2,1)
+INSERT INTO @lookupDetails VALUES(54, 'MentalInformation',		514, 'Very knowledgeable'	,	3,1)
+
+INSERT INTO @lookupDetails VALUES(55, 'MentalAbstraction',		515, 'Average'		,	1,1)
+INSERT INTO @lookupDetails VALUES(55, 'MentalAbstraction',		516, 'Poor'		,	2,1)
 
 INSERT INTO @lookupDetails VALUES(44, 'TypesOfCounselling',		329, 'Individual'		,	1,1)
 INSERT INTO @lookupDetails VALUES(44, 'TypesOfCounselling',		330, 'Family'		,	2,1)

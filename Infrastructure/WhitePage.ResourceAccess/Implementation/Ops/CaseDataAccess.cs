@@ -83,6 +83,8 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             result.vAddresses = this.unitOfWork.DbContext.vAddresses.Where(c => c.CaseId == caseId).ToList();
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
+            result.vMental = this.unitOfWork.DbContext.vMental.Where(c => c.CaseId == caseId).ToList();
+            result.SessionLog = this.unitOfWork.DbContext.SessionLogs.Where(c => c.CaseId == caseId).ToList();
 
             result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
@@ -415,6 +417,73 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveManage]",
                 parmsCollection
                     .AddParm("@caseManageType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseManageType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateMental(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Manage;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.SelectedMental.CaseMentalId,
+                caseBook.SelectedMental.CaseId,
+
+                caseBook.SelectedMental.MentalDressLookupId,
+                caseBook.SelectedMental.MentalHygieneLookupId,
+                caseBook.SelectedMental.MentalBodyTypeLookupId,
+                caseBook.SelectedMental.MentalExpressionLookupId,
+                caseBook.SelectedMental.MentalMotorActivityLookupId,
+                caseBook.SelectedMental.MentalVocabularyLookupId,
+                caseBook.SelectedMental.MentalImpulseControlLookupId,
+                caseBook.SelectedMental.MentalSpeechLookupId,
+                caseBook.SelectedMental.MentalBehaviourLookupId,
+                caseBook.SelectedMental.MentalContentLookupId,
+                caseBook.SelectedMental.MentalFlowOfThoughtLookupId,
+                caseBook.SelectedMental.MentalOrientationLookupId,
+                caseBook.SelectedMental.MentalEstimatedIntellectLookupId,
+                caseBook.SelectedMental.MentalAttentionLookupId,
+                caseBook.SelectedMental.MentalInsightLookupId,
+                caseBook.SelectedMental.MentalJudgementLookupId,
+                caseBook.SelectedMental.MentalMemoryLookupId,
+                caseBook.SelectedMental.MentalInformationLookupId,
+                caseBook.SelectedMental.MentalAbstractionLookupId,
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveMental]",
+                parmsCollection
+                    .AddParm("@caseMentalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseMentalType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateSessionLog(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.SessionLog;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.SelectedSessionLog.CaseSessionLogId,
+                caseBook.SelectedSessionLog.CaseId,
+
+                caseBook.SelectedSessionLog.CounselingDate,
+                caseBook.SelectedSessionLog.TypeOfCounselingLookupId,
+
+                caseBook.SelectedSessionLog.TypeOfCounselingDesc,
+                caseBook.SelectedSessionLog.DurationOfSessionMIn,
+
+                caseBook.SelectedSessionLog.NextSessionScheduled,
+                caseBook.SelectedSessionLog.SessionNotes
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveSessionLog]",
+                parmsCollection
+                    .AddParm("@caseSessionLogType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSessionLogType]")
                 ).First();
 
             return updatedCase;

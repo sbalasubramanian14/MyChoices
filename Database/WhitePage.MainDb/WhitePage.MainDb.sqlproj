@@ -127,6 +127,11 @@
     <Build Include="Ops\User Defined Types\CaseAbuseType.sql" />
     <Build Include="Ops\Tables\trCaseManage.sql" />
     <Build Include="Ops\User Defined Types\CaseManageType.sql" />
+    <Build Include="Ops\Tables\trCaseMental.sql" />
+    <Build Include="Ops\Views\vCaseMental.sql" />
+    <Build Include="Ops\User Defined Types\CaseMentalType.sql" />
+    <Build Include="Ops\Tables\trCaseSessionLog.sql" />
+    <Build Include="Ops\User Defined Types\CaseSessionLogType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

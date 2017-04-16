@@ -148,5 +148,23 @@ namespace WhitePage.MyWeb.UI.Controllers
             var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
             return Ok(updatedCase);
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateMental(CaseBook caseBook)
+        {
+            caseBook.SelectedMental.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
+            return Ok(updatedCase);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateSessionLog(CaseBook caseBook)
+        {
+            caseBook.SelectedSessionLog.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateSessionLog(caseBook);
+            return Ok(updatedCase);
+        }
     }
 }

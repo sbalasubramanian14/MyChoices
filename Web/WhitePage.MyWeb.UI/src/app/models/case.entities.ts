@@ -283,6 +283,95 @@ export class CaseManage {
     ResolutionLog: string;
 }
 
+export class CaseMental {
+    constructor() { }
+
+    CaseMentalId?: number;
+    CaseId?: number;
+
+    MentalDressLookupId?: number;
+    MentalHygieneLookupId?: number;
+    MentalBodyTypeLookupId?: number;
+    MentalExpressionLookupId?: number;
+    MentalMotorActivityLookupId?: number;
+    MentalVocabularyLookupId?: number;
+    MentalImpulseControlLookupId?: number;
+    MentalSpeechLookupId?: number;
+    MentalBehaviourLookupId?: number;
+    MentalContentLookupId?: number;
+    MentalFlowOfThoughtLookupId?: number;
+    MentalOrientationLookupId?: number;
+    MentalEstimatedIntellectLookupId?: number;
+    MentalAttentionLookupId?: number;
+    MentalInsightLookupId?: number;
+    MentalJudgementLookupId?: number;
+    MentalMemoryLookupId?: number;
+    MentalInformationLookupId?: number;
+    MentalAbstractionLookupId?: number;
+}
+
+export class vCaseMental {
+    constructor() { }
+
+    CaseMentalId?: number;
+    CaseId?: number;
+
+    MentalDressLookupId?: number;
+    MentalHygieneLookupId?: number;
+    MentalBodyTypeLookupId?: number;
+    MentalExpressionLookupId?: number;
+    MentalMotorActivityLookupId?: number;
+    MentalVocabularyLookupId?: number;
+    MentalImpulseControlLookupId?: number;
+    MentalSpeechLookupId?: number;
+    MentalBehaviourLookupId?: number;
+    MentalContentLookupId?: number;
+    MentalFlowOfThoughtLookupId?: number;
+    MentalOrientationLookupId?: number;
+    MentalEstimatedIntellectLookupId?: number;
+    MentalAttentionLookupId?: number;
+    MentalInsightLookupId?: number;
+    MentalJudgementLookupId?: number;
+    MentalMemoryLookupId?: number;
+    MentalInformationLookupId?: number;
+    MentalAbstractionLookupId?: number;
+
+    MentalDress: string;
+    MentalHygiene: string;
+    MentalBodyType: string;
+    MentalExpression: string;
+    MentalMotorActivity: string;
+    MentalVocabulary: string;
+    MentalImpulseControl: string;
+    MentalSpeech: string;
+    MentalBehaviour: string;
+    MentalContent: string;
+    MentalFlowOfThought: string;
+    MentalOrientation: string;
+    MentalEstimatedIntellect: string;
+    MentalAttention: string;
+    MentalInsight: string;
+    MentalJudgement: string;
+    MentalMemory: string;
+    MentalInformation: string;
+    MentalAbstraction: string;
+}
+
+export class CaseSessionLog {
+    constructor() { }
+
+    CaseSessionLogId?: number;
+    CaseId?: number;    
+
+    CounselingDate?: Date;
+    TypeOfCounselingLookupId?: number;
+    TypeOfCounselingDesc?: string;
+
+    DurationOfSessionMIn?: number;
+    NextSessionScheduled?: Date;
+    SessionNotes?: string;    
+}
+
 export class CaseBook {
     constructor() { }
 
@@ -292,10 +381,14 @@ export class CaseBook {
     vCaseAddress: Array<vCaseAddress>;
     vChildren: Array<vCaseChildren>;
     vOffender: Array<vCaseOffender>;
+    vMental: Array<vCaseMental>;
+    SessionLog: Array<CaseSessionLog>;
 
     SelectedAddress: CaseAddress;
     SelectedChildren: CaseChildren;
     SelectedOffender: CaseOffender;
+    SelectedMental: CaseMental;
+    SelectedSessionLog: CaseSessionLog;
 
     FamilyHouseHold: CaseFamilyHouseHold;
     Spouse: CaseSpouse;

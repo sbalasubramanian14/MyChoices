@@ -306,5 +306,67 @@ namespace WhitePage.ResourceAccess
                 return result;
             }
         }
+
+        public static DataTable Mental
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseMentalId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+
+                    .AddColumn("MentalDressLookupId", DbColumnType.Int)
+                    .AddColumn("MentalHygieneLookupId", DbColumnType.Int)
+                    .AddColumn("MentalBodyTypeLookupId", DbColumnType.Int)
+                    .AddColumn("MentalExpressionLookupId", DbColumnType.Int)
+                    .AddColumn("MentalMotorActivityLookupId", DbColumnType.Int)
+                    .AddColumn("MentalVocabularyLookupId", DbColumnType.Int)
+                    .AddColumn("MentalImpulseControlLookupId", DbColumnType.Int)
+                    .AddColumn("MentalSpeechLookupId", DbColumnType.Int)
+                    .AddColumn("MentalBehaviourLookupId", DbColumnType.Int)
+                    .AddColumn("MentalContentLookupId", DbColumnType.Int)
+                    .AddColumn("MentalFlowOfThoughtLookupId", DbColumnType.Int)
+                    .AddColumn("MentalOrientationLookupId", DbColumnType.Int)
+                    .AddColumn("MentalEstimatedIntellectLookupId", DbColumnType.Int)
+                    .AddColumn("MentalAttentionLookupId", DbColumnType.Int)
+                    .AddColumn("MentalInsightLookupId", DbColumnType.Int)
+                    .AddColumn("MentalJudgementLookupId", DbColumnType.Int)
+                    .AddColumn("MentalMemoryLookupId", DbColumnType.Int)
+                    .AddColumn("MentalInformationLookupId", DbColumnType.Int)
+                    .AddColumn("MentalAbstractionLookupId", DbColumnType.Int);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
+
+        public static DataTable SessionLog
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseSessionLogId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+
+                    .AddColumn("CounselingDate", DbColumnType.DateTime)
+                    .AddColumn("TypeOfCounselingLookupId", DbColumnType.Int)
+                    .AddColumn("TypeOfCounselingDesc", DbColumnType.String)
+
+                    .AddColumn("DurationOfSessionMIn", DbColumnType.Short)
+                    .AddColumn("NextSessionScheduled", DbColumnType.DateTime)
+                    .AddColumn("SessionNotes", DbColumnType.String);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
     }
 }
