@@ -14,15 +14,16 @@ export class BaseCaseController {
 
         this.observerDataSubject = new Subject<string>();
         console.log("calling super constructor");
+        this.LoadCaseStatuses();
         this.LoadCenters();
         this.LoadPeaceMakers();
         this.LoadCounselors();
         this.LoadLookups();
         this.LoadStates();
-        this.LoadCaseStatuses();
+        
     }
 
-    public centersList: Array<Center> = [];
+    public centersList: Array<Center> = [];    
     public peaceMakersList: Array<PeaceMaker> = [];
     public counselorsList: Array<Counselor> = [];
     public lookupsList: Array<Lookup> = [];

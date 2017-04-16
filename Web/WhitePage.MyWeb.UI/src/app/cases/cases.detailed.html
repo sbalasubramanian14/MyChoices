@@ -766,165 +766,220 @@
             </div>
         </tab>
 
-        <tab title="Abuse" style="width:100%" *ngIf="spouseForm">
+        <tab title="Abuse" style="width:100%" *ngIf="caseAbuseForm">
+            <form [formGroup]="caseAbuseForm" *ngIf="isAbuseDataLoaded">
+                <div class="row" *ngIf="caseBook">
 
-            <div class="row" *ngIf="caseBook">
-
-                <div class="col-md-4 d-flex flex-column">
-                    <div class="card">
-                        <div class="card-header">
-                            Others
-                        </div>
-
-                        <div class="card-block">
-
-                            <div class="form-group">
-                                <label for="CenterId">Do you think you are suffering from abuse?</label>
-                                <select class="form-control"></select>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Others
                             </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">If no, please specify</label>
-                                <input type="text" class="form-control">
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="CenterId">Do you think you are suffering from abuse?</label>
+                                    <ng-select [options]="sufferingFromAbuseLookupIdLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SufferingFromAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If no, please specify</label>
+                                    <input [formControl]="caseAbuseForm.controls['SufferingFromAbuseDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If yes, how do you feel about the abuse?</label>
+                                    <ng-select [options]="feelAboutAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="FeelAboutAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <hr />
+
+                                <div class="form-group">
+                                    <label for="CenterId">How do your parents feel about the abuse?</label>
+                                    <ng-select [options]="farentsFeelAboutAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ParentsFeelAboutAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">How do your in laws feel about the abuse?</label>
+                                    <ng-select [options]="lawFeelAboutAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="LawFeelAboutAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Are there any signs of physical abuse? </label>
+                                    <ng-select [options]="signsOfPhysicalAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="SignsOfPhysicalAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Please specify</label>
+                                    <input [formControl]="caseAbuseForm.controls['SignsOfPhysicalAbuseDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Weapons used by abuser on victim</label>
+                                    <ng-select [options]="weaponsUsedLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="WeaponsUsedLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Please specify</label>
+                                    <input [formControl]="caseAbuseForm.controls['WeaponsUsedDesc']" class="form-control" />
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">If yes, how do you feel about the abuse?</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <hr />
-
-                            <div class="form-group">
-                                <label for="CenterId">How do your parents feel about the abuse?</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">How do your in laws feel about the abuse?</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Are there any signs of physical abuse? </label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Please specify</label>
-                                <input type="text" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Weapons used by abuser on victim</label>
-                                <select class="form-control"></select>
-                            </div>
-                            <div class="form-group">
-                                <label for="CenterId">Please specify</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-4 d-flex flex-column">
-                    <div class="card">
-                        <div class="card-header">
-                            Others (2)
-                        </div>
-                        <div class="card-block">
-                            <div class="form-group">
-                                <label for="CenterId">Types of physical abuse - tick all applicable situations</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Frequency of physical abuse</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Number of years physical abuse has been occuring</label>
-                                <input type="text" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Types of emotional abuse - tick all applicable situations</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Frequency of emotional abuse</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Number of years emotional abuse has been occurring</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
-                                <select class="form-control"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="CenterId">Frequency of sexual abuse</label>
-                                <select class="form-control"></select>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="CenterId">Number of years sexual abuse has been occurring</label>
-                                <input type="text" class="form-control">
-
-                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4 d-flex flex-column">
-                    <div class="card">
-                        <div class="card-header">
-                            Others (3)
-                        </div>
-
-                        <div class="card-block">
-                            <div class="form-group">
-                                <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
-                                <select class="form-control"></select>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Others (2)
                             </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Types of physical abuse - tick all applicable situations</label>
+                                    <ng-select [options]="typesOfPhyscialAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="TypesOfPhyscialAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">Frequency of economic abuse</label>
-                                <select class="form-control"></select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Frequency of physical abuse</label>
+                                    <ng-select [options]="frequencyOfPhyscialAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="FrequencyOfPhyscialAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">Number of years economic abuse has been occurring</label>
-                                <input type="text" class="form-control">
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Number of years physical abuse has been occuring</label>
+                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">Reasons for abuse from abuser’s side</label>
-                                <select class="form-control"></select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Types of emotional abuse - tick all applicable situations</label>
+                                    <ng-select [options]="typesOfEmotionalAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="TypesOfEmotionalAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="CenterId">Case resolution log</label>
-                                <textarea class="form-control"></textarea>
-                            </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Frequency of emotional abuse</label>
+                                    <ng-select [options]="frequencyOfEmotionalAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="FrequencyOfEmotionalAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
 
-                            <div class="form-group">
-                                <button class="btn btn-primary" (click)="onUpdatePhysicalHealth()">Update</button>
+                                <div class="form-group">
+                                    <label for="CenterId">Number of years emotional abuse has been occurring</label>
+                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
+                                    <ng-select [options]="typesOfSexualAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="TypesOfSexualAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Frequency of sexual abuse</label>
+                                    <ng-select [options]="frequencyOfSexualAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="FrequencyOfSexualAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="CenterId">Number of years sexual abuse has been occurring</label>
+                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Others (3)
+                            </div>
+
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Types of economic abuse - tick all applicable situations</label>
+                                    <ng-select [options]="typesOfEconomicAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="TypesOfEconomicAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Frequency of economic abuse</label>
+                                    <ng-select [options]="frequencyOfEconomicAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="FrequencyOfEconomicAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Number of years economic abuse has been occurring</label>
+                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Reasons for abuse from abuser side</label>
+                                    <ng-select [options]="reasonsForAbuseLookupOptionsList"
+                                               placeholder="Select"
+                                               formControlName="ReasonsForAbuseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" (click)="onUpdateAbuse()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
         </tab>
 
         <tab title="Sessions" style="width:100%" *ngIf="spouseForm">
@@ -939,7 +994,114 @@
         <tab title="Legal" style="width:100%" *ngIf="spouseForm">
         </tab>
 
-        <tab title="Case" style="width:100%" *ngIf="spouseForm">
+        <tab title="Case Management" style="width:100%" *ngIf="caseManageForm">
+
+            <form [formGroup]="caseManageForm" *ngIf="isManageDataLoaded">
+                <div class="row">
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Case Data
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="CenterId">Status</label>
+                                    <ng-select [options]="caseStatusOptionList"
+                                               placeholder="Select"
+                                               formControlName="CaseStatusId"
+                                               [allowClear]="true">
+                                    </ng-select>                                   
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Source of case</label>
+                                    <ng-select [options]="sourceOfCaseLookupOptionList"
+                                               placeholder="Select"
+                                               formControlName="SourceOfCaseLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>  
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">If other, please specify</label>
+                                    <input mdInput class="form-control" /><input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Type of counseling</label>
+                                    <ng-select [options]="typesOfCounselingLookupOptionList"
+                                               placeholder="Select"
+                                               formControlName="TypesOfCounselingLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>  
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Total no of sessions</label>
+                                    <input [formControl]="caseManageForm.controls['TotalNoOfSessionsLookupId']" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Total hours spent</label>
+                                    <input [formControl]="caseManageForm.controls['TotalHoursSpentLookupId']" inputmode="numeric" maxlength="2" class="form-control" />
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Reason for selected Closure status</label>
+                                    <input [formControl]="caseManageForm.controls['ReasonForClosureStatus']" class="form-control" />
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+
+                        <div class="card">
+                            <div class="card-header">
+                                Other Info (1)
+                            </div>
+                            <div class="card-block">
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Subject</label>
+                                    <input [formControl]="caseManageForm.controls['CaseSubject']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Description</label>
+                                    <input [formControl]="caseManageForm.controls['CaseDescription']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Relationship with PM</label>
+                                    <ng-select [options]="relationshipWithPMLookupOptionList"
+                                               placeholder="Select"
+                                               formControlName="RelationshipWithPMLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>  
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Case resolution log</label>
+                                    <input [formControl]="caseManageForm.controls['ResolutionLog']" class="form-control" />
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <button class="btn btn-primary" (click)="onUpdateManage()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+
+                </div>
+            </form>
         </tab>
 
     </tabset>

@@ -43,5 +43,9 @@ namespace WhitePage.ResourceAccess
 
         public DbSet<CaseOffender> Offenders { get; set; }
         public DbSet<vCaseOffender> vOffenders { get; set; }
+
+        public DbSet<CaseAbuse> Abuse { get; set; }
+        public DbSet<CaseManage> Manage { get; set; }
+
     }
 }

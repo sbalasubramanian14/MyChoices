@@ -122,6 +122,8 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(updatedCase);
         }
 
+        [Route("[action]")]
+        [HttpPost]
         public IActionResult UpdateOffender(CaseBook caseBook)
         {
             caseBook.SelectedOffender.CaseId = caseBook.Case.CaseId;
@@ -129,5 +131,22 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(updatedCase);
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateAbuse(CaseBook caseBook)
+        {
+            caseBook.Abuse.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
+            return Ok(updatedCase);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateCase(CaseBook caseBook)
+        {
+            caseBook.Manage.CaseId = caseBook.Case.CaseId;
+            var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
+            return Ok(updatedCase);
+        }
     }
 }

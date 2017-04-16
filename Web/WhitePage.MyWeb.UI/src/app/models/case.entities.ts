@@ -206,7 +206,7 @@ export class CaseOffender {
     Name?: string;
     Age?: number;
     GenderLookupId?: number;
-    RelationshipWithVictimLookupId?: number;    
+    RelationshipWithVictimLookupId?: number;
 }
 
 export class vCaseOffender {
@@ -220,7 +220,67 @@ export class vCaseOffender {
     RelationshipWithVictimLookupId?: number;
 
     Gender: string;
-    RelationshipWithVictim: string;    
+    RelationshipWithVictim: string;
+}
+
+export class CaseAbuse {
+    constructor() { }
+
+    CaseAbuseId?: number;
+    CaseId?: number;
+
+    SufferingFromAbuseLookupId?: number;
+    SufferingFromAbuseDesc?: string;
+
+    FeelAboutAbuseLookupId?: number;
+    ParentsFeelAboutAbuseLookupId?: number;
+    LawFeelAboutAbuseLookupId?: number;
+    SignsOfPhysicalAbuseLookupId?: number;
+    SignsOfPhysicalAbuseDesc?: string;
+
+    WeaponsUsedLookupId?: number;
+    WeaponsUsedDesc?: string;
+
+    TypesOfPhyscialAbuseLookupId?: number;
+    FrequencyOfPhyscialAbuseLookupId?: number;
+    NumberOfYearsOfPhyscialAbuse?: number;
+
+    TypesOfEmotionalAbuseLookupId?: number;
+    FrequencyOfEmotionalAbuseLookupId?: number;
+    NumberOfYearsOfEmotionalAbuse?: number;
+
+    TypesOfSexualAbuseLookupId?: number;
+    FrequencyOfSexualAbuseLookupId?: number;
+    NumberOfYearsOfSexualAbuse?: number;
+
+    TypesOfEconomicAbuseLookupId?: number;
+    FrequencyOfEconomicAbuseLookupId?: number;
+    NumberOfYearsOfEconomicAbuse?: number;
+
+    ReasonsForAbuseLookupId?: number;
+}
+
+export class CaseManage {
+    constructor() { }
+
+    CaseManageId?: number;
+    CaseId?: number;
+    CaseStatusId?: number;
+
+    SourceOfCaseLookupId?: number;
+    SourceOfCaseDesc?: string;
+
+    TypesOfCounselingLookupId?: number;
+    TotalNoOfSessionsLookupId?: number;
+    TotalHoursSpentLookupId?: number;
+
+
+    ReasonForClosureStatus?: string;
+    CaseSubject?: string;
+    CaseDescription?: string;
+
+    RelationshipWithPMLookupId?: number;
+    ResolutionLog: string;
 }
 
 export class CaseBook {
@@ -240,6 +300,6 @@ export class CaseBook {
     FamilyHouseHold: CaseFamilyHouseHold;
     Spouse: CaseSpouse;
     PhysicalHealth: CasePhysicalHealth;
-
-
+    Abuse: CaseAbuse;
+    Manage: CaseManage;
 }

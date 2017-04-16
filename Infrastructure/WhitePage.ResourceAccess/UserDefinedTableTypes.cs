@@ -80,7 +80,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("Age", DbColumnType.Byte)
                     .AddColumn("GenderLookupId", DbColumnType.Int)
                     .AddColumn("RelationshipWithAbuserLookupId", DbColumnType.Int)
-                    
+
                     .AddColumn("CreatedBy", DbColumnType.Int)
                     .AddColumn("CreatedDateTime", DbColumnType.DateTime)
                     .AddColumn("ModifiedBy", DbColumnType.Int)
@@ -224,6 +224,82 @@ namespace WhitePage.ResourceAccess
 
                     .AddColumn("GenderLookupId", DbColumnType.Int)
                     .AddColumn("RelationshipWithVictimLookupId", DbColumnType.Int);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
+
+        public static DataTable Abuse
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseAbuseId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+
+                    .AddColumn("SufferingFromAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("SufferingFromAbuseDesc", DbColumnType.String)
+
+                    .AddColumn("FeelAboutAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("ParentsFeelAboutAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("LawFeelAboutAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("SignsOfPhysicalAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("SignsOfPhysicalAbuseDesc", DbColumnType.String)
+
+                    .AddColumn("WeaponsUsedLookupId", DbColumnType.Int)
+                    .AddColumn("WeaponsUsedDesc", DbColumnType.String)
+
+                    .AddColumn("TypesOfPhyscialAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("FrequencyOfPhyscialAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("NumberOfYearsOfPhyscialAbuse", DbColumnType.Byte)
+
+                    .AddColumn("TypesOfEmotionalAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("FrequencyOfEmotionalAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("NumberOfYearsOfEmotionalAbuse", DbColumnType.Byte)
+
+                    .AddColumn("TypesOfSexualAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("FrequencyOfSexualAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("NumberOfYearsOfSexualAbuse", DbColumnType.Byte)
+
+                    .AddColumn("TypesOfEconomicAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("FrequencyOfEconomicAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("NumberOfYearsOfEconomicAbuse", DbColumnType.Byte)
+
+                    .AddColumn("ReasonsForAbuseLookupId", DbColumnType.Int)
+                    ;
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
+
+        public static DataTable Manage
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseManageId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+                    .AddColumn("CaseStatusId", DbColumnType.Byte)
+
+                    .AddColumn("SourceOfCaseLookupId", DbColumnType.Int)
+                    .AddColumn("SourceOfCaseDesc", DbColumnType.String)
+
+                    .AddColumn("ReasonForClosureStatus", DbColumnType.String)
+                    .AddColumn("CaseSubject", DbColumnType.String)
+                    .AddColumn("CaseDescription", DbColumnType.String)
+                    .AddColumn("RelationshipWithPMLookupId", DbColumnType.Int)
+
+                    .AddColumn("ResolutionLog", DbColumnType.String);
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
 

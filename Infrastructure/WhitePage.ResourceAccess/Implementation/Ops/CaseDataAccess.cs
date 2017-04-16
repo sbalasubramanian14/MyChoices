@@ -80,17 +80,21 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             result.Case = this.unitOfWork.DbContext.Cases.Single(c => c.CaseId == caseId);
             result.CaseHeader = this.unitOfWork.DbContext.CaseHeaders.First(c => c.CaseId == caseId);
-            
+
             result.vAddresses = this.unitOfWork.DbContext.vAddresses.Where(c => c.CaseId == caseId).ToList();
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
 
-            result.FamilyHouseHold= this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
+            result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.PhysicalHealth = this.unitOfWork.DbContext.PhysicalHealth.Where(c => c.CaseId == caseId).FirstOrDefault();
+            result.Abuse = this.unitOfWork.DbContext.Abuse.Where(c => c.CaseId == caseId).FirstOrDefault();
+            result.Manage = this.unitOfWork.DbContext.Manage.Where(c => c.CaseId == caseId).FirstOrDefault();
 
             if (result.FamilyHouseHold == null) result.FamilyHouseHold = new CaseFamilyHouseHold();
             if (result.Spouse == null) result.Spouse = new CaseSpouse();
             if (result.PhysicalHealth == null) result.PhysicalHealth = new CasePhysicalHealth();
+            if (result.Abuse == null) result.Abuse = new CaseAbuse();
+            if (result.Manage == null) result.Manage = new CaseManage() { CaseStatusId = result.Case.CaseStausId };
 
             return result;
         }
@@ -123,11 +127,11 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Case.ModifiedBy,
                 caseBook.Case.ModifiedDatetime,
                 });
-            caseTable.AcceptChanges();            
+            caseTable.AcceptChanges();
 
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[updatePrimaryInfo]",
                 parmsCollection
-                    .AddParm("@caseType", SqlDbType.Structured, caseTable, "[Ops].[CaseType]")                    
+                    .AddParm("@caseType", SqlDbType.Structured, caseTable, "[Ops].[CaseType]")
                 ).First();
 
             return updatedCase;
@@ -136,7 +140,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         public CaseHeader UpdateAddress(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
-            
+
             var caseAddressTable = UserDefinedTableTypes.CaseAddress;
             caseAddressTable.Rows.Add(new object[]{
                 caseBook.SelectedAddress.CaseAddressId,
@@ -154,17 +158,17 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             caseAddressTable.AcceptChanges();
 
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveAddress]",
-                parmsCollection                    
+                parmsCollection
                     .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
                 ).First();
 
-            return updatedCase;            
+            return updatedCase;
         }
 
         public CaseHeader UpdateChildren(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
-            
+
             var caseChildrenTable = UserDefinedTableTypes.CaseChildren;
             caseChildrenTable.Rows.Add(new object[]{
                 caseBook.SelectedChildren.CaseChildrenId,
@@ -172,7 +176,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.SelectedChildren.Name,
                 caseBook.SelectedChildren.Age,
                 caseBook.SelectedChildren.GenderLookupId,
-                caseBook.SelectedChildren.RelationshipWithAbuserLookupId,                
+                caseBook.SelectedChildren.RelationshipWithAbuserLookupId,
                 caseBook.SelectedChildren.CreatedBy,
                 caseBook.SelectedChildren.CreatedDateTime,
                 caseBook.SelectedChildren.ModifiedBy,
@@ -327,6 +331,90 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveOffender]",
                 parmsCollection
                     .AddParm("@caseOffenderType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseOffenderType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateAbuse(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Abuse;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.Abuse.CaseAbuseId,
+                caseBook.Abuse.CaseId,
+
+                caseBook.Abuse.SufferingFromAbuseLookupId,
+                caseBook.Abuse.SufferingFromAbuseDesc,
+
+                caseBook.Abuse.FeelAboutAbuseLookupId,
+                caseBook.Abuse.ParentsFeelAboutAbuseLookupId,
+                caseBook.Abuse.LawFeelAboutAbuseLookupId,
+                caseBook.Abuse.SignsOfPhysicalAbuseLookupId,
+                caseBook.Abuse.SignsOfPhysicalAbuseDesc,
+
+                caseBook.Abuse.WeaponsUsedLookupId,
+                caseBook.Abuse.WeaponsUsedDesc,
+
+                caseBook.Abuse.TypesOfPhyscialAbuseLookupId,
+                caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId,
+                caseBook.Abuse.NumberOfYearsOfPhyscialAbuse,
+
+                caseBook.Abuse.TypesOfEmotionalAbuseLookupId,
+                caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId,
+                caseBook.Abuse.NumberOfYearsOfEmotionalAbuse,
+
+                caseBook.Abuse.TypesOfSexualAbuseLookupId,
+                caseBook.Abuse.FrequencyOfSexualAbuseLookupId,
+                caseBook.Abuse.NumberOfYearsOfSexualAbuse,
+
+                caseBook.Abuse.TypesOfEconomicAbuseLookupId,
+                caseBook.Abuse.FrequencyOfEconomicAbuseLookupId,
+                caseBook.Abuse.NumberOfYearsOfEconomicAbuse,
+
+                caseBook.Abuse.ReasonsForAbuseLookupId,
+
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveAbuse]",
+                parmsCollection
+                    .AddParm("@caseAbuseType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseAbuseType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateCase(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Manage;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.Manage.CaseManageId,
+                caseBook.Manage.CaseId,
+                caseBook.Manage.CaseStatusId,
+
+                caseBook.Manage.SourceOfCaseLookupId,
+                caseBook.Manage.SourceOfCaseDesc,
+
+                caseBook.Manage.TypesOfCounselingLookupId,
+                caseBook.Manage.TotalNoOfSessionsLookupId,
+                caseBook.Manage.TotalHoursSpentLookupId,
+
+                caseBook.Manage.ReasonForClosureStatus,
+                caseBook.Manage.CaseSubject,
+                caseBook.Manage.CaseDescription,
+                caseBook.Manage.RelationshipWithPMLookupId,
+
+                caseBook.Manage.ResolutionLog
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveManage]",
+                parmsCollection
+                    .AddParm("@caseManageType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseManageType]")
                 ).First();
 
             return updatedCase;

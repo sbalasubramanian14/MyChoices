@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaseManagement\Case.cs" />
+    <Compile Include="CaseManagement\CaseAbuse.cs" />
     <Compile Include="CaseManagement\CaseAddress.cs" />
     <Compile Include="CaseManagement\CaseBook.cs" />
     <Compile Include="CaseManagement\CaseChildren.cs" />
     <Compile Include="CaseManagement\CaseHeader.cs" />
+    <Compile Include="CaseManagement\CaseManage.cs" />
     <Compile Include="CaseManagement\CaseOffender.cs" />
     <Compile Include="CaseManagement\CasePhysicalHealth.cs" />
     <Compile Include="CaseManagement\CaseSpouse.cs" />
