@@ -25,9 +25,9 @@
 
 <div class="container case-detail-container" style="width:100%" *ngIf="casePrimaryForm">
     <!-- regular tabs -->
-    <tabset class="nav nav-tabs" style="width:100%">
+    <tabset>
 
-        <tab title="Primary Info" class="active" style="width:100%">
+        <tab heading="Primary Info" class="active" style="width:100%">
             <form [formGroup]="casePrimaryForm" *ngIf="isPrimaryDataLoaded">
                 <div class="row">
 
@@ -207,7 +207,7 @@
             </div>
         </tab>
 
-        <tab title="Children" style="width:100%">
+        <tab heading="Children" style="width:100%">
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewChild()" style="width:200px; height:30px; ">Add New Children</button>
@@ -239,7 +239,7 @@
             </div>
         </tab>
 
-        <tab title="Client & Household" style="width:100%" *ngIf="clientAndHouseholdForm">
+        <tab heading="Client & Household" style="width:100%" *ngIf="clientAndHouseholdForm">
             <form [formGroup]="clientAndHouseholdForm" *ngIf="isHouseHoldDataLoaded">
                 <div class="row">
 
@@ -426,7 +426,7 @@
             </form>
         </tab>
 
-        <tab title="Spouse" style="width:100%" *ngIf="spouseForm">
+        <tab heading="Spouse" style="width:100%" *ngIf="spouseForm">
             <form [formGroup]="spouseForm" *ngIf="isSpouseDataLoaded">
                 <div class="row">
 
@@ -581,7 +581,7 @@
             </form>
         </tab>
 
-        <tab title="Physical Health" style="width:100%" *ngIf="physicalHealthForm">
+        <tab heading="Physical Health" style="width:100%" *ngIf="physicalHealthForm">
 
             <form [formGroup]="physicalHealthForm" *ngIf="isPhysicalHealthDataLoaded">
                 <div class="row">
@@ -734,7 +734,7 @@
             </form>
         </tab>
 
-        <tab title="Offender" style="width:100%" *ngIf="spouseForm">
+        <tab heading="Offender" style="width:100%" *ngIf="spouseForm">
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewOffender()" style="width:200px; height:30px; ">Add New Offender</button>
@@ -766,7 +766,7 @@
             </div>
         </tab>
 
-        <tab title="Abuse" style="width:100%" *ngIf="caseAbuseForm">
+        <tab heading="Abuse" style="width:100%" *ngIf="caseAbuseForm">
             <form [formGroup]="caseAbuseForm" *ngIf="isAbuseDataLoaded">
                 <div class="row" *ngIf="caseBook">
 
@@ -982,7 +982,7 @@
             </form>
         </tab>
 
-        <tab title="Sessions" style="width:100%" *ngIf="isMentalDataLoaded">
+        <tab heading="Sessions" style="width:100%" *ngIf="isMentalDataLoaded">
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewSession()" style="width:200px; height:30px; ">Add New Session</button>
@@ -1016,7 +1016,7 @@
             </div>
         </tab>
 
-        <tab title="Mental Status" style="width:100%" *ngIf="isMentalDataLoaded">
+        <tab heading="Mental Status" style="width:100%" *ngIf="isMentalDataLoaded">
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewMental()" style="width:200px; height:30px; ">Add New Mental Status</button>
@@ -1077,7 +1077,7 @@
             </div>
         </tab>
 
-        <tab title="Feedback" style="width:100%" *ngIf="isFeedbackDataLoaded">
+        <tab heading="Feedback" style="width:100%" *ngIf="isFeedbackDataLoaded">
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewFeedback()" style="width:200px; height:30px; ">Add New Feedback</button>
@@ -1118,7 +1118,7 @@
             </div>
         </tab>
 
-        <tab title="Legal" style="width:100%" *ngIf="caseLegalForm">
+        <tab heading="Legal" style="width:100%" *ngIf="caseLegalForm">
             <form [formGroup]="caseLegalForm" *ngIf="isLegalDataLoaded">
                 <div class="row">
                     <div class="col-md-4 d-flex flex-column">
@@ -1192,7 +1192,7 @@
             </form>
         </tab>
 
-        <tab title="Case Management" style="width:100%" *ngIf="caseManageForm">
+        <tab heading="Case Management" style="width:100%" *ngIf="caseManageForm">
 
             <form [formGroup]="caseManageForm" *ngIf="isManageDataLoaded">
                 <div class="row">
@@ -1310,7 +1310,7 @@
 
 <div class="modal fade" bsModal #addressModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Case Address</h4>
@@ -1378,7 +1378,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button class="btn btn-primary" [disabled]="!caseAddressForm.valid" (click)="saveAddress()">Save</button>
                                     </div>
                                 </div>
@@ -1393,7 +1393,7 @@
 
 <div class="modal fade" bsModal #childrenModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Case Children</h4>
@@ -1452,7 +1452,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button class="btn btn-primary" [disabled]="!caseChildrenForm.valid" (click)="saveChildren()">Save</button>
                                     </div>
                                 </div>
@@ -1467,7 +1467,7 @@
 
 <div class="modal fade" bsModal #offenderModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Case Offender</h4>
@@ -1526,7 +1526,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button class="btn btn-primary" [disabled]="!caseOffenderForm.valid" (click)="saveOffender()">Save</button>
                                     </div>
                                 </div>
@@ -1541,7 +1541,7 @@
 
 <div class="modal fade" bsModal #mentalModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="width:500px">
-    <div class="modal-dialog modal-sm" style="width:500px">
+    <div class="modal-dialog modal-lg" style="width:500px">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Mental Status</h4>
@@ -1749,7 +1749,7 @@
                                         </ng-select>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button class="btn btn-primary" (click)="saveMental()">Save</button>
                                     </div>
                                 </div>
@@ -1764,7 +1764,7 @@
 
 <div class="modal fade" bsModal #sessionsModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Session Management</h4>
@@ -1823,7 +1823,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button class="btn btn-primary" [disabled]="!caseSessionForm.valid" (click)="saveSession()">Save</button>
                                     </div>
                                 </div>
@@ -1838,7 +1838,7 @@
 
 <div class="modal fade" bsModal #feedbackModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Client Feedback</h4>
@@ -1945,7 +1945,7 @@
                                         <input placeholder="Any Suggestions" [formControl]="caseFeedbackForm.controls['AnySuggestions']" class="form-control" />
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group text-center">
                                         <button class="btn btn-primary" [disabled]="!caseFeedbackForm.valid" (click)="saveFeedback()">Save</button>
                                     </div>
                                 </div>

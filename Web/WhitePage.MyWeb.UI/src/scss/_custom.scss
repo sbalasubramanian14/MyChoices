@@ -60,30 +60,56 @@ input {
     }
 }
 
-.nav-tabs{
-    border-bottom: none !important;
-}
-
 .case-detail-container {
-    .tabset {
-        width: 100%;
+    .nav-tabs {
+        border-bottom: 0;
+
+        .nav-item {
+            border-bottom: 1px solid white;
+        }
+
+        .nav-link.active {
+            background-color: $brand-primary;
+            color: white;
+            border-bottom: 0;
+        }
     }
 
-    ul.nav.nav-tabs {
-        justify-content: space-around;
-        flex-wrap: wrap;
+    .nav-item.active {
+        border-bottom: 0;
+    }
 
-        li {
-            border: 2px solid whitesmoke;
-            border-radius: 5px;
-            color: whitesmoke;
-            cursor: pointer;
-            margin-bottom: 15px;
-            margin-right: 5px;
+    .nav-link:hover {
+        color: $brand-primary;
+        border-bottom: 0;
+    }
 
-            &.active {
-                background-color: $brand-primary;
-            }
+    .tab-content {
+        background-color: transparent;
+        border: 0;
+    }
+}
+
+.modal-content {
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(207, 216, 220, 0.22);
+    border-radius: 6px;
+
+    .modal-header {
+        .modal-title{
+            font-size: 1.3em;
         }
+
+        background-color: black;
+        border-bottom: 1px solid rgba(207, 216, 220, 0.22);
+    }
+
+    button.close {
+        color: white;
+    }
+
+    .card {
+        margin-bottom: 0;
     }
 }
