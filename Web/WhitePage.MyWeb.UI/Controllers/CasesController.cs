@@ -115,7 +115,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdatePhysicalHealth(CaseBook caseBook)
+        public IActionResult UpdatePhysicalHealth([FromBody] CaseBook caseBook)
         {
             caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdatePhysicalHealth(caseBook);
@@ -124,7 +124,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateOffender(CaseBook caseBook)
+        public IActionResult UpdateOffender([FromBody] CaseBook caseBook)
         {
             caseBook.SelectedOffender.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateOffender(caseBook);
@@ -133,7 +133,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateAbuse(CaseBook caseBook)
+        public IActionResult UpdateAbuse([FromBody] CaseBook caseBook)
         {
             caseBook.Abuse.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
@@ -142,7 +142,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateCase(CaseBook caseBook)
+        public IActionResult UpdateCase([FromBody] CaseBook caseBook)
         {
             caseBook.Manage.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
@@ -151,7 +151,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateMental(CaseBook caseBook)
+        public IActionResult UpdateMental([FromBody] CaseBook caseBook)
         {
             caseBook.SelectedMental.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
@@ -160,7 +160,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateSessionLog(CaseBook caseBook)
+        public IActionResult UpdateSessionLog([FromBody] CaseBook caseBook)
         {
             caseBook.SelectedSessionLog.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateSessionLog(caseBook);
@@ -169,7 +169,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateFeedback(CaseBook caseBook)
+        public IActionResult UpdateFeedback([FromBody] CaseBook caseBook)
         {
             caseBook.SelectedFeedback.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateFeedback(caseBook);
@@ -178,7 +178,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateLegal(CaseBook caseBook)
+        public IActionResult UpdateLegal([FromBody] CaseBook caseBook)
         {
             caseBook.Legal.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateLegal(caseBook);

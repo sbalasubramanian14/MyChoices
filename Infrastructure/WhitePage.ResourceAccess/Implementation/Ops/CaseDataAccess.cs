@@ -83,6 +83,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             result.vAddresses = this.unitOfWork.DbContext.vAddresses.Where(c => c.CaseId == caseId).ToList();
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
+            result.vOffender = this.unitOfWork.DbContext.vOffenders.Where(c => c.CaseId == caseId).ToList();
             result.vMental = this.unitOfWork.DbContext.vMental.Where(c => c.CaseId == caseId).ToList();
             result.SessionLog = this.unitOfWork.DbContext.SessionLogs.Where(c => c.CaseId == caseId).ToList();
             result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();            
@@ -247,6 +248,8 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Spouse.SpouseDOB,
                 caseBook.Spouse.SpouseHomePhone,
                 caseBook.Spouse.SpouseMobilePhone,
+
+                caseBook.Spouse.SpouseOccupation,
                 caseBook.Spouse.SpouseEducationLookupId,
                 caseBook.Spouse.SpouseAddress,
                 caseBook.Spouse.Area,

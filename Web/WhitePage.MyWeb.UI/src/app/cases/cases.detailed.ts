@@ -483,11 +483,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId = this.caseChildrenForm.controls['RelationshipWithAbuserLookupId'].value;
 
         this.casesService
-            .updateChildren(this.caseBook).subscribe(data => {
-                this.addressModal.hide();
+            .updateChildren(this.caseBook).subscribe(data => {                
+                this.childrenModal.hide();
                 this.getCaseById();
-                this.toastr.success('Children updated successfully');
-
+                this.toastr.success('Children updated successfully');                
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
             });
@@ -497,7 +496,38 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /* Start - client And Household */
 
     public onUpdateHouseHoldInfo() {
-        console.log(this.caseBook);
+        this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId = this.clientAndHouseholdForm.controls['ChildrenDeceasedLookupId'].value;
+        this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.clientAndHouseholdForm.controls['HouseHoldIncomeLookupId'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.clientAndHouseholdForm.controls['SoughtHelpYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.clientAndHouseholdForm.controls['SoughtHelpDesc'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.clientAndHouseholdForm.controls['SoughtHelpOutPut'].value;
+
+        this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = this.clientAndHouseholdForm.controls['PeacemakerAssistanceLookupId'].value;
+        this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.clientAndHouseholdForm.controls['PeacemakerAssistanceDesc'].value;
+        this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.clientAndHouseholdForm.controls['PeacemakerFollowupYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.clientAndHouseholdForm.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
+
+        this.caseBook.FamilyHouseHold.ClientEmailId = this.clientAndHouseholdForm.controls['ClientEmailId'].value;
+        this.caseBook.FamilyHouseHold.ReligionLookupId = this.clientAndHouseholdForm.controls['ReligionLookupId'].value;
+        this.caseBook.FamilyHouseHold.LevelOfEducationLookupId = this.clientAndHouseholdForm.controls['LevelOfEducationLookupId'].value;
+        this.caseBook.FamilyHouseHold.VocationalSkillsLookupId = this.clientAndHouseholdForm.controls['VocationalSkillsLookupId'].value;
+
+        this.caseBook.FamilyHouseHold.OccupationLookupId = this.clientAndHouseholdForm.controls['OccupationLookupId'].value;
+        this.caseBook.FamilyHouseHold.OccupationDesc = this.clientAndHouseholdForm.controls['OccupationDesc'].value;
+        this.caseBook.FamilyHouseHold.ClientIncomeLookupId = this.clientAndHouseholdForm.controls['ClientIncomeLookupId'].value;
+
+        this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId = this.clientAndHouseholdForm.controls['HouseHoldMembersLivingLookupId'].value;
+        this.caseBook.FamilyHouseHold.YearOfMarriage = this.clientAndHouseholdForm.controls['YearOfMarriage'].value;
+        this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].value;
+
+        this.casesService
+            .updateHouseHold(this.caseBook).subscribe(data => {
+                this.childrenModal.hide();
+                this.getCaseById();
+                this.toastr.success('Household information updated successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
     }
 
     private loadHouseHoldFormGroup() {
@@ -574,7 +604,35 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public onUpdateSpouse() {
-        console.log(this.caseBook);
+        this.caseBook.Spouse.SpouseName = this.spouseForm.controls['SpouseName'].value;
+        this.caseBook.Spouse.SpouseHomePhone = this.spouseForm.controls['SpouseHomePhone'].value;
+        this.caseBook.Spouse.SpouseMobilePhone = this.spouseForm.controls['SpouseMobilePhone'].value;
+        this.caseBook.Spouse.SpouseOccupation = this.spouseForm.controls['SpouseOccupation'].value;
+        this.caseBook.Spouse.SpouseEducationLookupId = this.spouseForm.controls['SpouseEducationLookupId'].value;
+
+        this.caseBook.Spouse.SpouseAddress = this.spouseForm.controls['SpouseAddress'].value;
+        this.caseBook.Spouse.Area = this.spouseForm.controls['Area'].value;
+        this.caseBook.Spouse.CityLookupId = this.spouseForm.controls['CityLookupId'].value;
+        this.caseBook.Spouse.StateLookupId = this.spouseForm.controls['StateLookupId'].value;
+        this.caseBook.Spouse.PIN = this.spouseForm.controls['PIN'].value;
+
+        this.caseBook.Spouse.PrimaryEmergencyContactName = this.spouseForm.controls['PrimaryEmergencyContactName'].value;
+        this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId = this.spouseForm.controls['PrimaryEmergencyRelationshipToClientLookupId'].value;
+        this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber = this.spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].value;
+        this.caseBook.Spouse.PrimaryEmergencyContactAdress = this.spouseForm.controls['PrimaryEmergencyContactAdress'].value;
+
+        this.caseBook.Spouse.SecondaryEmergencyContactName = this.spouseForm.controls['SecondaryEmergencyContactName'].value;
+        this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId = this.spouseForm.controls['SecondaryEmergencyRelationshipToClientLookupId'].value;
+        this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber = this.spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].value;
+        this.caseBook.Spouse.SecondaryEmergencyContactAdress = this.spouseForm.controls['SecondaryEmergencyContactAdress'].value;        
+
+        this.casesService
+            .updateSpouse(this.caseBook).subscribe(data => {                
+                this.getCaseById();
+                this.toastr.success('Spouse information updated successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
     }
 
     /* End of - Spouse */
@@ -610,8 +668,36 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         });
     }
 
-    public onUpdatePhysicalHealth() {
-        console.log(this.caseBook);
+    public onUpdatePhysicalHealth() {        
+        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId = this.physicalHealthForm.controls['SufferingFromAnyMajorIllnessLookupId'].value;
+        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc = this.physicalHealthForm.controls['SufferingFromAnyMajorIllnessDesc'].value;
+        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId = this.physicalHealthForm.controls['DiagnosedPsychiatricIllnessLookupId'].value;
+        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc = this.physicalHealthForm.controls['DiagnosedPsychiatricIllnessDesc'].value;
+
+        this.caseBook.PhysicalHealth.SleepPerNightLookupId = this.physicalHealthForm.controls['SleepPerNightLookupId'].value;
+        this.caseBook.PhysicalHealth.AppetiteLookupId = this.physicalHealthForm.controls['AppetiteLookupId'].value;
+        this.caseBook.PhysicalHealth.ExerciseLookupId = this.physicalHealthForm.controls['ExerciseLookupId'].value;
+
+        this.caseBook.PhysicalHealth.AnyMedicationLookupId = this.physicalHealthForm.controls['AnyMedicationLookupId'].value;
+        this.caseBook.PhysicalHealth.AnyMedicationDesc = this.physicalHealthForm.controls['AnyMedicationDesc'].value;
+
+        this.caseBook.PhysicalHealth.AnySubstanceLookupId = this.physicalHealthForm.controls['AnySubstanceLookupId'].value;
+        this.caseBook.PhysicalHealth.AnySubstanceDesc = this.physicalHealthForm.controls['AnySubstanceDesc'].value;
+
+        this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.physicalHealthForm.controls['CurrentlyPregnantLookup'].value;
+        this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.physicalHealthForm.controls['CurrentlyPregnantDesc'].value;
+
+        this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
+        this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
+        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;        
+
+        this.casesService
+            .updatePhysicalHealth(this.caseBook).subscribe(data => {                
+                this.getCaseById();
+                this.toastr.success('Physical updated successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
     }
     /* End of - Physical Health */
 
@@ -729,7 +815,35 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public onUpdateAbuse() {
-        console.log(this.caseBook);
+        this.caseBook.Abuse.SufferingFromAbuseLookupId = this.caseAbuseForm.controls['SufferingFromAbuseLookupId'].value;
+        this.caseBook.Abuse.SufferingFromAbuseDesc = this.caseAbuseForm.controls['SufferingFromAbuseDesc'].value;
+
+        //this.caseBook.Abuse.DiagnosedPsychiatricIllnessLookupId = this.caseAbuseForm.controls['DiagnosedPsychiatricIllnessLookupId'].value;
+        //this.caseBook.Abuse.DiagnosedPsychiatricIllnessDesc = this.caseAbuseForm.controls['DiagnosedPsychiatricIllnessDesc'].value;
+        //this.caseBook.Abuse.SleepPerNightLookupId = this.caseAbuseForm.controls['SleepPerNightLookupId'].value;
+        //this.caseBook.Abuse.AppetiteLookupId = this.caseAbuseForm.controls['AppetiteLookupId'].value;
+        //this.caseBook.Abuse.ExerciseLookupId = this.caseAbuseForm.controls['ExerciseLookupId'].value;
+
+        //this.caseBook.Abuse.AnyMedicationLookupId = this.caseAbuseForm.controls['AnyMedicationLookupId'].value;
+        //this.caseBook.Abuse.AnyMedicationDesc = this.caseAbuseForm.controls['AnyMedicationDesc'].value;
+
+        //this.caseBook.Abuse.AnySubstanceLookupId = this.caseAbuseForm.controls['AnySubstanceLookupId'].value;
+        //this.caseBook.Abuse.AnySubstanceDesc = this.caseAbuseForm.controls['AnySubstanceDesc'].value;
+
+        //this.caseBook.Abuse.CurrentlyPregnantLookup = this.caseAbuseForm.controls['CurrentlyPregnantLookup'].value;
+        //this.caseBook.Abuse.CurrentlyPregnantDesc = this.caseAbuseForm.controls['CurrentlyPregnantDesc'].value;
+
+        //this.caseBook.Abuse.ReasonForSeekingHelpLookupId = this.caseAbuseForm.controls['ReasonForSeekingHelpLookupId'].value;
+        //this.caseBook.Abuse.WhoIsAbusingYouLookupId = this.caseAbuseForm.controls['WhoIsAbusingYouLookupId'].value;
+        //this.caseBook.Abuse.WhoIsAbusingYouDesc = this.caseAbuseForm.controls['WhoIsAbusingYouDesc'].value;
+
+        this.casesService
+            .updateAbuse(this.caseBook).subscribe(data => {
+                this.getCaseById();
+                this.toastr.success('Abuse information updated successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
     }
 
     /* End of - Abuse */

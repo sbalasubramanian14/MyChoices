@@ -141,12 +141,15 @@ namespace WhitePage.ResourceAccess
                 columnCollection
                     .AddColumn("CaseSpouseId", DbColumnType.Int)
                     .AddColumn("CaseId", DbColumnType.Int)
+
                     .AddColumn("SpouseName", DbColumnType.String)
                     .AddColumn("SpouseDOB", DbColumnType.DateTime)
                     .AddColumn("SpouseHomePhone", DbColumnType.String)
                     .AddColumn("SpouseMobilePhone", DbColumnType.String)
 
+                    .AddColumn("SpouseOccupation", DbColumnType.String)
                     .AddColumn("SpouseEducationLookupId", DbColumnType.Int)
+
                     .AddColumn("SpouseAddress", DbColumnType.String)
                     .AddColumn("Area", DbColumnType.String)
                     .AddColumn("CityLookupId", DbColumnType.Int)
@@ -180,7 +183,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("CasePhysicalHealthId", DbColumnType.Int)
                     .AddColumn("CaseId", DbColumnType.Int)
                     .AddColumn("SufferingFromAnyMajorIllnessLookupId", DbColumnType.Int)
-                    .AddColumn("SufferingFromAnyMajorIllnessDesc", DbColumnType.DateTime)
+                    .AddColumn("SufferingFromAnyMajorIllnessDesc", DbColumnType.String)
 
                     .AddColumn("DiagnosedPsychiatricIllnessLookupId", DbColumnType.Int)
                     .AddColumn("DiagnosedPsychiatricIllnessDesc", DbColumnType.String)
