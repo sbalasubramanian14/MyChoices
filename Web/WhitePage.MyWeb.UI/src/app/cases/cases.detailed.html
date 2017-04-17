@@ -1020,7 +1020,6 @@
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewMental()" style="width:200px; height:30px; ">Add New Mental Status</button>
-
                     <table class="table" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
@@ -1188,7 +1187,7 @@
                         </div>
                     </div>
 
-                   
+
                 </div>
             </form>
         </tab>
@@ -1207,7 +1206,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Status</label>
                                     <ng-select [options]="caseStatusOptionList"
-                                               placeholder="Select"
+                                               placeholder="Select"  
                                                formControlName="CaseStatusId"
                                                [allowClear]="true">
                                     </ng-select>
@@ -1216,7 +1215,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Source of case</label>
                                     <ng-select [options]="sourceOfCaseLookupOptionList"
-                                               placeholder="Select"
+                                               placeholder="Select" 
                                                formControlName="SourceOfCaseLookupId"
                                                [allowClear]="true">
                                     </ng-select>
@@ -1224,13 +1223,13 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">If other, please specify</label>
-                                    <input mdInput class="form-control" /><input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" />
+                                    <input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="CenterId">Type of counseling</label>
                                     <ng-select [options]="typesOfCounselingLookupOptionList"
-                                               placeholder="Select"
+                                               placeholder="Select" 
                                                formControlName="TypesOfCounselingLookupId"
                                                [allowClear]="true">
                                     </ng-select>

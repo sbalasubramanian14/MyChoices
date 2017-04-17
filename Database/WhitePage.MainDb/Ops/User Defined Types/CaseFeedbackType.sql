@@ -1,6 +1,6 @@
 ﻿CREATE TYPE [Ops].[CaseFeedbackType] AS TABLE
 (
-	[CaseFeedbackId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[CaseFeedbackId] INT,
 	CaseId INT,
 
 	RespectedDuringYourVisitLookupId INT,

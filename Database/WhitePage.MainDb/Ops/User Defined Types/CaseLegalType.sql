@@ -1,7 +1,8 @@
 ﻿CREATE TYPE [Ops].[CaseLegalType] AS TABLE
 (
-	[CaseLegalId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[CaseLegalId] INT,
 	CaseId int,
+
 	CaseNumber varchar(200),
 	Court varchar(200),
 	Prayer varchar(200),

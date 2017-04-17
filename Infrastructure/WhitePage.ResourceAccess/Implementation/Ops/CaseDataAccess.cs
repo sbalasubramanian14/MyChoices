@@ -432,7 +432,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
             var parmsCollection = new ParmsCollection();
 
-            var caseChildrenTable = UserDefinedTableTypes.Manage;
+            var caseChildrenTable = UserDefinedTableTypes.Mental;
             caseChildrenTable.Rows.Add(new object[]{
                 caseBook.SelectedMental.CaseMentalId,
                 caseBook.SelectedMental.CaseId,

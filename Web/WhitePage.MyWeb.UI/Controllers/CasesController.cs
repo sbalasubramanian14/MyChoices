@@ -145,7 +145,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateCase([FromBody] CaseBook caseBook)
         {
             caseBook.Manage.CaseId = caseBook.Case.CaseId;
-            var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
+            var updatedCase = this.caseBusinessAccess.UpdateCase(caseBook);
             return Ok(updatedCase);
         }
 
@@ -154,7 +154,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateMental([FromBody] CaseBook caseBook)
         {
             caseBook.SelectedMental.CaseId = caseBook.Case.CaseId;
-            var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
+            var updatedCase = this.caseBusinessAccess.UpdateMental(caseBook);
             return Ok(updatedCase);
         }
 

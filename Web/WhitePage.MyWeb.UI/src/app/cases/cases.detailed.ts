@@ -265,10 +265,12 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .GetCaseById(this.selectedCaseId)
             .subscribe(data => {
+                console.log(data);
+                
                 this.caseBook = data;
+                console.log(this.caseBook);
 
-                this.onCenterSelected(null);
-                console.log("load centers");
+                this.onCenterSelected(null);                
 
                 if (this.centersList.length > 0 && this.centerOptionList.length > 0 && this.counselorOptionsList.length > 0) {
                     this.isPrimaryDataLoaded = true;
@@ -864,6 +866,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public relationshipWithPMLookupOptionList: Array<IOption> = [];
 
     private loadManageFromGroup() {
+        debugger;
         this.caseManageForm = this.fb.group({
 
             CaseStatusId: new FormControl(this.caseBook.Manage.CaseStatusId == undefined ? null : this.caseBook.Manage.CaseStatusId.toString()),
@@ -884,7 +887,32 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public onUpdateManage() {
-        console.log(this.caseBook);
+        debugger;
+        this.caseBook.Manage.CaseId = this.caseBook.Case.CaseId;
+        this.caseBook.Manage.CaseStatusId = this.caseManageForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.SourceOfCaseLookupId = this.caseManageForm.controls['SourceOfCaseLookupId'].value;
+        this.caseBook.Manage.SourceOfCaseDesc = this.caseManageForm.controls['SourceOfCaseDesc'].value;
+
+        this.caseBook.Manage.TypesOfCounselingLookupId = this.caseManageForm.controls['TypesOfCounselingLookupId'].value;
+        this.caseBook.Manage.TotalNoOfSessionsLookupId = this.caseManageForm.controls['TotalNoOfSessionsLookupId'].value;
+        this.caseBook.Manage.TotalHoursSpentLookupId = this.caseManageForm.controls['TotalHoursSpentLookupId'].value;
+
+        this.caseBook.Manage.ReasonForClosureStatus = this.caseManageForm.controls['ReasonForClosureStatus'].value;
+        this.caseBook.Manage.CaseSubject = this.caseManageForm.controls['CaseSubject'].value;
+        this.caseBook.Manage.CaseDescription = this.caseManageForm.controls['CaseDescription'].value;
+
+        this.caseBook.Manage.RelationshipWithPMLookupId = this.caseManageForm.controls['RelationshipWithPMLookupId'].value;
+        this.caseBook.Manage.ResolutionLog = this.caseManageForm.controls['ResolutionLog'].value;
+
+
+        this.casesService
+            .updateCase(this.caseBook).subscribe(data => {                
+                this.getCaseById();
+                this.toastr.success('Case info updated successfully');
+
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
     }
 
     /* End of - Manage Case */
@@ -921,18 +949,22 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MentalAttentionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAttentionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAttentionLookupId.toString()),
             MentalBehaviourLookupId: new FormControl(this.caseBook.SelectedMental.MentalBehaviourLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBehaviourLookupId.toString()),
             MentalBodyTypeLookupId: new FormControl(this.caseBook.SelectedMental.MentalBodyTypeLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBodyTypeLookupId.toString()),
+
             MentalContentLookupId: new FormControl(this.caseBook.SelectedMental.MentalContentLookupId == undefined ? null : this.caseBook.SelectedMental.MentalContentLookupId.toString()),
             MentalDressLookupId: new FormControl(this.caseBook.SelectedMental.MentalDressLookupId == undefined ? null : this.caseBook.SelectedMental.MentalDressLookupId.toString()),
             MentalEstimatedIntellectLookupId: new FormControl(this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId == undefined ? null : this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId.toString()),
             MentalExpressionLookupId: new FormControl(this.caseBook.SelectedMental.MentalExpressionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalExpressionLookupId.toString()),
+
             MentalFlowOfThoughtLookupId: new FormControl(this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId == undefined ? null : this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId.toString()),
             MentalHygieneLookupId: new FormControl(this.caseBook.SelectedMental.MentalHygieneLookupId == undefined ? null : this.caseBook.SelectedMental.MentalHygieneLookupId.toString()),
             MentalImpulseControlLookupId: new FormControl(this.caseBook.SelectedMental.MentalImpulseControlLookupId == undefined ? null : this.caseBook.SelectedMental.MentalImpulseControlLookupId.toString()),
             MentalInformationLookupId: new FormControl(this.caseBook.SelectedMental.MentalInformationLookupId == undefined ? null : this.caseBook.SelectedMental.MentalInformationLookupId.toString()),
+
             MentalInsightLookupId: new FormControl(this.caseBook.SelectedMental.MentalInsightLookupId == undefined ? null : this.caseBook.SelectedMental.MentalInsightLookupId.toString()),
             MentalJudgementLookupId: new FormControl(this.caseBook.SelectedMental.MentalJudgementLookupId == undefined ? null : this.caseBook.SelectedMental.MentalJudgementLookupId.toString()),
             MentalMemoryLookupId: new FormControl(this.caseBook.SelectedMental.MentalMemoryLookupId == undefined ? null : this.caseBook.SelectedMental.MentalMemoryLookupId.toString()),
             MentalMotorActivityLookupId: new FormControl(this.caseBook.SelectedMental.MentalMotorActivityLookupId == undefined ? null : this.caseBook.SelectedMental.MentalMotorActivityLookupId.toString()),
+
             MentalOrientationLookupId: new FormControl(this.caseBook.SelectedMental.MentalOrientationLookupId == undefined ? null : this.caseBook.SelectedMental.MentalOrientationLookupId.toString()),
             MentalSpeechLookupId: new FormControl(this.caseBook.SelectedMental.MentalSpeechLookupId == undefined ? null : this.caseBook.SelectedMental.MentalSpeechLookupId.toString()),
             MentalVocabularyLookupId: new FormControl(this.caseBook.SelectedMental.MentalVocabularyLookupId == undefined ? null : this.caseBook.SelectedMental.MentalVocabularyLookupId.toString())
@@ -940,11 +972,36 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.mentalModal.show();
     }
 
-    public editMental(offender: vCaseMental) {
+    public editMental(caseMental: vCaseMental) {
         this.caseBook.SelectedMental = new CaseMental();
-        this.caseBook.SelectedMental.CaseId = this.caseBook.Case.CaseId;
+        this.caseBook.SelectedMental.CaseMentalId = caseMental.CaseMentalId;
+        this.caseBook.SelectedMental.CaseId = caseMental.CaseId;
 
-        this.caseOffenderForm = this.fb.group({
+        this.caseBook.SelectedMental.MentalAbstractionLookupId = caseMental.MentalAbstractionLookupId;
+        this.caseBook.SelectedMental.MentalAttentionLookupId = caseMental.MentalAttentionLookupId;
+        this.caseBook.SelectedMental.MentalBehaviourLookupId = caseMental.MentalBehaviourLookupId;
+        this.caseBook.SelectedMental.MentalBodyTypeLookupId = caseMental.MentalBodyTypeLookupId;
+
+        this.caseBook.SelectedMental.MentalContentLookupId = caseMental.MentalContentLookupId;
+        this.caseBook.SelectedMental.MentalDressLookupId = caseMental.MentalDressLookupId;
+        this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId = caseMental.MentalEstimatedIntellectLookupId;
+        this.caseBook.SelectedMental.MentalExpressionLookupId = caseMental.MentalExpressionLookupId;
+
+        this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId = caseMental.MentalFlowOfThoughtLookupId;
+        this.caseBook.SelectedMental.MentalHygieneLookupId = caseMental.MentalHygieneLookupId;
+        this.caseBook.SelectedMental.MentalImpulseControlLookupId = caseMental.MentalImpulseControlLookupId;
+        this.caseBook.SelectedMental.MentalInformationLookupId = caseMental.MentalInformationLookupId;
+
+        this.caseBook.SelectedMental.MentalInsightLookupId = caseMental.MentalInsightLookupId;
+        this.caseBook.SelectedMental.MentalJudgementLookupId = caseMental.MentalJudgementLookupId;
+        this.caseBook.SelectedMental.MentalMemoryLookupId = caseMental.MentalMemoryLookupId;
+        this.caseBook.SelectedMental.MentalMotorActivityLookupId = caseMental.MentalMotorActivityLookupId;
+
+        this.caseBook.SelectedMental.MentalOrientationLookupId = caseMental.MentalOrientationLookupId;
+        this.caseBook.SelectedMental.MentalSpeechLookupId = caseMental.MentalSpeechLookupId;
+        this.caseBook.SelectedMental.MentalVocabularyLookupId = caseMental.MentalVocabularyLookupId;
+
+        this.caseMentalForm = this.fb.group({
             MentalAbstractionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAbstractionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAbstractionLookupId.toString()),
             MentalAttentionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAttentionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAttentionLookupId.toString()),
             MentalBehaviourLookupId: new FormControl(this.caseBook.SelectedMental.MentalBehaviourLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBehaviourLookupId.toString()),
@@ -972,15 +1029,34 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.mentalModal.hide();
     }
 
-    public saveMental(offender: vCaseMental) {
-        this.caseBook.SelectedOffender.Name = this.caseOffenderForm.controls['Name'].value;
-        this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
-        this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
-        this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+    public saveMental(caseMental: CaseMental) {        
+        this.caseBook.SelectedMental.MentalAbstractionLookupId = this.caseMentalForm.controls['MentalAbstractionLookupId'].value;
+        this.caseBook.SelectedMental.MentalAttentionLookupId = this.caseMentalForm.controls['MentalAttentionLookupId'].value;
+        this.caseBook.SelectedMental.MentalBehaviourLookupId = this.caseMentalForm.controls['MentalBehaviourLookupId'].value;
+        this.caseBook.SelectedMental.MentalBodyTypeLookupId = this.caseMentalForm.controls['MentalBodyTypeLookupId'].value;
+
+        this.caseBook.SelectedMental.MentalContentLookupId = this.caseMentalForm.controls['MentalContentLookupId'].value;
+        this.caseBook.SelectedMental.MentalDressLookupId = this.caseMentalForm.controls['MentalDressLookupId'].value;
+        this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId = this.caseMentalForm.controls['MentalEstimatedIntellectLookupId'].value;
+        this.caseBook.SelectedMental.MentalExpressionLookupId = this.caseMentalForm.controls['MentalExpressionLookupId'].value;
+
+        this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId = this.caseMentalForm.controls['MentalFlowOfThoughtLookupId'].value;
+        this.caseBook.SelectedMental.MentalHygieneLookupId = this.caseMentalForm.controls['MentalHygieneLookupId'].value;
+        this.caseBook.SelectedMental.MentalImpulseControlLookupId = this.caseMentalForm.controls['MentalImpulseControlLookupId'].value;
+        this.caseBook.SelectedMental.MentalInformationLookupId = this.caseMentalForm.controls['MentalInformationLookupId'].value;
+
+        this.caseBook.SelectedMental.MentalInsightLookupId = this.caseMentalForm.controls['MentalInsightLookupId'].value;
+        this.caseBook.SelectedMental.MentalJudgementLookupId = this.caseMentalForm.controls['MentalJudgementLookupId'].value;
+        this.caseBook.SelectedMental.MentalMemoryLookupId = this.caseMentalForm.controls['MentalMemoryLookupId'].value;
+        this.caseBook.SelectedMental.MentalMotorActivityLookupId = this.caseMentalForm.controls['MentalMotorActivityLookupId'].value;
+
+        this.caseBook.SelectedMental.MentalOrientationLookupId = this.caseMentalForm.controls['MentalOrientationLookupId'].value;
+        this.caseBook.SelectedMental.MentalSpeechLookupId = this.caseMentalForm.controls['MentalSpeechLookupId'].value;
+        this.caseBook.SelectedMental.MentalVocabularyLookupId = this.caseMentalForm.controls['MentalVocabularyLookupId'].value;
 
         this.casesService
-            .updateOffender(this.caseBook).subscribe(data => {
-                this.offenderModal.hide();
+            .updateMental(this.caseBook).subscribe(data => {
+                this.mentalModal.hide();
                 this.getCaseById();
                 this.toastr.success('Mental Status updated successfully');
 
@@ -1084,9 +1160,20 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.feedbackModal.show();
     }
 
-    public editFeedback(offender: CaseFeedback) {
+    public editFeedback(feedback: CaseFeedback) {
         this.caseBook.SelectedFeedback = new CaseFeedback();
         this.caseBook.SelectedFeedback.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId = feedback.RespectedDuringYourVisitLookupId;
+        this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId = feedback.FeelSafeAndSecureLookupId;
+        this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId = feedback.FeelThatCounsellingLookupId;
+        this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId = feedback.AssistanceOfPeacemakerLookupId;
+
+        this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId = feedback.RecommendFreeCounsellingLookupId;
+        this.caseBook.SelectedFeedback.AbleToImproveLookupId = feedback.AbleToImproveLookupId;
+        this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId = feedback.OPMTeamToFollowupLookupId;
+
+        this.caseBook.SelectedFeedback.AnySuggestions = feedback.AnySuggestions;
 
         this.caseFeedbackForm = this.fb.group({
             RespectedDuringYourVisitLookupId: new FormControl(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId == undefined ? null : this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId.toString(), Validators.required),
@@ -1107,17 +1194,25 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.feedbackModal.hide();
     }
 
-    public saveFeedback(offender: vCaseFeedback) {
-        this.caseBook.SelectedOffender.Name = this.caseOffenderForm.controls['Name'].value;
-        this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
-        this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
-        this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+    public saveFeedback(feedback: CaseFeedback) {        
+        this.caseBook.SelectedFeedback.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId = this.caseFeedbackForm.controls['RespectedDuringYourVisitLookupId'].value;
+        this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId = this.caseFeedbackForm.controls['FeelSafeAndSecureLookupId'].value;
+        this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId = this.caseFeedbackForm.controls['FeelThatCounsellingLookupId'].value;
+        this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId = this.caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId'].value;
+
+        this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId = this.caseFeedbackForm.controls['RecommendFreeCounsellingLookupId'].value;
+        this.caseBook.SelectedFeedback.AbleToImproveLookupId = this.caseFeedbackForm.controls['AbleToImproveLookupId'].value;
+        this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId = this.caseFeedbackForm.controls['OPMTeamToFollowupLookupId'].value;
+
+        this.caseBook.SelectedFeedback.AnySuggestions = this.caseFeedbackForm.controls['AnySuggestions'].value;
 
         this.casesService
-            .updateOffender(this.caseBook).subscribe(data => {
-                this.offenderModal.hide();
+            .updateFeedback(this.caseBook).subscribe(data => {
+                this.feedbackModal.hide();
                 this.getCaseById();
-                this.toastr.success('Session updated successfully');
+                this.toastr.success('Feedback updated successfully');
 
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
@@ -1144,7 +1239,26 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public onUpdateLegal() {
-        console.log(this.caseBook);
+        this.caseBook.Legal.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseBook.Legal.CaseNumber = this.caseLegalForm.controls['CaseNumber'].value;
+        this.caseBook.Legal.Court = this.caseLegalForm.controls['Court'].value;
+        this.caseBook.Legal.Prayer = this.caseLegalForm.controls['Prayer'].value;
+        this.caseBook.Legal.LegalRepresentative = this.caseLegalForm.controls['LegalRepresentative'].value;
+
+        this.caseBook.Legal.LegalConsentFormLookupId = this.caseLegalForm.controls['LegalConsentFormLookupId'].value;
+        this.caseBook.Legal.LegalActionLookupId = this.caseLegalForm.controls['LegalActionLookupId'].value;
+        this.caseBook.Legal.OutcomeLookupId = this.caseLegalForm.controls['OutcomeLookupId'].value;
+        this.caseBook.Legal.DocumentsLookupId = this.caseLegalForm.controls['DocumentsLookupId'].value;
+
+        this.casesService
+            .updateLegal(this.caseBook).subscribe(data => {                
+                this.getCaseById();
+                this.toastr.success('Legal updated successfully');
+
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
     }
 
     /* End of - Legal Case */

@@ -297,6 +297,10 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("SourceOfCaseLookupId", DbColumnType.Int)
                     .AddColumn("SourceOfCaseDesc", DbColumnType.String)
 
+                    .AddColumn("TypesOfCounselingLookupId", DbColumnType.Int)
+                    .AddColumn("TotalNoOfSessionsLookupId", DbColumnType.Int)
+                    .AddColumn("TotalHoursSpentLookupId", DbColumnType.Int)
+
                     .AddColumn("ReasonForClosureStatus", DbColumnType.String)
                     .AddColumn("CaseSubject", DbColumnType.String)
                     .AddColumn("CaseDescription", DbColumnType.String)
