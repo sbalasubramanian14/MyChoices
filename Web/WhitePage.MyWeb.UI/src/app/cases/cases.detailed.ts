@@ -818,24 +818,32 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.Abuse.SufferingFromAbuseLookupId = this.caseAbuseForm.controls['SufferingFromAbuseLookupId'].value;
         this.caseBook.Abuse.SufferingFromAbuseDesc = this.caseAbuseForm.controls['SufferingFromAbuseDesc'].value;
 
-        //this.caseBook.Abuse.DiagnosedPsychiatricIllnessLookupId = this.caseAbuseForm.controls['DiagnosedPsychiatricIllnessLookupId'].value;
-        //this.caseBook.Abuse.DiagnosedPsychiatricIllnessDesc = this.caseAbuseForm.controls['DiagnosedPsychiatricIllnessDesc'].value;
-        //this.caseBook.Abuse.SleepPerNightLookupId = this.caseAbuseForm.controls['SleepPerNightLookupId'].value;
-        //this.caseBook.Abuse.AppetiteLookupId = this.caseAbuseForm.controls['AppetiteLookupId'].value;
-        //this.caseBook.Abuse.ExerciseLookupId = this.caseAbuseForm.controls['ExerciseLookupId'].value;
+        this.caseBook.Abuse.FeelAboutAbuseLookupId = this.caseAbuseForm.controls['FeelAboutAbuseLookupId'].value;
+        this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId = this.caseAbuseForm.controls['ParentsFeelAboutAbuseLookupId'].value;
+        this.caseBook.Abuse.LawFeelAboutAbuseLookupId = this.caseAbuseForm.controls['LawFeelAboutAbuseLookupId'].value;
+        this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId = this.caseAbuseForm.controls['SignsOfPhysicalAbuseLookupId'].value;
+        this.caseBook.Abuse.SignsOfPhysicalAbuseDesc = this.caseAbuseForm.controls['SignsOfPhysicalAbuseDesc'].value;
 
-        //this.caseBook.Abuse.AnyMedicationLookupId = this.caseAbuseForm.controls['AnyMedicationLookupId'].value;
-        //this.caseBook.Abuse.AnyMedicationDesc = this.caseAbuseForm.controls['AnyMedicationDesc'].value;
+        this.caseBook.Abuse.WeaponsUsedLookupId = this.caseAbuseForm.controls['WeaponsUsedLookupId'].value;
+        this.caseBook.Abuse.WeaponsUsedDesc = this.caseAbuseForm.controls['WeaponsUsedDesc'].value;
 
-        //this.caseBook.Abuse.AnySubstanceLookupId = this.caseAbuseForm.controls['AnySubstanceLookupId'].value;
-        //this.caseBook.Abuse.AnySubstanceDesc = this.caseAbuseForm.controls['AnySubstanceDesc'].value;
+        this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId = this.caseAbuseForm.controls['TypesOfPhyscialAbuseLookupId'].value;
+        this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfPhyscialAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse = this.caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].value;
 
-        //this.caseBook.Abuse.CurrentlyPregnantLookup = this.caseAbuseForm.controls['CurrentlyPregnantLookup'].value;
-        //this.caseBook.Abuse.CurrentlyPregnantDesc = this.caseAbuseForm.controls['CurrentlyPregnantDesc'].value;
+        this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId = this.caseAbuseForm.controls['TypesOfEmotionalAbuseLookupId'].value;
+        this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfEmotionalAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].value;
 
-        //this.caseBook.Abuse.ReasonForSeekingHelpLookupId = this.caseAbuseForm.controls['ReasonForSeekingHelpLookupId'].value;
-        //this.caseBook.Abuse.WhoIsAbusingYouLookupId = this.caseAbuseForm.controls['WhoIsAbusingYouLookupId'].value;
-        //this.caseBook.Abuse.WhoIsAbusingYouDesc = this.caseAbuseForm.controls['WhoIsAbusingYouDesc'].value;
+        this.caseBook.Abuse.TypesOfSexualAbuseLookupId = this.caseAbuseForm.controls['TypesOfSexualAbuseLookupId'].value;
+        this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfSexualAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfSexualAbuse = this.caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].value;
+
+        this.caseBook.Abuse.TypesOfEconomicAbuseLookupId = this.caseAbuseForm.controls['TypesOfEconomicAbuseLookupId'].value;
+        this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfEconomicAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].value;
+
+        this.caseBook.Abuse.ReasonsForAbuseLookupId = this.caseAbuseForm.controls['ReasonsForAbuseLookupId'].value;
 
         this.casesService
             .updateAbuse(this.caseBook).subscribe(data => {
@@ -1008,10 +1016,16 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.sessionsModal.show();
     }
 
-    public editSession(offender: CaseSessionLog) {
+    public editSession(sessionLog: CaseSessionLog) {
         this.caseBook.SelectedSessionLog = new CaseOffender();
-        this.caseBook.SelectedSessionLog.CaseSessionLogId = offender.CaseSessionLogId;
-        this.caseBook.SelectedOffender.CaseId = offender.CaseId;
+        this.caseBook.SelectedSessionLog.CaseSessionLogId = sessionLog.CaseSessionLogId;
+        this.caseBook.SelectedSessionLog.CaseId = sessionLog.CaseId;
+
+        this.caseBook.SelectedSessionLog.CounselingDate = sessionLog.CounselingDate;
+        this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = sessionLog.TypeOfCounselingLookupId;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = sessionLog.DurationOfSessionMIn;
+        this.caseBook.SelectedSessionLog.NextSessionScheduled = sessionLog.NextSessionScheduled;
+        this.caseBook.SelectedSessionLog.SessionNotes = sessionLog.SessionNotes;
 
         this.caseSessionForm = this.fb.group({
             CounselingDate: new FormControl(this.caseBook.SelectedSessionLog.CounselingDate, Validators.required),
@@ -1024,18 +1038,20 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public hideSessionModal(): void {
-        this.offenderModal.hide();
+        this.sessionsModal.hide();
     }
 
-    public saveSession(offender: vCaseOffender) {
-        this.caseBook.SelectedOffender.Name = this.caseOffenderForm.controls['Name'].value;
-        this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
-        this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
-        this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+    public saveSession(sessionLog: CaseSessionLog) {
+
+        this.caseBook.SelectedSessionLog.CounselingDate = this.caseSessionForm.controls['CounselingDate'].value;
+        this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
+        this.caseBook.SelectedSessionLog.NextSessionScheduled = this.caseSessionForm.controls['NextSessionScheduled'].value;
+        this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
         this.casesService
-            .updateOffender(this.caseBook).subscribe(data => {
-                this.offenderModal.hide();
+            .updateSessionLog(this.caseBook).subscribe(data => {
+                this.sessionsModal.hide();
                 this.getCaseById();
                 this.toastr.success('Session updated successfully');
 
