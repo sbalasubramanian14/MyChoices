@@ -10,7 +10,7 @@ import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import {
-    CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog, vCaseFeedback, CaseFeedback
+    CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog, vCaseFeedback, CaseFeedback, CaseLegal
 } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
@@ -35,6 +35,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public caseMentalForm: FormGroup;
     public caseSessionForm: FormGroup;
     public caseFeedbackForm: FormGroup;
+    public caseLegalForm: FormGroup;
 
     public router: Router;
     public isPrimaryDataLoaded: boolean = false;
@@ -45,6 +46,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public isManageDataLoaded: boolean = false;
     public isMentalDataLoaded: boolean = false;
     public isFeedbackDataLoaded: boolean = false;
+    public isLegalDataLoaded: boolean = false;
 
     public childrenDeceasedLookupOptionsList: Array<IOption> = [];
     public incomeLookupOptionsList: Array<IOption> = [];
@@ -207,6 +209,11 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.OPMTeamToFollowupLookupOptionList = this.ParseLookups("YesNo");
                     this.isFeedbackDataLoaded = true;
 
+                    this.outcomeLookupOptionList == this.ParseLookups("Outcome");
+                    this.documentsLookupOptionList == this.ParseLookups("Documents");
+
+                    this.isLegalDataLoaded = true;
+
                     break;
                 default:
                     break;
@@ -272,6 +279,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                 this.loadPhysicalHealthFromGroup();
                 this.loadAbuseFromGroup();
                 this.loadManageFromGroup();
+                this.loadLegalFromGroup();
             });
     }
 
@@ -986,4 +994,29 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             });
     }
     /* End of - Feedback */
+
+    /* Start - Legal Case */
+    public outcomeLookupOptionList: Array<IOption> = [];
+    public documentsLookupOptionList: Array<IOption> = [];
+
+    private loadLegalFromGroup() {
+        this.caseLegalForm = this.fb.group({
+            CaseNumber: new FormControl(this.caseBook.Legal.CaseNumber),
+            Court: new FormControl(this.caseBook.Legal.Court),
+            Prayer: new FormControl(this.caseBook.Legal.Prayer),
+            LegalRepresentative: new FormControl(this.caseBook.Legal.LegalRepresentative),
+
+            LegalConsentFormLookupId: new FormControl(this.caseBook.Legal.LegalConsentFormLookupId == undefined ? null : this.caseBook.Legal.LegalConsentFormLookupId.toString()),
+            LegalActionLookupId: new FormControl(this.caseBook.Legal.LegalActionLookupId == undefined ? null : this.caseBook.Legal.LegalActionLookupId.toString()),
+            OutcomeLookupId: new FormControl(this.caseBook.Legal.OutcomeLookupId == undefined ? null : this.caseBook.Legal.OutcomeLookupId.toString()),
+            DocumentsLookupId: new FormControl(this.caseBook.Legal.DocumentsLookupId == undefined ? null : this.caseBook.Legal.DocumentsLookupId.toString())
+        });
+    }
+
+    public onUpdateLegal() {
+        console.log(this.caseBook);
+    }
+
+    /* End of - Legal Case */
+
 }

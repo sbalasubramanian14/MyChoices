@@ -29,5 +29,7 @@ namespace WhitePage.Entities.CaseManagement
 
         public List<vCaseFeedback> FeedBack { get; set; }
         public CaseFeedback SelectedFeedback { get; set; }
+
+        public CaseLegal Legal { get; set; }
     }
 }

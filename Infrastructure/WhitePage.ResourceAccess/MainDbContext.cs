@@ -54,5 +54,6 @@ namespace WhitePage.ResourceAccess
 
         public DbSet<vCaseFeedback> vFeedback { get; set; }
         public DbSet<CaseFeedback> Feedback { get; set; }
+        public DbSet<CaseLegal> Legal { get; set; }
     }
 }

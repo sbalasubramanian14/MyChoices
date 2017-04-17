@@ -398,5 +398,34 @@ namespace WhitePage.ResourceAccess
                 return result;
             }
         }
+
+        public static DataTable Legal
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseLegalId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+
+                    .AddColumn("CaseNumber", DbColumnType.String)
+                    .AddColumn("Court", DbColumnType.String)
+
+                    .AddColumn("Prayer", DbColumnType.String)
+                    .AddColumn("LegalRepresentative", DbColumnType.String)
+
+                    .AddColumn("LegalConsentFormLookupId", DbColumnType.Int)
+                    .AddColumn("LegalActionLookupId", DbColumnType.Int)
+
+                    .AddColumn("OutcomeLookupId", DbColumnType.Int)
+                    .AddColumn("DocumentsLookupId", DbColumnType.Int);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
     }
 }

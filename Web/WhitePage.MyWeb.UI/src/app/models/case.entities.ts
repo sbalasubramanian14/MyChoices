@@ -421,6 +421,25 @@ export class vCaseFeedback {
     OPMTeamToFollowup?: string;
 }
 
+export class CaseLegal {
+    constructor() { }
+
+    CaseLegalId?: number;
+    CaseId?: number;
+
+    CaseNumber?: string;
+    Court?: string;
+
+    Prayer?: string;
+    LegalRepresentative?: string;
+
+    LegalConsentFormLookupId?: number;
+    LegalActionLookupId?: number;
+
+    OutcomeLookupId?: number;
+    DocumentsLookupId?: number;    
+}
+
 export class CaseBook {
     constructor() { }
 
@@ -446,4 +465,5 @@ export class CaseBook {
     PhysicalHealth: CasePhysicalHealth;
     Abuse: CaseAbuse;
     Manage: CaseManage;
+    Legal: CaseLegal;
 }

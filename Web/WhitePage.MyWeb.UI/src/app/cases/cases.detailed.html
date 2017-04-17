@@ -1119,15 +1119,76 @@
             </div>
         </tab>
 
-        <tab title="Legal" style="width:100%" *ngIf="caseLegaForm">
-            <form [formGroup]="caseLegaForm" *ngIf="isLegalDataLoaded">
+        <tab title="Legal" style="width:100%" *ngIf="caseLegalForm">
+            <form [formGroup]="caseLegalForm" *ngIf="isLegalDataLoaded">
                 <div class="row">
                     <div class="col-md-4 d-flex flex-column">
+
                         <div class="form-group">
                             <label for="PeaceMakerId">Case Number as per court</label>
-                            <input mdInput class="form-control" /><input [formControl]="caseLegaForm.controls['SourceOfCaseDesc']" class="form-control" />
+                            <input [formControl]="caseLegalForm.controls['CaseNumber']" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PeaceMakerId">Court</label>
+                            <input [formControl]="caseLegalForm.controls['Court']" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PeaceMakerId">Prayer</label>
+                            <input [formControl]="caseLegalForm.controls['Prayer']" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PeaceMakerId">Name of legal representative</label>
+                            <input [formControl]="caseLegalForm.controls['LegalRepresentative']" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CenterId">Has the legal consent form been signed and submitted?</label>
+                            <ng-select [options]="yesNoOptionsList"
+                                       placeholder="Select"
+                                       formControlName="LegalConsentFormLookupId"
+                                       [allowClear]="true">
+                            </ng-select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CenterId">Has any legal action been taken by the client in this regard prior to approaching OPM for help?</label>
+                            <ng-select [options]="yesNoOptionsList"
+                                       placeholder="Select"
+                                       formControlName="LegalActionLookupId"
+                                       [allowClear]="true">
+                            </ng-select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="form-group">
+                            <label for="CenterId">Outcome</label>
+                            <ng-select [options]="outcomeLookupOptionList"
+                                       placeholder="Select"
+                                       formControlName="OutcomeLookupId"
+                                       [allowClear]="true">
+                            </ng-select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CenterId">List all documents that the client has submitted</label>
+                            <ng-select [options]="documentsLookupOptionList"
+                                       placeholder="Select"
+                                       formControlName="DocumentsLookupId"
+                                       [allowClear]="true">
+                            </ng-select>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" (click)="onUpdateLegal()">Update</button>
                         </div>
                     </div>
+
+                   
                 </div>
             </form>
         </tab>

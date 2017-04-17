@@ -85,19 +85,21 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
             result.vMental = this.unitOfWork.DbContext.vMental.Where(c => c.CaseId == caseId).ToList();
             result.SessionLog = this.unitOfWork.DbContext.SessionLogs.Where(c => c.CaseId == caseId).ToList();
-            result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();
+            result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();            
 
             result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.PhysicalHealth = this.unitOfWork.DbContext.PhysicalHealth.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Abuse = this.unitOfWork.DbContext.Abuse.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Manage = this.unitOfWork.DbContext.Manage.Where(c => c.CaseId == caseId).FirstOrDefault();
+            result.Legal = this.unitOfWork.DbContext.Legal.Where(c => c.CaseId == caseId).FirstOrDefault();
 
             if (result.FamilyHouseHold == null) result.FamilyHouseHold = new CaseFamilyHouseHold();
             if (result.Spouse == null) result.Spouse = new CaseSpouse();
             if (result.PhysicalHealth == null) result.PhysicalHealth = new CasePhysicalHealth();
             if (result.Abuse == null) result.Abuse = new CaseAbuse();
             if (result.Manage == null) result.Manage = new CaseManage() { CaseStatusId = result.Case.CaseStausId };
+            if (result.Legal == null) result.Legal = new CaseLegal();
 
             return result;
         }
@@ -187,7 +189,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveChildren]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveChildren]",
                 parmsCollection
                     .AddParm("@caseChildrenType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseChildrenType]")
                 ).First();
@@ -225,7 +227,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveHouseHold]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveHouseHold]",
                 parmsCollection
                     .AddParm("@caseHouseHoldType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseHouseHoldType]")
                 ).First();
@@ -264,7 +266,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveSpouse]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveSpouse]",
                 parmsCollection
                     .AddParm("@caseSpouseType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSpouseType]")
                 ).First();
@@ -306,7 +308,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[savePhysicalHealth]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[savePhysicalHealth]",
                 parmsCollection
                     .AddParm("@casePhysicalHealthType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CasePhysicalHealthType]")
                 ).First();
@@ -331,7 +333,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveOffender]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveOffender]",
                 parmsCollection
                     .AddParm("@caseOffenderType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseOffenderType]")
                 ).First();
@@ -381,7 +383,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveAbuse]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveAbuse]",
                 parmsCollection
                     .AddParm("@caseAbuseType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseAbuseType]")
                 ).First();
@@ -415,7 +417,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveManage]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveManage]",
                 parmsCollection
                     .AddParm("@caseManageType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseManageType]")
                 ).First();
@@ -454,7 +456,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveMental]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveMental]",
                 parmsCollection
                     .AddParm("@caseMentalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseMentalType]")
                 ).First();
@@ -482,7 +484,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveSessionLog]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveSessionLog]",
                 parmsCollection
                     .AddParm("@caseSessionLogType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSessionLogType]")
                 ).First();
@@ -513,9 +515,40 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveFeedback]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveFeedback]",
                 parmsCollection
                     .AddParm("@caseFeedbackType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseFeedbackType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateLegal(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Legal;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.Legal.CaseLegalId,
+                caseBook.Legal.CaseId,
+                         
+                caseBook.Legal.CaseNumber,
+                caseBook.Legal.Court,
+                         
+                caseBook.Legal.Prayer,
+                caseBook.Legal.LegalRepresentative,
+                         
+                caseBook.Legal.LegalConsentFormLookupId,
+                caseBook.Legal.LegalActionLookupId,
+                         
+                caseBook.Legal.OutcomeLookupId,
+                caseBook.Legal.DocumentsLookupId
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveLegal]",
+                parmsCollection
+                    .AddParm("@caseLegalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseLegalType]")
                 ).First();
 
             return updatedCase;

@@ -50,6 +50,7 @@
     <Compile Include="CaseManagement\CaseChildren.cs" />
     <Compile Include="CaseManagement\CaseFeedback.cs" />
     <Compile Include="CaseManagement\CaseHeader.cs" />
+    <Compile Include="CaseManagement\CaseLegal.cs" />
     <Compile Include="CaseManagement\CaseManage.cs" />
     <Compile Include="CaseManagement\CaseMental.cs" />
     <Compile Include="CaseManagement\CaseOffender.cs" />
