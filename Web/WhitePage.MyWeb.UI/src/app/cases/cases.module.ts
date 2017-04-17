@@ -10,6 +10,7 @@ import { CasesListComponent } from './cases.list';
 import { CasesRoutingModule } from './cases-routing.module';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -28,7 +29,8 @@ import { Ng2TableModule } from '../directives/customTable/ng-table-module';
         ModalModule.forRoot(),
         PaginationModule.forRoot(),
         TooltipModule.forRoot(),
-        Ng2TableModule
+        Ng2TableModule,
+        ToastModule.forRoot()
     ],
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,

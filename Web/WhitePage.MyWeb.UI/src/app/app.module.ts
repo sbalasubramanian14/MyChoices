@@ -11,7 +11,7 @@ import { TooltipModule } from 'ng2-bootstrap/tooltip';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 
-import { ToastModule } from 'ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
