@@ -137,6 +137,17 @@
     <Build Include="Ops\Views\vCaseFeedback.sql" />
     <Build Include="Ops\Tables\trCaseLegal.sql" />
     <Build Include="Ops\User Defined Types\CaseLegalType.sql" />
+    <Build Include="Ops\Stored Procedures\saveHouseHold.sql" />
+    <Build Include="Ops\User Defined Types\CaseHouseHoldType.sql" />
+    <Build Include="Ops\Stored Procedures\saveSpouse.sql" />
+    <Build Include="Ops\Stored Procedures\saveOffender.sql" />
+    <Build Include="Ops\Stored Procedures\savePhysicalHealth.sql" />
+    <Build Include="Ops\Stored Procedures\saveAbuse.sql" />
+    <Build Include="Ops\Stored Procedures\saveManage.sql" />
+    <Build Include="Ops\Stored Procedures\saveMental.sql" />
+    <Build Include="Ops\Stored Procedures\saveSessionLog.sql" />
+    <Build Include="Ops\Stored Procedures\saveFeedback.sql" />
+    <Build Include="Ops\Stored Procedures\saveLegal.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
