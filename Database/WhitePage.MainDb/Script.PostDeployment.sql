@@ -620,6 +620,31 @@ INSERT INTO @lookupDetails VALUES(54, 'MentalInformation',		514, 'Very knowledge
 INSERT INTO @lookupDetails VALUES(55, 'MentalAbstraction',		515, 'Average'		,	1,1)
 INSERT INTO @lookupDetails VALUES(55, 'MentalAbstraction',		516, 'Poor'		,	2,1)
 
+INSERT INTO @lookupDetails VALUES(56, 'RespectedDuringYourVisit',		517, 'Yes, very respected'		,	1,1)
+INSERT INTO @lookupDetails VALUES(56, 'RespectedDuringYourVisit',		518, 'Somewhat respected'		,	2,1)
+INSERT INTO @lookupDetails VALUES(56, 'RespectedDuringYourVisit',		519, 'Not very respected'		,	3,1)
+INSERT INTO @lookupDetails VALUES(56, 'RespectedDuringYourVisit',		520, 'Not at all respected'		,	4,1)
+
+INSERT INTO @lookupDetails VALUES(57, 'FeelThatCounselling',		521, 'Helped a lot'		,	1,1)
+INSERT INTO @lookupDetails VALUES(57, 'FeelThatCounselling',		522, 'Helpful'		,	2,1)
+INSERT INTO @lookupDetails VALUES(57, 'FeelThatCounselling',		523, 'To some extent'		,	3,1)
+INSERT INTO @lookupDetails VALUES(57, 'FeelThatCounselling',		524, 'Not at all helpful'		,	4,1)
+
+INSERT INTO @lookupDetails VALUES(58, 'AssistanceOfPeacemaker',		525, 'Helped a lot'		,	1,1)
+INSERT INTO @lookupDetails VALUES(58, 'AssistanceOfPeacemaker',		526, 'Helpful'		,	2,1)
+INSERT INTO @lookupDetails VALUES(58, 'AssistanceOfPeacemaker',		527, 'To some extent'		,	3,1)
+INSERT INTO @lookupDetails VALUES(58, 'AssistanceOfPeacemaker',		528, 'Not at all helpful'		,	4,1)
+
+INSERT INTO @lookupDetails VALUES(59, 'RecommendFreeCounselling',		529, 'Yes definitely'		,	1,1)
+INSERT INTO @lookupDetails VALUES(59, 'RecommendFreeCounselling',		530, 'Yes, depending on the situation'		,	2,1)
+INSERT INTO @lookupDetails VALUES(59, 'RecommendFreeCounselling',		531, 'Maybe'		,	3,1)
+INSERT INTO @lookupDetails VALUES(59, 'RecommendFreeCounselling',		532, 'No'		,	4,1)
+
+INSERT INTO @lookupDetails VALUES(60, 'AbleToImprove',		533, 'Yes, able to improve it a lot'		,	1,1)
+INSERT INTO @lookupDetails VALUES(60, 'AbleToImprove',		534, 'Able to improve some aspects, not all'		,	2,1)
+INSERT INTO @lookupDetails VALUES(60, 'AbleToImprove',		535, 'Only able to improve a little'		,	3,1)
+INSERT INTO @lookupDetails VALUES(60, 'AbleToImprove',		536, 'Not able to improve at all'		,	4,1)
+
 INSERT INTO @lookupDetails VALUES(44, 'TypesOfCounselling',		329, 'Individual'		,	1,1)
 INSERT INTO @lookupDetails VALUES(44, 'TypesOfCounselling',		330, 'Family'		,	2,1)
 INSERT INTO @lookupDetails VALUES(44, 'TypesOfCounselling',		331, 'Couple (Husband-Wife)'	,	3,1)
