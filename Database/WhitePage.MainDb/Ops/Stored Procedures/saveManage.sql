@@ -26,7 +26,13 @@ BEGIN
 			,T.ResolutionLog = S.ResolutionLog ;
 
 	declare @CaseId INT;
-	select @CaseId = CaseId from @caseManageType;
+	declare @caseStatusId TINYINT;
+	select @CaseId = CaseId, @caseStatusId = CaseStatusId from @caseManageType;
+	IF (@caseStatusId IS NOT NULL)
+	BEGIN
+		UPDATE Ops.trCase SET CaseStausId = @caseStatusId WHERE CaseId = @CaseId;
+	END
+
 	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
 END
 	
