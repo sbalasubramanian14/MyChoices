@@ -368,5 +368,35 @@ namespace WhitePage.ResourceAccess
                 return result;
             }
         }
+
+        public static DataTable Feedback
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+
+                columnCollection
+                    .AddColumn("CaseFeedbackId", DbColumnType.Int)
+                    .AddColumn("CaseId", DbColumnType.Int)
+
+                    .AddColumn("RespectedDuringYourVisitLookupId", DbColumnType.Int)
+                    .AddColumn("FeelSafeAndSecureLookupId", DbColumnType.Int)
+
+                    .AddColumn("FeelThatCounsellingLookupId", DbColumnType.Int)
+                    .AddColumn("AssistanceOfPeacemakerLookupId", DbColumnType.Int)
+
+                    .AddColumn("RecommendFreeCounsellingLookupId", DbColumnType.Int)
+                    .AddColumn("AbleToImproveLookupId", DbColumnType.Int)
+
+                    .AddColumn("OPMTeamToFollowupLookupId", DbColumnType.Int)                    
+
+                    .AddColumn("AnySuggestions", DbColumnType.String);
+
+                foreach (var item in columnCollection) result.Columns.Add(item);
+
+                return result;
+            }
+        }
     }
 }

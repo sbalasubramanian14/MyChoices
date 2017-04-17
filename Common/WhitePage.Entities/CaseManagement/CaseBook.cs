@@ -26,5 +26,8 @@ namespace WhitePage.Entities.CaseManagement
 
         public List<CaseSessionLog> SessionLog { get; set; }
         public CaseSessionLog SelectedSessionLog { get; set; }
+
+        public List<vCaseFeedback> FeedBack { get; set; }
+        public CaseFeedback SelectedFeedback { get; set; }
     }
 }

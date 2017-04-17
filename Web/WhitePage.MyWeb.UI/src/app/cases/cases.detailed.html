@@ -1078,10 +1078,58 @@
             </div>
         </tab>
 
-        <tab title="Feedback" style="width:100%" *ngIf="spouseForm">
+        <tab title="Feedback" style="width:100%" *ngIf="isFeedbackDataLoaded">
+            <div class="row" *ngIf="caseBook">
+                <div class="col-md-8 d-flex flex-column">
+                    <button class="btn btn-primary" (click)="addNewFeedback()" style="width:200px; height:30px; ">Add New Feedback</button>
+
+                    <table class="table" style="color:whitesmoke">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Respect</th>
+                                <th>Fee Safe</th>
+                                <th>Counselling</th>
+                                <th>Assistance</th>
+                                <th>Recommend Fee</th>
+                                <th>Able To Improve</th>
+                                <th>OPM Team Followup</th>
+                                <th>Suggestions</th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let feedback of caseBook.Feedback; let i = index">
+                                <td>{{feedback.RespectedDuringYourVisit}}</td>
+                                <td>{{feedback.FeelSafeAndSecure}}</td>
+                                <td>{{feedback.FeelThatCounselling}}</td>
+                                <td>{{feedback.AssistanceOfPeacemaker}}</td>
+
+                                <td>{{feedback.RecommendFreeCounselling}}</td>
+                                <td>{{feedback.AbleToImprove}}</td>
+                                <td>{{feedback.OPMTeamToFollowup}}</td>
+                                <td>{{feedback.AnySuggestions}}</td>
+                                <td class="text-right">
+                                    <button class="btn btn-link" (click)="editFeedback(sessionLog)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </tab>
 
-        <tab title="Legal" style="width:100%" *ngIf="spouseForm">
+        <tab title="Legal" style="width:100%" *ngIf="caseLegaForm">
+            <form [formGroup]="caseLegaForm" *ngIf="isLegalDataLoaded">
+                <div class="row">
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="form-group">
+                            <label for="PeaceMakerId">Case Number as per court</label>
+                            <input mdInput class="form-control" /><input [formControl]="caseLegaForm.controls['SourceOfCaseDesc']" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </tab>
 
         <tab title="Case Management" style="width:100%" *ngIf="caseManageForm">
@@ -1717,6 +1765,128 @@
 
                                     <div class="form-group">
                                         <button class="btn btn-primary" [disabled]="!caseSessionForm.valid" (click)="saveSession()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #feedbackModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Client Feedback</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideFeedbackModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="caseFeedbackForm" *ngIf="caseFeedbackForm">
+                    <div class="row">
+                        <div class="col-md-12 d-flex flex-column">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Client Feedback
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Did you feel respected during your visit to the center? *</label>
+                                        <ng-select [options]="RespectedDuringYourVisitLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="RespectedDuringYourVisitLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['RespectedDuringYourVisitLookupId'].hasError('required') && caseFeedbackForm.controls['RespectedDuringYourVisitLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Did you feel safe and secure to discuss your situation with the counselor? *</label>
+                                        <ng-select [options]="FeelSafeAndSecureLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="FeelSafeAndSecureLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['FeelSafeAndSecureLookupId'].hasError('required') && caseFeedbackForm.controls['FeelSafeAndSecureLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Did you feel that the counselling helped you in dealing with your situation? *</label>
+                                        <ng-select [options]="FeelThatCounsellingLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="FeelThatCounsellingLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['FeelThatCounsellingLookupId'].hasError('required') && caseFeedbackForm.controls['FeelThatCounsellingLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Did you find the assistance of the Peacemaker to be helpful? *</label>
+                                        <ng-select [options]="AssistanceOfPeacemakerLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="AssistanceOfPeacemakerLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId'].hasError('required') && caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Would you recommend the free counselling services to a friend or relative? *</label>
+                                        <ng-select [options]="RecommendFreeCounsellingLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="RecommendFreeCounsellingLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['RecommendFreeCounsellingLookupId'].hasError('required') && caseFeedbackForm.controls['RecommendFreeCounsellingLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Are you now able to improve your situation at home and with your family? *</label>
+                                        <ng-select [options]="AbleToImproveLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="AbleToImproveLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['AbleToImproveLookupId'].hasError('required') && caseFeedbackForm.controls['AbleToImproveLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Would you like the OPM team to follow-up with you after your case is closed? *</label>
+                                        <ng-select [options]="OPMTeamToFollowupLookupOptionList"
+                                                   placeholder="Select"
+                                                   formControlName="OPMTeamToFollowupLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseFeedbackForm.controls['OPMTeamToFollowupLookupId'].hasError('required') && caseFeedbackForm.controls['OPMTeamToFollowupLookupId'].touched" class="mat-text-warn">Required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Do you have any suggestions that could improve the client experience with Operation Peacemaker?</label>
+                                        <input placeholder="Any Suggestions" [formControl]="caseFeedbackForm.controls['AnySuggestions']" class="form-control" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" [disabled]="!caseFeedbackForm.valid" (click)="saveFeedback()">Save</button>
                                     </div>
                                 </div>
                             </div>

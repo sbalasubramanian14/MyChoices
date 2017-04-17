@@ -1,4 +1,4 @@
-﻿CREATE VIEW [dbo].[vCaseFeedback]
+﻿CREATE VIEW [Ops].[vCaseFeedback]
 AS
 SELECT 
 A.CaseFeedbackId,

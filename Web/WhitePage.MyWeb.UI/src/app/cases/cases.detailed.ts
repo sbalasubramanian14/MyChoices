@@ -9,7 +9,9 @@ import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
-import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog } from '../models/case.entities';
+import {
+    CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog, vCaseFeedback, CaseFeedback
+} from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
@@ -32,6 +34,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public caseManageForm: FormGroup;
     public caseMentalForm: FormGroup;
     public caseSessionForm: FormGroup;
+    public caseFeedbackForm: FormGroup;
 
     public router: Router;
     public isPrimaryDataLoaded: boolean = false;
@@ -41,6 +44,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public isAbuseDataLoaded: boolean = false;
     public isManageDataLoaded: boolean = false;
     public isMentalDataLoaded: boolean = false;
+    public isFeedbackDataLoaded: boolean = false;
 
     public childrenDeceasedLookupOptionsList: Array<IOption> = [];
     public incomeLookupOptionsList: Array<IOption> = [];
@@ -88,7 +92,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                             label: this.caseStatusesList[i].Title
                         });
                     }
-                    this.caseStatusOptionList = localStatusesOptionList;                    
+                    this.caseStatusOptionList = localStatusesOptionList;
                     break;
                 case "Centers":
                     var localCenterOptionList = new Array<IOption>();
@@ -169,7 +173,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.isAbuseDataLoaded = true;
 
                     this.sourceOfCaseLookupOptionList = this.ParseLookups("SourceOfCase");
-                    this.typesOfCounselingLookupOptionList = this.ParseLookups("TypesOfCounselling");                    
+                    this.typesOfCounselingLookupOptionList = this.ParseLookups("TypesOfCounselling");
                     this.relationshipWithPMLookupOptionList = this.ParseLookups("RelationshipWithPM");
                     this.isManageDataLoaded = true;
 
@@ -193,6 +197,16 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.MentalInformationLookupOptionList = this.ParseLookups("MentalInformation");
                     this.MentalAbstractionLookupOptionList = this.ParseLookups("MentalAbstraction");
                     this.isMentalDataLoaded = true;
+
+                    this.RespectedDuringYourVisitLookupOptionList = this.ParseLookups("RespectedDuringYourVisit");
+                    this.FeelSafeAndSecureLookupOptionList = this.ParseLookups("YesNo");
+                    this.FeelThatCounsellingLookupOptionList = this.ParseLookups("FeelThatCounselling");
+                    this.AssistanceOfPeacemakerLookupOptionList = this.ParseLookups("AssistanceOfPeacemaker");
+                    this.RecommendFreeCounsellingLookupOptionList = this.ParseLookups("RecommendFreeCounselling");
+                    this.AbleToImproveLookupOptionList = this.ParseLookups("AbleToImprove");
+                    this.OPMTeamToFollowupLookupOptionList = this.ParseLookups("YesNo");
+                    this.isFeedbackDataLoaded = true;
+
                     break;
                 default:
                     break;
@@ -257,7 +271,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                 this.loadSpouseFormGroup();
                 this.loadPhysicalHealthFromGroup();
                 this.loadAbuseFromGroup();
-                this.loadManageFromGroup();                
+                this.loadManageFromGroup();
             });
     }
 
@@ -850,6 +864,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     @ViewChild('sessionsModal') public sessionsModal: ModalDirective;
 
+    public RespectedDuringYourVisitLookupOptionList: Array<IOption> = [];
+    public FeelSafeAndSecureLookupOptionList: Array<IOption> = [];
+    public FeelThatCounsellingLookupOptionList: Array<IOption> = [];
+    public AssistanceOfPeacemakerLookupOptionList: Array<IOption> = [];
+    public RecommendFreeCounsellingLookupOptionList: Array<IOption> = [];
+    public AbleToImproveLookupOptionList: Array<IOption> = [];
+    public OPMTeamToFollowupLookupOptionList: Array<IOption> = [];
+
     public addNewSession() {
         this.caseBook.SelectedSessionLog = new CaseSessionLog();
         this.caseBook.SelectedSessionLog.CaseId = this.caseBook.Case.CaseId;
@@ -867,7 +889,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public editSession(offender: CaseSessionLog) {
         this.caseBook.SelectedSessionLog = new CaseOffender();
         this.caseBook.SelectedSessionLog.CaseSessionLogId = offender.CaseSessionLogId;
-        this.caseBook.SelectedOffender.CaseId = offender.CaseId;        
+        this.caseBook.SelectedOffender.CaseId = offender.CaseId;
 
         this.caseSessionForm = this.fb.group({
             CounselingDate: new FormControl(this.caseBook.SelectedSessionLog.CounselingDate, Validators.required),
@@ -901,4 +923,67 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
     /* End of - Sessions */
 
+    /* Start - Feedback */
+
+    @ViewChild('feedbackModal') public feedbackModal: ModalDirective;
+
+    public addNewFeedback() {
+        this.caseBook.SelectedFeedback = new CaseFeedback();
+        this.caseBook.SelectedFeedback.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseFeedbackForm = this.fb.group({
+            RespectedDuringYourVisitLookupId: new FormControl(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId == undefined ? null : this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId.toString(), Validators.required),
+            FeelSafeAndSecureLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId.toString(), Validators.required),
+            FeelThatCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId.toString(), Validators.required),
+            AssistanceOfPeacemakerLookupId: new FormControl(this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId == undefined ? null : this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId.toString(), Validators.required),
+
+            RecommendFreeCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId.toString(), Validators.required),
+            AbleToImproveLookupId: new FormControl(this.caseBook.SelectedFeedback.AbleToImproveLookupId == undefined ? null : this.caseBook.SelectedFeedback.AbleToImproveLookupId.toString(), Validators.required),
+            OPMTeamToFollowupLookupId: new FormControl(this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId == undefined ? null : this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId.toString(), Validators.required),
+
+            AnySuggestions: new FormControl(this.caseBook.SelectedFeedback.AnySuggestions)
+        });
+        this.feedbackModal.show();
+    }
+
+    public editFeedback(offender: CaseFeedback) {
+        this.caseBook.SelectedFeedback = new CaseFeedback();
+        this.caseBook.SelectedFeedback.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseFeedbackForm = this.fb.group({
+            RespectedDuringYourVisitLookupId: new FormControl(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId == undefined ? null : this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId.toString(), Validators.required),
+            FeelSafeAndSecureLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId.toString(), Validators.required),
+            FeelThatCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId.toString(), Validators.required),
+            AssistanceOfPeacemakerLookupId: new FormControl(this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId == undefined ? null : this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId.toString(), Validators.required),
+
+            RecommendFreeCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId.toString(), Validators.required),
+            AbleToImproveLookupId: new FormControl(this.caseBook.SelectedFeedback.AbleToImproveLookupId == undefined ? null : this.caseBook.SelectedFeedback.AbleToImproveLookupId.toString(), Validators.required),
+            OPMTeamToFollowupLookupId: new FormControl(this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId == undefined ? null : this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId.toString(), Validators.required),
+
+            AnySuggestions: new FormControl(this.caseBook.SelectedFeedback.AnySuggestions)
+        });
+        this.feedbackModal.show();
+    }
+
+    public hideFeedbackModal(): void {
+        this.feedbackModal.hide();
+    }
+
+    public saveFeedback(offender: vCaseFeedback) {
+        this.caseBook.SelectedOffender.Name = this.caseOffenderForm.controls['Name'].value;
+        this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
+        this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
+        this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+
+        this.casesService
+            .updateOffender(this.caseBook).subscribe(data => {
+                this.offenderModal.hide();
+                this.getCaseById();
+                this.toastr.success('Session updated successfully');
+
+            }, (error: any) => {
+                this.toastr.error("Error while updating case, " + error);
+            });
+    }
+    /* End of - Feedback */
 }

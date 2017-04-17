@@ -48,6 +48,7 @@
     <Compile Include="CaseManagement\CaseAddress.cs" />
     <Compile Include="CaseManagement\CaseBook.cs" />
     <Compile Include="CaseManagement\CaseChildren.cs" />
+    <Compile Include="CaseManagement\CaseFeedback.cs" />
     <Compile Include="CaseManagement\CaseHeader.cs" />
     <Compile Include="CaseManagement\CaseManage.cs" />
     <Compile Include="CaseManagement\CaseMental.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="CaseManagement\State.cs" />
     <Compile Include="CaseManagement\vCaseAddress.cs" />
     <Compile Include="CaseManagement\vCaseChildren.cs" />
+    <Compile Include="CaseManagement\vCaseFeedback.cs" />
     <Compile Include="CaseManagement\vCaseMental.cs" />
     <Compile Include="CaseManagement\vCaseOffender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -85,6 +85,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.vChildren = this.unitOfWork.DbContext.vChildren.Where(c => c.CaseId == caseId).ToList();
             result.vMental = this.unitOfWork.DbContext.vMental.Where(c => c.CaseId == caseId).ToList();
             result.SessionLog = this.unitOfWork.DbContext.SessionLogs.Where(c => c.CaseId == caseId).ToList();
+            result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();
 
             result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
@@ -484,6 +485,37 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveSessionLog]",
                 parmsCollection
                     .AddParm("@caseSessionLogType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSessionLogType]")
+                ).First();
+
+            return updatedCase;
+        }
+
+        public CaseHeader UpdateFeedback(CaseBook caseBook)
+        {
+            var parmsCollection = new ParmsCollection();
+
+            var caseChildrenTable = UserDefinedTableTypes.Feedback;
+            caseChildrenTable.Rows.Add(new object[]{
+                caseBook.SelectedFeedback.CaseFeedbackId,
+                caseBook.SelectedFeedback.CaseId,
+
+                caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId,
+                caseBook.SelectedFeedback.FeelSafeAndSecureLookupId,
+
+                caseBook.SelectedFeedback.FeelThatCounsellingLookupId,
+                caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId,
+
+                caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId,
+                caseBook.SelectedFeedback.AbleToImproveLookupId,
+
+                caseBook.SelectedFeedback.OPMTeamToFollowupLookupId,
+                caseBook.SelectedFeedback.AnySuggestions
+                });
+            caseChildrenTable.AcceptChanges();
+
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[dbo].[saveFeedback]",
+                parmsCollection
+                    .AddParm("@caseFeedbackType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseFeedbackType]")
                 ).First();
 
             return updatedCase;

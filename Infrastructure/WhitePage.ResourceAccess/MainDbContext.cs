@@ -51,5 +51,8 @@ namespace WhitePage.ResourceAccess
         public DbSet<vCaseMental> vMental { get; set; }
 
         public DbSet<CaseSessionLog> SessionLogs { get; set; }
+
+        public DbSet<vCaseFeedback> vFeedback { get; set; }
+        public DbSet<CaseFeedback> Feedback { get; set; }
     }
 }

@@ -372,6 +372,55 @@ export class CaseSessionLog {
     SessionNotes?: string;    
 }
 
+export class CaseFeedback {
+    constructor() { }
+
+    CaseFeedbackId?: number;
+    CaseId?: number;
+
+    RespectedDuringYourVisitLookupId?: number;
+    FeelSafeAndSecureLookupId?: number;
+
+    FeelThatCounsellingLookupId?: number;
+    AssistanceOfPeacemakerLookupId?: number;
+
+    RecommendFreeCounsellingLookupId?: number;
+    AbleToImproveLookupId?: number;
+
+    OPMTeamToFollowupLookupId?: number;
+    AnySuggestions?: string;
+}
+
+export class vCaseFeedback {
+    constructor() { }
+
+    CaseFeedbackId?: number;
+    CaseId?: number;
+
+    RespectedDuringYourVisitLookupId?: number;
+    FeelSafeAndSecureLookupId?: number;
+
+    FeelThatCounsellingLookupId?: number;
+    AssistanceOfPeacemakerLookupId?: number;
+
+    RecommendFreeCounsellingLookupId?: number;
+    AbleToImproveLookupId?: number;
+
+    OPMTeamToFollowupLookupId?: number;
+    AnySuggestions?: string;
+
+    RespectedDuringYourVisit?: string;
+    FeelSafeAndSecure?: string;
+
+    FeelThatCounselling?: string;
+    AssistanceOfPeacemaker?: string;
+
+    RecommendFreeCounselling?: string;
+    AbleToImprove?: string;
+
+    OPMTeamToFollowup?: string;
+}
+
 export class CaseBook {
     constructor() { }
 
@@ -383,12 +432,14 @@ export class CaseBook {
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;
     SessionLog: Array<CaseSessionLog>;
+    Feedback: Array<vCaseFeedback>;
 
     SelectedAddress: CaseAddress;
     SelectedChildren: CaseChildren;
     SelectedOffender: CaseOffender;
     SelectedMental: CaseMental;
     SelectedSessionLog: CaseSessionLog;
+    SelectedFeedback: CaseFeedback;
 
     FamilyHouseHold: CaseFamilyHouseHold;
     Spouse: CaseSpouse;

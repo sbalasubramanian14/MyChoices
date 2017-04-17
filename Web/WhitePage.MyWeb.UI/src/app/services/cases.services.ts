@@ -70,4 +70,8 @@ export class CasesService extends BaseService {
     public updateSessionLog = (caseBook: CaseBook): Observable<CaseBook> => {
         return this.authHttp.post('/api/cases/UpdateSessionLog', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
     }
+
+    public updateFeedback = (caseBook: CaseBook): Observable<CaseBook> => {
+        return this.authHttp.post('/api/cases/UpdateFeedback', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    }
 }
