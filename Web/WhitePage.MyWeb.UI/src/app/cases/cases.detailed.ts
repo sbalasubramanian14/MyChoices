@@ -399,7 +399,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.onStateSelected({ value: address.StateId });
 
-        debugger;
         console.log({ value: address.StateId });
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
@@ -866,7 +865,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public relationshipWithPMLookupOptionList: Array<IOption> = [];
 
     private loadManageFromGroup() {
-        debugger;
         this.caseManageForm = this.fb.group({
 
             CaseStatusId: new FormControl(this.caseBook.Manage.CaseStatusId == undefined ? null : this.caseBook.Manage.CaseStatusId.toString()),
@@ -887,7 +885,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public onUpdateManage() {
-        debugger;
         this.caseBook.Manage.CaseId = this.caseBook.Case.CaseId;
         this.caseBook.Manage.CaseStatusId = this.caseManageForm.controls['CaseStatusId'].value;
         this.caseBook.Manage.SourceOfCaseLookupId = this.caseManageForm.controls['SourceOfCaseLookupId'].value;
