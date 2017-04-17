@@ -4,7 +4,7 @@
     }
 </style>
 
-<table class="table" *ngIf="caseBook" style="padding:-30px">
+<table class="table table-responsive" *ngIf="caseBook">
     <thead>
         <tr style="background-color:rgba(10, 10, 10, 0.84); color:whitesmoke">
             <th>Case Number</th>
@@ -23,7 +23,7 @@
     </tr>
 </table>
 
-<div class="container case-detail-container" style="width:100%" *ngIf="casePrimaryForm">
+<div class="container-fluid case-detail-container" style="width:100%" *ngIf="casePrimaryForm">
     <!-- regular tabs -->
     <tabset>
 
@@ -178,7 +178,7 @@
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewAddress()" style="width:200px; height:30px; ">Add New Address</button>
 
-                    <table class="table" style="color:whitesmoke">
+                    <table class="table table-responsive" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Address</th>
@@ -212,7 +212,7 @@
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewChild()" style="width:200px; height:30px; ">Add New Children</button>
 
-                    <table class="table" style="color:whitesmoke">
+                    <table class="table table-responsive" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Name</th>
@@ -739,7 +739,7 @@
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewOffender()" style="width:200px; height:30px; ">Add New Offender</button>
 
-                    <table class="table" style="color:whitesmoke">
+                    <table class="table table-responsive" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Name</th>
@@ -987,7 +987,7 @@
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewSession()" style="width:200px; height:30px; ">Add New Session</button>
 
-                    <table class="table" style="color:whitesmoke">
+                    <table class="table table-responsive" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Date</th>
@@ -1020,7 +1020,7 @@
             <div class="row" *ngIf="caseBook">
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewMental()" style="width:200px; height:30px; ">Add New Mental Status</button>
-                    <table class="table" style="color:whitesmoke">
+                    <table class="table table-responsive" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Dress</th>
@@ -1082,7 +1082,7 @@
                 <div class="col-md-8 d-flex flex-column">
                     <button class="btn btn-primary" (click)="addNewFeedback()" style="width:200px; height:30px; ">Add New Feedback</button>
 
-                    <table class="table" style="color:whitesmoke">
+                    <table class="table table-responsive" style="color:whitesmoke">
                         <thead class="thead-inverse">
                             <tr>
                                 <th>Respect</th>
@@ -1552,8 +1552,8 @@
 </div>
 
 <div class="modal fade" bsModal #mentalModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="width:500px">
-    <div class="modal-dialog modal-lg" style="width:500px">
+     tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Mental Status</h4>
@@ -1564,7 +1564,7 @@
             <div class="modal-body">
                 <form [formGroup]="caseMentalForm" *ngIf="caseMentalForm">
                     <div class="d-flex flex-column">
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column" style="margin-bottom: 10px;">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status
@@ -1635,7 +1635,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column"  style="margin-bottom: 10px;">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status
@@ -1708,7 +1708,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column" style="margin-bottom: 10px;">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status
