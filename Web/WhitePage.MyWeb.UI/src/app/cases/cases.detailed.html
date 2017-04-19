@@ -3,27 +3,28 @@
         background-color: whitesmoke;
     }
 </style>
-
-<table class="table table-responsive" *ngIf="caseBook">
-    <thead>
-        <tr style="background-color:rgba(10, 10, 10, 0.84); color:whitesmoke">
-            <th>Case Number</th>
-            <th>Client Name</th>
-            <th>Status</th>
-            <th>Center</th>
-            <th>Register Date</th>
+<div class="table-responsive">
+    <table class="table" *ngIf="caseBook">
+        <thead>
+            <tr style="background-color:rgba(10, 10, 10, 0.84); color:whitesmoke">
+                <th>Case Number</th>
+                <th>Client Name</th>
+                <th>Status</th>
+                <th>Center</th>
+                <th>Register Date</th>
+            </tr>
+        </thead>
+        <tr style="color:white">
+            <td>{{caseBook.CaseHeader.CaseNumber}}</td>
+            <td>{{caseBook.CaseHeader.ClientName}}</td>
+            <td>{{caseBook.CaseHeader.CaseStatus}}</td>
+            <td>{{caseBook.CaseHeader.CenterTitle}}</td>
+            <td>{{caseBook.CaseHeader.RegisterDateString}}</td>
         </tr>
-    </thead>
-    <tr style="color:white">
-        <td>{{caseBook.CaseHeader.CaseNumber}}</td>
-        <td>{{caseBook.CaseHeader.ClientName}}</td>
-        <td>{{caseBook.CaseHeader.CaseStatus}}</td>
-        <td>{{caseBook.CaseHeader.CenterTitle}}</td>
-        <td>{{caseBook.CaseHeader.RegisterDateString}}</td>
-    </tr>
-</table>
+    </table>
+</div>
 
-<div class="container-fluid case-detail-container" style="width:100%" *ngIf="casePrimaryForm">
+<div class="container-fluid case-detail-container" *ngIf="casePrimaryForm">
     <!-- regular tabs -->
     <tabset>
 
@@ -31,7 +32,7 @@
             <form [formGroup]="casePrimaryForm" *ngIf="isPrimaryDataLoaded">
                 <div class="row">
 
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card flex-fill">
                             <div class="card-header">
                                 Primary Info
@@ -107,7 +108,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card flex-fill">
                             <div class="card-header">
                                 Client Details
@@ -175,67 +176,71 @@
             </form>
             <hr />
             <div class="row" *ngIf="caseBook">
-                <div class="col-md-8 d-flex flex-column">
-                    <button class="btn btn-primary" (click)="addNewAddress()" style="width:200px; height:30px; ">Add New Address</button>
-
-                    <table class="table table-responsive" style="color:whitesmoke">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Address</th>
-                                <th>Area</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>PIN</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let address of caseBook.vAddresses; let i = index">
-                                <td>{{address.Address}}</td>
-                                <td>{{address.Area}}</td>
-                                <td>{{address.City}}</td>
-                                <td>{{address.State}}</td>
-                                <td>{{address.PIN}}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-link" (click)="editAddress(address)">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                <div class="d-flex flex-column fill-width">
+                    <div class="add-new-button-container">
+                        <button class="btn btn-primary" (click)="addNewAddress()">Add New Address &nbsp;<i class="fa fa-plus"></i></button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Address</th>
+                                    <th>Area</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>PIN</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let address of caseBook.vAddresses; let i = index">
+                                    <td>{{address.Address}}</td>
+                                    <td>{{address.Area}}</td>
+                                    <td>{{address.City}}</td>
+                                    <td>{{address.State}}</td>
+                                    <td>{{address.PIN}}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-link" (click)="editAddress(address)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </tab>
 
         <tab heading="Children" style="width:100%">
             <div class="row" *ngIf="caseBook">
-                <div class="col-md-8 d-flex flex-column">
-                    <button class="btn btn-primary" (click)="addNewChild()" style="width:200px; height:30px; ">Add New Children</button>
-
-                    <table class="table table-responsive" style="color:whitesmoke">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Relationship With Abuser</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let children of caseBook.vChildren; let i = index">
-                                <td>{{children.Name}}</td>
-                                <td>{{children.Age}}</td>
-                                <td>{{children.Gender}}</td>
-                                <td>{{children.Relation}}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-link" (click)="editChild(children)">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                <div class="d-flex flex-column fill-width">
+                    <div class="add-new-button-container">
+                        <button class="btn btn-primary" (click)="addNewChild()">Add New Children &nbsp;<i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" style="color:whitesmoke">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Relationship With Abuser</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let children of caseBook.vChildren; let i = index">
+                                        <td>{{children.Name}}</td>
+                                        <td>{{children.Age}}</td>
+                                        <td>{{children.Gender}}</td>
+                                        <td>{{children.Relation}}</td>
+                                        <td class="text-right">
+                                            <button class="btn btn-link" (click)="editChild(children)">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
         </tab>
 
@@ -585,7 +590,7 @@
 
             <form [formGroup]="physicalHealthForm" *ngIf="isPhysicalHealthDataLoaded">
                 <div class="row">
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card">
                             <div class="card-header">
                                 Health
@@ -665,7 +670,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card">
                             <div class="card-header">
                                 Health (1)
@@ -736,33 +741,35 @@
 
         <tab heading="Offender" style="width:100%" *ngIf="spouseForm">
             <div class="row" *ngIf="caseBook">
-                <div class="col-md-8 d-flex flex-column">
-                    <button class="btn btn-primary" (click)="addNewOffender()" style="width:200px; height:30px; ">Add New Offender</button>
-
-                    <table class="table table-responsive" style="color:whitesmoke">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Relationship With Abuser</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let offender of caseBook.vOffender; let i = index">
-                                <td>{{offender.Name}}</td>
-                                <td>{{offender.Age}}</td>
-                                <td>{{offender.Gender}}</td>
-                                <td>{{offender.RelationshipWithVictim}}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                <div class="d-flex flex-column fill-width">
+                    <div class="add-new-button-container">
+                        <button class="btn btn-primary" (click)="addNewOffender()">Add New Offender &nbsp;<i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" style="color:whitesmoke">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Relationship With Abuser</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let offender of caseBook.vOffender; let i = index">
+                                        <td>{{offender.Name}}</td>
+                                        <td>{{offender.Age}}</td>
+                                        <td>{{offender.Gender}}</td>
+                                        <td>{{offender.RelationshipWithVictim}}</td>
+                                        <td class="text-right">
+                                            <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
         </tab>
 
@@ -984,137 +991,144 @@
 
         <tab heading="Sessions" style="width:100%" *ngIf="isMentalDataLoaded">
             <div class="row" *ngIf="caseBook">
-                <div class="col-md-8 d-flex flex-column">
-                    <button class="btn btn-primary" (click)="addNewSession()" style="width:200px; height:30px; ">Add New Session</button>
-
-                    <table class="table table-responsive" style="color:whitesmoke">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Date</th>
-                                <th>Type</th>
-                                <th>Duration (Min)</th>
-                                <th>Next Session</th>
-                                <th>Notes</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let sessionLog of caseBook.SessionLog; let i = index">
-                                <td>{{sessionLog.CounselingDate}}</td>
-                                <td>{{sessionLog.TypeOfCounselingDesc}}</td>
-                                <td>{{sessionLog.DurationOfSessionMIn}}</td>
-                                <td>{{sessionLog.NextSessionScheduled}}</td>
-                                <td>{{sessionLog.SessionNotes}}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-link" (click)="editSession(sessionLog)">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                <div class="d-flex flex-column fill-width">
+                    <div class="add-new-button-container">
+                        <button class="btn btn-primary" (click)="addNewSession()">Add New Session &nbsp;<i class="fa fa-plus"></i></button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Duration (Min)</th>
+                                    <th>Next Session</th>
+                                    <th>Notes</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let sessionLog of caseBook.SessionLog; let i = index">
+                                    <td>{{sessionLog.CounselingDate}}</td>
+                                    <td>{{sessionLog.TypeOfCounselingDesc}}</td>
+                                    <td>{{sessionLog.DurationOfSessionMIn}}</td>
+                                    <td>{{sessionLog.NextSessionScheduled}}</td>
+                                    <td>{{sessionLog.SessionNotes}}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-link" (click)="editSession(sessionLog)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </tab>
 
-        <tab heading="Mental Status" style="width:100%" *ngIf="isMentalDataLoaded">
-            <div class="row" *ngIf="caseBook">
-                <div class="col-md-8 d-flex flex-column">
-                    <button class="btn btn-primary" (click)="addNewMental()" style="width:200px; height:30px; ">Add New Mental Status</button>
-                    <table class="table table-responsive" style="color:whitesmoke">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Dress</th>
-                                <th>Hygiene</th>
-                                <th>BodyType</th>
-                                <th>Expression</th>
-                                <th>MotorActivity</th>
-                                <th>Vocabulary</th>
-                                <th>ImpulseControl</th>
-                                <th>Speech</th>
-                                <th>Behaviour</th>
-                                <th>Content</th>
-                                <th>FlowOfThought</th>
-                                <th>Orientation</th>
-                                <th>EstimatedIntellect</th>
-                                <th>Attention</th>
-                                <th>Insight</th>
-                                <th>Judgement</th>
-                                <th>Memory</th>
-                                <th>Information</th>
-                                <th>Abstraction</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let mental of caseBook.vMental; let i = index">
-                                <td>{{mental.MentalDress}}</td>
-                                <td>{{mental.MentalHygiene}}</td>
-                                <td>{{mental.MentalBodyType}}</td>
-                                <td>{{mental.MentalExpression}}</td>
-                                <td>{{mental.MentalMotorActivity}}</td>
-                                <td>{{mental.MentalVocabulary}}</td>
-                                <td>{{mental.MentalImpulseControl}}</td>
-                                <td>{{mental.MentalSpeech}}</td>
-                                <td>{{mental.MentalBehaviour}}</td>
-                                <td>{{mental.MentalContent}}</td>
-                                <td>{{mental.MentalFlowOfThought}}</td>
-                                <td>{{mental.MentalOrientation}}</td>
-                                <td>{{mental.MentalEstimatedIntellect}}</td>
-                                <td>{{mental.MentalAttention}}</td>
-                                <td>{{mental.MentalInsight}}</td>
-                                <td>{{mental.MentalJudgement}}</td>
-                                <td>{{mental.MentalMemory}}</td>
-                                <td>{{mental.MentalInformation}}</td>
-                                <td>{{mental.MentalAbstraction}}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-link" (click)="editMental(mental)">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+        <tab heading="Mental Status" style="" *ngIf="isMentalDataLoaded">
+            <div class="row" *ngIf="caseBook" style="">
+                <div class="d-flex flex-column fill-width">
+                    <div class="add-new-button-container">
+                        <button class="btn btn-primary" (click)="addNewMental()">Add New Mental Status &nbsp;<i class="fa fa-plus"></i></button>
+                    </div>
+                    <div class="" style="position: relative; width: 100%">
+                            <table class="table table-responsive" style="position: absolute; width: 100%">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Dress</th>
+                                        <th>Hygiene</th>
+                                        <th>BodyType</th>
+                                        <th>Expression</th>
+                                        <th>MotorActivity</th>
+                                        <th>Vocabulary</th>
+                                        <th>ImpulseControl</th>
+                                        <th>Speech</th>
+                                        <th>Behaviour</th>
+                                        <th>Content</th>
+                                        <th>FlowOfThought</th>
+                                        <th>Orientation</th>
+                                        <th>EstimatedIntellect</th>
+                                        <th>Attention</th>
+                                        <th>Insight</th>
+                                        <th>Judgement</th>
+                                        <th>Memory</th>
+                                        <th>Information</th>
+                                        <th>Abstraction</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mental of caseBook.vMental; let i = index">
+                                        <td>{{mental.MentalDress}}</td>
+                                        <td>{{mental.MentalHygiene}}</td>
+                                        <td>{{mental.MentalBodyType}}</td>
+                                        <td>{{mental.MentalExpression}}</td>
+                                        <td>{{mental.MentalMotorActivity}}</td>
+                                        <td>{{mental.MentalVocabulary}}</td>
+                                        <td>{{mental.MentalImpulseControl}}</td>
+                                        <td>{{mental.MentalSpeech}}</td>
+                                        <td>{{mental.MentalBehaviour}}</td>
+                                        <td>{{mental.MentalContent}}</td>
+                                        <td>{{mental.MentalFlowOfThought}}</td>
+                                        <td>{{mental.MentalOrientation}}</td>
+                                        <td>{{mental.MentalEstimatedIntellect}}</td>
+                                        <td>{{mental.MentalAttention}}</td>
+                                        <td>{{mental.MentalInsight}}</td>
+                                        <td>{{mental.MentalJudgement}}</td>
+                                        <td>{{mental.MentalMemory}}</td>
+                                        <td>{{mental.MentalInformation}}</td>
+                                        <td>{{mental.MentalAbstraction}}</td>
+                                        <td class="text-right">
+                                            <button class="btn btn-link" (click)="editMental(mental)">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
                 </div>
             </div>
         </tab>
 
         <tab heading="Feedback" style="width:100%" *ngIf="isFeedbackDataLoaded">
             <div class="row" *ngIf="caseBook">
-                <div class="col-md-8 d-flex flex-column">
-                    <button class="btn btn-primary" (click)="addNewFeedback()" style="width:200px; height:30px; ">Add New Feedback</button>
+                <div class="d-flex flex-column fill-width">
+                    <div class="add-new-button-container">
+                        <button class="btn btn-primary" (click)="addNewFeedback()">Add New Feedback &nbsp;<i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" style="color:whitesmoke">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Respect</th>
+                                        <th>Fee Safe</th>
+                                        <th>Counselling</th>
+                                        <th>Assistance</th>
+                                        <th>Recommend Fee</th>
+                                        <th>Able To Improve</th>
+                                        <th>OPM Team Followup</th>
+                                        <th>Suggestions</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let feedback of caseBook.Feedback; let i = index">
+                                        <td>{{feedback.RespectedDuringYourVisit}}</td>
+                                        <td>{{feedback.FeelSafeAndSecure}}</td>
+                                        <td>{{feedback.FeelThatCounselling}}</td>
+                                        <td>{{feedback.AssistanceOfPeacemaker}}</td>
 
-                    <table class="table table-responsive" style="color:whitesmoke">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>Respect</th>
-                                <th>Fee Safe</th>
-                                <th>Counselling</th>
-                                <th>Assistance</th>
-                                <th>Recommend Fee</th>
-                                <th>Able To Improve</th>
-                                <th>OPM Team Followup</th>
-                                <th>Suggestions</th>
-                                <th class="text-right"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let feedback of caseBook.Feedback; let i = index">
-                                <td>{{feedback.RespectedDuringYourVisit}}</td>
-                                <td>{{feedback.FeelSafeAndSecure}}</td>
-                                <td>{{feedback.FeelThatCounselling}}</td>
-                                <td>{{feedback.AssistanceOfPeacemaker}}</td>
-
-                                <td>{{feedback.RecommendFreeCounselling}}</td>
-                                <td>{{feedback.AbleToImprove}}</td>
-                                <td>{{feedback.OPMTeamToFollowup}}</td>
-                                <td>{{feedback.AnySuggestions}}</td>
-                                <td class="text-right">
-                                    <button class="btn btn-link" (click)="editFeedback(sessionLog)">Edit</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                                        <td>{{feedback.RecommendFreeCounselling}}</td>
+                                        <td>{{feedback.AbleToImprove}}</td>
+                                        <td>{{feedback.OPMTeamToFollowup}}</td>
+                                        <td>{{feedback.AnySuggestions}}</td>
+                                        <td class="text-right">
+                                            <button class="btn btn-link" (click)="editFeedback(sessionLog)">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
         </tab>
 
@@ -1122,7 +1136,7 @@
             <form [formGroup]="caseLegalForm" *ngIf="isLegalDataLoaded">
                 <div class="row">
 
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card">
                             <div class="card-header">
                                 Legal Data
@@ -1169,7 +1183,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card">
                             <div class="card-header">
                                 Outcome
@@ -1208,7 +1222,7 @@
 
             <form [formGroup]="caseManageForm" *ngIf="isManageDataLoaded">
                 <div class="row">
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
                         <div class="card">
                             <div class="card-header">
                                 Case Data
@@ -1267,7 +1281,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 d-flex flex-column">
+                    <div class="col-md-6 d-flex flex-column">
 
                         <div class="card">
                             <div class="card-header">

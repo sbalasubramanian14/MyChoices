@@ -25,9 +25,11 @@ input {
 .fill-height{
     height: 100%;
 }
-
-.nav nav-tabs{
-    background-color:whitesmoke;    
+.fill-width {
+    width: 100%;
+}
+.nav nav-tabs {
+    background-color: whitesmoke;
 }
 
 .flex-fill{
@@ -63,7 +65,7 @@ input {
 .case-detail-container {
     display: flex;
 
-    .nav{
+    .nav {
         flex-wrap: wrap;
     }
 
@@ -73,6 +75,8 @@ input {
         .nav-item {
             border-bottom: 1px solid white;
             margin-bottom: 15px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
         }
 
         .nav-link.active {
@@ -83,6 +87,8 @@ input {
 
         .nav-link {
             color: whitesmoke;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
 
             &:hover {
                 border: 0;
@@ -104,7 +110,7 @@ input {
             border-bottom: 0;
 
             &:hover {
-                .nav-link{
+                .nav-link {
                     color: white !important;
                 }
             }
@@ -145,4 +151,20 @@ input {
     }
 }
 
+.tab-container {
+    @extend .fill-width;
+    max-width: 100%;
+}
+
+.tab-content{
+    max-width: 100%;
+}
+
+.add-new-button-container{
+    margin-bottom: 15px;
+    text-align: center;
+}
+.toast-success{
+    background-color: $brand-primary !important;
+}
 
