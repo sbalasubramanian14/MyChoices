@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using WhitePage.ResourceAccess.Contracts.Core;
 namespace WhitePage.MyWeb.UI.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class CasesController : WhitePageController
     {
         private ICaseBusinessAccess caseBusinessAccess;

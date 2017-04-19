@@ -16,10 +16,9 @@ export class BaseService {
 
     public getRequestOptions(): RequestOptions {
         let headers = new Headers(
-            {
-                //'Authorization': 'Bearer ' + this.authenticationService.decodeToken(),
-                'Content-Type': 'application/json',
-                'UserId': this.authenticationService.decodeToken()
+            {                
+                'authorization': "bearer " + this.authenticationService.getToken(),                
+                'Content-Type': 'application/json'
             }
         );
         return new RequestOptions({ headers: headers });

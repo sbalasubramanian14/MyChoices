@@ -105,7 +105,8 @@ namespace WhitePage.MyWeb.UI.Security
 
             if (claims.Count > 0 && claims.Any(c => c.ClaimType == "Status" && c.ClaimValue == "Success"))
             {
-                var processedClaims = claims.Where(c => c.ClaimType != "Status").Select(c => new Claim(c.ClaimType, c.ClaimValue)).ToArray();
+                var processedClaims = claims.Where(c => c.ClaimType != "Status").Select(c => new Claim(c.ClaimType, c.ClaimValue)).ToList();
+                processedClaims.Add(new Claim ("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", "admin"));
 
                 return Task.FromResult(new ClaimsIdentity(new System.Security.Principal.GenericIdentity(username, "Token"), processedClaims));
             }

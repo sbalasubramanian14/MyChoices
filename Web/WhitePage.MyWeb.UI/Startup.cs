@@ -12,7 +12,7 @@ using WhitePage.Utilities.Constants;
 
 namespace WhitePage.MyWeb.UI
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IHostingEnvironment env)
         {
@@ -27,17 +27,13 @@ namespace WhitePage.MyWeb.UI
         }
 
         public IConfigurationRoot Configuration { get; }
-        private static readonly string secretKey = "mychoices_apikey!num77";
 
         public void ConfigureServices(IServiceCollection services)
         {           
             //Invoke DI
-            DIContainer.ServiceLocator.Instance.LoadContainer(services);            
+            DIContainer.ServiceLocator.Instance.LoadContainer(services);
 
-            services.AddMvc(setup =>
-            {
-
-            }).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());            
+            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -52,6 +48,8 @@ namespace WhitePage.MyWeb.UI
             var defaultFilesOptions = new DefaultFilesOptions();
             defaultFilesOptions.DefaultFileNames.Clear();
             defaultFilesOptions.DefaultFileNames.Add("index.html");
+
+            ConfigureAuth(app);
 
             app.Use(async (context, next) =>
             {
@@ -68,16 +66,16 @@ namespace WhitePage.MyWeb.UI
             .UseDefaultFiles(defaultFilesOptions)
             .UseStaticFiles();
 
-            // Add JWT generation endpoint:
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
-            var tokenProviderOptions = new TokenProviderOptions
-            {
-                Audience = "MyChoicesAudience",
-                Issuer = "MyChoicesIssuer",
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-            };
+            //// Add JWT generation endpoint:
+            //var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            //var tokenProviderOptions = new TokenProviderOptions
+            //{
+            //    Audience = "MyChoicesAudience",
+            //    Issuer = "MyChoicesIssuer",
+            //    SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
+            //};
 
-            app.UseMiddleware<WhitePageTokenProvider>(Options.Create(tokenProviderOptions));            
+            //app.UseMiddleware<WhitePageTokenProvider>(Options.Create(tokenProviderOptions));            
 
             app.UseMvc(routes =>
             {                
