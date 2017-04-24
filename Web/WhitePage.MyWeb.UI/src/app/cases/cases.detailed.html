@@ -1032,7 +1032,7 @@
                         <button class="btn btn-primary" (click)="addNewMental()">Add New Mental Status &nbsp;<i class="fa fa-plus"></i></button>
                     </div>
                     <div class="" style="position: relative; width: 100%">
-                            <table class="table table-responsive" style="position: absolute; width: 100%">
+                            <table class="table table-responsive" style="position: absolute; width: 100%; color:whitesmoke" >
                                 <thead class="thead-inverse">
                                     <tr>
                                         <th>Dress</th>
@@ -1111,7 +1111,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let feedback of caseBook.Feedback; let i = index">
+                                    <tr *ngFor="let feedback of caseBook.FeedBack; let i = index">
                                         <td>{{feedback.RespectedDuringYourVisit}}</td>
                                         <td>{{feedback.FeelSafeAndSecure}}</td>
                                         <td>{{feedback.FeelThatCounselling}}</td>
@@ -1122,7 +1122,7 @@
                                         <td>{{feedback.OPMTeamToFollowup}}</td>
                                         <td>{{feedback.AnySuggestions}}</td>
                                         <td class="text-right">
-                                            <button class="btn btn-link" (click)="editFeedback(sessionLog)">Edit</button>
+                                            <button class="btn btn-link" (click)="editFeedback(feedback)">Edit</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1598,7 +1598,7 @@
                                         <label for="PeacemakerId">Hygiene</label>
                                         <ng-select [options]="MentalDressLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="MentalDressLookupId"
+                                                   formControlName="MentalHygieneLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                     </div>

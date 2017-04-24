@@ -112,7 +112,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             if (this.peaceMakersList[i].CenterId == this.caseBook.Case.CenterId) {
                 localPeaceMakerOptionsList.push({
                     value: this.peaceMakersList[i].PeaceMakerId.toString(),
-                    label: this.peaceMakersList[i].FirstName
+                    label: this.peaceMakersList[i].FirstName + ' ' + this.peaceMakersList[i].LastName
                 });
             }
         }
@@ -124,7 +124,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             if (this.counselorsList[i].CenterId == this.caseBook.Case.CenterId || this.counselorsList[i].IsGlobal) {
                 localCounselorOptionsList.push({
                     value: this.counselorsList[i].CounselorId.toString(),
-                    label: this.counselorsList[i].FirstName
+                    label: this.counselorsList[i].FirstName + ' ' + this.counselorsList[i].LastName
                 });
             }
         }

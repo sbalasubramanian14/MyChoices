@@ -263,7 +263,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             if (this.peaceMakersList[i].CenterId == this.caseBook.Case.CenterId) {
                 localPeaceMakerOptionsList.push({
                     value: this.peaceMakersList[i].PeaceMakerId.toString(),
-                    label: this.peaceMakersList[i].FirstName
+                    label: this.peaceMakersList[i].FirstName + ' ' + this.peaceMakersList[i].LastName
                 });
             }
         }
@@ -275,7 +275,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             if (this.counselorsList[i].CenterId == this.caseBook.Case.CenterId || this.counselorsList[i].IsGlobal) {
                 localCounselorOptionsList.push({
                     value: this.counselorsList[i].CounselorId.toString(),
-                    label: this.counselorsList[i].FirstName
+                    label: this.counselorsList[i].FirstName + ' ' + this.counselorsList[i].LastName
                 });
             }
         }
@@ -1023,7 +1023,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MentalSpeechLookupId: new FormControl(this.caseBook.SelectedMental.MentalSpeechLookupId == undefined ? null : this.caseBook.SelectedMental.MentalSpeechLookupId.toString()),
             MentalVocabularyLookupId: new FormControl(this.caseBook.SelectedMental.MentalVocabularyLookupId == undefined ? null : this.caseBook.SelectedMental.MentalVocabularyLookupId.toString())
         });
-        this.offenderModal.show();
+        this.mentalModal.show();
     }
 
     public hideMentalModal(): void {
@@ -1164,6 +1164,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public editFeedback(feedback: CaseFeedback) {
         this.caseBook.SelectedFeedback = new CaseFeedback();
         this.caseBook.SelectedFeedback.CaseId = this.caseBook.Case.CaseId;
+        this.caseBook.SelectedFeedback.CaseFeedbackId = feedback.CaseFeedbackId;
 
         this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId = feedback.RespectedDuringYourVisitLookupId;
         this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId = feedback.FeelSafeAndSecureLookupId;

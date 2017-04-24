@@ -451,7 +451,7 @@ export class CaseBook {
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;
     SessionLog: Array<CaseSessionLog>;
-    Feedback: Array<vCaseFeedback>;
+    FeedBack: Array<vCaseFeedback>;
 
     SelectedAddress: CaseAddress;
     SelectedChildren: CaseChildren;
