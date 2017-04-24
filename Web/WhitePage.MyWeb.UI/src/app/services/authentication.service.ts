@@ -36,9 +36,7 @@ export class AuthenticationService {
         let body: string = this.encodeParams(params);
 
         return this.http.post(tokenEndpoint, body, this.options)
-            .map((res: Response) => {
-                debugger;
-                console.log(res);
+            .map((res: Response) => {                
                 let body: any = res.json();
                 
                 if (typeof body.access_token !== 'undefined') {

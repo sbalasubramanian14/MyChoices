@@ -7,6 +7,8 @@ import { SelectModule, IOption } from 'ng-select';
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
 import { CasesListComponent } from './cases.list';
+import { CaseRedirectComponent } from './case.redirect';
+
 import { CasesRoutingModule } from './cases-routing.module';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
@@ -34,7 +36,8 @@ import { Ng2TableModule } from '../directives/customTable/ng-table-module';
     ],
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,
-        CasesListComponent],
+        CasesListComponent,
+        CaseRedirectComponent],
     providers: [
         CasesService,
         CommonService

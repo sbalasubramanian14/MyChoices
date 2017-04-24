@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes,
-     RouterModule } from '@angular/router';
+import {
+    Routes,
+    RouterModule
+} from '@angular/router';
 
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
 import { CasesListComponent } from './cases.list';
+import { CaseRedirectComponent } from './case.redirect';
+
 import { AuthGuard } from '../services/authguard.service';
 
 const routes: Routes = [
-  {
+    {
         path: '',
         children: [{
             path: 'create',
@@ -31,12 +35,19 @@ const routes: Routes = [
             data: {
                 title: 'Manage Case'
             }
+        }, {
+            path: 'redirect/:id',
+            component: CaseRedirectComponent,
+            canActivate: [AuthGuard],
+            data: {
+                title: 'Manage Case'
+            }
         }]
-  }
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class CasesRoutingModule {}
+export class CasesRoutingModule { }

@@ -18,4 +18,4 @@ A.[ModifiedDatetime]
 
 from Ops.trCaseChildren A
 LEFT JOIN Core.dmnLookupDetail Gender ON Gender.LookupDetailId = A.GenderLookupId AND Gender.LookupId=1
-LEFT JOIN Core.dmnLookupDetail Relation ON Relation.LookupDetailId = A.RelationshipWithAbuserLookupId AND Gender.LookupId=12;	
+LEFT JOIN Core.dmnLookupDetail Relation ON Relation.LookupDetailId = A.RelationshipWithAbuserLookupId AND Relation.LookupId=12;	

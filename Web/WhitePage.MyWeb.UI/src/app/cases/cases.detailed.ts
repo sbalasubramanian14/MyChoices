@@ -225,7 +225,28 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     ngOnInit() {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.selectedCaseId = params['id'];
-            this.getCaseById();
+
+            this.casesService
+                .GetCaseById(this.selectedCaseId)
+                .subscribe(data => {
+                    console.log(data);
+
+                    this.caseBook = data;
+                    console.log(this.caseBook);
+
+                    this.onCenterSelected(null);
+
+                    if (this.centersList.length > 0 && this.centerOptionList.length > 0 && this.counselorOptionsList.length > 0) {
+                        this.isPrimaryDataLoaded = true;
+                    }
+                    this.loadPrimayCaseTab();
+                    this.loadHouseHoldFormGroup();
+                    this.loadSpouseFormGroup();
+                    this.loadPhysicalHealthFromGroup();
+                    this.loadAbuseFromGroup();
+                    this.loadManageFromGroup();
+                    this.loadLegalFromGroup();
+                });
         });
     }
 
@@ -261,28 +282,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.counselorOptionsList = localCounselorOptionsList;
     }
 
-    private getCaseById() {
-        this.casesService
-            .GetCaseById(this.selectedCaseId)
-            .subscribe(data => {
-                console.log(data);
-                
-                this.caseBook = data;
-                console.log(this.caseBook);
-
-                this.onCenterSelected(null);                
-
-                if (this.centersList.length > 0 && this.centerOptionList.length > 0 && this.counselorOptionsList.length > 0) {
-                    this.isPrimaryDataLoaded = true;
-                }
-                this.loadPrimayCaseTab();
-                this.loadHouseHoldFormGroup();
-                this.loadSpouseFormGroup();
-                this.loadPhysicalHealthFromGroup();
-                this.loadAbuseFromGroup();
-                this.loadManageFromGroup();
-                this.loadLegalFromGroup();
-            });
+    private getCaseById() {        
+        var url = '/cases/redirect/' + this.selectedCaseId;        
+        this.router.navigate([url]);
     }
 
     /* Primary Info */
@@ -297,7 +299,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
 
-    private loadPrimayCaseTab() {
+    private loadPrimayCaseTab() {        
         this.casePrimaryForm = this.fb.group({
             CenterId: new FormControl(this.caseBook.Case.CenterId.toString(), Validators.required),
             PeaceMakerId: new FormControl(this.caseBook.Case.PeaceMakerId.toString(), Validators.required),
@@ -437,10 +439,11 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public relationshipWithAbuserLookupOptionsList: Array<IOption> = [];
     @ViewChild('childrenModal') public childrenModal: ModalDirective;
 
-    public addNewChild() {
-        this.caseBook.SelectedChildren = new CaseChildren();
+    public addNewChild() {        
+        this.caseBook.SelectedChildren = new CaseChildren();        
         this.caseBook.SelectedChildren.CaseId = this.caseBook.Case.CaseId;
-
+        console.log(this.caseBook.SelectedChildren);
+        
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
             Age: new FormControl(this.caseBook.SelectedChildren.Age, Validators.required),
@@ -450,7 +453,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.childrenModal.show();
     }
 
-    public editChild(children: vCaseChildren) {
+    public editChild(children: vCaseChildren) {        
         this.caseBook.SelectedChildren = new CaseAddress();
         this.caseBook.SelectedChildren.CaseChildrenId = children.CaseChildrenId;
         this.caseBook.SelectedChildren.CaseId = children.CaseId;
@@ -485,8 +488,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.casesService
             .updateChildren(this.caseBook).subscribe(data => {                
-                this.childrenModal.hide();
+                this.childrenModal.hide();                
                 this.getCaseById();
+
                 this.toastr.success('Children updated successfully');                
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
