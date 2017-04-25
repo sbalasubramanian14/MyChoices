@@ -16,7 +16,10 @@ namespace WhitePage.Entities.CaseManagement
         public int? SourceOfCaseLookupId { get; set; }
         public string SourceOfCaseDesc { get; set; }
 
-        public int? TypesOfCounselingLookupId { get; set; }
+        public string TypesOfCounselingLookupId { get; set; }
+        [NotMapped]
+        public int[] TypesOfCounselingLookupArray { get; set; }
+
         public int? TotalNoOfSessionsLookupId { get; set; }
         public int? TotalHoursSpentLookupId { get; set; }
 

@@ -7,7 +7,7 @@
 	SourceOfCaseLookupId INT,
 	SourceOfCaseDesc varchar(2000),
 
-	TypesOfCounselingLookupId INT,
+	TypesOfCounselingLookupId varchar(100),
 	TotalNoOfSessionsLookupId INT,
 	TotalHoursSpentLookupId INT,
 

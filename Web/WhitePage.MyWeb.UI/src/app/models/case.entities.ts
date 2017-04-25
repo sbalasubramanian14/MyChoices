@@ -205,7 +205,10 @@ export class CasePhysicalHealth {
     CurrentlyPregnantDesc?: string;
 
     ReasonForSeekingHelpLookupId?: number;
-    WhoIsAbusingYouLookupId?: number;
+
+    WhoIsAbusingYouLookupId: string;
+    WhoIsAbusingYouLookupArray: Array<number>;
+
     WhoIsAbusingYouDesc?: string;
 }
 
@@ -243,32 +246,44 @@ export class CaseAbuse {
     SufferingFromAbuseLookupId?: number;
     SufferingFromAbuseDesc?: string;
 
-    FeelAboutAbuseLookupId?: number;
-    ParentsFeelAboutAbuseLookupId?: number;
-    LawFeelAboutAbuseLookupId?: number;
+    FeelAboutAbuseLookupId: string;
+    FeelAboutAbuseLookupArray: Array<number>;
+    ParentsFeelAboutAbuseLookupId: string;
+    ParentsFeelAboutAbuseLookupArray: Array<number>;
+
+    LawFeelAboutAbuseLookupId: string;
+    LawFeelAboutAbuseLookupArray: Array<number>;
+
     SignsOfPhysicalAbuseLookupId?: number;
     SignsOfPhysicalAbuseDesc?: string;
 
-    WeaponsUsedLookupId?: number;
+    WeaponsUsedLookupId: string;
+    WeaponsUsedLookupArray: Array<number>;
+
     WeaponsUsedDesc?: string;
 
-    TypesOfPhyscialAbuseLookupId?: number;
+    TypesOfPhyscialAbuseLookupId: string;
+    TypesOfPhyscialAbuseLookupArray: Array<number>;
     FrequencyOfPhyscialAbuseLookupId?: number;
     NumberOfYearsOfPhyscialAbuse?: number;
 
-    TypesOfEmotionalAbuseLookupId?: number;
+    TypesOfEmotionalAbuseLookupId: string;
+    TypesOfEmotionalAbuseLookupArray: Array<number>;
     FrequencyOfEmotionalAbuseLookupId?: number;
     NumberOfYearsOfEmotionalAbuse?: number;
 
-    TypesOfSexualAbuseLookupId?: number;
+    TypesOfSexualAbuseLookupId: string;
+    TypesOfSexualAbuseLookupArray: Array<number>;
     FrequencyOfSexualAbuseLookupId?: number;
     NumberOfYearsOfSexualAbuse?: number;
 
-    TypesOfEconomicAbuseLookupId?: number;
+    TypesOfEconomicAbuseLookupId: string;
+    TypesOfEconomicAbuseLookupArray: Array<number>;
     FrequencyOfEconomicAbuseLookupId?: number;
     NumberOfYearsOfEconomicAbuse?: number;
 
-    ReasonsForAbuseLookupId?: number;
+    ReasonsForAbuseLookupId: string;
+    ReasonsForAbuseLookupArray: Array<number>;
 }
 
 export class CaseManage {
@@ -282,6 +297,8 @@ export class CaseManage {
     SourceOfCaseDesc?: string;
 
     TypesOfCounselingLookupId?: number;
+    TypesOfCounselingLookupArray: Array<Number>;    
+
     TotalNoOfSessionsLookupId?: number;
     TotalHoursSpentLookupId?: number;
 
@@ -447,8 +464,11 @@ export class CaseLegal {
     LegalConsentFormLookupId?: number;
     LegalActionLookupId?: number;
 
-    OutcomeLookupId?: number;
+    OutcomeLookupId: string;
+    OutcomeLookupArray: Array<Number>;
+
     DocumentsLookupId?: number;    
+    DocumentsLookupArray: Array<Number>;
 }
 
 export class CaseBook {

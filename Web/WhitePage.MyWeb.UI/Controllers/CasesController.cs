@@ -125,6 +125,8 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdatePhysicalHealth([FromBody] CaseBook caseBook)
         {
             caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
+            caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdatePhysicalHealth(caseBook);
             return Ok(updatedCase);
         }
@@ -143,6 +145,17 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateAbuse([FromBody] CaseBook caseBook)
         {
             caseBook.Abuse.CaseId = caseBook.Case.CaseId;
+            caseBook.Abuse.FeelAboutAbuseLookupId = caseBook.Abuse.FeelAboutAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.ParentsFeelAboutAbuseLookupId = caseBook.Abuse.ParentsFeelAboutAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.LawFeelAboutAbuseLookupId = caseBook.Abuse.LawFeelAboutAbuseLookupArray.ToArrayString();
+
+            caseBook.Abuse.WeaponsUsedLookupId= caseBook.Abuse.WeaponsUsedLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfPhyscialAbuseLookupId = caseBook.Abuse.TypesOfPhyscialAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfEmotionalAbuseLookupId = caseBook.Abuse.TypesOfEmotionalAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfSexualAbuseLookupId = caseBook.Abuse.TypesOfSexualAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfEconomicAbuseLookupId = caseBook.Abuse.TypesOfEconomicAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.ReasonsForAbuseLookupId = caseBook.Abuse.ReasonsForAbuseLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdateAbuse(caseBook);
             return Ok(updatedCase);
         }
@@ -152,6 +165,8 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateCase([FromBody] CaseBook caseBook)
         {
             caseBook.Manage.CaseId = caseBook.Case.CaseId;
+            caseBook.Manage.TypesOfCounselingLookupId = caseBook.Manage.TypesOfCounselingLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdateCase(caseBook);
             return Ok(updatedCase);
         }
@@ -188,6 +203,9 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateLegal([FromBody] CaseBook caseBook)
         {
             caseBook.Legal.CaseId = caseBook.Case.CaseId;
+            caseBook.Legal.OutcomeLookupId = caseBook.Legal.OutcomeLookupArray.ToArrayString();
+            caseBook.Legal.DocumentsLookupId = caseBook.Legal.DocumentsLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdateLegal(caseBook);
             return Ok(updatedCase);
         }

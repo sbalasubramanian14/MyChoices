@@ -127,7 +127,6 @@ export class BaseCaseController {
                 });
             }
         }
-        console.log(lookupName);
         return localOptionsList;
     }
 
@@ -136,6 +135,7 @@ export class BaseCaseController {
 
         if (this.lookupsList.filter(l => l.Title == lookupName) == undefined) {
             console.log(lookupName);
+            console.log("Not Found");
         }
         else {
             var lookupDetailsList = this.lookupsList.filter(l => l.Title == lookupName)[0].LookupDetails;
@@ -146,7 +146,6 @@ export class BaseCaseController {
                 });
             }
         }
-        console.log(lookupName);
         return localOptionsList;
     }
 }

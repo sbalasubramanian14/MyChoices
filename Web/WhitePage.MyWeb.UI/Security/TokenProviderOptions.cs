@@ -13,7 +13,7 @@ namespace WhitePage.MyWeb.UI.Security
 
         public string Audience { get; set; }
 
-        public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(30);
+        public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(240);
 
         public SigningCredentials SigningCredentials { get; set; }
         public Func<string, string, Task<ClaimsIdentity>> IdentityResolver { get; set; }

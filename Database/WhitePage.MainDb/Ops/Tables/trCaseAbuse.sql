@@ -6,30 +6,31 @@
 	SufferingFromAbuseLookupId INT,
 	SufferingFromAbuseDesc varchar(2000),
 	
-	FeelAboutAbuseLookupId INT,
-	ParentsFeelAboutAbuseLookupId INT,
-	LawFeelAboutAbuseLookupId INT,
+	FeelAboutAbuseLookupId varchar(200),
+	ParentsFeelAboutAbuseLookupId varchar(200),
+	LawFeelAboutAbuseLookupId varchar(200),
+
 	SignsOfPhysicalAbuseLookupId INT,
 	SignsOfPhysicalAbuseDesc varchar(2000),
 
-	WeaponsUsedLookupId INT,
+	WeaponsUsedLookupId  varchar(200),
 	WeaponsUsedDesc varchar(2000),
 
-	TypesOfPhyscialAbuseLookupId INT,
+	TypesOfPhyscialAbuseLookupId varchar(200),
 	FrequencyOfPhyscialAbuseLookupId INT,
 	NumberOfYearsOfPhyscialAbuse tinyint,
 
-	TypesOfEmotionalAbuseLookupId INT,
+	TypesOfEmotionalAbuseLookupId varchar(200),
 	FrequencyOfEmotionalAbuseLookupId INT,
 	NumberOfYearsOfEmotionalAbuse tinyint,
 
-	TypesOfSexualAbuseLookupId INT,
+	TypesOfSexualAbuseLookupId varchar(200),
 	FrequencyOfSexualAbuseLookupId INT,
 	NumberOfYearsOfSexualAbuse tinyint,
 
-	TypesOfEconomicAbuseLookupId INT,
+	TypesOfEconomicAbuseLookupId varchar(200),
 	FrequencyOfEconomicAbuseLookupId INT,
 	NumberOfYearsOfEconomicAbuse tinyint,
 
-	ReasonsForAbuseLookupId INT
+	ReasonsForAbuseLookupId varchar(200)
 )

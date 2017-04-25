@@ -69,7 +69,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public appetiteLookupOptionsList: Array<IOption> = [];
     public exerciseLookupOptionsList: Array<IOption> = [];
     public reasonForSeekingHelpLookupOptionsList: Array<IOption> = [];
-    public whoIsAbusingYouLookupOptionsList: Array<IOption> = [];
+    public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
 
     constructor(public fb: FormBuilder,
         public casesService: CasesService,
@@ -149,35 +149,38 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.appetiteLookupOptionsList = this.ParseLookups("Appetite");
                     this.exerciseLookupOptionsList = this.ParseLookups("Exercise");
                     this.reasonForSeekingHelpLookupOptionsList = this.ParseLookups("ReasonForSeekingHelp");
-                    this.whoIsAbusingYouLookupOptionsList = this.ParseLookups("AbusingPerson");
+                    this.whoIsAbusingYouLookupOptionsList = this.ParseMultiLookups("AbusingPerson");
                     this.isPhysicalHealthDataLoaded = true;
 
                     this.sufferingFromAbuseLookupIdLookupOptionsList = this.ParseLookups("YesNo");
-                    this.feelAboutAbuseLookupOptionsList = this.ParseLookups("AbusingFeel");
-                    this.farentsFeelAboutAbuseLookupOptionsList = this.ParseLookups("AbusingParentsFeel");
-                    this.lawFeelAboutAbuseLookupOptionsList = this.ParseLookups("AbusingParentsFeel");
-                    this.signsOfPhysicalAbuseLookupOptionsList = this.ParseLookups("YesNo");
-                    this.weaponsUsedLookupOptionsList = this.ParseLookups("AbusingWeapons");
 
-                    this.typesOfPhyscialAbuseLookupOptionsList = this.ParseLookups("TypesOfPhysicalAbuse");
+                    this.feelAboutAbuseLookupOptionsList = this.ParseMultiLookups("AbusingFeel");
+                    this.farentsFeelAboutAbuseLookupOptionsList = this.ParseMultiLookups("AbusingParentsFeel");
+                    this.lawFeelAboutAbuseLookupOptionsList = this.ParseMultiLookups("AbusingParentsFeel");
+
+                    this.signsOfPhysicalAbuseLookupOptionsList = this.ParseLookups("YesNo");
+                    this.weaponsUsedLookupOptionsList = this.ParseMultiLookups("AbusingWeapons");
+
+                    this.typesOfPhyscialAbuseLookupOptionsList = this.ParseMultiLookups("TypesOfPhysicalAbuse");
                     this.frequencyOfPhyscialAbuseLookupOptionsList = this.ParseLookups("FrequencyOfAbuse");
 
-                    this.typesOfEmotionalAbuseLookupOptionsList = this.ParseLookups("TypesOfEmotionalAbuse");
+                    this.typesOfEmotionalAbuseLookupOptionsList = this.ParseMultiLookups("TypesOfEmotionalAbuse");
                     this.frequencyOfEmotionalAbuseLookupOptionsList = this.ParseLookups("FrequencyOfAbuse");
 
-                    this.typesOfSexualAbuseLookupOptionsList = this.ParseLookups("TypesOfSexualAbuse");
+                    this.typesOfSexualAbuseLookupOptionsList = this.ParseMultiLookups("TypesOfSexualAbuse");
                     this.frequencyOfSexualAbuseLookupOptionsList = this.ParseLookups("FrequencyOfAbuse");
 
-                    this.typesOfEconomicAbuseLookupOptionsList = this.ParseLookups("TypesOfEconomicalAbuse");
+                    this.typesOfEconomicAbuseLookupOptionsList = this.ParseMultiLookups("TypesOfEconomicalAbuse");
                     this.frequencyOfEconomicAbuseLookupOptionsList = this.ParseLookups("FrequencyOfAbuse");
 
-                    this.reasonsForAbuseLookupOptionsList = this.ParseLookups("ReasonForAbuse");
+                    this.reasonsForAbuseLookupOptionsList = this.ParseMultiLookups("ReasonForAbuse");
 
                     this.isAbuseDataLoaded = true;
 
                     this.sourceOfCaseLookupOptionList = this.ParseLookups("SourceOfCase");
-                    this.typesOfCounselingLookupOptionList = this.ParseLookups("TypesOfCounselling");
+                    this.typesOfCounselingLookupOptionList = this.ParseMultiLookups("TypesOfCounselling");
                     this.relationshipWithPMLookupOptionList = this.ParseLookups("RelationshipWithPM");
+                    this.relationshipWithVictimLookupOptionsList = this.ParseLookups("AbusingPerson");
                     this.isManageDataLoaded = true;
 
                     this.MentalDressLookupOptionList = this.ParseLookups("MentalDress");
@@ -209,9 +212,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.AbleToImproveLookupOptionList = this.ParseLookups("AbleToImprove");
                     this.OPMTeamToFollowupLookupOptionList = this.ParseLookups("YesNo");
                     this.isFeedbackDataLoaded = true;
-
-                    this.outcomeLookupOptionList == this.ParseLookups("Outcome");
-                    this.documentsLookupOptionList == this.ParseLookups("Documents");
+                    
+                    this.outcomeLookupOptionList == this.ParseMultiLookups("Outcome");
+                    this.documentsLookupOptionList == this.ParseMultiLookups("Documents");
 
                     this.isLegalDataLoaded = true;
 
@@ -696,7 +699,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.physicalHealthForm.controls['CurrentlyPregnantDesc'].value;
 
         this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
-        this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
+        //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
         this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;        
 
         this.casesService
@@ -768,26 +771,29 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /* Start - Abuse */
     public sufferingFromAbuseLookupIdLookupOptionsList: Array<IOption> = [];
-    public feelAboutAbuseLookupOptionsList: Array<IOption> = [];
-    public farentsFeelAboutAbuseLookupOptionsList: Array<IOption> = [];
-    public lawFeelAboutAbuseLookupOptionsList: Array<IOption> = [];
-    public signsOfPhysicalAbuseLookupOptionsList: Array<IOption> = [];
-    public weaponsUsedLookupOptionsList: Array<IOption> = [];
 
-    public typesOfPhyscialAbuseLookupOptionsList: Array<IOption> = [];
+    public feelAboutAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
+    public farentsFeelAboutAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
+    public lawFeelAboutAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
+
+    public signsOfPhysicalAbuseLookupOptionsList: Array<IOption> = [];
+    public weaponsUsedLookupOptionsList: Array<IMultiSelectOption> = [];
+
+    public typesOfPhyscialAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
     public frequencyOfPhyscialAbuseLookupOptionsList: Array<IOption> = [];
 
-    public typesOfEmotionalAbuseLookupOptionsList: Array<IOption> = [];
+    public typesOfEmotionalAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
     public frequencyOfEmotionalAbuseLookupOptionsList: Array<IOption> = [];
 
-    public typesOfSexualAbuseLookupOptionsList: Array<IOption> = [];
+    public typesOfSexualAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
     public frequencyOfSexualAbuseLookupOptionsList: Array<IOption> = [];
 
-    public typesOfEconomicAbuseLookupOptionsList: Array<IOption> = [];
+    public typesOfEconomicAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
     public frequencyOfEconomicAbuseLookupOptionsList: Array<IOption> = [];
 
-    public reasonsForAbuseLookupOptionsList: Array<IOption> = [];
-
+    public reasonsForAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
+    public relationshipWithVictimLookupOptionsList: Array<IOption> = [];
+    
     private loadAbuseFromGroup() {
         this.caseAbuseForm = this.fb.group({
             SufferingFromAbuseLookupId: new FormControl(this.caseBook.Abuse.SufferingFromAbuseLookupId == undefined ? null : this.caseBook.Abuse.SufferingFromAbuseLookupId.toString()),
@@ -826,32 +832,33 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.Abuse.SufferingFromAbuseLookupId = this.caseAbuseForm.controls['SufferingFromAbuseLookupId'].value;
         this.caseBook.Abuse.SufferingFromAbuseDesc = this.caseAbuseForm.controls['SufferingFromAbuseDesc'].value;
 
-        this.caseBook.Abuse.FeelAboutAbuseLookupId = this.caseAbuseForm.controls['FeelAboutAbuseLookupId'].value;
-        this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId = this.caseAbuseForm.controls['ParentsFeelAboutAbuseLookupId'].value;
-        this.caseBook.Abuse.LawFeelAboutAbuseLookupId = this.caseAbuseForm.controls['LawFeelAboutAbuseLookupId'].value;
+        //this.caseBook.Abuse.FeelAboutAbuseLookupId = this.caseAbuseForm.controls['FeelAboutAbuseLookupId'].value;
+        //this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId = this.caseAbuseForm.controls['ParentsFeelAboutAbuseLookupId'].value;
+        //this.caseBook.Abuse.LawFeelAboutAbuseLookupId = this.caseAbuseForm.controls['LawFeelAboutAbuseLookupId'].value;
+
         this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId = this.caseAbuseForm.controls['SignsOfPhysicalAbuseLookupId'].value;
         this.caseBook.Abuse.SignsOfPhysicalAbuseDesc = this.caseAbuseForm.controls['SignsOfPhysicalAbuseDesc'].value;
 
-        this.caseBook.Abuse.WeaponsUsedLookupId = this.caseAbuseForm.controls['WeaponsUsedLookupId'].value;
+        //this.caseBook.Abuse.WeaponsUsedLookupId = this.caseAbuseForm.controls['WeaponsUsedLookupId'].value;
         this.caseBook.Abuse.WeaponsUsedDesc = this.caseAbuseForm.controls['WeaponsUsedDesc'].value;
 
-        this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId = this.caseAbuseForm.controls['TypesOfPhyscialAbuseLookupId'].value;
+        //this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId = this.caseAbuseForm.controls['TypesOfPhyscialAbuseLookupId'].value;
         this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfPhyscialAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse = this.caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].value;
 
-        this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId = this.caseAbuseForm.controls['TypesOfEmotionalAbuseLookupId'].value;
+        //this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId = this.caseAbuseForm.controls['TypesOfEmotionalAbuseLookupId'].value;
         this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfEmotionalAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].value;
 
-        this.caseBook.Abuse.TypesOfSexualAbuseLookupId = this.caseAbuseForm.controls['TypesOfSexualAbuseLookupId'].value;
+        //this.caseBook.Abuse.TypesOfSexualAbuseLookupId = this.caseAbuseForm.controls['TypesOfSexualAbuseLookupId'].value;
         this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfSexualAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfSexualAbuse = this.caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].value;
 
-        this.caseBook.Abuse.TypesOfEconomicAbuseLookupId = this.caseAbuseForm.controls['TypesOfEconomicAbuseLookupId'].value;
+        //this.caseBook.Abuse.TypesOfEconomicAbuseLookupId = this.caseAbuseForm.controls['TypesOfEconomicAbuseLookupId'].value;
         this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfEconomicAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].value;
 
-        this.caseBook.Abuse.ReasonsForAbuseLookupId = this.caseAbuseForm.controls['ReasonsForAbuseLookupId'].value;
+        //this.caseBook.Abuse.ReasonsForAbuseLookupId = this.caseAbuseForm.controls['ReasonsForAbuseLookupId'].value;
 
         this.casesService
             .updateAbuse(this.caseBook).subscribe(data => {
@@ -866,7 +873,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /* Start - Manage Case */
     public sourceOfCaseLookupOptionList: Array<IOption> = [];
-    public typesOfCounselingLookupOptionList: Array<IOption> = [];
+    public typesOfCounselingLookupOptionList: Array<IMultiSelectOption> = [];
     public totalNoOfSessionsLookupOptionList: Array<IOption> = [];
     public totalHoursSpentLookupOptionList: Array<IOption> = [];
     public relationshipWithPMLookupOptionList: Array<IOption> = [];
@@ -897,7 +904,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.Manage.SourceOfCaseLookupId = this.caseManageForm.controls['SourceOfCaseLookupId'].value;
         this.caseBook.Manage.SourceOfCaseDesc = this.caseManageForm.controls['SourceOfCaseDesc'].value;
 
-        this.caseBook.Manage.TypesOfCounselingLookupId = this.caseManageForm.controls['TypesOfCounselingLookupId'].value;
+        //this.caseBook.Manage.TypesOfCounselingLookupId = this.caseManageForm.controls['TypesOfCounselingLookupId'].value;
         this.caseBook.Manage.TotalNoOfSessionsLookupId = this.caseManageForm.controls['TotalNoOfSessionsLookupId'].value;
         this.caseBook.Manage.TotalHoursSpentLookupId = this.caseManageForm.controls['TotalHoursSpentLookupId'].value;
 
@@ -1226,8 +1233,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /* End of - Feedback */
 
     /* Start - Legal Case */
-    public outcomeLookupOptionList: Array<IOption> = [];
-    public documentsLookupOptionList: Array<IOption> = [];
+    public outcomeLookupOptionList: Array<IMultiSelectOption> = [];
+    public documentsLookupOptionList: Array<IMultiSelectOption> = [];
 
     private loadLegalFromGroup() {
         this.caseLegalForm = this.fb.group({
@@ -1253,8 +1260,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseBook.Legal.LegalConsentFormLookupId = this.caseLegalForm.controls['LegalConsentFormLookupId'].value;
         this.caseBook.Legal.LegalActionLookupId = this.caseLegalForm.controls['LegalActionLookupId'].value;
-        this.caseBook.Legal.OutcomeLookupId = this.caseLegalForm.controls['OutcomeLookupId'].value;
-        this.caseBook.Legal.DocumentsLookupId = this.caseLegalForm.controls['DocumentsLookupId'].value;
+
+        //this.caseBook.Legal.OutcomeLookupId = this.caseLegalForm.controls['OutcomeLookupId'].value;
+        //this.caseBook.Legal.DocumentsLookupId = this.caseLegalForm.controls['DocumentsLookupId'].value;
 
         this.casesService
             .updateLegal(this.caseBook).subscribe(data => {                

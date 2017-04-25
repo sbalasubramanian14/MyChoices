@@ -10,6 +10,6 @@
 
 	LegalConsentFormLookupId INT,
 	LegalActionLookupId INT,
-	OutcomeLookupId INT,
-	DocumentsLookupId INT
+	OutcomeLookupId varchar(100),
+	DocumentsLookupId varchar(100)
 )

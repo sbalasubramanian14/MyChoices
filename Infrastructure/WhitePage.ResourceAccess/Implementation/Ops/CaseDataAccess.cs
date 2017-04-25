@@ -99,9 +99,38 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.PhysicalHealth = this.unitOfWork.DbContext.PhysicalHealth.Where(c => c.CaseId == caseId).FirstOrDefault();
+            if (result.PhysicalHealth != null)
+            {
+                result.PhysicalHealth.WhoIsAbusingYouLookupArray = result.PhysicalHealth.WhoIsAbusingYouLookupId.ToIntArray();
+            }
+
             result.Abuse = this.unitOfWork.DbContext.Abuse.Where(c => c.CaseId == caseId).FirstOrDefault();
+            if (result.Abuse != null)
+            {
+                result.Abuse.FeelAboutAbuseLookupArray = result.Abuse.FeelAboutAbuseLookupId.ToIntArray();
+                result.Abuse.ParentsFeelAboutAbuseLookupArray = result.Abuse.ParentsFeelAboutAbuseLookupId.ToIntArray();
+                result.Abuse.LawFeelAboutAbuseLookupArray = result.Abuse.LawFeelAboutAbuseLookupId.ToIntArray();
+
+                result.Abuse.WeaponsUsedLookupArray = result.Abuse.WeaponsUsedLookupId.ToIntArray();
+                result.Abuse.TypesOfPhyscialAbuseLookupArray = result.Abuse.TypesOfPhyscialAbuseLookupId.ToIntArray();
+                result.Abuse.TypesOfEmotionalAbuseLookupArray = result.Abuse.TypesOfEmotionalAbuseLookupId.ToIntArray();
+                result.Abuse.TypesOfSexualAbuseLookupArray = result.Abuse.TypesOfSexualAbuseLookupId.ToIntArray();
+                result.Abuse.TypesOfEconomicAbuseLookupArray = result.Abuse.TypesOfEconomicAbuseLookupId.ToIntArray();
+                result.Abuse.ReasonsForAbuseLookupArray = result.Abuse.ReasonsForAbuseLookupId.ToIntArray();
+            }
+
             result.Manage = this.unitOfWork.DbContext.Manage.Where(c => c.CaseId == caseId).FirstOrDefault();
+            if (result.Manage != null)
+            {
+                result.Manage.TypesOfCounselingLookupArray = result.Manage.TypesOfCounselingLookupId.ToIntArray();                
+            }
+
             result.Legal = this.unitOfWork.DbContext.Legal.Where(c => c.CaseId == caseId).FirstOrDefault();
+            if (result.Legal != null)
+            {
+                result.Legal.OutcomeLookupArray = result.Legal.OutcomeLookupId.ToIntArray();
+                result.Legal.DocumentsLookupArray = result.Legal.DocumentsLookupId.ToIntArray();
+            }
 
             if (result.FamilyHouseHold == null) result.FamilyHouseHold = new CaseFamilyHouseHold();
             if (result.Spouse == null) result.Spouse = new CaseSpouse();

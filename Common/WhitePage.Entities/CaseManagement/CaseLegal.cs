@@ -18,7 +18,11 @@ namespace WhitePage.Entities.CaseManagement
 
         public int? LegalConsentFormLookupId { get; set; }
         public int? LegalActionLookupId { get; set; }
-        public int? OutcomeLookupId { get; set; }
-        public int? DocumentsLookupId { get; set; }
+        public string OutcomeLookupId { get; set; }
+        [NotMapped]
+        public int[] OutcomeLookupArray { get; set; }
+        public string DocumentsLookupId { get; set; }
+        [NotMapped]
+        public int[] DocumentsLookupArray { get; set; }
     }
 }

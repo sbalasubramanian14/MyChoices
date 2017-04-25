@@ -13,31 +13,51 @@ namespace WhitePage.Entities.CaseManagement
         public int? SufferingFromAbuseLookupId { get; set; }
         public string SufferingFromAbuseDesc { get; set; }
 
-        public int? FeelAboutAbuseLookupId { get; set; }
-        public int? ParentsFeelAboutAbuseLookupId { get; set; }
-        public int? LawFeelAboutAbuseLookupId { get; set; }
+        public string FeelAboutAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] FeelAboutAbuseLookupArray { get; set; }
+        public string ParentsFeelAboutAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] ParentsFeelAboutAbuseLookupArray { get; set; }
+        public string LawFeelAboutAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] LawFeelAboutAbuseLookupArray { get; set; }
+
         public int? SignsOfPhysicalAbuseLookupId { get; set; }
         public string SignsOfPhysicalAbuseDesc { get; set; }
 
-        public int? WeaponsUsedLookupId { get; set; }
+        public string WeaponsUsedLookupId { get; set; }
+        [NotMapped]
+        public int[] WeaponsUsedLookupArray { get; set; }
+
         public string WeaponsUsedDesc { get; set; }
 
-        public int? TypesOfPhyscialAbuseLookupId { get; set; }
+        public string TypesOfPhyscialAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] TypesOfPhyscialAbuseLookupArray { get; set; }
         public int? FrequencyOfPhyscialAbuseLookupId { get; set; }
         public byte? NumberOfYearsOfPhyscialAbuse { get; set; }
 
-        public int? TypesOfEmotionalAbuseLookupId { get; set; }
+        public string TypesOfEmotionalAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] TypesOfEmotionalAbuseLookupArray { get; set; }
         public int? FrequencyOfEmotionalAbuseLookupId { get; set; }
         public byte? NumberOfYearsOfEmotionalAbuse { get; set; }
 
-        public int? TypesOfSexualAbuseLookupId { get; set; }
+        public string TypesOfSexualAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] TypesOfSexualAbuseLookupArray { get; set; }
         public int? FrequencyOfSexualAbuseLookupId { get; set; }
         public byte? NumberOfYearsOfSexualAbuse { get; set; }
 
-        public int? TypesOfEconomicAbuseLookupId { get; set; }
+        public string TypesOfEconomicAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] TypesOfEconomicAbuseLookupArray { get; set; }
         public int? FrequencyOfEconomicAbuseLookupId { get; set; }
         public byte? NumberOfYearsOfEconomicAbuse { get; set; }
 
-        public int? ReasonsForAbuseLookupId { get; set; }
+        public string ReasonsForAbuseLookupId { get; set; }
+        [NotMapped]
+        public int[] ReasonsForAbuseLookupArray { get; set; }
     }
 }

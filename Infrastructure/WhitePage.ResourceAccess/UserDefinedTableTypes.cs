@@ -206,7 +206,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("CurrentlyPregnantDesc", DbColumnType.String)
 
                     .AddColumn("ReasonForSeekingHelpLookupId", DbColumnType.Int)
-                    .AddColumn("WhoIsAbusingYouLookupId", DbColumnType.Int)
+                    .AddColumn("WhoIsAbusingYouLookupId", DbColumnType.String)
                     .AddColumn("WhoIsAbusingYouDesc", DbColumnType.String);
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
@@ -251,32 +251,33 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("SufferingFromAbuseLookupId", DbColumnType.Int)
                     .AddColumn("SufferingFromAbuseDesc", DbColumnType.String)
 
-                    .AddColumn("FeelAboutAbuseLookupId", DbColumnType.Int)
-                    .AddColumn("ParentsFeelAboutAbuseLookupId", DbColumnType.Int)
-                    .AddColumn("LawFeelAboutAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("FeelAboutAbuseLookupId", DbColumnType.String)
+                    .AddColumn("ParentsFeelAboutAbuseLookupId", DbColumnType.String)
+                    .AddColumn("LawFeelAboutAbuseLookupId", DbColumnType.String)
+
                     .AddColumn("SignsOfPhysicalAbuseLookupId", DbColumnType.Int)
                     .AddColumn("SignsOfPhysicalAbuseDesc", DbColumnType.String)
 
-                    .AddColumn("WeaponsUsedLookupId", DbColumnType.Int)
+                    .AddColumn("WeaponsUsedLookupId", DbColumnType.String)
                     .AddColumn("WeaponsUsedDesc", DbColumnType.String)
 
-                    .AddColumn("TypesOfPhyscialAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("TypesOfPhyscialAbuseLookupId", DbColumnType.String)
                     .AddColumn("FrequencyOfPhyscialAbuseLookupId", DbColumnType.Int)
                     .AddColumn("NumberOfYearsOfPhyscialAbuse", DbColumnType.Byte)
 
-                    .AddColumn("TypesOfEmotionalAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("TypesOfEmotionalAbuseLookupId", DbColumnType.String)
                     .AddColumn("FrequencyOfEmotionalAbuseLookupId", DbColumnType.Int)
                     .AddColumn("NumberOfYearsOfEmotionalAbuse", DbColumnType.Byte)
 
-                    .AddColumn("TypesOfSexualAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("TypesOfSexualAbuseLookupId", DbColumnType.String)
                     .AddColumn("FrequencyOfSexualAbuseLookupId", DbColumnType.Int)
                     .AddColumn("NumberOfYearsOfSexualAbuse", DbColumnType.Byte)
 
-                    .AddColumn("TypesOfEconomicAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("TypesOfEconomicAbuseLookupId", DbColumnType.String)
                     .AddColumn("FrequencyOfEconomicAbuseLookupId", DbColumnType.Int)
                     .AddColumn("NumberOfYearsOfEconomicAbuse", DbColumnType.Byte)
 
-                    .AddColumn("ReasonsForAbuseLookupId", DbColumnType.Int)
+                    .AddColumn("ReasonsForAbuseLookupId", DbColumnType.String)
                     ;
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
@@ -300,7 +301,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("SourceOfCaseLookupId", DbColumnType.Int)
                     .AddColumn("SourceOfCaseDesc", DbColumnType.String)
 
-                    .AddColumn("TypesOfCounselingLookupId", DbColumnType.Int)
+                    .AddColumn("TypesOfCounselingLookupId", DbColumnType.String)
                     .AddColumn("TotalNoOfSessionsLookupId", DbColumnType.Int)
                     .AddColumn("TotalHoursSpentLookupId", DbColumnType.Int)
 
