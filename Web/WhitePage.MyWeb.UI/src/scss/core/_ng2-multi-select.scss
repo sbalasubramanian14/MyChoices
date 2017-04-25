@@ -1,15 +1,25 @@
 ﻿ss-multiselect-dropdown {
+    border: 1px solid transparent !important;
+
     button {
         background-color: rgba(0, 0, 0, 0.15) !important;
         border-radius: 16px;
-        border: none !important;
         color: white !important;
         white-space: normal !important;
+        width: 100%;
+        display: flex !important;
+        justify-content: space-between;
+        border-color: transparent !important;
 
-        &:focus {
-            border-color: #5fdfd1 !important;
+        &::after {
+            margin-top: 6px;
         }
 
+        &:focus {
+            border: 1px solid #5fdfd1 !important;
+            border-color: #5fdfd1 !important;
+            box-shadow: none !important;
+        }
         /*.filter input {
             color: black !important;
             padding-left: 12px !important;
@@ -34,8 +44,34 @@
         }*/
     }
 
-    ul{
+    ul {
+        background-color: rgba(237, 243, 243, 0.95) !important;
         width: 100%;
+
+        li {
+            &:hover {
+                background-color: #209e91 !important;
+                color: black !important;
+            }
+
+            a {
+                display: flex;
+
+                input {
+                    width: 17px;
+                    height: 17px;
+                    margin-top: 2px;
+                    margin-right: 10px;
+                }
+
+                color: black;
+
+                &:hover {
+                    color: black !important;
+                    text-decoration: none !important;
+                }
+            }
+        }
     }
 }
 
