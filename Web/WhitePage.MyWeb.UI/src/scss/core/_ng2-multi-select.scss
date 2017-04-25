@@ -1,0 +1,62 @@
+﻿ss-multiselect-dropdown {
+    button {
+        background-color: rgba(0, 0, 0, 0.15) !important;
+        border-radius: 16px;
+        border: none !important;
+        color: white !important;
+        white-space: normal !important;
+
+        &:focus {
+            border-color: #5fdfd1 !important;
+        }
+
+        /*.filter input {
+            color: black !important;
+            padding-left: 12px !important;
+            background-color: rgba(0, 4, 3, 0.07) !important;
+            border-radius: 6px !important;
+
+            &:focus {
+                border-color: #5fdfd1 !important;
+            }
+        }
+
+        .selected {
+            background-color: rgba(32, 158, 145, 0.16) !important;
+        }
+
+        .highlighted {
+            background-color: $brand-primary !important;
+        }
+
+        .options {
+            padding: 5px;
+        }*/
+    }
+
+    ul{
+        width: 100%;
+    }
+}
+
+ng-select {
+    :focus {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.15);
+        border-color: #5fdfd1;
+        outline: none;
+    }
+
+    > div {
+        border: none !important;
+        background-color: $input-bg;
+        border: 1px solid $input-bg;
+        line-height: $input-line-height;
+        padding: 0.20rem 0.5rem;
+        border-radius: 16px;
+    }
+
+    div .single > div.toggle:hover, > div > div.single > div.clear:hover {
+        background-color: transparent !important;
+    }
+}

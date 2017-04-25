@@ -213,8 +213,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.OPMTeamToFollowupLookupOptionList = this.ParseLookups("YesNo");
                     this.isFeedbackDataLoaded = true;
                     
-                    this.outcomeLookupOptionList == this.ParseMultiLookups("Outcome");
-                    this.documentsLookupOptionList == this.ParseMultiLookups("Documents");
+                    this.outcomeLookupOptionList = this.ParseMultiLookups("Outcome");
+                    this.documentsLookupOptionList = this.ParseMultiLookups("Documents");
 
                     this.isLegalDataLoaded = true;
 
