@@ -3,9 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { SelectModule, IOption } from 'ng-select';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+
 import { Case, CaseAddress, CaseBook } from '../models/case.entities';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+
 
 @Injectable()
 export class BaseCaseController {
@@ -121,6 +124,25 @@ export class BaseCaseController {
                 localOptionsList.push({
                     value: lookupDetailsList[i].LookupDetailId.toString(),
                     label: lookupDetailsList[i].Value
+                });
+            }
+        }
+        console.log(lookupName);
+        return localOptionsList;
+    }
+
+    public ParseMultiLookups(lookupName: string): Array<IMultiSelectOption> {
+        var localOptionsList = new Array<IMultiSelectOption>();
+
+        if (this.lookupsList.filter(l => l.Title == lookupName) == undefined) {
+            console.log(lookupName);
+        }
+        else {
+            var lookupDetailsList = this.lookupsList.filter(l => l.Title == lookupName)[0].LookupDetails;
+            for (var i = 0; i < lookupDetailsList.length; i++) {
+                localOptionsList.push({
+                    id: lookupDetailsList[i].LookupDetailId,
+                    name: lookupDetailsList[i].Value
                 });
             }
         }

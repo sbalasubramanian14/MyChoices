@@ -215,32 +215,32 @@
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
                         <button class="btn btn-primary" (click)="addNewChild()">Add New Children &nbsp;<i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table" style="color:whitesmoke">
-                                <thead class="thead-inverse">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Age</th>
-                                        <th>Gender</th>
-                                        <th>Relationship With Abuser</th>
-                                        <th class="text-right"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let children of caseBook.vChildren; let i = index">
-                                        <td>{{children.Name}}</td>
-                                        <td>{{children.Age}}</td>
-                                        <td>{{children.Gender}}</td>
-                                        <td>{{children.Relation}}</td>
-                                        <td class="text-right">
-                                            <button class="btn btn-link" (click)="editChild(children)">Edit</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Relationship With Abuser</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let children of caseBook.vChildren; let i = index">
+                                    <td>{{children.Name}}</td>
+                                    <td>{{children.Age}}</td>
+                                    <td>{{children.Gender}}</td>
+                                    <td>{{children.Relation}}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-link" (click)="editChild(children)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </tab>
 
@@ -257,11 +257,11 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Any children deceased/miscarried/aborted?</label>
-                                    <ng-select [options]="childrenDeceasedLookupOptionsList"
-                                               placeholder="Select"
-                                               formControlName="ChildrenDeceasedLookupId"
-                                               [allowClear]="true">
-                                    </ng-select>
+                                    <ss-multiselect-dropdown [options]="childrenDeceasedLookupOptionsList"
+                                                             formControlName="ChildrenDeceasedLookupId"
+                                                             [(ngModel)]="caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray">
+
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -294,11 +294,11 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of</label>
-                                    <ng-select [options]="peacemakerAssistanceOptionsList"
-                                               placeholder="Select"
-                                               formControlName="PeacemakerAssistanceLookupId"
-                                               [allowClear]="true">
-                                    </ng-select>
+                                    <ss-multiselect-dropdown [options]="peacemakerAssistanceOptionsList"
+                                                             formControlName="PeacemakerAssistanceLookupId"
+                                                             [(ngModel)]="caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray">
+
+                                    </ss-multiselect-dropdown>                                    
                                 </div>
 
                                 <div class="form-group">
@@ -368,18 +368,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="PeaceMakerId">Occupation</label>
-                                    <ng-select [options]="occupationOptionsList"
-                                               placeholder="Select"
-                                               formControlName="OccupationLookupId"
-                                               [allowClear]="true">
-                                    </ng-select>
+                                    <label for="PeaceMakerId">If other Vocational skills, please specify:</label>
+                                    <input [formControl]="clientAndHouseholdForm.controls['VocationalSkillsDesc']" class="form-control" />
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="PeaceMakerId">If self-employed or employed, please specify:</label>
-                                    <input [formControl]="clientAndHouseholdForm.controls['OccupationDesc']" class="form-control" />
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -393,6 +385,20 @@
                             <div class="card-block">
 
                                 <div class="form-group">
+                                    <label for="PeaceMakerId">Occupation</label>
+                                    <ng-select [options]="occupationOptionsList"
+                                               placeholder="Select"
+                                               formControlName="OccupationLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">If self-employed or employed, please specify:</label>
+                                    <input [formControl]="clientAndHouseholdForm.controls['OccupationDesc']" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
                                     <label for="PeaceMakerId">Client Income</label>
                                     <ng-select [options]="incomeLookupOptionsList"
                                                placeholder="Select"
@@ -403,11 +409,10 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Household members living in same house</label>
-                                    <ng-select [options]="householdMembersOptionsList"
-                                               placeholder="Select"
-                                               formControlName="HouseHoldMembersLivingLookupId"
-                                               [allowClear]="true">
-                                    </ng-select>
+                                    <ss-multiselect-dropdown [options]="householdMembersOptionsList"
+                                                             formControlName="HouseHoldMembersLivingLookupId"
+                                                             [(ngModel)]="caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupArray">
+                                    </ss-multiselect-dropdown>                                    
                                 </div>
 
                                 <div class="form-group">
@@ -454,7 +459,7 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Spouse Mobile phone</label>
-                                    <input [formControl]="spouseForm.controls['SpouseMobilePhone']" maxlength="30" class="form-control" />
+                                    <input [formControl]="spouseForm.controls['SpouseMobilePhone']" maxlength="10" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
@@ -744,32 +749,32 @@
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
                         <button class="btn btn-primary" (click)="addNewOffender()">Add New Offender &nbsp;<i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table" style="color:whitesmoke">
-                                <thead class="thead-inverse">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Age</th>
-                                        <th>Gender</th>
-                                        <th>Relationship With Abuser</th>
-                                        <th class="text-right"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let offender of caseBook.vOffender; let i = index">
-                                        <td>{{offender.Name}}</td>
-                                        <td>{{offender.Age}}</td>
-                                        <td>{{offender.Gender}}</td>
-                                        <td>{{offender.RelationshipWithVictim}}</td>
-                                        <td class="text-right">
-                                            <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Relationship With Abuser</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let offender of caseBook.vOffender; let i = index">
+                                    <td>{{offender.Name}}</td>
+                                    <td>{{offender.Age}}</td>
+                                    <td>{{offender.Gender}}</td>
+                                    <td>{{offender.RelationshipWithVictim}}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </tab>
 
@@ -1032,58 +1037,58 @@
                         <button class="btn btn-primary" (click)="addNewMental()">Add New Mental Status &nbsp;<i class="fa fa-plus"></i></button>
                     </div>
                     <div class="" style="position: relative; width: 100%">
-                            <table class="table table-responsive" style="position: absolute; width: 100%; color:whitesmoke" >
-                                <thead class="thead-inverse">
-                                    <tr>
-                                        <th>Dress</th>
-                                        <th>Hygiene</th>
-                                        <th>BodyType</th>
-                                        <th>Expression</th>
-                                        <th>MotorActivity</th>
-                                        <th>Vocabulary</th>
-                                        <th>ImpulseControl</th>
-                                        <th>Speech</th>
-                                        <th>Behaviour</th>
-                                        <th>Content</th>
-                                        <th>FlowOfThought</th>
-                                        <th>Orientation</th>
-                                        <th>EstimatedIntellect</th>
-                                        <th>Attention</th>
-                                        <th>Insight</th>
-                                        <th>Judgement</th>
-                                        <th>Memory</th>
-                                        <th>Information</th>
-                                        <th>Abstraction</th>
-                                        <th class="text-right"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let mental of caseBook.vMental; let i = index">
-                                        <td>{{mental.MentalDress}}</td>
-                                        <td>{{mental.MentalHygiene}}</td>
-                                        <td>{{mental.MentalBodyType}}</td>
-                                        <td>{{mental.MentalExpression}}</td>
-                                        <td>{{mental.MentalMotorActivity}}</td>
-                                        <td>{{mental.MentalVocabulary}}</td>
-                                        <td>{{mental.MentalImpulseControl}}</td>
-                                        <td>{{mental.MentalSpeech}}</td>
-                                        <td>{{mental.MentalBehaviour}}</td>
-                                        <td>{{mental.MentalContent}}</td>
-                                        <td>{{mental.MentalFlowOfThought}}</td>
-                                        <td>{{mental.MentalOrientation}}</td>
-                                        <td>{{mental.MentalEstimatedIntellect}}</td>
-                                        <td>{{mental.MentalAttention}}</td>
-                                        <td>{{mental.MentalInsight}}</td>
-                                        <td>{{mental.MentalJudgement}}</td>
-                                        <td>{{mental.MentalMemory}}</td>
-                                        <td>{{mental.MentalInformation}}</td>
-                                        <td>{{mental.MentalAbstraction}}</td>
-                                        <td class="text-right">
-                                            <button class="btn btn-link" (click)="editMental(mental)">Edit</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <table class="table table-responsive" style="position: absolute; width: 100%; color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Dress</th>
+                                    <th>Hygiene</th>
+                                    <th>BodyType</th>
+                                    <th>Expression</th>
+                                    <th>MotorActivity</th>
+                                    <th>Vocabulary</th>
+                                    <th>ImpulseControl</th>
+                                    <th>Speech</th>
+                                    <th>Behaviour</th>
+                                    <th>Content</th>
+                                    <th>FlowOfThought</th>
+                                    <th>Orientation</th>
+                                    <th>EstimatedIntellect</th>
+                                    <th>Attention</th>
+                                    <th>Insight</th>
+                                    <th>Judgement</th>
+                                    <th>Memory</th>
+                                    <th>Information</th>
+                                    <th>Abstraction</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mental of caseBook.vMental; let i = index">
+                                    <td>{{mental.MentalDress}}</td>
+                                    <td>{{mental.MentalHygiene}}</td>
+                                    <td>{{mental.MentalBodyType}}</td>
+                                    <td>{{mental.MentalExpression}}</td>
+                                    <td>{{mental.MentalMotorActivity}}</td>
+                                    <td>{{mental.MentalVocabulary}}</td>
+                                    <td>{{mental.MentalImpulseControl}}</td>
+                                    <td>{{mental.MentalSpeech}}</td>
+                                    <td>{{mental.MentalBehaviour}}</td>
+                                    <td>{{mental.MentalContent}}</td>
+                                    <td>{{mental.MentalFlowOfThought}}</td>
+                                    <td>{{mental.MentalOrientation}}</td>
+                                    <td>{{mental.MentalEstimatedIntellect}}</td>
+                                    <td>{{mental.MentalAttention}}</td>
+                                    <td>{{mental.MentalInsight}}</td>
+                                    <td>{{mental.MentalJudgement}}</td>
+                                    <td>{{mental.MentalMemory}}</td>
+                                    <td>{{mental.MentalInformation}}</td>
+                                    <td>{{mental.MentalAbstraction}}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-link" (click)="editMental(mental)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -1094,41 +1099,41 @@
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
                         <button class="btn btn-primary" (click)="addNewFeedback()">Add New Feedback &nbsp;<i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table" style="color:whitesmoke">
-                                <thead class="thead-inverse">
-                                    <tr>
-                                        <th>Respect</th>
-                                        <th>Fee Safe</th>
-                                        <th>Counselling</th>
-                                        <th>Assistance</th>
-                                        <th>Recommend Fee</th>
-                                        <th>Able To Improve</th>
-                                        <th>OPM Team Followup</th>
-                                        <th>Suggestions</th>
-                                        <th class="text-right"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let feedback of caseBook.FeedBack; let i = index">
-                                        <td>{{feedback.RespectedDuringYourVisit}}</td>
-                                        <td>{{feedback.FeelSafeAndSecure}}</td>
-                                        <td>{{feedback.FeelThatCounselling}}</td>
-                                        <td>{{feedback.AssistanceOfPeacemaker}}</td>
-
-                                        <td>{{feedback.RecommendFreeCounselling}}</td>
-                                        <td>{{feedback.AbleToImprove}}</td>
-                                        <td>{{feedback.OPMTeamToFollowup}}</td>
-                                        <td>{{feedback.AnySuggestions}}</td>
-                                        <td class="text-right">
-                                            <button class="btn btn-link" (click)="editFeedback(feedback)">Edit</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Respect</th>
+                                    <th>Fee Safe</th>
+                                    <th>Counselling</th>
+                                    <th>Assistance</th>
+                                    <th>Recommend Fee</th>
+                                    <th>Able To Improve</th>
+                                    <th>OPM Team Followup</th>
+                                    <th>Suggestions</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let feedback of caseBook.FeedBack; let i = index">
+                                    <td>{{feedback.RespectedDuringYourVisit}}</td>
+                                    <td>{{feedback.FeelSafeAndSecure}}</td>
+                                    <td>{{feedback.FeelThatCounselling}}</td>
+                                    <td>{{feedback.AssistanceOfPeacemaker}}</td>
+
+                                    <td>{{feedback.RecommendFreeCounselling}}</td>
+                                    <td>{{feedback.AbleToImprove}}</td>
+                                    <td>{{feedback.OPMTeamToFollowup}}</td>
+                                    <td>{{feedback.AnySuggestions}}</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-link" (click)="editFeedback(feedback)">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </tab>
 
@@ -1232,7 +1237,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Status</label>
                                     <ng-select [options]="caseStatusOptionList"
-                                               placeholder="Select"  
+                                               placeholder="Select"
                                                formControlName="CaseStatusId"
                                                [allowClear]="true">
                                     </ng-select>
@@ -1241,7 +1246,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Source of case</label>
                                     <ng-select [options]="sourceOfCaseLookupOptionList"
-                                               placeholder="Select" 
+                                               placeholder="Select"
                                                formControlName="SourceOfCaseLookupId"
                                                [allowClear]="true">
                                     </ng-select>
@@ -1255,7 +1260,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Type of counseling</label>
                                     <ng-select [options]="typesOfCounselingLookupOptionList"
-                                               placeholder="Select" 
+                                               placeholder="Select"
                                                formControlName="TypesOfCounselingLookupId"
                                                [allowClear]="true">
                                     </ng-select>
@@ -1596,7 +1601,7 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Hygiene</label>
-                                        <ng-select [options]="MentalDressLookupOptionList"
+                                        <ng-select [options]="MentalHygieneLookupOptionList"
                                                    placeholder="Select"
                                                    formControlName="MentalHygieneLookupId"
                                                    [allowClear]="true">
@@ -1649,7 +1654,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column"  style="margin-bottom: 10px;">
+                        <div class="d-flex flex-column" style="margin-bottom: 10px;">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status
@@ -1842,7 +1847,7 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Notes *</label>
-                                        <input placeholder="Duration" [formControl]="caseSessionForm.controls['SessionNotes']" class="form-control" />
+                                        <input placeholder="Notes" [formControl]="caseSessionForm.controls['SessionNotes']" class="form-control" />
                                         <div>
                                             <small *ngIf="caseSessionForm.controls['SessionNotes'].hasError('required') && caseSessionForm.controls['SessionNotes'].touched" class="mat-text-warn">Notes is required.</small>
                                         </div>

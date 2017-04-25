@@ -2,12 +2,12 @@
 (
 	[CaseFamilyHouseHoldId] INT,
 	[CaseId] INT NOT NULL,
-	ChildrenDeceasedLookupId INT NULL,
+	ChildrenDeceasedLookupId varchar(100) NULL,
 	HouseHoldIncomeLookupId INT NULL,
 	SoughtHelpYesNoLookupId INT NULL,
 	SoughtHelpDesc varchar(200) NULL,
 	SoughtHelpOutPut varchar(200) NULL,
-	PeacemakerAssistanceLookupId int NULL,
+	PeacemakerAssistanceLookupId varchar(100),
 	PeacemakerAssistanceDesc varchar(200),
 	PeacemakerFollowupYesNoLookupId INT NULL,
 	ClientSignedRegistrationFormYesNoLookupId INT NULL,
@@ -15,10 +15,11 @@
 	ReligionLookupId INT NULL,
 	LevelOfEducationLookupId INT NULL,
 	VocationalSkillsLookupId INT NULL,
+	VocationalSkillsDesc varchar(200) NULL,
 	OccupationLookupId INT NULL,
 	OccupationDesc varchar(200) NULL,
 	ClientIncomeLookupId INT NULL,
-	HouseHoldMembersLivingLookupId INT NULL,
+	HouseHoldMembersLivingLookupId varchar(100) NULL,
 	YearOfMarriage smallint NULL,
 	ClientAgeAtFirstChild tinyint NULL
 )

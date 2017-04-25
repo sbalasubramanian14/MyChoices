@@ -120,12 +120,18 @@ export class CaseFamilyHouseHold {
 
     CaseFamilyHouseHoldId?: number;
     CaseId?: number;
-    ChildrenDeceasedLookupId?: number;
+
+    ChildrenDeceasedLookupId: string;
+    ChildrenDeceasedLookupArray: Array<Number>;
+
     HouseHoldIncomeLookupId?: number;
     SoughtHelpYesNoLookupId?: number;
     SoughtHelpDesc?: string;
     SoughtHelpOutPut?: string;
+
     PeacemakerAssistanceLookupId?: number;
+    PeacemakerAssistanceLookupArray: Array<Number>;    
+
     PeacemakerAssistanceDesc?: string;
     PeacemakerFollowupYesNoLookupId?: number;
     ClientSignedRegistrationFormYesNoLookupId?: number;
@@ -133,10 +139,15 @@ export class CaseFamilyHouseHold {
     ReligionLookupId?: number;
     LevelOfEducationLookupId?: number;
     VocationalSkillsLookupId?: number;
+    VocationalSkillsDesc: string;
+
     OccupationLookupId?: number;
     OccupationDesc?: string;
     ClientIncomeLookupId?: number;
+
     HouseHoldMembersLivingLookupId?: number;
+    HouseHoldMembersLivingLookupArray: Array<Number>;    
+
     YearOfMarriage?: number;
     ClientAgeAtFirstChild?: number;
 }

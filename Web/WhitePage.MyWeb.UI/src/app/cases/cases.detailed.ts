@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, A
 import { CustomValidators } from 'ng2-validation';
 import { SelectModule, IOption } from 'ng-select';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
@@ -48,16 +49,16 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public isFeedbackDataLoaded: boolean = false;
     public isLegalDataLoaded: boolean = false;
 
-    public childrenDeceasedLookupOptionsList: Array<IOption> = [];
+    public childrenDeceasedLookupOptionsList: Array<IMultiSelectOption> = [];
     public incomeLookupOptionsList: Array<IOption> = [];
     public yesNoOptionsList: Array<IOption> = [];
 
-    public peacemakerAssistanceOptionsList: Array<IOption> = [];
+    public peacemakerAssistanceOptionsList: Array<IMultiSelectOption> = [];
     public religionOptionsList: Array<IOption> = [];
     public levelOfEducationOptionsList: Array<IOption> = [];
     public vocationalSkillsOptionsList: Array<IOption> = [];
     public occupationOptionsList: Array<IOption> = [];
-    public householdMembersOptionsList: Array<IOption> = [];
+    public householdMembersOptionsList: Array<IMultiSelectOption> = [];
 
     public spouseEducationLookupIdLookupOptionsList: Array<IOption> = [];
     public spouseStateOptionsList: Array<IOption> = [];
@@ -129,15 +130,15 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");
                     this.relationshipWithAbuserLookupOptionsList = this.ParseLookups("RelationshipWithAbuser");
 
-                    this.childrenDeceasedLookupOptionsList = this.ParseLookups("ChildrenDeceased");
+                    this.childrenDeceasedLookupOptionsList = this.ParseMultiLookups("ChildrenDeceased");
                     this.incomeLookupOptionsList = this.ParseLookups("Income");
                     this.yesNoOptionsList = this.ParseLookups("YesNo");
-                    this.peacemakerAssistanceOptionsList = this.ParseLookups("PeacemakerAssistance");
+                    this.peacemakerAssistanceOptionsList = this.ParseMultiLookups("PeacemakerAssistance");
                     this.religionOptionsList = this.ParseLookups("Religion");
                     this.levelOfEducationOptionsList = this.ParseLookups("LevelOfEducation");
                     this.vocationalSkillsOptionsList = this.ParseLookups("VocationalSkills");
                     this.occupationOptionsList = this.ParseLookups("Occupation");
-                    this.householdMembersOptionsList = this.ParseLookups("HouseholdMembers");
+                    this.householdMembersOptionsList = this.ParseMultiLookups("HouseholdMembers");
                     this.isHouseHoldDataLoaded = true;
 
                     this.spouseEducationLookupIdLookupOptionsList = this.ParseLookups("LevelOfEducation");
@@ -500,14 +501,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /* Start - client And Household */
 
-    public onUpdateHouseHoldInfo() {
-        this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId = this.clientAndHouseholdForm.controls['ChildrenDeceasedLookupId'].value;
+    public onUpdateHouseHoldInfo() {        
+        //this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId = this.clientAndHouseholdForm.controls['ChildrenDeceasedLookupId'].value;
         this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.clientAndHouseholdForm.controls['HouseHoldIncomeLookupId'].value;
         this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.clientAndHouseholdForm.controls['SoughtHelpYesNoLookupId'].value;
         this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.clientAndHouseholdForm.controls['SoughtHelpDesc'].value;
         this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.clientAndHouseholdForm.controls['SoughtHelpOutPut'].value;
 
-        this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = this.clientAndHouseholdForm.controls['PeacemakerAssistanceLookupId'].value;
+        //this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = this.clientAndHouseholdForm.controls['PeacemakerAssistanceLookupId'].value;
         this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.clientAndHouseholdForm.controls['PeacemakerAssistanceDesc'].value;
         this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.clientAndHouseholdForm.controls['PeacemakerFollowupYesNoLookupId'].value;
         this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.clientAndHouseholdForm.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
@@ -516,12 +517,13 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.FamilyHouseHold.ReligionLookupId = this.clientAndHouseholdForm.controls['ReligionLookupId'].value;
         this.caseBook.FamilyHouseHold.LevelOfEducationLookupId = this.clientAndHouseholdForm.controls['LevelOfEducationLookupId'].value;
         this.caseBook.FamilyHouseHold.VocationalSkillsLookupId = this.clientAndHouseholdForm.controls['VocationalSkillsLookupId'].value;
+        this.caseBook.FamilyHouseHold.VocationalSkillsDesc = this.clientAndHouseholdForm.controls['VocationalSkillsDesc'].value;
 
         this.caseBook.FamilyHouseHold.OccupationLookupId = this.clientAndHouseholdForm.controls['OccupationLookupId'].value;
         this.caseBook.FamilyHouseHold.OccupationDesc = this.clientAndHouseholdForm.controls['OccupationDesc'].value;
         this.caseBook.FamilyHouseHold.ClientIncomeLookupId = this.clientAndHouseholdForm.controls['ClientIncomeLookupId'].value;
 
-        this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId = this.clientAndHouseholdForm.controls['HouseHoldMembersLivingLookupId'].value;
+        //this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId = this.clientAndHouseholdForm.controls['HouseHoldMembersLivingLookupId'].value;
         this.caseBook.FamilyHouseHold.YearOfMarriage = this.clientAndHouseholdForm.controls['YearOfMarriage'].value;
         this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].value;
 
@@ -550,6 +552,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             ReligionLookupId: new FormControl(this.caseBook.FamilyHouseHold.ReligionLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ReligionLookupId.toString()),
             LevelOfEducationLookupId: new FormControl(this.caseBook.FamilyHouseHold.LevelOfEducationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.LevelOfEducationLookupId.toString()),
             VocationalSkillsLookupId: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsLookupId == undefined ? null : this.caseBook.FamilyHouseHold.VocationalSkillsLookupId.toString()),
+            VocationalSkillsDesc: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsDesc),
             OccupationLookupId: new FormControl(this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString()),
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
             ClientIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()),

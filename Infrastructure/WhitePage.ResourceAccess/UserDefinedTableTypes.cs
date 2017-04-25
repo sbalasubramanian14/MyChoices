@@ -103,13 +103,13 @@ namespace WhitePage.ResourceAccess
                 columnCollection
                     .AddColumn("CaseFamilyHouseHoldId", DbColumnType.Int)
                     .AddColumn("CaseId", DbColumnType.Int)
-                    .AddColumn("ChildrenDeceasedLookupId", DbColumnType.Int)
+                    .AddColumn("ChildrenDeceasedLookupId", DbColumnType.String)
                     .AddColumn("HouseHoldIncomeLookupId", DbColumnType.Int)
                     .AddColumn("SoughtHelpYesNoLookupId", DbColumnType.Int)
                     .AddColumn("SoughtHelpDesc", DbColumnType.String)
 
                     .AddColumn("SoughtHelpOutPut", DbColumnType.String)
-                    .AddColumn("PeacemakerAssistanceLookupId", DbColumnType.Int)
+                    .AddColumn("PeacemakerAssistanceLookupId", DbColumnType.String)
                     .AddColumn("PeacemakerAssistanceDesc", DbColumnType.String)
                     .AddColumn("PeacemakerFollowupYesNoLookupId", DbColumnType.Int)
 
@@ -118,10 +118,13 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("ReligionLookupId", DbColumnType.Int)
                     .AddColumn("LevelOfEducationLookupId", DbColumnType.Int)
                     .AddColumn("VocationalSkillsLookupId", DbColumnType.Int)
+                    .AddColumn("VocationalSkillsDesc", DbColumnType.String)
+                    
                     .AddColumn("OccupationLookupId", DbColumnType.Int)
                     .AddColumn("OccupationDesc", DbColumnType.String)
                     .AddColumn("ClientIncomeLookupId", DbColumnType.Int)
-                    .AddColumn("HouseHoldMembersLivingLookupId", DbColumnType.Int)
+
+                    .AddColumn("HouseHoldMembersLivingLookupId", DbColumnType.String)
                     .AddColumn("YearOfMarriage", DbColumnType.Short)
                     .AddColumn("ClientAgeAtFirstChild", DbColumnType.Byte);
 

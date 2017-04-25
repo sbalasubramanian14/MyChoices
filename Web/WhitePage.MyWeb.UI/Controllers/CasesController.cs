@@ -6,6 +6,7 @@ using System.Linq;
 using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
+using WhitePage.Utilities.Extensions;
 
 namespace WhitePage.MyWeb.UI.Controllers
 {
@@ -101,6 +102,11 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateHouseHold([FromBody] CaseBook caseBook)
         {
             caseBook.FamilyHouseHold.CaseId = caseBook.Case.CaseId;
+
+            caseBook.FamilyHouseHold.ChildrenDeceasedLookupId = caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray.ToArrayString();
+            caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray.ToArrayString();
+            caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId = caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdateHouseHold(caseBook);
             return Ok(updatedCase);
         }

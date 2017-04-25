@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Ops;
+using WhitePage.Utilities.Extensions;
 
 namespace WhitePage.ResourceAccess.Implementation.Ops
 {
@@ -89,6 +90,13 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();            
 
             result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
+            if (result.FamilyHouseHold != null)
+            {
+                result.FamilyHouseHold.ChildrenDeceasedLookupArray = result.FamilyHouseHold.ChildrenDeceasedLookupId.ToIntArray();
+                result.FamilyHouseHold.PeacemakerAssistanceLookupArray = result.FamilyHouseHold.PeacemakerAssistanceLookupId.ToIntArray();
+                result.FamilyHouseHold.HouseHoldMembersLivingLookupArray = result.FamilyHouseHold.HouseHoldMembersLivingLookupId.ToIntArray();
+            }
+
             result.Spouse = this.unitOfWork.DbContext.Spouse.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.PhysicalHealth = this.unitOfWork.DbContext.PhysicalHealth.Where(c => c.CaseId == caseId).FirstOrDefault();
             result.Abuse = this.unitOfWork.DbContext.Abuse.Where(c => c.CaseId == caseId).FirstOrDefault();
@@ -219,6 +227,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.FamilyHouseHold.ReligionLookupId,
                 caseBook.FamilyHouseHold.LevelOfEducationLookupId,
                 caseBook.FamilyHouseHold.VocationalSkillsLookupId,
+                caseBook.FamilyHouseHold.VocationalSkillsDesc,
                 caseBook.FamilyHouseHold.OccupationLookupId,
                 caseBook.FamilyHouseHold.OccupationDesc,
                 caseBook.FamilyHouseHold.ClientIncomeLookupId,

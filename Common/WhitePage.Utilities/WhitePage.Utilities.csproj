@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Constants\ConnectionStrings.cs" />
     <Compile Include="Constants\Settings.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\EncryptionManager.cs" />
     <Compile Include="Security\RijndaelHelper.cs" />

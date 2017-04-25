@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule, IOption } from 'ng-select';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
@@ -32,7 +33,8 @@ import { Ng2TableModule } from '../directives/customTable/ng-table-module';
         PaginationModule.forRoot(),
         TooltipModule.forRoot(),
         Ng2TableModule,
-        ToastModule.forRoot()
+        ToastModule.forRoot(),
+        MultiselectDropdownModule
     ],
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,
