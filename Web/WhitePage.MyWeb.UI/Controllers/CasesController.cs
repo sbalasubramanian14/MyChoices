@@ -11,7 +11,7 @@ using WhitePage.Utilities.Extensions;
 namespace WhitePage.MyWeb.UI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class CasesController : WhitePageController
     {
         private ICaseBusinessAccess caseBusinessAccess;
