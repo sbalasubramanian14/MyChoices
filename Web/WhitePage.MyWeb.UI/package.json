@@ -38,7 +38,8 @@
     "ts-helpers": "1.1.2",
     "zone.js": "0.8.5",
     "ng2-toastr": "4.0.1",
-    "angular-2-dropdown-multiselect": "^1.1.0"
+    "angular-2-dropdown-multiselect": "^1.1.0",
+    "mydatepicker": "1.10.1"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
