@@ -1,40 +1,14 @@
 
 <div style="height: 100vh; display: flex;">
-        <div class="auth-container">
-            <div class="auth-title">
-                <img src="/assets/img/logo-mychoices.png" alt="My Choices" style="height: 60px"/>
+    <div class="auth-container">
+        <div class="auth-title">
+            <img src="/assets/img/logo-mychoices.png" alt="My Choices" style="height: 60px" />
+        </div>
+        <div class="container">
+            <button id="my-signin2" class="g-signin2" (click)="signIn('google')">google</button>
+            <div class="form-group">
+                <small class="mat-text-warn">{{errorMsg}}</small>
             </div>
-            <div class="container">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                    <div class="form-group row">
-                        <label for="username" class="col-3 col-sm-2 col-form-label">Email</label>
-                        <div class="col-9 col-sm-10">
-                            <input type="text" id="username" tabindex="1" class="form-control" placeholder="Username" [formControl]="form.controls['uname']">
-                        </div>
-                        <div>
-                            <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Username is required.</small>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="password" class="col-3 col-sm-2 col-form-label">Password</label>
-                        <div class="col-9 col-sm-10">
-                            <input type="password" id="password" tabindex="2" class="form-control" placeholder="Password" [formControl]="form.controls['password']">
-                        </div>
-                        <div>
-                            <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">Password is required.</small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <small class="mat-text-warn">{{errorMsg}}</small>
-                    </div>
-                    <div class="form-group login-btn">
-                        <div class="row justify-content-center">
-                            <div class="">
-                                <button role="button" type="submit" name="login-submit" id="login-submit" tabindex="4" class="btn btn-login transparent-btn" value="Log In">Log In</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>        
+        </div>
+    </div>
 </div>

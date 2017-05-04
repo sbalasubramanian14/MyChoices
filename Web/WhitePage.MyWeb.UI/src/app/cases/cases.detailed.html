@@ -166,12 +166,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="testingDate">Testing Date</label>
-                                    <my-date-picker name="mydate" [options]="myDatePickerOptions" id="testingDate"
-                                                    formControlName="myDate"></my-date-picker>
-                                </div>
-
-                                <div class="form-group">
                                     <button class="btn btn-primary" [disabled]="!casePrimaryForm.valid" (click)="onPrimayUpdate()">Update</button>
                                 </div>
                             </div>
@@ -304,7 +298,7 @@
                                                              formControlName="PeacemakerAssistanceLookupId"
                                                              [(ngModel)]="caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray">
 
-                                    </ss-multiselect-dropdown>                                    
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -377,7 +371,7 @@
                                     <label for="PeaceMakerId">If other Vocational skills, please specify:</label>
                                     <input [formControl]="clientAndHouseholdForm.controls['VocationalSkillsDesc']" class="form-control" />
                                 </div>
-                                
+
 
                             </div>
                         </div>
@@ -418,7 +412,7 @@
                                     <ss-multiselect-dropdown [options]="householdMembersOptionsList"
                                                              formControlName="HouseHoldMembersLivingLookupId"
                                                              [(ngModel)]="caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupArray">
-                                    </ss-multiselect-dropdown>                                    
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -731,7 +725,7 @@
                                     <ss-multiselect-dropdown [options]="whoIsAbusingYouLookupOptionsList"
                                                              formControlName="WhoIsAbusingYouLookupId"
                                                              [(ngModel)]="caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray">
-                                    </ss-multiselect-dropdown>                                    
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -817,7 +811,7 @@
 
                                     </ss-multiselect-dropdown>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="CenterId">How do your parents feel about the abuse?</label>
                                     <ss-multiselect-dropdown [options]="farentsFeelAboutAbuseLookupOptionsList"
@@ -833,7 +827,7 @@
                                                              formControlName="LawFeelAboutAbuseLookupId"
                                                              [(ngModel)]="caseBook.Abuse.LawFeelAboutAbuseLookupArray">
 
-                                    </ss-multiselect-dropdown>                                    
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -856,7 +850,7 @@
                                                              formControlName="WeaponsUsedLookupId"
                                                              [(ngModel)]="caseBook.Abuse.WeaponsUsedLookupArray">
 
-                                    </ss-multiselect-dropdown>  
+                                    </ss-multiselect-dropdown>
                                 </div>
                                 <div class="form-group">
                                     <label for="CenterId">Please specify</label>
@@ -879,7 +873,7 @@
                                                              formControlName="TypesOfPhyscialAbuseLookupId"
                                                              [(ngModel)]="caseBook.Abuse.TypesOfPhyscialAbuseLookupArray">
 
-                                    </ss-multiselect-dropdown>  
+                                    </ss-multiselect-dropdown>
 
                                 </div>
 
@@ -961,7 +955,7 @@
                                                              formControlName="TypesOfEconomicAbuseLookupId"
                                                              [(ngModel)]="caseBook.Abuse.TypesOfEconomicAbuseLookupArray">
 
-                                    </ss-multiselect-dropdown>                                    
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -984,7 +978,7 @@
                                                              formControlName="ReasonsForAbuseLookupId"
                                                              [(ngModel)]="caseBook.Abuse.ReasonsForAbuseLookupArray">
 
-                                    </ss-multiselect-dropdown>                                   
+                                    </ss-multiselect-dropdown>
                                 </div>
 
                                 <div class="form-group">
@@ -1199,7 +1193,7 @@
                             </div>
                             <div class="card-block">
                                 <div class="form-group">
-                                    <label for="CenterId">Outcome</label>                                    
+                                    <label for="CenterId">Outcome</label>
                                     <ss-multiselect-dropdown [options]="outcomeLookupOptionList"
                                                              formControlName="OutcomeLookupId"
                                                              [(ngModel)]="caseBook.Legal.OutcomeLookupArray">
@@ -1207,7 +1201,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">List all documents that the client has submitted</label>                                    
+                                    <label for="CenterId">List all documents that the client has submitted</label>
                                     <ss-multiselect-dropdown [options]="documentsLookupOptionList"
                                                              formControlName="DocumentsLookupId"
                                                              [(ngModel)]="caseBook.Legal.DocumentsLookupArray">
@@ -1302,7 +1296,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="PeaceMakerId">Description</label>                                    
+                                    <label for="PeaceMakerId">Description</label>
                                     <textarea [formControl]="caseManageForm.controls['CaseDescription']" class="form-control"></textarea>
                                 </div>
 
@@ -1816,7 +1810,8 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Date *</label>
-                                        <input placeholder="Date" [formControl]="caseSessionForm.controls['CounselingDate']" type="date" class="form-control" />
+                                        <my-date-picker name="CounselingDate" [options]="myDatePickerOptions" id="CounselingDate"
+                                                        [formControl]="caseSessionForm.controls['CounselingDate']"></my-date-picker>
                                         <div>
                                             <small *ngIf="caseSessionForm.controls['CounselingDate'].hasError('required') && caseSessionForm.controls['CounselingDate'].touched" class="mat-text-warn">Date is required.</small>
                                         </div>
@@ -1824,7 +1819,7 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Counseling Type *</label>
-                                        <ng-select [options]="typesOfCounselingLookupOptionList"
+                                        <ng-select [options]="typesOfCounselingLookupOptionList_S"
                                                    placeholder="Select"
                                                    formControlName="TypeOfCounselingLookupId"
                                                    [allowClear]="true">
@@ -1844,7 +1839,8 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Next Session Date</label>
-                                        <input placeholder="Date" [formControl]="caseSessionForm.controls['NextSessionScheduled']" type="date" class="form-control" />
+                                        <my-date-picker name="NextSessionScheduled" [options]="myDatePickerOptions" id="NextSessionScheduled"
+                                                        [formControl]="caseSessionForm.controls['NextSessionScheduled']"></my-date-picker>
                                     </div>
 
                                     <div class="form-group">

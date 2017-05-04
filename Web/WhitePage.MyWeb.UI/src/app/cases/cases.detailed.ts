@@ -181,6 +181,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
                     this.sourceOfCaseLookupOptionList = this.ParseLookups("SourceOfCase");
                     this.typesOfCounselingLookupOptionList = this.ParseMultiLookups("TypesOfCounselling");
+                    this.typesOfCounselingLookupOptionList_S = this.ParseLookups("TypesOfCounselling");
                     this.relationshipWithPMLookupOptionList = this.ParseLookups("RelationshipWithPM");
                     this.relationshipWithVictimLookupOptionsList = this.ParseLookups("AbusingPerson");
                     this.isManageDataLoaded = true;
@@ -896,6 +897,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /* Start - Manage Case */
     public sourceOfCaseLookupOptionList: Array<IOption> = [];
     public typesOfCounselingLookupOptionList: Array<IMultiSelectOption> = [];
+    
+    public typesOfCounselingLookupOptionList_S: Array<IOption> = [];
     public totalNoOfSessionsLookupOptionList: Array<IOption> = [];
     public totalHoursSpentLookupOptionList: Array<IOption> = [];
     public relationshipWithPMLookupOptionList: Array<IOption> = [];

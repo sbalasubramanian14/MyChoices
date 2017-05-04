@@ -48,12 +48,20 @@ namespace WhitePage.ResourceAccess.Implementation.Core
 
         public List<State> GetAllStates()
         {
-            var states = this.unitOfWork.DbContext.States.OrderBy(s => s.Title).ToList();
+            //var states = this.unitOfWork.DbContext.States.OrderBy(s => s.Title).ToList();
+
+            //var cities = this.unitOfWork.DbContext.Cities.ToList();
+            //foreach (var item in states)
+            //{
+            //    item.Cities = cities.Where(ld => ld.StateId == item.StateId).OrderBy(ld => ld.Title).ToList();
+            //}
+
+            var states = this.unitOfWork.DbContext.States.ToList();
 
             var cities = this.unitOfWork.DbContext.Cities.ToList();
             foreach (var item in states)
             {
-                item.Cities = cities.Where(ld => ld.StateId == item.StateId).OrderBy(ld => ld.Title).ToList();
+                item.Cities = cities.Where(ld => ld.StateId == item.StateId).ToList();
             }
 
             return states;

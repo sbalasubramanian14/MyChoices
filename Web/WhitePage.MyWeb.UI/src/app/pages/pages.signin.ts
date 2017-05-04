@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
+import { AuthService } from "angular2-social-login";
+
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class PagesSignInComponent implements OnInit {
     errorMsg: string;
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService,
+        public _auth: AuthService) { }
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -26,17 +29,23 @@ export class PagesSignInComponent implements OnInit {
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
+    public user: any;
+    signIn(provider: string) {
+        this._auth.login(provider).subscribe(data => {
+            this.user = data;
+            var emailId: string = this.user.email;
+            this.authenticationService.SignIn(emailId, "google")
+                .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    console.log(error);
+                    this.errorMsg = "Your identity not authorized; please contact your administrator.";
+                });
+        });
 
-    onSubmit() {
-        this.authenticationService.SignIn(this.form.controls['uname'].value, this.form.controls['password'].value)
-            .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                console.log(error);
-                this.errorMsg = "Invalid credentials";
-            });
+
 
         //this.router.navigate(['/home']);
     }
