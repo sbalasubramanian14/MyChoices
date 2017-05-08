@@ -19,7 +19,7 @@ import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { ModalModule, PaginationModule, TooltipModule, TabsModule } from 'ng2-bootstrap';
 import { Ng2TableModule } from '../directives/customTable/ng-table-module';
-
+import { MyDatePickerModule } from 'mydatepicker';
 
 @NgModule({
     imports: [
@@ -34,7 +34,8 @@ import { Ng2TableModule } from '../directives/customTable/ng-table-module';
         TooltipModule.forRoot(),
         Ng2TableModule,
         ToastModule.forRoot(),
-        MultiselectDropdownModule
+        MultiselectDropdownModule,
+        MyDatePickerModule
     ],
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,

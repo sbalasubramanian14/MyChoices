@@ -16,6 +16,8 @@ import {
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
+import { IMyOptions } from 'mydatepicker';
+
 @Component({
     templateUrl: 'cases.detailed.html'
 })
@@ -179,6 +181,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
                     this.sourceOfCaseLookupOptionList = this.ParseLookups("SourceOfCase");
                     this.typesOfCounselingLookupOptionList = this.ParseMultiLookups("TypesOfCounselling");
+                    this.typesOfCounselingLookupOptionList_S = this.ParseLookups("TypesOfCounselling");
                     this.relationshipWithPMLookupOptionList = this.ParseLookups("RelationshipWithPM");
                     this.relationshipWithVictimLookupOptionsList = this.ParseLookups("AbusingPerson");
                     this.isManageDataLoaded = true;
@@ -318,8 +321,28 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId.toString(), Validators.required),
             RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId.toString(), Validators.required),
             Remarks: new FormControl(this.caseBook.Case.Remarks),
-            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required)
+            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required),
+            myDate: ['', Validators.required],
         });
+    }
+
+    private setDate(): void {
+        // Set today date using the setValue function
+        let date = new Date();
+        this.casePrimaryForm.setValue({
+            myDate: {
+                date: {
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate()
+                }
+            }
+        });
+    }
+
+    private clearDate(): void {
+        // Clear the date using the setValue function
+        this.casePrimaryForm.setValue({ myDate: '' });
     }
 
     public onPrimayUpdate() {
@@ -874,6 +897,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /* Start - Manage Case */
     public sourceOfCaseLookupOptionList: Array<IOption> = [];
     public typesOfCounselingLookupOptionList: Array<IMultiSelectOption> = [];
+    
+    public typesOfCounselingLookupOptionList_S: Array<IOption> = [];
     public totalNoOfSessionsLookupOptionList: Array<IOption> = [];
     public totalHoursSpentLookupOptionList: Array<IOption> = [];
     public relationshipWithPMLookupOptionList: Array<IOption> = [];
