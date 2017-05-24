@@ -50,4 +50,16 @@ export class PagesSignInComponent implements OnInit {
         //this.router.navigate(['/home']);
     }
 
+    tempSignIn() {
+        this.authenticationService.SignIn("admin", "test")
+            .subscribe(
+            data => {
+                this.router.navigate([this.returnUrl]);
+            },
+            error => {
+                console.log(error);
+                this.errorMsg = "Your identity not authorized; please contact your administrator.";
+            });
+    }
+
 }
