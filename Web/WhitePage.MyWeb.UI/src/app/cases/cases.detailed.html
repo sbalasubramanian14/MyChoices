@@ -757,6 +757,7 @@
                                     <th>Age</th>
                                     <th>Gender</th>
                                     <th>Relationship With Abuser</th>
+                                    <th>OtherRelationship</th>
                                     <th class="text-right"></th>
                                 </tr>
                             </thead>
@@ -766,6 +767,7 @@
                                     <td>{{offender.Age}}</td>
                                     <td>{{offender.Gender}}</td>
                                     <td>{{offender.RelationshipWithVictim}}</td>
+                                    <td>{{offender.OtherRelationship}}</td>
                                     <td class="text-right">
                                         <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
                                     </td>
@@ -1551,6 +1553,12 @@
                                         <div>
                                             <small *ngIf="caseOffenderForm.controls['RelationshipWithVictimLookupId'].hasError('required') && caseOffenderForm.controls['RelationshipWithVictimLookupId'].touched" class="mat-text-warn">Relation is required.</small>
                                         </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">If other, please specify</label>
+                                        <textarea placeholder="Other Relationship" [formControl]="caseOffenderForm.controls['OtherRelationship']" class="form-control"></textarea>
+                                        
                                     </div>
 
                                     <div class="form-group text-center">

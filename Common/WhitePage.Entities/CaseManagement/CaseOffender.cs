@@ -14,5 +14,6 @@ namespace WhitePage.Entities.CaseManagement
         public short? Age { get; set; }
         public int? GenderLookupId { get; set; }
         public int? RelationshipWithVictimLookupId { get; set; }
+        public string OtherRelationship { get; set; }
     }
 }

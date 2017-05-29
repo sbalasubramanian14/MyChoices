@@ -6,6 +6,7 @@ AS
 		,A.Age
 		,A.GenderLookupId
 		,A.RelationshipWithVictimLookupId
+		,A.OtherRelationship
 		,B.Value as Gender
 		,C.Value as RelationshipWithVictim		
 	from Ops.trCaseOffender A

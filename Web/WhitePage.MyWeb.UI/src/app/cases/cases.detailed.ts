@@ -747,7 +747,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
             Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
-            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required)
+            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
+            OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship)
         });
         this.offenderModal.show();
     }
@@ -760,12 +761,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedOffender.Age = offender.Age;
         this.caseBook.SelectedOffender.GenderLookupId = offender.GenderLookupId;
         this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = offender.RelationshipWithVictimLookupId;
+        this.caseBook.SelectedOffender.OtherRelationship = offender.OtherRelationship;
 
         this.caseOffenderForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
             Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
-            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required)
+            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
+            OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship, Validators.required)
         });
         this.offenderModal.show();
     }
@@ -779,6 +782,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
         this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
         this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+        this.caseBook.SelectedOffender.OtherRelationship = this.caseOffenderForm.controls['OtherRelationship'].value;
 
         this.casesService
             .updateOffender(this.caseBook).subscribe(data => {

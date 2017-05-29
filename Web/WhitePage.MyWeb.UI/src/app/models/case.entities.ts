@@ -221,6 +221,7 @@ export class CaseOffender {
     Age?: number;
     GenderLookupId?: number;
     RelationshipWithVictimLookupId?: number;
+    OtherRelationship : string;
 }
 
 export class vCaseOffender {
@@ -232,6 +233,7 @@ export class vCaseOffender {
     Age?: number;
     GenderLookupId?: number;
     RelationshipWithVictimLookupId?: number;
+    OtherRelationship : string;
 
     Gender: string;
     RelationshipWithVictim: string;

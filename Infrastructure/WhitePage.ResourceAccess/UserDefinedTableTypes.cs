@@ -229,7 +229,8 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("Age", DbColumnType.Short)
 
                     .AddColumn("GenderLookupId", DbColumnType.Int)
-                    .AddColumn("RelationshipWithVictimLookupId", DbColumnType.Int);
+                    .AddColumn("RelationshipWithVictimLookupId", DbColumnType.Int)
+                    .AddColumn("OtherRelationship", DbColumnType.String);
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
 

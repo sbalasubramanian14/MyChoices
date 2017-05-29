@@ -5,5 +5,6 @@
 	Name varchar(200),
 	Age smallint,
 	GenderLookupId INT,
-	RelationshipWithVictimLookupId INT
+	RelationshipWithVictimLookupId INT,
+	OtherRelationship varchar(200)
 )

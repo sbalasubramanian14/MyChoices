@@ -370,7 +370,8 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.SelectedOffender.Age,
 
                 caseBook.SelectedOffender.GenderLookupId,
-                caseBook.SelectedOffender.RelationshipWithVictimLookupId
+                caseBook.SelectedOffender.RelationshipWithVictimLookupId,
+                caseBook.SelectedOffender.OtherRelationship
                 });
             caseChildrenTable.AcceptChanges();
 
