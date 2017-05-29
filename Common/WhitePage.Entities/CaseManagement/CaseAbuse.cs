@@ -59,5 +59,7 @@ namespace WhitePage.Entities.CaseManagement
         public string ReasonsForAbuseLookupId { get; set; }
         [NotMapped]
         public int[] ReasonsForAbuseLookupArray { get; set; }
+
+        public string ReasonForAbuseDesc { get; set; }
     }
 }

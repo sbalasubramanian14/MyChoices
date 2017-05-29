@@ -420,6 +420,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Abuse.NumberOfYearsOfEconomicAbuse,
 
                 caseBook.Abuse.ReasonsForAbuseLookupId,
+                caseBook.Abuse.ReasonForAbuseDesc,
 
                 });
             caseChildrenTable.AcceptChanges();

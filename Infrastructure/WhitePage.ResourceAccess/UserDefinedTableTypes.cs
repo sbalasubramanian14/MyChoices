@@ -278,6 +278,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("NumberOfYearsOfEconomicAbuse", DbColumnType.Byte)
 
                     .AddColumn("ReasonsForAbuseLookupId", DbColumnType.String)
+                    .AddColumn("ReasonForAbuseDesc", DbColumnType.String)
                     ;
 
                 foreach (var item in columnCollection) result.Columns.Add(item);

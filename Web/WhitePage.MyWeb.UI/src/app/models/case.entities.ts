@@ -284,6 +284,7 @@ export class CaseAbuse {
 
     ReasonsForAbuseLookupId: string;
     ReasonsForAbuseLookupArray: Array<number>;
+    ReasonForAbuseDesc?: string;
 }
 
 export class CaseManage {

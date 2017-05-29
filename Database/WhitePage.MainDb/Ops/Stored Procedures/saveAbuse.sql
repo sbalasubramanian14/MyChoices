@@ -9,11 +9,11 @@ BEGIN
 		INSERT (CaseId, SufferingFromAbuseLookupId, SufferingFromAbuseDesc, FeelAboutAbuseLookupId, ParentsFeelAboutAbuseLookupId, LawFeelAboutAbuseLookupId, SignsOfPhysicalAbuseLookupId, SignsOfPhysicalAbuseDesc,
 				WeaponsUsedLookupId, WeaponsUsedDesc, TypesOfPhyscialAbuseLookupId, FrequencyOfPhyscialAbuseLookupId, NumberOfYearsOfPhyscialAbuse, TypesOfEmotionalAbuseLookupId, FrequencyOfEmotionalAbuseLookupId,
 				NumberOfYearsOfEmotionalAbuse, TypesOfSexualAbuseLookupId, FrequencyOfSexualAbuseLookupId, NumberOfYearsOfSexualAbuse, TypesOfEconomicAbuseLookupId, FrequencyOfEconomicAbuseLookupId, NumberOfYearsOfEconomicAbuse,
-				ReasonsForAbuseLookupId)
+				ReasonsForAbuseLookupId, ReasonForAbuseDesc)
 		VALUES (S.CaseId, S.SufferingFromAbuseLookupId, S.SufferingFromAbuseDesc, S.FeelAboutAbuseLookupId, S.ParentsFeelAboutAbuseLookupId, S.LawFeelAboutAbuseLookupId, S.SignsOfPhysicalAbuseLookupId, S.SignsOfPhysicalAbuseDesc,
 				S.WeaponsUsedLookupId, S.WeaponsUsedDesc, S.TypesOfPhyscialAbuseLookupId, S.FrequencyOfPhyscialAbuseLookupId, S.NumberOfYearsOfPhyscialAbuse, S.TypesOfEmotionalAbuseLookupId, S.FrequencyOfEmotionalAbuseLookupId,
 				S.NumberOfYearsOfEmotionalAbuse, S.TypesOfSexualAbuseLookupId, S.FrequencyOfSexualAbuseLookupId, S.NumberOfYearsOfSexualAbuse, S.TypesOfEconomicAbuseLookupId, S.FrequencyOfEconomicAbuseLookupId, S.NumberOfYearsOfEconomicAbuse,
-				S.ReasonsForAbuseLookupId)
+				S.ReasonsForAbuseLookupId, S.ReasonForAbuseDesc)
 	WHEN MATCHED THEN 
 		UPDATE 
 		SET 			
@@ -38,7 +38,8 @@ BEGIN
 			,T.TypesOfEconomicAbuseLookupId = S.TypesOfEconomicAbuseLookupId
 			,T.FrequencyOfEconomicAbuseLookupId = S.FrequencyOfEconomicAbuseLookupId
 			,T.NumberOfYearsOfEconomicAbuse = S.NumberOfYearsOfEconomicAbuse
-			,T.ReasonsForAbuseLookupId = S.ReasonsForAbuseLookupId;
+			,T.ReasonsForAbuseLookupId = S.ReasonsForAbuseLookupId
+			,T.ReasonForAbuseDesc = S.ReasonForAbuseDesc;
 
 declare @CaseId INT;
 	select @CaseId = CaseId from @caseAbuseType;
