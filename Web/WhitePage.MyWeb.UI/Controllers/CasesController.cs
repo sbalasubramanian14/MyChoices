@@ -125,6 +125,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdatePhysicalHealth([FromBody] CaseBook caseBook)
         {
             caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
+            caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray.ToArrayString();
             caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray.ToArrayString();
 
             var updatedCase = this.caseBusinessAccess.UpdatePhysicalHealth(caseBook);

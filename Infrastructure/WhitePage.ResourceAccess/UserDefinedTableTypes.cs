@@ -207,7 +207,8 @@ namespace WhitePage.ResourceAccess
 
                     .AddColumn("ReasonForSeekingHelpLookupId", DbColumnType.Int)
                     .AddColumn("WhoIsAbusingYouLookupId", DbColumnType.String)
-                    .AddColumn("WhoIsAbusingYouDesc", DbColumnType.String);
+                    .AddColumn("WhoIsAbusingYouDesc", DbColumnType.String)
+                    .AddColumn("ReasonForSeekingHelpDesc", DbColumnType.String);
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
 

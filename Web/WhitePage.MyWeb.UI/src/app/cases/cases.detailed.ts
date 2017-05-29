@@ -70,7 +70,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public sleepPerNightLookupOptionsList: Array<IOption> = [];
     public appetiteLookupOptionsList: Array<IOption> = [];
     public exerciseLookupOptionsList: Array<IOption> = [];
-    public reasonForSeekingHelpLookupOptionsList: Array<IOption> = [];
+    public reasonForSeekingHelpLookupOptionsList: Array<IMultiSelectOption> = [];
     public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
 
     constructor(public fb: FormBuilder,
@@ -150,7 +150,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.sleepPerNightLookupOptionsList = this.ParseLookups("SleepPerNight");
                     this.appetiteLookupOptionsList = this.ParseLookups("Appetite");
                     this.exerciseLookupOptionsList = this.ParseLookups("Exercise");
-                    this.reasonForSeekingHelpLookupOptionsList = this.ParseLookups("ReasonForSeekingHelp");
+                    this.reasonForSeekingHelpLookupOptionsList = this.ParseMultiLookups("ReasonForSeekingHelp");
                     this.whoIsAbusingYouLookupOptionsList = this.ParseMultiLookups("AbusingPerson");
                     this.isPhysicalHealthDataLoaded = true;
 
@@ -697,7 +697,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
             ReasonForSeekingHelpLookupId: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId.toString()),
             WhoIsAbusingYouLookupId: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString()),
-            WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString())
+            WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString()),
+            ReasonForSeekingHelpDesc: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc.toString())
+
 
         });
     }
@@ -723,7 +725,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
         //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
-        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;        
+        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;
+        this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.physicalHealthForm.controls['ReasonForSeekingHelpDesc'].value;
 
         this.casesService
             .updatePhysicalHealth(this.caseBook).subscribe(data => {                

@@ -101,6 +101,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.PhysicalHealth = this.unitOfWork.DbContext.PhysicalHealth.Where(c => c.CaseId == caseId).FirstOrDefault();
             if (result.PhysicalHealth != null)
             {
+                result.PhysicalHealth.ReasonForSeekingHelpLookupArray = result.PhysicalHealth.ReasonForSeekingHelpLookupId.ToIntArray();
                 result.PhysicalHealth.WhoIsAbusingYouLookupArray = result.PhysicalHealth.WhoIsAbusingYouLookupId.ToIntArray();
             }
 
@@ -345,7 +346,8 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
                 caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId,
                 caseBook.PhysicalHealth.WhoIsAbusingYouLookupId,
-                caseBook.PhysicalHealth.WhoIsAbusingYouDesc
+                caseBook.PhysicalHealth.WhoIsAbusingYouDesc,
+                caseBook.PhysicalHealth.ReasonForSeekingHelpDesc
                 });
             caseChildrenTable.AcceptChanges();
 

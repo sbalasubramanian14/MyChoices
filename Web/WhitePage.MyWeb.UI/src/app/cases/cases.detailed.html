@@ -712,13 +712,16 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">What is the reason for seeking help?</label>
-                                    <ng-select [options]="reasonForSeekingHelpLookupOptionsList"
-                                               placeholder="Select"
-                                               formControlName="ReasonForSeekingHelpLookupId"
-                                               [allowClear]="true">
-                                    </ng-select>
+                                    <ss-multiselect-dropdown [options]="reasonForSeekingHelpLookupOptionsList"
+                                                             formControlName="ReasonForSeekingHelpLookupId"
+                                                             [(ngModel)]="caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray">
+                                    </ss-multiselect-dropdown>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="CenterId">If other, please specify</label>
+                                    <input [formControl]="physicalHealthForm.controls['ReasonForSeekingHelpDesc']" class="form-control" />
+                                </div>
 
                                 <div class="form-group">
                                     <label for="CenterId">Who is abusing you?</label>
@@ -731,7 +734,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">If others, please specify </label>
                                     <input [formControl]="physicalHealthForm.controls['WhoIsAbusingYouDesc']" class="form-control" />
-                                </div>
+                                </div>                                
 
                                 <div class="form-group">
                                     <button class="btn btn-primary" (click)="onUpdatePhysicalHealth()">Update</button>
@@ -979,6 +982,11 @@
                                                              [(ngModel)]="caseBook.Abuse.ReasonsForAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">If other, please specify</label>
+                                    <input [formControl]="caseAbuseForm.controls['ReasonForAbuseDesc']" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
@@ -1448,8 +1456,7 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Age *</label>
-                                        <input placeholder="Age" [formControl]="caseChildrenForm.controls['Age']"
-                                               class="form-control" [min]="0" [max]="2" digits maxlength="2" />
+                                        <input placeholder="Age" [formControl]="caseChildrenForm.controls['Age']" class="form-control" digits maxlength="5" min="0" max="99"/>
                                         <div>
                                             <small *ngIf="caseChildrenForm.controls['Age'].hasError('required') && caseChildrenForm.controls['Age'].touched" class="mat-text-warn">Age is required.</small>
                                         </div>

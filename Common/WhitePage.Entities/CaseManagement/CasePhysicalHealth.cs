@@ -29,10 +29,13 @@ namespace WhitePage.Entities.CaseManagement
         public int? CurrentlyPregnantLookup { get; set; }
         public string CurrentlyPregnantDesc { get; set; }
 
-        public int? ReasonForSeekingHelpLookupId { get; set; }
+        public string ReasonForSeekingHelpLookupId { get; set; }
+        [NotMapped]
+        public int[] ReasonForSeekingHelpLookupArray { get; set; }
         public string WhoIsAbusingYouLookupId { get; set; }
         [NotMapped]
         public int[] WhoIsAbusingYouLookupArray { get; set; }
         public string WhoIsAbusingYouDesc { get; set; }
+        public string ReasonForSeekingHelpDesc { get; set; }
     }
 }
