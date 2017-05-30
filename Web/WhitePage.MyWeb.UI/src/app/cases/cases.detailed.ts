@@ -699,8 +699,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             WhoIsAbusingYouLookupId: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString()),
             WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString()),
             ReasonForSeekingHelpDesc: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc.toString())
-
-
         });
     }
 
@@ -723,7 +721,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.physicalHealthForm.controls['CurrentlyPregnantLookup'].value;
         this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.physicalHealthForm.controls['CurrentlyPregnantDesc'].value;
 
-        this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
+        //this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
         //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
         this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;
         this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.physicalHealthForm.controls['ReasonForSeekingHelpDesc'].value;

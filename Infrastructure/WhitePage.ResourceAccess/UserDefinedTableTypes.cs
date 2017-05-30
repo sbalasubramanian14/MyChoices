@@ -77,7 +77,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("CaseChildrenId", DbColumnType.Int)
                     .AddColumn("CaseId", DbColumnType.Int)
                     .AddColumn("Name", DbColumnType.String)
-                    .AddColumn("Age", DbColumnType.Byte)
+                    .AddColumn("Age", DbColumnType.Decimal)
                     .AddColumn("GenderLookupId", DbColumnType.Int)
                     .AddColumn("RelationshipWithAbuserLookupId", DbColumnType.Int)
 
@@ -205,7 +205,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("CurrentlyPregnantLookup", DbColumnType.Int)
                     .AddColumn("CurrentlyPregnantDesc", DbColumnType.String)
 
-                    .AddColumn("ReasonForSeekingHelpLookupId", DbColumnType.Int)
+                    .AddColumn("ReasonForSeekingHelpLookupId", DbColumnType.String)
                     .AddColumn("WhoIsAbusingYouLookupId", DbColumnType.String)
                     .AddColumn("WhoIsAbusingYouDesc", DbColumnType.String)
                     .AddColumn("ReasonForSeekingHelpDesc", DbColumnType.String);

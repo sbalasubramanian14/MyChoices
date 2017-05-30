@@ -221,7 +221,7 @@
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>Name</th>
-                                    <th>Age</th>
+                                    <th>Age(In Years)</th>
                                     <th>Gender</th>
                                     <th>Relationship With Abuser</th>
                                     <th class="text-right"></th>
@@ -1456,11 +1456,13 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Age *</label>
-                                        <input placeholder="Age" [formControl]="caseChildrenForm.controls['Age']" class="form-control" digits maxlength="5" min="0" max="99"/>
+                                        <input type="number" placeholder="Age" [formControl]="caseChildrenForm.controls['Age']" class="form-control" [min]="0" [max]="99"/>
                                         <div>
                                             <small *ngIf="caseChildrenForm.controls['Age'].hasError('required') && caseChildrenForm.controls['Age'].touched" class="mat-text-warn">Age is required.</small>
+                                            <small *ngIf="caseChildrenForm.controls['Age'].errors?.min">Value should not be negative</small>
+                                            <small *ngIf="caseChildrenForm.controls['Age'].errors?.max">Value should not greater than 99</small>
                                         </div>
-                                    </div>
+                                    </div>                                   
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Gender *</label>
