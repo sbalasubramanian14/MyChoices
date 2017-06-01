@@ -32,5 +32,6 @@
 	FrequencyOfEconomicAbuseLookupId INT,
 	NumberOfYearsOfEconomicAbuse tinyint,
 
-	ReasonsForAbuseLookupId varchar(200)
+	ReasonsForAbuseLookupId varchar(200),
+    ReasonForAbuseDesc VARCHAR(200)
 )

@@ -17,6 +17,9 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
+//Custom Validation Module
+import { CustomFormsModule } from 'ng2-validation'
+
 // Routing Module
 import { AppRoutes } from './app.routing';
 

@@ -70,7 +70,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public sleepPerNightLookupOptionsList: Array<IOption> = [];
     public appetiteLookupOptionsList: Array<IOption> = [];
     public exerciseLookupOptionsList: Array<IOption> = [];
-    public reasonForSeekingHelpLookupOptionsList: Array<IOption> = [];
+    public reasonForSeekingHelpLookupOptionsList: Array<IMultiSelectOption> = [];
     public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
 
     constructor(public fb: FormBuilder,
@@ -150,7 +150,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.sleepPerNightLookupOptionsList = this.ParseLookups("SleepPerNight");
                     this.appetiteLookupOptionsList = this.ParseLookups("Appetite");
                     this.exerciseLookupOptionsList = this.ParseLookups("Exercise");
-                    this.reasonForSeekingHelpLookupOptionsList = this.ParseLookups("ReasonForSeekingHelp");
+                    this.reasonForSeekingHelpLookupOptionsList = this.ParseMultiLookups("ReasonForSeekingHelp");
                     this.whoIsAbusingYouLookupOptionsList = this.ParseMultiLookups("AbusingPerson");
                     this.isPhysicalHealthDataLoaded = true;
 
@@ -697,8 +697,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
             ReasonForSeekingHelpLookupId: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId.toString()),
             WhoIsAbusingYouLookupId: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString()),
-            WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString())
-
+            WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString()),
+            ReasonForSeekingHelpDesc: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc.toString())
         });
     }
 
@@ -721,9 +721,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.physicalHealthForm.controls['CurrentlyPregnantLookup'].value;
         this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.physicalHealthForm.controls['CurrentlyPregnantDesc'].value;
 
-        this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
+        //this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
         //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
-        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;        
+        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;
+        this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.physicalHealthForm.controls['ReasonForSeekingHelpDesc'].value;
 
         this.casesService
             .updatePhysicalHealth(this.caseBook).subscribe(data => {                
@@ -851,7 +852,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             FrequencyOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId.toString()),
             NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString()),
 
-            ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString())
+            ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString()),
+            ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc)
         });
     }
 
@@ -886,6 +888,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].value;
 
         //this.caseBook.Abuse.ReasonsForAbuseLookupId = this.caseAbuseForm.controls['ReasonsForAbuseLookupId'].value;
+        this.caseBook.Abuse.ReasonForAbuseDesc = this.caseAbuseForm.controls['[ReasonForAbuseDesc'].value;
 
         this.casesService
             .updateAbuse(this.caseBook).subscribe(data => {
@@ -1160,10 +1163,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     public saveSession(sessionLog: CaseSessionLog) {
 
-        this.caseBook.SelectedSessionLog.CounselingDate = this.caseSessionForm.controls['CounselingDate'].value;
+        this.caseBook.SelectedSessionLog.CounselingDate = this.caseSessionForm.controls['CounselingDate'].value.jsdate;
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
-        this.caseBook.SelectedSessionLog.NextSessionScheduled = this.caseSessionForm.controls['NextSessionScheduled'].value;
+        this.caseBook.SelectedSessionLog.NextSessionScheduled = this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate;
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
         this.casesService

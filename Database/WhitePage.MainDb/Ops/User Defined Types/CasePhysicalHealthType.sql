@@ -21,7 +21,8 @@
 	CurrentlyPregnantLookup INT,
 	CurrentlyPregnantDesc varchar(200),
 
-	ReasonForSeekingHelpLookupId INT,
+	ReasonForSeekingHelpLookupId varchar(200),
 	WhoIsAbusingYouLookupId varchar(200),
-	WhoIsAbusingYouDesc varchar(200)
+	WhoIsAbusingYouDesc varchar(200),
+	ReasonForSeekingHelpDesc varchar(200)
 )

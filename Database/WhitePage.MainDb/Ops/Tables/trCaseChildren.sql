@@ -3,7 +3,7 @@
 	[CaseChildrenId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[CaseId] INT NOT NULL,
 	[Name] VARCHAR(200) null,
-	[Age] TINYINT null,
+	[Age] DECIMAL(5, 2) null,
 	[GenderLookupId] INT null,
 	[RelationshipWithAbuserLookupId] INT null,
 

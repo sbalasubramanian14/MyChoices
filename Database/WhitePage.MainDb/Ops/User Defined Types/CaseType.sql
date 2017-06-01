@@ -13,7 +13,7 @@
 	GenderLookupId int ,
 	RequireAssistanceLookupId int ,	
 	MaritalStatusLookupId int ,
-	Remarks VARCHAR(200) NULL,
+	Remarks VARCHAR(300) NULL,
 	RegisterDate DateTime NULL,
 	MobileNumber VARCHAR(20) NULL,
 

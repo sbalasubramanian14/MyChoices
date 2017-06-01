@@ -8,10 +8,10 @@ BEGIN
 	WHEN NOT MATCHED THEN
 		INSERT (CaseId, SufferingFromAnyMajorIllnessLookupId, SufferingFromAnyMajorIllnessDesc, DiagnosedPsychiatricIllnessLookupId, DiagnosedPsychiatricIllnessDesc, SleepPerNightLookupId, AppetiteLookupId,
 				ExerciseLookupId, AnyMedicationLookupId, AnyMedicationDesc, AnySubstanceLookupId, AnySubstanceDesc, CurrentlyPregnantLookup, CurrentlyPregnantDesc, ReasonForSeekingHelpLookupId,
-				WhoIsAbusingYouLookupId, WhoIsAbusingYouDesc)
+				WhoIsAbusingYouLookupId, WhoIsAbusingYouDesc, ReasonForSeekingHelpDesc)
 		VALUES (S.CaseId, S.SufferingFromAnyMajorIllnessLookupId, S.SufferingFromAnyMajorIllnessDesc, S.DiagnosedPsychiatricIllnessLookupId, S.DiagnosedPsychiatricIllnessDesc, S.SleepPerNightLookupId, S.AppetiteLookupId,
 				S.ExerciseLookupId, S.AnyMedicationLookupId, S.AnyMedicationDesc, S.AnySubstanceLookupId, S.AnySubstanceDesc, S.CurrentlyPregnantLookup, S.CurrentlyPregnantDesc, S.ReasonForSeekingHelpLookupId,
-				S.WhoIsAbusingYouLookupId, S.WhoIsAbusingYouDesc)
+				S.WhoIsAbusingYouLookupId, S.WhoIsAbusingYouDesc, S.ReasonForSeekingHelpDesc)
 	WHEN MATCHED THEN 
 		UPDATE 
 		SET 			
@@ -30,7 +30,8 @@ BEGIN
 			,T.CurrentlyPregnantDesc = S.CurrentlyPregnantDesc
 			,T.ReasonForSeekingHelpLookupId = S.ReasonForSeekingHelpLookupId
 			,T.WhoIsAbusingYouLookupId = S.WhoIsAbusingYouLookupId
-			,T.WhoIsAbusingYouDesc = S.WhoIsAbusingYouDesc;
+			,T.WhoIsAbusingYouDesc = S.WhoIsAbusingYouDesc
+			,T.ReasonForSeekingHelpDesc = S.ReasonForSeekingHelpDesc;
 
 declare @CaseId INT;
 	select @CaseId = CaseId from @casePhysicalHealthType;

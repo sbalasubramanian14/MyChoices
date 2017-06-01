@@ -204,12 +204,14 @@ export class CasePhysicalHealth {
     CurrentlyPregnantLookup?: number;
     CurrentlyPregnantDesc?: string;
 
-    ReasonForSeekingHelpLookupId?: number;
+    ReasonForSeekingHelpLookupId: string;
+    ReasonForSeekingHelpLookupArray: Array<number>;
 
     WhoIsAbusingYouLookupId: string;
     WhoIsAbusingYouLookupArray: Array<number>;
 
     WhoIsAbusingYouDesc?: string;
+    ReasonForSeekingHelpDesc?: string;
 }
 
 export class CaseOffender {
@@ -286,6 +288,7 @@ export class CaseAbuse {
 
     ReasonsForAbuseLookupId: string;
     ReasonsForAbuseLookupArray: Array<number>;
+    ReasonForAbuseDesc?: string;
 }
 
 export class CaseManage {

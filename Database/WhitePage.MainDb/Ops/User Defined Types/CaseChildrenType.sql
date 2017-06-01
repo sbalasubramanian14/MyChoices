@@ -3,7 +3,7 @@
 	[CaseChildrenId] INT NULL,
 	[CaseId] INT NULL,
 	[Name] VARCHAR(200) null,
-	[Age] TINYINT null,
+	[Age] DECIMAL(5, 2) null,
 	[GenderLookupId] INT null,
 	[RelationshipWithAbuserLookupId] INT null,
 
