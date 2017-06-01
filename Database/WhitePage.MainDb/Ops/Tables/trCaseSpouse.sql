@@ -8,7 +8,7 @@
 	SpouseMobilePhone varchar(200),
 	SpouseOccupation varchar(200),
 	SpouseEducationLookupId INT,
-	SpouseAddress varchar(200),
+	SpouseAddress varchar(MAX),
 	Area varchar(200),
 	CityLookupId INT,
 	StateLookupId INT,

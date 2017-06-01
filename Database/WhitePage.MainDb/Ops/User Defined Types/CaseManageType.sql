@@ -5,16 +5,16 @@
 	CaseStatusId TINYINT,
 
 	SourceOfCaseLookupId INT,
-	SourceOfCaseDesc varchar(2000),
+	SourceOfCaseDesc varchar(MAX),
 
 	TypesOfCounselingLookupId varchar(100),
 	TotalNoOfSessionsLookupId INT,
 	TotalHoursSpentLookupId INT,
 
-	ReasonForClosureStatus varchar(2000),
-	CaseSubject varchar(2000),
-	CaseDescription varchar(2000),
+	ReasonForClosureStatus varchar(MAX),
+	CaseSubject varchar(MAX),
+	CaseDescription varchar(MAX),
 	RelationshipWithPMLookupId INT,
 
-	ResolutionLog varchar(2000)
+	ResolutionLog varchar(MAX)
 )
