@@ -1158,10 +1158,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     public saveSession(sessionLog: CaseSessionLog) {
 
-        this.caseBook.SelectedSessionLog.CounselingDate = this.caseSessionForm.controls['CounselingDate'].value;
+        this.caseBook.SelectedSessionLog.CounselingDate = this.caseSessionForm.controls['CounselingDate'].value.jsdate;
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
-        this.caseBook.SelectedSessionLog.NextSessionScheduled = this.caseSessionForm.controls['NextSessionScheduled'].value;
+        this.caseBook.SelectedSessionLog.NextSessionScheduled = this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate;
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
         this.casesService
