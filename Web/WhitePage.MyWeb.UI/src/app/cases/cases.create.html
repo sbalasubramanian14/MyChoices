@@ -67,7 +67,7 @@
 
                     <div class="form-group">
                         <label for="PeacemakerId">M.I.</label>
-                        <textarea placeholder="Middle Initials" [formControl]="casePrimaryForm.controls['primaryInfo'].controls['Mi']" [(ngModel)]="caseBook.Case.Mi" class="form-control"></textarea>
+                        <textarea placeholder="Middle Initials" [formControl]="casePrimaryForm.controls['primaryInfo'].controls['Mi']" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -91,7 +91,7 @@
 
                     <div class="form-group">
                         <label for="PeacemakerId">Address *</label>
-                        <textarea placeholder="Address" [formControl]="casePrimaryForm.controls['address'].controls['Address']" class="form-control" [(ngModel)]="caseBook.SelectedAddress.Address"></textarea>
+                        <textarea placeholder="Address" [formControl]="casePrimaryForm.controls['address'].controls['Address']" class="form-control" [(ngModel)]="caseBook.SelectedAddress.Address" maxlength="300"></textarea>
                         <div>
                             <small *ngIf="casePrimaryForm.controls['address'].controls['Address'].hasError('required') && casePrimaryForm.controls['address'].controls['Address'].touched" class="mat-text-warn">Fahter / Husband is required.</small>
                         </div>
@@ -202,7 +202,7 @@
 
                     <div class="form-group">
                         <label for="PeacemakerId">Remarks</label>
-                        <textarea placeholder="Remarks" [formControl]="casePrimaryForm.controls['primaryInfo'].controls['Remarks']" [(ngModel)]="caseBook.Case.Remarks" class="form-control"></textarea>
+                        <textarea placeholder="Remarks" [formControl]="casePrimaryForm.controls['primaryInfo'].controls['Remarks']" [(ngModel)]="caseBook.Case.Remarks" class="form-control" maxlength="300"></textarea>
                     </div>
 
                     <div class="form-group">

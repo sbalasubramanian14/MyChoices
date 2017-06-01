@@ -2,7 +2,7 @@
 (
 	CaseAddressId INT ,
 	CaseId INT ,
-	Address VARCHAR(MAX) NULL,
+	Address VARCHAR(300) NULL,
 	Area VARCHAR(200) NULL,
 	CityId smallint NULL,
 	StateId smallint NULL,

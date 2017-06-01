@@ -93,7 +93,7 @@
 
                                 <div class="form-group">
                                     <label for="PeacemakerId">M.I.</label>
-                                    <textarea placeholder="Middle Initials" [formControl]="casePrimaryForm.controls['Mi']" [(ngModel)]="caseBook.Case.Mi" class="form-control"></textarea>
+                                    <textarea placeholder="Middle Initials" [formControl]="casePrimaryForm.controls['Mi']" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -162,7 +162,7 @@
 
                                 <div class="form-group">
                                     <label for="PeacemakerId">Remarks</label>
-                                    <textarea placeholder="Remarks" [formControl]="casePrimaryForm.controls['Remarks']" class="form-control"></textarea>
+                                    <textarea placeholder="Remarks" [formControl]="casePrimaryForm.controls['Remarks']" class="form-control" maxlength="300"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -491,7 +491,7 @@
                             <div class="card-block">
                                 <div class="form-group">
                                     <label for="CenterId">Spouse's full address</label>
-                                    <textarea type="text" [formControl]="spouseForm.controls['SpouseAddress']" class="form-control"></textarea>
+                                    <textarea type="text" [formControl]="spouseForm.controls['SpouseAddress']" class="form-control" maxlength="300"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -1259,7 +1259,7 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">If other, please specify</label>
-                                    <input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" />
+                                    <input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" maxlength="2000" />
                                 </div>
 
                                 <div class="form-group">
@@ -1282,7 +1282,7 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Reason for selected Closure status</label>
-                                    <input [formControl]="caseManageForm.controls['ReasonForClosureStatus']" class="form-control" />
+                                    <input [formControl]="caseManageForm.controls['ReasonForClosureStatus']" class="form-control" maxlength="2000" />
                                 </div>
 
 
@@ -1300,12 +1300,12 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Subject</label>
-                                    <input [formControl]="caseManageForm.controls['CaseSubject']" class="form-control" />
+                                    <input [formControl]="caseManageForm.controls['CaseSubject']" class="form-control" maxlength="2000" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Description</label>
-                                    <textarea [formControl]="caseManageForm.controls['CaseDescription']" class="form-control"></textarea>
+                                    <textarea [formControl]="caseManageForm.controls['CaseDescription']" class="form-control" maxlength="2000"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -1319,7 +1319,7 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Case resolution log</label>
-                                    <input [formControl]="caseManageForm.controls['ResolutionLog']" class="form-control" />
+                                    <input [formControl]="caseManageForm.controls['ResolutionLog']" class="form-control" maxlength="2000" />
                                 </div>
 
 
@@ -1365,7 +1365,7 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Address *</label>
-                                        <textarea placeholder="Address" [formControl]="caseAddressForm.controls['Address']" class="form-control"></textarea>
+                                        <textarea placeholder="Address" [formControl]="caseAddressForm.controls['Address']" class="form-control" maxlength="300"></textarea>
                                         <div>
                                             <small *ngIf="caseAddressForm.controls['Address'].hasError('required') && caseAddressForm.controls['Address'].touched" class="mat-text-warn">Fahter / Husband is required.</small>
                                         </div>
