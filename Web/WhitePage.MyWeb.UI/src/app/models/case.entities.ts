@@ -319,25 +319,45 @@ export class CaseMental {
     CaseMentalId?: number;
     CaseId?: number;
 
-    MentalDressLookupId?: number;
-    MentalHygieneLookupId?: number;
-    MentalBodyTypeLookupId?: number;
-    MentalExpressionLookupId?: number;
-    MentalMotorActivityLookupId?: number;
-    MentalVocabularyLookupId?: number;
-    MentalImpulseControlLookupId?: number;
-    MentalSpeechLookupId?: number;
-    MentalBehaviourLookupId?: number;
-    MentalContentLookupId?: number;
-    MentalFlowOfThoughtLookupId?: number;
-    MentalOrientationLookupId?: number;
-    MentalEstimatedIntellectLookupId?: number;
-    MentalAttentionLookupId?: number;
-    MentalInsightLookupId?: number;
-    MentalJudgementLookupId?: number;
-    MentalMemoryLookupId?: number;
-    MentalInformationLookupId?: number;
-    MentalAbstractionLookupId?: number;
+    MentalDressLookupId?: string;
+    MentalHygieneLookupId?: string;
+    MentalBodyTypeLookupId?: string;
+    MentalExpressionLookupId?: string;
+    MentalMotorActivityLookupId?: string;
+    MentalVocabularyLookupId?: string;
+    MentalImpulseControlLookupId?: string;
+    MentalSpeechLookupId?: string;
+    MentalBehaviourLookupId?: string;
+    MentalContentLookupId?: string;
+    MentalFlowOfThoughtLookupId?: string;
+    MentalOrientationLookupId?: string;
+    MentalEstimatedIntellectLookupId?: string;
+    MentalAttentionLookupId?: string;
+    MentalInsightLookupId?: string;
+    MentalJudgementLookupId?: string;
+    MentalMemoryLookupId?: string;
+    MentalInformationLookupId?: string;
+    MentalAbstractionLookupId?: string;
+
+    MentalDressLookupArray: Array<number>;
+    MentalHygieneLookupArray: Array<number>;
+    MentalBodyTypeLookupArray: Array<number>;
+    MentalExpressionLookupArray: Array<number>;
+    MentalMotorActivityLookupArray: Array<number>;
+    MentalVocabularyLookupArray: Array<number>;
+    MentalImpulseControlLookupArray: Array<number>;
+    MentalSpeechLookupArray: Array<number>;
+    MentalBehaviourLookupArray: Array<number>;
+    MentalContentLookupArray: Array<number>;
+    MentalFlowOfThoughtLookupArray: Array<number>;
+    MentalOrientationLookupArray: Array<number>;
+    MentalEstimatedIntellectLookupArray: Array<number>;
+    MentalAttentionLookupArray: Array<number>;
+    MentalInsightLookupArray: Array<number>;
+    MentalJudgementLookupArray: Array<number>;
+    MentalMemoryLookupArray: Array<number>;
+    MentalInformationLookupArray: Array<number>;
+    MentalAbstractionLookupArray: Array<number>;
 }
 
 export class vCaseMental {
@@ -346,25 +366,25 @@ export class vCaseMental {
     CaseMentalId?: number;
     CaseId?: number;
 
-    MentalDressLookupId?: number;
-    MentalHygieneLookupId?: number;
-    MentalBodyTypeLookupId?: number;
-    MentalExpressionLookupId?: number;
-    MentalMotorActivityLookupId?: number;
-    MentalVocabularyLookupId?: number;
-    MentalImpulseControlLookupId?: number;
-    MentalSpeechLookupId?: number;
-    MentalBehaviourLookupId?: number;
-    MentalContentLookupId?: number;
-    MentalFlowOfThoughtLookupId?: number;
-    MentalOrientationLookupId?: number;
-    MentalEstimatedIntellectLookupId?: number;
-    MentalAttentionLookupId?: number;
-    MentalInsightLookupId?: number;
-    MentalJudgementLookupId?: number;
-    MentalMemoryLookupId?: number;
-    MentalInformationLookupId?: number;
-    MentalAbstractionLookupId?: number;
+    MentalDressLookupId?: string;
+    MentalHygieneLookupId?: string;
+    MentalBodyTypeLookupId?: string;
+    MentalExpressionLookupId?: string;
+    MentalMotorActivityLookupId?: string;
+    MentalVocabularyLookupId?: string;
+    MentalImpulseControlLookupId?: string;
+    MentalSpeechLookupId?: string;
+    MentalBehaviourLookupId?: string;
+    MentalContentLookupId?: string;
+    MentalFlowOfThoughtLookupId?: string;
+    MentalOrientationLookupId?: string;
+    MentalEstimatedIntellectLookupId?: string;
+    MentalAttentionLookupId?: string;
+    MentalInsightLookupId?: string;
+    MentalJudgementLookupId?: string;
+    MentalMemoryLookupId?: string;
+    MentalInformationLookupId?: string;
+    MentalAbstractionLookupId?: string;
 
     MentalDress: string;
     MentalHygiene: string;
@@ -385,6 +405,26 @@ export class vCaseMental {
     MentalMemory: string;
     MentalInformation: string;
     MentalAbstraction: string;
+
+    MentalDressLookupArray: Array<number>;
+    MentalHygieneLookupArray: Array<number>;
+    MentalBodyTypeLookupArray: Array<number>;
+    MentalExpressionLookupArray: Array<number>;
+    MentalMotorActivityLookupArray: Array<number>;
+    MentalVocabularyLookupArray: Array<number>;
+    MentalImpulseControlLookupArray: Array<number>;
+    MentalSpeechLookupArray: Array<number>;
+    MentalBehaviourLookupArray: Array<number>;
+    MentalContentLookupArray: Array<number>;
+    MentalFlowOfThoughtLookupArray: Array<number>;
+    MentalOrientationLookupArray: Array<number>;
+    MentalEstimatedIntellectLookupArray: Array<number>;
+    MentalAttentionLookupArray: Array<number>;
+    MentalInsightLookupArray: Array<number>;
+    MentalJudgementLookupArray: Array<number>;
+    MentalMemoryLookupArray: Array<number>;
+    MentalInformationLookupArray: Array<number>;
+    MentalAbstractionLookupArray: Array<number>;
 }
 
 export class CaseSessionLog {

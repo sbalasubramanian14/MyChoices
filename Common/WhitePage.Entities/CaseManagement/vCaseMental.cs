@@ -11,25 +11,25 @@ namespace WhitePage.Entities.CaseManagement
         public int CaseMentalId { get; set; }
         public int CaseId { get; set; }
 
-        public int? MentalDressLookupId { get; set; }
-        public int? MentalHygieneLookupId { get; set; }
-        public int? MentalBodyTypeLookupId { get; set; }
-        public int? MentalExpressionLookupId { get; set; }
-        public int? MentalMotorActivityLookupId { get; set; }
-        public int? MentalVocabularyLookupId { get; set; }
-        public int? MentalImpulseControlLookupId { get; set; }
-        public int? MentalSpeechLookupId { get; set; }
-        public int? MentalBehaviourLookupId { get; set; }
-        public int? MentalContentLookupId { get; set; }
-        public int? MentalFlowOfThoughtLookupId { get; set; }
-        public int? MentalOrientationLookupId { get; set; }
-        public int? MentalEstimatedIntellectLookupId { get; set; }
-        public int? MentalAttentionLookupId { get; set; }
-        public int? MentalInsightLookupId { get; set; }
-        public int? MentalJudgementLookupId { get; set; }
-        public int? MentalMemoryLookupId { get; set; }
-        public int? MentalInformationLookupId { get; set; }
-        public int? MentalAbstractionLookupId { get; set; }
+        public string MentalDressLookupId { get; set; }
+        public string MentalHygieneLookupId { get; set; }
+        public string MentalBodyTypeLookupId { get; set; }
+        public string MentalExpressionLookupId { get; set; }
+        public string MentalMotorActivityLookupId { get; set; }
+        public string MentalVocabularyLookupId { get; set; }
+        public string MentalImpulseControlLookupId { get; set; }
+        public string MentalSpeechLookupId { get; set; }
+        public string MentalBehaviourLookupId { get; set; }
+        public string MentalContentLookupId { get; set; }
+        public string MentalFlowOfThoughtLookupId { get; set; }
+        public string MentalOrientationLookupId { get; set; }
+        public string MentalEstimatedIntellectLookupId { get; set; }
+        public string MentalAttentionLookupId { get; set; }
+        public string MentalInsightLookupId { get; set; }
+        public string MentalJudgementLookupId { get; set; }
+        public string MentalMemoryLookupId { get; set; }
+        public string MentalInformationLookupId { get; set; }
+        public string MentalAbstractionLookupId { get; set; }
 
         public string MentalDress { get; set; }
         public string MentalHygiene { get; set; }
@@ -50,5 +50,44 @@ namespace WhitePage.Entities.CaseManagement
         public string MentalMemory { get; set; }
         public string MentalInformation { get; set; }
         public string MentalAbstraction { get; set; }
+
+        [NotMapped]
+        public int[] MentalDressLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalHygieneLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalBodyTypeLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalExpressionLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalMotorActivityLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalVocabularyLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalImpulseControlLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalSpeechLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalBehaviourLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalContentLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalFlowOfThoughtLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalOrientationLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalEstimatedIntellectLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalAttentionLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalInsightLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalJudgementLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalMemoryLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalInformationLookupArray { get; set; }
+        [NotMapped]
+        public int[] MentalAbstractionLookupArray { get; set; }
     }
 }
