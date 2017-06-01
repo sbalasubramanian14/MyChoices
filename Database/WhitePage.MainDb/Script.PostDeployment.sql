@@ -492,6 +492,7 @@ INSERT INTO @lookupDetails VALUES(24, 'AbusingWeapons',		150, 'Knife'		,	2,1)
 INSERT INTO @lookupDetails VALUES(24, 'AbusingWeapons',		151, 'Gun'	,	3,1)
 INSERT INTO @lookupDetails VALUES(24, 'AbusingWeapons',		152, 'Heavy objects'	,	4,1)
 INSERT INTO @lookupDetails VALUES(24, 'AbusingWeapons',		153, 'Sharp objects',	5,1)
+INSERT INTO @lookupDetails VALUES(24, 'AbusingWeapons',		558, 'Other',	6,1)
 
 INSERT INTO @lookupDetails VALUES(46, 'TypesOfPhysicalAbuse',		154, 'Bruising and pinching, slapping, beating'		,	1,1)
 INSERT INTO @lookupDetails VALUES(46, 'TypesOfPhysicalAbuse',		155, 'Kicking and pushing'		,	2,1)
