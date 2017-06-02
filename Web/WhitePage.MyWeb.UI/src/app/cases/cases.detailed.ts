@@ -22,7 +22,6 @@ import { IMyOptions } from 'mydatepicker';
     templateUrl: 'cases.detailed.html'
 })
 export class CasesDetailedComponent extends BaseCaseController implements OnInit {
-
     public caseBook: CaseBook;
     private selectedCaseId: number;
 
@@ -1144,11 +1143,16 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseSessionForm = this.fb.group({
             CounselingDate: new FormControl(this.caseBook.SelectedSessionLog.CounselingDate, Validators.required),
-            TypeOfCounselingLookupId: new FormControl(this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId == undefined ? null : this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId.toString(), Validators.required),
+            TypeOfCounselingLookupId: new FormControl('', Validators.required),
             DurationOfSessionMIn: new FormControl(this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required),
             NextSessionScheduled: new FormControl(this.caseBook.SelectedSessionLog.NextSessionScheduled),
             SessionNotes: new FormControl(this.caseBook.SelectedSessionLog.SessionNotes, Validators.required)
         });
+
+        this.caseSessionForm.patchValue({ CounselingDate: { date: sessionLog.CounselingDate } });
+
+        this.caseSessionForm.patchValue({ NextSessionScheduled: { date: sessionLog.NextSessionScheduled } });
+
         this.sessionsModal.show();
     }
 
@@ -1157,11 +1161,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public saveSession(sessionLog: CaseSessionLog) {
-
-        this.caseBook.SelectedSessionLog.CounselingDate = this.caseSessionForm.controls['CounselingDate'].value.jsdate;
+        this.caseBook.SelectedSessionLog.CounselingDate = new Date(this.caseSessionForm.controls['CounselingDate'].value.jsdate);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
-        this.caseBook.SelectedSessionLog.NextSessionScheduled = this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate;
+        this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate);
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
         this.casesService
