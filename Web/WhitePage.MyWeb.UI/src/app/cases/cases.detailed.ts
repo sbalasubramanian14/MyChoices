@@ -185,25 +185,25 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     this.relationshipWithVictimLookupOptionsList = this.ParseLookups("AbusingPerson");
                     this.isManageDataLoaded = true;
 
-                    this.MentalDressLookupOptionList = this.ParseLookups("MentalDress");
-                    this.MentalHygieneLookupOptionList = this.ParseLookups("MentalHygiene");
-                    this.MentalBodyTypeLookupOptionList = this.ParseLookups("MentalBodyType");
-                    this.MentalExpressionLookupOptionList = this.ParseLookups("MentalExpression");
-                    this.MentalMotorActivityLookupOptionList = this.ParseLookups("MentalMotorActivity");
-                    this.MentalVocabularyLookupOptionList = this.ParseLookups("MentalVocabulary");
-                    this.MentalImpulseControlLookupOptionList = this.ParseLookups("MentalImpulseControl");
-                    this.MentalSpeechLookupOptionList = this.ParseLookups("MentalSpeech");
-                    this.MentalBehaviourLookupOptionList = this.ParseLookups("MentalBehaviour");
-                    this.MentalContentLookupOptionList = this.ParseLookups("MentalContent");
-                    this.MentalFlowOfThoughtLookupOptionList = this.ParseLookups("MentalFlowOfThought");
-                    this.MentalOrientationLookupOptionList = this.ParseLookups("MentalOrientation");
-                    this.MentalEstimatedIntellectLookupOptionList = this.ParseLookups("MentalEstimatedIntellect");
-                    this.MentalAttentionLookupOptionList = this.ParseLookups("MentalAttention");
-                    this.MentalInsightLookupOptionList = this.ParseLookups("MentalInsight");
-                    this.MentalJudgementLookupOptionList = this.ParseLookups("MentalJudgement");
-                    this.MentalMemoryLookupOptionList = this.ParseLookups("MentalMemory");
-                    this.MentalInformationLookupOptionList = this.ParseLookups("MentalInformation");
-                    this.MentalAbstractionLookupOptionList = this.ParseLookups("MentalAbstraction");
+                    this.MentalDressLookupOptionList = this.ParseMultiLookups("MentalDress");
+                    this.MentalHygieneLookupOptionList = this.ParseMultiLookups("MentalHygiene");
+                    this.MentalBodyTypeLookupOptionList = this.ParseMultiLookups("MentalBodyType");
+                    this.MentalExpressionLookupOptionList = this.ParseMultiLookups("MentalExpression");
+                    this.MentalMotorActivityLookupOptionList = this.ParseMultiLookups("MentalMotorActivity");
+                    this.MentalVocabularyLookupOptionList = this.ParseMultiLookups("MentalVocabulary");
+                    this.MentalImpulseControlLookupOptionList = this.ParseMultiLookups("MentalImpulseControl");
+                    this.MentalSpeechLookupOptionList = this.ParseMultiLookups("MentalSpeech");
+                    this.MentalBehaviourLookupOptionList = this.ParseMultiLookups("MentalBehaviour");
+                    this.MentalContentLookupOptionList = this.ParseMultiLookups("MentalContent");
+                    this.MentalFlowOfThoughtLookupOptionList = this.ParseMultiLookups("MentalFlowOfThought");
+                    this.MentalOrientationLookupOptionList = this.ParseMultiLookups("MentalOrientation");
+                    this.MentalEstimatedIntellectLookupOptionList = this.ParseMultiLookups("MentalEstimatedIntellect");
+                    this.MentalAttentionLookupOptionList = this.ParseMultiLookups("MentalAttention");
+                    this.MentalInsightLookupOptionList = this.ParseMultiLookups("MentalInsight");
+                    this.MentalJudgementLookupOptionList = this.ParseMultiLookups("MentalJudgement");
+                    this.MentalMemoryLookupOptionList = this.ParseMultiLookups("MentalMemory");
+                    this.MentalInformationLookupOptionList = this.ParseMultiLookups("MentalInformation");
+                    this.MentalAbstractionLookupOptionList = this.ParseMultiLookups("MentalAbstraction");
                     this.isMentalDataLoaded = true;
 
                     this.RespectedDuringYourVisitLookupOptionList = this.ParseLookups("RespectedDuringYourVisit");
@@ -747,7 +747,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
             Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
-            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required)
+            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
+            OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship)
         });
         this.offenderModal.show();
     }
@@ -760,12 +761,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedOffender.Age = offender.Age;
         this.caseBook.SelectedOffender.GenderLookupId = offender.GenderLookupId;
         this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = offender.RelationshipWithVictimLookupId;
+        this.caseBook.SelectedOffender.OtherRelationship = offender.OtherRelationship;
 
         this.caseOffenderForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
             Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
-            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required)
+            RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
+            OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship, Validators.required)
         });
         this.offenderModal.show();
     }
@@ -779,6 +782,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedOffender.Age = this.caseOffenderForm.controls['Age'].value;
         this.caseBook.SelectedOffender.GenderLookupId = this.caseOffenderForm.controls['GenderLookupId'].value;
         this.caseBook.SelectedOffender.RelationshipWithVictimLookupId = this.caseOffenderForm.controls['RelationshipWithVictimLookupId'].value;
+        this.caseBook.SelectedOffender.OtherRelationship = this.caseOffenderForm.controls['OtherRelationship'].value;
 
         this.casesService
             .updateOffender(this.caseBook).subscribe(data => {
@@ -956,25 +960,25 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /* End of - Manage Case */
 
     /* Start - Mental */
-    public MentalDressLookupOptionList: Array<IOption> = [];
-    public MentalHygieneLookupOptionList: Array<IOption> = [];
-    public MentalBodyTypeLookupOptionList: Array<IOption> = [];
-    public MentalExpressionLookupOptionList: Array<IOption> = [];
-    public MentalMotorActivityLookupOptionList: Array<IOption> = [];
-    public MentalVocabularyLookupOptionList: Array<IOption> = [];
-    public MentalImpulseControlLookupOptionList: Array<IOption> = [];
-    public MentalSpeechLookupOptionList: Array<IOption> = [];
-    public MentalBehaviourLookupOptionList: Array<IOption> = [];
-    public MentalContentLookupOptionList: Array<IOption> = [];
-    public MentalFlowOfThoughtLookupOptionList: Array<IOption> = [];
-    public MentalOrientationLookupOptionList: Array<IOption> = [];
-    public MentalEstimatedIntellectLookupOptionList: Array<IOption> = [];
-    public MentalAttentionLookupOptionList: Array<IOption> = [];
-    public MentalInsightLookupOptionList: Array<IOption> = [];
-    public MentalJudgementLookupOptionList: Array<IOption> = [];
-    public MentalMemoryLookupOptionList: Array<IOption> = [];
-    public MentalInformationLookupOptionList: Array<IOption> = [];
-    public MentalAbstractionLookupOptionList: Array<IOption> = [];
+    public MentalDressLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalHygieneLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalBodyTypeLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalExpressionLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalMotorActivityLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalVocabularyLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalImpulseControlLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalSpeechLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalBehaviourLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalContentLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalFlowOfThoughtLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalOrientationLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalEstimatedIntellectLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalAttentionLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalInsightLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalJudgementLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalMemoryLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalInformationLookupOptionList: Array<IMultiSelectOption> = [];
+    public MentalAbstractionLookupOptionList: Array<IMultiSelectOption> = [];
 
     @ViewChild('mentalModal') public mentalModal: ModalDirective;
 
@@ -1068,33 +1072,34 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public saveMental(caseMental: CaseMental) {        
-        this.caseBook.SelectedMental.MentalAbstractionLookupId = this.caseMentalForm.controls['MentalAbstractionLookupId'].value;
-        this.caseBook.SelectedMental.MentalAttentionLookupId = this.caseMentalForm.controls['MentalAttentionLookupId'].value;
-        this.caseBook.SelectedMental.MentalBehaviourLookupId = this.caseMentalForm.controls['MentalBehaviourLookupId'].value;
-        this.caseBook.SelectedMental.MentalBodyTypeLookupId = this.caseMentalForm.controls['MentalBodyTypeLookupId'].value;
+        //this.caseBook.SelectedMental.MentalAbstractionLookupId = this.caseMentalForm.controls['MentalAbstractionLookupId'].value;
+        //this.caseBook.SelectedMental.MentalAttentionLookupId = this.caseMentalForm.controls['MentalAttentionLookupId'].value;
+        //this.caseBook.SelectedMental.MentalBehaviourLookupId = this.caseMentalForm.controls['MentalBehaviourLookupId'].value;
+        //this.caseBook.SelectedMental.MentalBodyTypeLookupId = this.caseMentalForm.controls['MentalBodyTypeLookupId'].value;
 
-        this.caseBook.SelectedMental.MentalContentLookupId = this.caseMentalForm.controls['MentalContentLookupId'].value;
-        this.caseBook.SelectedMental.MentalDressLookupId = this.caseMentalForm.controls['MentalDressLookupId'].value;
-        this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId = this.caseMentalForm.controls['MentalEstimatedIntellectLookupId'].value;
-        this.caseBook.SelectedMental.MentalExpressionLookupId = this.caseMentalForm.controls['MentalExpressionLookupId'].value;
+        //this.caseBook.SelectedMental.MentalContentLookupId = this.caseMentalForm.controls['MentalContentLookupId'].value;
+        //this.caseBook.SelectedMental.MentalDressLookupId = this.caseMentalForm.controls['MentalDressLookupId'].value;
+        //this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId = this.caseMentalForm.controls['MentalEstimatedIntellectLookupId'].value;
+        //this.caseBook.SelectedMental.MentalExpressionLookupId = this.caseMentalForm.controls['MentalExpressionLookupId'].value;
 
-        this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId = this.caseMentalForm.controls['MentalFlowOfThoughtLookupId'].value;
-        this.caseBook.SelectedMental.MentalHygieneLookupId = this.caseMentalForm.controls['MentalHygieneLookupId'].value;
-        this.caseBook.SelectedMental.MentalImpulseControlLookupId = this.caseMentalForm.controls['MentalImpulseControlLookupId'].value;
-        this.caseBook.SelectedMental.MentalInformationLookupId = this.caseMentalForm.controls['MentalInformationLookupId'].value;
+        //this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId = this.caseMentalForm.controls['MentalFlowOfThoughtLookupId'].value;
+        //this.caseBook.SelectedMental.MentalHygieneLookupId = this.caseMentalForm.controls['MentalHygieneLookupId'].value;
+        //this.caseBook.SelectedMental.MentalImpulseControlLookupId = this.caseMentalForm.controls['MentalImpulseControlLookupId'].value;
+        //this.caseBook.SelectedMental.MentalInformationLookupId = this.caseMentalForm.controls['MentalInformationLookupId'].value;
 
-        this.caseBook.SelectedMental.MentalInsightLookupId = this.caseMentalForm.controls['MentalInsightLookupId'].value;
-        this.caseBook.SelectedMental.MentalJudgementLookupId = this.caseMentalForm.controls['MentalJudgementLookupId'].value;
-        this.caseBook.SelectedMental.MentalMemoryLookupId = this.caseMentalForm.controls['MentalMemoryLookupId'].value;
-        this.caseBook.SelectedMental.MentalMotorActivityLookupId = this.caseMentalForm.controls['MentalMotorActivityLookupId'].value;
+        //this.caseBook.SelectedMental.MentalInsightLookupId = this.caseMentalForm.controls['MentalInsightLookupId'].value;
+        //this.caseBook.SelectedMental.MentalJudgementLookupId = this.caseMentalForm.controls['MentalJudgementLookupId'].value;
+        //this.caseBook.SelectedMental.MentalMemoryLookupId = this.caseMentalForm.controls['MentalMemoryLookupId'].value;
+        //this.caseBook.SelectedMental.MentalMotorActivityLookupId = this.caseMentalForm.controls['MentalMotorActivityLookupId'].value;
 
-        this.caseBook.SelectedMental.MentalOrientationLookupId = this.caseMentalForm.controls['MentalOrientationLookupId'].value;
-        this.caseBook.SelectedMental.MentalSpeechLookupId = this.caseMentalForm.controls['MentalSpeechLookupId'].value;
-        this.caseBook.SelectedMental.MentalVocabularyLookupId = this.caseMentalForm.controls['MentalVocabularyLookupId'].value;
+        //this.caseBook.SelectedMental.MentalOrientationLookupId = this.caseMentalForm.controls['MentalOrientationLookupId'].value;
+        //this.caseBook.SelectedMental.MentalSpeechLookupId = this.caseMentalForm.controls['MentalSpeechLookupId'].value;
+        //this.caseBook.SelectedMental.MentalVocabularyLookupId = this.caseMentalForm.controls['MentalVocabularyLookupId'].value;
 
         this.casesService
             .updateMental(this.caseBook).subscribe(data => {
                 this.mentalModal.hide();
+
                 this.getCaseById();
                 this.toastr.success('Mental Status updated successfully');
 

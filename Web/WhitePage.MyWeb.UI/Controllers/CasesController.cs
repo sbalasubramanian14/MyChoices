@@ -177,6 +177,27 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult UpdateMental([FromBody] CaseBook caseBook)
         {
             caseBook.SelectedMental.CaseId = caseBook.Case.CaseId;
+
+            caseBook.SelectedMental.MentalAbstractionLookupId = caseBook.SelectedMental.MentalAbstractionLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalAttentionLookupId = caseBook.SelectedMental.MentalAttentionLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalBehaviourLookupId = caseBook.SelectedMental.MentalBehaviourLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalBodyTypeLookupId = caseBook.SelectedMental.MentalBodyTypeLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalContentLookupId = caseBook.SelectedMental.MentalContentLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalDressLookupId = caseBook.SelectedMental.MentalDressLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalEstimatedIntellectLookupId = caseBook.SelectedMental.MentalEstimatedIntellectLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalExpressionLookupId = caseBook.SelectedMental.MentalExpressionLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalFlowOfThoughtLookupId = caseBook.SelectedMental.MentalFlowOfThoughtLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalHygieneLookupId = caseBook.SelectedMental.MentalHygieneLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalImpulseControlLookupId = caseBook.SelectedMental.MentalImpulseControlLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalInformationLookupId = caseBook.SelectedMental.MentalInformationLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalInsightLookupId = caseBook.SelectedMental.MentalInsightLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalJudgementLookupId = caseBook.SelectedMental.MentalJudgementLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalMemoryLookupId = caseBook.SelectedMental.MentalMemoryLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalMotorActivityLookupId = caseBook.SelectedMental.MentalMotorActivityLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalSpeechLookupId = caseBook.SelectedMental.MentalSpeechLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalVocabularyLookupId = caseBook.SelectedMental.MentalVocabularyLookupArray.ToArrayString();
+            caseBook.SelectedMental.MentalOrientationLookupId = caseBook.SelectedMental.MentalOrientationLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdateMental(caseBook);
             return Ok(updatedCase);
         }

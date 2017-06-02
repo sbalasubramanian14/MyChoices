@@ -760,6 +760,7 @@
                                     <th>Age</th>
                                     <th>Gender</th>
                                     <th>Relationship With Abuser</th>
+                                    <th>OtherRelationship</th>
                                     <th class="text-right"></th>
                                 </tr>
                             </thead>
@@ -769,6 +770,7 @@
                                     <td>{{offender.Age}}</td>
                                     <td>{{offender.Gender}}</td>
                                     <td>{{offender.RelationshipWithVictim}}</td>
+                                    <td>{{offender.OtherRelationship}}</td>
                                     <td class="text-right">
                                         <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
                                     </td>
@@ -1561,6 +1563,12 @@
                                             <small *ngIf="caseOffenderForm.controls['RelationshipWithVictimLookupId'].hasError('required') && caseOffenderForm.controls['RelationshipWithVictimLookupId'].touched" class="mat-text-warn">Relation is required.</small>
                                         </div>
                                     </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">If other, please specify</label>
+                                        <textarea placeholder="Other Relationship" [formControl]="caseOffenderForm.controls['OtherRelationship']" class="form-control"></textarea>
+                                        
+                                    </div>
 
                                     <div class="form-group text-center">
                                         <button class="btn btn-primary" [disabled]="!caseOffenderForm.valid" (click)="saveOffender()">Save</button>
@@ -1597,64 +1605,57 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Dress</label>
-                                        <ng-select [options]="MentalDressLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalDressLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalDressLookupOptionList"
+                                            formControlName="MentalDressLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalDressLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Hygiene</label>
-                                        <ng-select [options]="MentalHygieneLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalHygieneLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalHygieneLookupOptionList"
+                                            formControlName="MentalHygieneLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalHygieneLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Body Type</label>
-                                        <ng-select [options]="MentalBodyTypeLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalBodyTypeLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalBodyTypeLookupOptionList"
+                                            formControlName="MentalBodyTypeLookupId"SelectedMental
+                                            [(ngModel)]="caseBook.SelectedMental.MentalBodyTypeLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Expression</label>
-                                        <ng-select [options]="MentalExpressionLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalExpressionLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalExpressionLookupOptionList"
+                                            formControlName="MentalExpressionLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalExpressionLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Motor Activity</label>
-                                        <ng-select [options]="MentalMotorActivityLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalMotorActivityLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalMotorActivityLookupOptionList"
+                                            formControlName="MentalMotorActivityLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalMotorActivityLookuArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Vocabulary</label>
-                                        <ng-select [options]="MentalVocabularyLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalVocabularyLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalVocabularyLookupOptionList"
+                                            formControlName="MentalVocabularyLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalVocabularyLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <label for="PeacemakerId">Impulse Control</label>
-                                    <ng-select [options]="MentalImpulseControlLookupOptionList"
-                                               placeholder="Select"
-                                               formControlName="MentalImpulseControlLookupId"
-                                               [allowClear]="true">
-                                    </ng-select>
+                                    <ss-multiselect-dropdown [options]="MentalImpulseControlLookupOptionList"
+                                        formControlName="MentalImpulseControlLookupId"
+                                        [(ngModel)]="caseBook.SelectedMental.MentalImpulseControlLookupArray">
+                                    </ss-multiselect-dropdown>
                                 </div>
                             </div>
                         </div>
@@ -1668,65 +1669,58 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Speech</label>
-                                        <ng-select [options]="MentalSpeechLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalSpeechLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalSpeechLookupOptionList"
+                                            formControlName="MentalSpeechLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalSpeechLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Behaviour</label>
-                                        <ng-select [options]="MentalBehaviourLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalBehaviourLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalBehaviourLookupOptionList"
+                                            formControlName="MentalBehaviourLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalBehaviourLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Content</label>
-                                        <ng-select [options]="MentalContentLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalContentLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalContentLookupOptionList"
+                                            formControlName="MentalContentLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalContentLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Flow Of Thought</label>
-                                        <ng-select [options]="MentalFlowOfThoughtLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalFlowOfThoughtLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalFlowOfThoughtLookupOptionList"
+                                            formControlName="MentalFlowOfThoughtLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalFlowOfThoughtLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Orientation</label>
-                                        <ng-select [options]="MentalOrientationLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalOrientationLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalOrientationLookupOptionList"
+                                            formControlName="MentalOrientationLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalOrientationLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Estimated Intellect</label>
-                                        <ng-select [options]="MentalEstimatedIntellectLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalEstimatedIntellectLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalEstimatedIntellectLookupOptionList"
+                                            formControlName="MentalEstimatedIntellectLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalEstimatedIntellectLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Attention</label>
-                                        <ng-select [options]="MentalAttentionLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalAttentionLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalAttentionLookupOptionList"
+                                            formControlName="MentalAttentionLookupId">
+                                            [(ngModel)]="caseBook.SelectedMental.MentalAttentionLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
                                 </div>
                             </div>
@@ -1741,47 +1735,42 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Insight</label>
-                                        <ng-select [options]="MentalInsightLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalInsightLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalInsightLookupOptionList"
+                                            formControlName="MentalInsightLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalInsightLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Judgement</label>
-                                        <ng-select [options]="MentalJudgementLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalJudgementLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalJudgementLookupOptionList"
+                                            formControlName="MentalJudgementLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalJudgementLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Memory</label>
-                                        <ng-select [options]="MentalMemoryLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalMemoryLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalMemoryLookupOptionList"
+                                            formControlName="MentalMemoryLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalMemoryLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Information</label>
-                                        <ng-select [options]="MentalInformationLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalInformationLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalInformationLookupOptionList"
+                                            formControlName="MentalInformationLookupId">
+                                            [(ngModel)]="caseBook.SelectedMental.MentalInformationLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Abstraction</label>
-                                        <ng-select [options]="MentalAbstractionLookupOptionList"
-                                                   placeholder="Select"
-                                                   formControlName="MentalAbstractionLookupId"
-                                                   [allowClear]="true">
-                                        </ng-select>
+                                        <ss-multiselect-dropdown [options]="MentalAbstractionLookupOptionList"
+                                            formControlName="MentalAbstractionLookupId"
+                                            [(ngModel)]="caseBook.SelectedMental.MentalAbstractionLookupArray">
+                                        </ss-multiselect-dropdown>
                                     </div>
 
                                     <div class="form-group text-center">

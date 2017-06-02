@@ -140,6 +140,31 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             if (result.Manage == null) result.Manage = new CaseManage() { CaseStatusId = result.Case.CaseStausId };
             if (result.Legal == null) result.Legal = new CaseLegal();
 
+            result.SelectedMental = this.unitOfWork.DbContext.Mental.Where(c => c.CaseId == caseId).FirstOrDefault();
+
+            if (result.SelectedMental != null)
+            {
+                result.SelectedMental.MentalAbstractionLookupArray = result.SelectedMental.MentalAbstractionLookupId.ToIntArray();
+                result.SelectedMental.MentalAttentionLookupArray = result.SelectedMental.MentalAttentionLookupId.ToIntArray();
+                result.SelectedMental.MentalBehaviourLookupArray = result.SelectedMental.MentalBehaviourLookupId.ToIntArray();
+                result.SelectedMental.MentalBodyTypeLookupArray = result.SelectedMental.MentalBodyTypeLookupId.ToIntArray();
+                result.SelectedMental.MentalContentLookupArray = result.SelectedMental.MentalContentLookupId.ToIntArray();
+                result.SelectedMental.MentalDressLookupArray = result.SelectedMental.MentalDressLookupId.ToIntArray();
+                result.SelectedMental.MentalEstimatedIntellectLookupArray  = result.SelectedMental.MentalEstimatedIntellectLookupId.ToIntArray();
+                result.SelectedMental.MentalExpressionLookupArray = result.SelectedMental.MentalExpressionLookupId.ToIntArray();
+                result.SelectedMental.MentalFlowOfThoughtLookupArray = result.SelectedMental.MentalFlowOfThoughtLookupId.ToIntArray();
+                result.SelectedMental.MentalHygieneLookupArray = result.SelectedMental.MentalHygieneLookupId.ToIntArray();
+                result.SelectedMental.MentalImpulseControlLookupArray = result.SelectedMental.MentalImpulseControlLookupId.ToIntArray();
+                result.SelectedMental.MentalInformationLookupArray = result.SelectedMental.MentalInformationLookupId.ToIntArray();
+                result.SelectedMental.MentalInsightLookupArray = result.SelectedMental.MentalInsightLookupId.ToIntArray();
+                result.SelectedMental.MentalJudgementLookupArray = result.SelectedMental.MentalJudgementLookupId.ToIntArray();
+                result.SelectedMental.MentalMemoryLookupArray = result.SelectedMental.MentalMemoryLookupId.ToIntArray();
+                result.SelectedMental.MentalMotorActivityLookupArray = result.SelectedMental.MentalMotorActivityLookupId.ToIntArray();
+                result.SelectedMental.MentalSpeechLookupArray = result.SelectedMental.MentalSpeechLookupId.ToIntArray();
+                result.SelectedMental.MentalVocabularyLookupArray = result.SelectedMental.MentalVocabularyLookupId.ToIntArray();
+                result.SelectedMental.MentalOrientationLookupArray = result.SelectedMental.MentalOrientationLookupId.ToIntArray();
+            }
+
             return result;
         }
 
@@ -372,7 +397,8 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.SelectedOffender.Age,
 
                 caseBook.SelectedOffender.GenderLookupId,
-                caseBook.SelectedOffender.RelationshipWithVictimLookupId
+                caseBook.SelectedOffender.RelationshipWithVictimLookupId,
+                caseBook.SelectedOffender.OtherRelationship
                 });
             caseChildrenTable.AcceptChanges();
 
