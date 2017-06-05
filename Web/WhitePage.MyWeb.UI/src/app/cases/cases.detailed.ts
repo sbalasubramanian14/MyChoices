@@ -887,7 +887,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].value;
 
         //this.caseBook.Abuse.ReasonsForAbuseLookupId = this.caseAbuseForm.controls['ReasonsForAbuseLookupId'].value;
-        this.caseBook.Abuse.ReasonForAbuseDesc = this.caseAbuseForm.controls['[ReasonForAbuseDesc'].value;
+        this.caseBook.Abuse.ReasonForAbuseDesc = this.caseAbuseForm.controls['ReasonForAbuseDesc'].value;
 
         this.casesService
             .updateAbuse(this.caseBook).subscribe(data => {
