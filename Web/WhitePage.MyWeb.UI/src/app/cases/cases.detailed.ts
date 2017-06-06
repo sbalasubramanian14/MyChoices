@@ -326,21 +326,21 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     private setDate(): void {
         // Set today date using the setValue function
-        let date = new Date();
-        this.casePrimaryForm.setValue({
-            myDate: {
-                date: {
-                    year: date.getFullYear(),
-                    month: date.getMonth() + 1,
-                    day: date.getDate()
-                }
-            }
-        });
+        //let date = new Date();
+        //this.casePrimaryForm.setValue({
+        //    myDate: {
+        //        date: {
+        //            year: date.getFullYear(),
+        //            month: date.getMonth() + 1,
+        //            day: date.getDate()
+        //        }
+        //    }
+        //});
     }
 
     private clearDate(): void {
         // Clear the date using the setValue function
-        this.casePrimaryForm.setValue({ myDate: '' });
+        // this.casePrimaryForm.setValue({ myDate: '' });
     }
 
     public onPrimayUpdate() {
