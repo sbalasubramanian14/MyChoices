@@ -148,6 +148,8 @@
     <Build Include="Ops\Stored Procedures\saveSessionLog.sql" />
     <Build Include="Ops\Stored Procedures\saveFeedback.sql" />
     <Build Include="Ops\Stored Procedures\saveLegal.sql" />
+    <Build Include="Ops\Functions\getMetntalStatusDescription.sql" />
+    <Build Include="Ops\Functions\func_Split.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

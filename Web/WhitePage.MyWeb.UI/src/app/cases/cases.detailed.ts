@@ -320,28 +320,27 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId.toString(), Validators.required),
             RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId.toString(), Validators.required),
             Remarks: new FormControl(this.caseBook.Case.Remarks),
-            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required),
-            myDate: ['', Validators.required],
+            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required),            
         });
     }
 
     private setDate(): void {
         // Set today date using the setValue function
-        let date = new Date();
-        this.casePrimaryForm.setValue({
-            myDate: {
-                date: {
-                    year: date.getFullYear(),
-                    month: date.getMonth() + 1,
-                    day: date.getDate()
-                }
-            }
-        });
+        //let date = new Date();
+        //this.casePrimaryForm.setValue({
+        //    myDate: {
+        //        date: {
+        //            year: date.getFullYear(),
+        //            month: date.getMonth() + 1,
+        //            day: date.getDate()
+        //        }
+        //    }
+        //});
     }
 
     private clearDate(): void {
         // Clear the date using the setValue function
-        this.casePrimaryForm.setValue({ myDate: '' });
+        // this.casePrimaryForm.setValue({ myDate: '' });
     }
 
     public onPrimayUpdate() {
@@ -1169,7 +1168,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedSessionLog.CounselingDate = new Date(this.caseSessionForm.controls['CounselingDate'].value.jsdate);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
-        this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate);
+
+        if (this.caseSessionForm.controls['NextSessionScheduled'].value != null){
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate);
+        }
+        else {
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = undefined;
+        }
+
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
         this.casesService

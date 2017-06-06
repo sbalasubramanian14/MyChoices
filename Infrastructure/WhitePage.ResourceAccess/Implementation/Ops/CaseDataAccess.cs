@@ -87,7 +87,16 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.vOffender = this.unitOfWork.DbContext.vOffenders.Where(c => c.CaseId == caseId).ToList();
             result.vMental = this.unitOfWork.DbContext.vMental.Where(c => c.CaseId == caseId).ToList();
             result.SessionLog = this.unitOfWork.DbContext.SessionLogs.Where(c => c.CaseId == caseId).ToList();
-            result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();            
+            if (result.SessionLog != null)
+            {
+                var lookupDetails = this.unitOfWork.DbContext.LookupDetails.ToList();
+                foreach (var item in result.SessionLog)
+                {
+                    item.TypeOfCounselingDesc = lookupDetails.Any(ld => ld.LookupDetailId == item.TypeOfCounselingLookupId) ? lookupDetails.First(ld => ld.LookupDetailId == item.TypeOfCounselingLookupId).Value : string.Empty;
+                }
+            }
+
+            result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();
 
             result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();
             if (result.FamilyHouseHold != null)
@@ -123,7 +132,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.Manage = this.unitOfWork.DbContext.Manage.Where(c => c.CaseId == caseId).FirstOrDefault();
             if (result.Manage != null)
             {
-                result.Manage.TypesOfCounselingLookupArray = result.Manage.TypesOfCounselingLookupId.ToIntArray();                
+                result.Manage.TypesOfCounselingLookupArray = result.Manage.TypesOfCounselingLookupId.ToIntArray();
             }
 
             result.Legal = this.unitOfWork.DbContext.Legal.Where(c => c.CaseId == caseId).FirstOrDefault();
@@ -150,7 +159,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 result.SelectedMental.MentalBodyTypeLookupArray = result.SelectedMental.MentalBodyTypeLookupId.ToIntArray();
                 result.SelectedMental.MentalContentLookupArray = result.SelectedMental.MentalContentLookupId.ToIntArray();
                 result.SelectedMental.MentalDressLookupArray = result.SelectedMental.MentalDressLookupId.ToIntArray();
-                result.SelectedMental.MentalEstimatedIntellectLookupArray  = result.SelectedMental.MentalEstimatedIntellectLookupId.ToIntArray();
+                result.SelectedMental.MentalEstimatedIntellectLookupArray = result.SelectedMental.MentalEstimatedIntellectLookupId.ToIntArray();
                 result.SelectedMental.MentalExpressionLookupArray = result.SelectedMental.MentalExpressionLookupId.ToIntArray();
                 result.SelectedMental.MentalFlowOfThoughtLookupArray = result.SelectedMental.MentalFlowOfThoughtLookupId.ToIntArray();
                 result.SelectedMental.MentalHygieneLookupArray = result.SelectedMental.MentalHygieneLookupId.ToIntArray();
@@ -601,16 +610,16 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             caseChildrenTable.Rows.Add(new object[]{
                 caseBook.Legal.CaseLegalId,
                 caseBook.Legal.CaseId,
-                         
+
                 caseBook.Legal.CaseNumber,
                 caseBook.Legal.Court,
-                         
+
                 caseBook.Legal.Prayer,
                 caseBook.Legal.LegalRepresentative,
-                         
+
                 caseBook.Legal.LegalConsentFormLookupId,
                 caseBook.Legal.LegalActionLookupId,
-                         
+
                 caseBook.Legal.OutcomeLookupId,
                 caseBook.Legal.DocumentsLookupId
                 });
