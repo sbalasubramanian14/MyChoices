@@ -320,8 +320,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId.toString(), Validators.required),
             RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId.toString(), Validators.required),
             Remarks: new FormControl(this.caseBook.Case.Remarks),
-            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required),
-            myDate: ['', Validators.required],
+            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required),            
         });
     }
 
