@@ -917,7 +917,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
 
             TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
-            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString()),
+            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validateNumber]),
             TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString()),
 
             ReasonForClosureStatus: new FormControl(this.caseBook.Manage.ReasonForClosureStatus),
@@ -1312,4 +1312,13 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /* End of - Legal Case */
 
+    /*Helper Custom Validation Methods */
+
+    public validateNumber(input: FormControl): { valid: boolean } | null { 
+        if (input.value == null)
+        { return null }
+        return input.value > 0 && input.value < 100 ? null : { valid: false };
+    };
+
+    /*End of - Custom Validation Methods */
 }
