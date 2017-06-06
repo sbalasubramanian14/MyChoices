@@ -887,7 +887,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].value;
 
         //this.caseBook.Abuse.ReasonsForAbuseLookupId = this.caseAbuseForm.controls['ReasonsForAbuseLookupId'].value;
-        this.caseBook.Abuse.ReasonForAbuseDesc = this.caseAbuseForm.controls['[ReasonForAbuseDesc'].value;
+        this.caseBook.Abuse.ReasonForAbuseDesc = this.caseAbuseForm.controls['ReasonForAbuseDesc'].value;
 
         this.casesService
             .updateAbuse(this.caseBook).subscribe(data => {
@@ -1169,7 +1169,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedSessionLog.CounselingDate = new Date(this.caseSessionForm.controls['CounselingDate'].value.jsdate);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
-        this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate);
+
+        if (this.caseSessionForm.controls['NextSessionScheduled'].value != null){
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate);
+        }
+        else {
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = undefined;
+        }
+
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
         this.casesService
