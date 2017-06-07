@@ -11,7 +11,7 @@ namespace WhitePage.Entities.CaseManagement
         public int CaseOffenderId { get; set; }
         public int CaseId { get; set; }
         public string Name { get; set; }
-        public short? Age { get; set; }
+        public decimal? Age { get; set; }
         public int? GenderLookupId { get; set; }
         public int? RelationshipWithVictimLookupId { get; set; }
         public string OtherRelationship { get; set; }

@@ -471,7 +471,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedChildren.Age, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validateNumber]),
             GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId == undefined ? null : this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
             RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId == undefined ? null : this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
         });
@@ -494,7 +494,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedChildren.Age, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validateNumber]),
             GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
             RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
         });
@@ -744,7 +744,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseOffenderForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validateNumber, Validators.required]),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
             RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
             OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship)
@@ -764,7 +764,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseOffenderForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedOffender.Age, Validators.required),
+            Age: new FormControl(this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validateNumber, Validators.required]),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
             RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
             OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship, Validators.required)
@@ -836,19 +836,19 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
             TypesOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId.toString()),
             FrequencyOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId.toString()),
-            NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString()),
+            NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
 
             TypesOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId.toString()),
             FrequencyOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId.toString()),
-            NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString()),
+            NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
 
             TypesOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfSexualAbuseLookupId.toString()),
             FrequencyOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId.toString()),
-            NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString()),
+            NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
 
             TypesOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEconomicAbuseLookupId.toString()),
             FrequencyOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId.toString()),
-            NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString()),
+            NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
 
             ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString()),
             ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc)
@@ -917,7 +917,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
             TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
             TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validateNumber]),
-            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString()),
+            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.validateNumber]),
 
             ReasonForClosureStatus: new FormControl(this.caseBook.Manage.ReasonForClosureStatus),
             CaseSubject: new FormControl(this.caseBook.Manage.CaseSubject),
@@ -1320,11 +1320,17 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
     /*Helper Custom Validation Methods */
 
-    public validateNumber(input: FormControl): { valid: boolean } | null { 
-        if (input.value == null)
-        { return null }
+    public validateNumber(input: AbstractControl): { valid: boolean } | null { 
+        if (input.value == null) { return null }
         return input.value > 0 && input.value < 100 ? null : { valid: false };
     };
+
+    public mobileValidator(input: AbstractControl): { [key: string]: boolean } | null {
+        if (input.value != undefined && !(!isNaN(parseFloat(input.value)) && isFinite(input.value))) {
+            return { 'notnumeric': true };
+        }
+        return null;
+    }
 
     /*End of - Custom Validation Methods */
 }

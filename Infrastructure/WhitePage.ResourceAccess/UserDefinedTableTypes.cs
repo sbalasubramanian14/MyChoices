@@ -227,7 +227,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("CaseOffenderId", DbColumnType.Int)
                     .AddColumn("CaseId", DbColumnType.Int)
                     .AddColumn("Name", DbColumnType.String)
-                    .AddColumn("Age", DbColumnType.Short)
+                    .AddColumn("Age", DbColumnType.Decimal)
 
                     .AddColumn("GenderLookupId", DbColumnType.Int)
                     .AddColumn("RelationshipWithVictimLookupId", DbColumnType.Int)

@@ -757,9 +757,9 @@
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>Name</th>
-                                    <th>Age</th>
+                                    <th>Age(In Years)</th>
                                     <th>Gender</th>
-                                    <th>Relationship With Abuser</th>
+                                    <th>Relationship With Victim</th>
                                     <th>OtherRelationship</th>
                                     <th class="text-right"></th>
                                 </tr>
@@ -892,8 +892,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">Number of years physical abuse has been occuring</label>
-                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                    <label for="CenterId">Number of years physical abuse has been occuring</label>                                    
+                                    <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].touched">
+                                        <input type="number" id="NumberOfYearsOfPhyscialAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse']" class="form-control" />
+                                        <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].invalid">
+                                            Value should be between 0 and 99
+                                        </small>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -916,7 +921,12 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Number of years emotional abuse has been occurring</label>
-                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].touched">
+                                        <input type="number" id="NumberOfYearsOfEmotionalAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse']" class="form-control" />
+                                        <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].invalid">
+                                            Value should be between 0 and 99
+                                        </small>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -941,7 +951,12 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Number of years sexual abuse has been occurring</label>
-                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].touched">
+                                        <input type="number" id="NumberOfYearsOfSexualAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse']" class="form-control" />
+                                        <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].invalid">
+                                            Value should be between 0 and 99
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -974,7 +989,12 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Number of years economic abuse has been occurring</label>
-                                    <input [formControl]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse']" inputmode="numeric" maxlength="2" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].touched">
+                                        <input type="number" id="NumberOfYearsOfEconomicAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse']" class="form-control" />
+                                        <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].invalid">
+                                            Value should be between 0 and 99
+                                        </small>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -1276,15 +1296,20 @@
                                     <div class="form-group" [class.has-danger]="caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid && caseManageForm.controls['TotalNoOfSessionsLookupId'].touched">
                                         <label for="CenterId">Total no of sessions</label>
                                         <input type="number" id="TotalNoOfSessionsLookupId" [formControl]="caseManageForm.controls['TotalNoOfSessionsLookupId']" class="form-control" />
-                                        <small *ngIf="caseManageForm.controls['TotalNoOfSessionsLookupId'].dirty && caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid">                                            
+                                        <small *ngIf="caseManageForm.controls['TotalNoOfSessionsLookupId'].touched && caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid">                                            
                                                 Value should be between 0 and 99
                                         </small>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">Total hours spent</label>
-                                    <input [formControl]="caseManageForm.controls['TotalHoursSpentLookupId']" inputmode="numeric" maxlength="2" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="caseManageForm.controls['TotalHoursSpentLookupId'].invalid && caseManageForm.controls['TotalHoursSpentLookupId'].touched">
+                                        <label for="CenterId">Total hours spent</label>
+                                        <input type="number" id="TotalHoursSpentLookupId" [formControl]="caseManageForm.controls['TotalHoursSpentLookupId']" class="form-control" />
+                                        <small *ngIf="caseManageForm.controls['TotalHoursSpentLookupId'].touched && caseManageForm.controls['TotalHoursSpentLookupId'].invalid">
+                                            Value should be between 0 and 99
+                                        </small>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -1463,11 +1488,11 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Age *</label>
-                                        <input type="number" placeholder="Age" [formControl]="caseChildrenForm.controls['Age']" class="form-control" [min]="0" [max]="99"/>
-                                        <div>
-                                            <small *ngIf="caseChildrenForm.controls['Age'].hasError('required') && caseChildrenForm.controls['Age'].touched" class="mat-text-warn">Age is required.</small>
-                                            <small *ngIf="caseChildrenForm.controls['Age'].errors?.min">Value should not be negative</small>
-                                            <small *ngIf="caseChildrenForm.controls['Age'].errors?.max">Value should not greater than 99</small>
+                                        <div class="form-group" [class.has-danger]="caseChildrenForm.controls['Age'].invalid && caseChildrenForm.controls['Age'].touched">
+                                            <input type="number" id="Age" [formControl]="caseChildrenForm.controls['Age']" class="form-control" />
+                                            <small *ngIf="caseChildrenForm.controls['Age'].touched && caseChildrenForm.controls['Age'].invalid">
+                                                Value should be between 0 and 99
+                                            </small>
                                         </div>
                                     </div>                                   
 
@@ -1538,10 +1563,11 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">Age *</label>
-                                        <input placeholder="Age" [formControl]="caseOffenderForm.controls['Age']"
-                                               class="form-control" [min]="0" [max]="2" digits maxlength="2" />
-                                        <div>
-                                            <small *ngIf="caseOffenderForm.controls['Age'].hasError('required') && caseOffenderForm.controls['Age'].touched" class="mat-text-warn">Age is required.</small>
+                                        <div class="form-group" [class.has-danger]="caseOffenderForm.controls['Age'].invalid && caseOffenderForm.controls['Age'].touched">
+                                            <input type="number" id="Age" [formControl]="caseOffenderForm.controls['Age']" class="form-control" />
+                                            <small *ngIf="caseOffenderForm.controls['Age'].touched && caseOffenderForm.controls['Age'].invalid">
+                                                Value should be between 0 and 99
+                                            </small>
                                         </div>
                                     </div>
 
