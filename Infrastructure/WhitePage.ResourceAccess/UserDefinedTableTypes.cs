@@ -433,8 +433,8 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("LegalConsentFormLookupId", DbColumnType.Int)
                     .AddColumn("LegalActionLookupId", DbColumnType.Int)
 
-                    .AddColumn("OutcomeLookupId", DbColumnType.Int)
-                    .AddColumn("DocumentsLookupId", DbColumnType.Int);
+                    .AddColumn("OutcomeLookupId", DbColumnType.String)
+                    .AddColumn("DocumentsLookupId", DbColumnType.String);
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
 

@@ -510,10 +510,10 @@ export class CaseLegal {
     LegalActionLookupId?: number;
 
     OutcomeLookupId: string;
-    OutcomeLookupArray: Array<Number>;
+    OutcomeLookupArray: Array<number>;
 
     DocumentsLookupId?: number;    
-    DocumentsLookupArray: Array<Number>;
+    DocumentsLookupArray: Array<number>;
 }
 
 export class CaseBook {
