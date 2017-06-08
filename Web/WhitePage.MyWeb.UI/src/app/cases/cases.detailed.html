@@ -336,8 +336,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="PeaceMakerId">Client's Email</label>
-                                    <input [formControl]="clientAndHouseholdForm.controls['ClientEmailId']" inputmode="email" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="clientAndHouseholdForm.controls['ClientEmailId'].invalid && clientAndHouseholdForm.controls['ClientEmailId'].touched">
+                                        <label for="PeaceMakerId">Client's Email</label>
+                                        <input type="email" id="ClientEmailId" [formControl]="clientAndHouseholdForm.controls['ClientEmailId']" inputmode="email" class="form-control"/>
+                                        <small *ngIf="clientAndHouseholdForm.controls['ClientEmailId'].dirty && clientAndHouseholdForm.controls['ClientEmailId'].invalid">                                            
+                                            Please provide a valid email
+                                        </small>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -426,7 +431,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary" (click)="onUpdateHouseHoldInfo()">Update</button>
+                                    <button class="btn btn-primary" [disabled]="!clientAndHouseholdForm.valid" (click)="onUpdateHouseHoldInfo()">Update</button>
                                 </div>
                             </div>
                         </div>

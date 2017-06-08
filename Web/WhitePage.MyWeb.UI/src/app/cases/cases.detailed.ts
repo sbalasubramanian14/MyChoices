@@ -574,7 +574,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             PeacemakerAssistanceDesc: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc),
             PeacemakerFollowupYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString()),
             ClientSignedRegistrationFormYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString()),
-            ClientEmailId: new FormControl(this.caseBook.FamilyHouseHold.ClientEmailId),
+            ClientEmailId: new FormControl(this.caseBook.FamilyHouseHold.ClientEmailId, this.emailValidator),
             ReligionLookupId: new FormControl(this.caseBook.FamilyHouseHold.ReligionLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ReligionLookupId.toString()),
             LevelOfEducationLookupId: new FormControl(this.caseBook.FamilyHouseHold.LevelOfEducationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.LevelOfEducationLookupId.toString()),
             VocationalSkillsLookupId: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsLookupId == undefined ? null : this.caseBook.FamilyHouseHold.VocationalSkillsLookupId.toString()),
@@ -1335,6 +1335,17 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         if (input.value != undefined && !(!isNaN(parseFloat(input.value)) && isFinite(input.value))) {
             return { 'notnumeric': true };
         }
+        return null;
+    };
+
+    public emailValidator(input: AbstractControl) {
+
+        var emailRegExp = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+
+        if (input.value != "" && (input.value.length <= 5 || !emailRegExp.test(input.value))) {
+            return { 'Please provide a valid email': true };
+        }
+
         return null;
     }
 

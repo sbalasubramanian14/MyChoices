@@ -30,12 +30,6 @@
 }
 
 ng-select {
-    :focus {
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.15);
-        border-color: #5fdfd1;
-        outline: none;
-    }
 
     > div {
         border: none !important;
@@ -44,6 +38,12 @@ ng-select {
         line-height: $input-line-height;
         padding: 0.20rem 0.5rem;
         border-radius: 16px;
+
+        &:focus {
+            color: #fff !important;
+            outline: none !important;
+            border: 1px solid #5fdfd1 !important;
+        }
     }
 
     div .single > div.toggle:hover, > div > div.single > div.clear:hover {
