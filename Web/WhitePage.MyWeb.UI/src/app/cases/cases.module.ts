@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule, IOption } from 'ng-select';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-
+import { MatchesPipe } from '../pipes/Matches.Pipe'
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
+import { CasesViewComponent } from './cases.view';
 import { CasesListComponent } from './cases.list';
 import { CaseRedirectComponent } from './case.redirect';
 
@@ -39,8 +40,10 @@ import { MyDatePickerModule } from 'mydatepicker';
     ],
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,
+        CasesViewComponent,
         CasesListComponent,
-        CaseRedirectComponent],
+        CaseRedirectComponent,
+        MatchesPipe],
     providers: [
         CasesService,
         CommonService

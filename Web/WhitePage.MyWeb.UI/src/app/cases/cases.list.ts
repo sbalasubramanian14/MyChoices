@@ -193,9 +193,9 @@ export class CasesListComponent implements OnInit {
         this.router.navigate([url]);        
     }
 
-    public onViewClick(data: CaseHeader): any {
-        console.log("view click");
-        console.log(data);
+    public onViewClick(data: any): any {
+        var url = '/cases/view/' + data.row.CaseId
+        this.router.navigate([url]);
     }
 
     public onDeleteClick(data: CaseHeader): any {

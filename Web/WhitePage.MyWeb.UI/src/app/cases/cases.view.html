@@ -1,0 +1,853 @@
+﻿<style>
+    .nav nav-tabs {
+        background-color: whitesmoke;
+    }
+</style>
+<div class="table-responsive">
+    <table class="table" *ngIf="caseBook">
+        <thead>
+            <tr style="background-color:rgba(10, 10, 10, 0.84); color:whitesmoke">
+                <th>Case Number</th>
+                <th>Client Name</th>
+                <th>Status</th>
+                <th>Center</th>
+                <th>Register Date</th>
+            </tr>
+        </thead>
+        <tr style="color:white">
+            <td>{{caseBook.CaseHeader.CaseNumber}}</td>
+            <td>{{caseBook.CaseHeader.ClientName}}</td>
+            <td>{{caseBook.CaseHeader.CaseStatus}}</td>
+            <td>{{caseBook.CaseHeader.CenterTitle}}</td>
+            <td>{{caseBook.CaseHeader.RegisterDateString}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="container-fluid case-detail-container">
+    <!-- regular tabs -->
+    <tabset>
+
+        <tab heading="Primary Info" class="active" style="width:100%">
+                <div class="row" *ngIf="isPrimaryDataLoaded">
+
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+                                Primary Info
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Center:</label>
+                                    <span>{{ (centerOptionList | MatchesPipe:primaryForm.CenterId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Peace Maker:</label>
+                                    <span>{{ (peaceMakerOptionsList | MatchesPipe:primaryForm.PeaceMakerId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CounselorId">Counselor:</label>
+                                    <span>{{ (counselorOptionsList | MatchesPipe:primaryForm.CounselorId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientFirstName">First Name:</label>
+                                    <span>{{ primaryForm.ClientFirstName }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientLastName">Last Name:</label>
+                                    <span>{{ primaryForm.ClientLastName }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="MI">M.I.:</label>
+                                    <span>{{ primaryForm.MI }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="FatherName">Father / Husband Name:</label>
+                                    <span>{{ primaryForm.FatherName }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+                                Client Details
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Mobile:</label>
+                                    <span>{{ primaryForm.MobileNumber }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Gender:</label>
+                                    <span>{{ (genderLookupOptionsList | MatchesPipe:primaryForm.GenderLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Marital Status:</label>
+                                    <span>{{ (maritalStatusLookupOptionsList | MatchesPipe:primaryForm.MaritalStatusLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Required Assistance:</label>
+                                    <span>{{ (requireAssistanceLookupOptionsList | MatchesPipe:primaryForm.RequireAssistanceLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CenterId">Remarks:</label>
+                                    <span>{{ primaryForm.Remarks }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <hr />
+            <div class="row" *ngIf="caseBook">
+                <div class="d-flex flex-column fill-width">
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Address</th>
+                                    <th>Area</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>PIN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let address of caseBook.vAddresses; let i = index">
+                                    <td>{{address.Address}}</td>
+                                    <td>{{address.Area}}</td>
+                                    <td>{{address.City}}</td>
+                                    <td>{{address.State}}</td>
+                                    <td>{{address.PIN}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Children" style="width:100%">
+            <div class="row" *ngIf="caseBook">
+                <div class="d-flex flex-column fill-width">
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age(In Years)</th>
+                                    <th>Gender</th>
+                                    <th>Relationship With Abuser</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let children of caseBook.vChildren; let i = index">
+                                    <td>{{children.Name}}</td>
+                                    <td>{{children.Age}}</td>
+                                    <td>{{children.Gender}}</td>
+                                    <td>{{children.Relation}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Client & Household" style="width:100%" *ngIf="isPrimaryDataLoaded">
+                <div class="row">
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Family
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="ChildrenDeceasedLookupId">Any children deceased/miscarried/aborted?:</label>
+                                    <span>{{ (childrenDeceasedLookupOptionsList | MatchesPipe:familyHouseHold.ChildrenDeceasedLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="HouseHoldIncomeLookupId">Household income:</label>
+                                    <span>{{ (incomeLookupOptionsList | MatchesPipe:familyHouseHold.HouseHoldIncomeLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SoughtHelpYesNoLookupId">Have you sought help for your issues before coming to My Choices?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:familyHouseHold.SoughtHelpYesNoLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SoughtHelpDesc">yes, specify:</label>
+                                    <span>{{ familyHouseHold.SoughtHelpDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SoughtHelpOutPut">If yes, what was the outcome of that help?:</label>
+                                    <span>{{ familyHouseHold.SoughtHelpOutPut }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PeacemakerAssistanceLookupId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of:</label>
+                                    <span>{{ (peacemakerAssistanceOptionsList | MatchesPipe:familyHouseHold.PeacemakerAssistanceLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PeacemakerAssistanceDesc">If other, please specify:</label>
+                                    <span>{{ familyHouseHold.PeacemakerAssistanceDesc }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Family (2)
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="PeacemakerFollowupYesNoLookupId">Would you like a Peacemaker to do follow up with you?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:familyHouseHold.PeacemakerFollowupYesNoLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientSignedRegistrationFormYesNoLookupId">Did the client sign the registration form?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:familyHouseHold.ClientSignedRegistrationFormYesNoLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientEmailId">Client's Email:</label>
+                                    <span>{{ familyHouseHold.ClientEmailId }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ReligionLookupId">Religion:</label>
+                                    <span>{{ (religionOptionsList | MatchesPipe:familyHouseHold.ReligionLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="LevelOfEducationLookupId">Level of education:</label>
+                                    <span>{{ (levelOfEducationOptionsList | MatchesPipe:familyHouseHold.LevelOfEducationLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="VocationalSkillsLookupId">Vocational skills:</label>
+                                    <span>{{ (vocationalSkillsOptionsList | MatchesPipe:familyHouseHold.VocationalSkillsLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="VocationalSkillsDesc">If other Vocational skills, please specify::</label>
+                                    <span>{{ familyHouseHold.VocationalSkillsDesc }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Family (3)
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="OccupationLookupId">Occupation:</label>
+                                    <span>{{ (occupationOptionsList | MatchesPipe:familyHouseHold.OccupationLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="OccupationDesc">If self-employed or employed, please specify::</label>
+                                    <span>{{ familyHouseHold.OccupationDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ClientIncomeLookupId">Client Income:</label>
+                                    <span>{{ (incomeLookupOptionsList | MatchesPipe:familyHouseHold.ClientIncomeLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="HouseHoldMembersLivingLookupId">Household members living in same house:</label>
+                                    <span>{{ (householdMembersOptionsList | MatchesPipe:familyHouseHold.HouseHoldMembersLivingLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="YearOfMarriage">Year of marriage:</label>
+                                    <span>{{familyHouseHold.YearOfMarriage }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">At what age did client have her first child?:</label>
+                                    <span>{{ familyHouseHold.ClientAgeAtFirstChild }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tab>
+        <tab heading="Spouse" style="width:100%">
+                <div class="row" *ngIf="isPrimaryDataLoaded">
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Spouse Info
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="SpouseName">Spouse Name:</label>
+                                    <span>{{ spouseForm.SpouseName }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SpouseHomePhone">Spouse Home phone:</label>
+                                    <span>{{ spouseForm.SpouseHomePhone }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SpouseMobilePhone">Spouse Mobile phone:</label>
+                                    <span>{{ spouseForm.SpouseMobilePhone }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SpouseOccupation">Spouse Occupation:</label>
+                                    <span>{{ spouseForm.SpouseOccupation }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SpouseEducationLookupId">Spouse Education:</label>
+                                    <span>{{ (spouseEducationLookupIdLookupOptionsList | MatchesPipe:spouseForm.SpouseEducationLookupId) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Spouse Address
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="SpouseAddress">Spouse's full address:</label>
+                                    <span>{{ spouseForm.SpouseAddress }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Area">Area:</label>
+                                    <span>{{ spouseForm.Area }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="StateLookupId">State:</label>
+                                    <span>{{ (spouseStateOptionsList | MatchesPipe:spouseForm.StateLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CityLookupId">City:</label>
+                                    <span>{{ (spouseCityOptionsList | MatchesPipe:spouseForm.CityLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PIN">PIN:</label>
+                                    <span>{{ spouseForm.PIN }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Emergency
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="PrimaryEmergencyContactName">Primary Emergency Contact Name:</label>
+                                    <span>{{ spouseForm.PrimaryEmergencyContactName }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PrimaryEmergencyRelationshipToClientLookupId">Relationship to client:</label>
+                                    <span>{{ (emergencyRelationshipOptionsList | MatchesPipe:spouseForm.PrimaryEmergencyRelationshipToClientLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PrimaryEmergencyContactPhoneNumber">Phone number:</label>
+                                    <span>{{ spouseForm.PrimaryEmergencyContactPhoneNumber }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PrimaryEmergencyContactAdress">Adress:</label>
+                                    <span>{{ spouseForm.PrimaryEmergencyContactAdress }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SecondaryEmergencyContactName">Secondary Emergency Contact Name:</label>
+                                    <span>{{ spouseForm.SecondaryEmergencyContactName }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SecondaryEmergencyRelationshipToClientLookupId">Relationship to client:</label>
+                                    <span>{{ (emergencyRelationshipOptionsList | MatchesPipe:spouseForm.SecondaryEmergencyRelationshipToClientLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SecondaryEmergencyContactPhoneNumber">Phone number:</label>
+                                    <span>{{ spouseForm.SecondaryEmergencyContactPhoneNumber }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PrimaryEmergencyContactAdress">Adress:</label>
+                                    <span>{{ spouseForm.PrimaryEmergencyContactAdress }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tab>
+        <tab heading="Physical Health" style="width:100%">
+                <div class="row" *ngIf="isPrimaryDataLoaded">
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Health
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="SufferingFromAnyMajorIllnessLookupId">Are you suffering from any major illness?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.SufferingFromAnyMajorIllnessLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SufferingFromAnyMajorIllnessDesc">If yes, please specify?:</label>
+                                    <span>{{ physicalHealthForm.SufferingFromAnyMajorIllnessDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DiagnosedPsychiatricIllnessLookupId">Do you have any diagnosed psychiatric illness?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.DiagnosedPsychiatricIllnessLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DiagnosedPsychiatricIllnessDesc">If yes, please specify?:</label>
+                                    <span>{{ physicalHealthForm.DiagnosedPsychiatricIllnessDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SleepPerNightLookupId">How much do you sleep per night?:</label>
+                                    <span>{{ (sleepPerNightLookupOptionsList | MatchesPipe:physicalHealthForm.SleepPerNightLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AppetiteLookupId">How is your appetite?:</label>
+                                    <span>{{ (appetiteLookupOptionsList | MatchesPipe:physicalHealthForm.AppetiteLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ExerciseLookupId">Do you exercise?:</label>
+                                    <span>{{ (exerciseLookupOptionsList | MatchesPipe:physicalHealthForm.ExerciseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AnyMedicationLookupId">Are you on any medication?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.AnyMedicationLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AnyMedicationDesc">If yes, what medication?:</label>
+                                    <span>{{ physicalHealthForm.AnyMedicationDesc }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Health (1)
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="AnySubstanceLookupId">Are you on any substance?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.AnySubstanceLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="AnySubstanceDesc">Please specify::</label>
+                                    <span>{{ physicalHealthForm.AnySubstanceDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CurrentlyPregnantLookup">Are you currently pregnant?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.CurrentlyPregnantLookup) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CurrentlyPregnantDesc">If yes, give details::</label>
+                                    <span>{{ physicalHealthForm.CurrentlyPregnantDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ReasonForSeekingHelpLookupId">What is the reason for seeking help?:</label>
+                                    <span>{{ (reasonForSeekingHelpLookupOptionsList | MatchesPipe:physicalHealthForm.ReasonForSeekingHelpLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ReasonForSeekingHelpDesc">If other, please specify:</label>
+                                    <span>{{ physicalHealthForm.ReasonForSeekingHelpDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="WhoIsAbusingYouLookupId">Who is abusing you?:</label>
+                                    <span>{{ (whoIsAbusingYouLookupOptionsList | MatchesPipe:physicalHealthForm.WhoIsAbusingYouLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="WhoIsAbusingYouDesc">If others, please specify :</label>
+                                    <span>{{ physicalHealthForm.WhoIsAbusingYouDesc }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tab>
+        <tab heading="Offender" style="width:100%">
+            <div class="row" *ngIf="caseBook">
+                <div class="d-flex flex-column fill-width">
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age(In Years)</th>
+                                    <th>Gender</th>
+                                    <th>Relationship With Victim</th>
+                                    <th>OtherRelationship</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let offender of caseBook.vOffender; let i = index">
+                                    <td>{{offender.Name}}</td>
+                                    <td>{{offender.Age}}</td>
+                                    <td>{{offender.Gender}}</td>
+                                    <td>{{offender.RelationshipWithVictim}}</td>
+                                    <td>{{offender.OtherRelationship}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Abuse" style="width:100%">
+                <div class="row" *ngIf="isPrimaryDataLoaded">
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Others
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="SufferingFromAbuseLookupId">Do you think you are suffering from abuse?:</label>
+                                    <span>{{ (sufferingFromAbuseLookupIdLookupOptionsList | MatchesPipe:caseAbuseForm.SufferingFromAbuseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SufferingFromAbuseDesc">If no, please specify:</label>
+                                    <span>{{ caseAbuseForm.SufferingFromAbuseDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="FeelAboutAbuseLookupId">If yes, how do you feel about the abuse?:</label>
+                                    <span>{{ (feelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FeelAboutAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ParentsFeelAboutAbuseLookupId">How do your parents feel about the abuse?:</label>
+                                    <span>{{ (farentsFeelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.ParentsFeelAboutAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="LawFeelAboutAbuseLookupId">How do your in laws feel about the abuse?:</label>
+                                    <span>{{ (lawFeelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.LawFeelAboutAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SignsOfPhysicalAbuseLookupId">Are there any signs of physical abuse? :</label>
+                                    <span>{{ (signsOfPhysicalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.SignsOfPhysicalAbuseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SignsOfPhysicalAbuseDesc">Please specify:</label>
+                                    <span>{{ caseAbuseForm.SignsOfPhysicalAbuseDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="WeaponsUsedLookupId">Weapons used by abuser on victim:</label>
+                                    <span>{{ (weaponsUsedLookupOptionsList | MatchesPipe:caseAbuseForm.WeaponsUsedLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="WeaponsUsedDesc">Please specify:</label>
+                                    <span>{{ caseAbuseForm.WeaponsUsedDesc }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Others (2)
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="TypesOfPhyscialAbuseLookupId">Types of physical abuse - tick all applicable situations:</label>
+                                    <span>{{ (typesOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfPhyscialAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="FrequencyOfPhyscialAbuseLookupId">Frequency of physical abuse:</label>
+                                    <span>{{ (frequencyOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfPhyscialAbuseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NumberOfYearsOfPhyscialAbuse">Number of years physical abuse has been occuring:</label>
+                                    <span>{{ caseAbuseForm.NumberOfYearsOfPhyscialAbuse }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TypesOfEmotionalAbuseLookupId">Types of emotional abuse - tick all applicable situations:</label>
+                                    <span>{{ (typesOfEmotionalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEmotionalAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="FrequencyOfEmotionalAbuseLookupId">Frequency of emotional abuse:</label>
+                                    <span>{{ (frequencyOfEmotionalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfEmotionalAbuseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NumberOfYearsOfEmotionalAbuse">Number of years emotional abuse has been occurring:</label>
+                                    <span>{{ caseAbuseForm.NumberOfYearsOfEmotionalAbuse }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TypesOfSexualAbuseLookupId">Types of sexual abuse - tick all applicable situations:</label>
+                                    <span>{{ (typesOfSexualAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfSexualAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="FrequencyOfSexualAbuseLookupId">Frequency of sexual abuse:</label>
+                                    <span>{{ (frequencyOfSexualAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfSexualAbuseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NumberOfYearsOfSexualAbuse">Number of years sexual abuse has been occurring:</label>
+                                    <span>{{ caseAbuseForm.NumberOfYearsOfSexualAbuse }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Others (3)
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="TypesOfEconomicAbuseLookupId">Types of economic abuse - tick all applicable situations:</label>
+                                    <span>{{ (typesOfEconomicAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEconomicAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="FrequencyOfEconomicAbuseLookupId">Frequency of economic abuse:</label>
+                                    <span>{{ (frequencyOfEconomicAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfEconomicAbuseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NumberOfYearsOfEconomicAbuse">Number of years economic abuse has been occurring:</label>
+                                    <span>{{ caseAbuseForm.NumberOfYearsOfEconomicAbuse }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ReasonsForAbuseLookupId">Reasons for abuse from abuser side:</label>
+                                    <span>{{ (reasonsForAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.ReasonsForAbuseLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ReasonForAbuseDesc">If other, please specify:</label>
+                                    <span>{{ caseAbuseForm.ReasonForAbuseDesc }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tab>
+        <tab heading="Sessions" style="width:100%" >
+            <div class="row" *ngIf="isPrimaryDataLoaded">
+                <div class="d-flex flex-column fill-width">
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Duration (Min)</th>
+                                    <th>Next Session</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let sessionLog of caseBook.vSessionLog; let i = index">
+                                    <td>{{sessionLog.CounselingDate}}</td>
+                                    <td>{{sessionLog.TypeOfCounselingDesc}}</td>
+                                    <td>{{sessionLog.DurationOfSessionMIn}}</td>
+                                    <td>{{sessionLog.NextSessionScheduled}}</td>
+                                    <td>{{sessionLog.SessionNotes}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Mental Status" style="">
+            <div class="row"  *ngIf="isPrimaryDataLoaded" style="">
+                <div class="d-flex flex-column fill-width">
+                    <div class="" style="position: relative; width: 100%">
+                        <table class="table table-responsive" style="position: absolute; width: 100%; color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Dress</th>
+                                    <th>Hygiene</th>
+                                    <th>BodyType</th>
+                                    <th>Expression</th>
+                                    <th>MotorActivity</th>
+                                    <th>Vocabulary</th>
+                                    <th>ImpulseControl</th>
+                                    <th>Speech</th>
+                                    <th>Behaviour</th>
+                                    <th>Content</th>
+                                    <th>FlowOfThought</th>
+                                    <th>Orientation</th>
+                                    <th>EstimatedIntellect</th>
+                                    <th>Attention</th>
+                                    <th>Insight</th>
+                                    <th>Judgement</th>
+                                    <th>Memory</th>
+                                    <th>Information</th>
+                                    <th>Abstraction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mental of caseBook.vMental; let i = index">
+                                    <td>{{mental.MentalDress}}</td>
+                                    <td>{{mental.MentalHygiene}}</td>
+                                    <td>{{mental.MentalBodyType}}</td>
+                                    <td>{{mental.MentalExpression}}</td>
+                                    <td>{{mental.MentalMotorActivity}}</td>
+                                    <td>{{mental.MentalVocabulary}}</td>
+                                    <td>{{mental.MentalImpulseControl}}</td>
+                                    <td>{{mental.MentalSpeech}}</td>
+                                    <td>{{mental.MentalBehaviour}}</td>
+                                    <td>{{mental.MentalContent}}</td>
+                                    <td>{{mental.MentalFlowOfThought}}</td>
+                                    <td>{{mental.MentalOrientation}}</td>
+                                    <td>{{mental.MentalEstimatedIntellect}}</td>
+                                    <td>{{mental.MentalAttention}}</td>
+                                    <td>{{mental.MentalInsight}}</td>
+                                    <td>{{mental.MentalJudgement}}</td>
+                                    <td>{{mental.MentalMemory}}</td>
+                                    <td>{{mental.MentalInformation}}</td>
+                                    <td>{{mental.MentalAbstraction}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Feedback" style="width:100%" >
+            <div class="row" *ngIf="isPrimaryDataLoaded">
+                <div class="d-flex flex-column fill-width">
+                    <div class="table-responsive">
+                        <table class="table" style="color:whitesmoke">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Respect</th>
+                                    <th>Feel Safe and Secure</th>
+                                    <th>Counselling</th>
+                                    <th>Assistance</th>
+                                    <th>Recommend Fee</th>
+                                    <th>Able To Improve</th>
+                                    <th>OPM Team Followup</th>
+                                    <th>Suggestions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let feedback of caseBook.FeedBack; let i = index">
+                                    <td>{{feedback.RespectedDuringYourVisit}}</td>
+                                    <td>{{feedback.FeelSafeAndSecure}}</td>
+                                    <td>{{feedback.FeelThatCounselling}}</td>
+                                    <td>{{feedback.AssistanceOfPeacemaker}}</td>
+                                    <td>{{feedback.RecommendFreeCounselling}}</td>
+                                    <td>{{feedback.AbleToImprove}}</td>
+                                    <td>{{feedback.OPMTeamToFollowup}}</td>
+                                    <td>{{feedback.AnySuggestions}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Legal" style="width:100%">
+                <div class="row" *ngIf="isPrimaryDataLoaded">
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Legal Data
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CaseNumber">Case Number as per court:</label>
+                                    <span>{{ caseLegalForm.CaseNumber }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Court">Court:</label>
+                                    <span>{{ caseLegalForm.Court }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Prayer">Prayer:</label>
+                                    <span>{{ caseLegalForm.Prayer }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="LegalRepresentative">Name of legal representative:</label>
+                                    <span>{{ caseLegalForm.LegalRepresentative }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="LegalConsentFormLookupId">Has the legal consent form been signed and submitted?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:caseLegalForm.LegalConsentFormLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="LegalActionLookupId">Has any legal action been taken by the client in this regard prior to approaching OPM for help?:</label>
+                                    <span>{{ (yesNoOptionsList | MatchesPipe:caseLegalForm.LegalActionLookupId) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Outcome
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="OutcomeLookupId">Outcome:</label>
+                                    <span>{{ (outcomeLookupOptionList | MatchesPipe:caseLegalForm.OutcomeLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DocumentsLookupId">List all documents that the client has submitted:</label>
+                                    <span>{{ (documentsLookupOptionList | MatchesPipe:caseLegalForm.DocumentsLookupId:"multiselect") }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tab>
+        <tab heading="Case Management" style="width:100%">
+                <div class="row" *ngIf="isPrimaryDataLoaded">
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Case Data
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CaseStatusId">Status:</label>
+                                    <span>{{ (caseStatusOptionList | MatchesPipe:manageForm.CaseStatusId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SourceOfCaseLookupId">Source of case:</label>
+                                    <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:manageForm.SourceOfCaseLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SourceOfCaseDesc">If other, please specify:</label>
+                                    <span>{{ manageForm.SourceOfCaseDesc }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TypesOfCounselingLookupId">Type of counseling:</label>
+                                    <span>{{ (typesOfCounselingLookupOptionList | MatchesPipe:manageForm.TypesOfCounselingLookupId:"multiselect") }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TotalNoOfSessionsLookupId">Total no of sessions:</label>
+                                    <span>{{ manageForm.TotalNoOfSessionsLookupId }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TotalHoursSpentLookupId">Total hours spent:</label>
+                                    <span>{{ manageForm.TotalHoursSpentLookupId }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="TotalHoursSpentLookupId">Reason for selected Closure status:</label>
+                                    <span>{{ manageForm.TotalHoursSpentLookupId }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ReasonForClosureStatus">Reason for selected Closure status:</label>
+                                    <span>{{ manageForm.ReasonForClosureStatus }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Other Info (1)
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CaseSubject">Subject:</label>
+                                    <span>{{ manageForm.CaseSubject }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="CaseDescription">Description:</label>
+                                    <span>{{ manageForm.CaseDescription }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="RelationshipWithPMLookupId">Relationship with PM:</label>
+                                    <span>{{ (relationshipWithPMLookupOptionList | MatchesPipe:manageForm.RelationshipWithPMLookupId) }}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ResolutionLog">Case resolution log:</label>
+                                    <span>{{ manageForm.ResolutionLog }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </tab>
+    </tabset>
+</div>

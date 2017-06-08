@@ -6,6 +6,7 @@ import {
 
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
+import { CasesViewComponent } from './cases.view';
 import { CasesListComponent } from './cases.list';
 import { CaseRedirectComponent } from './case.redirect';
 
@@ -29,13 +30,20 @@ const routes: Routes = [
                 title: 'Cases'
             }
         }, {
+            path: 'view/:id',
+            component: CasesViewComponent,
+            canActivate: [AuthGuard],
+            data: {
+                title: 'Manage Case'
+            }
+        }, {
             path: 'detailed/:id',
             component: CasesDetailedComponent,
             canActivate: [AuthGuard],
             data: {
                 title: 'Manage Case'
             }
-        }, {
+        },{
             path: 'redirect/:id',
             component: CaseRedirectComponent,
             canActivate: [AuthGuard],
