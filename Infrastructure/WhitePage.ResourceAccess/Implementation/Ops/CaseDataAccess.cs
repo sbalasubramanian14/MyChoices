@@ -87,15 +87,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             result.vOffender = this.unitOfWork.DbContext.vOffenders.Where(c => c.CaseId == caseId).ToList();
             result.vMental = this.unitOfWork.DbContext.vMental.Where(c => c.CaseId == caseId).ToList();
             result.SessionLog = this.unitOfWork.DbContext.SessionLogs.Where(c => c.CaseId == caseId).ToList();
-            if (result.SessionLog != null)
-            {
-                var lookupDetails = this.unitOfWork.DbContext.LookupDetails.ToList();
-                foreach (var item in result.SessionLog)
-                {
-                    item.TypeOfCounselingDesc = lookupDetails.Any(ld => ld.LookupDetailId == item.TypeOfCounselingLookupId) ? lookupDetails.First(ld => ld.LookupDetailId == item.TypeOfCounselingLookupId).Value : string.Empty;
-                }
-            }
-
+            result.vSessionLog = this.unitOfWork.DbContext.vSessionLog.Where(c => c.CaseId == caseId).ToList();
             result.FeedBack = this.unitOfWork.DbContext.vFeedback.Where(c => c.CaseId == caseId).ToList();
 
             result.FamilyHouseHold = this.unitOfWork.DbContext.FamilyHouseHold.Where(c => c.CaseId == caseId).FirstOrDefault();

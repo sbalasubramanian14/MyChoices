@@ -24,6 +24,8 @@ namespace WhitePage.Entities.CaseManagement
         public List<vCaseMental> vMental { get; set; }
         public CaseMental SelectedMental { get; set; }
 
+        public List<vCaseSessionLog> vSessionLog { get; set; }
+
         public List<CaseSessionLog> SessionLog { get; set; }
         public CaseSessionLog SelectedSessionLog { get; set; }
 

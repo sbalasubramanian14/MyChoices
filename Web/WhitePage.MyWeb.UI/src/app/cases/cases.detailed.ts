@@ -18,6 +18,8 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { IMyOptions } from 'mydatepicker';
 
+import * as moment from 'moment';
+
 @Component({
     templateUrl: 'cases.detailed.html'
 })
@@ -1131,11 +1133,12 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             NextSessionScheduled: new FormControl(this.caseBook.SelectedSessionLog.NextSessionScheduled),
             SessionNotes: new FormControl(this.caseBook.SelectedSessionLog.SessionNotes, Validators.required)
         });
+
         this.sessionsModal.show();
     }
 
     public editSession(sessionLog: CaseSessionLog) {
-        this.caseBook.SelectedSessionLog = new CaseOffender();
+        this.caseBook.SelectedSessionLog = new CaseSessionLog();
         this.caseBook.SelectedSessionLog.CaseSessionLogId = sessionLog.CaseSessionLogId;
         this.caseBook.SelectedSessionLog.CaseId = sessionLog.CaseId;
 
@@ -1147,7 +1150,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseSessionForm = this.fb.group({
             CounselingDate: new FormControl(this.caseBook.SelectedSessionLog.CounselingDate, Validators.required),
-            TypeOfCounselingLookupId: new FormControl('', Validators.required),
+            TypeOfCounselingLookupId: new FormControl(this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId == undefined ? null : this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId.toString(), Validators.required),
             DurationOfSessionMIn: new FormControl(this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required),
             NextSessionScheduled: new FormControl(this.caseBook.SelectedSessionLog.NextSessionScheduled),
             SessionNotes: new FormControl(this.caseBook.SelectedSessionLog.SessionNotes, Validators.required)
@@ -1165,15 +1168,18 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public saveSession(sessionLog: CaseSessionLog) {
-        this.caseBook.SelectedSessionLog.CounselingDate = new Date(this.caseSessionForm.controls['CounselingDate'].value.jsdate);
+        let dateObject = moment.utc(this.caseSessionForm.controls['CounselingDate'].value["date"]).subtract(1, 'months');        
+        this.caseBook.SelectedSessionLog.CounselingDate = new Date(dateObject.format());
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
 
-        if (this.caseSessionForm.controls['NextSessionScheduled'].value != null){
-            this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(this.caseSessionForm.controls['NextSessionScheduled'].value.jsdate);
+        let nextScheduleObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
+
+        if (nextScheduleObject == null || nextScheduleObject == ""){
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = null;
         }
         else {
-            this.caseBook.SelectedSessionLog.NextSessionScheduled = undefined;
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = moment.utc(nextScheduleObject["date"]).subtract(1, 'months').toDate();
         }
 
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
