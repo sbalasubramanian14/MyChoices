@@ -525,7 +525,12 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">PIN</label>
-                                    <input [formControl]="spouseForm.controls['PIN']" maxlength="6" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="spouseForm.controls['PIN'].invalid && spouseForm.controls['PIN'].touched">
+                                        <input [formControl]="spouseForm.controls['PIN']" digits maxlength="6" class="form-control" />
+                                        <div>
+                                            <small *ngIf="spouseForm.controls['PIN'].dirty && spouseForm.controls['PIN'].invalid">Please provide a valid PIN</small>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -1410,10 +1415,12 @@
 
                                     <div class="form-group">
                                         <label for="PeacemakerId">PIN *</label>
-                                        <input placeholder="PIN" [formControl]="caseAddressForm.controls['PIN']"
-                                               class="form-control" [min]="6" [max]="6" digits maxlength="6" />
-                                        <div>
-                                            <small *ngIf="caseAddressForm.controls['PIN'].hasError('required') && caseAddressForm.controls['PIN'].touched" class="mat-text-warn">PIN is required.</small>
+                                        <div class="form-group" [class.has-danger]="caseAddressForm.controls['PIN'].invalid && caseAddressForm.controls['PIN'].touched">
+                                            <input placeholder="PIN" [formControl]="caseAddressForm.controls['PIN']" class="form-control" digits maxlength="6"/>
+                                            <div>
+                                                <small *ngIf="caseAddressForm.controls['PIN'].hasError('required') && caseAddressForm.controls['PIN'].touched">PIN is required.</small>
+                                                <small *ngIf="caseAddressForm.controls['PIN'].dirty && caseAddressForm.controls['PIN'].invalid">Please provide a valid PIN</small>
+                                            </div>
                                         </div>
                                     </div>
 

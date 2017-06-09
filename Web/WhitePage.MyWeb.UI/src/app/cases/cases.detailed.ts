@@ -405,7 +405,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
             Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, Validators.required),
+            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.numericValidator]),
             StateId: new FormControl(this.caseBook.SelectedAddress.StateId == undefined ? null : this.caseBook.SelectedAddress.StateId.toString(), Validators.required),
             CityId: new FormControl(this.caseBook.SelectedAddress.CityId == undefined ? null : this.caseBook.SelectedAddress.CityId.toString(), Validators.required)
         });
@@ -432,7 +432,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
             Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, Validators.required),
+            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.numericValidator]),
             StateId: new FormControl(this.caseBook.SelectedAddress.StateId.toString(), Validators.required),
             CityId: new FormControl(this.caseBook.SelectedAddress.CityId.toString(), Validators.required)
         });
@@ -622,7 +622,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             Area: new FormControl(this.caseBook.Spouse.Area),
             CityLookupId: new FormControl(this.caseBook.Spouse.CityLookupId == undefined ? null : this.caseBook.Spouse.CityLookupId.toString()),
             StateLookupId: new FormControl(this.caseBook.Spouse.StateLookupId == undefined ? null : this.caseBook.Spouse.StateLookupId.toString()),
-            PIN: new FormControl(this.caseBook.Spouse.PIN),
+            PIN: new FormControl(this.caseBook.Spouse.PIN, [Validators.minLength(6), this.numericValidator]),
 
             PrimaryEmergencyContactName: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactName),
             PrimaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString()),
@@ -1342,11 +1342,24 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         var emailRegExp = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
+        if (input.value == null) {
+            return null;
+        }
+
         if (input.value != "" && (input.value.length <= 5 || !emailRegExp.test(input.value))) {
             return { 'Please provide a valid email': true };
         }
 
         return null;
+    }
+
+    public numericValidator(input: AbstractControl) {
+
+        var numericPattern = /^[0-9]*$/;
+
+        if (!numericPattern.test(input.value)) {
+            return { 'PLease provide a valid PIN': true };
+        }
     }
 
     /*End of - Custom Validation Methods */
