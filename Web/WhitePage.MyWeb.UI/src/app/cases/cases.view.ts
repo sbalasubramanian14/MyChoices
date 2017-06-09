@@ -10,9 +10,7 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
-import {
-    CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog, vCaseFeedback, CaseFeedback, CaseLegal
-} from '../models/case.entities';
+import { CaseBook } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
@@ -71,8 +69,7 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
     public reasonForSeekingHelpLookupOptionsList: Array<IMultiSelectOption> = [];
     public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public casesService: CasesService,
+    constructor(public casesService: CasesService,
         public commonService: CommonService,
         public routerObj: Router,
         public toastr: ToastsManager,
@@ -239,7 +236,10 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
                     this.caseBook = data;
                     console.log(this.caseBook);
 
-                    this.onCenterSelected(null);
+                    this.getPeaceMakerAndCounselorList();
+                    this.getCities();
+                    this.getSpouseCities();
+
 
                     if (this.centersList.length > 0 && this.centerOptionList.length > 0 && this.counselorOptionsList.length > 0) {
                         this.isPrimaryDataLoaded = true;
@@ -256,13 +256,8 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
         });
     }
 
-    private onCenterSelected(center: any) {
-        if (this.caseBook.Case.CenterId == null || this.caseBook.Case.CenterId <= 0) {
-            this.peaceMakerOptionsList = new Array<IOption>();
-            this.counselorOptionsList = new Array<IOption>();
-            return;
-        }
-
+    private getPeaceMakerAndCounselorList() {
+       
         //Peace Maker
         var localPeaceMakerOptionsList = new Array<IOption>();
         for (var i = 0; i < this.peaceMakersList.length; i++) {
@@ -304,80 +299,44 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
     public genderLookupOptionsList: Array<IOption> = [];
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
-    
     /* End of --- Primary Info */
 
     /* Start - Addresses */
-
-    private onStateSelected(state: any) {
-        if (state == undefined || state.value == undefined) {
-            this.cityOptionsList = new Array<IOption>();
-            return;
-        }
+    private getCities() {
 
         //Cities
         var localCityOptionsList = new Array<IOption>();
         for (var i = 0; i < this.statesList.length; i++) {
-            if (this.statesList[i].StateId == state.value) {
-                for (var j = 0; j < this.statesList[i].Cities.length; j++) {
-                    localCityOptionsList.push({
-                        value: this.statesList[i].Cities[j].CityId.toString(),
-                        label: this.statesList[i].Cities[j].Title
-                    });
-                }
+            for (var j = 0; j < this.statesList[i].Cities.length; j++) {
+                localCityOptionsList.push({
+                    value: this.statesList[i].Cities[j].CityId.toString(),
+                    label: this.statesList[i].Cities[j].Title
+                });
             }
         }
         this.cityOptionsList = localCityOptionsList;
     }
-    
     /* End of - Addresses */
 
     /* Start - Children */
     public relationshipWithAbuserLookupOptionsList: Array<IOption> = [];
-
-    
-    /* End of - Children */
-
-    /* Start - client And Household */
-
-    
-    /* End of - client And Household */
+    /* End of - Children */    
 
     /* Start - Spouse */
-    private onSpouseStateSelected(state: any) {
-        if (state == undefined || state.value == undefined) {
-            this.spouseCityOptionsList = new Array<IOption>();
-            return;
-        }
-
+    private getSpouseCities() {
         //Cities
         var localCityOptionsList = new Array<IOption>();
         for (var i = 0; i < this.statesList.length; i++) {
-            if (this.statesList[i].StateId == state.value) {
-                for (var j = 0; j < this.statesList[i].Cities.length; j++) {
+            for (var j = 0; j < this.statesList[i].Cities.length; j++) {
                     localCityOptionsList.push({
                         value: this.statesList[i].Cities[j].CityId.toString(),
                         label: this.statesList[i].Cities[j].Title
-                    });
-                }
+                });
             }
         }
         this.spouseCityOptionsList = localCityOptionsList;
     }
-
-    
-
     /* End of - Spouse */
-
-    /* Physical Health */
-
-    
-    /* End of - Physical Health */
-
-    /* Start - Offender */
-
-    
-    /* End of - Offender */
 
     /* Start - Abuse */
     public sufferingFromAbuseLookupIdLookupOptionsList: Array<IOption> = [];
@@ -403,8 +362,6 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
 
     public reasonsForAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
     public relationshipWithVictimLookupOptionsList: Array<IOption> = [];
-    
-
     /* End of - Abuse */
 
     /* Start - Manage Case */
@@ -439,18 +396,9 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
     public MentalMemoryLookupOptionList: Array<IMultiSelectOption> = [];
     public MentalInformationLookupOptionList: Array<IMultiSelectOption> = [];
     public MentalAbstractionLookupOptionList: Array<IMultiSelectOption> = [];
-
-    
-
-   
-
-   
     /* End of - Mental */
 
     /* Start - Sessions */
-
-   
-
     public RespectedDuringYourVisitLookupOptionList: Array<IOption> = [];
     public FeelSafeAndSecureLookupOptionList: Array<IOption> = [];
     public FeelThatCounsellingLookupOptionList: Array<IOption> = [];
@@ -458,20 +406,10 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
     public RecommendFreeCounsellingLookupOptionList: Array<IOption> = [];
     public AbleToImproveLookupOptionList: Array<IOption> = [];
     public OPMTeamToFollowupLookupOptionList: Array<IOption> = [];
-
-   
     /* End of - Sessions */
-
-    /* Start - Feedback */
-
     
-
-   
-    /* End of - Feedback */
-
     /* Start - Legal Case */
     public outcomeLookupOptionList: Array<IMultiSelectOption> = [];
-    public documentsLookupOptionList: Array<IMultiSelectOption> = [];    
-
-    /* End of - Legal Case */   
+    public documentsLookupOptionList: Array<IMultiSelectOption> = [];
+    /* End of - Legal Case */
 }
