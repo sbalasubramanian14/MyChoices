@@ -1,0 +1,18 @@
+﻿.primary-info-view{
+    div{
+        display: flex;
+        label{
+            flex: 0 1 30%;
+            font-weight: 700;
+        }
+        span{
+            flex: 0 1 70%;
+        }
+    }
+
+}
+.card-header {
+    font-weight: 700;
+    color: #38ccbc;
+    font-size: 16px;
+}

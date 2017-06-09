@@ -21,7 +21,8 @@ import * as moment from 'moment';
 import { MatchesPipe } from './../pipes/Matches.Pipe';
 
 @Component({
-    templateUrl: 'cases.view.html'
+    templateUrl: 'cases.view.html',
+    styleUrls: ['cases.view.scss']
 })
 export class CasesViewComponent extends BaseCaseController implements OnInit {
     public caseBook: CaseBook;
