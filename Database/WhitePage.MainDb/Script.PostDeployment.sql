@@ -299,6 +299,7 @@ insert into @counselorNames values('Reena', 'Doughabar', 'Warangal', 0)
 insert into @counselorNames values('Ratna', 'Sri', 'Warangal', 0)
 insert into @counselorNames values('Beena', 'Dorcas', 'Golconda', 0)
 insert into @counselorNames values('Pearl', 'Choragudi', NULL, 1)
+insert into @counselorNames values('Vasantha', '', 'Secunderabad', 0)
 
 ;WITH counselor
 as
