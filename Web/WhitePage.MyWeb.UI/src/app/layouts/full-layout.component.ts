@@ -32,5 +32,9 @@ export class FullLayoutComponent implements OnInit {
       this.router.navigate(['/pages/signin']);
   }
 
+  clearLocalStorage(): void {
+      this.authenticationService.clearLocalStorage();
+  }
+
   ngOnInit(): void {}
 }

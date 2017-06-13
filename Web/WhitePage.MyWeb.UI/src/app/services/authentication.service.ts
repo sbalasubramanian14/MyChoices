@@ -50,7 +50,7 @@ export class AuthenticationService {
 
     public signout(): void {
         this.redirectUrl = null;
-        this.remove();
+        this.clearLocalStorage();
         this.user = {};
     }
 
@@ -92,6 +92,10 @@ export class AuthenticationService {
     private store(body: any): void {
         localStorage.setItem('id_token', body.access_token);
         this.decodeToken();
+    }
+
+    public clearLocalStorage(): void {
+        localStorage.clear();
     }
 
     private remove(): void {
