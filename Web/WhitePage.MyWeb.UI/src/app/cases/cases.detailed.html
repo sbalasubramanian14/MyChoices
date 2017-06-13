@@ -114,13 +114,15 @@
                                 Client Details
                             </div>
                             <div class="card-block">
-
+                                
                                 <div class="form-group">
                                     <label for="PeacemakerId">Mobile *</label>
-                                    <input placeholder="Mobile" [formControl]="casePrimaryForm.controls['MobileNumber']" class="form-control"
-                                           [min]="10" [max]="10" digits maxlength="10" />
-                                    <div>
-                                        <small *ngIf="casePrimaryForm.controls['MobileNumber'].hasError('required') && casePrimaryForm.controls['MobileNumber'].touched" class="mat-text-warn">Mobile is required.</small>
+                                    <div class="form-group" [class.has-danger]="casePrimaryForm.controls['MobileNumber'].invalid && casePrimaryForm.controls['MobileNumber'].touched">
+                                        <input placeholder="Mobile" [formControl]="casePrimaryForm.controls['MobileNumber']" class="form-control" digits maxlength="14"/>
+                                        <div>
+                                            <small *ngIf="casePrimaryForm.controls['MobileNumber'].hasError('required') && casePrimaryForm.controls['MobileNumber'].touched">Mobile is required.</small>
+                                            <small *ngIf="casePrimaryForm.controls['MobileNumber'].dirty && casePrimaryForm.controls['MobileNumber'].invalid">Please provide a valid Mobile Number</small>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -459,12 +461,22 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Spouse Home phone</label>
-                                    <input [formControl]="spouseForm.controls['SpouseHomePhone']" maxlength="30" class="form-control" />
-                                </div>
+                                    <div class="form-group" [class.has-danger]="spouseForm.controls['SpouseHomePhone'].invalid && spouseForm.controls['SpouseHomePhone'].touched">
+                                        <input [formControl]="spouseForm.controls['SpouseHomePhone']" digits maxlength="14" class="form-control" />
+                                        <div>
+                                            <small *ngIf="spouseForm.controls['SpouseHomePhone'].dirty && spouseForm.controls['SpouseHomePhone'].invalid">Please provide a valid Phone</small>
+                                        </div>
+                                    </div>
+                                 </div>
 
                                 <div class="form-group">
                                     <label for="CenterId">Spouse Mobile phone</label>
-                                    <input [formControl]="spouseForm.controls['SpouseMobilePhone']" maxlength="10" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="spouseForm.controls['SpouseMobilePhone'].invalid && spouseForm.controls['SpouseMobilePhone'].touched">
+                                        <input [formControl]="spouseForm.controls['SpouseMobilePhone']" digits maxlength="14" class="form-control" />
+                                        <div>
+                                            <small *ngIf="spouseForm.controls['SpouseMobilePhone'].dirty && spouseForm.controls['SpouseMobilePhone'].invalid">Please provide a valid Mobile</small>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -482,7 +494,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary" (click)="onUpdateSpouse()">Update</button>
+                                    <button class="btn btn-primary" [disabled]="!spouseForm.valid" (click)="onUpdateSpouse()">Update</button>
                                 </div>
                             </div>
                         </div>
@@ -562,7 +574,12 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Phone number</label>
-                                    <input [formControl]="spouseForm.controls['PrimaryEmergencyContactPhoneNumber']" maxlength="10" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].invalid && spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].touched">
+                                        <input [formControl]="spouseForm.controls['PrimaryEmergencyContactPhoneNumber']" digits maxlength="14" class="form-control" />
+                                        <div>
+                                            <small *ngIf="spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].dirty && spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].invalid">Please provide a valid Phone number</small>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -586,7 +603,12 @@
 
                                 <div class="form-group">
                                     <label for="CenterId">Phone number</label>
-                                    <input [formControl]="spouseForm.controls['SecondaryEmergencyContactPhoneNumber']" maxlength="10" class="form-control" />
+                                    <div class="form-group" [class.has-danger]="spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].invalid && spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].touched">
+                                        <input [formControl]="spouseForm.controls['SecondaryEmergencyContactPhoneNumber']" digits maxlength="14" class="form-control" />
+                                        <div>
+                                            <small *ngIf="spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].dirty && spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].invalid">Please provide a valid Phone number</small>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">

@@ -99,10 +99,13 @@
 
                     <div class="form-group">
                         <label for="PeacemakerId">PIN *</label>
-                        <input placeholder="PIN" [formControl]="casePrimaryForm.controls['address'].controls['PIN']"
-                               class="form-control" [(ngModel)]="caseBook.SelectedAddress.PIN" [min]="6" [max]="6" digits maxlength="6" />
-                        <div>
-                            <small *ngIf="casePrimaryForm.controls['address'].controls['PIN'].hasError('required') && casePrimaryForm.controls['address'].controls['PIN'].touched" class="mat-text-warn">PIN is required.</small>
+                        <div class="form-group" [class.has-danger]="casePrimaryForm.controls['address'].controls['PIN'].invalid && casePrimaryForm.controls['address'].controls['PIN'].touched">
+                            <input placeholder="PIN" [formControl]="casePrimaryForm.controls['address'].controls['PIN']"
+                                   class="form-control" [(ngModel)]="caseBook.SelectedAddress.PIN" digits maxlength="6" />
+                            <div>
+                                <small *ngIf="casePrimaryForm.controls['address'].controls['PIN'].hasError('required') && casePrimaryForm.controls['address'].controls['PIN'].touched">PIN is required.</small>
+                                <small *ngIf="casePrimaryForm.controls['address'].controls['PIN'].dirty && casePrimaryForm.controls['address'].controls['PIN'].invalid">Please provide a valid PIN</small>
+                            </div>
                         </div>
                     </div>
 

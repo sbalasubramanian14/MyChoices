@@ -11,10 +11,12 @@ import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
+import { CasesDetailedComponent } from './cases.detailed';
 
 @Component({
     templateUrl: 'cases.create.html',
-    styleUrls: ['cases.create.scss']
+    styleUrls: ['cases.create.scss'],
+    providers: [CasesDetailedComponent]
 })
 export class CasesCreateComponent extends BaseCaseController implements OnInit {
 
@@ -23,6 +25,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         public commonService: CommonService,
         private routerObj: Router,
         public toastr: ToastsManager,
+        public casesDetailed : CasesDetailedComponent,
         vRef: ViewContainerRef) {
         super(casesService, commonService);
         this.router = routerObj;
@@ -159,7 +162,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             address: new FormGroup({
                 Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
                 Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-                PIN: new FormControl(this.caseBook.SelectedAddress.PIN, Validators.required),
+                PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.casesDetailed.numericValidator]),
                 StateId: new FormControl(this.caseBook.SelectedAddress.StateId, Validators.required),
                 CityId: new FormControl(this.caseBook.SelectedAddress.CityId, Validators.required)
             })

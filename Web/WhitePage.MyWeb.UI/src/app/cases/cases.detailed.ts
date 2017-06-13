@@ -23,6 +23,7 @@ import * as moment from 'moment';
 @Component({
     templateUrl: 'cases.detailed.html'
 })
+
 export class CasesDetailedComponent extends BaseCaseController implements OnInit {
     public caseBook: CaseBook;
     private selectedCaseId: number;
@@ -322,7 +323,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId.toString(), Validators.required),
             RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId.toString(), Validators.required),
             Remarks: new FormControl(this.caseBook.Case.Remarks),
-            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required),            
+            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.mobileValidator]),            
         });
     }
 
@@ -614,8 +615,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     private loadSpouseFormGroup() {
         this.spouseForm = this.fb.group({
             SpouseName: new FormControl(this.caseBook.Spouse.SpouseName),
-            SpouseHomePhone: new FormControl(this.caseBook.Spouse.SpouseHomePhone),
-            SpouseMobilePhone: new FormControl(this.caseBook.Spouse.SpouseMobilePhone),
+            SpouseHomePhone: new FormControl(this.caseBook.Spouse.SpouseHomePhone, [Validators.minLength(10), this.mobileValidator]),
+            SpouseMobilePhone: new FormControl(this.caseBook.Spouse.SpouseMobilePhone, [Validators.minLength(10), this.mobileValidator]),
             SpouseOccupation: new FormControl(this.caseBook.Spouse.SpouseOccupation),
             SpouseEducationLookupId: new FormControl(this.caseBook.Spouse.SpouseEducationLookupId == undefined ? null : this.caseBook.Spouse.SpouseEducationLookupId.toString()),
             SpouseAddress: new FormControl(this.caseBook.Spouse.SpouseAddress),
@@ -626,12 +627,12 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
             PrimaryEmergencyContactName: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactName),
             PrimaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString()),
-            PrimaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber),
+            PrimaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.mobileValidator]),
             PrimaryEmergencyContactAdress: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactAdress),
 
             SecondaryEmergencyContactName: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactName),
             SecondaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId.toString()),
-            SecondaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber),
+            SecondaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.mobileValidator]),
             SecondaryEmergencyContactAdress: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactAdress)
 
         });
@@ -1331,16 +1332,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         return input.value > 0 && input.value < 100 ? null : { valid: false };
     };
 
-    public mobileValidator(input: AbstractControl): { [key: string]: boolean } | null {
-        if (input.value != undefined && !(!isNaN(parseFloat(input.value)) && isFinite(input.value))) {
-            return { 'notnumeric': true };
-        }
-        return null;
-    };
-
     public emailValidator(input: AbstractControl) {
 
-        var emailRegExp = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+        var emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (input.value == null) {
             return null;
@@ -1358,8 +1352,23 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         var numericPattern = /^[0-9]*$/;
 
         if (!numericPattern.test(input.value)) {
-            return { 'PLease provide a valid PIN': true };
+            return { 'Please provide a valid PIN': true };
         }
+    }
+
+    public mobileValidator(input: AbstractControl) {
+
+        var mobilePattern = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+
+        if (input.value == null || input.value == "") {
+            return null;
+        }
+
+        if (!mobilePattern.test(input.value)) {
+            return { 'Please provide a valid phone': true };
+        }
+
+        return null;
     }
 
     /*End of - Custom Validation Methods */
