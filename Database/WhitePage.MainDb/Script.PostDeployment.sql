@@ -797,6 +797,9 @@ INSERT INTO @lookupDetails VALUES(20, 'ReasonForSeekingHelp',		358, 'Desire for 
 INSERT INTO @lookupDetails VALUES(20, 'ReasonForSeekingHelp',		359, 'Need to talk to someone'	,	5,1)
 INSERT INTO @lookupDetails VALUES(20, 'ReasonForSeekingHelp',		360, 'Other'	,	6,1)
 
+INSERT INTO @lookupDetails VALUES(11, 'HouseholdMembers', 361, 'Mother', 16,1)
+INSERT INTO @lookupDetails VALUES(11, 'HouseholdMembers', 362, 'Father', 17,1)
+
 ;merge Core.dmnLookup T
 using (select distinct LookupId, Title from @lookupDetails) as S ON T.LookupId = S.LookupId
 when Matched then 
