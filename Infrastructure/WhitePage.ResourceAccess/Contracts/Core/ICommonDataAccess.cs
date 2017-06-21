@@ -11,5 +11,6 @@ namespace WhitePage.ResourceAccess.Contracts.Core
         List<CaseStatus> GetAllCaseStatuses();
         List<Lookup> GetAllLookups();
         List<State> GetAllStates();
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetChartObjectValues();
     }
 }

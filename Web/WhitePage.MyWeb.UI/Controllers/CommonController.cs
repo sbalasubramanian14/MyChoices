@@ -62,5 +62,13 @@ namespace WhitePage.MyWeb.UI.Controllers
             var centers = this.commonDataAccess.GetAllCaseStatuses();
             return Ok(centers);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetChartObjectValues()
+        {
+            var charts = this.commonDataAccess.GetChartObjectValues();
+            return Ok(charts);
+        }
     }
 }

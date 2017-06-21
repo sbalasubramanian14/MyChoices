@@ -37,4 +37,8 @@ export class CommonService extends BaseService {
     public getAllCaseStatuses(): Observable<CaseStatus[]> {
         return this.authHttp.get('/api/Common/GetAllCaseStatuses/', this.getRequestOptions()).map((response: Response) => <CaseStatus[]>response.json());
     }
+
+    public getChartsData(): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Common/GetChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    }
 }

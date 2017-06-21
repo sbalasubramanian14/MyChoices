@@ -10,5 +10,6 @@ namespace WhitePage.BusinessAccess.Contracts.Core
         List<Counselor> GetAllCounselors();
         List<Lookup> GetAllLookups();
         List<State> GetAllStates();
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetChartObjectValues();
     }
 }

@@ -17,13 +17,13 @@ export class BaseCaseController {
 
         this.observerDataSubject = new Subject<string>();
         console.log("calling super constructor");
+        this.getChartsData();
         this.LoadCaseStatuses();
         this.LoadCenters();
         this.LoadPeaceMakers();
         this.LoadCounselors();
         this.LoadLookups();
         this.LoadStates();
-        
     }
 
     public centersList: Array<Center> = [];    
@@ -32,6 +32,7 @@ export class BaseCaseController {
     public lookupsList: Array<Lookup> = [];
     public statesList: Array<State> = [];
     public caseStatusesList: Array<CaseStatus> = [];
+    public chartObjectsList: Array<ChartObject> = [];
 
     public observerDataSubject: Subject<string>;
 
@@ -97,6 +98,17 @@ export class BaseCaseController {
             );
             localStorage.setItem("getAllCaseStatuses", JSON.stringify(this.caseStatusesList));
             this.observerDataSubject.next("CaseStatuses");
+        });
+    }
+
+    private getChartsData(): any {
+        this.commonService.getChartsData().subscribe(data => {
+            data.forEach(
+                chartData =>
+                    this.chartObjectsList.push(chartData)
+            );
+            localStorage.setItem("getChartsData", JSON.stringify(this.chartObjectsList));
+            this.observerDataSubject.next("charts");
         });
     }
 

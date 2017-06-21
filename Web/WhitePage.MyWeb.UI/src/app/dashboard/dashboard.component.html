@@ -1,3 +1,8 @@
-<div class="animated fadeIn">
-    Dashboard with graphs
+<select class="form-control" formControlName="breakdownTypes" (change)="loadChart($event.target.value)">
+    <option *ngFor="let breakdown of breakdownTypes" >{{breakdown.value}}</option>
+</select><br/><br/>
+<div class="container" *ngIf="currentNewChart.isChartLoaded">
+    <div>
+        <chart [options]="this.currentNewChart.options"></chart>
+    </div>
 </div>

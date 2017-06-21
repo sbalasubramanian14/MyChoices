@@ -73,3 +73,9 @@ class LookupDetail {
     LookupId: number;
 }
 
+class ChartObject {
+    constructor() { }
+    Key: string;
+    Value: any;
+}
+

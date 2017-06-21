@@ -43,5 +43,10 @@ namespace WhitePage.BusinessAccess.Implementation.Core
         {
             return this.commonDataAccess.GetAllStates();
         }
+
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetChartObjectValues()
+        {
+            return this.commonDataAccess.GetChartObjectValues();
+        }
     }
 }
