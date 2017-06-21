@@ -21,5 +21,6 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdateSessionLog(CaseBook caseBook);
         CaseHeader UpdateFeedback(CaseBook caseBook);
         CaseHeader UpdateLegal(CaseBook caseBook);
+        CaseHeader UpdateCaseStatus(CaseBook caseBook);
     }
 }

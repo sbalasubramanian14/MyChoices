@@ -624,5 +624,16 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             return updatedCase;
         }
+
+        public CaseHeader UpdateCaseStatus(CaseBook caseBook)
+        {
+            var updatedCase = UpdateCase(caseBook);
+            updatedCase = UpdateHouseHold(caseBook);
+            updatedCase = UpdateSpouse(caseBook);
+            updatedCase = UpdatePhysicalHealth(caseBook);
+            updatedCase = UpdateAbuse(caseBook);
+
+            return updatedCase;
+        }
     }
 }

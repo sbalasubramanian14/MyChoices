@@ -9,6 +9,7 @@ import { CasesDetailedComponent } from './cases.detailed';
 import { CasesViewComponent } from './cases.view';
 import { CasesListComponent } from './cases.list';
 import { CaseRedirectComponent } from './case.redirect';
+import { CasesMoveComponent } from './cases.move';
 
 import { AuthGuard } from '../services/authguard.service';
 
@@ -50,7 +51,14 @@ const routes: Routes = [
             data: {
                 title: 'Manage Case'
             }
-        }]
+        }, {
+            path: 'move/:id',
+            component: CasesMoveComponent,
+            canActivate: [AuthGuard],
+            data: {
+                title: 'Manage Case'
+            }
+        },]
     }
 ];
 

@@ -56,11 +56,11 @@ export class CasesListComponent implements OnInit {
     }
 
     moveCase(caseDetails: CaseHeader) {
-        console.log(caseDetails);
-        this.selectedCaseHeader = caseDetails;
-        this.moveModal.show();
-        //var url = '/cases/detailed/' + caseDetails.CaseId;
-        //this.router.navigate([url]);
+        //console.log(caseDetails);
+        //this.selectedCaseHeader = caseDetails;
+        //this.moveModal.show();
+        var url = '/cases/detailed/' + caseDetails.CaseId;
+        this.router.navigate([url]);
     }
 
     public hideChildModal(): void {
@@ -183,9 +183,9 @@ export class CasesListComponent implements OnInit {
         console.log(data);
     }
 
-    public onMoveClick(data: CaseHeader): any {
-        console.log("move click");
-        console.log(data);
+    public onMoveClick(data: any): any {
+        var url = '/cases/move/' + data.row.CaseId;
+        this.router.navigate([url]);
     }
 
     public onEditClick(data: any): any {        
@@ -194,7 +194,7 @@ export class CasesListComponent implements OnInit {
     }
 
     public onViewClick(data: any): any {
-        var url = '/cases/view/' + data.row.CaseId
+        var url = '/cases/view/' + data.row.CaseId;
         this.router.navigate([url]);
     }
 

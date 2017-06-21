@@ -8,6 +8,7 @@ import { MatchesPipe } from '../pipes/Matches.Pipe'
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
 import { CasesViewComponent } from './cases.view';
+import { CasesMoveComponent } from './cases.move';
 import { CasesListComponent } from './cases.list';
 import { CaseRedirectComponent } from './case.redirect';
 
@@ -41,6 +42,7 @@ import { MyDatePickerModule } from 'mydatepicker';
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,
         CasesViewComponent,
+        CasesMoveComponent,
         CasesListComponent,
         CaseRedirectComponent,
         MatchesPipe],
