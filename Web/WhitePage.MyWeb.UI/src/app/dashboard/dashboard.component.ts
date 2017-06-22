@@ -10,6 +10,7 @@ import { TotalNewCasesComponenet } from './charts/total_new_cases.component'
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ChartsService } from '../services/charts.services';
 
 import { Case } from '../models/case.entities'
 
@@ -17,7 +18,7 @@ import { Case } from '../models/case.entities'
     selector: 'charts',
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.scss'],
-    providers: [ColumnComponent, SeriesComponent, BarComponent, TotalNewCasesComponenet, CasesService, CommonService]
+    providers: [ColumnComponent, SeriesComponent, BarComponent, TotalNewCasesComponenet, CasesService, CommonService, ChartsService]
 })
 
 export class DashboardComponent implements OnInit {

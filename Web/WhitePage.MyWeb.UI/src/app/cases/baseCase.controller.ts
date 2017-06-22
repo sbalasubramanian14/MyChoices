@@ -8,16 +8,20 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { Case, CaseAddress, CaseBook } from '../models/case.entities';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ChartsService } from '../services/charts.services'
 
 
 @Injectable()
 export class BaseCaseController {
     constructor(public casesService: CasesService,
-        public commonService: CommonService) {
+        public commonService: CommonService,
+        public chartsService: ChartsService) {
 
         this.observerDataSubject = new Subject<string>();
         console.log("calling super constructor");
-        this.getChartsData();
+        this.getCenterWiseChartsData(1);
+        this.getCounselorWiseChartsData(1);
+        this.getPeacemakerWiseChartsData(1);
         this.LoadCaseStatuses();
         this.LoadCenters();
         this.LoadPeaceMakers();
@@ -32,7 +36,9 @@ export class BaseCaseController {
     public lookupsList: Array<Lookup> = [];
     public statesList: Array<State> = [];
     public caseStatusesList: Array<CaseStatus> = [];
-    public chartObjectsList: Array<ChartObject> = [];
+    public centerWiseChartObjectsList: Array<ChartObject> = [];
+    public counselorWiseChartObjectsList: Array<ChartObject> = [];
+    public peacemakerWiseChartObjectsList: Array<ChartObject> = [];
 
     public observerDataSubject: Subject<string>;
 
@@ -101,14 +107,36 @@ export class BaseCaseController {
         });
     }
 
-    private getChartsData(): any {
-        this.commonService.getChartsData().subscribe(data => {
+    private getCenterWiseChartsData(id: number): any {
+        this.chartsService.getCenterWiseChartsData(id).subscribe(data => {
             data.forEach(
                 chartData =>
-                    this.chartObjectsList.push(chartData)
+                    this.centerWiseChartObjectsList.push(chartData)
             );
-            localStorage.setItem("getChartsData", JSON.stringify(this.chartObjectsList));
-            this.observerDataSubject.next("charts");
+            localStorage.setItem("getCenterWiseChartsData", JSON.stringify(this.centerWiseChartObjectsList));
+            this.observerDataSubject.next("CenterWise");
+        });
+    }
+
+    private getCounselorWiseChartsData(id: number): any {
+        this.chartsService.getCounselorWiseChartsData(id).subscribe(data => {
+            data.forEach(
+                chartData =>
+                    this.counselorWiseChartObjectsList.push(chartData)
+            );
+            localStorage.setItem("getCounselorWiseChartsData", JSON.stringify(this.counselorWiseChartObjectsList));
+            this.observerDataSubject.next("CounselorWise");
+        });
+    }
+
+    private getPeacemakerWiseChartsData(id: number): any {
+        this.chartsService.getPeacemakerWiseChartsData(id).subscribe(data => {
+            data.forEach(
+                chartData =>
+                    this.peacemakerWiseChartObjectsList.push(chartData)
+            );
+            localStorage.setItem("getPeacemakerWiseChartsData", JSON.stringify(this.peacemakerWiseChartObjectsList));
+            this.observerDataSubject.next("PeacemakerWise");
         });
     }
 

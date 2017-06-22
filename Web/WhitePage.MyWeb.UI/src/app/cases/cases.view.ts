@@ -10,6 +10,8 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ChartsService } from '../services/charts.services';
+
 import { CaseBook } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { ModalDirective } from 'ng2-bootstrap/modal';
@@ -72,11 +74,12 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
 
     constructor(public casesService: CasesService,
         public commonService: CommonService,
+        public chartsService: ChartsService,
         public routerObj: Router,
         public toastr: ToastsManager,
         public vRef: ViewContainerRef,
         public activatedRoute: ActivatedRoute) {
-        super(casesService, commonService);
+        super(casesService, commonService, chartsService);
 
         this.isPrimaryDataLoaded = false;
 

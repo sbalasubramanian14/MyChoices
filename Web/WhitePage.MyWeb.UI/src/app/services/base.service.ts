@@ -23,4 +23,14 @@ export class BaseService {
         );
         return new RequestOptions({ headers: headers });
     }
+
+    public getOptions(id: number): RequestOptions {
+        let headers = new Headers(
+            {
+                'authorization': "bearer " + this.authenticationService.getToken(),
+                'Content-Type': 'application/json'
+            }
+        );
+        return new RequestOptions({ params: {id: id}, headers: headers });
+    }
 }

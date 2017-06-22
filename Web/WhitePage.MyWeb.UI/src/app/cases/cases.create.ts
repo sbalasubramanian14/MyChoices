@@ -9,6 +9,7 @@ import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ChartsService } from '../services/charts.services';
 import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { CasesDetailedComponent } from './cases.detailed';
@@ -23,11 +24,12 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
     constructor(private fb: FormBuilder,
         public casesService: CasesService,
         public commonService: CommonService,
+        public chartsService: ChartsService,
         private routerObj: Router,
         public toastr: ToastsManager,
         public casesDetailed : CasesDetailedComponent,
         vRef: ViewContainerRef) {
-        super(casesService, commonService);
+        super(casesService, commonService, chartsService);
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
 

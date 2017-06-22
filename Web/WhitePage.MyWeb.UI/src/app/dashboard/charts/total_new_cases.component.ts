@@ -3,11 +3,12 @@ import { CaseBook } from '../../models/case.entities'
 import { BaseCaseController } from '../../cases/basecase.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
+import { ChartsService } from '../../services/charts.services';
 
 import * as _ from 'lodash';
 
 @Component({
-    providers: [CaseBook, CasesService, CommonService]})
+    providers: [CaseBook, CasesService, CommonService, ChartsService]})
 
 export class TotalNewCasesComponenet extends BaseCaseController {
     public caseModel: CaseBook;
@@ -24,18 +25,18 @@ export class TotalNewCasesComponenet extends BaseCaseController {
     public quarter4Data = 0;
     public totalData = 0;
 
-    constructor(caseService: CasesService, commonService: CommonService)
+    constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService)
     {
-        super(caseService, commonService);
+        super(caseService, commonService, chartsService);
         this.isChartLoaded = false;
         this.observerDataSubject.subscribe(data => {
             switch (data) {
-                case "charts":
+                case "CenterWise":
                     var monthlyOptionsList = [];
                     var quarterlyOptionsList = []
                     var yearlyOptionsList = [];
 
-                    var mergedList = _.mapValues(_.groupBy(this.chartObjectsList, 'Key'), olist => olist.map(obj => _.omit(obj, 'Key')));
+                    var mergedList = _.mapValues(_.groupBy(this.centerWiseChartObjectsList, 'Key'), olist => olist.map(obj => _.omit(obj, 'Key')));
 
                     var categoriesArray = _.keys(mergedList);
                     var valuesArray = _.values(mergedList);
@@ -56,7 +57,7 @@ export class TotalNewCasesComponenet extends BaseCaseController {
                         }
                         
                         monthlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: monthlyObject });
-                        quarterlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(quarterlyObject) });
+                        quarterlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(quarterlyObject) }); 
                         yearlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(yearlyObject) });
 
                         this.quarter1Data = 0;
