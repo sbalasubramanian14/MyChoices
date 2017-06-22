@@ -8,13 +8,13 @@ import { ChartsService } from '../../services/charts.services';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'total_closed_cases',
-    templateUrl: 'total_closed_cases.component.html',
+    selector: 'case_resolution_rate',
+    templateUrl: 'case_resolution_rate.component.html',
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 }
 )
 
-export class TotalClosedCasesComponent extends BaseCaseController {
+export class CaseResolutionRateComponent extends BaseCaseController {
     public caseModel: CaseBook;
     public centers: string;
     public isCenterChartLoaded: boolean;
@@ -54,10 +54,17 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                         var monthlyObject = []
                         var quarterlyObject;
                         var yearlyObject;
+                        var total = 0;
+
+                        for (var object of objectArray) {
+                            total = total + Number(_.get(_.get(object, 'Value'), 'Value'));
+                        }
 
                         for (var object of objectArray) {
                             var key = _.get(_.get(object, 'Value'), 'Key');
                             var value = _.get(_.get(object, 'Value'), 'Value');
+
+                            value = Number(value) / total;
 
                             monthlyObject.push(new Array(key, value));
                             quarterlyObject = this.returnQuarterlyData(key.toString(), Number(value));
@@ -77,24 +84,24 @@ export class TotalClosedCasesComponent extends BaseCaseController {
 
                     this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Center-wise' },
+                        yAxis: { title: { text: "Number Of Cases" } },
+                        title: { text: 'Resolution Rate Of Cases - Center-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: monthlyOptionsList
                     };
 
                     this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Center-wise' },
+                        yAxis: { title: { text: "Number Of Cases" } },
+                        title: { text: 'Resolution Rate Of Cases - Center-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: quarterlyOptionsList
                     };
 
                     this.centerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Center-wise' },
+                        yAxis: { title: { text: "Number Of Cases" } },
+                        title: { text: 'Resolution Rate Of Cases - Center-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: yearlyOptionsList
                     };
@@ -115,10 +122,17 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                         var monthlyObject = []
                         var quarterlyObject;
                         var yearlyObject;
+                        var total = 0;
+
+                        for (var object of objectArray) {
+                            total = total + Number(_.get(_.get(object, 'Value'), 'Value'));
+                        }
 
                         for (var object of objectArray) {
                             var key = _.get(_.get(object, 'Value'), 'Key');
                             var value = _.get(_.get(object, 'Value'), 'Value');
+
+                            value = Number(value) / total;
 
                             monthlyObject.push(new Array(key, value));
                             quarterlyObject = this.returnQuarterlyData(key.toString(), Number(value));
@@ -139,7 +153,7 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                     this.counselorMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Counselor-wise' },
+                        title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: monthlyOptionsList
                     };
@@ -147,7 +161,7 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                     this.counselorQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Counselor-wise' },
+                        title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: quarterlyOptionsList
                     };
@@ -155,7 +169,7 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                     this.counselorYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Counselor-wise' },
+                        title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: yearlyOptionsList
                     };
@@ -176,10 +190,17 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                         var monthlyObject = []
                         var quarterlyObject;
                         var yearlyObject;
+                        var total = 0;
+
+                        for (var object of objectArray) {
+                            total = total + Number(_.get(_.get(object, 'Value'), 'Value'));
+                        }
 
                         for (var object of objectArray) {
                             var key = _.get(_.get(object, 'Value'), 'Key');
                             var value = _.get(_.get(object, 'Value'), 'Value');
+
+                            value = Number(value) / total;
 
                             monthlyObject.push(new Array(key, value));
                             quarterlyObject = this.returnQuarterlyData(key.toString(), Number(value));
@@ -200,7 +221,7 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                     this.peacemakerMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Peacemaker-wise' },
+                        title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: monthlyOptionsList
                     };
@@ -208,7 +229,7 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                     this.peacemakerQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Peacemaker-wise' },
+                        title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: quarterlyOptionsList
                     };
@@ -216,7 +237,7 @@ export class TotalClosedCasesComponent extends BaseCaseController {
                     this.peacemakerYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Peacemaker-wise' },
+                        title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: yearlyOptionsList
                     };

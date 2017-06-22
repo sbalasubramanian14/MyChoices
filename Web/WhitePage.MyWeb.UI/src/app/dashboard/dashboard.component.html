@@ -1,8 +1,4 @@
-<select class="form-control" formControlName="breakdownTypes" (change)="loadChart($event.target.value)">
-    <option *ngFor="let breakdown of breakdownTypes" >{{breakdown.value}}</option>
-</select><br/><br/>
-<div class="container" *ngIf="currentNewChart.isChartLoaded">
-    <div>
-        <chart [options]="this.currentNewChart.options"></chart>
-    </div>
-</div>
+<total_new_cases></total_new_cases>
+<total_open_cases></total_open_cases>
+<total_closed_cases></total_closed_cases>
+<case_resolution_rate></case_resolution_rate>

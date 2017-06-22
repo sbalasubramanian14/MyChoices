@@ -8,12 +8,18 @@ import { ChartsService } from '../../services/charts.services';
 import * as _ from 'lodash';
 
 @Component({
-    providers: [CaseBook, CasesService, CommonService, ChartsService]})
+    selector: 'total_new_cases',
+    templateUrl: 'total_new_cases.component.html',
+    providers: [CaseBook, CasesService, CommonService, ChartsService]}
+)
 
-export class TotalNewCasesComponenet extends BaseCaseController {
+export class TotalNewCasesComponent extends BaseCaseController {
     public caseModel: CaseBook;
     public centers: string;
-    public isChartLoaded: boolean;
+    public isCenterChartLoaded: boolean;
+    public isCounselorChartLoaded: boolean;
+    public isPeaceMakerChartLoaded: boolean;
+    public breakdownTypes: any;
     public quarter1 = ["January", "February", "March"];
     public quarter2 = ["April", "May", "June"]
     public quarter3 = ["July", "August", "September"]
@@ -28,10 +34,13 @@ export class TotalNewCasesComponenet extends BaseCaseController {
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService)
     {
         super(caseService, commonService, chartsService);
-        this.isChartLoaded = false;
+        this.getCenterWiseChartsData(1, "NewCenterWise");
+        this.getCounselorWiseChartsData(1, "NewCounselorWise");
+        this.getPeacemakerWiseChartsData(1, "NewPeacemakerWise");
+        this.breakdownTypes = [{ id: 1, value: 'Monthly' }, { id: 2, value: 'Quarterly' }, { id: 3, value: "Yearly" }]
         this.observerDataSubject.subscribe(data => {
             switch (data) {
-                case "CenterWise":
+                case "NewCenterWise":
                     var monthlyOptionsList = [];
                     var quarterlyOptionsList = []
                     var yearlyOptionsList = [];
@@ -67,7 +76,7 @@ export class TotalNewCasesComponenet extends BaseCaseController {
                         this.totalData = 0;
                     }
 
-                    this.monthlyOptions = {
+                    this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" }},
                         title: { text: 'Total Number Of New Cases - Center-wise' },
@@ -75,7 +84,7 @@ export class TotalNewCasesComponenet extends BaseCaseController {
                         series: monthlyOptionsList
                     };
 
-                    this.quaterlyOptions = {
+                    this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
@@ -83,17 +92,137 @@ export class TotalNewCasesComponenet extends BaseCaseController {
                         series: quarterlyOptionsList
                     };
 
-                    this.yearlyOptions = {
+                    this.centerYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
                         chart: { type: 'column', backgroundColor: "#abb0ba" },
                         series: yearlyOptionsList
                     };
+                    this.isCenterChartLoaded = true;
+                    this.centerOptions = this.centerMonthlyOptions;
+                    break;
+                case "NewCounselorWise":
+                    var monthlyOptionsList = [];
+                    var quarterlyOptionsList = []
+                    var yearlyOptionsList = [];
 
-                    this.options = this.monthlyOptions;
-                    this.isChartLoaded = true;
+                    var mergedList = _.mapValues(_.groupBy(this.counselorWiseChartObjectsList, 'Key'), olist => olist.map(obj => _.omit(obj, 'Key')));
 
+                    var categoriesArray = _.keys(mergedList);
+                    var valuesArray = _.values(mergedList);
+
+                    for (var objectArray of valuesArray) {
+                        var monthlyObject = []
+                        var quarterlyObject;
+                        var yearlyObject;
+
+                        for (var object of objectArray) {
+                            var key = _.get(_.get(object, 'Value'), 'Key');
+                            var value = _.get(_.get(object, 'Value'), 'Value');
+
+                            monthlyObject.push(new Array(key, value));
+                            quarterlyObject = this.returnQuarterlyData(key.toString(), Number(value));
+                            yearlyObject = this.returnYearlyData(Number(value));
+                        }
+
+                        monthlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: monthlyObject });
+                        quarterlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(quarterlyObject) });
+                        yearlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(yearlyObject) });
+
+                        this.quarter1Data = 0;
+                        this.quarter2Data = 0;
+                        this.quarter3Data = 0;
+                        this.quarter4Data = 0;
+                        this.totalData = 0;
+                    }
+
+                    this.counselorMonthlyOptions = {
+                        xAxis: { type: "category" },
+                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
+                        title: { text: 'Total Number Of New Cases - Counselor-wise' },
+                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        series: monthlyOptionsList
+                    };
+
+                    this.counselorQuaterlyOptions = {
+                        xAxis: { type: "category" },
+                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
+                        title: { text: 'Total Number Of New Cases - Counselor-wise' },
+                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        series: quarterlyOptionsList
+                    };
+
+                    this.counselorYearlyOptions = {
+                        xAxis: { type: "category" },
+                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
+                        title: { text: 'Total Number Of New Cases - Counselor-wise' },
+                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        series: yearlyOptionsList
+                    };
+                    this.counselorOptions = this.counselorMonthlyOptions;
+                    this.isCounselorChartLoaded = true;
+                    break;
+                case "NewPeacemakerWise":
+                    var monthlyOptionsList = [];
+                    var quarterlyOptionsList = []
+                    var yearlyOptionsList = [];
+
+                    var mergedList = _.mapValues(_.groupBy(this.peacemakerWiseChartObjectsList, 'Key'), olist => olist.map(obj => _.omit(obj, 'Key')));
+
+                    var categoriesArray = _.keys(mergedList);
+                    var valuesArray = _.values(mergedList);
+
+                    for (var objectArray of valuesArray) {
+                        var monthlyObject = []
+                        var quarterlyObject;
+                        var yearlyObject;
+
+                        for (var object of objectArray) {
+                            var key = _.get(_.get(object, 'Value'), 'Key');
+                            var value = _.get(_.get(object, 'Value'), 'Value');
+
+                            monthlyObject.push(new Array(key, value));
+                            quarterlyObject = this.returnQuarterlyData(key.toString(), Number(value));
+                            yearlyObject = this.returnYearlyData(Number(value));
+                        }
+
+                        monthlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: monthlyObject });
+                        quarterlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(quarterlyObject) });
+                        yearlyOptionsList.push({ name: categoriesArray[valuesArray.indexOf(objectArray)], data: new Array(yearlyObject) });
+
+                        this.quarter1Data = 0;
+                        this.quarter2Data = 0;
+                        this.quarter3Data = 0;
+                        this.quarter4Data = 0;
+                        this.totalData = 0;
+                    }
+
+                    this.peacemakerMonthlyOptions = {
+                        xAxis: { type: "category" },
+                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
+                        title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
+                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        series: monthlyOptionsList
+                    };
+
+                    this.peacemakerQuaterlyOptions = {
+                        xAxis: { type: "category" },
+                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
+                        title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
+                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        series: quarterlyOptionsList
+                    };
+
+                    this.peacemakerYearlyOptions = {
+                        xAxis: { type: "category" },
+                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
+                        title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
+                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        series: yearlyOptionsList
+                    };
+                    this.peacemakerOptions = this.peacemakerMonthlyOptions;
+                    this.isPeaceMakerChartLoaded = true;
                     break;
                 default:
                     break;
@@ -127,8 +256,70 @@ export class TotalNewCasesComponenet extends BaseCaseController {
         return ["2017", this.totalData];
     }
 
-    public monthlyOptions: Object;
-    public quaterlyOptions: Object;
-    public yearlyOptions: Object;
-    public options: Object;
+    public loadCenterNewCasesChart(chartName: any) {
+        switch (chartName) {
+            case "Monthly": {
+                this.centerOptions = this.centerMonthlyOptions;
+                break;
+            }
+            case "Quarterly": {
+                this.centerOptions = this.centerQuaterlyOptions;
+                break;
+            }
+            case "Yearly": {
+                this.centerOptions = this.centerYearlyOptions;
+            }
+            default:
+                break;
+        }
+    }
+
+    public loadCounselorNewCasesChart(chartName: any) {
+        switch (chartName) {
+            case "Monthly": {
+                this.counselorOptions = this.counselorMonthlyOptions;
+                break;
+            }
+            case "Quarterly": {
+                this.counselorOptions = this.counselorQuaterlyOptions;
+                break;
+            }
+            case "Yearly": {
+                this.counselorOptions = this.counselorYearlyOptions;
+            }
+            default:
+                break;
+        }
+    }
+
+    public loadPeaceMakerNewCasesChart(chartName: any) {
+        switch (chartName) {
+            case "Monthly": {
+                this.peacemakerOptions = this.peacemakerMonthlyOptions;
+                break;
+            }
+            case "Quarterly": {
+                this.peacemakerOptions = this.peacemakerQuaterlyOptions;
+                break;
+            }
+            case "Yearly": {
+                this.peacemakerOptions = this.peacemakerYearlyOptions;
+            }
+            default:
+                break;
+        }
+    }
+
+    public centerMonthlyOptions: Object;
+    public centerQuaterlyOptions: Object;
+    public centerYearlyOptions: Object;
+    public counselorMonthlyOptions: Object;
+    public counselorQuaterlyOptions: Object;
+    public counselorYearlyOptions: Object;
+    public peacemakerMonthlyOptions: Object;
+    public peacemakerQuaterlyOptions: Object;
+    public peacemakerYearlyOptions: Object;
+    public centerOptions: Object;
+    public counselorOptions: Object;
+    public peacemakerOptions: Object;
 }

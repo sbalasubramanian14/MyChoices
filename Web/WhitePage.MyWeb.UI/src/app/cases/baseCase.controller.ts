@@ -19,9 +19,6 @@ export class BaseCaseController {
 
         this.observerDataSubject = new Subject<string>();
         console.log("calling super constructor");
-        this.getCenterWiseChartsData(1);
-        this.getCounselorWiseChartsData(1);
-        this.getPeacemakerWiseChartsData(1);
         this.LoadCaseStatuses();
         this.LoadCenters();
         this.LoadPeaceMakers();
@@ -107,36 +104,36 @@ export class BaseCaseController {
         });
     }
 
-    private getCenterWiseChartsData(id: number): any {
+    public getCenterWiseChartsData(id: number, observer: string): any {
         this.chartsService.getCenterWiseChartsData(id).subscribe(data => {
             data.forEach(
                 chartData =>
                     this.centerWiseChartObjectsList.push(chartData)
             );
             localStorage.setItem("getCenterWiseChartsData", JSON.stringify(this.centerWiseChartObjectsList));
-            this.observerDataSubject.next("CenterWise");
+            this.observerDataSubject.next(observer);
         });
     }
 
-    private getCounselorWiseChartsData(id: number): any {
+    public getCounselorWiseChartsData(id: number, observer: string): any {
         this.chartsService.getCounselorWiseChartsData(id).subscribe(data => {
             data.forEach(
                 chartData =>
                     this.counselorWiseChartObjectsList.push(chartData)
             );
             localStorage.setItem("getCounselorWiseChartsData", JSON.stringify(this.counselorWiseChartObjectsList));
-            this.observerDataSubject.next("CounselorWise");
+            this.observerDataSubject.next(observer);
         });
     }
 
-    private getPeacemakerWiseChartsData(id: number): any {
+    public getPeacemakerWiseChartsData(id: number, observer: string): any {
         this.chartsService.getPeacemakerWiseChartsData(id).subscribe(data => {
             data.forEach(
                 chartData =>
                     this.peacemakerWiseChartObjectsList.push(chartData)
             );
             localStorage.setItem("getPeacemakerWiseChartsData", JSON.stringify(this.peacemakerWiseChartObjectsList));
-            this.observerDataSubject.next("PeacemakerWise");
+            this.observerDataSubject.next(observer);
         });
     }
 

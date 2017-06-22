@@ -14,14 +14,14 @@ export class ChartsService extends BaseService {
         super(authHttp, authenticationService);
     }
     public getCenterWiseChartsData(id: number): Observable<ChartObject[]> {
-        return this.authHttp.get('/api/Common/GetCenterWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
+        return this.authHttp.get('/api/Charts/GetCenterWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
     }
 
     public getCounselorWiseChartsData(id: number): Observable<ChartObject[]> {
-        return this.authHttp.get('/api/Common/GetCounselorWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
+        return this.authHttp.get('/api/Charts/GetCounselorWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
     }
 
     public getPeacemakerWiseChartsData(id: number): Observable<ChartObject[]> {
-        return this.authHttp.get('/api/Common/GetPeacemakerWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
+        return this.authHttp.get('/api/Charts/GetPeacemakerWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
     }
 }
