@@ -157,7 +157,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                 MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId, Validators.required),
                 RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId, Validators.required),
                 Remarks: new FormControl(this.caseBook.Case.Remarks),
-                MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, Validators.required)
+                MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.casesDetailed.mobileValidator])
             }),
             address: new FormGroup({
                 Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
