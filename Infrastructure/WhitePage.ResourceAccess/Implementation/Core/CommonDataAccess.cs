@@ -128,6 +128,67 @@ namespace WhitePage.ResourceAccess.Implementation.Core
             return list.ToList();
         }
 
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues()
+        {
+            var dbContext = this.unitOfWork.DbContext;
+
+            var list =
+                dbContext.Cases
+                    .Join(dbContext.Centers, ca => ca.CenterId, ce => ce.CenterId, (ca, ce) => new { ca, ce })
+                    .Join(dbContext.Manage, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { tt, cm })
+                    .GroupBy(c => new { c.tt.ce.Title, c.tt.ca.CreatedDateTime.Month, c.cm.TotalHoursSpentLookupId })
+                    .ToList()
+                    .Select(
+                        cl =>
+                            new KeyValuePair<string, KeyValuePair<string, int>>(
+                                cl.Key.Title,
+                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Key.TotalHoursSpentLookupId.Value)));
+
+
+            return list.ToList();
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues()
+        {
+            var dbContext = this.unitOfWork.DbContext;
+
+            var list =
+                dbContext.Cases
+                    .Join(dbContext.Counselors, ca => ca.CounselorId, ce => ce.CounselorId, (ca, ce) => new { ca, ce })
+                    .Join(dbContext.Manage, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { tt, cm })
+                    .GroupBy(c => new { c.tt.ce.FirstName, c.tt.ca.CreatedDateTime.Month, c.cm.TotalHoursSpentLookupId })
+                    .ToList()
+                    .Select(
+                        cl =>
+                            new KeyValuePair<string, KeyValuePair<string, int>>(
+                                cl.Key.FirstName,
+                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Key.TotalHoursSpentLookupId.Value)));
+
+            return list.ToList();
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues()
+        {
+            var dbContext = this.unitOfWork.DbContext;
+
+            var list =
+               dbContext.Cases
+                    .Join(dbContext.PeaceMakers, ca => ca.PeaceMakerId, ce => ce.PeaceMakerId, (ca, ce) => new { ca, ce })
+                    .Join(dbContext.Manage, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { tt, cm })
+                    .GroupBy(c => new { c.tt.ce.FirstName, c.tt.ca.CreatedDateTime.Month, c.cm.TotalHoursSpentLookupId })
+                    .ToList()
+                    .Select(
+                        cl =>
+                            new KeyValuePair<string, KeyValuePair<string, int>>(
+                                cl.Key.FirstName,
+                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Key.TotalHoursSpentLookupId.Value)));
+
+
+            return list.ToList();
+        }
+
+
+
         public List<KeyValuePair<string, KeyValuePair<string, int>>> GetChartObjectValues<TEntity1, TEntity2>(IQueryable<TEntity1> dbSet1, IEnumerable<TEntity2> dbSet2, string cId = "CenterId")
         {
             //Func<Expression<Func<Center, short>>> returnLambdaExpression = () =>

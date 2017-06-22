@@ -44,6 +44,30 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(charts);
         }
 
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetCenterChartObjectValues()
+        {
+            var charts = this.commonDataAccess.GetCenterWiseChartObjectValues();
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetCounselorChartObjectValues()
+        {
+            var charts = this.commonDataAccess.GetCounselorWiseChartObjectValues();
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetPeaceMakerChartObjectValues()
+        {
+            var charts = this.commonDataAccess.GetPeacemakerWiseChartObjectValues();
+            return Ok(charts);
+        }
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
