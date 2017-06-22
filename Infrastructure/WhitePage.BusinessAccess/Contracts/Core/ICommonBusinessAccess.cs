@@ -10,6 +10,8 @@ namespace WhitePage.BusinessAccess.Contracts.Core
         List<Counselor> GetAllCounselors();
         List<Lookup> GetAllLookups();
         List<State> GetAllStates();
-        List<KeyValuePair<string, KeyValuePair<string, int>>> GetChartObjectValues();
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(int id);
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(int id);
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(int id);
     }
 }
