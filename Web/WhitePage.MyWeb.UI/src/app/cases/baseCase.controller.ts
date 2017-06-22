@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { SelectModule, IOption } from 'ng-select';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
@@ -113,13 +114,18 @@ export class BaseCaseController {
     }
 
     public ParseLookups(lookupName: string): Array<IOption> {
+        
         var localOptionsList = new Array<IOption>();
 
         if (this.lookupsList.filter(l => l.Title == lookupName) == undefined) {
             console.log(lookupName);
         }
         else {
-            var lookupDetailsList = this.lookupsList.filter(l => l.Title == lookupName)[0].LookupDetails;
+            let testLookup = this.lookupsList.find(l => l.Title === lookupName);
+            if (testLookup == undefined || testLookup == null) {
+                console.log("failed - " + lookupName);
+            }
+            var lookupDetailsList = testLookup.LookupDetails;
             for (var i = 0; i < lookupDetailsList.length; i++) {
                 localOptionsList.push({
                     value: lookupDetailsList[i].LookupDetailId.toString(),

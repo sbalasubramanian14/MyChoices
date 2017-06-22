@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
@@ -236,8 +237,9 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateCaseStatus(CaseBook caseBook)
+        public IActionResult UpdateCaseStatus([FromBody] CaseBook caseBook)
         {
+            //var caseBook = JsonConvert.DeserializeObject<CaseBook>(cb.ToString());
             caseBook.Manage.CaseId = caseBook.Case.CaseId;
             caseBook.Manage.TypesOfCounselingLookupId = caseBook.Manage.TypesOfCounselingLookupArray.ToArrayString();
 
