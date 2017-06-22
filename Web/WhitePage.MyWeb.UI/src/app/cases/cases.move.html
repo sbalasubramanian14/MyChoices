@@ -208,10 +208,10 @@
             
         </div>
     
-    <div class="centered" *ngIf="isCategory4">
+    <div class="centered" *ngIf="isCategory3">
     </div>
     <div class ="centered">
-        <div class="row"  *ngIf="isCategory3">
+        <div class="row"  *ngIf="isCategory4">
             <div class="col-md-12 d-flex flex-column">
                 <div class="card">
                     <div class="card-header">
@@ -609,7 +609,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="CenterId">Type of counseling</label>
+                            <label for="CenterId">Type of counseling *</label>
                             <ss-multiselect-dropdown [options]="typesOfCounselingLookupOptionList"
                                                      formControlName="TypesOfCounselingLookupId"
                                                      [(ngModel)]="caseBook.Manage.TypesOfCounselingLookupArray">
@@ -621,7 +621,7 @@
 
                         <div class="form-group">
                             <div class="form-group" [class.has-danger]="mainForm.controls['TotalNoOfSessionsLookupId'].invalid && mainForm.controls['TotalNoOfSessionsLookupId'].touched">
-                                <label for="CenterId">Total no of sessions</label>
+                                <label for="CenterId">Total no of sessions *</label>
                                 <input type="number" id="TotalNoOfSessionsLookupId" [formControl]="mainForm.controls['TotalNoOfSessionsLookupId']" class="form-control" />
                                 <small *ngIf="mainForm.controls['TotalNoOfSessionsLookupId'].touched && mainForm.controls['TotalNoOfSessionsLookupId'].invalid">                                            
                                     Value should be between 0 and 99
@@ -631,7 +631,7 @@
 
                         <div class="form-group">
                             <div class="form-group" [class.has-danger]="mainForm.controls['TotalHoursSpentLookupId'].invalid && mainForm.controls['TotalHoursSpentLookupId'].touched">
-                                <label for="CenterId">Total hours spent</label>
+                                <label for="CenterId">Total hours spent *</label>
                                 <input type="number" id="TotalHoursSpentLookupId" [formControl]="mainForm.controls['TotalHoursSpentLookupId']" class="form-control" />
                                 <small *ngIf="mainForm.controls['TotalHoursSpentLookupId'].touched && mainForm.controls['TotalHoursSpentLookupId'].invalid">
                                     Value should be between 0 and 99
@@ -645,6 +645,6 @@
         </div>
     </div>
     <div class="form-group text-center">
-        <button class="btn btn-primary" [disabled]="!mainForm.valid" (click)="updateCase()">Update</button>
+        <button class="btn btn-primary" (click)="updateCase()">Update</button>
     </div>
 </form>

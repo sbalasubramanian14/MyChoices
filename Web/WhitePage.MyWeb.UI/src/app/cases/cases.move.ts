@@ -32,26 +32,26 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     private selectedCaseId: number;
 
     public mainForm: FormGroup;
-    public primaryForm: any;
-    public manageForm: any;
-    public familyHouseHold: any;
-    public spouseForm: any;
-    public physicalHealthForm: any;
-    public caseAbuseForm: any;
-    public casePrimaryForm: any;
-    public caseLegalForm: any;
+    //public primaryForm: any;
+    //public manageForm: any;
+    //public familyHouseHold: any;
+    //public spouseForm: any;
+    //public physicalHealthForm: any;
+    //public caseAbuseForm: any;
+    //public casePrimaryForm: any;
+    //public caseLegalForm: any;
 
     public router: Router;
     public isMainDataLoaded: boolean = false;
     public isPrimaryDataLoaded: boolean = false;
-    public isHouseHoldDataLoaded: boolean = false;
-    public isSpouseDataLoaded: boolean = false;
-    public isPhysicalHealthDataLoaded: boolean = false;
-    public isAbuseDataLoaded: boolean = false;
-    public isManageDataLoaded: boolean = false;
-    public isMentalDataLoaded: boolean = false;
-    public isFeedbackDataLoaded: boolean = false;
-    public isLegalDataLoaded: boolean = false;
+    //public isHouseHoldDataLoaded: boolean = false;
+    //public isSpouseDataLoaded: boolean = false;
+    //public isPhysicalHealthDataLoaded: boolean = false;
+    //public isAbuseDataLoaded: boolean = false;
+    //public isManageDataLoaded: boolean = false;
+    //public isMentalDataLoaded: boolean = false;
+    //public isFeedbackDataLoaded: boolean = false;
+    //public isLegalDataLoaded: boolean = false;
     public isCategory2: boolean = false;
     public isCategory3: boolean = false;
     public isCategory4: boolean = false;
@@ -85,13 +85,13 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
                     this.caseBook = data;
                     console.log(this.caseBook);
 
-                    this.primaryForm = this.caseBook.Case;
-                    this.manageForm = this.caseBook.Manage;
-                    this.familyHouseHold = this.caseBook.FamilyHouseHold;
-                    this.spouseForm = this.caseBook.Spouse;
-                    this.physicalHealthForm = this.caseBook.PhysicalHealth;
-                    this.caseAbuseForm = this.caseBook.Abuse;
-                    this.caseLegalForm = this.caseBook.Legal;
+                    //this.primaryForm = this.caseBook.Case;
+                    //this.manageForm = this.caseBook.Manage;
+                    //this.familyHouseHold = this.caseBook.FamilyHouseHold;
+                    //this.spouseForm = this.caseBook.Spouse;
+                    //this.physicalHealthForm = this.caseBook.PhysicalHealth;
+                    //this.caseAbuseForm = this.caseBook.Abuse;
+                    //this.caseLegalForm = this.caseBook.Legal;
 
                     this.getCaseStatuses();
                     this.loadLookups();
@@ -109,24 +109,25 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     private getCaseStatuses(): any {
         var localStatusesOptionList = new Array<IOption>();
 
-        var previousCaseStatusId = this.caseBook.Case.CaseStausId;
+        var previousCaseStatusLevel = this.caseStatusesList.filter(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId)[0].Level;
+        ++previousCaseStatusLevel;
 
         for (var i = 0; i < this.caseStatusesList.length; i++) {
 
-            if (this.caseStatusesList[i].Level == previousCaseStatusId + 1) {
+            if (this.caseStatusesList[i].Level == previousCaseStatusLevel) {
                 localStatusesOptionList.push({ value: this.caseStatusesList[i].CaseStatusId.toString(), label: this.caseStatusesList[i].Title });
             }
         }
         this.caseStatusOptionList = localStatusesOptionList;
-        this.caseBook.Case.CaseStausId = this.caseBook.Case.CaseStausId + 1;
+        //this.caseBook.Case.CaseStausId = this.caseBook.Case.CaseStausId + 1;
 
-        if (this.caseBook.Case.CaseStausId == 2) {
+        if (previousCaseStatusLevel == 2) {
             this.isCategory2 = true;
         }
-        else if (this.caseBook.Case.CaseStausId == 3) {
+        else if (previousCaseStatusLevel == 3) {
             this.isCategory3 = true;
         }
-        else if (this.caseBook.Case.CaseStausId == 4) {
+        else if (previousCaseStatusLevel == 4) {
             this.isCategory4 = true;
         }
     }
