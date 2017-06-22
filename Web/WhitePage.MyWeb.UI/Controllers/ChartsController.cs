@@ -15,7 +15,7 @@ namespace WhitePage.MyWeb.UI.Controllers
             this.commonDataAccess = commonDataAccess;
         }
 
-        [Route("[action/:id]")]
+        [Route("[action/{id}]")]
         [HttpGet]
         public IActionResult GetCenterWiseChartObjectValues(int id)
         {
@@ -23,7 +23,7 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(charts);
         }
 
-        [Route("[action/:id]")]
+        [Route("[action/{id}]")]
         [HttpGet]
         public IActionResult GetCounselorWiseChartObjectValues(int id)
         {
@@ -31,7 +31,7 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(charts);
         }
 
-        [Route("[action/:id]")]
+        [Route("[action/{id}]")]
         [HttpGet]
         public IActionResult GetPeaceMakerWiseChartObjectValues(int id)
         {

@@ -27,10 +27,12 @@
     "@angular/router": "4.0.0",
     "@angular/upgrade": "4.0.0",
     "angular-2-dropdown-multiselect": "^1.1.0",
+    "angular2-highcharts": "^0.5.5",
     "angular2-jwt": "0.2.0",
     "angular2-social-login": "^3.0.1",
     "chart.js": "2.5.0",
     "core-js": "2.4.1",
+    "lodash": "^4.17.4",
     "moment": "2.18.1",
     "mydatepicker": "1.10.1",
     "ng-select": "^1.0.0-beta.5",
@@ -46,6 +48,7 @@
     "@angular/cli": "1.0.0",
     "@angular/compiler-cli": "4.0.0",
     "@types/jasmine": "2.5.46",
+    "@types/lodash": "^4.14.66",
     "@types/node": "7.0.10",
     "codelyzer": "2.0.1",
     "jasmine-core": "2.5.2",
@@ -53,13 +56,13 @@
     "karma": "1.5.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-cli": "1.0.1",
+    "karma-coverage-istanbul-reporter": "1.0.0",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
-    "karma-coverage-istanbul-reporter": "1.0.0",
+    "linqts": "1.8.1",
     "protractor": "5.1.1",
     "ts-node": "3.0.2",
     "tslint": "4.5.1",
-    "typescript": "2.2.1",
-    "linqts": "1.8.1"
+    "typescript": "2.2.1"
   }
 }

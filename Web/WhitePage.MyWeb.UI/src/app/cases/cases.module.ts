@@ -14,6 +14,7 @@ import { CaseRedirectComponent } from './case.redirect';
 import { CasesRoutingModule } from './cases-routing.module';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ChartsService } from '../services/charts.services';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { Http, RequestOptions } from '@angular/http';
@@ -46,7 +47,8 @@ import { MyDatePickerModule } from 'mydatepicker';
         MatchesPipe],
     providers: [
         CasesService,
-        CommonService
+        CommonService,
+        ChartsService
     ]
 })
 export class CasesModule { }

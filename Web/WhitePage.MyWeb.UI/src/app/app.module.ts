@@ -45,7 +45,6 @@ import { AuthenticationService } from './services/authentication.service'
         DropdownModule.forRoot(),
         TabsModule.forRoot(),
         TooltipModule.forRoot(),
-        ChartsModule,
         RouterModule.forRoot(AppRoutes),
         FormsModule,
         ReactiveFormsModule,
