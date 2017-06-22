@@ -613,6 +613,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     private loadSpouseFormGroup() {
+        this.onSpouseStateSelected({ value: this.caseBook.Spouse.StateLookupId });
         this.spouseForm = this.fb.group({
             SpouseName: new FormControl(this.caseBook.Spouse.SpouseName),
             SpouseHomePhone: new FormControl(this.caseBook.Spouse.SpouseHomePhone, [Validators.minLength(10), this.mobileValidator]),
@@ -1350,7 +1351,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public numericValidator(input: AbstractControl) {
 
         var numericPattern = /^[0-9]*$/;
-
+        if (input.value == null || input.value == "") {
+            return null;
+        }
         if (!numericPattern.test(input.value)) {
             return { 'Please provide a valid PIN': true };
         }

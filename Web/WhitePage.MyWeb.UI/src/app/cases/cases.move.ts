@@ -23,7 +23,7 @@ import * as moment from 'moment';
 
 @Component({
     templateUrl: 'cases.move.html',
-    styleUrls: ['cases.move.css'],
+    styleUrls: ['cases.move.scss'],
     providers: [CasesDetailedComponent]
 })
 export class CasesMoveComponent extends BaseCaseController implements OnInit {
