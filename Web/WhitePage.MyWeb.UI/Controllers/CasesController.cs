@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
@@ -229,6 +232,38 @@ namespace WhitePage.MyWeb.UI.Controllers
             caseBook.Legal.DocumentsLookupId = caseBook.Legal.DocumentsLookupArray.ToArrayString();
 
             var updatedCase = this.caseBusinessAccess.UpdateLegal(caseBook);
+            return Ok(updatedCase);
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult UpdateCaseStatus([FromBody] CaseBook caseBook)
+        {
+            //var caseBook = JsonConvert.DeserializeObject<CaseBook>(cb.ToString());
+            caseBook.Manage.CaseId = caseBook.Case.CaseId;
+            caseBook.Manage.TypesOfCounselingLookupId = caseBook.Manage.TypesOfCounselingLookupArray.ToArrayString();
+
+            caseBook.FamilyHouseHold.CaseId = caseBook.Case.CaseId;
+            caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray.ToArrayString();
+
+            caseBook.Spouse.CaseId = caseBook.Case.CaseId;
+
+            caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
+            caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray.ToArrayString();
+            caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray.ToArrayString();
+
+            caseBook.Abuse.CaseId = caseBook.Case.CaseId;
+            caseBook.Abuse.FeelAboutAbuseLookupId = caseBook.Abuse.FeelAboutAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.ParentsFeelAboutAbuseLookupId = caseBook.Abuse.ParentsFeelAboutAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.LawFeelAboutAbuseLookupId = caseBook.Abuse.LawFeelAboutAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfPhyscialAbuseLookupId = caseBook.Abuse.TypesOfPhyscialAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfEmotionalAbuseLookupId = caseBook.Abuse.TypesOfEmotionalAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfSexualAbuseLookupId = caseBook.Abuse.TypesOfSexualAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.TypesOfEconomicAbuseLookupId = caseBook.Abuse.TypesOfEconomicAbuseLookupArray.ToArrayString();
+            caseBook.Abuse.ReasonsForAbuseLookupId = caseBook.Abuse.ReasonsForAbuseLookupArray.ToArrayString();
+
+            var updatedCase = this.caseBusinessAccess.UpdateCaseStatus(caseBook);
+
             return Ok(updatedCase);
         }
     }

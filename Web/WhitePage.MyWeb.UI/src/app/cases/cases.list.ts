@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap';
 import { Case, CaseAddress, CaseBook, CaseHeader } from '../models/case.entities';
-
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
     templateUrl: 'cases.list.html'
 })
@@ -19,7 +19,7 @@ export class CasesListComponent implements OnInit {
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
 
-    constructor(private casesService: CasesService, private routerObj: Router) {
+    constructor(private casesService: CasesService, private routerObj: Router, private authenticationService: AuthenticationService,) {
         this.router = routerObj;
         this.length = this.casesList.length;
     }
@@ -56,11 +56,11 @@ export class CasesListComponent implements OnInit {
     }
 
     moveCase(caseDetails: CaseHeader) {
-        console.log(caseDetails);
-        this.selectedCaseHeader = caseDetails;
-        this.moveModal.show();
-        //var url = '/cases/detailed/' + caseDetails.CaseId;
-        //this.router.navigate([url]);
+        //console.log(caseDetails);
+        //this.selectedCaseHeader = caseDetails;
+        //this.moveModal.show();
+        var url = '/cases/detailed/' + caseDetails.CaseId;
+        this.router.navigate([url]);
     }
 
     public hideChildModal(): void {
@@ -83,11 +83,14 @@ export class CasesListComponent implements OnInit {
     public numPages: number = 1;
     public length: number = 0;
 
+    public userData = this.authenticationService.getUser();
+
     public config: any = {
         paging: true,
         sorting: { columns: this.columns },
         filtering: { filterString: '' },
-        className: ['case-list-table', 'table-bordered']
+        className: ['case-list-table', 'table-bordered'],
+        enableDelete: this.userData.typ == "1" ? true : false, //Enabled delete for roleid 1
     };
 
     public changePage(page: any, data: Array<any> = this.casesList): Array<any> {
@@ -183,9 +186,9 @@ export class CasesListComponent implements OnInit {
         console.log(data);
     }
 
-    public onMoveClick(data: CaseHeader): any {
-        console.log("move click");
-        console.log(data);
+    public onMoveClick(data: any): any {
+        var url = '/cases/move/' + data.row.CaseId;
+        this.router.navigate([url]);
     }
 
     public onEditClick(data: any): any {        
@@ -194,7 +197,7 @@ export class CasesListComponent implements OnInit {
     }
 
     public onViewClick(data: any): any {
-        var url = '/cases/view/' + data.row.CaseId
+        var url = '/cases/view/' + data.row.CaseId;
         this.router.navigate([url]);
     }
 

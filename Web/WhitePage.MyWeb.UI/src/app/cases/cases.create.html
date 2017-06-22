@@ -157,10 +157,13 @@
 
                     <div class="form-group">
                         <label for="PeacemakerId">Mobile *</label>
-                        <input placeholder="Mobile" [formControl]="casePrimaryForm.controls['primaryInfo'].controls['MobileNumber']" class="form-control"
-                               [(ngModel)]="caseBook.Case.MobileNumber" [min]="10" [max]="10" digits maxlength="10" />
-                        <div>
-                            <small *ngIf="casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].hasError('required') && casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].touched" class="mat-text-warn">Mobile is required.</small>
+                        <div class="form-group" [class.has-danger]="casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].invalid && casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].touched">
+                            <input placeholder="Mobile" [formControl]="casePrimaryForm.controls['primaryInfo'].controls['MobileNumber']"
+                                   class="form-control" [(ngModel)]="caseBook.Case.MobileNumber" digits maxlength="14" />
+                            <div>
+                                <small *ngIf="casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].hasError('required') && casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].touched">Mobile is required.</small>
+                                <small *ngIf="casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].dirty && casePrimaryForm.controls['primaryInfo'].controls['MobileNumber'].invalid">Please provide a valid Mobile Number</small>
+                            </div>
                         </div>
                     </div>
 

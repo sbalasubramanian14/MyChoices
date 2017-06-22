@@ -18,6 +18,10 @@ export const AppRoutes: Routes = [{
         {
             path: 'cases',
             loadChildren: './cases/cases.module#CasesModule'
+        },
+        {
+            path: 'user',
+            loadChildren: './user/user.module#UserModule'
         }
     ]
 }, {

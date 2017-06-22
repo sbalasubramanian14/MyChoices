@@ -39,11 +39,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                 </td>
             </tr>
             <tr *ngFor="let row of rows">
-                <td style="text-align:center">
-                    <i class="fa fa-lg fa-wrench table-fa-icon" (click)="moveClick(row)" tooltip="Move"></i>
-                    <i class="fa fa-lg fa-pencil-square table-fa-icon" (click)="editClick(row)" tooltip="Edit"></i>
-                    <i class="fa fa-lg fa-eye table-fa-icon" (click)="viewClick(row)" tooltip="View"></i>
-                    <i class="fa fa-lg fa-trash table-fa-icon" (click)="deleteClick(row)" tooltip="Delete"></i>                    
+                <td>
+                <div style="display: flex">
+                    <span><i class="fa fa-lg fa-wrench table-fa-icon" (click)="moveClick(row)" tooltip="Move"></i></span>
+                    <span><i class="fa fa-lg fa-pencil-square table-fa-icon" (click)="editClick(row)" tooltip="Edit"></i></span>
+                    <span><i class="fa fa-lg fa-eye table-fa-icon" (click)="viewClick(row)" tooltip="View"></i></span>
+                    <span><i class="fa fa-lg fa-trash table-fa-icon" (click)="deleteClick(row)" tooltip="Delete" *ngIf="config.enableDelete"></i></span>  
+                </div>
                 </td>
                 <td (click)="cellClick(row, column.name)" *ngFor="let column of columns" [innerHtml]="sanitize(getData(row, column.name))"></td>
             </tr>
@@ -63,6 +65,7 @@ export class NgTableComponent {
         if (conf.className instanceof Array) {
             conf.className = conf.className.join(' ');
         }
+
         this._config = conf;
     }
 
