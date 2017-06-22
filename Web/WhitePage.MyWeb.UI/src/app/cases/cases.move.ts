@@ -10,6 +10,7 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
+import { ChartsService } from '../services/charts.services';
 import {
     CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog, vCaseFeedback, CaseFeedback, CaseLegal
     } from '../models/case.entities';
@@ -61,12 +62,13 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     constructor(public fb: FormBuilder,
         public casesService: CasesService,
         public commonService: CommonService,
+        public chartsService: ChartsService,
         public routerObj: Router,
         public toastr: ToastsManager,
         public vRef: ViewContainerRef,
         public activatedRoute: ActivatedRoute,
         public casesDetailed : CasesDetailedComponent) {
-        super(casesService, commonService);
+        super(casesService, commonService, chartsService);
 
         this.isPrimaryDataLoaded = false;
 
