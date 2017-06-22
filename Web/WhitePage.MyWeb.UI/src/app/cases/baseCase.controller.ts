@@ -36,6 +36,9 @@ export class BaseCaseController {
     public centerWiseChartObjectsList: Array<ChartObject> = [];
     public counselorWiseChartObjectsList: Array<ChartObject> = [];
     public peacemakerWiseChartObjectsList: Array<ChartObject> = [];
+    public centerChartObjectsList: Array<ChartObject> = [];
+    public counselorChartObjectsList: Array<ChartObject> = [];
+    public peacemakerChartObjectsList: Array<ChartObject> = [];
 
     public observerDataSubject: Subject<string>;
 
@@ -133,6 +136,39 @@ export class BaseCaseController {
                     this.peacemakerWiseChartObjectsList.push(chartData)
             );
             localStorage.setItem("getPeacemakerWiseChartsData", JSON.stringify(this.peacemakerWiseChartObjectsList));
+            this.observerDataSubject.next(observer);
+        });
+    }
+
+    public getCenterChartsData(observer: string): any {
+        this.chartsService.getCenterChartsData().subscribe(data => {
+            data.forEach(
+                chartData =>
+                    this.centerChartObjectsList.push(chartData)
+            );
+            localStorage.setItem("getCenterChartsData", JSON.stringify(this.centerChartObjectsList));
+            this.observerDataSubject.next(observer);
+        });
+    }
+
+    public getCounselorChartsData(observer: string): any {
+        this.chartsService.getCounselorChartsData().subscribe(data => {
+            data.forEach(
+                chartData =>
+                    this.counselorChartObjectsList.push(chartData)
+            );
+            localStorage.setItem("getCounselorChartsData", JSON.stringify(this.counselorChartObjectsList));
+            this.observerDataSubject.next(observer);
+        });
+    }
+
+    public getPeacemakerChartsData(observer: string): any {
+        this.chartsService.getPeacemakerChartsData().subscribe(data => {
+            data.forEach(
+                chartData =>
+                    this.peacemakerChartObjectsList.push(chartData)
+            );
+            localStorage.setItem("getPeacemakerChartsData", JSON.stringify(this.peacemakerChartObjectsList));
             this.observerDataSubject.next(observer);
         });
     }

@@ -8,13 +8,13 @@ import { ChartsService } from '../../services/charts.services';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'total_counseling_hours',
-    templateUrl: 'total_counseling_hours.component.html',
+    selector: 'total_sessions',
+    templateUrl: 'total_sessions.component.html',
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 }
 )
 
-export class TotalCounselingHoursComponent extends BaseCaseController {
+export class TotalSessionsComponent extends BaseCaseController {
     public caseModel: CaseBook;
     public centers: string;
     public isCenterChartLoaded: boolean;
@@ -34,13 +34,13 @@ export class TotalCounselingHoursComponent extends BaseCaseController {
 
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService) {
         super(caseService, commonService, chartsService);
-        this.getCenterChartsData("HoursCenterWise");
-        this.getCounselorChartsData("HoursCounselorWise");
-        this.getPeacemakerChartsData("HoursPeacemakerWise");
+        this.getCenterChartsData("SessionsCenterWise");
+        this.getCounselorChartsData("SessionsCounselorWise");
+        this.getPeacemakerChartsData("SessionsPeacemakerWise");
         this.breakdownTypes = [{ id: 1, value: 'Monthly' }, { id: 2, value: 'Quarterly' }, { id: 3, value: "Yearly" }]
         this.observerDataSubject.subscribe(data => {
             switch (data) {
-                case "HoursCenterWise":
+                case "SessionsCenterWise":
                     var monthlyOptionsList = [];
                     var quarterlyOptionsList = []
                     var yearlyOptionsList = [];
@@ -101,7 +101,7 @@ export class TotalCounselingHoursComponent extends BaseCaseController {
                     this.isCenterChartLoaded = true;
                     this.centerOptions = this.centerMonthlyOptions;
                     break;
-                case "HoursCounselorWise":
+                case "SessionsCounselorWise":
                     var monthlyOptionsList = [];
                     var quarterlyOptionsList = []
                     var yearlyOptionsList = [];
@@ -162,7 +162,7 @@ export class TotalCounselingHoursComponent extends BaseCaseController {
                     this.counselorOptions = this.counselorMonthlyOptions;
                     this.isCounselorChartLoaded = true;
                     break;
-                case "HoursPeacemakerWise":
+                case "SessionsPeacemakerWise":
                     var monthlyOptionsList = [];
                     var quarterlyOptionsList = []
                     var yearlyOptionsList = [];

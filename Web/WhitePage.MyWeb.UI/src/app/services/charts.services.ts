@@ -24,4 +24,16 @@ export class ChartsService extends BaseService {
     public getPeacemakerWiseChartsData(id: number): Observable<ChartObject[]> {
         return this.authHttp.get('/api/Charts/GetPeacemakerWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
     }
+
+    public getCenterChartsData(): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCenterChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public getCounselorChartsData(): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCounselorChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public getPeacemakerChartsData(): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetPeacemakerChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    }
 }
