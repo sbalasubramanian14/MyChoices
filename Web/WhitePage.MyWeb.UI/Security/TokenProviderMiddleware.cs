@@ -64,10 +64,20 @@ namespace WhitePage.MyWeb.UI.Security
 
             var now = DateTime.UtcNow;
 
+            string roleId = string.Empty;
+
+            foreach (var claim in identity.Claims)
+            {
+                if(claim.Type == "RoleId")
+                {
+                    roleId = claim.Value;
+                }
+            }
 
             var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(JwtRegisteredClaimNames.Typ, roleId),
                 new Claim(JwtRegisteredClaimNames.Jti, await _options.NonceGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUniversalTime().ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
             };

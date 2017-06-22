@@ -63,11 +63,22 @@ namespace WhitePage.MyWeb.UI.Security
 
             var now = DateTime.UtcNow;
 
+            string roleId = string.Empty;
+
+            foreach (var claim in identity.Claims)
+            {
+                if (claim.Type == "RoleId")
+                {
+                    roleId = claim.Value;
+                }
+            }
+
             // Specifically add the jti (random nonce), iat (issued timestamp), and sub (subject/user) claims.
             // You can add other claims here, if you want:
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(JwtRegisteredClaimNames.Typ, roleId),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
             };
