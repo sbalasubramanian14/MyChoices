@@ -13,8 +13,8 @@ namespace WhitePage.BusinessAccess.Contracts.Core
         List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(int id);
         List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(int id);
         List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(int id);
-        List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues();
-        List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues();
-        List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues();
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(string column);
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(string column);
+        List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(string column);
     }
 }
