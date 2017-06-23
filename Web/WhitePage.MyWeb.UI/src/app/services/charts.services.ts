@@ -36,4 +36,16 @@ export class ChartsService extends BaseService {
     public getPeacemakerChartsData(column: string): Observable<ChartObject[]> {
         return this.authHttp.get('/api/Charts/GetPeacemakerChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
     }
+
+    public GetCenterWiseAvgChartObjectValues(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCenterWiseAvgChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public GetCounselorWiseAvgChartObjectValues(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCounselorWiseAvgChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public GetPeaceMakerWiseAvgChartObjectValues(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetPeaceMakerWiseAvgChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
+    }
 }
