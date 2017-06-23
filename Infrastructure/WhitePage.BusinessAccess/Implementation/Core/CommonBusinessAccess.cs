@@ -73,5 +73,20 @@ namespace WhitePage.BusinessAccess.Implementation.Core
         {
             return this.commonDataAccess.GetPeacemakerWiseChartObjectValues(column);
         }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetCenterWiseAvgChartObjectValues(string column)
+        {
+            return this.commonDataAccess.GetCenterWiseAvgChartObjectValues(column);
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetCounselorWiseAvgChartObjectValues(string column)
+        {
+            return this.commonDataAccess.GetCounselorWiseAvgChartObjectValues(column);
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetPeacemakerWiseAvgChartObjectValues(string column)
+        {
+            return this.commonDataAccess.GetPeacemakerWiseAvgChartObjectValues(column);
+        }        
     }
 }

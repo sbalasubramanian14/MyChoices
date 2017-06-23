@@ -17,5 +17,8 @@ namespace WhitePage.ResourceAccess.Contracts.Core
         List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(string column);
         List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(string column);
         List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(string column);
+        List<KeyValuePair<string, KeyValuePair<string, float>>> GetCenterWiseAvgChartObjectValues(string column);
+        List<KeyValuePair<string, KeyValuePair<string, float>>> GetCounselorWiseAvgChartObjectValues(string column);
+        List<KeyValuePair<string, KeyValuePair<string, float>>> GetPeacemakerWiseAvgChartObjectValues(string column);
     }
 }

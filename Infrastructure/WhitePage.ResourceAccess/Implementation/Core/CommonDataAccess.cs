@@ -136,13 +136,13 @@ namespace WhitePage.ResourceAccess.Implementation.Core
                 dbContext.Cases
                     .Join(dbContext.Centers, ca => ca.CenterId, ce => ce.CenterId, (ca, ce) => new { ca, ce })
                     .Join(dbContext.Manage, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new {  title = tt.ce.Title, createdDate = tt.ca.CreatedDateTime, totalHours = column == "TotalHoursSpentLookupId" ? cm.TotalHoursSpentLookupId : cm.TotalNoOfSessionsLookupId })
-                    .GroupBy(c => new { c.title, c.createdDate.Month, c = c })
+                    .GroupBy(c => new { c.title, c.createdDate.Month })
                     .ToList()
                     .Select(
                         cl => 
                             new KeyValuePair<string, KeyValuePair<string, int>>(
                                 cl.Key.title,
-                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Key.c.totalHours.GetValueOrDefault())));
+                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
 
 
             return list.ToList();
@@ -156,13 +156,13 @@ namespace WhitePage.ResourceAccess.Implementation.Core
                 dbContext.Cases
                     .Join(dbContext.Counselors, ca => ca.CounselorId, ce => ce.CounselorId, (ca, ce) => new { ca, ce })
                     .Join(dbContext.Manage, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { firstName = tt.ce.FirstName, createdDate = tt.ca.CreatedDateTime, totalHours = column == "TotalHoursSpentLookupId" ? cm.TotalHoursSpentLookupId : cm.TotalNoOfSessionsLookupId })
-                    .GroupBy(c => new { c.firstName, c.createdDate.Month, c = c })
+                    .GroupBy(c => new { c.firstName, c.createdDate.Month })
                     .ToList()
                     .Select(
                         cl =>
                             new KeyValuePair<string, KeyValuePair<string, int>>(
                                 cl.Key.firstName,
-                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Key.c.totalHours.GetValueOrDefault())));
+                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
 
             return list.ToList();
         }
@@ -175,13 +175,69 @@ namespace WhitePage.ResourceAccess.Implementation.Core
                dbContext.Cases
                     .Join(dbContext.PeaceMakers, ca => ca.PeaceMakerId, ce => ce.PeaceMakerId, (ca, ce) => new { ca, ce })
                     .Join(dbContext.Manage, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { firstName = tt.ce.FirstName, createdDate = tt.ca.CreatedDateTime, totalHours = column == "TotalHoursSpentLookupId" ? cm.TotalHoursSpentLookupId : cm.TotalNoOfSessionsLookupId })
-                    .GroupBy(c => new { c.firstName, c.createdDate.Month, c = c })
+                    .GroupBy(c => new { c.firstName, c.createdDate.Month })
                     .ToList()
                     .Select(
                         cl =>
                             new KeyValuePair<string, KeyValuePair<string, int>>(
                                 cl.Key.firstName,
-                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Key.c.totalHours.GetValueOrDefault())));
+                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
+            return list.ToList();
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetCenterWiseAvgChartObjectValues(string column)
+        {
+            var dbContext = this.unitOfWork.DbContext;
+
+            var list =
+                dbContext.Cases
+                    .Join(dbContext.Centers, ca => ca.CenterId, ce => ce.CenterId, (ca, ce) => new { ca, ce })
+                    .Join(dbContext.FamilyHouseHold, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { title = tt.ce.Title, createdDate = tt.ca.CreatedDateTime, total = column == "SoughtHelpYesNoLookupId" ? cm.SoughtHelpYesNoLookupId : cm.ClientSignedRegistrationFormYesNoLookupId })
+                    .GroupBy(c => new { c.title, c.createdDate.Month })
+                    .ToList()
+                    .Select(
+                        cl =>
+                            new KeyValuePair<string, KeyValuePair<string, float>>(
+                                cl.Key.title,
+                                new KeyValuePair<string, float>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), ((float)cl.Count(c => c.total == 12) * 100) / cl.Count())));
+
+            return list.ToList();
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetCounselorWiseAvgChartObjectValues(string column)
+        {
+            var dbContext = this.unitOfWork.DbContext;
+
+            var list =
+                dbContext.Cases
+                    .Join(dbContext.Counselors, ca => ca.CounselorId, ce => ce.CounselorId, (ca, ce) => new { ca, ce })
+                    .Join(dbContext.FamilyHouseHold, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { firstName = tt.ce.FirstName, createdDate = tt.ca.CreatedDateTime, total = column == "SoughtHelpYesNoLookupId" ? cm.SoughtHelpYesNoLookupId : cm.ClientSignedRegistrationFormYesNoLookupId })
+                    .GroupBy(c => new { c.firstName, c.createdDate.Month })
+                    .ToList()
+                    .Select(
+                        cl =>
+                            new KeyValuePair<string, KeyValuePair<string, float>>(
+                                cl.Key.firstName,
+                                new KeyValuePair<string, float>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), ((float)cl.Count(c => c.total == 12) * 100) / cl.Count())));
+
+            return list.ToList();
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetPeacemakerWiseAvgChartObjectValues(string column)
+        {
+            var dbContext = this.unitOfWork.DbContext;
+
+            var list =
+               dbContext.Cases
+                    .Join(dbContext.PeaceMakers, ca => ca.PeaceMakerId, ce => ce.PeaceMakerId, (ca, ce) => new { ca, ce })
+                    .Join(dbContext.FamilyHouseHold, tt => tt.ca.CaseId, cm => cm.CaseId, (tt, cm) => new { firstName = tt.ce.FirstName, createdDate = tt.ca.CreatedDateTime, total = column == "SoughtHelpYesNoLookupId" ? cm.SoughtHelpYesNoLookupId : cm.ClientSignedRegistrationFormYesNoLookupId })
+                    .GroupBy(c => new { c.firstName, c.createdDate.Month, c = c })
+                    .ToList()
+                    .Select(
+                        cl =>
+                            new KeyValuePair<string, KeyValuePair<string, float>>(
+                                cl.Key.firstName,
+                                new KeyValuePair<string, float>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), ((float)cl.Count(c => c.total == 12) * 100) / cl.Count())));
 
 
             return list.ToList();

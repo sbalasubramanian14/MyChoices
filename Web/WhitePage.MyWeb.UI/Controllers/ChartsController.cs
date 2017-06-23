@@ -68,6 +68,30 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(charts);
         }
 
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetCenterWiseAvgChartObjectValues(string column)
+        {
+            var charts = this.commonDataAccess.GetCenterWiseAvgChartObjectValues(column);
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetCounselorWiseAvgChartObjectValues(string column)
+        {
+            var charts = this.commonDataAccess.GetCounselorWiseAvgChartObjectValues(column);
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetPeaceMakerWiseAvgChartObjectValues(string column)
+        {
+            var charts = this.commonDataAccess.GetPeacemakerWiseAvgChartObjectValues(column);
+            return Ok(charts);
+        }
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
