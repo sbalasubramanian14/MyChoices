@@ -7,6 +7,7 @@ import 'rxjs/add/observable/throw';
 import { AuthHttp, JwtHelper, AuthConfig, tokenNotExpired, AUTH_PROVIDERS } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { BaseService } from './base.service';
+import { Center, PeaceMaker, Counselor, Lookup, State, ChartObject, CaseStatus } from '../models/entities';
 
 @Injectable()
 export class CommonService extends BaseService {

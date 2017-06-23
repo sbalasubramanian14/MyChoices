@@ -1,5 +1,5 @@
 ﻿
-class Center
+export class Center
 {
     constructor() { }
 
@@ -9,7 +9,7 @@ class Center
     IsActive: boolean;
 }
 
-class PeaceMaker {
+export class PeaceMaker {
     constructor() { }
 
     PeaceMakerId: any;
@@ -20,7 +20,7 @@ class PeaceMaker {
     IsActive: boolean;
 }
 
-class Counselor {
+export class Counselor {
     constructor() { }
 
     CounselorId: number;
@@ -31,7 +31,7 @@ class Counselor {
     IsActive: boolean;
 }
 
-class State {
+export class State {
     constructor() { }
 
     StateId: number;
@@ -40,7 +40,7 @@ class State {
     Cities: Array<City>;
 }
 
-class City {
+export class City {
     constructor() { }
 
     CityId: number;
@@ -48,7 +48,7 @@ class City {
     StateId: number;
 }
 
-class CaseStatus {
+export class CaseStatus {
     constructor() { }
 
     CaseStatusId: number;
@@ -56,7 +56,7 @@ class CaseStatus {
     Level: number;
 }
 
-class Lookup {
+export class Lookup {
     constructor() { }
 
     LookupId: number;
@@ -65,7 +65,7 @@ class Lookup {
     LookupDetails: Array<LookupDetail>;
 }
 
-class LookupDetail {
+export class LookupDetail {
     constructor() { }
 
     LookupDetailId: number;
@@ -73,9 +73,14 @@ class LookupDetail {
     LookupId: number;
 }
 
-class ChartObject {
+export class ChartObject {
     constructor() { }
     Key: string;
     Value: any;
 }
 
+export class UserRole {
+    constructor() { }
+    RoleId: number;
+    Title: string;
+}

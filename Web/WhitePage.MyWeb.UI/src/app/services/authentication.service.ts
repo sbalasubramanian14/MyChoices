@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import { UserRole, PeaceMaker } from '../models/entities';
 
 @Injectable()
 export class AuthenticationService {
@@ -76,6 +77,14 @@ export class AuthenticationService {
         }
     }
 
+    public getUserRoles(): Observable<UserRole[]> {
+        return this.http.get('/api/user/GetAllRoles', this.getRequestOptions()).map((response: Response) => <UserRole[]>response.json());
+    }
+
+    public addPeaceMaker(peaceMaker: PeaceMaker): Observable<void> {
+        return this.http.post('/api/user/AddPeaceMaker', JSON.stringify(peaceMaker), this.getRequestOptions()).map((response: Response) => <void>response.json());
+    }
+
     private encodeParams(params: any): string {
 
         let body: string = "";
@@ -106,5 +115,15 @@ export class AuthenticationService {
         localStorage.removeItem('getAllPeaceMakers');
         localStorage.removeItem('getAllLookups');
         localStorage.removeItem('getAllStates');
+    }
+
+    public getRequestOptions(): RequestOptions {
+        let headers = new Headers(
+            {
+                'authorization': "bearer " + this.getToken(),
+                'Content-Type': 'application/json'
+            }
+        );
+        return new RequestOptions({ headers: headers });
     }
 }  

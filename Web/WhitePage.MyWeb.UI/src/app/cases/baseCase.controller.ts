@@ -10,7 +10,7 @@ import { Case, CaseAddress, CaseBook } from '../models/case.entities';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import { ChartsService } from '../services/charts.services'
-
+import { Center, PeaceMaker, Counselor, Lookup, State, ChartObject, CaseStatus } from '../models/entities';
 
 @Injectable()
 export class BaseCaseController {

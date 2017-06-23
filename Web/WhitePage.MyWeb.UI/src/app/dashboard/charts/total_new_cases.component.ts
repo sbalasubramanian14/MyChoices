@@ -80,7 +80,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" }},
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: monthlyOptionsList
                     };
 
@@ -88,7 +88,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: quarterlyOptionsList
                     };
 
@@ -96,7 +96,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: yearlyOptionsList
                     };
                     this.isCenterChartLoaded = true;
@@ -141,7 +141,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: monthlyOptionsList
                     };
 
@@ -149,7 +149,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: quarterlyOptionsList
                     };
 
@@ -157,7 +157,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: yearlyOptionsList
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
@@ -202,7 +202,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: monthlyOptionsList
                     };
 
@@ -210,7 +210,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: quarterlyOptionsList
                     };
 
@@ -218,7 +218,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: yearlyOptionsList
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
