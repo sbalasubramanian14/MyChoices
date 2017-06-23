@@ -151,6 +151,7 @@
     <Build Include="Ops\Functions\getMetntalStatusDescription.sql" />
     <Build Include="Ops\Functions\func_Split.sql" />
     <Build Include="Ops\Views\vCaseSessionLog.sql" />
+    <Build Include="Auth\Stored Procedures\getUserRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
