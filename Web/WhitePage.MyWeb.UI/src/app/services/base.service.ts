@@ -33,4 +33,14 @@ export class BaseService {
         );
         return new RequestOptions({ params: {id: id}, headers: headers });
     }
+
+    public getStringOptions(value: string): RequestOptions {
+        let headers = new Headers(
+            {
+                'authorization': "bearer " + this.authenticationService.getToken(),
+                'Content-Type': 'application/json'
+            }
+        );
+        return new RequestOptions({ params: { column: value }, headers: headers });
+    }
 }

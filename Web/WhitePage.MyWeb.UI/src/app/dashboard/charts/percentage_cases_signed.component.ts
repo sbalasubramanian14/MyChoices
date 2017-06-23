@@ -11,7 +11,7 @@ import * as _ from 'lodash';
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 })
 
-export class PercentageCasesSignedComponenet extends BaseCaseController {
+export class PercentageCasesSignedComponent extends BaseCaseController {
     public caseModel: CaseBook;
     public centers: string;
     public isChartLoaded: boolean;

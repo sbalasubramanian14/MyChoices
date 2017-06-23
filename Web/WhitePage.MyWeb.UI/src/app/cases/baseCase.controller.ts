@@ -141,8 +141,8 @@ export class BaseCaseController {
         });
     }
 
-    public getCenterChartsData(observer: string): any {
-        this.chartsService.getCenterChartsData().subscribe(data => {
+    public getCenterChartsData(column: string, observer: string): any {
+        this.chartsService.getCenterChartsData(column).subscribe(data => {
             data.forEach(
                 chartData =>
                     this.centerChartObjectsList.push(chartData)
@@ -152,8 +152,8 @@ export class BaseCaseController {
         });
     }
 
-    public getCounselorChartsData(observer: string): any {
-        this.chartsService.getCounselorChartsData().subscribe(data => {
+    public getCounselorChartsData(column: string, observer: string): any {
+        this.chartsService.getCounselorChartsData(column).subscribe(data => {
             data.forEach(
                 chartData =>
                     this.counselorChartObjectsList.push(chartData)
@@ -163,8 +163,8 @@ export class BaseCaseController {
         });
     }
 
-    public getPeacemakerChartsData(observer: string): any {
-        this.chartsService.getPeacemakerChartsData().subscribe(data => {
+    public getPeacemakerChartsData(column: string, observer: string): any {
+        this.chartsService.getPeacemakerChartsData(column).subscribe(data => {
             data.forEach(
                 chartData =>
                     this.peacemakerChartObjectsList.push(chartData)

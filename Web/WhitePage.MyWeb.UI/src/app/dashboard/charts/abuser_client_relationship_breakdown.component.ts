@@ -11,7 +11,7 @@ import * as _ from 'lodash';
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 })
 
-export class AbuserClientRelationshipBreakdownComponenet extends BaseCaseController {
+export class AbuserClientRelationshipBreakdownComponent extends BaseCaseController {
     public caseModel: CaseBook;
     public centers: string;
     public isChartLoaded: boolean;
