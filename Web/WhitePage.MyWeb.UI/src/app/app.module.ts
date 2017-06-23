@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpModule, Http } from '@angular/http';
@@ -45,7 +45,7 @@ import { AuthenticationService } from './services/authentication.service'
         DropdownModule.forRoot(),
         TabsModule.forRoot(),
         TooltipModule.forRoot(),
-        RouterModule.forRoot(AppRoutes),
+        RouterModule.forRoot(AppRoutes, { preloadingStrategy: PreloadAllModules }),
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
