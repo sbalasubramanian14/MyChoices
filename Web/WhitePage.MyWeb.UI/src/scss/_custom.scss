@@ -22,6 +22,16 @@ input {
     border-radius: $input-border-radius !important;
 }
 
+//remove yellow background for autocomplete in chrome
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: whitesmoke !important;
+}
+
 .fill-height{
     height: 100%;
 }
@@ -127,6 +137,13 @@ input {
     }
 }
 
+.justify-tabs {
+    .nav {
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
+
 .modal-content {
     color: white;
     background-color: transparent;
@@ -134,7 +151,7 @@ input {
     border-radius: 6px;
 
     .modal-header {
-        .modal-title{
+        .modal-title {
             font-size: 1.3em;
         }
 
@@ -151,25 +168,32 @@ input {
     }
 }
 
+
 .tab-container {
     @extend .fill-width;
     max-width: 100%;
 }
 
-.tab-content{
+.tab-content {
     max-width: 100%;
 }
 
-.add-new-button-container{
+.add-new-button-container {
     margin-bottom: 15px;
     text-align: center;
 }
-.toast-success{
+
+.toast-success {
     background-color: $brand-primary !important;
 }
 
-.custom-control-input{
+.custom-control-input {
     height: 16px;
     width: 16px;
     vertical-align: middle;
 }
+
+.custom-control-description {
+    vertical-align: middle;
+}
+
