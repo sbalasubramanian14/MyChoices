@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
-import { UserRole, PeaceMaker } from '../models/entities';
+import { UserRole, PeaceMaker, Counselor } from '../models/entities';
 
 @Injectable()
 export class AuthenticationService {
@@ -83,6 +83,14 @@ export class AuthenticationService {
 
     public addPeaceMaker(peaceMaker: PeaceMaker): Observable<void> {
         return this.http.post('/api/user/AddPeaceMaker', JSON.stringify(peaceMaker), this.getRequestOptions()).map((response: Response) => <void>response.json());
+    }
+
+    public addCounselor(counselor: Counselor): Observable<void> {
+        return this.http.post('/api/user/AddCounselor', JSON.stringify(counselor), this.getRequestOptions()).map((response: Response) => <void>response.json());
+    }
+
+    public addNewUserLogin(username: string, roleId: number, firstName: string, lastName: string): Observable<void> {
+        return this.http.post('/api/user/AddNewUserLogin', JSON.stringify({ username: username, roleId: roleId, firstName: firstName, lastName: lastName }), this.getRequestOptions()).map((response: Response) => <void>response.json());
     }
 
     private encodeParams(params: any): string {

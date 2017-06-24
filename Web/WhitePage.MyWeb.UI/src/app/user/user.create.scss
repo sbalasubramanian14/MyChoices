@@ -1,2 +1,6 @@
-﻿body {
+﻿.case-detail-container {
+    .nav-tabs {
+        display: flex !important;
+        justify-content: center !important;
+    }
 }

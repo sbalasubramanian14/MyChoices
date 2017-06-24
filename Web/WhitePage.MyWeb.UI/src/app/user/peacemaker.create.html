@@ -1,0 +1,51 @@
+﻿<form [formGroup]="addPeacemakerForm" *ngIf="roles" novalidate>
+    <div class="form-group">
+        <label for="firstname">First Name *</label>
+        <input placeholder="First Name" id="firstname" class="form-control" formControlName="firstname" />
+    </div>
+
+    <div class="form-group">
+        <label for="lastname">Last Name *</label>
+        <input placeholder="Last Name" id="lastname" class="form-control" formControlName="lastname" />
+    </div>
+
+    <div class="form-group">
+        <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" formControlName="isNewLogin" name="newLogin" [(ngModel)]="isNewLogin">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Create new user login</span>
+        </label>
+    </div>
+
+    <div class="form-group" *ngIf="isNewLogin">
+        <label for="email">Email *</label>
+        <input placeholder="Email" id="email" class="form-control" formControlName="email" />
+    </div>
+
+    <div class="form-group" *ngIf="isNewLogin">
+        <label for="roleId">Role *</label>
+        <ng-select [options]="roles"
+                   placeholder="Select role"
+                   [allowClear]="true"
+                   name="role"
+                   id="roleId"
+                   formControlName="role">
+        </ng-select>
+    </div>
+    
+    <div class="form-group">
+        <label for="centerId">Center *</label>
+        <ng-select [options]="centers"
+                   placeholder="Select center"
+                   [allowClear]="true"
+                   name="center"
+                   id="centerId"
+                   formControlName="center">
+        </ng-select>
+    </div>
+
+    <div class="form-group" style="text-align: center">
+        <button class="btn btn-primary" [disabled]="!addPeacemakerForm.valid" (click)="addNewUser()">Add PeaceMaker</button>
+    </div>
+
+</form>

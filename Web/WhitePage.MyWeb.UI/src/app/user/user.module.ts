@@ -8,6 +8,8 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { UserRoutingModule } from './user-routing.module';
 
 import { UserCreateComponent } from './user.create';
+import { PeacemakerCreateComponent } from './peacemaker.create';
+import { CounselorCreateComponent } from './counselor.create';
 
 import { CommonService } from '../services/common.services';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -34,7 +36,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         MultiselectDropdownModule,
         MyDatePickerModule
     ],
-    declarations: [UserCreateComponent],
+    declarations: [UserCreateComponent, PeacemakerCreateComponent, CounselorCreateComponent],
     providers: [
         CommonService
     ]
