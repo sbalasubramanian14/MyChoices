@@ -1,30 +1,45 @@
-﻿<select class="form-control" formControlName="breakdownTypes" (change)="loadCenterNewCasesChart($event.target.value)">
-    <option *ngFor="let breakdown of breakdownTypes">{{breakdown.value}}</option>
-</select><br /><br />
-<div class="container" *ngIf="isCenterChartLoaded">
-    <div>
-        <chart [options]="centerOptions"></chart>
+﻿
+
+<div class="row">
+    <div class="col-md-6" *ngIf="isCenterChartLoaded">
+        <div class="justify-chart-labels">
+            <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
+                <input type="radio" [attr.id]="'radio1' + breakdown.value" [checked]="i == 0"
+                       (change)="loadCenterNewCasesChart(breakdown.value)" formControlName="breakdownTypes" name="radio1" />
+                <label [attr.for]="'radio1' + breakdown.value"><span></span>{{breakdown.value}}</label>
+            </span>
+        </div>
+        <div>
+            <chart [options]="centerOptions"></chart>
+        </div>
+    </div>
+
+    <div class="col-md-6" *ngIf="isCounselorChartLoaded">
+        <div class="justify-chart-labels">
+            <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
+                <input type="radio" [attr.id]="'radio2' + breakdown.value" [checked]="i == 0"
+                       (change)="loadCounselorNewCasesChart(breakdown.value)" formControlName="breakdownTypes" name="radio2" />
+                <label [attr.for]="'radio2' + breakdown.value"><span></span>{{breakdown.value}}</label>
+            </span>
+        </div>
+        <div>
+            <chart [options]="counselorOptions"></chart>
+        </div>
     </div>
 </div>
 
 <br />
-
-<select class="form-control" formControlName="breakdownTypes" (change)="loadCounselorNewCasesChart($event.target.value)">
-    <option *ngFor="let breakdown of breakdownTypes">{{breakdown.value}}</option>
-</select><br /><br />
-<div class="container" *ngIf="isCounselorChartLoaded">
-    <div>
-        <chart [options]="counselorOptions"></chart>
-    </div>
-</div>
-
-<br />
-
-<select class="form-control" formControlName="breakdownTypes" (change)="loadPeaceMakerNewCasesChart($event.target.value)">
-    <option *ngFor="let breakdown of breakdownTypes">{{breakdown.value}}</option>
-</select><br /><br />
-<div class="container" *ngIf="isPeaceMakerChartLoaded">
-    <div>
-        <chart [options]="peacemakerOptions"></chart>
+<div class="row">
+    <div class="col-md-12" *ngIf="isPeaceMakerChartLoaded">
+        <div class="justify-chart-labels">
+            <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
+                <input type="radio" [attr.id]="'radio3' + breakdown.value" [checked]="i == 0"
+                       (change)="loadPeaceMakerNewCasesChart(breakdown.value)" formControlName="breakdownTypes" name="radio3" />
+                <label [attr.for]="'radio3' + breakdown.value"><span></span>{{breakdown.value}}</label>
+            </span>
+        </div>
+        <div>
+            <chart [options]="peacemakerOptions"></chart>
+        </div>
     </div>
 </div>

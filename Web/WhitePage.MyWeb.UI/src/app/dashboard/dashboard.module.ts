@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import * as highcharts from 'highcharts';
+import { HighChartsThemeSettings } from './charts/highcharts.theme';
 
 //charts
 import { TotalNewCasesComponent } from './charts/total_new_cases.component';
@@ -18,6 +19,7 @@ import { PercentageCasesSignedComponent } from './charts/percentage_cases_signed
 
 
 export function highchartsFactory() {
+    highcharts.setOptions(HighChartsThemeSettings.options);
     return highcharts;
 }
 

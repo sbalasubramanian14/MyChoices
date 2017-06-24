@@ -11,7 +11,7 @@ import { Case } from '../models/case.entities'
 @Component({
     selector: 'charts',
     templateUrl: 'dashboard.component.html',
-    styleUrls: ['dashboard.component.scss'],
+    //styleUrls: ['dashboard.component.scss'],
     providers: [ CasesService, CommonService, ChartsService ]
 })
 

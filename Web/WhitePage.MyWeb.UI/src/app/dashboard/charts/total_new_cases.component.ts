@@ -10,6 +10,17 @@ import * as _ from 'lodash';
 @Component({
     selector: 'total_new_cases',
     templateUrl: 'total_new_cases.component.html',
+    styles: [`
+        chart {
+            display: block;
+        }
+        .justify-chart-labels{
+            display: flex;
+            justify-content: space-around;
+        }
+        `
+
+    ],
     providers: [CaseBook, CasesService, CommonService, ChartsService]}
 )
 
