@@ -13,6 +13,9 @@ import { TotalClosedCasesComponent } from './charts/total_closed_cases.component
 import { CaseResolutionRateComponent } from './charts/case_resolution_rate.component';
 import { TotalCounselingHoursComponent } from './charts/total_counseling_hours.component';
 import { TotalSessionsComponent } from './charts/total_sessions.component';
+import { PercentageCasesSoughtHelpComponent } from './charts/percentage_cases_sought_help.component';
+import { PercentageCasesSignedComponent } from './charts/percentage_cases_signed.component';
+
 
 export function highchartsFactory() {
     return highcharts;
@@ -36,6 +39,8 @@ export function highchartsFactory() {
       TotalClosedCasesComponent,
       CaseResolutionRateComponent,
       TotalCounselingHoursComponent,
-      TotalSessionsComponent]
+      TotalSessionsComponent,
+      PercentageCasesSoughtHelpComponent,
+      PercentageCasesSignedComponent]
 })
 export class DashboardModule { }

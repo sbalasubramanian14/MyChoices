@@ -46,25 +46,49 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         // GET api/values/5
         [Route("[action]")]
-        public IActionResult GetCenterChartObjectValues()
+        public IActionResult GetCenterChartObjectValues(string column)
         {
-            var charts = this.commonDataAccess.GetCenterWiseChartObjectValues();
+            var charts = this.commonDataAccess.GetCenterWiseChartObjectValues(column);
             return Ok(charts);
         }
 
         // GET api/values/5
         [Route("[action]")]
-        public IActionResult GetCounselorChartObjectValues()
+        public IActionResult GetCounselorChartObjectValues(string column)
         {
-            var charts = this.commonDataAccess.GetCounselorWiseChartObjectValues();
+            var charts = this.commonDataAccess.GetCounselorWiseChartObjectValues(column);
             return Ok(charts);
         }
 
         // GET api/values/5
         [Route("[action]")]
-        public IActionResult GetPeaceMakerChartObjectValues()
+        public IActionResult GetPeaceMakerChartObjectValues(string column)
         {
-            var charts = this.commonDataAccess.GetPeacemakerWiseChartObjectValues();
+            var charts = this.commonDataAccess.GetPeacemakerWiseChartObjectValues(column);
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetCenterWiseAvgChartObjectValues(string column)
+        {
+            var charts = this.commonDataAccess.GetCenterWiseAvgChartObjectValues(column);
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetCounselorWiseAvgChartObjectValues(string column)
+        {
+            var charts = this.commonDataAccess.GetCounselorWiseAvgChartObjectValues(column);
+            return Ok(charts);
+        }
+
+        // GET api/values/5
+        [Route("[action]")]
+        public IActionResult GetPeaceMakerWiseAvgChartObjectValues(string column)
+        {
+            var charts = this.commonDataAccess.GetPeacemakerWiseAvgChartObjectValues(column);
             return Ok(charts);
         }
 

@@ -59,19 +59,34 @@ namespace WhitePage.BusinessAccess.Implementation.Core
             return this.commonDataAccess.GetPeacemakerWiseChartObjectValues(id);
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues()
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(string column)
         {
-            return this.commonDataAccess.GetCenterWiseChartObjectValues();
+            return this.commonDataAccess.GetCenterWiseChartObjectValues(column);
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues()
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(string column)
         {
-            return this.commonDataAccess.GetCounselorWiseChartObjectValues();
+            return this.commonDataAccess.GetCounselorWiseChartObjectValues(column);
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues()
+        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(string column)
         {
-            return this.commonDataAccess.GetPeacemakerWiseChartObjectValues();
+            return this.commonDataAccess.GetPeacemakerWiseChartObjectValues(column);
         }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetCenterWiseAvgChartObjectValues(string column)
+        {
+            return this.commonDataAccess.GetCenterWiseAvgChartObjectValues(column);
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetCounselorWiseAvgChartObjectValues(string column)
+        {
+            return this.commonDataAccess.GetCounselorWiseAvgChartObjectValues(column);
+        }
+
+        public List<KeyValuePair<string, KeyValuePair<string, float>>> GetPeacemakerWiseAvgChartObjectValues(string column)
+        {
+            return this.commonDataAccess.GetPeacemakerWiseAvgChartObjectValues(column);
+        }        
     }
 }

@@ -26,15 +26,27 @@ export class ChartsService extends BaseService {
         return this.authHttp.get('/api/Charts/GetPeacemakerWiseChartObjectValues/', this.getOptions(id)).map((response: Response) => <ChartObject[]>response.json());
     }
 
-    public getCenterChartsData(): Observable<ChartObject[]> {
-        return this.authHttp.get('/api/Charts/GetCenterChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    public getCenterChartsData(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCenterChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
     }
 
-    public getCounselorChartsData(): Observable<ChartObject[]> {
-        return this.authHttp.get('/api/Charts/GetCounselorChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    public getCounselorChartsData(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCounselorChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
     }
 
-    public getPeacemakerChartsData(): Observable<ChartObject[]> {
-        return this.authHttp.get('/api/Charts/GetPeacemakerChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    public getPeacemakerChartsData(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetPeacemakerChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public GetCenterWiseAvgChartObjectValues(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCenterWiseAvgChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public GetCounselorWiseAvgChartObjectValues(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetCounselorWiseAvgChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
+    }
+
+    public GetPeaceMakerWiseAvgChartObjectValues(column: string): Observable<ChartObject[]> {
+        return this.authHttp.get('/api/Charts/GetPeaceMakerWiseAvgChartObjectValues/', this.getStringOptions(column)).map((response: Response) => <ChartObject[]>response.json());
     }
 }
