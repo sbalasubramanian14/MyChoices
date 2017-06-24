@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using WhitePage.BusinessAccess.Contracts.Security;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
@@ -28,10 +29,25 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult AddPeaceMaker([FromBody] PeaceMaker peaceMaker)
         {
-            var result = peaceMaker;
-
             this.loginBusinessAccess.AddPeaceMaker(peaceMaker);
             return Ok(peaceMaker);
+        }
+
+        [HttpPost]
+        public IActionResult AddCounselor([FromBody] Counselor counselor)
+        {
+            this.loginBusinessAccess.AddCounselor(counselor);
+            return Ok(counselor);
+        }
+
+        [HttpPost]
+        public IActionResult AddNewUserLogin([FromBody] object userInfo)
+        {
+            var definition = new { username = string.Empty, roleId = 0, firstName = string.Empty, lastName = string.Empty };
+
+            var userdata = JsonConvert.DeserializeAnonymousType(userInfo.ToString(), definition);
+            this.loginBusinessAccess.AddNewUserLogin(userdata.username, userdata.roleId, userdata.firstName, userdata.lastName);
+            return Ok();
         }
 
         //[HttpGet]

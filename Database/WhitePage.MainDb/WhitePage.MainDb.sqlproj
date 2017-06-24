@@ -152,6 +152,7 @@
     <Build Include="Ops\Functions\func_Split.sql" />
     <Build Include="Ops\Views\vCaseSessionLog.sql" />
     <Build Include="Auth\Stored Procedures\getUserRoles.sql" />
+    <Build Include="Auth\Stored Procedures\AddNewUserLogin.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

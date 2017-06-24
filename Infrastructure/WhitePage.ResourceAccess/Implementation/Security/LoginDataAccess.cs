@@ -37,5 +37,24 @@ namespace WhitePage.ResourceAccess.Implementation.Security
             this.unitOfWork.DbContext.PeaceMakers.Add(peaceMaker);
             this.unitOfWork.DbContext.SaveChanges();
         }
+
+        public void AddCounselor(Counselor counselor)
+        {
+            var parmsCollection = new ParmsCollection();
+            this.unitOfWork.DbContext.Counselors.Add(counselor);
+            this.unitOfWork.DbContext.SaveChanges();
+        }
+
+        public void AddNewUserLogin(string userName, int roleId, string firstName, string lastName)
+        {
+            var parmsCollection = new ParmsCollection();
+            this.unitOfWork.DbContext.ExecuteStoredProcedure<Claim>("[Auth].[AddNewUserLogin]",
+                parmsCollection
+                    .AddParm("@userEmail", SqlDbType.VarChar, userName)
+                    .AddParm("@roleId", SqlDbType.Int, roleId)
+                    .AddParm("@firstName", SqlDbType.VarChar, firstName)
+                    .AddParm("@lastName", SqlDbType.VarChar, lastName)
+                ).ToList();
+        }
     }
 }

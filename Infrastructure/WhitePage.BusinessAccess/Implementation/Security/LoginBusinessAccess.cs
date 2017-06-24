@@ -30,5 +30,15 @@ namespace WhitePage.BusinessAccess.Implementation.Security
         {
             this.loginDataAccess.AddPeaceMaker(peaceMaker);
         }
+
+        public void AddCounselor(Counselor counselor)
+        {
+            this.loginDataAccess.AddCounselor(counselor);
+        }
+
+        public void AddNewUserLogin(string userName, int roleId, string firstName, string lastName)
+        {
+            this.loginDataAccess.AddNewUserLogin(userName, roleId, firstName, lastName);
+        }
     }
 }

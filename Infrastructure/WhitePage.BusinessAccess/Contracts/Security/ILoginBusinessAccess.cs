@@ -13,5 +13,7 @@ namespace WhitePage.BusinessAccess.Contracts.Security
         List<Claim> ValidateUser(string userName, string password, string ipAddress);
         List<UserRole> GetUserRoles();
         void AddPeaceMaker(PeaceMaker peaceMaker);
+        void AddCounselor(Counselor counselor);
+        void AddNewUserLogin(string userName, int roleId, string firstName, string lastName);
     }
 }
