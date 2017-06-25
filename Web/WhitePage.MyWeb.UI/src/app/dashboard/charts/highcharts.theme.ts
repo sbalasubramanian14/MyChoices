@@ -3,10 +3,20 @@
     static chartBackgroundColor = "rgba(255, 255, 255, 0.1)";
 
     static options = {
-        colors: ['#B9F2A1', '#6EBA8C', '#0E8174', '#005562', '#FFFFFF'],
+        colors: ['#B9F2A1', '#6EBA8C', '#0E8174', '#005562', '#FFFFFF',
+            '#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#6AF9C4',
+            '#f45b5b', '#8085e9', '#8d4654', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee',
+            "#6794a7", "#014d64", "#76c0c1", "#01a2d9", "#7ad2f6", "#00887d", "#adadad", "#7bd3f6", "#7c260b", "#ee8f71", "#76c0c1", "#a18376"],
         title: {
             style: {
                 color: '#FFF'
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true
+                }
             }
         },
         xAxis: {
@@ -62,6 +72,16 @@
                 color: '#FFF'
             }
         },
+    }
+
+    static decimalPointDataLabels =
+    {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:,.2f}'
+            }
+        }
     }
 
     static columnChart = { type: 'column', backgroundColor: HighChartsThemeSettings.chartBackgroundColor }

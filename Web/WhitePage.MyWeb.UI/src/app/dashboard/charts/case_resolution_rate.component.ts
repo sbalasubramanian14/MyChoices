@@ -89,7 +89,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Center-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: monthlyOptionsList
+                        series: monthlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
 
                     this.centerQuaterlyOptions = {
@@ -97,7 +98,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Center-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: quarterlyOptionsList
+                        series: quarterlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
 
                     this.centerYearlyOptions = {
@@ -105,7 +107,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Center-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: yearlyOptionsList
+                        series: yearlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
                     this.isCenterChartLoaded = true;
                     this.centerOptions = this.centerMonthlyOptions;
@@ -157,7 +160,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: monthlyOptionsList
+                        series: monthlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
 
                     this.counselorQuaterlyOptions = {
@@ -165,7 +169,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: quarterlyOptionsList
+                        series: quarterlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
 
                     this.counselorYearlyOptions = {
@@ -173,7 +178,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: yearlyOptionsList
+                        series: yearlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
                     this.isCounselorChartLoaded = true;
@@ -225,7 +231,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: monthlyOptionsList
+                        series: monthlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
 
                     this.peacemakerQuaterlyOptions = {
@@ -233,7 +240,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: quarterlyOptionsList
+                        series: quarterlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
 
                     this.peacemakerYearlyOptions = {
@@ -241,7 +249,8 @@ export class CaseResolutionRateComponent extends BaseCaseController {
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
                         chart: HighChartsThemeSettings.columnChart,
-                        series: yearlyOptionsList
+                        series: yearlyOptionsList,
+                        plotOptions: HighChartsThemeSettings.decimalPointDataLabels
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
                     this.isPeaceMakerChartLoaded = true;
