@@ -235,10 +235,10 @@ export class CasesViewComponent extends BaseCaseController implements OnInit {
             this.casesService
                 .GetCaseById(this.selectedCaseId)
                 .subscribe(data => {
-                    console.log(data);
+                    //console.log(data);
 
                     this.caseBook = data;
-                    console.log(this.caseBook);
+                    //console.log(this.caseBook);
 
                     this.getPeaceMakerAndCounselorList();
                     this.getCities();

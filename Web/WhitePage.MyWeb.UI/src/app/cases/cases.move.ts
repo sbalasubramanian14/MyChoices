@@ -32,28 +32,11 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
 
     public caseBook: CaseBook;
     private selectedCaseId: number;
-
     public mainForm: FormGroup;
-    //public primaryForm: any;
-    //public manageForm: any;
-    //public familyHouseHold: any;
-    //public spouseForm: any;
-    //public physicalHealthForm: any;
-    //public caseAbuseForm: any;
-    //public casePrimaryForm: any;
-    //public caseLegalForm: any;
-
     public router: Router;
     public isMainDataLoaded: boolean = false;
     public isPrimaryDataLoaded: boolean = false;
-    //public isHouseHoldDataLoaded: boolean = false;
-    //public isSpouseDataLoaded: boolean = false;
-    //public isPhysicalHealthDataLoaded: boolean = false;
-    //public isAbuseDataLoaded: boolean = false;
-    //public isManageDataLoaded: boolean = false;
-    //public isMentalDataLoaded: boolean = false;
-    //public isFeedbackDataLoaded: boolean = false;
-    //public isLegalDataLoaded: boolean = false;
+    
     public isCategory2: boolean = false;
     public isCategory3: boolean = false;
     public isCategory4: boolean = false;
@@ -66,7 +49,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         public chartsService: ChartsService,
         public routerObj: Router,
         public toastr: ToastsManager,
-        public vRef: ViewContainerRef,
         public activatedRoute: ActivatedRoute,
         public casesDetailed : CasesDetailedComponent) {
         super(casesService, commonService, chartsService);
@@ -74,7 +56,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         this.isPrimaryDataLoaded = false;
 
         this.router = routerObj;
-        this.toastr.setRootViewContainerRef(vRef);
     }
 
     ngOnInit() {
@@ -99,26 +80,14 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
                 }
             });
 
-            //Observable.forkJoin(caseSubscription, lookupSubscription).subscribe(data => {
-            //    this.caseBook = data[0];
-            //    this.getCaseStatuses();
-
-            //    switch (data[1]) {
-            //        case "Lookups": {
-            //            this.loadLookups();
-            //            break;
-            //        }
-            //        default: break;
-            //    }
-
-            //    this.loadMainForm();
-            //});
         });
     }
 
     private getCaseById() {
         var url = '/cases/view/' + this.selectedCaseId;
-        this.router.navigate([url]);
+        this.router.navigate([url]).then(() => {
+            this.toastr.success('Case moved successfully');
+        });
     }
 
     private getCaseStatuses(): any {
@@ -380,8 +349,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
 
         this.casesService
             .updateCaseStatus(this.caseBook).subscribe(data => {
+                
                 this.getCaseById();
-                this.toastr.success('Case moved successfully');
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
