@@ -17,6 +17,7 @@ import {
 import { BaseCaseController } from './basecase.controller';
 import { CasesDetailedComponent } from './cases.detailed';
 import { ModalDirective } from 'ng2-bootstrap/modal';
+import 'rxjs/add/observable/forkJoin';
 
 import { IMyOptions } from 'mydatepicker';
 
@@ -79,32 +80,44 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     ngOnInit() {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.selectedCaseId = params['id'];
+
             this.casesService
                 .GetCaseById(this.selectedCaseId)
                 .subscribe(data => {
-                    console.log(data);
-
                     this.caseBook = data;
-                    console.log(this.caseBook);
-
-                    //this.primaryForm = this.caseBook.Case;
-                    //this.manageForm = this.caseBook.Manage;
-                    //this.familyHouseHold = this.caseBook.FamilyHouseHold;
-                    //this.spouseForm = this.caseBook.Spouse;
-                    //this.physicalHealthForm = this.caseBook.PhysicalHealth;
-                    //this.caseAbuseForm = this.caseBook.Abuse;
-                    //this.caseLegalForm = this.caseBook.Legal;
-
                     this.getCaseStatuses();
-                    this.loadLookups();
-
                     this.loadMainForm();
                 });
+
+            this.observerDataSubject.subscribe(data => {
+                switch (data) {
+                    case "Lookups": {
+                        this.loadLookups();
+                        break;
+                    }
+                    default: break;
+                }
+            });
+
+            //Observable.forkJoin(caseSubscription, lookupSubscription).subscribe(data => {
+            //    this.caseBook = data[0];
+            //    this.getCaseStatuses();
+
+            //    switch (data[1]) {
+            //        case "Lookups": {
+            //            this.loadLookups();
+            //            break;
+            //        }
+            //        default: break;
+            //    }
+
+            //    this.loadMainForm();
+            //});
         });
     }
 
     private getCaseById() {
-        var url = '/cases/redirect/' + this.selectedCaseId;
+        var url = '/cases/view/' + this.selectedCaseId;
         this.router.navigate([url]);
     }
 

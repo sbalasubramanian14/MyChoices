@@ -96,3 +96,7 @@ ng-select {
         background-color: transparent !important;
     }
 }
+
+ng-select > div > div.single > div.value{
+    color: whitesmoke;
+}
