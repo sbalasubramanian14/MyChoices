@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { CasesService } from '../services/cases.services';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
@@ -19,8 +19,13 @@ export class CasesListComponent implements OnInit {
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
 
-    constructor(private casesService: CasesService, private routerObj: Router, private authenticationService: AuthenticationService,) {
+    constructor(private casesService: CasesService, private routerObj: Router,
+        private authenticationService: AuthenticationService,
+        public toastr: ToastsManager,
+        public vRef: ViewContainerRef) {
+
         this.router = routerObj;
+        this.toastr.setRootViewContainerRef(vRef);
         this.length = this.casesList.length;
     }
 

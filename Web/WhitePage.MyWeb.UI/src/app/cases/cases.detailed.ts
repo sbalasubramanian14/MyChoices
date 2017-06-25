@@ -230,7 +230,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
                     break;
             }
         });
-
     }
 
     ngOnInit() {
@@ -293,9 +292,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.counselorOptionsList = localCounselorOptionsList;
     }
 
-    private getCaseById() {        
+    private getCaseById(updateMessage = "") {        
         var url = '/cases/redirect/' + this.selectedCaseId;        
-        this.router.navigate([url]);
+        this.router.navigate([url]).then(() => {
+            if (updateMessage.length > 0)
+                this.toastr.success(updateMessage);
+            else
+                this.toastr.success('Updated successfully');
+        });
     }
 
     /* Primary Info */
@@ -366,9 +370,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.casesService
             .updatePrimaryInfo(caseBookNew).subscribe(data => {
-
                 this.toastr.success('Primary Info Updated Successfully');
-
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
             });
@@ -457,8 +459,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             .updateAddress(this.caseBook).subscribe(data => {
                 this.addressModal.hide();
                 this.getCaseById();
-                this.toastr.success('Address updated successfully');
-
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
             });
@@ -559,7 +559,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .updateHouseHold(this.caseBook).subscribe(data => {
                 this.childrenModal.hide();
-                this.getCaseById();
+                //this.getCaseById('Household information updated successfully');
                 this.toastr.success('Household information updated successfully');
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
@@ -896,7 +896,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.casesService
             .updateAbuse(this.caseBook).subscribe(data => {
-                this.getCaseById();
+                //this.getCaseById();
                 this.toastr.success('Abuse information updated successfully');
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
@@ -954,7 +954,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.casesService
             .updateCase(this.caseBook).subscribe(data => {                
-                this.getCaseById();
+                //this.getCaseById();
                 this.toastr.success('Case info updated successfully');
 
             }, (error: any) => {
@@ -1317,7 +1317,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.casesService
             .updateLegal(this.caseBook).subscribe(data => {                
-                this.getCaseById();
+                //this.getCaseById();
                 this.toastr.success('Legal updated successfully');
 
             }, (error: any) => {

@@ -173,14 +173,14 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         //Load default values
         this.caseBook.Case.MaritalStatusLookupId = "4";
         //this.casePrimaryForm.get('primaryInfo').get('MaritalStatusLookupId').setValue("4");
-
     }
 
     onCaseSave() {
         this.casesService
             .addCasePrimary(this.caseBook).subscribe(data => {
-                this.toastr.success(data.CaseNumber + ' has been created successfully');
-                this.router.navigate(['/cases/list']);                
+                this.router.navigate(['/cases/list']).then(() => {
+                    this.toastr.success(data.CaseNumber + ' has been created successfully');
+                });                
 
             }, (error: any) => {
                 this.toastr.success("Error while creating case, " + error);
