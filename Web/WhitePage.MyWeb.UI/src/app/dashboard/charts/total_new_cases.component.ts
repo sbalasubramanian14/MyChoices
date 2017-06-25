@@ -4,23 +4,12 @@ import { BaseCaseController } from '../../cases/basecase.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
-
+import { HighChartsThemeSettings } from './highcharts.theme';
 import * as _ from 'lodash';
 
 @Component({
     selector: 'total_new_cases',
-    templateUrl: 'total_new_cases.component.html',
-    styles: [`
-        chart {
-            display: block;
-        }
-        .justify-chart-labels{
-            display: flex;
-            justify-content: space-around;
-        }
-        `
-
-    ],
+    templateUrl: 'totals_chart.template.html',
     providers: [CaseBook, CasesService, CommonService, ChartsService]}
 )
 
@@ -41,6 +30,8 @@ export class TotalNewCasesComponent extends BaseCaseController {
     public quarter3Data = 0;
     public quarter4Data = 0;
     public totalData = 0;
+
+    public radioIndex = 21;
 
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService)
     {
@@ -91,7 +82,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" }},
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -99,7 +90,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -107,7 +98,7 @@ export class TotalNewCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.isCenterChartLoaded = true;

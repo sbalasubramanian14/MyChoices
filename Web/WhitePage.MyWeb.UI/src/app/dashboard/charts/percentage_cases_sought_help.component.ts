@@ -4,12 +4,12 @@ import { BaseCaseController } from '../../cases/basecase.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
-
+import { HighChartsThemeSettings } from './highcharts.theme';
 import * as _ from 'lodash';
 
 @Component({
     selector: 'percentage_cases_sought_help',
-    templateUrl: 'percentage_cases_sought_help.component.html',
+    templateUrl: 'totals_chart.template.html',
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 }
 )
@@ -31,6 +31,8 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
     public quarter3Data = 0;
     public quarter4Data = 0;
     public totalData = 0;
+
+    public radioIndex = 51;
 
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService) {
         super(caseService, commonService, chartsService);
@@ -79,7 +81,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -87,7 +89,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -95,7 +97,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.isCenterChartLoaded = true;
@@ -140,7 +142,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -148,7 +150,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -156,7 +158,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
@@ -201,7 +203,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -209,7 +211,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -217,7 +219,7 @@ export class PercentageCasesSoughtHelpComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
                         title: { text: '% of cases that have sought help before coming to My Choices - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;

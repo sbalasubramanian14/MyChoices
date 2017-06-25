@@ -4,7 +4,7 @@ import { BaseCaseController } from '../../cases/basecase.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
-
+import { HighChartsThemeSettings } from './highcharts.theme';
 import * as _ from 'lodash';
 
 @Component({
@@ -25,6 +25,8 @@ export class PercentageCasesCourtNumberFilledComponent extends BaseCaseControlle
     public quarter3Data = 0;
     public quarter4Data = 0;
     public totalData = 0;
+
+    public radioIndex = 69;
 
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService) {
         super(caseService, commonService, chartsService);
@@ -70,7 +72,7 @@ export class PercentageCasesCourtNumberFilledComponent extends BaseCaseControlle
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -78,7 +80,7 @@ export class PercentageCasesCourtNumberFilledComponent extends BaseCaseControlle
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -86,7 +88,7 @@ export class PercentageCasesCourtNumberFilledComponent extends BaseCaseControlle
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
 

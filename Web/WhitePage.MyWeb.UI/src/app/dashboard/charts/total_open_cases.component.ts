@@ -6,13 +6,13 @@ import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
 
 import * as _ from 'lodash';
+import { HighChartsThemeSettings } from './highcharts.theme';
 
 @Component({
     selector: 'total_open_cases',
-    templateUrl: 'total_open_cases.component.html',
+    templateUrl: 'totals_chart.template.html',
     providers: [CaseBook, CasesService, CommonService, ChartsService]
-}
-)
+})
 
 export class TotalOpenCasesComponent extends BaseCaseController {
     public caseModel: CaseBook;
@@ -25,12 +25,13 @@ export class TotalOpenCasesComponent extends BaseCaseController {
     public quarter2 = ["April", "May", "June"]
     public quarter3 = ["July", "August", "September"]
     public quarter4 = ["October", "November", "December"]
-
     public quarter1Data = 0;
     public quarter2Data = 0;
     public quarter3Data = 0;
     public quarter4Data = 0;
     public totalData = 0;
+
+    public radioIndex = 12;
 
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService) {
         super(caseService, commonService, chartsService);
@@ -79,7 +80,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -87,7 +88,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -95,7 +96,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.isCenterChartLoaded = true;
@@ -140,7 +141,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -148,7 +149,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -156,7 +157,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of New Cases - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
@@ -201,7 +202,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -209,7 +210,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -217,7 +218,7 @@ export class TotalOpenCasesComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
                         title: { text: 'Total Number Of Open Cases - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;

@@ -16,7 +16,7 @@ import { TotalCounselingHoursComponent } from './charts/total_counseling_hours.c
 import { TotalSessionsComponent } from './charts/total_sessions.component';
 import { PercentageCasesSoughtHelpComponent } from './charts/percentage_cases_sought_help.component';
 import { PercentageCasesSignedComponent } from './charts/percentage_cases_signed.component';
-
+import { TabsModule } from 'ng2-bootstrap';
 
 export function highchartsFactory() {
     highcharts.setOptions(HighChartsThemeSettings.options);
@@ -27,7 +27,8 @@ export function highchartsFactory() {
     imports: [
         DashboardRoutingModule,
         ChartModule,
-        CommonModule
+        CommonModule,
+        TabsModule.forRoot(),
     ],
   providers: [
       {
@@ -43,6 +44,7 @@ export function highchartsFactory() {
       TotalCounselingHoursComponent,
       TotalSessionsComponent,
       PercentageCasesSoughtHelpComponent,
-      PercentageCasesSignedComponent]
+      PercentageCasesSignedComponent,
+  ]
 })
 export class DashboardModule { }

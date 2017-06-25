@@ -4,12 +4,12 @@ import { BaseCaseController } from '../../cases/basecase.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
-
+import { HighChartsThemeSettings } from './highcharts.theme';
 import * as _ from 'lodash';
 
 @Component({
     selector: 'percentage_cases_signed',
-    templateUrl: 'percentage_cases_signed.component.html',
+    templateUrl: 'totals_chart.template.html',
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 }
 )
@@ -31,6 +31,9 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
     public quarter3Data = 0;
     public quarter4Data = 0;
     public totalData = 0;
+
+    public radioIndex = 60;
+
 
     constructor(caseService: CasesService, commonService: CommonService, chartsService: ChartsService) {
         super(caseService, commonService, chartsService);
@@ -79,7 +82,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -87,7 +90,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -95,7 +98,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Center-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.isCenterChartLoaded = true;
@@ -140,7 +143,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -148,7 +151,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -156,7 +159,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Counselor-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
@@ -201,7 +204,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
@@ -209,7 +212,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
@@ -217,7 +220,7 @@ export class PercentageCasesSignedComponent extends BaseCaseController {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
                         title: { text: '% of cases that have signed the registration form - Peacemaker-wise' },
-                        chart: { type: 'column', backgroundColor: "#abb0ba" },
+                        chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
