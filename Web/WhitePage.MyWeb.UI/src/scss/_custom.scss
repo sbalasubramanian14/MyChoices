@@ -197,3 +197,11 @@ input:-webkit-autofill:active {
     vertical-align: middle;
 }
 
+chart {
+    display: block;
+}
+
+.justify-chart-labels {
+    display: flex;
+    justify-content: space-around;
+}

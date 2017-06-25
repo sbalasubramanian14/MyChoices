@@ -1,5 +1,7 @@
 ﻿export class HighChartsThemeSettings {
 
+    static chartBackgroundColor = "rgba(255, 255, 255, 0.1)";
+
     static options = {
         colors: ['#B9F2A1', '#6EBA8C', '#0E8174', '#005562', '#FFFFFF'],
         title: {
@@ -61,4 +63,6 @@
             }
         },
     }
+
+    static columnChart = { type: 'column', backgroundColor: HighChartsThemeSettings.chartBackgroundColor }
 }
