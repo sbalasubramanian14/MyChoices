@@ -1,9 +1,9 @@
 ﻿import { Component } from '@angular/core'
 import { CaseBook } from '../../models/case.entities'
-import { BaseCaseController } from '../../cases/basecase.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
+import { ChartsController } from '../../dashboard/charts.controller';
 
 import * as _ from 'lodash';
 import { HighChartsThemeSettings } from './highcharts.theme';
@@ -15,7 +15,7 @@ import { HighChartsThemeSettings } from './highcharts.theme';
 }
 )
 
-export class TotalSessionsComponent extends BaseCaseController {
+export class TotalSessionsComponent extends ChartsController {
     public caseModel: CaseBook;
     public centers: string;
     public isCenterChartLoaded: boolean;

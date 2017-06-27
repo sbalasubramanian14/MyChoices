@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core'
 import { CaseBook } from '../../models/case.entities'
-import { BaseCaseController } from '../../cases/basecase.controller';
+import { ChartsController } from '../../dashboard/charts.controller';
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
 import { ChartsService } from '../../services/charts.services';
@@ -11,7 +11,7 @@ import * as _ from 'lodash';
     providers: [CaseBook, CasesService, CommonService, ChartsService]
 })
 
-export class SourceOfCasesBreakdownsComponent extends BaseCaseController {
+export class SourceOfCasesBreakdownsComponent extends ChartsController {
     public caseModel: CaseBook;
     public centers: string;
     public isChartLoaded: boolean;
