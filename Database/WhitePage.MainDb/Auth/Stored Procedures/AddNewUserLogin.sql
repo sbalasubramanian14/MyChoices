@@ -9,7 +9,7 @@ DECLARE @insertedId int;
 BEGIN
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES(@userEmail,'dKPADax8LSyF2XuJaAMt6Q==', @firstName, @lastName, NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES(@userEmail,'JDyZM/ezxLoDjR4xsK8w7w==', @firstName, @lastName, NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	SELECT @insertedId = SCOPE_IDENTITY();  
 
