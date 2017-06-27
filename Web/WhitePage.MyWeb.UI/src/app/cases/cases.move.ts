@@ -60,20 +60,20 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.params.subscribe((params: Params) => {
-            this.selectedCaseId = params['id'];
-
-            this.casesService
-                .GetCaseById(this.selectedCaseId)
-                .subscribe(data => {
-                    this.caseBook = data;
-                    this.getCaseStatuses();
-                    this.loadMainForm();
-                });
+            this.selectedCaseId = params['id'];            
 
             this.observerDataSubject.subscribe(data => {
                 switch (data) {
                     case "Lookups": {
                         this.loadLookups();
+                        break;
+                    }
+                    case "CaseStatuses": {
+                        this.casesService.GetCaseById(this.selectedCaseId).subscribe(data => {
+                                this.caseBook = data;
+                                this.getCaseStatuses();
+                                this.loadMainForm();
+                        });
                         break;
                     }
                     default: break;
