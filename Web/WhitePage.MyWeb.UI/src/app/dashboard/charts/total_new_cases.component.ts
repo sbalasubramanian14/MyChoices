@@ -80,24 +80,24 @@ export class TotalNewCasesComponent extends ChartsController {
 
                     this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" }},
-                        title: { text: 'Total Number Of New Cases - Center-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" }},
+                        title: { text: 'Total new cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
                     this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Center-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
                     this.centerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Center-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -141,24 +141,24 @@ export class TotalNewCasesComponent extends ChartsController {
 
                     this.counselorMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by counselor' },
                         chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: monthlyOptionsList
                     };
 
                     this.counselorQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by counselor' },
                         chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: quarterlyOptionsList
                     };
 
                     this.counselorYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by counselor' },
                         chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: yearlyOptionsList
                     };
@@ -202,24 +202,24 @@ export class TotalNewCasesComponent extends ChartsController {
 
                     this.peacemakerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by peacemaker' },
                         chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: monthlyOptionsList
                     };
 
                     this.peacemakerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by peacemaker' },
                         chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: quarterlyOptionsList
                     };
 
                     this.peacemakerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of New Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total new cases by peacemaker' },
                         chart: { type: 'column', backgroundColor: "rgba(255, 255, 255, 0.1)" },
                         series: yearlyOptionsList
                     };

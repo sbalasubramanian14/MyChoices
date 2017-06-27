@@ -80,7 +80,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Center-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
@@ -88,7 +88,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Center-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
@@ -96,7 +96,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.centerYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Center-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -141,7 +141,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.counselorMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Counselor-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
@@ -149,7 +149,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.counselorQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Counselor-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
@@ -157,7 +157,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.counselorYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Counselor-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -202,7 +202,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.peacemakerMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Peacemaker-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
@@ -210,7 +210,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.peacemakerQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Peacemaker-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
@@ -218,7 +218,7 @@ export class PercentageCasesSoughtHelpComponent extends ChartsController {
                     this.peacemakerYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: false, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have sought help before coming to My Choices - Peacemaker-wise' },
+                        title: { text: '% of cases that have sought help before coming to MyChoices by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };

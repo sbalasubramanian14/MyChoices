@@ -79,24 +79,24 @@ export class TotalClosedCasesComponent extends ChartsController {
 
                     this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Center-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
                     this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Center-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
                     this.centerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Center-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -140,24 +140,24 @@ export class TotalClosedCasesComponent extends ChartsController {
 
                     this.counselorMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
                     this.counselorQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
                     this.counselorYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -201,24 +201,24 @@ export class TotalClosedCasesComponent extends ChartsController {
 
                     this.peacemakerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
 
                     this.peacemakerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
 
                     this.peacemakerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Total Number Of Closed Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Total closed cases by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };

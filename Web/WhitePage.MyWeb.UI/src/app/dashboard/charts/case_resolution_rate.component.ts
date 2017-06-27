@@ -86,8 +86,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Center-wise' },
+                        yAxis: { title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -95,8 +95,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Center-wise' },
+                        yAxis: { title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -104,8 +104,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.centerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Center-wise' },
+                        yAxis: { title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -157,8 +157,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.counselorMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -166,8 +166,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.counselorQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -175,8 +175,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.counselorYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Counselor-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -228,8 +228,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.peacemakerMonthlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -237,8 +237,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.peacemakerQuaterlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels
@@ -246,8 +246,8 @@ export class CaseResolutionRateComponent extends ChartsController {
 
                     this.peacemakerYearlyOptions = {
                         xAxis: { type: "category" },
-                        yAxis: { allowDecimals: false, title: { text: "Number Of Cases" } },
-                        title: { text: 'Resolution Rate Of Cases - Peacemaker-wise' },
+                        yAxis: { allowDecimals: false, title: { text: "Number of cases" } },
+                        title: { text: 'Resolution rate of cases by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList,
                         plotOptions: HighChartsThemeSettings.decimalPointDataLabels

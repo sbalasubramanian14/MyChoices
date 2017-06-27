@@ -81,7 +81,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.centerMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Center-wise' },
+                        title: { text: '% of cases that have signed the registration form by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
@@ -89,7 +89,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.centerQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Center-wise' },
+                        title: { text: '% of cases that have signed the registration form by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
@@ -97,7 +97,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.centerYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Center-wise' },
+                        title: { text: '% of cases that have signed the registration form by center' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -142,7 +142,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.counselorMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Counselor-wise' },
+                        title: { text: '% of cases that have signed the registration form by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
@@ -150,7 +150,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.counselorQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Counselor-wise' },
+                        title: { text: '% of cases that have signed the registration form by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
@@ -158,7 +158,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.counselorYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Counselor-wise' },
+                        title: { text: '% of cases that have signed the registration form by counselor' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
@@ -203,7 +203,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.peacemakerMonthlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Peacemaker-wise' },
+                        title: { text: '% of cases that have signed the registration form by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: monthlyOptionsList
                     };
@@ -211,7 +211,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.peacemakerQuaterlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Peacemaker-wise' },
+                        title: { text: '% of cases that have signed the registration form by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: quarterlyOptionsList
                     };
@@ -219,7 +219,7 @@ export class PercentageCasesSignedComponent extends ChartsController {
                     this.peacemakerYearlyOptions = {
                         xAxis: { type: "category" },
                         yAxis: { allowDecimals: true, title: { text: "Percentage" } },
-                        title: { text: '% of cases that have signed the registration form - Peacemaker-wise' },
+                        title: { text: '% of cases that have signed the registration form by peacemaker' },
                         chart: HighChartsThemeSettings.columnChart,
                         series: yearlyOptionsList
                     };
