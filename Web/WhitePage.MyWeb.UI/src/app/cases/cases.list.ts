@@ -80,6 +80,7 @@ export class CasesListComponent implements OnInit {
         { title: 'Date', name: 'RegisterDateString', sort: true, filtering: { filterString: '', placeholder: 'Date' } },
         { title: 'Center', name: 'CenterTitle', sort: true, filtering: { filterString: '', placeholder: 'Center' } },
         { title: 'Peace Maker', name: 'PeaceMaker', sort: true, filtering: { filterString: '', placeholder: 'Peace Maker' } },
+        { title: 'Counselor', name: 'Counselor', sort: true, filtering: { filterString: '', placeholder: 'Counselor' } },
         { title: 'Mobile', name: 'MobileNumber', sort: true, filtering: { filterString: '', placeholder: 'Mobile' } }
     ];
     public page: number = 1;
