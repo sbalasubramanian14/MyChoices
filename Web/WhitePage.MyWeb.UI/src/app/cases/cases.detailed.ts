@@ -240,8 +240,6 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             this.casesService
                 .GetCaseById(this.selectedCaseId)
                 .subscribe(data => {
-                    console.log(data);
-
                     this.caseBook = data;
 
                     this.isCaseBookDataLoaded = true;

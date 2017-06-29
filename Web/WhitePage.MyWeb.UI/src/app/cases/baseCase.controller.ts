@@ -19,7 +19,6 @@ export class BaseCaseController {
         public chartsService: ChartsService) {
 
         this.observerDataSubject = new Subject<string>();
-        //console.log("calling super constructor");
         this.LoadCaseStatuses();
         this.LoadCenters();
         this.LoadPeaceMakers();
