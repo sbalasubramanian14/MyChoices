@@ -33,6 +33,9 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     public caseBook: CaseBook;
     private selectedCaseId: number;
     public mainForm: FormGroup;
+    public category2Form: FormGroup;
+    public category3Form: FormGroup;
+    public category4Form: FormGroup;
     public router: Router;
     public isMainDataLoaded: boolean = false;
     public isPrimaryDataLoaded: boolean = false;
@@ -73,6 +76,9 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
                                 this.caseBook = data;
                                 this.getCaseStatuses();
                                 this.loadMainForm();
+                                this.loadCategory2Form();
+                                this.loadCategory3Form();
+                                this.loadCategory4Form();
                         });
                         break;
                     }
@@ -90,30 +96,50 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         });
     }
 
+    private changeStatus() {
+
+        this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
+
+        var previousCaseStatusLevel = this.caseStatusesList.find(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId).Level;
+
+        switch (previousCaseStatusLevel) {
+            case 2: {
+                this.isCategory2 = true;
+                this.isCategory3 = false;
+                this.isCategory4 = false;
+                break;
+            }
+            case 3: {
+                this.isCategory3 = true;
+                this.isCategory2 = false;
+                this.isCategory4 = false;
+                break;
+            }
+            case 4: {
+                this.isCategory4 = true;
+                this.isCategory2 = false;
+                this.isCategory3 = false;
+                break;
+            }
+            default: break;
+        }
+    }
+
     private getCaseStatuses(): any {
         var localStatusesOptionList = new Array<IOption>();
 
-        var previousCaseStatusLevel = this.caseStatusesList.filter(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId)[0].Level;
+        var previousCaseStatusLevel = this.caseStatusesList.find(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId).Level;
         ++previousCaseStatusLevel;
 
         for (var i = 0; i < this.caseStatusesList.length; i++) {
 
-            if (this.caseStatusesList[i].Level == previousCaseStatusLevel) {
+            if (this.caseStatusesList[i].Level >= previousCaseStatusLevel) {
                 localStatusesOptionList.push({ value: this.caseStatusesList[i].CaseStatusId.toString(), label: this.caseStatusesList[i].Title });
             }
         }
         this.caseStatusOptionList = localStatusesOptionList;
-        //this.caseBook.Case.CaseStausId = this.caseBook.Case.CaseStausId + 1;
-
-        if (previousCaseStatusLevel == 2) {
-            this.isCategory2 = true;
-        }
-        else if (previousCaseStatusLevel == 3) {
-            this.isCategory3 = true;
-        }
-        else if (previousCaseStatusLevel == 4) {
-            this.isCategory4 = true;
-        }
+        
     }
 
     private loadLookups(): any {
@@ -149,12 +175,226 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         this.typesOfCounselingLookupOptionList = this.ParseMultiLookups("TypesOfCounselling");
     }
 
+    //private loadMainForm() {
+    //    this.mainForm = this.fb.group({
+
+    //        // Manage category 2
+    //        CaseStatusId: [this.caseBook.Case.CaseStausId.toString(), Validators.required],
+    //        CaseSubject: [this.caseBook.Manage.CaseSubject, Validators.required],
+    //        CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
+    //        ResolutionLog: [this.caseBook.Manage.ResolutionLog, Validators.required],
+
+    //        //End of Manage category 2 
+
+    //        //Household category 2 
+    //        SoughtHelpYesNoLookupId: [this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId.toString(), Validators.required],
+    //        SoughtHelpDesc: [this.caseBook.FamilyHouseHold.SoughtHelpDesc],
+    //        SoughtHelpOutPut: [this.caseBook.FamilyHouseHold.SoughtHelpOutPut],
+    //        PeacemakerAssistanceLookupId: [this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId.toString(), Validators.required],
+    //        PeacemakerAssistanceDesc: [this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc],
+    //        PeacemakerFollowupYesNoLookupId: [this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString(), Validators.required],
+    //        ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required],
+
+    //        //End of Household category 2
+
+    //        //Spouse category 2
+    //        PrimaryEmergencyContactName: [this.caseBook.Spouse.PrimaryEmergencyContactName, Validators.required],
+    //        PrimaryEmergencyRelationshipToClientLookupId: [this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString(), Validators.required],
+    //        PrimaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.required, Validators.minLength(10), this.casesDetailed.mobileValidator]],
+
+    //        //End of Spouse category 2
+
+    //        //Physical Health category 2
+    //        SufferingFromAnyMajorIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId.toString(), Validators.required),
+    //        SufferingFromAnyMajorIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc),
+    //        DiagnosedPsychiatricIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId.toString(), Validators.required),
+    //        DiagnosedPsychiatricIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc),
+
+    //        //End of physical health category 2
+
+    //        //Household category 4
+    //        OccupationLookupId: [this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString(), Validators.required],
+    //        OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
+    //        YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, Validators.required],
+    //        ClientAgeAtFirstChild: [this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, Validators.required],
+    //        HouseHoldIncomeLookupId: [this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString(), Validators.required],
+
+    //        //End of household category 4
+
+    //        //Physical Health Category 4
+    //        AnyMedicationLookupId: [this.caseBook.PhysicalHealth.AnyMedicationLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnyMedicationLookupId.toString(), Validators.required],
+    //        AnyMedicationDesc: [this.caseBook.PhysicalHealth.AnyMedicationDesc],
+    //        AnySubstanceLookupId: [this.caseBook.PhysicalHealth.AnySubstanceLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnySubstanceLookupId.toString(), Validators.required],
+    //        AnySubstanceDesc: new FormControl(this.caseBook.PhysicalHealth.AnySubstanceDesc),
+    //        CurrentlyPregnantLookup: [this.caseBook.PhysicalHealth.CurrentlyPregnantLookup == undefined ? null : this.caseBook.PhysicalHealth.CurrentlyPregnantLookup.toString(), Validators.required],
+    //        CurrentlyPregnantDesc: new FormControl(this.caseBook.PhysicalHealth.CurrentlyPregnantDesc),
+    //        ReasonForSeekingHelpLookupId: [this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId.toString(), Validators.required],
+    //        WhoIsAbusingYouLookupId: [this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString(), Validators.required],
+    //        WhoIsAbusingYouDesc: [this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString()],
+    //        ReasonForSeekingHelpDesc: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc.toString()),
+
+    //        //End of physical health category 4 
+
+    //        //Abuse Category 4
+    //        SufferingFromAbuseLookupId: new FormControl(this.caseBook.Abuse.SufferingFromAbuseLookupId == undefined ? null : this.caseBook.Abuse.SufferingFromAbuseLookupId.toString()),
+    //        SufferingFromAbuseDesc: new FormControl(this.caseBook.Abuse.SufferingFromAbuseDesc),
+
+    //        FeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.FeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.FeelAboutAbuseLookupId.toString()),
+    //        ParentsFeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId.toString()),
+    //        LawFeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.LawFeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.LawFeelAboutAbuseLookupId.toString()),
+    //        SignsOfPhysicalAbuseLookupId: new FormControl(this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId == undefined ? null : this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId.toString()),
+    //        SignsOfPhysicalAbuseDesc: new FormControl(this.caseBook.Abuse.SignsOfPhysicalAbuseDesc),
+
+    //        TypesOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId.toString()),
+    //        FrequencyOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId.toString()),
+    //        NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+
+    //        TypesOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId.toString()),
+    //        FrequencyOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId.toString()),
+    //        NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+
+    //        TypesOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfSexualAbuseLookupId.toString()),
+    //        FrequencyOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId.toString()),
+    //        NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+
+    //        TypesOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEconomicAbuseLookupId.toString()),
+    //        FrequencyOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId.toString()),
+    //        NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+
+    //        ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString()),
+    //        ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc),
+
+    //        //End of Abuse category 4
+
+    //        //Case Category 4
+    //        SourceOfCaseLookupId: new FormControl(this.caseBook.Manage.SourceOfCaseLookupId == undefined ? null : this.caseBook.Manage.SourceOfCaseLookupId.toString()),
+    //        SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
+
+    //        TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
+    //        TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+    //        TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber])
+
+    //        //End of Case category 4
+    //})
+    //    this.isMainDataLoaded = true;
+    //}
+
+    //public updateCase() {
+
+    //    //Case category 2
+    //    this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+    //    this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
+    //    this.caseBook.Manage.CaseSubject = this.mainForm.controls['CaseSubject'].value;
+    //    this.caseBook.Manage.CaseDescription = this.mainForm.controls['CaseDescription'].value;
+    //    this.caseBook.Manage.ResolutionLog = this.mainForm.controls['ResolutionLog'].value;
+    //    //End of Case Category 2
+
+    //    //Household category 2
+    //    this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.mainForm.controls['SoughtHelpYesNoLookupId'].value;
+    //    this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.mainForm.controls['SoughtHelpDesc'].value;
+    //    this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.mainForm.controls['SoughtHelpOutPut'].value;
+    //    //this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = this.mainForm.controls['PeacemakerAssistanceLookupId'].value;
+    //    this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.mainForm.controls['PeacemakerAssistanceDesc'].value;
+    //    this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.mainForm.controls['PeacemakerFollowupYesNoLookupId'].value;
+    //    this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.mainForm.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
+
+    //    //End of Household category 2
+
+    //    //Spouse category 2
+    //    this.caseBook.Spouse.PrimaryEmergencyContactName = this.mainForm.controls['PrimaryEmergencyContactName'].value;
+    //    this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId = this.mainForm.controls['PrimaryEmergencyRelationshipToClientLookupId'].value;
+    //    this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber = this.mainForm.controls['PrimaryEmergencyContactPhoneNumber'].value;
+
+    //    //End of Spouse category 2
+
+    //    //PhysicalHealth category 2
+    //    this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId = this.mainForm.controls['SufferingFromAnyMajorIllnessLookupId'].value;
+    //    this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc = this.mainForm.controls['SufferingFromAnyMajorIllnessDesc'].value;
+    //    this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId = this.mainForm.controls['DiagnosedPsychiatricIllnessLookupId'].value;
+    //    this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc = this.mainForm.controls['DiagnosedPsychiatricIllnessDesc'].value;
+    //    //End of PhysicalHealth category 2
+
+    //    //Household category 4
+
+    //    this.caseBook.FamilyHouseHold.OccupationLookupId = this.mainForm.controls['OccupationLookupId'].value;
+    //    this.caseBook.FamilyHouseHold.OccupationDesc = this.mainForm.controls['OccupationDesc'].value;
+    //    this.caseBook.FamilyHouseHold.YearOfMarriage = this.mainForm.controls['YearOfMarriage'].value;
+    //    this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.mainForm.controls['ClientAgeAtFirstChild'].value;
+    //    this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.mainForm.controls['HouseHoldIncomeLookupId'].value;
+
+    //    //End of Household category 4
+
+    //    //PhysicalHealth category 4
+    //    this.caseBook.PhysicalHealth.AnyMedicationLookupId = this.mainForm.controls['AnyMedicationLookupId'].value;
+    //    this.caseBook.PhysicalHealth.AnyMedicationDesc = this.mainForm.controls['AnyMedicationDesc'].value;
+    //    this.caseBook.PhysicalHealth.AnySubstanceLookupId = this.mainForm.controls['AnySubstanceLookupId'].value;
+    //    this.caseBook.PhysicalHealth.AnySubstanceDesc = this.mainForm.controls['AnySubstanceDesc'].value;
+    //    this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.mainForm.controls['CurrentlyPregnantLookup'].value;
+    //    this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.mainForm.controls['CurrentlyPregnantDesc'].value;
+    //    //this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.mainForm.controls['ReasonForSeekingHelpLookupId'].value;
+    //    this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.mainForm.controls['ReasonForSeekingHelpDesc'].value;
+    //    //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.mainForm.controls['WhoIsAbusingYouLookupId'].value;
+    //    this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.mainForm.controls['WhoIsAbusingYouDesc'].value;
+    //    //End of PhysicalHealth category 4
+
+    //    //Abuse category 4
+
+    //    this.caseBook.Abuse.SufferingFromAbuseLookupId = this.mainForm.controls['SufferingFromAbuseLookupId'].value;
+    //    this.caseBook.Abuse.SufferingFromAbuseDesc = this.mainForm.controls['SufferingFromAbuseDesc'].value;
+    //    //this.caseBook.Abuse.FeelAboutAbuseLookupId = this.mainForm.controls['FeelAboutAbuseLookupId'].value;
+    //    //this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId = this.mainForm.controls['ParentsFeelAboutAbuseLookupId'].value;
+    //    //this.caseBook.Abuse.LawFeelAboutAbuseLookupId = this.mainForm.controls['LawFeelAboutAbuseLookupId'].value;
+    //    this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId = this.mainForm.controls['SignsOfPhysicalAbuseLookupId'].value;
+    //    this.caseBook.Abuse.SignsOfPhysicalAbuseDesc = this.mainForm.controls['SignsOfPhysicalAbuseDesc'].value;
+    //    //this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId = this.mainForm.controls['TypesOfPhyscialAbuseLookupId'].value;
+    //    this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId = this.mainForm.controls['FrequencyOfPhyscialAbuseLookupId'].value;
+    //    this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse = this.mainForm.controls['NumberOfYearsOfPhyscialAbuse'].value;
+    //    //this.caseBook.Abuse.TypesOfEconomicAbuseLookupId = this.mainForm.controls['TypesOfEconomicAbuseLookupId'].value;
+    //    this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId = this.mainForm.controls['FrequencyOfEconomicAbuseLookupId'].value;
+    //    this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.mainForm.controls['NumberOfYearsOfEconomicAbuse'].value;
+    //    //this.caseBook.Abuse.TypesOfSexualAbuseLookupId = this.mainForm.controls['TypesOfSexualAbuseLookupId'].value;
+    //    this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId = this.mainForm.controls['FrequencyOfSexualAbuseLookupId'].value;
+    //    this.caseBook.Abuse.NumberOfYearsOfSexualAbuse = this.mainForm.controls['NumberOfYearsOfSexualAbuse'].value;
+    //    //this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId = this.mainForm.controls['TypesOfEmotionalAbuseLookupId'].value;
+    //    this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.mainForm.controls['FrequencyOfEmotionalAbuseLookupId'].value;
+    //    this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.mainForm.controls['NumberOfYearsOfEmotionalAbuse'].value;
+    //    //this.caseBook.Abuse.ReasonsForAbuseLookupId = this.mainForm.controls['ReasonsForAbuseLookupId'].value;
+    //    this.caseBook.Abuse.ReasonForAbuseDesc = this.mainForm.controls['ReasonForAbuseDesc'].value;
+
+    //    //End of Abuse category 4
+
+    //    //Case category 4
+    //    this.caseBook.Manage.SourceOfCaseLookupId = this.mainForm.controls['SourceOfCaseLookupId'].value;
+    //    this.caseBook.Manage.SourceOfCaseDesc = this.mainForm.controls['SourceOfCaseDesc'].value;
+    //    //this.caseBook.Manage.TypesOfCounselingLookupId = this.mainForm.controls['TypesOfCounselingLookupId'].value;
+    //    this.caseBook.Manage.TotalNoOfSessionsLookupId = this.mainForm.controls['TotalNoOfSessionsLookupId'].value;
+    //    this.caseBook.Manage.TotalHoursSpentLookupId = this.mainForm.controls['TotalHoursSpentLookupId'].value;
+
+    //    //End of Case category 4
+
+    //    this.casesService
+    //        .updateCaseStatus(this.caseBook).subscribe(data => {
+                
+    //            this.getCaseById();
+    //        }, (error: any) => {
+    //            this.toastr.error("Error while moving case, " + error);
+    //        });
+
+    //}
+
     private loadMainForm() {
         this.mainForm = this.fb.group({
 
+            CaseStatusId: [this.caseBook.Case.CaseStausId.toString(), Validators.required],
+        });
+    }
+
+    private loadCategory2Form() {
+        this.category2Form = this.fb.group({
+
             // Manage category 2
 
-            CaseStatusId: [this.caseBook.Case.CaseStausId.toString(), Validators.required],
+            //CaseStatusId: [this.caseBook.Case.CaseStausId.toString(), Validators.required],
             CaseSubject: [this.caseBook.Manage.CaseSubject, Validators.required],
             CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
             ResolutionLog: [this.caseBook.Manage.ResolutionLog, Validators.required],
@@ -187,7 +427,34 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
 
             //End of physical health category 2
 
-            //Household category 4
+        });
+        this.isMainDataLoaded = true;
+    }
+
+    private loadCategory3Form() {
+        this.category3Form = this.fb.group({
+
+            CaseSubject: [this.caseBook.Manage.CaseSubject, Validators.required],
+            CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
+            ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required]
+        });
+    }
+
+    private loadCategory4Form() {
+        this.category4Form = this.fb.group({
+
+            //CaseStatusId: [this.caseBook.Case.CaseStausId.toString(), Validators.required],
+            CaseSubject: [this.caseBook.Manage.CaseSubject, Validators.required],
+            CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
+
+            //Household category 2 
+            SoughtHelpYesNoLookupId: [this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId.toString(), Validators.required],
+            SoughtHelpDesc: [this.caseBook.FamilyHouseHold.SoughtHelpDesc],
+            SoughtHelpOutPut: [this.caseBook.FamilyHouseHold.SoughtHelpOutPut],
+            PeacemakerAssistanceLookupId: [this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId.toString(), Validators.required],
+            PeacemakerAssistanceDesc: [this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc],
+            PeacemakerFollowupYesNoLookupId: [this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString(), Validators.required],
+            ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required],
             OccupationLookupId: [this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString(), Validators.required],
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
             YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, Validators.required],
@@ -195,6 +462,13 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
             HouseHoldIncomeLookupId: [this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString(), Validators.required],
 
             //End of household category 4
+
+            //Spouse category 4
+            PrimaryEmergencyContactName: [this.caseBook.Spouse.PrimaryEmergencyContactName, Validators.required],
+            PrimaryEmergencyRelationshipToClientLookupId: [this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString(), Validators.required],
+            PrimaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.required, Validators.minLength(10), this.casesDetailed.mobileValidator]],
+
+            //End of Spouse category 4
 
             //Physical Health Category 4
             AnyMedicationLookupId: [this.caseBook.PhysicalHealth.AnyMedicationLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnyMedicationLookupId.toString(), Validators.required],
@@ -211,150 +485,186 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
             //End of physical health category 4 
 
             //Abuse Category 4
-            SufferingFromAbuseLookupId: new FormControl(this.caseBook.Abuse.SufferingFromAbuseLookupId == undefined ? null : this.caseBook.Abuse.SufferingFromAbuseLookupId.toString()),
+            SufferingFromAnyMajorIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId.toString(), Validators.required),
+            SufferingFromAnyMajorIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc),
+            DiagnosedPsychiatricIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId.toString(), Validators.required),
+            DiagnosedPsychiatricIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc),
+            SufferingFromAbuseLookupId: new FormControl(this.caseBook.Abuse.SufferingFromAbuseLookupId == undefined ? null : this.caseBook.Abuse.SufferingFromAbuseLookupId.toString(), Validators.required),
             SufferingFromAbuseDesc: new FormControl(this.caseBook.Abuse.SufferingFromAbuseDesc),
 
-            FeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.FeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.FeelAboutAbuseLookupId.toString()),
-            ParentsFeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId.toString()),
-            LawFeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.LawFeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.LawFeelAboutAbuseLookupId.toString()),
-            SignsOfPhysicalAbuseLookupId: new FormControl(this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId == undefined ? null : this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId.toString()),
+            FeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.FeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.FeelAboutAbuseLookupId.toString(), Validators.required),
+            ParentsFeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId.toString(), Validators.required),
+            LawFeelAboutAbuseLookupId: new FormControl(this.caseBook.Abuse.LawFeelAboutAbuseLookupId == undefined ? null : this.caseBook.Abuse.LawFeelAboutAbuseLookupId.toString(), Validators.required),
+            SignsOfPhysicalAbuseLookupId: new FormControl(this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId == undefined ? null : this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId.toString(), Validators.required),
             SignsOfPhysicalAbuseDesc: new FormControl(this.caseBook.Abuse.SignsOfPhysicalAbuseDesc),
 
-            TypesOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId.toString()),
-            FrequencyOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId.toString()),
-            NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+            TypesOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId.toString(), Validators.required),
+            FrequencyOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId.toString(), Validators.required),
+            NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber, Validators.required]),
 
-            TypesOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId.toString()),
-            FrequencyOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId.toString()),
-            NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+            TypesOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId.toString(), Validators.required),
+            FrequencyOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId.toString(), Validators.required),
+            NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber, Validators.required]),
 
-            TypesOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfSexualAbuseLookupId.toString()),
-            FrequencyOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId.toString()),
-            NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+            TypesOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfSexualAbuseLookupId.toString(), Validators.required),
+            FrequencyOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId.toString(), Validators.required),
+            NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber, Validators.required]),
 
-            TypesOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEconomicAbuseLookupId.toString()),
-            FrequencyOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId.toString()),
-            NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
+            TypesOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEconomicAbuseLookupId.toString(), Validators.required),
+            FrequencyOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId.toString(), Validators.required),
+            NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber, Validators.required]),
 
-            ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString()),
+            ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString(), Validators.required),
             ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc),
 
             //End of Abuse category 4
 
             //Case Category 4
-            SourceOfCaseLookupId: new FormControl(this.caseBook.Manage.SourceOfCaseLookupId == undefined ? null : this.caseBook.Manage.SourceOfCaseLookupId.toString()),
+            SourceOfCaseLookupId: new FormControl(this.caseBook.Manage.SourceOfCaseLookupId == undefined ? null : this.caseBook.Manage.SourceOfCaseLookupId.toString(), Validators.required),
             SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
 
-            TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
-            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber]),
-            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber])
-
-            //End of Case category 4
-    })
-        this.isMainDataLoaded = true;
+            TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString(), Validators.required),
+            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber, Validators.required]),
+            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.casesDetailed.validateNumber, Validators.required])
+        });
     }
 
-    public updateCase() {
+    public updateCategory2() {
 
         //Case category 2
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
         this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseSubject = this.mainForm.controls['CaseSubject'].value;
-        this.caseBook.Manage.CaseDescription = this.mainForm.controls['CaseDescription'].value;
-        this.caseBook.Manage.ResolutionLog = this.mainForm.controls['ResolutionLog'].value;
+        this.caseBook.Manage.CaseSubject = this.category2Form.controls['CaseSubject'].value;
+        this.caseBook.Manage.CaseDescription = this.category2Form.controls['CaseDescription'].value;
+        this.caseBook.Manage.ResolutionLog = this.category2Form.controls['ResolutionLog'].value;
         //End of Case Category 2
 
         //Household category 2
-        this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.mainForm.controls['SoughtHelpYesNoLookupId'].value;
-        this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.mainForm.controls['SoughtHelpDesc'].value;
-        this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.mainForm.controls['SoughtHelpOutPut'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.category2Form.controls['SoughtHelpYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.category2Form.controls['SoughtHelpDesc'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.category2Form.controls['SoughtHelpOutPut'].value;
         //this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = this.mainForm.controls['PeacemakerAssistanceLookupId'].value;
-        this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.mainForm.controls['PeacemakerAssistanceDesc'].value;
-        this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.mainForm.controls['PeacemakerFollowupYesNoLookupId'].value;
-        this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.mainForm.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.category2Form.controls['PeacemakerAssistanceDesc'].value;
+        this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.category2Form.controls['PeacemakerFollowupYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.category2Form.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
 
         //End of Household category 2
 
         //Spouse category 2
-        this.caseBook.Spouse.PrimaryEmergencyContactName = this.mainForm.controls['PrimaryEmergencyContactName'].value;
-        this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId = this.mainForm.controls['PrimaryEmergencyRelationshipToClientLookupId'].value;
-        this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber = this.mainForm.controls['PrimaryEmergencyContactPhoneNumber'].value;
+        this.caseBook.Spouse.PrimaryEmergencyContactName = this.category2Form.controls['PrimaryEmergencyContactName'].value;
+        this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId = this.category2Form.controls['PrimaryEmergencyRelationshipToClientLookupId'].value;
+        this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber = this.category2Form.controls['PrimaryEmergencyContactPhoneNumber'].value;
 
         //End of Spouse category 2
 
         //PhysicalHealth category 2
-        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId = this.mainForm.controls['SufferingFromAnyMajorIllnessLookupId'].value;
-        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc = this.mainForm.controls['SufferingFromAnyMajorIllnessDesc'].value;
-        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId = this.mainForm.controls['DiagnosedPsychiatricIllnessLookupId'].value;
-        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc = this.mainForm.controls['DiagnosedPsychiatricIllnessDesc'].value;
+        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId = this.category2Form.controls['SufferingFromAnyMajorIllnessLookupId'].value;
+        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc = this.category2Form.controls['SufferingFromAnyMajorIllnessDesc'].value;
+        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId = this.category2Form.controls['DiagnosedPsychiatricIllnessLookupId'].value;
+        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc = this.category2Form.controls['DiagnosedPsychiatricIllnessDesc'].value;
         //End of PhysicalHealth category 2
-
-        //Household category 4
-
-        this.caseBook.FamilyHouseHold.OccupationLookupId = this.mainForm.controls['OccupationLookupId'].value;
-        this.caseBook.FamilyHouseHold.OccupationDesc = this.mainForm.controls['OccupationDesc'].value;
-        this.caseBook.FamilyHouseHold.YearOfMarriage = this.mainForm.controls['YearOfMarriage'].value;
-        this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.mainForm.controls['ClientAgeAtFirstChild'].value;
-        this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.mainForm.controls['HouseHoldIncomeLookupId'].value;
-
-        //End of Household category 4
-
-        //PhysicalHealth category 4
-        this.caseBook.PhysicalHealth.AnyMedicationLookupId = this.mainForm.controls['AnyMedicationLookupId'].value;
-        this.caseBook.PhysicalHealth.AnyMedicationDesc = this.mainForm.controls['AnyMedicationDesc'].value;
-        this.caseBook.PhysicalHealth.AnySubstanceLookupId = this.mainForm.controls['AnySubstanceLookupId'].value;
-        this.caseBook.PhysicalHealth.AnySubstanceDesc = this.mainForm.controls['AnySubstanceDesc'].value;
-        this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.mainForm.controls['CurrentlyPregnantLookup'].value;
-        this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.mainForm.controls['CurrentlyPregnantDesc'].value;
-        //this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.mainForm.controls['ReasonForSeekingHelpLookupId'].value;
-        this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.mainForm.controls['ReasonForSeekingHelpDesc'].value;
-        //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.mainForm.controls['WhoIsAbusingYouLookupId'].value;
-        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.mainForm.controls['WhoIsAbusingYouDesc'].value;
-        //End of PhysicalHealth category 4
-
-        //Abuse category 4
-
-        this.caseBook.Abuse.SufferingFromAbuseLookupId = this.mainForm.controls['SufferingFromAbuseLookupId'].value;
-        this.caseBook.Abuse.SufferingFromAbuseDesc = this.mainForm.controls['SufferingFromAbuseDesc'].value;
-        //this.caseBook.Abuse.FeelAboutAbuseLookupId = this.mainForm.controls['FeelAboutAbuseLookupId'].value;
-        //this.caseBook.Abuse.ParentsFeelAboutAbuseLookupId = this.mainForm.controls['ParentsFeelAboutAbuseLookupId'].value;
-        //this.caseBook.Abuse.LawFeelAboutAbuseLookupId = this.mainForm.controls['LawFeelAboutAbuseLookupId'].value;
-        this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId = this.mainForm.controls['SignsOfPhysicalAbuseLookupId'].value;
-        this.caseBook.Abuse.SignsOfPhysicalAbuseDesc = this.mainForm.controls['SignsOfPhysicalAbuseDesc'].value;
-        //this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId = this.mainForm.controls['TypesOfPhyscialAbuseLookupId'].value;
-        this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId = this.mainForm.controls['FrequencyOfPhyscialAbuseLookupId'].value;
-        this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse = this.mainForm.controls['NumberOfYearsOfPhyscialAbuse'].value;
-        //this.caseBook.Abuse.TypesOfEconomicAbuseLookupId = this.mainForm.controls['TypesOfEconomicAbuseLookupId'].value;
-        this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId = this.mainForm.controls['FrequencyOfEconomicAbuseLookupId'].value;
-        this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.mainForm.controls['NumberOfYearsOfEconomicAbuse'].value;
-        //this.caseBook.Abuse.TypesOfSexualAbuseLookupId = this.mainForm.controls['TypesOfSexualAbuseLookupId'].value;
-        this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId = this.mainForm.controls['FrequencyOfSexualAbuseLookupId'].value;
-        this.caseBook.Abuse.NumberOfYearsOfSexualAbuse = this.mainForm.controls['NumberOfYearsOfSexualAbuse'].value;
-        //this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId = this.mainForm.controls['TypesOfEmotionalAbuseLookupId'].value;
-        this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.mainForm.controls['FrequencyOfEmotionalAbuseLookupId'].value;
-        this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.mainForm.controls['NumberOfYearsOfEmotionalAbuse'].value;
-        //this.caseBook.Abuse.ReasonsForAbuseLookupId = this.mainForm.controls['ReasonsForAbuseLookupId'].value;
-        this.caseBook.Abuse.ReasonForAbuseDesc = this.mainForm.controls['ReasonForAbuseDesc'].value;
-
-        //End of Abuse category 4
-
-        //Case category 4
-        this.caseBook.Manage.SourceOfCaseLookupId = this.mainForm.controls['SourceOfCaseLookupId'].value;
-        this.caseBook.Manage.SourceOfCaseDesc = this.mainForm.controls['SourceOfCaseDesc'].value;
-        //this.caseBook.Manage.TypesOfCounselingLookupId = this.mainForm.controls['TypesOfCounselingLookupId'].value;
-        this.caseBook.Manage.TotalNoOfSessionsLookupId = this.mainForm.controls['TotalNoOfSessionsLookupId'].value;
-        this.caseBook.Manage.TotalHoursSpentLookupId = this.mainForm.controls['TotalHoursSpentLookupId'].value;
-
-        //End of Case category 4
 
         this.casesService
             .updateCaseStatus(this.caseBook).subscribe(data => {
-                
                 this.getCaseById();
+                this.toastr.success('Case moved successfully');
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
 
+    }
+
+    public updateCategory3() {
+        this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
+
+        this.caseBook.Manage.CaseSubject = this.category3Form.controls['CaseSubject'].value;
+        this.caseBook.Manage.CaseDescription = this.category3Form.controls['CaseDescription'].value;
+
+        this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.category3Form.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
+
+        this.casesService
+            .updateCaseStatus(this.caseBook).subscribe(data => {
+                this.getCaseById();
+                this.toastr.success('Case moved successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while moving case, " + error);
+            });
+    }
+
+    public updateCategory4() {
+
+        this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseSubject = this.category4Form.controls['CaseSubject'].value;
+        this.caseBook.Manage.CaseDescription = this.category4Form.controls['CaseDescription'].value;
+        //Household category 4
+        this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.category4Form.controls['SoughtHelpYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.category4Form.controls['SoughtHelpDesc'].value;
+        this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.category4Form.controls['SoughtHelpOutPut'].value;
+        this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.category4Form.controls['PeacemakerAssistanceDesc'].value;
+        this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.category4Form.controls['PeacemakerFollowupYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.category4Form.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
+        this.caseBook.FamilyHouseHold.OccupationLookupId = this.category4Form.controls['OccupationLookupId'].value;
+        this.caseBook.FamilyHouseHold.OccupationDesc = this.category4Form.controls['OccupationDesc'].value;
+        this.caseBook.FamilyHouseHold.YearOfMarriage = this.category4Form.controls['YearOfMarriage'].value;
+        this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.category4Form.controls['ClientAgeAtFirstChild'].value;
+        this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.category4Form.controls['HouseHoldIncomeLookupId'].value;
+
+        //End of Household category 4
+
+        this.caseBook.Spouse.PrimaryEmergencyContactName = this.category4Form.controls['PrimaryEmergencyContactName'].value;
+        this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId = this.category4Form.controls['PrimaryEmergencyRelationshipToClientLookupId'].value;
+        this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber = this.category4Form.controls['PrimaryEmergencyContactPhoneNumber'].value;
+
+        //PhysicalHealth category 4
+        this.caseBook.PhysicalHealth.AnyMedicationLookupId = this.category4Form.controls['AnyMedicationLookupId'].value;
+        this.caseBook.PhysicalHealth.AnyMedicationDesc = this.category4Form.controls['AnyMedicationDesc'].value;
+        this.caseBook.PhysicalHealth.AnySubstanceLookupId = this.category4Form.controls['AnySubstanceLookupId'].value;
+        this.caseBook.PhysicalHealth.AnySubstanceDesc = this.category4Form.controls['AnySubstanceDesc'].value;
+        this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.category4Form.controls['CurrentlyPregnantLookup'].value;
+        this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.category4Form.controls['CurrentlyPregnantDesc'].value;
+        this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.category4Form.controls['ReasonForSeekingHelpDesc'].value;
+        this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.category4Form.controls['WhoIsAbusingYouDesc'].value;
+        //End of PhysicalHealth category 4
+
+        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId = this.category4Form.controls['SufferingFromAnyMajorIllnessLookupId'].value;
+        this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc = this.category4Form.controls['SufferingFromAnyMajorIllnessDesc'].value;
+        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId = this.category4Form.controls['DiagnosedPsychiatricIllnessLookupId'].value;
+        this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc = this.category4Form.controls['DiagnosedPsychiatricIllnessDesc'].value;
+
+        //Abuse category 4
+
+        this.caseBook.Abuse.SufferingFromAbuseLookupId = this.category4Form.controls['SufferingFromAbuseLookupId'].value;
+        this.caseBook.Abuse.SufferingFromAbuseDesc = this.category4Form.controls['SufferingFromAbuseDesc'].value;
+        this.caseBook.Abuse.SignsOfPhysicalAbuseLookupId = this.category4Form.controls['SignsOfPhysicalAbuseLookupId'].value;
+        this.caseBook.Abuse.SignsOfPhysicalAbuseDesc = this.category4Form.controls['SignsOfPhysicalAbuseDesc'].value;
+        this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId = this.category4Form.controls['FrequencyOfPhyscialAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse = this.category4Form.controls['NumberOfYearsOfPhyscialAbuse'].value;
+        this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId = this.category4Form.controls['FrequencyOfEconomicAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.category4Form.controls['NumberOfYearsOfEconomicAbuse'].value;
+        this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId = this.category4Form.controls['FrequencyOfSexualAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfSexualAbuse = this.category4Form.controls['NumberOfYearsOfSexualAbuse'].value;
+        this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.category4Form.controls['FrequencyOfEmotionalAbuseLookupId'].value;
+        this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.category4Form.controls['NumberOfYearsOfEmotionalAbuse'].value;
+        this.caseBook.Abuse.ReasonForAbuseDesc = this.category4Form.controls['ReasonForAbuseDesc'].value;
+
+        //End of Abuse category 4
+
+        //Case category 4
+        this.caseBook.Manage.SourceOfCaseLookupId = this.category4Form.controls['SourceOfCaseLookupId'].value;
+        this.caseBook.Manage.SourceOfCaseDesc = this.category4Form.controls['SourceOfCaseDesc'].value;
+        this.caseBook.Manage.TotalNoOfSessionsLookupId = this.category4Form.controls['TotalNoOfSessionsLookupId'].value;
+        this.caseBook.Manage.TotalHoursSpentLookupId = this.category4Form.controls['TotalHoursSpentLookupId'].value;
+
+        //End of Case category 4
+        this.casesService
+            .updateCaseStatus(this.caseBook).subscribe(data => {
+                this.getCaseById();
+                this.toastr.success('Case moved successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while moving case, " + error);
+            });
     }
 
     public caseStatusOptionList: Array<IOption> = [];
