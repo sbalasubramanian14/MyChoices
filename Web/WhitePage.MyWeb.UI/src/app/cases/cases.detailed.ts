@@ -22,7 +22,7 @@ import { IMyOptions } from 'mydatepicker';
 import * as moment from 'moment';
 
 @Component({
-    templateUrl: 'cases.detailed.html'
+    templateUrl: 'cases.detailed.html',
 })
 
 export class CasesDetailedComponent extends BaseCaseController implements OnInit {
@@ -53,6 +53,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public isMentalDataLoaded: boolean = false;
     public isFeedbackDataLoaded: boolean = false;
     public isLegalDataLoaded: boolean = false;
+    public isCaseBookDataLoaded: boolean = false;
 
     public childrenDeceasedLookupOptionsList: Array<IMultiSelectOption> = [];
     public incomeLookupOptionsList: Array<IOption> = [];
@@ -239,9 +240,10 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             this.casesService
                 .GetCaseById(this.selectedCaseId)
                 .subscribe(data => {
-                    console.log(data);
-
                     this.caseBook = data;
+
+                    this.isCaseBookDataLoaded = true;
+
                     console.log(this.caseBook);
 
                     this.onCenterSelected(null);

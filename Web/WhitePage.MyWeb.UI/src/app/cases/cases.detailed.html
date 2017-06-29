@@ -27,8 +27,8 @@
 <div class="container-fluid case-detail-container" *ngIf="casePrimaryForm">
     <!-- regular tabs -->
     <tabset>
-
         <tab heading="Primary Info" class="active" style="width:100%">
+            <my-spinner [isRunning]="!isPrimaryDataLoaded"></my-spinner>
             <form [formGroup]="casePrimaryForm" *ngIf="isPrimaryDataLoaded">
                 <div class="row">
 
@@ -213,6 +213,7 @@
         </tab>
 
         <tab heading="Children" style="width:100%">
+            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <div class="row" *ngIf="caseBook">
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
@@ -247,6 +248,7 @@
         </tab>
 
         <tab heading="Client & Household" style="width:100%" *ngIf="clientAndHouseholdForm">
+            <my-spinner [isRunning]="!isHouseHoldDataLoaded"></my-spinner>
             <form [formGroup]="clientAndHouseholdForm" *ngIf="isHouseHoldDataLoaded">
                 <div class="row">
 
@@ -444,6 +446,7 @@
         </tab>
 
         <tab heading="Spouse" style="width:100%" *ngIf="spouseForm">
+            <my-spinner [isRunning]="!isSpouseDataLoaded"></my-spinner>
             <form [formGroup]="spouseForm" *ngIf="isSpouseDataLoaded">
                 <div class="row">
 
@@ -624,7 +627,7 @@
         </tab>
 
         <tab heading="Physical Health" style="width:100%" *ngIf="physicalHealthForm">
-
+            <my-spinner [isRunning]="!isPhysicalHealthDataLoaded"></my-spinner>
             <form [formGroup]="physicalHealthForm" *ngIf="isPhysicalHealthDataLoaded">
                 <div class="row">
                     <div class="col-md-6 d-flex flex-column">
@@ -779,6 +782,7 @@
         </tab>
 
         <tab heading="Offender" style="width:100%" *ngIf="spouseForm">
+            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <div class="row" *ngIf="caseBook">
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
@@ -815,6 +819,7 @@
         </tab>
 
         <tab heading="Abuse" style="width:100%" *ngIf="caseAbuseForm">
+            <my-spinner [isRunning]="!isAbuseDataLoaded"></my-spinner>
             <form [formGroup]="caseAbuseForm" *ngIf="isAbuseDataLoaded">
                 <div class="row" *ngIf="caseBook">
 
@@ -1054,7 +1059,8 @@
             </form>
         </tab>
 
-        <tab heading="Sessions" style="width:100%" *ngIf="isMentalDataLoaded">
+        <tab heading="Sessions" style="width:100%">
+            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <div class="row" *ngIf="caseBook">
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
@@ -1091,6 +1097,7 @@
         </tab>
 
         <tab heading="Mental Status" style="" *ngIf="isMentalDataLoaded">
+            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <div class="row" *ngIf="caseBook" style="">
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
@@ -1155,6 +1162,7 @@
         </tab>
 
         <tab heading="Feedback" style="width:100%" *ngIf="isFeedbackDataLoaded">
+            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <div class="row" *ngIf="caseBook">
                 <div class="d-flex flex-column fill-width">
                     <div class="add-new-button-container">
@@ -1198,6 +1206,7 @@
         </tab>
 
         <tab heading="Legal" style="width:100%" *ngIf="caseLegalForm">
+            <my-spinner [isRunning]="!isLegalDataLoaded"></my-spinner>
             <form [formGroup]="caseLegalForm" *ngIf="isLegalDataLoaded">
                 <div class="row">
 
@@ -1283,7 +1292,7 @@
         </tab>
 
         <tab heading="Case Management" style="width:100%" *ngIf="caseManageForm">
-
+            <my-spinner [isRunning]="!isManageDataLoaded"></my-spinner>
             <form [formGroup]="caseManageForm" *ngIf="isManageDataLoaded">
                 <div class="row">
                     <div class="col-md-6 d-flex flex-column">

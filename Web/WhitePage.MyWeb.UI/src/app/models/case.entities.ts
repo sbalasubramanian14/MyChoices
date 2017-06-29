@@ -40,6 +40,7 @@ export class CaseHeader {
     CenterTitle: string;
     PeaceMaker: string;
     MobileNumber: string;
+    Counselor: string;
 }
 
 

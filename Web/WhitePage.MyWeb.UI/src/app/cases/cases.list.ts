@@ -18,6 +18,7 @@ export class CasesListComponent implements OnInit {
     public router: Router;
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
+    public enableSpinner: boolean;
 
     constructor(private casesService: CasesService, private routerObj: Router,
         private authenticationService: AuthenticationService,
@@ -27,6 +28,7 @@ export class CasesListComponent implements OnInit {
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
         this.length = this.casesList.length;
+        this.enableSpinner = true;
     }
 
     ngOnInit() {
@@ -42,6 +44,7 @@ export class CasesListComponent implements OnInit {
                 data.forEach(d => this.casesList.push(d));
                 this.length = this.casesList.length;
                 this.onChangeTable(this.config);
+                this.enableSpinner = false;
             });
     }
 
@@ -80,6 +83,7 @@ export class CasesListComponent implements OnInit {
         { title: 'Date', name: 'RegisterDateString', sort: true, filtering: { filterString: '', placeholder: 'Date' } },
         { title: 'Center', name: 'CenterTitle', sort: true, filtering: { filterString: '', placeholder: 'Center' } },
         { title: 'Peace Maker', name: 'PeaceMaker', sort: true, filtering: { filterString: '', placeholder: 'Peace Maker' } },
+        { title: 'Counselor', name: 'Counselor', sort: true, filtering: { filterString: '', placeholder: 'Counselor' } },
         { title: 'Mobile', name: 'MobileNumber', sort: true, filtering: { filterString: '', placeholder: 'Mobile' } }
     ];
     public page: number = 1;

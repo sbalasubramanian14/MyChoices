@@ -19,5 +19,6 @@ namespace WhitePage.Entities.CaseManagement
         public string CenterTitle { get; set; }
         public string PeaceMaker { get; set; }
         public string MobileNumber { get; set; }
+        public string Counselor { get; set; }
     }
 }

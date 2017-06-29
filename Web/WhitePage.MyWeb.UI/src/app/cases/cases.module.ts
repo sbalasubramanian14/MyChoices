@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppModule } from '../app.module';
+
 import { SelectModule, IOption } from 'ng-select';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { MatchesPipe } from '../pipes/Matches.Pipe'
@@ -24,6 +27,8 @@ import { ModalModule, PaginationModule, TooltipModule, TabsModule } from 'ng2-bo
 import { Ng2TableModule } from '../directives/customTable/ng-table-module';
 import { MyDatePickerModule } from 'mydatepicker';
 
+import { SpinnerModule } from '../spinner/spinner.module';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -38,7 +43,8 @@ import { MyDatePickerModule } from 'mydatepicker';
         Ng2TableModule,
         ToastModule.forRoot(),
         MultiselectDropdownModule,
-        MyDatePickerModule
+        MyDatePickerModule,
+        SpinnerModule,
     ],
     declarations: [CasesCreateComponent,
         CasesDetailedComponent,

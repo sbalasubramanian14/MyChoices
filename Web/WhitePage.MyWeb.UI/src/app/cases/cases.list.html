@@ -1,3 +1,4 @@
+<my-spinner [isRunning]="enableSpinner"></my-spinner>
 <div class="d-flex flex-column"> 
     <ng-table [config]="config"
               (tableChanged)="onChangeTable(config)"
@@ -22,7 +23,6 @@
         </pagination>
     </div>
 </div>
-
 <div bsModal #moveModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <!--<div class="modal-dialog modal-sm">
         <div class="modal-content">
