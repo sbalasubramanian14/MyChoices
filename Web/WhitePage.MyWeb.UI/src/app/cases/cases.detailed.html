@@ -426,12 +426,18 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Year of marriage</label>
-                                    <input [formControl]="clientAndHouseholdForm.controls['YearOfMarriage']" inputmode="numeric" maxlength="4" class="form-control" />
+                                    <input [formControl]="clientAndHouseholdForm.controls['YearOfMarriage']" digits  maxlength="4" class="form-control" />
+                                    <small *ngIf="clientAndHouseholdForm.controls['YearOfMarriage'].dirty && clientAndHouseholdForm.controls['YearOfMarriage'].invalid">
+                                        Please provide a valid year
+                                    </small>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">At what age did client have her first child?</label>
-                                    <input [formControl]="clientAndHouseholdForm.controls['ClientAgeAtFirstChild']" inputmode="numeric" maxlength="2" class="form-control" />
+                                    <input [formControl]="clientAndHouseholdForm.controls['ClientAgeAtFirstChild']" digits maxlength="2" class="form-control" />
+                                    <small *ngIf="clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].dirty && clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].invalid">
+                                        Please provide a valid age
+                                    </small>
                                 </div>
 
                                 <div class="form-group">
@@ -1049,7 +1055,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary" (click)="onUpdateAbuse()">Update</button>
+                                    <button class="btn btn-primary" [disabled]="!caseAbuseForm.valid" (click)="onUpdateAbuse()">Update</button>
                                 </div>
                             </div>
                         </div>

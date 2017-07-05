@@ -588,8 +588,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
             ClientIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()),
             HouseHoldMembersLivingLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()),
-            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage),
-            ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild)
+            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.numericValidator]),
+            ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validateNumber])
         });
     }
     /* End of - client And Household */
@@ -1332,7 +1332,11 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     /*Helper Custom Validation Methods */
 
     public validateNumber(input: AbstractControl): { valid: boolean } | null { 
-        if (input.value == null) { return null }
+
+        if (input.value == null || input.value == "") {
+
+            return null
+        }
         return input.value > 0 && input.value < 100 ? null : { valid: false };
     };
 
@@ -1354,6 +1358,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public numericValidator(input: AbstractControl) {
 
         var numericPattern = /^[0-9]*$/;
+
         if (input.value == null || input.value == "") {
             return null;
         }
