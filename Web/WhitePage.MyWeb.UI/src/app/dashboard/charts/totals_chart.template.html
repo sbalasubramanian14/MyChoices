@@ -1,4 +1,5 @@
 ﻿<div class="row">
+    <my-spinner [isRunning]="!isCenterChartLoaded || !isCounselorChartLoaded || !isPeaceMakerChartLoaded"></my-spinner>
     <div class="col-md-6" *ngIf="isCenterChartLoaded">
         <div class="justify-chart-labels">
             <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">

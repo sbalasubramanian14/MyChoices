@@ -18,6 +18,9 @@ import { PercentageCasesSoughtHelpComponent } from './charts/percentage_cases_so
 import { PercentageCasesSignedComponent } from './charts/percentage_cases_signed.component';
 import { TabsModule } from 'ng2-bootstrap';
 
+//spinner
+import { SpinnerModule } from '../spinner/spinner.module';
+
 export function highchartsFactory() {
     highcharts.setOptions(HighChartsThemeSettings.options);
     return highcharts;
@@ -29,6 +32,7 @@ export function highchartsFactory() {
         ChartModule,
         CommonModule,
         TabsModule.forRoot(),
+        SpinnerModule,
     ],
   providers: [
       {
