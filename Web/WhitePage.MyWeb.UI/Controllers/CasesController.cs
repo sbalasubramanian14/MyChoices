@@ -48,10 +48,18 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int limit, int offset)
         {
-            var casesList = this.caseBusinessAccess.GetAllCases();
+            var casesList = this.caseBusinessAccess.GetAllCases(limit, offset);
             return Ok(casesList);
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetCasesCount()
+        {
+            var casessCount = this.caseBusinessAccess.GetCasesCount();
+            return Ok(casessCount);
         }
 
         [Route("[action]/{id:int}")]
