@@ -19,8 +19,12 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/SaveCasePrimary', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseHeader>response.json());
     }
 
-    public GetAll = (): Observable<CaseHeader[]> => {
-        return this.authHttp.get('/api/cases/GetAll/', this.getRequestOptions()).map((response: Response) => <CaseHeader[]>response.json());
+    public GetAll(limit: number, offset: number): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetAll/', this.getValueWithParams(limit, offset)).map((response: Response) => <CaseHeader[]>response.json());
+    }
+
+    public GetCasesCount = (): Observable<number> => {
+        return this.authHttp.get('/api/cases/GetCasesCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
 
     public GetCaseById = (caseId: number): Observable<CaseBook> => {

@@ -43,4 +43,14 @@ export class BaseService {
         );
         return new RequestOptions({ params: { column: value }, headers: headers });
     }
+
+    public getValueWithParams(limit: number, offset: number): RequestOptions {
+        let headers = new Headers(
+            {
+                'authorization': "bearer " + this.authenticationService.getToken(),
+                'Content-Type': 'application/json'
+            }
+        );
+        return new RequestOptions({ params: { limit: limit, offset: offset }, headers: headers });
+    }
 }

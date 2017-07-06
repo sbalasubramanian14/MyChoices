@@ -27,25 +27,35 @@ export class CasesListComponent implements OnInit {
 
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
-        this.length = this.casesList.length;
         this.enableSpinner = true;
     }
 
     ngOnInit() {
         this.onChangeTable(this.config);
-        this.getAllCaseHeaders();
+        this.getCasesCount();
     }
 
-    private getAllCaseHeaders() {
+    private getAllCaseHeaders(page: any, itemsPerPage: any) {
         this.casesList = [];
         this.casesService
-            .GetAll()
+            .GetAll(page, itemsPerPage)
             .subscribe(data => {
                 data.forEach(d => this.casesList.push(d));
-                this.length = this.casesList.length;
-                this.onChangeTable(this.config);
+                this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
                 this.enableSpinner = false;
             });
+    }
+
+    private changeData(config: any, page: any = { page: this.page, itemsPerPage: this.itemsPerPage }) {
+        this.getAllCaseHeaders(page.page, page.itemsPerPage);
+    }
+
+    public getCasesCount() {
+        this.casesService.GetCasesCount().subscribe(
+            data => {
+                this.length = Number(data);
+                this.getAllCaseHeaders(1, 10);
+            })
     }
 
     viewCase(caseDetails: any) {
@@ -105,7 +115,7 @@ export class CasesListComponent implements OnInit {
     public changePage(page: any, data: Array<any> = this.casesList): Array<any> {
         let start = (page.page - 1) * page.itemsPerPage;
         let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
-        return data.slice(start, end);
+        return data;
     }
 
     public changeSort(data: any, config: any): any {
@@ -176,6 +186,7 @@ export class CasesListComponent implements OnInit {
     }
 
     public onChangeTable(config: any, page: any = { page: this.page, itemsPerPage: this.itemsPerPage }): any {
+
         if (config.filtering) {
             Object.assign(this.config.filtering, config.filtering);
         }
@@ -187,7 +198,6 @@ export class CasesListComponent implements OnInit {
         let filteredData = this.changeFilter(this.casesList, this.config);
         let sortedData = this.changeSort(filteredData, this.config);
         this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
-        this.length = sortedData.length;
     }
 
     public onCellClick(data: CaseHeader): any {
