@@ -14,9 +14,14 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             this.caseDataAccess = caseDataAccess;
         }
 
-        public List<CaseHeader> GetAllCases()
+        public List<CaseHeader> GetAllCases(int limit, int offset)
         {
-            return this.caseDataAccess.GetAllCases();
+            return this.caseDataAccess.GetAllCases(limit, offset);
+        }
+
+        public int GetCasesCount()
+        {
+            return this.caseDataAccess.GetCasesCount();
         }
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)

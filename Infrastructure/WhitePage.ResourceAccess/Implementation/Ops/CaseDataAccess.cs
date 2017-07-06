@@ -15,9 +15,23 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         }
 
-        public List<CaseHeader> GetAllCases()
+        public List<CaseHeader> GetAllCases(int pageNumber, int offset)
         {
-            return this.unitOfWork.DbContext.CaseHeaders.OrderByDescending(ch => ch.RegisterDate).OrderBy(ch => ch.CaseStatusId).ToList();
+            return 
+                this.
+                unitOfWork.
+                DbContext.
+                CaseHeaders.
+                OrderByDescending(ch => ch.RegisterDate).
+                OrderBy(ch => ch.CaseStatusId).
+                Skip((pageNumber - 1) * 10).
+                Take(offset).
+                ToList();
+        }
+
+        public int GetCasesCount()
+        {
+            return this.unitOfWork.DbContext.CaseHeaders.Count();
         }
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
