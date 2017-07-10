@@ -19,8 +19,12 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/SaveCasePrimary', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseHeader>response.json());
     }
 
-    public GetAll(limit: number, offset: number): Observable<CaseHeader[]> {
-        return this.authHttp.get('/api/cases/GetAll/', this.getValueWithParams(limit, offset)).map((response: Response) => <CaseHeader[]>response.json());
+    public GetAll(pageNumber: number, offset: number): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetAll', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <CaseHeader[]>response.json());
+    }
+
+    public GetFilteredCases(pageNumber: number, offset: number, dictionary: CaseHeader): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetFilteredCases', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <CaseHeader[]>response.json());
     }
 
     public GetCasesCount = (): Observable<number> => {

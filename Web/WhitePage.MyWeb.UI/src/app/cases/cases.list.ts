@@ -19,6 +19,7 @@ export class CasesListComponent implements OnInit {
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
     public enableSpinner: boolean;
+    public caseDictionary: any = new CaseHeader;
 
     constructor(private casesService: CasesService, private routerObj: Router,
         private authenticationService: AuthenticationService,
@@ -41,13 +42,28 @@ export class CasesListComponent implements OnInit {
             .GetAll(page, itemsPerPage)
             .subscribe(data => {
                 data.forEach(d => this.casesList.push(d));
-                this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
                 this.enableSpinner = false;
+                this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
+            });
+    }
+
+    private getAllCaseHeadersWithFilters(page: any, itemsPerPage: any, dictionary: any) {
+        this.casesList = [];
+        this.casesService
+            .GetFilteredCases(page, itemsPerPage, dictionary)
+            .subscribe(data => {
+                data.forEach(d => this.casesList.push(d));
+                this.enableSpinner = false;
+                this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
             });
     }
 
     private changeData(config: any, page: any = { page: this.page, itemsPerPage: this.itemsPerPage }) {
         this.getAllCaseHeaders(page.page, page.itemsPerPage);
+    }
+
+    private changeFilterandSortData(config: any) {
+        this.getAllCaseHeadersWithFilters(1, 10, this.caseDictionary);
     }
 
     public getCasesCount() {
@@ -153,11 +169,11 @@ export class CasesListComponent implements OnInit {
         let filteredData: Array<any> = data;
         this.columns.forEach((column: any) => {
             if (column.filtering) {
-                filteredData = filteredData.filter((item: any) => {
+                filteredData = filteredData.filter((item: any) => {                    
                     return item[column.name].toLowerCase().match(column.filtering.filterString.toLowerCase());
                 });
             }
-        });
+        });        
 
         if (!config.filtering) {
             return filteredData;

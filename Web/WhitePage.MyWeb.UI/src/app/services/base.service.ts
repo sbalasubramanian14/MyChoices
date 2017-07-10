@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { AuthHttp, JwtHelper, AuthConfig, tokenNotExpired, AUTH_PROVIDERS } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
+import { CaseHeader } from '../models/case.entities';
 
 @Injectable()
 export class BaseService {
@@ -52,5 +53,15 @@ export class BaseService {
             }
         );
         return new RequestOptions({ params: { limit: limit, offset: offset }, headers: headers });
+    }
+
+    public getValueWithParamsDictionary(limit: number, offset: number, dictionary: string): RequestOptions {
+        let headers = new Headers(
+            {
+                'authorization': "bearer " + this.authenticationService.getToken(),
+                'Content-Type': 'application/json'
+            }
+        );
+        return new RequestOptions({ params: { limit: limit, offset: offset, dictionary: dictionary }, headers: headers });
     }
 }
