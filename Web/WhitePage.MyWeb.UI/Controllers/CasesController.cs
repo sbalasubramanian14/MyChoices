@@ -10,6 +10,7 @@ using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
 using WhitePage.Utilities.Extensions;
+using Newtonsoft.Json.Linq;
 
 namespace WhitePage.MyWeb.UI.Controllers
 {
@@ -51,6 +52,14 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult GetAll(int limit, int offset)
         {
             var casesList = this.caseBusinessAccess.GetAllCases(limit, offset);
+            return Ok(casesList);
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetFilteredCases(int pageNumber, int offset, string dictionary)
+        {
+            var casesList = this.caseBusinessAccess.GetFilteredCases(pageNumber, offset, JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionary));
             return Ok(casesList);
         }
 
