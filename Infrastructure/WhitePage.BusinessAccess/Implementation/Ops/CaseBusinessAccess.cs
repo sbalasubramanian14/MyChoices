@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Ops;
@@ -14,9 +15,26 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             this.caseDataAccess = caseDataAccess;
         }
 
-        public List<CaseHeader> GetAllCases(int limit, int offset)
+        public List<CaseHeader> GetAllCases(int pageNumber, int offset)
         {
-            return this.caseDataAccess.GetAllCases(limit, offset);
+            return this.caseDataAccess.GetAllCases().Skip((pageNumber - 1) * 10).Take(offset).ToList();
+        }
+
+        public List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        {
+            return
+                this.caseDataAccess.GetAllCases().
+                Where(
+                    s => s.CaseNumber.Contains(dictionary["CaseNumber"]) &&
+                    s.ClientName.Contains(dictionary["ClientName"]) &&
+                    s.CaseStatus.Contains(dictionary["CaseStatus"]) &&
+                    s.CenterTitle.Contains(dictionary["CenterTitle"]) &&
+                    s.PeaceMaker.Contains(dictionary["PeaceMaker"]) &&
+                    s.Counselor.Contains(dictionary["Counselor"]) &&
+                    s.MobileNumber.Contains(dictionary["MobileNumber"])).
+                Skip((pageNumber - 1) * 10).
+                Take(offset).
+                ToList();
         }
 
         public int GetCasesCount()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using WhitePage.Entities.CaseManagement;
@@ -15,24 +16,37 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         }
 
-        public List<CaseHeader> GetAllCases(int pageNumber, int offset)
+        private IQueryable<CaseHeader> GetAllCases()
         {
-            return 
+            return
                 this.
                 unitOfWork.
                 DbContext.
                 CaseHeaders.
                 OrderByDescending(ch => ch.RegisterDate).
-                OrderBy(ch => ch.CaseStatusId).
-                Skip((pageNumber - 1) * 10).
-                Take(offset).
-                ToList();
-        }
+                OrderBy(ch => ch.CaseStatusId);
+        }        
 
         public int GetCasesCount()
         {
-            return this.unitOfWork.DbContext.CaseHeaders.Count();
+            return this.unitOfWork.DbContext.CaseHeaders.
+                   Where(
+                        s => s.CaseNumber.Contains("") &&
+                        s.ClientName.Contains("") &&
+                        s.CaseStatus.Contains("") &&
+                        s.CenterTitle.Contains("") &&
+                        s.PeaceMaker.Contains("") &&
+                        s.Counselor.Contains("") &&
+                        s.MobileNumber.Contains("")).
+                   Count();
         }
+
+        //public List<CaseHeader> GetAllCasesWithSearch()
+        //{
+        //    this.unitOfWork.DbContext.CaseHeaders.Select(node => node.CaseId LIKE)
+
+        //    return null;
+        //}
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
         {

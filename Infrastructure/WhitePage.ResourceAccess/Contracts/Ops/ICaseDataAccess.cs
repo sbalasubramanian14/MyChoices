@@ -6,7 +6,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
     public interface ICaseDataAccess
     {
         CaseHeader SavePrimaryCase(CaseBook caseBook);
-        List<CaseHeader> GetAllCases(int limit, int offset);
+        List<CaseHeader> GetAllCases();
         int GetCasesCount();
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
