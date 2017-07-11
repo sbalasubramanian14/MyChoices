@@ -19,7 +19,7 @@ export class CasesListComponent implements OnInit {
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
     public enableSpinner: boolean;
-    public caseDictionary: any = new CaseHeader;
+    public caseDictionary: any = new Object;
 
     constructor(private casesService: CasesService, private routerObj: Router,
         private authenticationService: AuthenticationService,
@@ -37,10 +37,10 @@ export class CasesListComponent implements OnInit {
     }
 
     private getAllCaseHeaders(page: any, itemsPerPage: any) {
-        this.casesList = [];
         this.casesService
             .GetAll(page, itemsPerPage)
             .subscribe(data => {
+                this.casesList = [];
                 data.forEach(d => this.casesList.push(d));
                 this.enableSpinner = false;
                 this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
@@ -48,10 +48,10 @@ export class CasesListComponent implements OnInit {
     }
 
     private getAllCaseHeadersWithFilters(page: any, itemsPerPage: any, dictionary: any) {
-        this.casesList = [];
         this.casesService
             .GetFilteredCases(page, itemsPerPage, dictionary)
             .subscribe(data => {
+                this.casesList = [];
                 data.forEach(d => this.casesList.push(d));
                 this.enableSpinner = false;
                 this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
@@ -59,11 +59,18 @@ export class CasesListComponent implements OnInit {
     }
 
     private changeData(config: any, page: any = { page: this.page, itemsPerPage: this.itemsPerPage }) {
-        this.getAllCaseHeaders(page.page, page.itemsPerPage);
+        this.enableSpinner = true;       
+
+        if (Object.keys(this.caseDictionary).length == 0) {
+            this.getAllCaseHeaders(page.page, page.itemsPerPage);
+        }
+        else {
+            this.changeFilterandSortData(page.page, page.itemsPerPage, config);
+        }
     }
 
-    private changeFilterandSortData(config: any) {
-        this.getAllCaseHeadersWithFilters(1, 10, this.caseDictionary);
+    private changeFilterandSortData(page: number, itemsPerPage: number, config: any) {
+        this.getAllCaseHeadersWithFilters(page, itemsPerPage, this.caseDictionary);
     }
 
     public getCasesCount() {
@@ -71,6 +78,22 @@ export class CasesListComponent implements OnInit {
             data => {
                 this.length = Number(data);
                 this.getAllCaseHeaders(1, 10);
+            })
+    }
+
+    public getFilteredCases(config: any) {
+        this.columns.forEach((column: any) => {
+            if (column.filtering) {
+                this.caseDictionary[column.name] = column.filtering.filterString.toLowerCase();
+            }
+        });
+
+        this.enableSpinner = true;
+
+        this.casesService.GetFilteredCasesCount(1, 10, this.caseDictionary).subscribe(
+            data => {
+                this.length = Number(data);
+                this.changeFilterandSortData(1, 10, config);
             })
     }
 

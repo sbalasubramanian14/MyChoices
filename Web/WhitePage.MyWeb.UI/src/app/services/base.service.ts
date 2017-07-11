@@ -45,23 +45,23 @@ export class BaseService {
         return new RequestOptions({ params: { column: value }, headers: headers });
     }
 
-    public getValueWithParams(limit: number, offset: number): RequestOptions {
+    public getValueWithParams(pageNumber: number, offset: number): RequestOptions {
         let headers = new Headers(
             {
                 'authorization': "bearer " + this.authenticationService.getToken(),
                 'Content-Type': 'application/json'
             }
         );
-        return new RequestOptions({ params: { limit: limit, offset: offset }, headers: headers });
+        return new RequestOptions({ params: { pageNumber: pageNumber, offset: offset }, headers: headers });
     }
 
-    public getValueWithParamsDictionary(limit: number, offset: number, dictionary: string): RequestOptions {
+    public getValueWithParamsDictionary(pageNumber: number, offset: number, dictionary: string): RequestOptions {
         let headers = new Headers(
             {
                 'authorization': "bearer " + this.authenticationService.getToken(),
                 'Content-Type': 'application/json'
             }
         );
-        return new RequestOptions({ params: { limit: limit, offset: offset, dictionary: dictionary }, headers: headers });
+        return new RequestOptions({ params: { pageNumber: pageNumber, offset: offset, dictionary: dictionary }, headers: headers });
     }
 }

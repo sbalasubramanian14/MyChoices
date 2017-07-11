@@ -1,7 +1,7 @@
 <my-spinner [isRunning]="enableSpinner"></my-spinner>
 <div class="d-flex flex-column"> 
     <ng-table [config]="config"
-              (tableChanged)="onChangeTable(config)"
+              (tableChanged)="getFilteredCases(config)"
               (moveClicked)="onMoveClick($event)"
               (cellClicked)="onCellClick($event)"
               (editClicked)="onEditClick($event)"

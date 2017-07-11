@@ -21,14 +21,18 @@ export class CasesService extends BaseService {
 
     public GetAll(pageNumber: number, offset: number): Observable<CaseHeader[]> {
         return this.authHttp.get('/api/cases/GetAll', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <CaseHeader[]>response.json());
-    }
-
-    public GetFilteredCases(pageNumber: number, offset: number, dictionary: CaseHeader): Observable<CaseHeader[]> {
-        return this.authHttp.get('/api/cases/GetFilteredCases', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <CaseHeader[]>response.json());
-    }
+    }    
 
     public GetCasesCount = (): Observable<number> => {
         return this.authHttp.get('/api/cases/GetCasesCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
+    }
+
+    public GetFilteredCases(pageNumber: number, offset: number, dictionary: Object): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetFilteredCases', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <CaseHeader[]>response.json());
+    }
+
+    public GetFilteredCasesCount(pageNumber: number, offset: number, dictionary: Object): Observable<number> {
+        return this.authHttp.get('/api/cases/GetFilteredCasesCount/', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <number>response.json());
     }
 
     public GetCaseById = (caseId: number): Observable<CaseBook> => {
