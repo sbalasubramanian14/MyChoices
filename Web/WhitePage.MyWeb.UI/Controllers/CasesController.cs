@@ -77,7 +77,23 @@ namespace WhitePage.MyWeb.UI.Controllers
         {
             var casessCount = this.caseBusinessAccess.GetFilteredCasesCount(pageNumber, offset, JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionary));
             return Ok(casessCount);
-        }        
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetSortedCasesDataAsc(int pageNumber, int offset, string dictionary, string field)
+        {
+            var casessCount = this.caseBusinessAccess.GetSortedCasesDataAsc(pageNumber, offset, JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionary), field);
+            return Ok(casessCount);
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetSortedCasesDataDesc(int pageNumber, int offset, string dictionary, string field)
+        {
+            var casessCount = this.caseBusinessAccess.GetSortedCasesDataDesc(pageNumber, offset, JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionary), field);
+            return Ok(casessCount);
+        }
 
         [Route("[action]/{id:int}")]
         [HttpGet]
