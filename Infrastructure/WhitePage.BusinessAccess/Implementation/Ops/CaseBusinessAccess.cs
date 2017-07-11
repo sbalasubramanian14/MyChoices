@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Ops;
@@ -42,7 +44,6 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     s.MobileNumber.Contains(mobileNumberFilterString));
         }
 
-
         public List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
             return 
@@ -60,6 +61,27 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         public int GetFilteredCasesCount(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
             return this.GetFilteredData(pageNumber, offset, dictionary).Count();
+        }
+
+        public Expression<Func<CaseHeader, string>> returnObjectExpression(string field)
+        {
+            var itemParam = Expression.Parameter(typeof(CaseHeader), "ch");
+            var entityAccess = Expression.MakeMemberAccess(itemParam, typeof(CaseHeader).GetMember(field).First());
+            var lambda = Expression.Lambda<Func<CaseHeader, string>>(entityAccess, itemParam);
+
+            return lambda;
+        }
+
+        public List<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
+        {
+            return
+                GetFilteredData(pageNumber, offset, dictionary).OrderBy(returnObjectExpression(field)).Skip((pageNumber - 1) * 10).Take(offset).ToList();
+        }
+
+        public List<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
+        {
+            return
+                GetFilteredData(pageNumber, offset, dictionary).OrderByDescending(returnObjectExpression(field)).Skip((pageNumber - 1) * 10).Take(offset).ToList();
         }
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
