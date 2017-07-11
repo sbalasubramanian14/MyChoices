@@ -58,18 +58,55 @@ export class CasesListComponent implements OnInit {
             });
     }
 
+    private getAllCasesWithSortedDataAsc(page: number, itemsPerPage: number, field: string) {
+        this.casesService
+            .GetSortedCasesDataAsc(page, itemsPerPage, this.caseDictionary, field)
+            .subscribe(data => {
+                this.casesList = [];
+                data.forEach(d => this.casesList.push(d));
+                this.enableSpinner = false;
+                this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
+            });
+    }
+
+    private getAllCasesWithSortedDataDesc(page: number, itemsPerPage: number, field: string) {
+        this.casesService
+            .GetSortedCasesDataDesc(page, itemsPerPage, this.caseDictionary, field)
+            .subscribe(data => {
+                this.casesList = [];
+                data.forEach(d => this.casesList.push(d));
+                this.enableSpinner = false;
+                this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
+            });
+    }
+
     private changeData(config: any, page: any = { page: this.page, itemsPerPage: this.itemsPerPage }) {
         this.enableSpinner = true;       
+        var sortingEnabled = false;
 
         if (Object.keys(this.caseDictionary).length == 0) {
             this.getAllCaseHeaders(page.page, page.itemsPerPage);
         }
         else {
-            this.changeFilterandSortData(page.page, page.itemsPerPage, config);
+            config.sorting.columns.forEach((column: any) => {
+                if (column.sort == "asc") {
+                    this.getAllCasesWithSortedDataAsc(page.page, page.itemsPerPage, column.name);
+                    sortingEnabled = true;
+                }
+
+                if (column.sort == "desc") {
+                    this.getAllCasesWithSortedDataDesc(page.page, page.itemsPerPage, column.name);
+                    sortingEnabled = true;
+                }
+            });
+
+            if (!sortingEnabled) {
+                this.changeFilteredData(page.page, page.itemsPerPage, config);
+            }
         }
     }
 
-    private changeFilterandSortData(page: number, itemsPerPage: number, config: any) {
+    private changeFilteredData(page: number, itemsPerPage: number, config: any) {
         this.getAllCaseHeadersWithFilters(page, itemsPerPage, this.caseDictionary);
     }
 
@@ -82,19 +119,36 @@ export class CasesListComponent implements OnInit {
     }
 
     public getFilteredCases(config: any) {
+        this.enableSpinner = true;
+        var sortingEnabled = false;
+
         this.columns.forEach((column: any) => {
             if (column.filtering) {
                 this.caseDictionary[column.name] = column.filtering.filterString.toLowerCase();
             }
         });
 
-        this.enableSpinner = true;
+        config.sorting.columns.forEach((column: any) => {
+            if (column.sort == "asc")
+            {
+                this.getAllCasesWithSortedDataAsc(this.page, this.itemsPerPage, column.name);
+                sortingEnabled = true;
+            }
 
-        this.casesService.GetFilteredCasesCount(1, 10, this.caseDictionary).subscribe(
-            data => {
-                this.length = Number(data);
-                this.changeFilterandSortData(1, 10, config);
-            })
+            if (column.sort == "desc")
+            {
+                this.getAllCasesWithSortedDataDesc(this.page, this.itemsPerPage, column.name);
+                sortingEnabled = true;
+            }
+        });
+
+        if (!sortingEnabled) {
+            this.casesService.GetFilteredCasesCount(this.page, this.itemsPerPage, this.caseDictionary).subscribe(
+                data => {
+                    this.length = Number(data);
+                    this.changeFilteredData(this.page, this.itemsPerPage, config);
+                })
+        }
     }
 
     viewCase(caseDetails: any) {

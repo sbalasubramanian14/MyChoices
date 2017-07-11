@@ -35,6 +35,14 @@ export class CasesService extends BaseService {
         return this.authHttp.get('/api/cases/GetFilteredCasesCount/', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <number>response.json());
     }
 
+    public GetSortedCasesDataAsc(pageNumber: number, offset: number, dictionary: Object, field: string): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetSortedCasesDataAsc/', this.getSortedDataParamsDictionary(pageNumber, offset, JSON.stringify(dictionary), field)).map((response: Response) => <CaseHeader[]>response.json());
+    }
+
+    public GetSortedCasesDataDesc(pageNumber: number, offset: number, dictionary: Object, field: string): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetSortedCasesDataDesc/', this.getSortedDataParamsDictionary(pageNumber, offset, JSON.stringify(dictionary), field)).map((response: Response) => <CaseHeader[]>response.json());
+    }
+
     public GetCaseById = (caseId: number): Observable<CaseBook> => {
         return this.authHttp.get('/api/cases/GetCaseById/' + caseId, this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
     }

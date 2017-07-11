@@ -64,4 +64,14 @@ export class BaseService {
         );
         return new RequestOptions({ params: { pageNumber: pageNumber, offset: offset, dictionary: dictionary }, headers: headers });
     }
+
+    public getSortedDataParamsDictionary(pageNumber: number, offset: number, dictionary: string, field: string): RequestOptions {
+        let headers = new Headers(
+            {
+                'authorization': "bearer " + this.authenticationService.getToken(),
+                'Content-Type': 'application/json'
+            }
+        );
+        return new RequestOptions({ params: { pageNumber: pageNumber, offset: offset, dictionary: dictionary, field: field }, headers: headers });
+    }
 }
