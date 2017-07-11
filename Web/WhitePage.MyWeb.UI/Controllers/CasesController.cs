@@ -49,9 +49,9 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public IActionResult GetAll(int limit, int offset)
+        public IActionResult GetAll(int pageNumber, int offset)
         {
-            var casesList = this.caseBusinessAccess.GetAllCases(limit, offset);
+            var casesList = this.caseBusinessAccess.GetAllCases(pageNumber, offset);
             return Ok(casesList);
         }
 
@@ -70,6 +70,14 @@ namespace WhitePage.MyWeb.UI.Controllers
             var casessCount = this.caseBusinessAccess.GetCasesCount();
             return Ok(casessCount);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetFilteredCasesCount(int pageNumber, int offset, string dictionary)
+        {
+            var casessCount = this.caseBusinessAccess.GetFilteredCasesCount(pageNumber, offset, JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionary));
+            return Ok(casessCount);
+        }        
 
         [Route("[action]/{id:int}")]
         [HttpGet]
