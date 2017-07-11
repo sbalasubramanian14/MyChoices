@@ -12,6 +12,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         List<CaseHeader> GetAllCases(int pageNumber, int offset);
         List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary);        
         int GetCasesCount();
+        int GetFilteredCasesCount(int pageNumber, int offset, IDictionary<string, string> dictionary);
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdateHouseHold(CaseBook caseBook);
         CaseHeader UpdateSpouse(CaseBook caseBook);

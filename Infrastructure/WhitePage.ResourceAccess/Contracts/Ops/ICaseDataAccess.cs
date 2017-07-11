@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WhitePage.Entities.CaseManagement;
 
 namespace WhitePage.ResourceAccess.Contracts.Ops
@@ -6,8 +7,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
     public interface ICaseDataAccess
     {
         CaseHeader SavePrimaryCase(CaseBook caseBook);
-        List<CaseHeader> GetAllCases();
-        int GetCasesCount();
+        IQueryable<CaseHeader> GetAllCases();
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);

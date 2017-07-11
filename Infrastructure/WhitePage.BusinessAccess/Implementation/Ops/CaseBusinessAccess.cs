@@ -20,18 +20,33 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.GetAllCases().Skip((pageNumber - 1) * 10).Take(offset).ToList();
         }
 
-        public List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        public IQueryable<CaseHeader> GetFilteredData(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
+            string caseNumberFilterString = dictionary["CaseNumber"];
+            string clientNameFilterString = dictionary["ClientName"];
+            string caseStatusFilterString = dictionary["CaseStatus"];
+            string centerTitleFilterString = dictionary["CenterTitle"];
+            string peaceMakerFilterString = dictionary["PeaceMaker"];
+            string counselorFilterString = dictionary["Counselor"];
+            string mobileNumberFilterString = dictionary["MobileNumber"];
+
             return
                 this.caseDataAccess.GetAllCases().
                 Where(
-                    s => s.CaseNumber.Contains(dictionary["CaseNumber"]) &&
-                    s.ClientName.Contains(dictionary["ClientName"]) &&
-                    s.CaseStatus.Contains(dictionary["CaseStatus"]) &&
-                    s.CenterTitle.Contains(dictionary["CenterTitle"]) &&
-                    s.PeaceMaker.Contains(dictionary["PeaceMaker"]) &&
-                    s.Counselor.Contains(dictionary["Counselor"]) &&
-                    s.MobileNumber.Contains(dictionary["MobileNumber"])).
+                    s => s.CaseNumber.Contains(caseNumberFilterString) &&
+                    s.ClientName.Contains(clientNameFilterString) &&
+                    s.CaseStatus.Contains(caseStatusFilterString) &&
+                    s.CenterTitle.Contains(centerTitleFilterString) &&
+                    s.PeaceMaker.Contains(peaceMakerFilterString) &&
+                    s.Counselor.Contains(counselorFilterString) &&
+                    s.MobileNumber.Contains(mobileNumberFilterString));
+        }
+
+
+        public List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        {
+            return 
+                this.GetFilteredData(pageNumber, offset, dictionary).
                 Skip((pageNumber - 1) * 10).
                 Take(offset).
                 ToList();
@@ -39,7 +54,12 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
         public int GetCasesCount()
         {
-            return this.caseDataAccess.GetCasesCount();
+            return this.caseDataAccess.GetAllCases().Count();
+        }
+
+        public int GetFilteredCasesCount(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        {
+            return this.GetFilteredData(pageNumber, offset, dictionary).Count();
         }
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)

@@ -16,7 +16,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         }
 
-        private IQueryable<CaseHeader> GetAllCases()
+        public IQueryable<CaseHeader> GetAllCases()
         {
             return
                 this.
@@ -26,28 +26,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 OrderByDescending(ch => ch.RegisterDate).
                 OrderBy(ch => ch.CaseStatusId);
         }        
-
-        public int GetCasesCount()
-        {
-            return this.unitOfWork.DbContext.CaseHeaders.
-                   Where(
-                        s => s.CaseNumber.Contains("") &&
-                        s.ClientName.Contains("") &&
-                        s.CaseStatus.Contains("") &&
-                        s.CenterTitle.Contains("") &&
-                        s.PeaceMaker.Contains("") &&
-                        s.Counselor.Contains("") &&
-                        s.MobileNumber.Contains("")).
-                   Count();
-        }
-
-        //public List<CaseHeader> GetAllCasesWithSearch()
-        //{
-        //    this.unitOfWork.DbContext.CaseHeaders.Select(node => node.CaseId LIKE)
-
-        //    return null;
-        //}
-
+        
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
