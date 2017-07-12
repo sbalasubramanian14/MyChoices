@@ -18,7 +18,7 @@ export class CasesListComponent implements OnInit {
     public router: Router;
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
-    public enableSpinner: boolean;
+    public enableSpinner: boolean = true;
     public caseDictionary: any = new Object;
 
     constructor(private casesService: CasesService, private routerObj: Router,
@@ -28,7 +28,6 @@ export class CasesListComponent implements OnInit {
 
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
-        this.enableSpinner = true;
     }
 
     ngOnInit() {
