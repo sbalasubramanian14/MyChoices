@@ -18,13 +18,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public IQueryable<CaseHeader> GetAllCases()
         {
-            return
-                this.
-                unitOfWork.
-                DbContext.
-                CaseHeaders.
-                OrderByDescending(ch => ch.RegisterDate).
-                OrderBy(ch => ch.CaseStatusId);
+            return this.unitOfWork.DbContext.CaseHeaders.OrderByDescending(ch => ch.RegisterDate);
         }        
         
         public CaseHeader SavePrimaryCase(CaseBook caseBook)

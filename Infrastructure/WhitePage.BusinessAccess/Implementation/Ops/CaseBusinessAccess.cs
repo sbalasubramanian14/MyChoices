@@ -17,9 +17,20 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             this.caseDataAccess = caseDataAccess;
         }
 
+        Func<IQueryable<CaseHeader>, int, int, List<CaseHeader>> returnCasesList = 
+            (cases, pageNumber, offset) => cases.Skip((pageNumber - 1) * 10).Take(offset).ToList();
+
+        Func<IQueryable<CaseHeader>, string, IEnumerable<CaseHeader>> returnDateSearchList =
+            (cases, searchString) => cases.ToList().Where(s => s.RegisterDateString.ToUpper().Contains(searchString.ToUpper()));
+
         public List<CaseHeader> GetAllCases(int pageNumber, int offset)
         {
-            return this.caseDataAccess.GetAllCases().Skip((pageNumber - 1) * 10).Take(offset).ToList();
+            return returnCasesList(this.caseDataAccess.GetAllCases(), pageNumber, offset);
+        }
+
+        public int GetCasesCount()
+        {
+            return this.caseDataAccess.GetAllCases().Count();
         }
 
         public IQueryable<CaseHeader> GetFilteredData(int pageNumber, int offset, IDictionary<string, string> dictionary)
@@ -46,21 +57,16 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
         public List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
-            return 
-                this.GetFilteredData(pageNumber, offset, dictionary).
+            return
+                returnDateSearchList(this.GetFilteredData(pageNumber, offset, dictionary), dictionary["RegisterDateString"]).
                 Skip((pageNumber - 1) * 10).
                 Take(offset).
                 ToList();
-        }
-
-        public int GetCasesCount()
-        {
-            return this.caseDataAccess.GetAllCases().Count();
-        }
+        }        
 
         public int GetFilteredCasesCount(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
-            return this.GetFilteredData(pageNumber, offset, dictionary).Count();
+            return returnDateSearchList(this.GetFilteredData(pageNumber, offset, dictionary), dictionary["RegisterDateString"]).Count();
         }
 
         public Expression<Func<CaseHeader, string>> returnObjectExpression(string field)
@@ -74,14 +80,28 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
         public List<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
         {
+            if (field == "RegisterDateString")
+            {
+                return
+                    returnDateSearchList(GetFilteredData(pageNumber, offset, dictionary).OrderBy(s => s.RegisterDate), dictionary["RegisterDateString"]).
+                    Skip((pageNumber - 1) * 10).
+                    Take(offset).
+                    ToList();
+            }
+
             return
                 GetFilteredData(pageNumber, offset, dictionary).OrderBy(returnObjectExpression(field)).Skip((pageNumber - 1) * 10).Take(offset).ToList();
         }
 
         public List<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
         {
+            if (field == "RegisterDateString")
+            {
+                return GetFilteredCases(pageNumber, offset, dictionary);
+            }
+
             return
-                GetFilteredData(pageNumber, offset, dictionary).OrderByDescending(returnObjectExpression(field)).Skip((pageNumber - 1) * 10).Take(offset).ToList();
+                returnCasesList(GetFilteredData(pageNumber, offset, dictionary).OrderByDescending(returnObjectExpression(field)), pageNumber, offset);
         }
 
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
