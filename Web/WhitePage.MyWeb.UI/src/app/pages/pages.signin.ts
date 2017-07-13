@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +20,8 @@ export class PagesSignInComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService,
-        public _auth: AuthService) { }
+        public _auth: AuthService,
+        private zone: NgZone) { }
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -32,17 +33,19 @@ export class PagesSignInComponent implements OnInit {
     public user: any;
     signIn(provider: string) {
         this._auth.login(provider).subscribe(data => {
-            this.user = data;
-            var emailId: string = this.user.email;
-            this.authenticationService.SignIn(emailId, "google")
-                .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    console.log(error);
-                    this.errorMsg = "Your identity not authorized; please contact your administrator.";
-                });
+            this.zone.run(() => {
+                this.user = data;
+                var emailId: string = this.user.email;
+                this.authenticationService.SignIn(emailId, "google")
+                    .subscribe(
+                    data => {
+                        this.router.navigate([this.returnUrl]);
+                    },
+                    error => {
+                        console.log(error);
+                        this.errorMsg = "Your identity not authorized; please contact your administrator.";
+                    });
+            });
         });
 
 
