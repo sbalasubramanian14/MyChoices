@@ -11,6 +11,8 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import { ChartsService } from '../services/charts.services';
+import { ValidationService } from '../services/validation.service';
+
 import {
     CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren, vCaseOffender, CaseOffender, vCaseMental, CaseMental, CaseSessionLog, vCaseFeedback, CaseFeedback, CaseLegal
 } from '../models/case.entities';
@@ -23,6 +25,7 @@ import * as moment from 'moment';
 
 @Component({
     templateUrl: 'cases.detailed.html',
+    providers: [ValidationService],
 })
 
 export class CasesDetailedComponent extends BaseCaseController implements OnInit {
@@ -84,7 +87,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         public routerObj: Router,
         public toastr: ToastsManager,
         public vRef: ViewContainerRef,
-        public activatedRoute: ActivatedRoute) {
+        public activatedRoute: ActivatedRoute,
+        public validationService: ValidationService) {
         super(casesService, commonService, chartsService);
 
         this.isPrimaryDataLoaded = false;
@@ -331,7 +335,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId.toString(), Validators.required),
             RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId.toString(), Validators.required),
             Remarks: new FormControl(this.caseBook.Case.Remarks),
-            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.mobileValidator]),            
+            MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.validationService.mobileValidator]),            
         });
     }
 
@@ -412,7 +416,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
             Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.numericValidator]),
+            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.validationService.numericValidator]),
             StateId: new FormControl(this.caseBook.SelectedAddress.StateId == undefined ? null : this.caseBook.SelectedAddress.StateId.toString(), Validators.required),
             CityId: new FormControl(this.caseBook.SelectedAddress.CityId == undefined ? null : this.caseBook.SelectedAddress.CityId.toString(), Validators.required)
         });
@@ -439,7 +443,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseAddressForm = this.fb.group({
             Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
             Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.numericValidator]),
+            PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.validationService.numericValidator]),
             StateId: new FormControl(this.caseBook.SelectedAddress.StateId.toString(), Validators.required),
             CityId: new FormControl(this.caseBook.SelectedAddress.CityId.toString(), Validators.required)
         });
@@ -478,7 +482,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validateNumber]),
+            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateNumber]),
             GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId == undefined ? null : this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
             RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId == undefined ? null : this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
         });
@@ -501,7 +505,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseChildrenForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validateNumber]),
+            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateNumber]),
             GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
             RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
         });
@@ -579,7 +583,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             PeacemakerAssistanceDesc: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc),
             PeacemakerFollowupYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString()),
             ClientSignedRegistrationFormYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString()),
-            ClientEmailId: new FormControl(this.caseBook.FamilyHouseHold.ClientEmailId, this.emailValidator),
+            ClientEmailId: new FormControl(this.caseBook.FamilyHouseHold.ClientEmailId, this.validationService.emailValidator),
             ReligionLookupId: new FormControl(this.caseBook.FamilyHouseHold.ReligionLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ReligionLookupId.toString()),
             LevelOfEducationLookupId: new FormControl(this.caseBook.FamilyHouseHold.LevelOfEducationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.LevelOfEducationLookupId.toString()),
             VocationalSkillsLookupId: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsLookupId == undefined ? null : this.caseBook.FamilyHouseHold.VocationalSkillsLookupId.toString()),
@@ -588,8 +592,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
             ClientIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()),
             HouseHoldMembersLivingLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()),
-            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.numericValidator]),
-            ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validateNumber])
+            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.validationService.numericValidator]),
+            ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateNumber])
         });
     }
     /* End of - client And Household */
@@ -620,24 +624,24 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.onSpouseStateSelected({ value: this.caseBook.Spouse.StateLookupId });
         this.spouseForm = this.fb.group({
             SpouseName: new FormControl(this.caseBook.Spouse.SpouseName),
-            SpouseHomePhone: new FormControl(this.caseBook.Spouse.SpouseHomePhone, [Validators.minLength(10), this.mobileValidator]),
-            SpouseMobilePhone: new FormControl(this.caseBook.Spouse.SpouseMobilePhone, [Validators.minLength(10), this.mobileValidator]),
+            SpouseHomePhone: new FormControl(this.caseBook.Spouse.SpouseHomePhone, [Validators.minLength(10), this.validationService.mobileValidator]),
+            SpouseMobilePhone: new FormControl(this.caseBook.Spouse.SpouseMobilePhone, [Validators.minLength(10), this.validationService.mobileValidator]),
             SpouseOccupation: new FormControl(this.caseBook.Spouse.SpouseOccupation),
             SpouseEducationLookupId: new FormControl(this.caseBook.Spouse.SpouseEducationLookupId == undefined ? null : this.caseBook.Spouse.SpouseEducationLookupId.toString()),
             SpouseAddress: new FormControl(this.caseBook.Spouse.SpouseAddress),
             Area: new FormControl(this.caseBook.Spouse.Area),
             CityLookupId: new FormControl(this.caseBook.Spouse.CityLookupId == undefined ? null : this.caseBook.Spouse.CityLookupId.toString()),
             StateLookupId: new FormControl(this.caseBook.Spouse.StateLookupId == undefined ? null : this.caseBook.Spouse.StateLookupId.toString()),
-            PIN: new FormControl(this.caseBook.Spouse.PIN, [Validators.minLength(6), this.numericValidator]),
+            PIN: new FormControl(this.caseBook.Spouse.PIN, [Validators.minLength(6), this.validationService.numericValidator]),
 
             PrimaryEmergencyContactName: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactName),
             PrimaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString()),
-            PrimaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.mobileValidator]),
+            PrimaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.validationService.mobileValidator]),
             PrimaryEmergencyContactAdress: new FormControl(this.caseBook.Spouse.PrimaryEmergencyContactAdress),
 
             SecondaryEmergencyContactName: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactName),
             SecondaryEmergencyRelationshipToClientLookupId: new FormControl(this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId.toString()),
-            SecondaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.mobileValidator]),
+            SecondaryEmergencyContactPhoneNumber: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.validationService.mobileValidator]),
             SecondaryEmergencyContactAdress: new FormControl(this.caseBook.Spouse.SecondaryEmergencyContactAdress)
 
         });
@@ -752,7 +756,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseOffenderForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validateNumber, Validators.required]),
+            Age: new FormControl(this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
             RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
             OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship)
@@ -772,7 +776,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseOffenderForm = this.fb.group({
             Name: new FormControl(this.caseBook.SelectedOffender.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validateNumber, Validators.required]),
+            Age: new FormControl(this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]),
             GenderLookupId: new FormControl(this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required),
             RelationshipWithVictimLookupId: new FormControl(this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required),
             OtherRelationship: new FormControl(this.caseBook.SelectedOffender.OtherRelationship, Validators.required)
@@ -844,19 +848,19 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
             TypesOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId.toString()),
             FrequencyOfPhyscialAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId.toString()),
-            NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
+            NumberOfYearsOfPhyscialAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
 
             TypesOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId.toString()),
             FrequencyOfEmotionalAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId.toString()),
-            NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
+            NumberOfYearsOfEmotionalAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
 
             TypesOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfSexualAbuseLookupId.toString()),
             FrequencyOfSexualAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId.toString()),
-            NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
+            NumberOfYearsOfSexualAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfSexualAbuse.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
 
             TypesOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.TypesOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.TypesOfEconomicAbuseLookupId.toString()),
             FrequencyOfEconomicAbuseLookupId: new FormControl(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId == undefined ? null : this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId.toString()),
-            NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString(), [Validators.maxLength(2), this.validateNumber]),
+            NumberOfYearsOfEconomicAbuse: new FormControl(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse == undefined ? null : this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
 
             ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString()),
             ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc)
@@ -924,8 +928,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
 
             TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
-            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validateNumber]),
-            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.validateNumber]),
+            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
+            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
 
             ReasonForClosureStatus: new FormControl(this.caseBook.Manage.ReasonForClosureStatus),
             CaseSubject: new FormControl(this.caseBook.Manage.CaseSubject),
@@ -1328,59 +1332,4 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     /* End of - Legal Case */
-
-    /*Helper Custom Validation Methods */
-
-    public validateNumber(input: AbstractControl): { valid: boolean } | null { 
-
-        if (input.value == null || input.value == "") {
-
-            return null
-        }
-        return input.value > 0 && input.value < 100 ? null : { valid: false };
-    };
-
-    public emailValidator(input: AbstractControl) {
-
-        var emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-        if (input.value == null) {
-            return null;
-        }
-
-        if (input.value != "" && (input.value.length <= 5 || !emailRegExp.test(input.value))) {
-            return { 'Please provide a valid email': true };
-        }
-
-        return null;
-    }
-
-    public numericValidator(input: AbstractControl) {
-
-        var numericPattern = /^[0-9]*$/;
-
-        if (input.value == null || input.value == "") {
-            return null;
-        }
-        if (!numericPattern.test(input.value)) {
-            return { 'Please provide a valid PIN': true };
-        }
-    }
-
-    public mobileValidator(input: AbstractControl) {
-
-        var mobilePattern = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
-
-        if (input.value == null || input.value == "") {
-            return null;
-        }
-
-        if (!mobilePattern.test(input.value)) {
-            return { 'Please provide a valid phone': true };
-        }
-
-        return null;
-    }
-
-    /*End of - Custom Validation Methods */
 }

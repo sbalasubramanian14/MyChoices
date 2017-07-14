@@ -10,6 +10,8 @@ import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import { ChartsService } from '../services/charts.services';
+import { ValidationService } from '../services/validation.service'
+
 import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { CasesDetailedComponent } from './cases.detailed';
@@ -17,7 +19,7 @@ import { CasesDetailedComponent } from './cases.detailed';
 @Component({
     templateUrl: 'cases.create.html',
     styleUrls: ['cases.create.scss'],
-    providers: [CasesDetailedComponent]
+    providers: [ValidationService]
 })
 export class CasesCreateComponent extends BaseCaseController implements OnInit {
 
@@ -27,8 +29,8 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         public chartsService: ChartsService,
         private routerObj: Router,
         public toastr: ToastsManager,
-        public casesDetailed : CasesDetailedComponent,
-        vRef: ViewContainerRef) {
+        vRef: ViewContainerRef,
+        public validationService: ValidationService) {
         super(casesService, commonService, chartsService);
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
@@ -159,12 +161,12 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                 MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId, Validators.required),
                 RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId, Validators.required),
                 Remarks: new FormControl(this.caseBook.Case.Remarks),
-                MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.casesDetailed.mobileValidator])
+                MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.validationService.mobileValidator])
             }),
             address: new FormGroup({
                 Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
                 Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-                PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.casesDetailed.numericValidator]),
+                PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.validationService.numericValidator]),
                 StateId: new FormControl(this.caseBook.SelectedAddress.StateId, Validators.required),
                 CityId: new FormControl(this.caseBook.SelectedAddress.CityId, Validators.required)
             })
