@@ -19,7 +19,6 @@ import { CasesDetailedComponent } from './cases.detailed';
 @Component({
     templateUrl: 'cases.create.html',
     styleUrls: ['cases.create.scss'],
-    providers: [ValidationService]
 })
 export class CasesCreateComponent extends BaseCaseController implements OnInit {
 

@@ -19,6 +19,8 @@ import { CasesRoutingModule } from './cases-routing.module';
 import { CasesService } from '../services/cases.services';
 import { CommonService } from '../services/common.services';
 import { ChartsService } from '../services/charts.services';
+import { ValidationService } from '../services/validation.service';
+
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { Http, RequestOptions } from '@angular/http';
@@ -56,7 +58,8 @@ import { SpinnerModule } from '../spinner/spinner.module';
     providers: [
         CasesService,
         CommonService,
-        ChartsService
+        ChartsService,
+        ValidationService
     ]
 })
 export class CasesModule { }

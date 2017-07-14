@@ -27,7 +27,6 @@ import * as moment from 'moment';
 @Component({
     templateUrl: 'cases.move.html',
     styleUrls: ['cases.move.scss'],
-    providers: [ValidationService]
 })
 export class CasesMoveComponent extends BaseCaseController implements OnInit {
 

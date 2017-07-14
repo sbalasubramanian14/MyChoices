@@ -25,7 +25,6 @@ import * as moment from 'moment';
 
 @Component({
     templateUrl: 'cases.detailed.html',
-    providers: [ValidationService],
 })
 
 export class CasesDetailedComponent extends BaseCaseController implements OnInit {
