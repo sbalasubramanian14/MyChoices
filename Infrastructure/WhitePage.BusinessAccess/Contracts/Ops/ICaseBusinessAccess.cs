@@ -9,7 +9,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);
         CaseHeader UpdateChildren(CaseBook caseBook);        
-        List<CaseHeader> GetAllCases(int pageNumber, int offset);
+        List<CaseHeader> GetAllActiveCases(int pageNumber, int offset);
         List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary);        
         int GetCasesCount();
         int GetFilteredCasesCount(int pageNumber, int offset, IDictionary<string, string> dictionary);
@@ -27,5 +27,6 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         CaseHeader UpdateFeedback(CaseBook caseBook);
         CaseHeader UpdateLegal(CaseBook caseBook);
         CaseHeader UpdateCaseStatus(CaseBook casebook);
+        bool DeleteCase(int caseId);
     }
 }

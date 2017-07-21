@@ -49,9 +49,9 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public IActionResult GetAll(int pageNumber, int offset)
+        public IActionResult GetAllActive(int pageNumber, int offset)
         {
-            var casesList = this.caseBusinessAccess.GetAllCases(pageNumber, offset);
+            var casesList = this.caseBusinessAccess.GetAllActiveCases(pageNumber, offset);
             return Ok(casesList);
         }
 
@@ -305,6 +305,14 @@ namespace WhitePage.MyWeb.UI.Controllers
 
             var updatedCase = this.caseBusinessAccess.UpdateCaseStatus(caseBook);
 
+            return Ok(updatedCase);
+        }
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult DeleteCase([FromBody] int caseId)
+        {
+            //caseBook.Case.CaseStausId = 9;
+            var updatedCase = this.caseBusinessAccess.DeleteCase(caseId);
             return Ok(updatedCase);
         }
     }

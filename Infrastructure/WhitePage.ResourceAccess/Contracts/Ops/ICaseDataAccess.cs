@@ -7,7 +7,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
     public interface ICaseDataAccess
     {
         CaseHeader SavePrimaryCase(CaseBook caseBook);
-        IQueryable<CaseHeader> GetAllCases();
+        IQueryable<CaseHeader> GetAllActiveCases();
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);
@@ -23,5 +23,6 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdateFeedback(CaseBook caseBook);
         CaseHeader UpdateLegal(CaseBook caseBook);
         CaseHeader UpdateCaseStatus(CaseBook caseBook);
+        bool DeleteCase(int caseId);
     }
 }
