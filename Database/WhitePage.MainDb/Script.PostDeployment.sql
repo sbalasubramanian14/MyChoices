@@ -195,6 +195,7 @@ BEGIN
 	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(6, 'Duplicate', 3)
 	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(7, 'Invalid', 3)
 	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(8, 'Closed - Resolved', 4)
+	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(9, 'Deleted', 0)
 END
 
 --Peacemaker
