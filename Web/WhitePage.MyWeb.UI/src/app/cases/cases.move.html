@@ -13,6 +13,45 @@
             </div>
         </form>
 
+        <form [formGroup]="unresolvedForm" *ngIf="isUnresolved">
+            <div class="centered">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-block primary-info-view">
+                                <div class="form-group">
+                                    <label for="CenterId">Case resolution log *</label>
+                                    <input [formControl]="unresolvedForm.controls['ResolutionLog']" class="form-control" maxlength="2000" />
+                                    <div>
+                                        <small *ngIf="unresolvedForm.controls['ResolutionLog'].hasError('required') && unresolvedForm.controls['ResolutionLog'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="closedForm" *ngIf="isCloseStatus">
+            <div class="centered">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-block primary-info-view">
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Reason for selected Closure status *</label>
+                                    <input [formControl]="closedForm.controls['ReasonForClosureStatus']" class="form-control" maxlength="2000" />
+                                    <div>
+                                        <small *ngIf="closedForm.controls['ReasonForClosureStatus'].hasError('required') && closedForm.controls['ReasonForClosureStatus'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <form [formGroup]="category2Form" *ngIf="isCategory2">
             <div class="centered">
                 <div class="row">
@@ -36,14 +75,6 @@
                                     <textarea [formControl]="category2Form.controls['CaseDescription']" class="form-control" maxlength="2000"></textarea>
                                     <div>
                                         <small *ngIf="category2Form.controls['CaseDescription'].hasError('required') && category2Form.controls['CaseDescription'].touched" class="mat-text-warn">Case Status is required.</small>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="CenterId">Case resolution log *</label>
-                                    <input [formControl]="category2Form.controls['ResolutionLog']" class="form-control" maxlength="2000" />
-                                    <div>
-                                        <small *ngIf="category2Form.controls['ResolutionLog'].hasError('required') && category2Form.controls['ResolutionLog'].touched" class="mat-text-warn">Field is required.</small>
                                     </div>
                                 </div>
                             </div>
@@ -320,11 +351,6 @@
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Year of marriage *</label>
                                     <input [formControl]="category4Form.controls['YearOfMarriage']" inputmode="numeric" maxlength="4" class="form-control" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="PeaceMakerId">At what age did client have her first child? *</label>
-                                    <input [formControl]="category4Form.controls['ClientAgeAtFirstChild']" inputmode="numeric" maxlength="2" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
