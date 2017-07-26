@@ -185,18 +185,29 @@ BEGIN
 END
 
 --Case Status
-IF NOT EXISTS (SELECT 1 FROM [Core].[dmnCaseStatus])
-BEGIN
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(1, 'New', 1)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(2, 'Open', 2)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(3, 'Closed-Unresolved', 2)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(4, 'Referred', 3)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(5, 'Stagnant', 3)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(6, 'Duplicate', 3)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(7, 'Invalid', 3)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(8, 'Closed - Resolved', 4)
-	INSERT INTO Core.[dmnCaseStatus] ([CaseStatusId], Title, [Level]) VALUES(9, 'Deleted', 0)
-END
+declare @caseStatusSchema TABLE
+(
+	[CaseStatusId] [tinyint] NOT NULL,
+	[Title] [varchar](200) NOT NULL,
+	[Level] [tinyint] NOT NULL,
+	[IsActive] [bit] NOT NULL
+);
+
+INSERT INTO @caseStatusSchema VALUES(1, 'New', 1, 1)
+INSERT INTO @caseStatusSchema VALUES(2, 'Open', 2, 1)
+INSERT INTO @caseStatusSchema VALUES(3, 'Closed-Unresolved', 2, 1)
+INSERT INTO @caseStatusSchema VALUES(4, 'Referred', 3, 1)
+INSERT INTO @caseStatusSchema VALUES(5, 'Stagnant', 3, 1)
+INSERT INTO @caseStatusSchema VALUES(6, 'Duplicate', 3, 1)
+INSERT INTO @caseStatusSchema VALUES(7, 'Invalid', 3, 1)
+INSERT INTO @caseStatusSchema VALUES(8, 'Closed - Resolved', 4, 1)
+INSERT INTO @caseStatusSchema VALUES(9, 'Deleted', 0, 1)
+INSERT INTO @caseStatusSchema VALUES(10, 'Referred to Legal', 5, 1)
+
+MERGE [Core].[dmnCaseStatus] T
+USING @caseStatusSchema S ON T.CaseStatusId = S.CaseStatusId
+WHEN MATCHED THEN UPDATE SET T.Title = S.Title, T.[Level] = S.[Level]
+WHEN NOT MATCHED BY TARGET THEN INSERT VALUES (S.CaseStatusId, S.Title, S.[Level], 1);
 
 --Peacemaker
 declare @peacemakerNames table
