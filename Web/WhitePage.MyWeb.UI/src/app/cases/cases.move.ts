@@ -39,6 +39,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     public unresolvedForm: FormGroup;
     public referredForm: FormGroup;
     public closedForm: FormGroup;
+    public category5Form: FormGroup;
     public router: Router;
     public isMainDataLoaded: boolean = false;
     public isPrimaryDataLoaded: boolean = false;
@@ -49,6 +50,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     public isUnresolved: boolean = false;
     public isReferred: boolean = false;
     public isCloseStatus: boolean = false;
+    public isCategory5: boolean = false;
 
     public caseStatusLookupOptionsList: Array<IOption> = [];
 
@@ -87,6 +89,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
                                 this.loadCategory2Form();
                                 this.loadCategory3Form();
                                 this.loadCategory4Form();
+                                this.loadCategory5Form();
                         });
                         break;
                     }
@@ -112,9 +115,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         var previousCaseStatusLevel = this.caseStatusesList.find(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId).Level;
         var currentCaseStatus = this.caseBook.Case.CaseStausId;
 
-        this.isUnresolved = false;
-        this.isCloseStatus = false;
-        this.isReferred = false;
+        this.setCategory();
 
         switch (currentCaseStatus) {
             case "3": {
@@ -139,24 +140,34 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         switch (previousCaseStatusLevel) {
             case 2: {
                 this.isCategory2 = true;
-                this.isCategory3 = false;
-                this.isCategory4 = false;
                 break;
             }
             case 3: {
                 this.isCategory3 = true;
-                this.isCategory2 = false;
-                this.isCategory4 = false;
                 break;
             }
             case 4: {
                 this.isCategory4 = true;
-                this.isCategory2 = false;
-                this.isCategory3 = false;
+                break;
+            }
+            case 5: {
+                this.isCategory5 = true;
                 break;
             }
             default: break;
         }
+    }
+
+    private setCategory() {
+
+        this.isCategory2 = false;
+        this.isCategory3 = false;
+        this.isCategory4 = false;
+        this.isCategory5 = false;
+
+        this.isUnresolved = false;
+        this.isCloseStatus = false;
+        this.isReferred = false;
     }
 
     private getCaseStatuses(): any {
@@ -206,6 +217,9 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         this.reasonsForAbuseLookupOptionsList = this.ParseMultiLookups("ReasonForAbuse");
         this.sourceOfCaseLookupOptionList = this.ParseLookups("SourceOfCase");
         this.typesOfCounselingLookupOptionList = this.ParseMultiLookups("TypesOfCounselling");
+
+        this.outcomeLookupOptionList = this.ParseMultiLookups("Outcome");
+        this.documentsLookupOptionList = this.ParseMultiLookups("Documents");
     }
 
     private loadClosedForm() {
@@ -364,6 +378,21 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         });
     }
 
+    private loadCategory5Form() {
+
+        this.category5Form = this.fb.group({
+            CaseNumber: [this.caseBook.Legal.CaseNumber, Validators.required],
+            Court: [this.caseBook.Legal.Court, Validators.required],
+            Prayer: [this.caseBook.Legal.Prayer, Validators.required],
+            LegalRepresentative: [this.caseBook.Legal.LegalRepresentative, Validators.required],
+
+            LegalConsentFormLookupId: [this.caseBook.Legal.LegalConsentFormLookupId == undefined ? null : this.caseBook.Legal.LegalConsentFormLookupId.toString(), Validators.required],
+            LegalActionLookupId: [this.caseBook.Legal.LegalActionLookupId == undefined ? null : this.caseBook.Legal.LegalActionLookupId.toString(), Validators.required],
+            OutcomeLookupId: [this.caseBook.Legal.OutcomeLookupId == undefined ? null : this.caseBook.Legal.OutcomeLookupId.toString(), Validators.required],
+            DocumentsLookupId: [this.caseBook.Legal.DocumentsLookupId == undefined ? null : this.caseBook.Legal.DocumentsLookupId.toString(), Validators.required]
+        });
+    }
+
     public updateCategory2() {
 
         //Case category 2
@@ -512,6 +541,33 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
             });
     }
 
+    public updateCategory5() {
+
+        this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
+
+        this.caseBook.Legal.CaseId = this.caseBook.Case.CaseId;
+
+        this.caseBook.Legal.CaseNumber = this.category5Form.controls['CaseNumber'].value;
+        this.caseBook.Legal.Court = this.category5Form.controls['Court'].value;
+        this.caseBook.Legal.Prayer = this.category5Form.controls['Prayer'].value;
+        this.caseBook.Legal.LegalRepresentative = this.category5Form.controls['LegalRepresentative'].value;
+
+        this.caseBook.Legal.LegalConsentFormLookupId = this.category5Form.controls['LegalConsentFormLookupId'].value;
+        this.caseBook.Legal.LegalActionLookupId = this.category5Form.controls['LegalActionLookupId'].value;
+
+        //this.caseBook.Legal.OutcomeLookupId = this.caseLegalForm.controls['OutcomeLookupId'].value;
+        //this.caseBook.Legal.DocumentsLookupId = this.caseLegalForm.controls['DocumentsLookupId'].value;
+
+        this.casesService
+            .updateLegal(this.caseBook).subscribe(data => {
+                this.getCaseById();
+                this.toastr.success('Case moved successfully');
+            }, (error: any) => {
+                this.toastr.error("Error while moving case, " + error);
+            });
+    }
+
     public caseStatusOptionList: Array<IOption> = [];
     public yesNoOptionsList: Array<IOption>;
     public peacemakerAssistanceOptionsList: Array<IMultiSelectOption> = [];
@@ -537,4 +593,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
     public reasonsForAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
     public sourceOfCaseLookupOptionList: Array<IOption> = [];
     public typesOfCounselingLookupOptionList: Array<IMultiSelectOption> = [];
+    public outcomeLookupOptionList: Array<IMultiSelectOption> = [];
+    public documentsLookupOptionList: Array<IMultiSelectOption> = [];
 }

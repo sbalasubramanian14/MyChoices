@@ -783,5 +783,111 @@
             </div>
         </form>
 
+        <form [formGroup]="category5Form" *ngIf="isCategory5">
+            <div class="centered">
+                <div class="row">
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Legal Data
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Case Number as per court *</label>
+                                    <input [formControl]="category5Form.controls['CaseNumber']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['CaseNumber'].hasError('required') && category5Form.controls['CaseNumber'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Court *</label>
+                                    <input [formControl]="category5Form.controls['Court']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['Court'].hasError('required') && category5Form.controls['Court'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Prayer *</label>
+                                    <input [formControl]="category5Form.controls['Prayer']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['Prayer'].hasError('required') && category5Form.controls['Prayer'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Name of legal representative *</label>
+                                    <input [formControl]="category5Form.controls['LegalRepresentative']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['LegalRepresentative'].hasError('required') && category5Form.controls['LegalRepresentative'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Has the legal consent form been signed and submitted? *</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="LegalConsentFormLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['LegalConsentFormLookupId'].hasError('required') && category5Form.controls['LegalConsentFormLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Has any legal action been taken by the client in this regard prior to approaching OPM for help? *</label>
+                                    <ng-select [options]="yesNoOptionsList"
+                                               placeholder="Select"
+                                               formControlName="LegalActionLookupId"
+                                               [allowClear]="true">
+                                    </ng-select>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['LegalActionLookupId'].hasError('required') && category5Form.controls['LegalActionLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Outcome
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Outcome *</label>
+                                    <ss-multiselect-dropdown [options]="outcomeLookupOptionList"
+                                                             formControlName="OutcomeLookupId"
+                                                             [(ngModel)]="caseBook.Legal.OutcomeLookupArray">
+                                    </ss-multiselect-dropdown>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['OutcomeLookupId'].hasError('required') && category5Form.controls['OutcomeLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">List all documents that the client has submitted</label>
+                                    <ss-multiselect-dropdown [options]="documentsLookupOptionList"
+                                                             formControlName="DocumentsLookupId"
+                                                             [(ngModel)]="caseBook.Legal.DocumentsLookupArray">
+                                    </ss-multiselect-dropdown>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['DocumentsLookupId'].hasError('required') && category5Form.controls['DocumentsLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" [disabled]="!category5Form.valid || !mainForm.valid" (click)="updateCategory5()">Update</button>
+            </div>
+        </form>
+
     </div>
 </div>
