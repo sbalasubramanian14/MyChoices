@@ -13,6 +13,26 @@
             </div>
         </form>
 
+        <form [formGroup]="referredForm" *ngIf="isReferred">
+            <div class="centered">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-block primary-info-view">
+                                <div class="form-group">
+                                    <label for="CenterId">Referred to whom *</label>
+                                    <input [formControl]="referredForm.controls['ReferredToWhom']" class="form-control" maxlength="2000" />
+                                    <div>
+                                        <small *ngIf="referredForm.controls['ReferredToWhom'].hasError('required') && referredForm.controls['ReferredToWhom'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <form [formGroup]="unresolvedForm" *ngIf="isUnresolved">
             <div class="centered">
                 <div class="row">

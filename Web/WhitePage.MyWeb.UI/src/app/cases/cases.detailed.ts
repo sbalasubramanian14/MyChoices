@@ -920,6 +920,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseManageForm = this.fb.group({
 
             CaseStatusId: new FormControl(this.caseBook.Manage.CaseStatusId == undefined ? null : this.caseBook.Manage.CaseStatusId.toString()),
+            ReferredToWhom: new FormControl(this.caseBook.Manage.ReferredToWhom),
             SourceOfCaseLookupId: new FormControl(this.caseBook.Manage.SourceOfCaseLookupId == undefined ? null : this.caseBook.Manage.SourceOfCaseLookupId.toString()),
             SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
 
@@ -939,6 +940,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public onUpdateManage() {
         this.caseBook.Manage.CaseId = this.caseBook.Case.CaseId;
         this.caseBook.Manage.CaseStatusId = this.caseManageForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.ReferredToWhom = this.caseManageForm.controls['ReferredToWhom'].value;
         this.caseBook.Manage.SourceOfCaseLookupId = this.caseManageForm.controls['SourceOfCaseLookupId'].value;
         this.caseBook.Manage.SourceOfCaseDesc = this.caseManageForm.controls['SourceOfCaseDesc'].value;
 

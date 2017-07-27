@@ -86,6 +86,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
                                 this.loadMainForm();
                                 this.loadUnresolvedForm();
                                 this.loadClosedForm();
+                                this.loadReferredForm();
                                 this.loadCategory2Form();
                                 this.loadCategory3Form();
                                 this.loadCategory4Form();
@@ -220,6 +221,12 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
 
         this.outcomeLookupOptionList = this.ParseMultiLookups("Outcome");
         this.documentsLookupOptionList = this.ParseMultiLookups("Documents");
+    }
+
+    private loadReferredForm() {
+        this.referredForm = this.fb.group({
+            ReferredToWhom: [this.caseBook.Manage.ReferredToWhom, Validators.required]
+        });
     }
 
     private loadClosedForm() {
@@ -456,6 +463,10 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
 
         if (this.isCloseStatus) {
             this.caseBook.Manage.ReasonForClosureStatus = this.closedForm.controls['ReasonForClosureStatus'].value;
+        }
+
+        if (this.isReferred) {
+            this.caseBook.Manage.ReferredToWhom = this.closedForm.controls['ReferredToWhom'].value;
         }
 
         this.casesService

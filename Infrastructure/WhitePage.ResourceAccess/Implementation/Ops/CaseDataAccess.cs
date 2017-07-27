@@ -473,6 +473,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Manage.CaseManageId,
                 caseBook.Manage.CaseId,
                 caseBook.Manage.CaseStatusId,
+                caseBook.Manage.ReferredToWhom,
 
                 caseBook.Manage.SourceOfCaseLookupId,
                 caseBook.Manage.SourceOfCaseDesc,
