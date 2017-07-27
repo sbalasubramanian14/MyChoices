@@ -178,7 +178,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
     onCaseSave() {
         this.casesService
             .addCasePrimary(this.caseBook).subscribe(data => {
-                this.router.navigate(['/cases/list']).then(() => {
+                this.router.navigate(['/cases/detailed/' + data.CaseId]).then(() => {
                     this.toastr.success(data.CaseNumber + ' has been created successfully');
                 });                
 
