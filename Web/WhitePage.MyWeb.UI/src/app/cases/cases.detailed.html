@@ -3,6 +3,8 @@
         background-color: whitesmoke;
     }
 </style>
+<my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
+
 <div class="table-responsive">
     <table class="table" *ngIf="caseBook">
         <thead>
@@ -1877,7 +1879,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Session Management</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="hideSessionModal()">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideSessionModal()" *ngIf="!saveInProgress">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -1933,7 +1935,10 @@
                                     </div>
 
                                     <div class="form-group text-center">
-                                        <button class="btn btn-primary" [disabled]="!caseSessionForm.valid" (click)="saveSession()">Save</button>
+                                        <button class="btn btn-primary" [disabled]="!caseSessionForm.valid || saveInProgress" (click)="saveSession()">Save</button>
+                                    </div>
+                                    <div *ngIf="saveInProgress" class="d-flex justify-content-center">
+                                        <i class="fa fa-spinner fa-spin fa-3x"></i>
                                     </div>
                                 </div>
                             </div>

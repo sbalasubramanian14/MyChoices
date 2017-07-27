@@ -237,6 +237,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.activatedRoute.params.subscribe((params: Params) => {
             this.selectedCaseId = params['id'];
 
+
             this.casesService
                 .GetCaseById(this.selectedCaseId)
                 .subscribe(data => {
@@ -1174,6 +1175,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.sessionsModal.hide();
     }
 
+    public saveInProgress = false;
+
     public saveSession(sessionLog: CaseSessionLog) {
         let dateObject = moment.utc(this.caseSessionForm.controls['CounselingDate'].value["date"]).subtract(1, 'months');        
         this.caseBook.SelectedSessionLog.CounselingDate = new Date(dateObject.format());
@@ -1191,11 +1194,15 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
 
+        this.saveInProgress = true;
+        this.sessionsModal.config.keyboard = false;
+
         this.casesService
             .updateSessionLog(this.caseBook).subscribe(data => {
                 this.sessionsModal.hide();
-                this.getCaseById();
+                this.saveInProgress = false;
                 this.toastr.success('Session updated successfully');
+                this.getCaseById();
 
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
