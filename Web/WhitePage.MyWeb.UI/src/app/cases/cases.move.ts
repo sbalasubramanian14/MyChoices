@@ -466,7 +466,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         }
 
         if (this.isReferred) {
-            this.caseBook.Manage.ReferredToWhom = this.closedForm.controls['ReferredToWhom'].value;
+            this.caseBook.Manage.ReferredToWhom = this.referredForm.controls['ReferredToWhom'].value;
         }
 
         this.casesService
