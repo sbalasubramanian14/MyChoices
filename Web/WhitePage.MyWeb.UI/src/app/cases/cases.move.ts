@@ -567,11 +567,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         this.caseBook.Legal.LegalConsentFormLookupId = this.category5Form.controls['LegalConsentFormLookupId'].value;
         this.caseBook.Legal.LegalActionLookupId = this.category5Form.controls['LegalActionLookupId'].value;
 
-        //this.caseBook.Legal.OutcomeLookupId = this.caseLegalForm.controls['OutcomeLookupId'].value;
-        //this.caseBook.Legal.DocumentsLookupId = this.caseLegalForm.controls['DocumentsLookupId'].value;
-
         this.casesService
-            .updateLegal(this.caseBook).subscribe(data => {
+            .updateCaseStatus(this.caseBook).subscribe(data => {
                 this.getCaseById();
                 this.toastr.success('Case moved successfully');
             }, (error: any) => {
