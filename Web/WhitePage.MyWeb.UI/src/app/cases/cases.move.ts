@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -28,7 +28,7 @@ import * as moment from 'moment';
     styleUrls: ['cases.move.scss'],
     providers: [CasesDetailedComponent]
 })
-export class CasesMoveComponent extends BaseCaseController implements OnInit {
+export class CasesMoveComponent extends BaseCaseController implements OnInit, OnDestroy {
 
     public caseBook: CaseBook;
     private selectedCaseId: number;
@@ -61,12 +61,18 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit {
         public routerObj: Router,
         public toastr: ToastsManager,
         public activatedRoute: ActivatedRoute,
-        public casesDetailed : CasesDetailedComponent) {
+        public casesDetailed: CasesDetailedComponent,
+        public vRef: ViewContainerRef) {
         super(casesService, commonService, chartsService);
 
         this.isPrimaryDataLoaded = false;
+        this.toastr.setRootViewContainerRef(vRef);
 
         this.router = routerObj;
+    }
+
+    ngOnDestroy() {
+        this.toastr.dispose();
     }
 
     ngOnInit() {
