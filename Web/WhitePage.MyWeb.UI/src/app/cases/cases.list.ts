@@ -20,8 +20,9 @@ export class CasesListComponent implements OnInit {
     public selectedCaseHeader: CaseHeader;
     public enableSpinner: boolean = true;
     public caseDictionary: any = new Object;
-    private selectedCaseId: number;
-    private caseNumber: string;
+    public selectedCaseId: number;
+    public caseNumber: string;
+
     constructor(private casesService: CasesService, private routerObj: Router,
         private authenticationService: AuthenticationService,
         public toastr: ToastsManager,
