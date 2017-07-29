@@ -1,4 +1,5 @@
-﻿<div class="row" style="justify-content: center">
+﻿<my-spinner [isRunning]="!isMainDataLoaded"></my-spinner>
+<div class="row" style="justify-content: center">
     <div class="col-md-6">
         <form [formGroup]="mainForm" *ngIf="isMainDataLoaded">
             <div class="centered">
