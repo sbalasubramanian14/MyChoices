@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Ops;
@@ -15,10 +16,10 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
 
         }
-
-        public IQueryable<CaseHeader> GetAllCases()
+        
+        public IQueryable<CaseHeader> GetAllActiveCases()
         {
-            return this.unitOfWork.DbContext.CaseHeaders.OrderByDescending(ch => ch.RegisterDate);
+            return this.unitOfWork.DbContext.CaseHeaders.Where(ch => ch.CaseStatusId!=(int)ECaseStatus.DeleteStatus).OrderByDescending(ch => ch.RegisterDate);
         }        
         
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
@@ -472,6 +473,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Manage.CaseManageId,
                 caseBook.Manage.CaseId,
                 caseBook.Manage.CaseStatusId,
+                caseBook.Manage.ReferredToWhom,
 
                 caseBook.Manage.SourceOfCaseLookupId,
                 caseBook.Manage.SourceOfCaseDesc,
@@ -636,5 +638,21 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             return updatedCase;
         }
+        public bool DeleteCase(int caseId)
+        {
+            try
+            {
+                var caseObj = this.unitOfWork.DbContext.Cases.SingleOrDefault(c => c.CaseId == caseId);
+                caseObj.CaseStausId = (int)ECaseStatus.DeleteStatus;
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+            }
+          
+            catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

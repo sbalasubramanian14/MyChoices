@@ -1,4 +1,5 @@
-﻿<div class="row" style="justify-content: center">
+﻿<my-spinner [isRunning]="!isMainDataLoaded"></my-spinner>
+<div class="row" style="justify-content: center">
     <div class="col-md-6">
         <form [formGroup]="mainForm" *ngIf="isMainDataLoaded">
             <div class="centered">
@@ -8,6 +9,65 @@
                     </ng-select>
                     <div>
                         <small *ngIf="mainForm.controls['CaseStatusId'].hasError('required') && mainForm.controls['CaseStatusId'].touched" class="mat-text-warn">Case Status is required.</small>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form [formGroup]="referredForm" *ngIf="isReferred">
+            <div class="centered">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-block primary-info-view">
+                                <div class="form-group">
+                                    <label for="CenterId">Referred to whom *</label>
+                                    <input [formControl]="referredForm.controls['ReferredToWhom']" class="form-control" maxlength="2000" />
+                                    <div>
+                                        <small *ngIf="referredForm.controls['ReferredToWhom'].hasError('required') && referredForm.controls['ReferredToWhom'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form [formGroup]="unresolvedForm" *ngIf="isUnresolved">
+            <div class="centered">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-block primary-info-view">
+                                <div class="form-group">
+                                    <label for="CenterId">Case resolution log *</label>
+                                    <input [formControl]="unresolvedForm.controls['ResolutionLog']" class="form-control" maxlength="2000" />
+                                    <div>
+                                        <small *ngIf="unresolvedForm.controls['ResolutionLog'].hasError('required') && unresolvedForm.controls['ResolutionLog'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="closedForm" *ngIf="isCloseStatus">
+            <div class="centered">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-block primary-info-view">
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Reason for selected Closure status *</label>
+                                    <input [formControl]="closedForm.controls['ReasonForClosureStatus']" class="form-control" maxlength="2000" />
+                                    <div>
+                                        <small *ngIf="closedForm.controls['ReasonForClosureStatus'].hasError('required') && closedForm.controls['ReasonForClosureStatus'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,14 +98,6 @@
                                         <small *ngIf="category2Form.controls['CaseDescription'].hasError('required') && category2Form.controls['CaseDescription'].touched" class="mat-text-warn">Case Status is required.</small>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="CenterId">Case resolution log *</label>
-                                    <input [formControl]="category2Form.controls['ResolutionLog']" class="form-control" maxlength="2000" />
-                                    <div>
-                                        <small *ngIf="category2Form.controls['ResolutionLog'].hasError('required') && category2Form.controls['ResolutionLog'].touched" class="mat-text-warn">Field is required.</small>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -71,7 +123,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">If yes, what was the outcome of that help? *</label>
+                                    <label for="CenterId">If yes, what was the outcome of that help?</label>
                                     <input [formControl]="category2Form.controls['SoughtHelpOutPut']" class="form-control" />
                                 </div>
 
@@ -116,7 +168,7 @@
                             </div>
                             <div class="card-block primary-info-view">
                                 <div class="form-group">
-                                    <label for="PrimaryEmergencyContactName">Primary Emergency Contact Name</label>
+                                    <label for="PrimaryEmergencyContactName">Primary Emergency Contact Name *</label>
                                     <input [formControl]="category2Form.controls['PrimaryEmergencyContactName']" class="form-control" />
                                     <div>
                                         <small *ngIf="category2Form.controls['PrimaryEmergencyContactName'].hasError('required') && category2Form.controls['PrimaryEmergencyContactName'].touched" class="mat-text-warn">Field is required.</small>
@@ -124,7 +176,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">Relationship to client</label>
+                                    <label for="CenterId">Relationship to client *</label>
                                     <ng-select [options]="emergencyRelationshipOptionsList" placeholder="Select" formControlName="PrimaryEmergencyRelationshipToClientLookupId" [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -133,7 +185,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">Phone number</label>
+                                    <label for="CenterId">Phone number *</label>
                                     <div class="form-group" [class.has-danger]="category2Form.controls['PrimaryEmergencyContactPhoneNumber'].invalid && category2Form.controls['PrimaryEmergencyContactPhoneNumber'].touched">
                                         <input [formControl]="category2Form.controls['PrimaryEmergencyContactPhoneNumber']" digits maxlength="14" class="form-control" />
                                         <div>
@@ -151,7 +203,7 @@
                             </div>
                             <div class="card-block primary-info-view">
                                 <div class="form-group">
-                                    <label for="CenterId">Are you suffering from any major illness?</label>
+                                    <label for="CenterId">Are you suffering from any major illness? *</label>
                                     <ng-select [options]="yesNoOptionsList" placeholder="Select" formControlName="SufferingFromAnyMajorIllnessLookupId" [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -160,12 +212,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">If yes, please specify:?</label>
+                                    <label for="CenterId">If yes, please specify</label>
                                     <input [formControl]="category2Form.controls['SufferingFromAnyMajorIllnessDesc']" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">Do you have any diagnosed psychiatric illness?</label>
+                                    <label for="CenterId">Do you have any diagnosed psychiatric illness? *</label>
                                     <ng-select [options]="yesNoOptionsList" placeholder="Select" formControlName="DiagnosedPsychiatricIllnessLookupId" [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -174,7 +226,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="CenterId">If yes, please specify:?</label>
+                                    <label for="CenterId">If yes, please specify </label>
                                     <input [formControl]="category2Form.controls['DiagnosedPsychiatricIllnessDesc']" class="form-control" />
                                 </div>
                             </div>
@@ -186,7 +238,7 @@
 
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-primary" [disabled]="!category2Form.valid || !mainForm.valid" (click)="updateCategory2()">Update</button>
+                <button class="btn btn-primary" [disabled]="!category2Form.valid || !mainForm.valid || (isCloseStatus && !closedForm.valid) || (isUnresolved && !unresolvedForm.valid)" (click)="updateCategory2()">Update</button>
             </div>
         </form>
 
@@ -239,7 +291,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    <button class="btn btn-primary" [disabled]="!mainForm.valid || !category3Form.valid" (click)="updateCategory3()">Update</button>
+                    <button class="btn btn-primary" [disabled]="!mainForm.valid || !category3Form.valid || (isReferred && !referredForm.valid) || (isCloseStatus && !closedForm.valid)" (click)="updateCategory3()">Update</button>
                 </div>
             </div>
         </form>
@@ -319,12 +371,11 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Year of marriage *</label>
-                                    <input [formControl]="category4Form.controls['YearOfMarriage']" inputmode="numeric" maxlength="4" class="form-control" />
+                                    <input [formControl]="category4Form.controls['YearOfMarriage']" digits maxlength="4" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category4Form.controls['YearOfMarriage'].hasError('required') && category4Form.controls['YearOfMarriage'].touched" class="mat-text-warn">Year is required</small>
+                                        <small *ngIf="category4Form.controls['YearOfMarriage'].dirty && category4Form.controls['YearOfMarriage'].invalid" class="mat-text-warn">Please provide a valid Year</small>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="PeaceMakerId">At what age did client have her first child? *</label>
-                                    <input [formControl]="category4Form.controls['ClientAgeAtFirstChild']" inputmode="numeric" maxlength="2" class="form-control" />
                                 </div>
 
                                 <div class="form-group">
@@ -754,6 +805,102 @@
             </div>
             <div class="form-group text-center">
                 <button class="btn btn-primary" [disabled]="!category4Form.valid || !mainForm.valid" (click)="updateCategory4()">Update</button>
+            </div>
+        </form>
+
+        <form [formGroup]="category5Form" *ngIf="isCategory5">
+            <div class="centered">
+                <div class="row">
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Legal Data
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Case Number as per court *</label>
+                                    <input [formControl]="category5Form.controls['CaseNumber']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['CaseNumber'].hasError('required') && category5Form.controls['CaseNumber'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Court *</label>
+                                    <input [formControl]="category5Form.controls['Court']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['Court'].hasError('required') && category5Form.controls['Court'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Prayer *</label>
+                                    <input [formControl]="category5Form.controls['Prayer']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['Prayer'].hasError('required') && category5Form.controls['Prayer'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="PeaceMakerId">Name of legal representative *</label>
+                                    <input [formControl]="category5Form.controls['LegalRepresentative']" class="form-control" />
+                                    <div>
+                                        <small *ngIf="category5Form.controls['LegalRepresentative'].hasError('required') && category5Form.controls['LegalRepresentative'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Has the legal consent form been signed and submitted? *</label>
+                                    <ng-select [options]="yesNoOptionsList" placeholder="Select" formControlName="LegalConsentFormLookupId" [allowClear]="true">
+                                    </ng-select>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['LegalConsentFormLookupId'].hasError('required') && category5Form.controls['LegalConsentFormLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">Has any legal action been taken by the client in this regard prior to approaching OPM for help? *</label>
+                                    <ng-select [options]="yesNoOptionsList" placeholder="Select" formControlName="LegalActionLookupId" [allowClear]="true">
+                                    </ng-select>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['LegalActionLookupId'].hasError('required') && category5Form.controls['LegalActionLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card">
+                            <div class="card-header">
+                                Outcome
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <label for="CenterId">Outcome *</label>
+                                    <ss-multiselect-dropdown [options]="outcomeLookupOptionList" formControlName="OutcomeLookupId" [(ngModel)]="caseBook.Legal.OutcomeLookupArray">
+                                    </ss-multiselect-dropdown>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['OutcomeLookupId'].hasError('required') && category5Form.controls['OutcomeLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="CenterId">List all documents that the client has submitted</label>
+                                    <ss-multiselect-dropdown [options]="documentsLookupOptionList" formControlName="DocumentsLookupId" [(ngModel)]="caseBook.Legal.DocumentsLookupArray">
+                                    </ss-multiselect-dropdown>
+                                    <div>
+                                        <small *ngIf="category5Form.controls['DocumentsLookupId'].hasError('required') && category5Form.controls['DocumentsLookupId'].touched" class="mat-text-warn">Field is required.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary" [disabled]="!category5Form.valid || !mainForm.valid" (click)="updateCategory5()">Update</button>
             </div>
         </form>
 

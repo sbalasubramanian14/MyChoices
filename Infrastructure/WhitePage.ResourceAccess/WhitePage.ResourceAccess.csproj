@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ECaseStatus.cs" />
     <Compile Include="Contracts\Core\ICommonDataAccess.cs" />
     <Compile Include="Contracts\Ops\ICaseDataAccess.cs" />
     <Compile Include="Contracts\Security\ILoginDataAccess.cs" />

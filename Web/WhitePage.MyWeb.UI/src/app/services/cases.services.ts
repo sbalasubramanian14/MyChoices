@@ -19,8 +19,8 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/SaveCasePrimary', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseHeader>response.json());
     }
 
-    public GetAll(pageNumber: number, offset: number): Observable<CaseHeader[]> {
-        return this.authHttp.get('/api/cases/GetAll', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <CaseHeader[]>response.json());
+    public GetAllActive(pageNumber: number, offset: number): Observable<CaseHeader[]> {
+        return this.authHttp.get('/api/cases/GetAllActive', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <CaseHeader[]>response.json());
     }    
 
     public GetCasesCount = (): Observable<number> => {
@@ -101,5 +101,8 @@ export class CasesService extends BaseService {
 
     public updateLegal = (caseBook: CaseBook): Observable<CaseBook> => {
         return this.authHttp.post('/api/cases/UpdateLegal', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    }
+    public deleteCase = (caseId: number): Observable<boolean> => {
+        return this.authHttp.post('/api/cases/DeleteCase', JSON.stringify(caseId), this.getRequestOptions()).map((response: Response) => <boolean>response.json());
     }
 }

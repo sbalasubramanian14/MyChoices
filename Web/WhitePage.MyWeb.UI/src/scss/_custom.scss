@@ -149,6 +149,30 @@ input:-webkit-autofill:active {
     background-color: transparent;
     border: 1px solid rgba(207, 216, 220, 0.22);
     border-radius: 6px;
+    .modal-header {
+        .modal-title {
+            font-size: 1.3em;
+        }
+
+        background-color: black;
+        border-bottom: 1px solid rgba(207, 216, 220, 0.22);
+    }
+    button.close {
+        color: white;
+    }
+
+    .card {
+        margin-bottom: 0;
+    }
+}
+.modal-delete-content {
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(207, 216, 220, 0.22);
+    border-radius: 6px;
+    width: 50%;
+    margin-left: 35%;
+    margin-top: 25%;
 
     .modal-header {
         .modal-title {
@@ -159,6 +183,13 @@ input:-webkit-autofill:active {
         border-bottom: 1px solid rgba(207, 216, 220, 0.22);
     }
 
+    .modal-delete-body {
+        padding-top: 0.8%;
+        padding-right: 0.8%;
+        padding-bottom: 0.8%;
+        padding-left: 0.8%;
+    }
+
     button.close {
         color: white;
     }
@@ -167,7 +198,6 @@ input:-webkit-autofill:active {
         margin-bottom: 0;
     }
 }
-
 
 .tab-container {
     @extend .fill-width;

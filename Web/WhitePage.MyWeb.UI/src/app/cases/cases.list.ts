@@ -14,12 +14,14 @@ import { AuthenticationService } from '../services/authentication.service';
 export class CasesListComponent implements OnInit {
     @ViewChild('moveModal')
     public moveModal: ModalDirective;
-
+    @ViewChild('deleteModal') public deleteModal: ModalDirective;
     public router: Router;
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
     public enableSpinner: boolean = true;
     public caseDictionary: any = new Object;
+    public selectedCaseId: number;
+    public caseNumber: string;
 
     constructor(private casesService: CasesService, private routerObj: Router,
         private authenticationService: AuthenticationService,
@@ -31,13 +33,15 @@ export class CasesListComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getData();
+    }
+    public getData():any {
         this.onChangeTable(this.config);
         this.getCasesCount();
     }
-
     private getAllCaseHeaders(page: any, itemsPerPage: any) {
         this.casesService
-            .GetAll(page, itemsPerPage)
+            .GetAllActive(page, itemsPerPage)
             .subscribe(data => {
                 this.casesList = [];
                 data.forEach(d => this.casesList.push(d));
@@ -311,9 +315,26 @@ export class CasesListComponent implements OnInit {
         var url = '/cases/view/' + data.row.CaseId;
         this.router.navigate([url]);
     }
-
-    public onDeleteClick(data: CaseHeader): any {
-        console.log("delete click");
-        console.log(data);
+    public hideDeleteModal(): void {
+        this.deleteModal.hide();
+    }
+    public onDeleteClick(data: any): any {
+        this.deleteModal.show();
+        this.selectedCaseId = data.row.CaseId;
+        this.caseNumber = data.row.CaseNumber;    
+       
+    }
+    public softDeleteCase(CaseId: number): any {
+        this.enableSpinner = true;
+        this.casesService.deleteCase(CaseId).subscribe(data => {
+            this.toastr.success('Case Deleted Successfully');
+            this.deleteModal.hide();
+            this.enableSpinner = false;
+            this.getData();
+        },
+            (error: any) => {
+            this.toastr.error("Error while deleting case, " + error);
+        });
     }
 }
+

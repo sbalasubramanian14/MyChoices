@@ -6,15 +6,16 @@ BEGIN
 	MERGE Ops.trCaseManage T
 	USING @caseManageType S ON T.CaseManageId = S.CaseManageId AND T.CaseId = S.CaseId
 	WHEN NOT MATCHED THEN
-		INSERT (CaseId, CaseStatusId, SourceOfCaseLookupId, SourceOfCaseDesc, TypesOfCounselingLookupId, TotalNoOfSessionsLookupId, TotalHoursSpentLookupId, ReasonForClosureStatus,
+		INSERT (CaseId, CaseStatusId, ReferredToWhom, SourceOfCaseLookupId, SourceOfCaseDesc, TypesOfCounselingLookupId, TotalNoOfSessionsLookupId, TotalHoursSpentLookupId, ReasonForClosureStatus,
 				CaseSubject, CaseDescription, RelationshipWithPMLookupId, ResolutionLog)
-		VALUES (S.CaseId, S.CaseStatusId, S.SourceOfCaseLookupId, S.SourceOfCaseDesc, S.TypesOfCounselingLookupId, S.TotalNoOfSessionsLookupId, S.TotalHoursSpentLookupId, S.ReasonForClosureStatus,
+		VALUES (S.CaseId, S.CaseStatusId, S.ReferredToWhom, S.SourceOfCaseLookupId, S.SourceOfCaseDesc, S.TypesOfCounselingLookupId, S.TotalNoOfSessionsLookupId, S.TotalHoursSpentLookupId, S.ReasonForClosureStatus,
 				S.CaseSubject, S.CaseDescription, S.RelationshipWithPMLookupId, S.ResolutionLog)
 	WHEN MATCHED THEN 
 		UPDATE 
 		SET 			
 			T.CaseStatusId = S.CaseStatusId 
 			,T.SourceOfCaseLookupId = S.SourceOfCaseLookupId 
+			,T.ReferredToWhom = S.ReferredToWhom
 			,T.SourceOfCaseDesc = S.SourceOfCaseDesc 
 			,T.TypesOfCounselingLookupId = S.TypesOfCounselingLookupId 
 			,T.TotalNoOfSessionsLookupId = S.TotalNoOfSessionsLookupId 

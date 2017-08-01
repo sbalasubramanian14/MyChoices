@@ -3,6 +3,8 @@
         background-color:whitesmoke;
     }
 </style>
+<my-spinner [isRunning]="!isPrimaryDataLoaded"></my-spinner>
+
 <div class="table-responsive">
     <table class="table" *ngIf="caseBook">
         <thead>
@@ -23,7 +25,6 @@
         </tr>
     </table>
 </div>
-
 <div class="container-fluid case-detail-container">
     <!-- regular tabs -->
     <tabset>
@@ -800,6 +801,10 @@
                                     <span>{{ (caseStatusOptionList | MatchesPipe:manageForm.CaseStatusId) }}</span>
                                 </div>
                                 <div class="form-group">
+                                    <label>If Referred, please specify referred to whom  :</label>
+                                    <span>{{ manageForm.ReferredToWhom }}</span>
+                                </div>
+                                <div class="form-group">
                                     <label>Source of case  :</label>
                                     <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:manageForm.SourceOfCaseLookupId) }}</span>
                                 </div>
@@ -822,10 +827,6 @@
                                 <div class="form-group">
                                     <label>Reason for selected Closure status  :</label>
                                     <span>{{ manageForm.TotalHoursSpentLookupId }}</span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Reason for selected Closure status  :</label>
-                                    <span>{{ manageForm.ReasonForClosureStatus }}</span>
                                 </div>
                             </div>
                         </div>

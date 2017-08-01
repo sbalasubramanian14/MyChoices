@@ -23,14 +23,14 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         Func<IQueryable<CaseHeader>, string, IEnumerable<CaseHeader>> returnDateSearchList =
             (cases, searchString) => cases.ToList().Where(s => s.RegisterDateString.ToUpper().Contains(searchString.ToUpper()));
 
-        public List<CaseHeader> GetAllCases(int pageNumber, int offset)
+        public List<CaseHeader> GetAllActiveCases(int pageNumber, int offset)
         {
-            return returnCasesList(this.caseDataAccess.GetAllCases(), pageNumber, offset);
+            return returnCasesList(this.caseDataAccess.GetAllActiveCases(), pageNumber, offset);
         }
 
         public int GetCasesCount()
         {
-            return this.caseDataAccess.GetAllCases().Count();
+            return this.caseDataAccess.GetAllActiveCases().Count();
         }
 
         public IQueryable<CaseHeader> GetFilteredData(int pageNumber, int offset, IDictionary<string, string> dictionary)
@@ -44,7 +44,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             string mobileNumberFilterString = dictionary["MobileNumber"];
 
             return
-                this.caseDataAccess.GetAllCases().
+                this.caseDataAccess.GetAllActiveCases().
                 Where(
                     s => s.CaseNumber.Contains(caseNumberFilterString) &&
                     s.ClientName.Contains(clientNameFilterString) &&
@@ -181,6 +181,10 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         public CaseHeader UpdateCaseStatus(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateCaseStatus(caseBook);
+        }
+        public bool DeleteCase(int caseId)
+        {
+            return this.caseDataAccess.DeleteCase(caseId);
         }
     }
 }
