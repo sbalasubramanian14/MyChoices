@@ -1,0 +1,32 @@
+<div class="row" *ngIf="caseBook">
+    <div class="d-flex flex-column fill-width">
+        <div class="table-responsive">
+            <table class="table" style="color  :whitesmoke">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Respect</th>
+                        <th>Feel Safe and Secure</th>
+                        <th>Counselling</th>
+                        <th>Assistance</th>
+                        <th>Recommend Fee</th>
+                        <th>Able To Improve</th>
+                        <th>OPM Team Followup</th>
+                        <th>Suggestions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let feedback of caseBook.FeedBack; let i = index">
+                        <td>{{feedback.RespectedDuringYourVisit}}</td>
+                        <td>{{feedback.FeelSafeAndSecure}}</td>
+                        <td>{{feedback.FeelThatCounselling}}</td>
+                        <td>{{feedback.AssistanceOfPeacemaker}}</td>
+                        <td>{{feedback.RecommendFreeCounselling}}</td>
+                        <td>{{feedback.AbleToImprove}}</td>
+                        <td>{{feedback.OPMTeamToFollowup}}</td>
+                        <td>{{feedback.AnySuggestions}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

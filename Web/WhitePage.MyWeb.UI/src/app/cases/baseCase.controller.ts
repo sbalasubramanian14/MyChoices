@@ -226,4 +226,47 @@ export class BaseCaseController {
         }
         return localOptionsList;
     }
+    public static staticParseLookups(lookupName: string): Array<IOption> {
+
+        var localOptionsList = new Array<IOption>();
+        var lookupsList: Array<Lookup> = [];
+        lookupsList = JSON.parse(localStorage.getItem("getAllLookups"));
+        if (lookupsList.filter(l => l.Title == lookupName) == undefined) {
+            console.log(lookupName);
+        }
+        else {
+            let testLookup = lookupsList.find(l => l.Title === lookupName);
+            if (testLookup == undefined || testLookup == null) {
+                console.log("failed - " + lookupName);
+            }
+            var lookupDetailsList = testLookup.LookupDetails;
+            for (var i = 0; i < lookupDetailsList.length; i++) {
+                localOptionsList.push({
+                    value: lookupDetailsList[i].LookupDetailId.toString(),
+                    label: lookupDetailsList[i].Value
+                });
+            }
+        }
+        return localOptionsList;
+    }
+    public static staticParseMultiLookups(lookupName: string): Array<IMultiSelectOption> {
+
+        var localOptionsList = new Array<IMultiSelectOption>();
+        var lookupsList: Array<Lookup> = [];
+        lookupsList = JSON.parse(localStorage.getItem("getAllLookups"));
+        if (lookupsList.filter(l => l.Title == lookupName) == undefined) {
+            console.log(lookupName);
+            console.log("Not Found");
+        }
+        else {
+            var lookupDetailsList = lookupsList.filter(l => l.Title == lookupName)[0].LookupDetails;
+            for (var i = 0; i < lookupDetailsList.length; i++) {
+                localOptionsList.push({
+                    id: lookupDetailsList[i].LookupDetailId,
+                    name: lookupDetailsList[i].Value
+                });
+            }
+        }
+        return localOptionsList;
+    }
 }

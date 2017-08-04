@@ -1,0 +1,64 @@
+<div class="row" *ngIf="isManagementDataLoaded">
+    <div class="col-md-6 d-flex flex-column">
+        <div class="card">
+            <div class="card-header">
+                Case Data
+            </div>
+            <div class="card-block primary-info-view">
+                <div class="form-group">
+                    <label>Status  :</label>
+                    <span>{{caseBook.CaseHeader.CaseStatus}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Source of case  :</label>
+                    <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:manageForm.SourceOfCaseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ manageForm.SourceOfCaseDesc }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Type of counseling  :</label>
+                    <span>{{ (typesOfCounselingLookupOptionList | MatchesPipe:manageForm.TypesOfCounselingLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Total no of sessions  :</label>
+                    <span>{{ manageForm.TotalNoOfSessionsLookupId }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Total hours spent  :</label>
+                    <span>{{ manageForm.TotalHoursSpentLookupId }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Reason for selected Closure status  :</label>
+                    <span>{{ manageForm.ReasonForClosureStatus }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 d-flex flex-column">
+        <div class="card">
+            <div class="card-header">
+                Other Info (1)
+            </div>
+            <div class="card-block primary-info-view">
+                <div class="form-group">
+                    <label>Subject  :</label>
+                    <span>{{ manageForm.CaseSubject }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Description  :</label>
+                    <span>{{ manageForm.CaseDescription }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Relationship with PM  :</label>
+                    <span>{{ (relationshipWithPMLookupOptionList | MatchesPipe:manageForm.RelationshipWithPMLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Case resolution log  :</label>
+                    <span>{{ manageForm.ResolutionLog }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

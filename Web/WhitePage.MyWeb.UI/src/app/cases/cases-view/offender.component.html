@@ -1,0 +1,26 @@
+<div class="row" *ngIf="caseBook">
+    <div class="d-flex flex-column fill-width">
+        <div class="table-responsive">
+            <table class="table" style="color  :whitesmoke">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age(In Years)</th>
+                        <th>Gender</th>
+                        <th>Relationship With Victim</th>
+                        <th>OtherRelationship</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let offender of caseBook.vOffender; let i = index">
+                        <td>{{offender.Name}}</td>
+                        <td>{{offender.Age}}</td>
+                        <td>{{offender.Gender}}</td>
+                        <td>{{offender.RelationshipWithVictim}}</td>
+                        <td>{{offender.OtherRelationship}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
