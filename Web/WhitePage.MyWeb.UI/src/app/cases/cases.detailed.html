@@ -1726,7 +1726,7 @@
                                         <label for="PeacemakerId">Motor Activity</label>
                                         <ss-multiselect-dropdown [options]="MentalMotorActivityLookupOptionList"
                                             formControlName="MentalMotorActivityLookupId"
-                                            [(ngModel)]="caseBook.SelectedMental.MentalMotorActivityLookuArray">
+                                            [(ngModel)]="caseBook.SelectedMental.MentalMotorActivityLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
 
@@ -1805,8 +1805,8 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Attention</label>
                                         <ss-multiselect-dropdown [options]="MentalAttentionLookupOptionList"
-                                            formControlName="MentalAttentionLookupId">
-                                            [(ngModel)]="caseBook.SelectedMental.MentalAttentionLookupArray">
+                                            formControlName="MentalAttentionLookupId"
+                                            [(ngModel)] ="caseBook.SelectedMental.MentalAttentionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
                                 </div>
@@ -1847,8 +1847,8 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Information</label>
                                         <ss-multiselect-dropdown [options]="MentalInformationLookupOptionList"
-                                            formControlName="MentalInformationLookupId">
-                                            [(ngModel)]="caseBook.SelectedMental.MentalInformationLookupArray">
+                                            formControlName="MentalInformationLookupId"
+                                            [(ngModel)] ="caseBook.SelectedMental.MentalInformationLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
 

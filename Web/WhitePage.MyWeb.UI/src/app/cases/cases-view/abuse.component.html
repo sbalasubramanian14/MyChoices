@@ -1,0 +1,125 @@
+<div class="row" *ngIf="caseBook">
+    <div class="col-md-12 d-flex flex-column">
+        <div class="card">
+            <div class="card-header">
+                Others
+            </div>
+            <div class="card-block primary-info-view">
+                <div class="form-group">
+                    <label>Do you think you are suffering from abuse?  :</label>
+                    <span>{{ (sufferingFromAbuseLookupIdLookupOptionsList | MatchesPipe:caseAbuseForm.SufferingFromAbuseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If no, please specify  :</label>
+                    <span>{{ caseAbuseForm.SufferingFromAbuseDesc }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If yes, how do you feel about the abuse?  :</label>
+                    <span>{{ (feelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FeelAboutAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>How do your parents feel about the abuse?  :</label>
+                    <span>{{ (farentsFeelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.ParentsFeelAboutAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>How do your in laws feel about the abuse?  :</label>
+                    <span>{{ (lawFeelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.LawFeelAboutAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Are there any signs of physical abuse?   :</label>
+                    <span>{{ (signsOfPhysicalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.SignsOfPhysicalAbuseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Please specify  :</label>
+                    <span>{{ caseAbuseForm.SignsOfPhysicalAbuseDesc }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Weapons used by abuser on victim  :</label>
+                    <span>{{ (weaponsUsedLookupOptionsList | MatchesPipe:caseAbuseForm.WeaponsUsedLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Please specify  :</label>
+                    <span>{{ caseAbuseForm.WeaponsUsedDesc }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="caseBook">
+    <div class="col-md-12 d-flex flex-column">
+        <div class="card">
+            <div class="card-header">
+                Others (2)
+            </div>
+            <div class="card-block primary-info-view">
+                <div class="form-group">
+                    <label>Types of physical abuse - tick all applicable situations  :</label>
+                    <span>{{ (typesOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfPhyscialAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Frequency of physical abuse  :</label>
+                    <span>{{ (frequencyOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfPhyscialAbuseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Number of years physical abuse has been occuring  :</label>
+                    <span>{{ caseAbuseForm.NumberOfYearsOfPhyscialAbuse }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Types of emotional abuse - tick all applicable situations  :</label>
+                    <span>{{ (typesOfEmotionalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEmotionalAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Frequency of emotional abuse  :</label>
+                    <span>{{ (frequencyOfEmotionalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfEmotionalAbuseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Number of years emotional abuse has been occurring  :</label>
+                    <span>{{ caseAbuseForm.NumberOfYearsOfEmotionalAbuse }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Types of sexual abuse - tick all applicable situations  :</label>
+                    <span>{{ (typesOfSexualAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfSexualAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Frequency of sexual abuse  :</label>
+                    <span>{{ (frequencyOfSexualAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfSexualAbuseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Number of years sexual abuse has been occurring  :</label>
+                    <span>{{ caseAbuseForm.NumberOfYearsOfSexualAbuse }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="caseBook">
+    <div class="col-md-12 d-flex flex-column">
+        <div class="card">
+            <div class="card-header">
+                Others (3)
+            </div>
+            <div class="card-block primary-info-view">
+                <div class="form-group">
+                    <label>Types of economic abuse - tick all applicable situations  :</label>
+                    <span>{{ (typesOfEconomicAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEconomicAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Frequency of economic abuse  :</label>
+                    <span>{{ (frequencyOfEconomicAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfEconomicAbuseLookupId) }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Number of years economic abuse has been occurring  :</label>
+                    <span>{{ caseAbuseForm.NumberOfYearsOfEconomicAbuse }}</span>
+                </div>
+                <div class="form-group">
+                    <label>Reasons for abuse from abuser side  :</label>
+                    <span>{{ (reasonsForAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.ReasonsForAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.ReasonForAbuseDesc }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

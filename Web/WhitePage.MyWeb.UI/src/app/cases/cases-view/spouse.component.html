@@ -1,0 +1,102 @@
+    <div class="row" *ngIf="isSpouseDataLoaded">
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Spouse Info
+                </div>
+                <div class="card-block primary-info-view">
+                    <div class="form-group">
+                        <label>Spouse Name  :</label>
+                        <span>{{ spouseForm.SpouseName }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse Home phone  :</label>
+                        <span>{{ spouseForm.SpouseHomePhone }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse Mobile phone  :</label>
+                        <span>{{ spouseForm.SpouseMobilePhone }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse Occupation  :</label>
+                        <span>{{ spouseForm.SpouseOccupation }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse Education  :</label>
+                        <span>{{ (spouseEducationLookupIdLookupOptionsList | MatchesPipe:spouseForm.SpouseEducationLookupId) }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Spouse Address
+                </div>
+                <div class="card-block primary-info-view">
+                    <div class="form-group">
+                        <label>Spouse's full address  :</label>
+                        <span>{{ spouseForm.SpouseAddress }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Area  :</label>
+                        <span>{{ spouseForm.Area }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>State  :</label>
+                        <span>{{ (spouseStateOptionsList | MatchesPipe:spouseForm.StateLookupId) }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>City  :</label>
+                        <span>{{ (spouseCityOptionsList | MatchesPipe:spouseForm.CityLookupId) }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>PIN  :</label>
+                        <span>{{ spouseForm.PIN }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Emergency
+                </div>
+                <div class="card-block primary-info-view">
+                    <div class="form-group">
+                        <label>Primary Emergency Contact Name  :</label>
+                        <span>{{ spouseForm.PrimaryEmergencyContactName }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Relationship to client  :</label>
+                        <span>{{ (emergencyRelationshipOptionsList | MatchesPipe:spouseForm.PrimaryEmergencyRelationshipToClientLookupId) }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number  :</label>
+                        <span>{{ spouseForm.PrimaryEmergencyContactPhoneNumber }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Address  :</label>
+                        <span>{{ spouseForm.PrimaryEmergencyContactAdress }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Secondary Emergency Contact Name  :</label>
+                        <span>{{ spouseForm.SecondaryEmergencyContactName }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Relationship to client  :</label>
+                        <span>{{ (emergencyRelationshipOptionsList | MatchesPipe:spouseForm.SecondaryEmergencyRelationshipToClientLookupId) }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number  :</label>
+                        <span>{{ spouseForm.SecondaryEmergencyContactPhoneNumber }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Address  :</label>
+                        <span>{{ spouseForm.PrimaryEmergencyContactAdress }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
