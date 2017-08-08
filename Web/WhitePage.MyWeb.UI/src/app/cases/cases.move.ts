@@ -61,8 +61,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         public routerObj: Router,
         public toastr: ToastsManager,
         public activatedRoute: ActivatedRoute,
-        public validationService : ValidationService) {
-        public vRef: ViewContainerRef) {
+        public validationService: ValidationService,
+        public vRef: ViewContainerRef,) {
         super(casesService, commonService, chartsService);
 
         this.isPrimaryDataLoaded = false;
@@ -72,7 +72,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     }
 
     ngOnDestroy() {
-        this.toastr.dispose();
+        this.toastr.clearAllToasts();
     }
 
     ngOnInit() {
@@ -320,7 +320,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required],
             OccupationLookupId: [this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString(), Validators.required],
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
-            YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.required, Validators.minLength(4), this.casesDetailed.numericValidator]],
+            YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.required, Validators.minLength(4), this.validationService.numericValidator]],
             HouseHoldIncomeLookupId: [this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString(), Validators.required],
 
             //End of household category 4
@@ -451,7 +451,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.casesService
             .updateCaseStatus(this.caseBook).subscribe(data => {
                 this.getCaseById();
-                this.toastr.success('Case moved successfully');
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
@@ -478,7 +477,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.casesService
             .updateCaseStatus(this.caseBook).subscribe(data => {
                 this.getCaseById();
-                this.toastr.success('Case moved successfully');
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
@@ -552,7 +550,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.casesService
             .updateCaseStatus(this.caseBook).subscribe(data => {
                 this.getCaseById();
-                this.toastr.success('Case moved successfully');
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
@@ -576,7 +573,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.casesService
             .updateCaseStatus(this.caseBook).subscribe(data => {
                 this.getCaseById();
-                this.toastr.success('Case moved successfully');
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
