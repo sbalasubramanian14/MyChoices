@@ -1181,18 +1181,39 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public saveInProgress = false;
 
     public saveSession(sessionLog: CaseSessionLog) {
-        let dateObject = moment.utc(this.caseSessionForm.controls['CounselingDate'].value["date"]).subtract(1, 'months');        
+
+        let counsDateObj = this.caseSessionForm.controls['CounselingDate'].value["date"];
+
+        var dateObject: any;
+
+        if (counsDateObj['year']) {
+
+            dateObject = moment.utc(counsDateObj['year'] + "-" + counsDateObj['month'] + "-" + counsDateObj['day']);
+        }
+        else{
+            dateObject = moment.utc(counsDateObj);        
+        }
+
         this.caseBook.SelectedSessionLog.CounselingDate = new Date(dateObject.format());
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
 
-        let nextScheduleObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
+        let nextSchObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
 
-        if (nextScheduleObject == null || nextScheduleObject == ""){
+        if (nextSchObject == null || nextSchObject == ""){
             this.caseBook.SelectedSessionLog.NextSessionScheduled = null;
         }
         else {
-            this.caseBook.SelectedSessionLog.NextSessionScheduled = moment.utc(nextScheduleObject["date"]).subtract(1, 'months').toDate();
+            nextSchObject = nextSchObject["date"];
+            if (nextSchObject['year']) {
+
+                dateObject = moment.utc(nextSchObject['year'] + "-" + nextSchObject['month'] + "-" + nextSchObject['day']);
+            }
+            else {
+                dateObject = moment.utc(nextSchObject);
+            }   
+
+            this.caseBook.SelectedSessionLog.NextSessionScheduled = new Date(dateObject.format());
         }
 
         this.caseBook.SelectedSessionLog.SessionNotes = this.caseSessionForm.controls['SessionNotes'].value;        
