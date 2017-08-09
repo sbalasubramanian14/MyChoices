@@ -1361,7 +1361,7 @@
                                         <label for="CenterId">Total hours spent</label>
                                         <input type="number" id="TotalHoursSpentLookupId" [formControl]="caseManageForm.controls['TotalHoursSpentLookupId']" class="form-control" />
                                         <small *ngIf="caseManageForm.controls['TotalHoursSpentLookupId'].touched && caseManageForm.controls['TotalHoursSpentLookupId'].invalid">
-                                            Value should be between 0 and 99
+                                            Value should be between 0 & 99 And two digit precision.  
                                         </small>
                                     </div>
                                 </div>

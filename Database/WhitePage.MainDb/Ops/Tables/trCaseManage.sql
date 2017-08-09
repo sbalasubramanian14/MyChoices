@@ -10,7 +10,7 @@
 
 	TypesOfCounselingLookupId varchar(100),
 	TotalNoOfSessionsLookupId INT,
-	TotalHoursSpentLookupId INT,
+	TotalHoursSpentLookupId FLOAT,
 
 	ReasonForClosureStatus varchar(2000),
 	CaseSubject varchar(2000),

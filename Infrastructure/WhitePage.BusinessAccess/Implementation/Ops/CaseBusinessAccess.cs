@@ -153,7 +153,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateAbuse(caseBook);
         }
 
-        public CaseHeader UpdateCase(CaseBook caseBook)
+        public int UpdateCase(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateCase(caseBook);
         }

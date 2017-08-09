@@ -464,39 +464,25 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public CaseHeader UpdateCase(CaseBook caseBook)
+        public int UpdateCase(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Manage;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.Manage.CaseManageId,
-                caseBook.Manage.CaseId,
-                caseBook.Manage.CaseStatusId,
-                caseBook.Manage.ReferredToWhom,
-
-                caseBook.Manage.SourceOfCaseLookupId,
-                caseBook.Manage.SourceOfCaseDesc,
-
-                caseBook.Manage.TypesOfCounselingLookupId,
-                caseBook.Manage.TotalNoOfSessionsLookupId,
-                caseBook.Manage.TotalHoursSpentLookupId,
-
-                caseBook.Manage.ReasonForClosureStatus,
-                caseBook.Manage.CaseSubject,
-                caseBook.Manage.CaseDescription,
-                caseBook.Manage.RelationshipWithPMLookupId,
-
-                caseBook.Manage.ResolutionLog
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveManage]",
-                parmsCollection
-                    .AddParm("@caseManageType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseManageType]")
-                ).First();
-
-            return updatedCase;
+            CaseManage caseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Manage.Find(caseBook.Manage.CaseManageId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.Manage);
+                }
+                else
+                    caseObj = this.unitOfWork.DbContext.Manage.Add(caseBook.Manage);
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            return caseObj.CaseManageId;
         }
 
         public CaseHeader UpdateMental(CaseBook caseBook)
@@ -630,13 +616,13 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public CaseHeader UpdateCaseStatus(CaseBook caseBook)
         {
-            var updatedCase = UpdateCase(caseBook);
-            updatedCase = UpdateHouseHold(caseBook);
-            updatedCase = UpdateSpouse(caseBook);
-            updatedCase = UpdatePhysicalHealth(caseBook);
-            updatedCase = UpdateAbuse(caseBook);
+            var updatedFlag1 = UpdateCase(caseBook);
+            var updatedFlag2 = UpdateHouseHold(caseBook);
+            updatedFlag2 = UpdateSpouse(caseBook);
+            updatedFlag2 = UpdatePhysicalHealth(caseBook);
+            updatedFlag2 = UpdateAbuse(caseBook);
 
-            return updatedCase;
+            return updatedFlag2;
         }
         public bool DeleteCase(int caseId)
         {

@@ -929,8 +929,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
 
             TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
-            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
-            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber]),
+            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(3), this.validationService.validateNumber]),
+            TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(5), this.validationService.validateNumber, this.validationService.validateTime]),
 
             ReasonForClosureStatus: new FormControl(this.caseBook.Manage.ReasonForClosureStatus),
             CaseSubject: new FormControl(this.caseBook.Manage.CaseSubject),
@@ -963,6 +963,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .updateCase(this.caseBook).subscribe(data => {                
                 //this.getCaseById();
+                this.caseBook.Manage.CaseManageId = data;
                 this.toastr.success('Case info updated successfully');
 
             }, (error: any) => {
