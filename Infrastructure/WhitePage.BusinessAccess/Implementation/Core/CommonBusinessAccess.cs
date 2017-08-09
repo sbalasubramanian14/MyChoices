@@ -59,17 +59,17 @@ namespace WhitePage.BusinessAccess.Implementation.Core
             return this.commonDataAccess.GetPeacemakerWiseChartObjectValues(id);
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(string column)
+        public List<KeyValuePair<string, KeyValuePair<string, double>>> GetCenterWiseChartObjectValues(string column)
         {
             return this.commonDataAccess.GetCenterWiseChartObjectValues(column);
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(string column)
+        public List<KeyValuePair<string, KeyValuePair<string, double>>> GetCounselorWiseChartObjectValues(string column)
         {
             return this.commonDataAccess.GetCounselorWiseChartObjectValues(column);
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(string column)
+        public List<KeyValuePair<string, KeyValuePair<string, double>>> GetPeacemakerWiseChartObjectValues(string column)
         {
             return this.commonDataAccess.GetPeacemakerWiseChartObjectValues(column);
         }

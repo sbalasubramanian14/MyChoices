@@ -53,5 +53,15 @@ export class ValidationService {
 
         return null;
     }
+    public validateTime(input: AbstractControl) {
+        var timePattern = /^\d+([/.]\d{1,2})?$/;
 
+        if (input.value == null || input.value == "") {
+            return null;
+        }
+        if (!timePattern.test(input.value)) {
+            return { 'Please provide valid Hours': true };
+        }
+        return null;
+    }
 }

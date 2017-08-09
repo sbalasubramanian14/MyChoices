@@ -128,7 +128,7 @@ namespace WhitePage.ResourceAccess.Implementation.Core
             return list.ToList();
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCenterWiseChartObjectValues(string column)
+        public List<KeyValuePair<string, KeyValuePair<string, double>>> GetCenterWiseChartObjectValues(string column)
         {
             var dbContext = this.unitOfWork.DbContext;
 
@@ -140,15 +140,15 @@ namespace WhitePage.ResourceAccess.Implementation.Core
                     .ToList()
                     .Select(
                         cl => 
-                            new KeyValuePair<string, KeyValuePair<string, int>>(
+                            new KeyValuePair<string, KeyValuePair<string, double>>(
                                 cl.Key.title,
-                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
+                                new KeyValuePair<string, double>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
 
 
             return list.ToList();
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetCounselorWiseChartObjectValues(string column)
+        public List<KeyValuePair<string, KeyValuePair<string, double>>> GetCounselorWiseChartObjectValues(string column)
         {
             var dbContext = this.unitOfWork.DbContext;
 
@@ -160,14 +160,14 @@ namespace WhitePage.ResourceAccess.Implementation.Core
                     .ToList()
                     .Select(
                         cl =>
-                            new KeyValuePair<string, KeyValuePair<string, int>>(
+                            new KeyValuePair<string, KeyValuePair<string, double>>(
                                 cl.Key.firstName,
-                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
+                                new KeyValuePair<string, double>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
 
             return list.ToList();
         }
 
-        public List<KeyValuePair<string, KeyValuePair<string, int>>> GetPeacemakerWiseChartObjectValues(string column)
+        public List<KeyValuePair<string, KeyValuePair<string, double>>> GetPeacemakerWiseChartObjectValues(string column)
         {
             var dbContext = this.unitOfWork.DbContext;
 
@@ -179,9 +179,9 @@ namespace WhitePage.ResourceAccess.Implementation.Core
                     .ToList()
                     .Select(
                         cl =>
-                            new KeyValuePair<string, KeyValuePair<string, int>>(
+                            new KeyValuePair<string, KeyValuePair<string, double>>(
                                 cl.Key.firstName,
-                                new KeyValuePair<string, int>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
+                                new KeyValuePair<string, double>(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(cl.Key.Month), cl.Sum(c => c.totalHours).GetValueOrDefault())));
             return list.ToList();
         }
 

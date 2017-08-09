@@ -83,8 +83,8 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/UpdateAbuse', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
     }
 
-    public updateCase = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdateCase', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updateCase = (caseBook: CaseBook): Observable<number> => {
+        return this.authHttp.post('/api/cases/UpdateCase', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
 
     public updateMental = (caseBook: CaseBook): Observable<CaseBook> => {

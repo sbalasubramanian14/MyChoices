@@ -23,7 +23,7 @@ namespace WhitePage.Entities.CaseManagement
         public int[] TypesOfCounselingLookupArray { get; set; }
 
         public int? TotalNoOfSessionsLookupId { get; set; }
-        public int? TotalHoursSpentLookupId { get; set; }
+        public double? TotalHoursSpentLookupId { get; set; }
 
         public string ReasonForClosureStatus { get; set; }
         public string CaseSubject { get; set; }
