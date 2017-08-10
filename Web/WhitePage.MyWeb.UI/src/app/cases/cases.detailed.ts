@@ -1139,11 +1139,11 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseBook.SelectedSessionLog.CaseId = this.caseBook.Case.CaseId;
 
         this.caseSessionForm = this.fb.group({
-            CounselingDate: new FormControl(this.caseBook.SelectedSessionLog.CounselingDate, Validators.required),
-            TypeOfCounselingLookupId: new FormControl(this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId == undefined ? null : this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId.toString(), Validators.required),
-            DurationOfSessionMIn: new FormControl(this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required),
-            NextSessionScheduled: new FormControl(this.caseBook.SelectedSessionLog.NextSessionScheduled),
-            SessionNotes: new FormControl(this.caseBook.SelectedSessionLog.SessionNotes, Validators.required)
+            CounselingDate: ['', Validators.required],
+            TypeOfCounselingLookupId: ['', Validators.required],
+            DurationOfSessionMIn: ['', Validators.required],
+            NextSessionScheduled: [''],
+            SessionNotes: ['', Validators.required]
         });
 
         this.sessionsModal.show();
