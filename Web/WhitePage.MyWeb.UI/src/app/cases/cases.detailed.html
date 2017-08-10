@@ -44,7 +44,7 @@
                                     <label for="CenterId">Center *</label>
                                     <ng-select [options]="centerOptionList"
                                                placeholder="Select Center"
-                                               formControlName="CenterId"
+                                               [formControl]="casePrimaryForm.controls['CenterId']"
                                                (selected)="onCenterSelected($event)"
                                                [allowClear]="true">
                                     </ng-select>
@@ -57,7 +57,7 @@
                                     <label for="CenterId">Peace Maker *</label>
                                     <ng-select [options]="peaceMakerOptionsList"
                                                placeholder="Select Peace Maker"
-                                               formControlName="PeaceMakerId"
+                                               [formControl]="casePrimaryForm.controls['PeaceMakerId']"
                                                [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -69,7 +69,7 @@
                                     <label for="CenterId">Counselor *</label>
                                     <ng-select [options]="counselorOptionsList"
                                                placeholder="Select Peace Maker"
-                                               formControlName="CounselorId"
+                                               [formControl]="casePrimaryForm.controls['CounselorId']"
                                                [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -132,7 +132,7 @@
                                     <label for="CenterId">Gender *</label>
                                     <ng-select [options]="genderLookupOptionsList"
                                                placeholder="Select Gender"
-                                               formControlName="GenderLookupId"
+                                               [formControl]="casePrimaryForm.controls['GenderLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -144,7 +144,7 @@
                                     <label for="CenterId">Marital Status *</label>
                                     <ng-select [options]="maritalStatusLookupOptionsList"
                                                placeholder="Select Marital Status"
-                                               formControlName="MaritalStatusLookupId"
+                                               [formControl]="casePrimaryForm.controls['MaritalStatusLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -156,7 +156,7 @@
                                     <label for="CenterId">Required Assistance *</label>
                                     <ng-select [options]="requireAssistanceLookupOptionsList"
                                                placeholder="Required Assistance"
-                                               formControlName="RequireAssistanceLookupId"
+                                               [formControl]="casePrimaryForm.controls['RequireAssistanceLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                     <div>
@@ -264,7 +264,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Any children deceased/miscarried/aborted?</label>
                                     <ss-multiselect-dropdown [options]="childrenDeceasedLookupOptionsList"
-                                                             formControlName="ChildrenDeceasedLookupId"
+                                                             [formControl]="clientAndHouseholdForm.controls['ChildrenDeceasedLookupId']"
                                                              [(ngModel)]="caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -274,7 +274,7 @@
                                     <label for="CenterId">Household income</label>
                                     <ng-select [options]="incomeLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="HouseHoldIncomeLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['HouseHoldIncomeLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -283,7 +283,7 @@
                                     <label for="CenterId">Have you sought help for your issues before coming to My Choices?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="SoughtHelpYesNoLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['SoughtHelpYesNoLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -301,7 +301,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of</label>
                                     <ss-multiselect-dropdown [options]="peacemakerAssistanceOptionsList"
-                                                             formControlName="PeacemakerAssistanceLookupId"
+                                                             [formControl]="clientAndHouseholdForm.controls['PeacemakerAssistanceLookupId']"
                                                              [(ngModel)]="caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -327,7 +327,7 @@
                                     <label for="CenterId">Would you like a Peacemaker to do follow up with you?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="PeacemakerFollowupYesNoLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['PeacemakerFollowupYesNoLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -336,7 +336,7 @@
                                     <label for="CenterId">Did the client sign the registration form?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="ClientSignedRegistrationFormYesNoLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['ClientSignedRegistrationFormYesNoLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -355,7 +355,7 @@
                                     <label for="PeaceMakerId">Religion</label>
                                     <ng-select [options]="religionOptionsList"
                                                placeholder="Select"
-                                               formControlName="ReligionLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['ReligionLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -364,7 +364,7 @@
                                     <label for="PeaceMakerId">Level of education</label>
                                     <ng-select [options]="levelOfEducationOptionsList"
                                                placeholder="Select"
-                                               formControlName="LevelOfEducationLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['LevelOfEducationLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -373,7 +373,7 @@
                                     <label for="PeaceMakerId">Vocational skills</label>
                                     <ng-select [options]="vocationalSkillsOptionsList"
                                                placeholder="Select"
-                                               formControlName="VocationalSkillsLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['VocationalSkillsLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -399,7 +399,7 @@
                                     <label for="PeaceMakerId">Occupation</label>
                                     <ng-select [options]="occupationOptionsList"
                                                placeholder="Select"
-                                               formControlName="OccupationLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['OccupationLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -413,7 +413,7 @@
                                     <label for="PeaceMakerId">Client Income</label>
                                     <ng-select [options]="incomeLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="ClientIncomeLookupId"
+                                               [formControl]="clientAndHouseholdForm.controls['ClientIncomeLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -421,7 +421,7 @@
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Household members living in same house</label>
                                     <ss-multiselect-dropdown [options]="householdMembersOptionsList"
-                                                             formControlName="HouseHoldMembersLivingLookupId"
+                                                             [formControl]="clientAndHouseholdForm.controls['HouseHoldMembersLivingLookupId']"
                                                              [(ngModel)]="caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -499,7 +499,7 @@
                                     <label for="CenterId">Spouse Education</label>
                                     <ng-select [options]="spouseEducationLookupIdLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="SpouseEducationLookupId"
+                                               [formControl]="spouseForm.controls['SpouseEducationLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -531,7 +531,7 @@
                                     <label for="CenterId">State</label>
                                     <ng-select [options]="spouseStateOptionsList"
                                                placeholder="Select State"
-                                               formControlName="StateLookupId"
+                                               [formControl]="spouseForm.controls['StateLookupId']"
                                                (selected)="onSpouseStateSelected($event)"
                                                [allowClear]="true">
                                     </ng-select>
@@ -541,7 +541,7 @@
                                     <label for="CenterId">City</label>
                                     <ng-select [options]="spouseCityOptionsList"
                                                placeholder="Select"
-                                               formControlName="CityLookupId"
+                                               [formControl]="spouseForm.controls['CityLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -578,7 +578,7 @@
                                     <label for="CenterId">Relationship to client</label>
                                     <ng-select [options]="emergencyRelationshipOptionsList"
                                                placeholder="Select"
-                                               formControlName="PrimaryEmergencyRelationshipToClientLookupId"
+                                               [formControl]="spouseForm.controls['PrimaryEmergencyRelationshipToClientLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -607,7 +607,7 @@
                                     <label for="CenterId">Relationship to client</label>
                                     <ng-select [options]="emergencyRelationshipOptionsList"
                                                placeholder="Select"
-                                               formControlName="SecondaryEmergencyRelationshipToClientLookupId"
+                                               [formControl]="spouseForm.controls['SecondaryEmergencyRelationshipToClientLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -649,7 +649,7 @@
                                     <label for="CenterId">Are you suffering from any major illness?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="SufferingFromAnyMajorIllnessLookupId"
+                                               [formControl]="physicalHealthForm.controls['SufferingFromAnyMajorIllnessLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -663,7 +663,7 @@
                                     <label for="CenterId">Do you have any diagnosed psychiatric illness?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="DiagnosedPsychiatricIllnessLookupId"
+                                               [formControl]="physicalHealthForm.controls['DiagnosedPsychiatricIllnessLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -677,7 +677,7 @@
                                     <label for="CenterId">How much do you sleep per night?</label>
                                     <ng-select [options]="sleepPerNightLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="SleepPerNightLookupId"
+                                               [formControl]="physicalHealthForm.controls['SleepPerNightLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -687,7 +687,7 @@
                                     <label for="CenterId">How is your appetite?</label>
                                     <ng-select [options]="appetiteLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="AppetiteLookupId"
+                                               [formControl]="physicalHealthForm.controls['AppetiteLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -696,7 +696,7 @@
                                     <label for="CenterId">Do you exercise?</label>
                                     <ng-select [options]="exerciseLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="ExerciseLookupId"
+                                               [formControl]="physicalHealthForm.controls['ExerciseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -705,7 +705,7 @@
                                     <label for="CenterId">Are you on any medication?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="AnyMedicationLookupId"
+                                               [formControl]="physicalHealthForm.controls['AnyMedicationLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -729,7 +729,7 @@
                                     <label for="CenterId">Are you on any substance?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="AnySubstanceLookupId"
+                                               [formControl]="physicalHealthForm.controls['AnySubstanceLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -743,7 +743,7 @@
                                     <label for="CenterId">Are you currently pregnant?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="CurrentlyPregnantLookup"
+                                               [formControl]="physicalHealthForm.controls['CurrentlyPregnantLookup']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -756,7 +756,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">What is the reason for seeking help?</label>
                                     <ss-multiselect-dropdown [options]="reasonForSeekingHelpLookupOptionsList"
-                                                             formControlName="ReasonForSeekingHelpLookupId"
+                                                            [formControl]="physicalHealthForm.controls['ReasonForSeekingHelpLookupId']"
                                                              [(ngModel)]="caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -769,7 +769,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Who is abusing you?</label>
                                     <ss-multiselect-dropdown [options]="whoIsAbusingYouLookupOptionsList"
-                                                             formControlName="WhoIsAbusingYouLookupId"
+                                                             [formControl]="physicalHealthForm.controls['WhoIsAbusingYouLookupId']"
                                                              [(ngModel)]="caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -843,7 +843,7 @@
                                     <label for="CenterId">Do you think you are suffering from abuse?</label>
                                     <ng-select [options]="sufferingFromAbuseLookupIdLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="SufferingFromAbuseLookupId"
+                                               [formControl]="caseAbuseForm.controls['SufferingFromAbuseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -856,7 +856,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">If yes, how do you feel about the abuse?</label>
                                     <ss-multiselect-dropdown [options]="feelAboutAbuseLookupOptionsList"
-                                                             formControlName="FeelAboutAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['FeelAboutAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.FeelAboutAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -865,7 +865,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">How do your parents feel about the abuse?</label>
                                     <ss-multiselect-dropdown [options]="farentsFeelAboutAbuseLookupOptionsList"
-                                                             formControlName="ParentsFeelAboutAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['ParentsFeelAboutAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.ParentsFeelAboutAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -874,7 +874,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">How do your in laws feel about the abuse?</label>
                                     <ss-multiselect-dropdown [options]="lawFeelAboutAbuseLookupOptionsList"
-                                                             formControlName="LawFeelAboutAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['LawFeelAboutAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.LawFeelAboutAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -884,7 +884,7 @@
                                     <label for="CenterId">Are there any signs of physical abuse? </label>
                                     <ng-select [options]="signsOfPhysicalAbuseLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="SignsOfPhysicalAbuseLookupId"
+                                               [formControl]="caseAbuseForm.controls['SignsOfPhysicalAbuseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -897,7 +897,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Weapons used by abuser on victim</label>
                                     <ss-multiselect-dropdown [options]="weaponsUsedLookupOptionsList"
-                                                             formControlName="WeaponsUsedLookupId"
+                                                             [formControl]="caseAbuseForm.controls['WeaponsUsedLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.WeaponsUsedLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -920,7 +920,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Types of physical abuse - tick all applicable situations</label>
                                     <ss-multiselect-dropdown [options]="typesOfPhyscialAbuseLookupOptionsList"
-                                                             formControlName="TypesOfPhyscialAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['TypesOfPhyscialAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.TypesOfPhyscialAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -931,7 +931,7 @@
                                     <label for="CenterId">Frequency of physical abuse</label>
                                     <ng-select [options]="frequencyOfPhyscialAbuseLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="FrequencyOfPhyscialAbuseLookupId"
+                                               [formControl]="caseAbuseForm.controls['FrequencyOfPhyscialAbuseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -949,7 +949,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Types of emotional abuse - tick all applicable situations</label>
                                     <ss-multiselect-dropdown [options]="typesOfEmotionalAbuseLookupOptionsList"
-                                                             formControlName="TypesOfEmotionalAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['TypesOfEmotionalAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.TypesOfEmotionalAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -959,7 +959,7 @@
                                     <label for="CenterId">Frequency of emotional abuse</label>
                                     <ng-select [options]="frequencyOfEmotionalAbuseLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="FrequencyOfEmotionalAbuseLookupId"
+                                               [formControl]="caseAbuseForm.controls['FrequencyOfEmotionalAbuseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -977,7 +977,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
                                     <ss-multiselect-dropdown [options]="typesOfSexualAbuseLookupOptionsList"
-                                                             formControlName="TypesOfSexualAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['TypesOfSexualAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.TypesOfSexualAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -987,7 +987,7 @@
                                     <label for="CenterId">Frequency of sexual abuse</label>
                                     <ng-select [options]="frequencyOfSexualAbuseLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="FrequencyOfSexualAbuseLookupId"
+                                               [formControl]="caseAbuseForm.controls['FrequencyOfSexualAbuseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1017,7 +1017,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Types of economic abuse - tick all applicable situations</label>
                                     <ss-multiselect-dropdown [options]="typesOfEconomicAbuseLookupOptionsList"
-                                                             formControlName="TypesOfEconomicAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['TypesOfEconomicAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.TypesOfEconomicAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -1027,7 +1027,7 @@
                                     <label for="CenterId">Frequency of economic abuse</label>
                                     <ng-select [options]="frequencyOfEconomicAbuseLookupOptionsList"
                                                placeholder="Select"
-                                               formControlName="FrequencyOfEconomicAbuseLookupId"
+                                               [formControl]="caseAbuseForm.controls['FrequencyOfEconomicAbuseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1045,7 +1045,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Reasons for abuse from abuser side</label>
                                     <ss-multiselect-dropdown [options]="reasonsForAbuseLookupOptionsList"
-                                                             formControlName="ReasonsForAbuseLookupId"
+                                                             [formControl]="caseAbuseForm.controls['ReasonsForAbuseLookupId']"
                                                              [(ngModel)]="caseBook.Abuse.ReasonsForAbuseLookupArray">
 
                                     </ss-multiselect-dropdown>
@@ -1248,7 +1248,7 @@
                                     <label for="CenterId">Has the legal consent form been signed and submitted?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="LegalConsentFormLookupId"
+                                               [formControl]="caseLegalForm.controls['LegalConsentFormLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1257,7 +1257,7 @@
                                     <label for="CenterId">Has any legal action been taken by the client in this regard prior to approaching OPM for help?</label>
                                     <ng-select [options]="yesNoOptionsList"
                                                placeholder="Select"
-                                               formControlName="LegalActionLookupId"
+                                               [formControl]="caseLegalForm.controls['LegalActionLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1274,7 +1274,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Outcome</label>
                                     <ss-multiselect-dropdown [options]="outcomeLookupOptionList"
-                                                             formControlName="OutcomeLookupId"
+                                                             [formControl]="caseLegalForm.controls['OutcomeLookupId']"
                                                              [(ngModel)]="caseBook.Legal.OutcomeLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -1282,7 +1282,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">List all documents that the client has submitted</label>
                                     <ss-multiselect-dropdown [options]="documentsLookupOptionList"
-                                                             formControlName="DocumentsLookupId"
+                                                             [formControl]="caseLegalForm.controls['DocumentsLookupId']"
                                                              [(ngModel)]="caseBook.Legal.DocumentsLookupArray">
                                     </ss-multiselect-dropdown>
 
@@ -1314,7 +1314,7 @@
                                     <label for="CenterId">Status</label>
                                     <ng-select [options]="caseStatusOptionList"
                                                placeholder="Select"
-                                               formControlName="CaseStatusId"
+                                               [formControl]="caseManageForm.controls['CaseStatusId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1328,7 +1328,7 @@
                                     <label for="CenterId">Source of case</label>
                                     <ng-select [options]="sourceOfCaseLookupOptionList"
                                                placeholder="Select"
-                                               formControlName="SourceOfCaseLookupId"
+                                               [formControl]="caseManageForm.controls['SourceOfCaseLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1341,7 +1341,7 @@
                                 <div class="form-group">
                                     <label for="CenterId">Type of counseling</label>
                                     <ss-multiselect-dropdown [options]="typesOfCounselingLookupOptionList"
-                                                             formControlName="TypesOfCounselingLookupId"
+                                                             [formControl]="caseManageForm.controls['TypesOfCounselingLookupId']"
                                                              [(ngModel)]="caseBook.Manage.TypesOfCounselingLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -1398,7 +1398,7 @@
                                     <label for="CenterId">Relationship with PM</label>
                                     <ng-select [options]="relationshipWithPMLookupOptionList"
                                                placeholder="Select"
-                                               formControlName="RelationshipWithPMLookupId"
+                                               [formControl]="caseManageForm.controls['RelationshipWithPMLookupId']"
                                                [allowClear]="true">
                                     </ng-select>
                                 </div>
@@ -1472,7 +1472,7 @@
                                         <label for="PeacemakerId">State *</label>
                                         <ng-select [options]="stateOptionsList"
                                                    placeholder="Select State"
-                                                   formControlName="StateId"
+                                                   [formControl]="caseAddressForm.controls['StateId']"
                                                    (selected)="onStateSelected($event)"
                                                    [allowClear]="true">
                                         </ng-select>
@@ -1485,7 +1485,7 @@
                                         <label for="CityId">City *</label>
                                         <ng-select [options]="cityOptionsList"
                                                    placeholder="Select"
-                                                   formControlName="CityId"
+                                                   [formControl]="caseAddressForm.controls['CityId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1556,7 +1556,7 @@
                                         <label for="PeacemakerId">Gender *</label>
                                         <ng-select [options]="genderLookupOptionsList"
                                                    placeholder="Select Gender"
-                                                   formControlName="GenderLookupId"
+                                                   [formControl]="caseChildrenForm.controls['GenderLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1568,7 +1568,7 @@
                                         <label for="PeacemakerId">Relationship With Abuser *</label>
                                         <ng-select [options]="relationshipWithAbuserLookupOptionsList"
                                                    placeholder="Select Relationship"
-                                                   formControlName="RelationshipWithAbuserLookupId"
+                                                   [formControl]="caseChildrenForm.controls['RelationshipWithAbuserLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1631,7 +1631,7 @@
                                         <label for="PeacemakerId">Gender *</label>
                                         <ng-select [options]="genderLookupOptionsList"
                                                    placeholder="Select Gender"
-                                                   formControlName="GenderLookupId"
+                                                   [formControl]="caseOffenderForm.controls['GenderLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1643,7 +1643,7 @@
                                         <label for="PeacemakerId">Relationship With Victim *</label>
                                         <ng-select [options]="relationshipWithVictimLookupOptionsList"
                                                    placeholder="Select Relationship"
-                                                   formControlName="RelationshipWithVictimLookupId"
+                                                   [formControl]="caseOffenderForm.controls['RelationshipWithVictimLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1693,7 +1693,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Dress</label>
                                         <ss-multiselect-dropdown [options]="MentalDressLookupOptionList"
-                                            formControlName="MentalDressLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalDressLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalDressLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1701,7 +1701,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Hygiene</label>
                                         <ss-multiselect-dropdown [options]="MentalHygieneLookupOptionList"
-                                            formControlName="MentalHygieneLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalHygieneLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalHygieneLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1709,7 +1709,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Body Type</label>
                                         <ss-multiselect-dropdown [options]="MentalBodyTypeLookupOptionList"
-                                            formControlName="MentalBodyTypeLookupId"SelectedMental
+                                            [formControl]="caseMentalForm.controls['MentalBodyTypeLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalBodyTypeLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1717,7 +1717,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Expression</label>
                                         <ss-multiselect-dropdown [options]="MentalExpressionLookupOptionList"
-                                            formControlName="MentalExpressionLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalExpressionLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalExpressionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1725,7 +1725,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Motor Activity</label>
                                         <ss-multiselect-dropdown [options]="MentalMotorActivityLookupOptionList"
-                                            formControlName="MentalMotorActivityLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalMotorActivityLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalMotorActivityLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1733,14 +1733,14 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Vocabulary</label>
                                         <ss-multiselect-dropdown [options]="MentalVocabularyLookupOptionList"
-                                            formControlName="MentalVocabularyLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalVocabularyLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalVocabularyLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
 
                                     <label for="PeacemakerId">Impulse Control</label>
                                     <ss-multiselect-dropdown [options]="MentalImpulseControlLookupOptionList"
-                                        formControlName="MentalImpulseControlLookupId"
+                                        [formControl]="caseMentalForm.controls['MentalImpulseControlLookupId']"
                                         [(ngModel)]="caseBook.SelectedMental.MentalImpulseControlLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -1757,7 +1757,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Speech</label>
                                         <ss-multiselect-dropdown [options]="MentalSpeechLookupOptionList"
-                                            formControlName="MentalSpeechLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalSpeechLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalSpeechLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1765,7 +1765,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Behaviour</label>
                                         <ss-multiselect-dropdown [options]="MentalBehaviourLookupOptionList"
-                                            formControlName="MentalBehaviourLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalBehaviourLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalBehaviourLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1773,7 +1773,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Content</label>
                                         <ss-multiselect-dropdown [options]="MentalContentLookupOptionList"
-                                            formControlName="MentalContentLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalContentLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalContentLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1781,7 +1781,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Flow Of Thought</label>
                                         <ss-multiselect-dropdown [options]="MentalFlowOfThoughtLookupOptionList"
-                                            formControlName="MentalFlowOfThoughtLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalFlowOfThoughtLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalFlowOfThoughtLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1789,7 +1789,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Orientation</label>
                                         <ss-multiselect-dropdown [options]="MentalOrientationLookupOptionList"
-                                            formControlName="MentalOrientationLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalOrientationLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalOrientationLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1797,7 +1797,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Estimated Intellect</label>
                                         <ss-multiselect-dropdown [options]="MentalEstimatedIntellectLookupOptionList"
-                                            formControlName="MentalEstimatedIntellectLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalEstimatedIntellectLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalEstimatedIntellectLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1805,7 +1805,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Attention</label>
                                         <ss-multiselect-dropdown [options]="MentalAttentionLookupOptionList"
-                                            formControlName="MentalAttentionLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalAttentionLookupId']"
                                             [(ngModel)] ="caseBook.SelectedMental.MentalAttentionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1823,7 +1823,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Insight</label>
                                         <ss-multiselect-dropdown [options]="MentalInsightLookupOptionList"
-                                            formControlName="MentalInsightLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalInsightLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalInsightLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1831,7 +1831,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Judgement</label>
                                         <ss-multiselect-dropdown [options]="MentalJudgementLookupOptionList"
-                                            formControlName="MentalJudgementLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalJudgementLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalJudgementLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1839,7 +1839,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Memory</label>
                                         <ss-multiselect-dropdown [options]="MentalMemoryLookupOptionList"
-                                            formControlName="MentalMemoryLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalMemoryLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalMemoryLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1847,7 +1847,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Information</label>
                                         <ss-multiselect-dropdown [options]="MentalInformationLookupOptionList"
-                                            formControlName="MentalInformationLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalInformationLookupId']"
                                             [(ngModel)] ="caseBook.SelectedMental.MentalInformationLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1855,7 +1855,7 @@
                                     <div class="form-group">
                                         <label for="PeacemakerId">Abstraction</label>
                                         <ss-multiselect-dropdown [options]="MentalAbstractionLookupOptionList"
-                                            formControlName="MentalAbstractionLookupId"
+                                            [formControl]="caseMentalForm.controls['MentalAbstractionLookupId']"
                                             [(ngModel)]="caseBook.SelectedMental.MentalAbstractionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -1905,7 +1905,7 @@
                                         <label for="PeacemakerId">Counseling Type *</label>
                                         <ng-select [options]="typesOfCounselingLookupOptionList_S"
                                                    placeholder="Select"
-                                                   formControlName="TypeOfCounselingLookupId"
+                                                   [formControl]="caseSessionForm.controls['TypeOfCounselingLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1974,7 +1974,7 @@
                                         <label for="PeacemakerId">Did you feel respected during your visit to the center? *</label>
                                         <ng-select [options]="RespectedDuringYourVisitLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="RespectedDuringYourVisitLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['RespectedDuringYourVisitLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1986,7 +1986,7 @@
                                         <label for="PeacemakerId">Did you feel safe and secure to discuss your situation with the counselor? *</label>
                                         <ng-select [options]="FeelSafeAndSecureLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="FeelSafeAndSecureLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['FeelSafeAndSecureLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -1998,7 +1998,7 @@
                                         <label for="PeacemakerId">Did you feel that the counselling helped you in dealing with your situation? *</label>
                                         <ng-select [options]="FeelThatCounsellingLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="FeelThatCounsellingLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['FeelThatCounsellingLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -2010,7 +2010,7 @@
                                         <label for="PeacemakerId">Did you find the assistance of the Peacemaker to be helpful? *</label>
                                         <ng-select [options]="AssistanceOfPeacemakerLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="AssistanceOfPeacemakerLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -2022,7 +2022,7 @@
                                         <label for="PeacemakerId">Would you recommend the free counselling services to a friend or relative? *</label>
                                         <ng-select [options]="RecommendFreeCounsellingLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="RecommendFreeCounsellingLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['RecommendFreeCounsellingLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -2034,7 +2034,7 @@
                                         <label for="PeacemakerId">Are you now able to improve your situation at home and with your family? *</label>
                                         <ng-select [options]="AbleToImproveLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="AbleToImproveLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['AbleToImproveLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -2046,7 +2046,7 @@
                                         <label for="PeacemakerId">Would you like the OPM team to follow-up with you after your case is closed? *</label>
                                         <ng-select [options]="OPMTeamToFollowupLookupOptionList"
                                                    placeholder="Select"
-                                                   formControlName="OPMTeamToFollowupLookupId"
+                                                   [formControl]="caseFeedbackForm.controls['OPMTeamToFollowupLookupId']"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>

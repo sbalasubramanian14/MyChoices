@@ -490,7 +490,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     }
 
     public editChild(children: vCaseChildren) {        
-        this.caseBook.SelectedChildren = new CaseAddress();
+        this.caseBook.SelectedChildren = new CaseChildren();
         this.caseBook.SelectedChildren.CaseChildrenId = children.CaseChildrenId;
         this.caseBook.SelectedChildren.CaseId = children.CaseId;
         this.caseBook.SelectedChildren.Name = children.Name;
