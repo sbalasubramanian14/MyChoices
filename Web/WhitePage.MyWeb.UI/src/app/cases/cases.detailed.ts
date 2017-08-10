@@ -929,7 +929,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
 
             TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString()),
-            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(3), this.validationService.validateNumber]),
+            TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(3), this.validationService.validateNumber, Validators.pattern("^[0-9]*$")]),
             TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(5), this.validationService.validateNumber, this.validationService.validateTime]),
 
             ReasonForClosureStatus: new FormControl(this.caseBook.Manage.ReasonForClosureStatus),
