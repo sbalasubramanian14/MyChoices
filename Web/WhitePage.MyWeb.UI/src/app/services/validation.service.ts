@@ -9,7 +9,7 @@ export class ValidationService {
 
             return null
         }
-        return input.value > 0 && input.value < 100 ? null : { valid: false };
+        return input.value > 0 && input.value < 99.01 ? null : { valid: false };
     };
 
     public emailValidator(input: AbstractControl) {
