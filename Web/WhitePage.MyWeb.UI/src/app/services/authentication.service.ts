@@ -113,17 +113,7 @@ export class AuthenticationService {
 
     public clearLocalStorage(): void {
         localStorage.clear();
-    }
-
-    private remove(): void {
-        localStorage.removeItem('id_token');
-
-        //data
-        localStorage.removeItem('getAllCenters');
-        localStorage.removeItem('getAllPeaceMakers');
-        localStorage.removeItem('getAllLookups');
-        localStorage.removeItem('getAllStates');
-    }
+    }    
 
     public getRequestOptions(): RequestOptions {
         let headers = new Headers(
