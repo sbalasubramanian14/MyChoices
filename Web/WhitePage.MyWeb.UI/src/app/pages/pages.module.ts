@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagesRoutingModule } from './pages-routing.module';
 import { Pages404Component } from './pages.404';
 import { PagesSignInComponent } from './pages.signin';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
@@ -20,7 +21,8 @@ let providers = {
         PagesRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        Angular2SocialLoginModule
+        Angular2SocialLoginModule,
+        SpinnerModule
     ],
     declarations: [Pages404Component,
         PagesSignInComponent]

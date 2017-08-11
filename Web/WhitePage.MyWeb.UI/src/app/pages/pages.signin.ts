@@ -17,6 +17,7 @@ export class PagesSignInComponent implements OnInit {
     public form: FormGroup;
     returnUrl: string;
     errorMsg: string;
+    public enableSpinner: boolean = true;
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService,
@@ -27,11 +28,12 @@ export class PagesSignInComponent implements OnInit {
         this.form = this.fb.group({
             uname: [null, Validators.compose([Validators.required])], password: [null, Validators.compose([Validators.required])]
         });
-
+        this.enableSpinner = false;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
     public user: any;
     signIn(provider: string) {
+        this.enableSpinner = true;
         this._auth.login(provider).subscribe(data => {
             this.zone.run(() => {
                 this.user = data;
@@ -40,8 +42,10 @@ export class PagesSignInComponent implements OnInit {
                     .subscribe(
                     data => {
                         this.router.navigate([this.returnUrl]);
+                        this.enableSpinner = false;
                     },
                     error => {
+                        this.enableSpinner = false;
                         console.log(error);
                         this.errorMsg = "Your identity not authorized; please contact your administrator.";
                     });
