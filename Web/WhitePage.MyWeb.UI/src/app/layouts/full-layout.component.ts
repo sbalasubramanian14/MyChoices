@@ -33,7 +33,10 @@ export class FullLayoutComponent implements OnInit {
   }
 
   clearLocalStorage(): void {
+      let tokenString = 'id_token';
+      let token = localStorage.getItem(tokenString);
       this.authenticationService.clearLocalStorage();
+      localStorage.setItem(tokenString, token);
   }
 
   ngOnInit(): void {}
