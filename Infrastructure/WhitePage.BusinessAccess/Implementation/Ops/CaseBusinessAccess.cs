@@ -163,7 +163,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateMental(caseBook);
         }
 
-        public CaseHeader UpdateSessionLog(CaseBook caseBook)
+        public vCaseSessionLog UpdateSessionLog(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateSessionLog(caseBook);
         }

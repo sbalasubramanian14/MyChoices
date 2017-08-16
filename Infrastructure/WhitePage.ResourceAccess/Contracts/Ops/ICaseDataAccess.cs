@@ -19,7 +19,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdateAbuse(CaseBook caseBook);
         int UpdateCase(CaseBook caseBook);
         vCaseMental UpdateMental(CaseBook caseBook);
-        CaseHeader UpdateSessionLog(CaseBook caseBook);
+        vCaseSessionLog UpdateSessionLog(CaseBook caseBook);
         vCaseFeedback UpdateFeedback(CaseBook caseBook);
         CaseHeader UpdateLegal(CaseBook caseBook);
         CaseHeader UpdateCaseStatus(CaseBook caseBook);

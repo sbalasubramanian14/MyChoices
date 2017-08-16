@@ -524,7 +524,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public CaseHeader UpdateSessionLog(CaseBook caseBook)
+        public vCaseSessionLog UpdateSessionLog(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
 
@@ -544,10 +544,10 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveSessionLog]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseSessionLog>("[Ops].[saveSessionLog]",
                 parmsCollection
                     .AddParm("@caseSessionLogType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSessionLogType]")
-                ).First();
+                ).Last();
 
             return updatedCase;
         }

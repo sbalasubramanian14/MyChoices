@@ -20,6 +20,6 @@ BEGIN
 
 	declare @CaseId INT;
 	select @CaseId = CaseId from @caseSessionLogType;
-	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
+	select * from [Ops].[vCaseSessionLog] where CaseId = @CaseId;
 END
 	
