@@ -11,7 +11,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);
-        CaseHeader UpdateChildren(CaseBook caseBook);
+        vCaseChildren UpdateChildren(CaseBook caseBook);
         CaseHeader UpdateHouseHold(CaseBook caseBook);
         CaseHeader UpdateSpouse(CaseBook caseBook);
         CaseHeader UpdatePhysicalHealth(CaseBook caseBook);

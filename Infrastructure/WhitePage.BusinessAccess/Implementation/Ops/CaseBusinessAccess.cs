@@ -123,7 +123,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateAddress(caseBook);
         }
 
-        public CaseHeader UpdateChildren(CaseBook caseBook)
+        public vCaseChildren UpdateChildren(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateChildren(caseBook);
         }

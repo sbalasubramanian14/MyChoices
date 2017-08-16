@@ -8,7 +8,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         CaseHeader SavePrimaryCase(CaseBook caseBook);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         CaseHeader UpdateAddress(CaseBook caseBook);
-        CaseHeader UpdateChildren(CaseBook caseBook);        
+        vCaseChildren UpdateChildren(CaseBook caseBook);        
         List<CaseHeader> GetAllActiveCases(int pageNumber, int offset);
         List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary);        
         int GetCasesCount();
