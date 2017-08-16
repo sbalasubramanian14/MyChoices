@@ -1111,8 +1111,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .updateMental(this.caseBook).subscribe(data => {
                 this.mentalModal.hide();
-
-                this.getCaseById();
+                this.caseBook.vMental.push(data);
                 this.toastr.success('Mental Status updated successfully');
 
             }, (error: any) => {
