@@ -1214,9 +1214,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             .updateSessionLog(this.caseBook).subscribe(data => {
                 this.sessionsModal.hide();
                 this.saveInProgress = false;
+                this.caseBook.SessionLog.push(data);
                 this.toastr.success('Session updated successfully');
-                this.getCaseById();
-
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
             });

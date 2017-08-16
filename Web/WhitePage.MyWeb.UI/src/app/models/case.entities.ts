@@ -446,6 +446,21 @@ export class CaseSessionLog {
     NextSessionScheduled?: Date;
     SessionNotes?: string;    
 }
+export class vCaseSessionLog {
+    constructor() { }
+
+    CaseSessionLogId?: number;
+    CaseId?: number;
+
+    CounselingDate?: Date;
+    TypeOfCounselingLookupId?: number;
+    TypeOfCounselingDesc?: string;
+
+    DurationOfSessionMIn?: number;
+    NextSessionScheduled?: Date;
+    SessionNotes?: string;
+    TypeOfCounseling?: string;
+}
 
 export class CaseFeedback {
     constructor() { }
@@ -528,7 +543,7 @@ export class CaseBook {
     vChildren: Array<vCaseChildren>;
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;
-    SessionLog: Array<CaseSessionLog>;
+    SessionLog: Array<vCaseSessionLog>;
     FeedBack: Array<vCaseFeedback>;
 
     SelectedAddress: CaseAddress;
