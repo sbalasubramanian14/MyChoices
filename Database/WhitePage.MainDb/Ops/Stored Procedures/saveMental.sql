@@ -37,6 +37,6 @@ BEGIN
 
 	declare @CaseId INT;
 	select @CaseId = CaseId from @caseMentalType;
-	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
+	select * from [Ops].[vCaseMental] where CaseId = @CaseId;
 END
 	

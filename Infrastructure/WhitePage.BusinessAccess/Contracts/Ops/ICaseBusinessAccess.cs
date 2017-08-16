@@ -22,7 +22,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         vCaseOffender UpdateOffender(CaseBook caseBook);
         CaseHeader UpdateAbuse(CaseBook caseBook);
         int UpdateCase(CaseBook caseBook);
-        CaseHeader UpdateMental(CaseBook caseBook);
+        vCaseMental UpdateMental(CaseBook caseBook);
         CaseHeader UpdateSessionLog(CaseBook caseBook);
         CaseHeader UpdateFeedback(CaseBook caseBook);
         CaseHeader UpdateLegal(CaseBook caseBook);

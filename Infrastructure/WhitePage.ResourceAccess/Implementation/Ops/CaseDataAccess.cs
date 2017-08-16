@@ -485,7 +485,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return caseObj.CaseManageId;
         }
 
-        public CaseHeader UpdateMental(CaseBook caseBook)
+        public vCaseMental UpdateMental(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
 
@@ -516,10 +516,10 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveMental]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseMental>("[Ops].[saveMental]",
                 parmsCollection
                     .AddParm("@caseMentalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseMentalType]")
-                ).First();
+                ).Last();
 
             return updatedCase;
         }
