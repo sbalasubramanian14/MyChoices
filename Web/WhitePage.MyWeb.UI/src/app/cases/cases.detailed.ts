@@ -1298,7 +1298,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .updateFeedback(this.caseBook).subscribe(data => {
                 this.feedbackModal.hide();
-                this.getCaseById();
+                this.caseBook.FeedBack.push(data);
                 this.toastr.success('Feedback updated successfully');
 
             }, (error: any) => {

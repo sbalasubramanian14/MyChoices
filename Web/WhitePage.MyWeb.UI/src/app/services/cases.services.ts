@@ -7,7 +7,7 @@ import 'rxjs/add/observable/throw';
 import { AuthHttp , JwtHelper, AuthConfig, tokenNotExpired, AUTH_PROVIDERS } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { BaseService } from './base.service';
-import { Case, CaseAddress, CaseBook, CaseHeader, vCaseChildren, vCaseOffender, vCaseMental } from '../models/case.entities';
+import { Case, CaseAddress, CaseBook, CaseHeader, vCaseChildren, vCaseOffender, vCaseMental, vCaseFeedback } from '../models/case.entities';
 
 @Injectable()
 export class CasesService extends BaseService {    
@@ -95,8 +95,8 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/UpdateSessionLog', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
     }
 
-    public updateFeedback = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdateFeedback', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updateFeedback = (caseBook: CaseBook): Observable<vCaseFeedback> => {
+        return this.authHttp.post('/api/cases/UpdateFeedback', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <vCaseFeedback>response.json());
     }
 
     public updateLegal = (caseBook: CaseBook): Observable<CaseBook> => {
