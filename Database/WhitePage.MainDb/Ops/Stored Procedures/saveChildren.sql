@@ -21,5 +21,5 @@ BEGIN
 
 	declare @CaseId INT;
 	select @CaseId = CaseId from @caseChildrenType;
-	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
+	select * from [Ops].[vCaseChildren] where CaseId = @CaseId;
 END
