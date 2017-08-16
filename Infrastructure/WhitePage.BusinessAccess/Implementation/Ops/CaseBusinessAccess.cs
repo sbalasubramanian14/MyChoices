@@ -168,7 +168,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateSessionLog(caseBook);
         }
 
-        public CaseHeader UpdateFeedback(CaseBook caseBook)
+        public vCaseFeedback UpdateFeedback(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateFeedback(caseBook);
         }

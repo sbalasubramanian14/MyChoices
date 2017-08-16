@@ -552,7 +552,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public CaseHeader UpdateFeedback(CaseBook caseBook)
+        public vCaseFeedback UpdateFeedback(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
 
@@ -575,10 +575,10 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveFeedback]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseFeedback>("[Ops].[saveFeedback]",
                 parmsCollection
                     .AddParm("@caseFeedbackType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseFeedbackType]")
-                ).First();
+                ).Last();
 
             return updatedCase;
         }

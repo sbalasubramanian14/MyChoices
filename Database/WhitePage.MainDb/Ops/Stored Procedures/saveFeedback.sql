@@ -24,5 +24,5 @@ BEGIN
 
 	declare @CaseId INT;
 	select @CaseId = CaseId from @caseFeedbackType;
-	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
+	select * from [Ops].[vCaseFeedback] where CaseId = @CaseId;
 END
