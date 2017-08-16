@@ -19,7 +19,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         CaseHeader UpdateHouseHold(CaseBook caseBook);
         CaseHeader UpdateSpouse(CaseBook caseBook);
         CaseHeader UpdatePhysicalHealth(CaseBook caseBook);
-        CaseHeader UpdateOffender(CaseBook caseBook);
+        vCaseOffender UpdateOffender(CaseBook caseBook);
         CaseHeader UpdateAbuse(CaseBook caseBook);
         int UpdateCase(CaseBook caseBook);
         CaseHeader UpdateMental(CaseBook caseBook);

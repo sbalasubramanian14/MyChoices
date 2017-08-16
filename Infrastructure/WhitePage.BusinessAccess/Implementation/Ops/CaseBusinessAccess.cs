@@ -143,7 +143,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdatePhysicalHealth(caseBook);
         }
 
-        public CaseHeader UpdateOffender(CaseBook caseBook)
+        public vCaseOffender UpdateOffender(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateOffender(caseBook);
         }

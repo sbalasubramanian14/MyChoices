@@ -19,6 +19,6 @@ BEGIN
 
 declare @CaseId INT;
 	select @CaseId = CaseId from @caseOffenderType;
-	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
+	select * from [Ops].[vCaseOffender] where CaseId = @CaseId;
 END
 	

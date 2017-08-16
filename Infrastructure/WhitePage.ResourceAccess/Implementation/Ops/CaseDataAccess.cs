@@ -387,7 +387,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public CaseHeader UpdateOffender(CaseBook caseBook)
+        public vCaseOffender UpdateOffender(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
 
@@ -405,10 +405,10 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveOffender]",
+            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseOffender>("[Ops].[saveOffender]",
                 parmsCollection
                     .AddParm("@caseOffenderType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseOffenderType]")
-                ).First();
+                ).Last();
 
             return updatedCase;
         }
