@@ -524,9 +524,8 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
 
         this.casesService
             .updateChildren(this.caseBook).subscribe(data => {                
-                this.childrenModal.hide();                
-                this.getCaseById();
-
+                this.childrenModal.hide();
+                this.caseBook.vChildren.push(data);
                 this.toastr.success('Children updated successfully');                
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
