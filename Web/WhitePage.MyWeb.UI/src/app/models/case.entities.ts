@@ -459,7 +459,6 @@ export class vCaseSessionLog {
     DurationOfSessionMIn?: number;
     NextSessionScheduled?: Date;
     SessionNotes?: string;
-    TypeOfCounseling?: string;
 }
 
 export class CaseFeedback {
@@ -543,7 +542,7 @@ export class CaseBook {
     vChildren: Array<vCaseChildren>;
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;
-    SessionLog: Array<vCaseSessionLog>;
+    vSessionLog: Array<vCaseSessionLog>;
     FeedBack: Array<vCaseFeedback>;
 
     SelectedAddress: CaseAddress;

@@ -1214,7 +1214,17 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             .updateSessionLog(this.caseBook).subscribe(data => {
                 this.sessionsModal.hide();
                 this.saveInProgress = false;
-                this.caseBook.SessionLog.push(data);
+                let selectedId = this.caseBook.SelectedSessionLog.CaseSessionLogId;
+                if (selectedId == undefined) {
+                    this.caseBook.vSessionLog.push(data);
+                    // this.caseBook.SelectedSessionLog.CaseSessionLogId = data.CaseSessionLogId
+                }
+                else {
+                    let k = this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == this.caseBook.SelectedSessionLog.CaseSessionLogId);
+                    this.caseBook.vSessionLog[k] = data;
+                  //  this.caseBook.vSessionLog[0].
+                }
+
                 this.toastr.success('Session updated successfully');
             }, (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
