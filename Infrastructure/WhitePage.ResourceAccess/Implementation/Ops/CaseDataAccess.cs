@@ -526,30 +526,28 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseSessionLog UpdateSessionLog(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
+            CaseSessionLog caseObj;
+            vCaseSessionLog vCaseObj;
+          try
+            {
+                caseObj = this.unitOfWork.DbContext.SessionLogs.Find(caseBook.SelectedSessionLog.CaseSessionLogId);
+                if(caseObj!=null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedSessionLog);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.SessionLogs.Add(caseBook.SelectedSessionLog);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vSessionLog.Find(caseObj.CaseSessionLogId);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
 
-            var caseChildrenTable = UserDefinedTableTypes.SessionLog;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedSessionLog.CaseSessionLogId,
-                caseBook.SelectedSessionLog.CaseId,
-
-                caseBook.SelectedSessionLog.CounselingDate,
-                caseBook.SelectedSessionLog.TypeOfCounselingLookupId,
-
-                caseBook.SelectedSessionLog.TypeOfCounselingDesc,
-                caseBook.SelectedSessionLog.DurationOfSessionMIn,
-
-                caseBook.SelectedSessionLog.NextSessionScheduled,
-                caseBook.SelectedSessionLog.SessionNotes
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseSessionLog>("[Ops].[saveSessionLog]",
-                parmsCollection
-                    .AddParm("@caseSessionLogType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSessionLogType]")
-                ).Last();
-
-            return updatedCase;
+            return vCaseObj;
         }
 
         public vCaseFeedback UpdateFeedback(CaseBook caseBook)
