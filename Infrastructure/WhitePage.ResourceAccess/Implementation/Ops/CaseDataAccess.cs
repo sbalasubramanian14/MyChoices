@@ -552,33 +552,28 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseFeedback UpdateFeedback(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
+            CaseFeedback caseObj;
+            vCaseFeedback vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Feedback.Find(caseBook.SelectedFeedback.CaseFeedbackId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedFeedback);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Feedback.Add(caseBook.SelectedFeedback);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vFeedback.Find(caseObj.CaseFeedbackId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
-            var caseChildrenTable = UserDefinedTableTypes.Feedback;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedFeedback.CaseFeedbackId,
-                caseBook.SelectedFeedback.CaseId,
-
-                caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId,
-                caseBook.SelectedFeedback.FeelSafeAndSecureLookupId,
-
-                caseBook.SelectedFeedback.FeelThatCounsellingLookupId,
-                caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId,
-
-                caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId,
-                caseBook.SelectedFeedback.AbleToImproveLookupId,
-
-                caseBook.SelectedFeedback.OPMTeamToFollowupLookupId,
-                caseBook.SelectedFeedback.AnySuggestions
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseFeedback>("[Ops].[saveFeedback]",
-                parmsCollection
-                    .AddParm("@caseFeedbackType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseFeedbackType]")
-                ).Last();
-
-            return updatedCase;
+            return vCaseObj;
         }
 
         public CaseHeader UpdateLegal(CaseBook caseBook)
