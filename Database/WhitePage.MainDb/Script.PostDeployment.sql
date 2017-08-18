@@ -795,7 +795,7 @@ INSERT INTO @lookupDetails VALUES(6, 'Religion',				346, 'Jain'					,	5,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				347, 'Buddhist'				,	6,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				348, 'Atheist'				,	7,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				349, 'Agnostic'				,	8,1)
---INSERT INTO @lookupDetails VALUES(6, 'Religion',				350, 'Atheist'				,	9,1)
+INSERT INTO @lookupDetails VALUES(6, 'Religion',				350, 'Sikh'				,	9,1)
 
 INSERT INTO @lookupDetails VALUES(19, 'Substance',		351, 'Drugs'		,	1,1)
 INSERT INTO @lookupDetails VALUES(19, 'Substance',		352, 'Alchohol'		,	2,1)
