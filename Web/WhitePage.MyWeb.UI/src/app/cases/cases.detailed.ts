@@ -1214,14 +1214,14 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             .updateSessionLog(this.caseBook).subscribe(data => {
                 this.sessionsModal.hide();
                 this.saveInProgress = false;
-                let selectedId = this.caseBook.SelectedSessionLog.CaseSessionLogId;
-                if (selectedId == undefined) {
+                let selectedSessionId = this.caseBook.SelectedSessionLog.CaseSessionLogId;
+                if (selectedSessionId == undefined) {
                     this.caseBook.vSessionLog.push(data);
                     // this.caseBook.SelectedSessionLog.CaseSessionLogId = data.CaseSessionLogId
                 }
                 else {
-                    let k = this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == this.caseBook.SelectedSessionLog.CaseSessionLogId);
-                    this.caseBook.vSessionLog[k] = data;
+                    let vSessionLogId = this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == this.caseBook.SelectedSessionLog.CaseSessionLogId);
+                    this.caseBook.vSessionLog[vSessionLogId] = data;
                   //  this.caseBook.vSessionLog[0].
                 }
 
@@ -1307,7 +1307,16 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .updateFeedback(this.caseBook).subscribe(data => {
                 this.feedbackModal.hide();
-                this.caseBook.FeedBack.push(data);
+                let selectedFeedbackId = this.caseBook.SelectedFeedback.CaseFeedbackId;
+                if (selectedFeedbackId == undefined)
+                {
+                    this.caseBook.FeedBack.push(data);
+                }
+                else
+                {
+                    let vFeedBackId = this.caseBook.FeedBack.findIndex(feedBack => feedBack.CaseFeedbackId == this.caseBook.SelectedFeedback.CaseFeedbackId);
+                    this.caseBook.FeedBack[vFeedBackId] = data;
+                }
                 this.toastr.success('Feedback updated successfully');
 
             }, (error: any) => {
