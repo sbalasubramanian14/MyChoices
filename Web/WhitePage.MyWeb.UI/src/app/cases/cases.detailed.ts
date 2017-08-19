@@ -797,7 +797,15 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.casesService
             .updateOffender(this.caseBook).subscribe(data => {
                 this.offenderModal.hide();
-                this.caseBook.vOffender.push(data);
+                let selectedOffenderId = this.caseBook.SelectedOffender.CaseOffenderId;
+                if (selectedOffenderId == undefined)
+                {
+                    this.caseBook.vOffender.push(data);
+                }
+                else {
+                    let vOffenderId = this.caseBook.vOffender.findIndex(offender => offender.CaseOffenderId == this.caseBook.SelectedOffender.CaseOffenderId);
+                    this.caseBook.vOffender[vOffenderId] = data;
+                }
                 this.toastr.success('Offender updated successfully');
 
             }, (error: any) => {
