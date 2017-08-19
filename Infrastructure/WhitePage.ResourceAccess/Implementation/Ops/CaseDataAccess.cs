@@ -389,28 +389,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseOffender UpdateOffender(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Offender;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedOffender.CaseOffenderId,
-                caseBook.SelectedOffender.CaseId,
-
-                caseBook.SelectedOffender.Name,
-                caseBook.SelectedOffender.Age,
-
-                caseBook.SelectedOffender.GenderLookupId,
-                caseBook.SelectedOffender.RelationshipWithVictimLookupId,
-                caseBook.SelectedOffender.OtherRelationship
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseOffender>("[Ops].[saveOffender]",
-                parmsCollection
-                    .AddParm("@caseOffenderType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseOffenderType]")
-                ).Last();
-
-            return updatedCase;
+            CaseOffender caseObj;
+            vCaseOffender vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Offenders.Find(caseBook.SelectedOffender.CaseOffenderId);
+                if(caseObj!=null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedOffender);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Offenders.Add(caseBook.SelectedOffender);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vOffenders.Find(caseObj.CaseOffenderId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return vCaseObj;
         }
 
         public CaseHeader UpdateAbuse(CaseBook caseBook)
