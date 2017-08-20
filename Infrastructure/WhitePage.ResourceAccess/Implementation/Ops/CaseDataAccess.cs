@@ -486,41 +486,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseMental UpdateMental(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Mental;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedMental.CaseMentalId,
-                caseBook.SelectedMental.CaseId,
-
-                caseBook.SelectedMental.MentalDressLookupId,
-                caseBook.SelectedMental.MentalHygieneLookupId,
-                caseBook.SelectedMental.MentalBodyTypeLookupId,
-                caseBook.SelectedMental.MentalExpressionLookupId,
-                caseBook.SelectedMental.MentalMotorActivityLookupId,
-                caseBook.SelectedMental.MentalVocabularyLookupId,
-                caseBook.SelectedMental.MentalImpulseControlLookupId,
-                caseBook.SelectedMental.MentalSpeechLookupId,
-                caseBook.SelectedMental.MentalBehaviourLookupId,
-                caseBook.SelectedMental.MentalContentLookupId,
-                caseBook.SelectedMental.MentalFlowOfThoughtLookupId,
-                caseBook.SelectedMental.MentalOrientationLookupId,
-                caseBook.SelectedMental.MentalEstimatedIntellectLookupId,
-                caseBook.SelectedMental.MentalAttentionLookupId,
-                caseBook.SelectedMental.MentalInsightLookupId,
-                caseBook.SelectedMental.MentalJudgementLookupId,
-                caseBook.SelectedMental.MentalMemoryLookupId,
-                caseBook.SelectedMental.MentalInformationLookupId,
-                caseBook.SelectedMental.MentalAbstractionLookupId,
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseMental>("[Ops].[saveMental]",
-                parmsCollection
-                    .AddParm("@caseMentalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseMentalType]")
-                ).Last();
-
-            return updatedCase;
+            CaseMental caseObj;
+            vCaseMental vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Mental.Find(caseBook.SelectedMental.CaseMentalId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedMental);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Mental.Add(caseBook.SelectedMental);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vMental.Find(caseObj.CaseMentalId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return vCaseObj;
         }
 
         public vCaseSessionLog UpdateSessionLog(CaseBook caseBook)
