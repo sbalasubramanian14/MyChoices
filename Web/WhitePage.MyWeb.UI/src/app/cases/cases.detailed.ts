@@ -79,6 +79,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public reasonForSeekingHelpLookupOptionsList: Array<IMultiSelectOption> = [];
     public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
 
+    private myDatePickerOptions: IMyOptions = {
+        editableDateField: false,
+    };
     constructor(public fb: FormBuilder,
         public casesService: CasesService,
         public commonService: CommonService,
@@ -89,9 +92,9 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         public activatedRoute: ActivatedRoute,
         public validationService: ValidationService) {
         super(casesService, commonService, chartsService);
-
+        
         this.isPrimaryDataLoaded = false;
-
+        
         this.router = routerObj;
         this.toastr.setRootViewContainerRef(vRef);
 
@@ -1207,11 +1210,11 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
     public saveSession(sessionLog: CaseSessionLog) {
 
         let counsDateObj = this.caseSessionForm.controls['CounselingDate'].value;
-
+       
         this.caseBook.SelectedSessionLog.CounselingDate = this.returnDate(counsDateObj);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
         this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
-
+        
         let nextSchObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
 
         if (nextSchObject == null || nextSchObject == ""){
