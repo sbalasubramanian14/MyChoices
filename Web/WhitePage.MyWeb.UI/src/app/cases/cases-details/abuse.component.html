@@ -1,0 +1,237 @@
+<form [formGroup]="caseAbuseForm" *ngIf="isAbuseDataLoaded">
+    <div class="row" *ngIf="caseBook">
+
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Others
+                </div>
+
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="CenterId">Do you think you are suffering from abuse?</label>
+                        <ng-select [options]="sufferingFromAbuseLookupIdLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="caseAbuseForm.controls['SufferingFromAbuseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If no, please specify</label>
+                        <input [formControl]="caseAbuseForm.controls['SufferingFromAbuseDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, how do you feel about the abuse?</label>
+                        <ss-multiselect-dropdown [options]="feelAboutAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['FeelAboutAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.FeelAboutAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">How do your parents feel about the abuse?</label>
+                        <ss-multiselect-dropdown [options]="farentsFeelAboutAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['ParentsFeelAboutAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.ParentsFeelAboutAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">How do your in laws feel about the abuse?</label>
+                        <ss-multiselect-dropdown [options]="lawFeelAboutAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['LawFeelAboutAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.LawFeelAboutAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Are there any signs of physical abuse? </label>
+                        <ng-select [options]="signsOfPhysicalAbuseLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="caseAbuseForm.controls['SignsOfPhysicalAbuseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, Please specify</label>
+                        <input [formControl]="caseAbuseForm.controls['SignsOfPhysicalAbuseDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Weapons used by abuser on victim</label>
+                        <ss-multiselect-dropdown [options]="weaponsUsedLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['WeaponsUsedLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.WeaponsUsedLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+                    <div class="form-group">
+                        <label for="CenterId">If others, Please specify</label>
+                        <input [formControl]="caseAbuseForm.controls['WeaponsUsedDesc']" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Others (2)
+                </div>
+                <div class="card-block">
+                    <div class="form-group">
+                        <label for="CenterId">Types of physical abuse - tick all applicable situations</label>
+                        <ss-multiselect-dropdown [options]="typesOfPhyscialAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['TypesOfPhyscialAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.TypesOfPhyscialAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Frequency of physical abuse</label>
+                        <ng-select [options]="frequencyOfPhyscialAbuseLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="caseAbuseForm.controls['FrequencyOfPhyscialAbuseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Number of years physical abuse has been occuring</label>
+                        <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].touched">
+                            <input type="number" id="NumberOfYearsOfPhyscialAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse']" class="form-control" />
+                            <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].invalid">
+                                Value should be between 0 and 99
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Types of emotional abuse - tick all applicable situations</label>
+                        <ss-multiselect-dropdown [options]="typesOfEmotionalAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['TypesOfEmotionalAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.TypesOfEmotionalAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Frequency of emotional abuse</label>
+                        <ng-select [options]="frequencyOfEmotionalAbuseLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="caseAbuseForm.controls['FrequencyOfEmotionalAbuseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Number of years emotional abuse has been occurring</label>
+                        <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].touched">
+                            <input type="number" id="NumberOfYearsOfEmotionalAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse']" class="form-control" />
+                            <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].invalid">
+                                Value should be between 0 and 99
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Types of sexual abuse - tick all applicable situations</label>
+                        <ss-multiselect-dropdown [options]="typesOfSexualAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['TypesOfSexualAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.TypesOfSexualAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Frequency of sexual abuse</label>
+                        <ng-select [options]="frequencyOfSexualAbuseLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="caseAbuseForm.controls['FrequencyOfSexualAbuseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="CenterId">Number of years sexual abuse has been occurring</label>
+                        <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].touched">
+                            <input type="number" id="NumberOfYearsOfSexualAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse']" class="form-control" />
+                            <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].invalid">
+                                Value should be between 0 and 99
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Others (3)
+                </div>
+
+                <div class="card-block">
+                    <div class="form-group">
+                        <label for="CenterId">Types of economic abuse - tick all applicable situations</label>
+                        <ss-multiselect-dropdown [options]="typesOfEconomicAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['TypesOfEconomicAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.TypesOfEconomicAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Frequency of economic abuse</label>
+                        <ng-select [options]="frequencyOfEconomicAbuseLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="caseAbuseForm.controls['FrequencyOfEconomicAbuseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Number of years economic abuse has been occurring</label>
+                        <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].touched">
+                            <input type="number" id="NumberOfYearsOfEconomicAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse']" class="form-control" />
+                            <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].invalid">
+                                Value should be between 0 and 99
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Reasons for abuse from abuser side</label>
+                        <ss-multiselect-dropdown [options]="reasonsForAbuseLookupOptionsList"
+                                                 [formControl]="caseAbuseForm.controls['ReasonsForAbuseLookupId']"
+                                                 [(ngModel)]="caseBook.Abuse.ReasonsForAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If other, please specify</label>
+                        <input [formControl]="caseAbuseForm.controls['ReasonForAbuseDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" [disabled]="!caseAbuseForm.valid" (click)="onUpdateAbuse()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

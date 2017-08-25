@@ -1,0 +1,120 @@
+<form [formGroup]="caseManageForm" *ngIf="isManageDataLoaded">
+    <div class="row">
+        <div class="col-md-6 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Case Data
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="CenterId">Status</label>
+                        <ng-select [options]="caseStatusOptionList"
+                                   placeholder="Select"
+                                   [formControl]="caseManageForm.controls['CaseStatusId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">If Referred, please specify referred to whom</label>
+                        <input [formControl]="caseManageForm.controls['ReferredToWhom']" class="form-control" maxlength="2000" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Source of case</label>
+                        <ng-select [options]="sourceOfCaseLookupOptionList"
+                                   placeholder="Select"
+                                   [formControl]="caseManageForm.controls['SourceOfCaseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">If other, please specify</label>
+                        <input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" maxlength="2000" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Type of counseling</label>
+                        <ss-multiselect-dropdown [options]="typesOfCounselingLookupOptionList"
+                                                 [formControl]="caseManageForm.controls['TypesOfCounselingLookupId']"
+                                                 [(ngModel)]="caseBook.Manage.TypesOfCounselingLookupArray">
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group" [class.has-danger]="caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid && caseManageForm.controls['TotalNoOfSessionsLookupId'].touched">
+                            <label for="CenterId">Total no of sessions</label>
+                            <input type="number" id="TotalNoOfSessionsLookupId" [formControl]="caseManageForm.controls['TotalNoOfSessionsLookupId']" class="form-control" />
+                            <small *ngIf="caseManageForm.controls['TotalNoOfSessionsLookupId'].touched && caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid">
+                                Value should be between 0 & 99 And Non-Fractional.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group" [class.has-danger]="caseManageForm.controls['TotalHoursSpentLookupId'].invalid && caseManageForm.controls['TotalHoursSpentLookupId'].touched">
+                            <label for="CenterId">Total hours spent</label>
+                            <input type="number" id="TotalHoursSpentLookupId" [formControl]="caseManageForm.controls['TotalHoursSpentLookupId']" class="form-control" />
+                            <small *ngIf="caseManageForm.controls['TotalHoursSpentLookupId'].touched && caseManageForm.controls['TotalHoursSpentLookupId'].invalid">
+                                Value should be between 0 & 99 And two digit precision.
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Reason for selected Closure status</label>
+                        <input [formControl]="caseManageForm.controls['ReasonForClosureStatus']" class="form-control" maxlength="2000" />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column">
+
+            <div class="card">
+                <div class="card-header">
+                    Other Info (1)
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Subject</label>
+                        <input [formControl]="caseManageForm.controls['CaseSubject']" class="form-control" maxlength="2000" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Description</label>
+                        <textarea [formControl]="caseManageForm.controls['CaseDescription']" class="form-control" maxlength="2000"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Relationship with PM</label>
+                        <ng-select [options]="relationshipWithPMLookupOptionList"
+                                   placeholder="Select"
+                                   [formControl]="caseManageForm.controls['RelationshipWithPMLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Case resolution log</label>
+                        <input [formControl]="caseManageForm.controls['ResolutionLog']" class="form-control" maxlength="2000" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" [disabled]="!caseManageForm.valid" (click)="onUpdateManage()">Update</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</form>

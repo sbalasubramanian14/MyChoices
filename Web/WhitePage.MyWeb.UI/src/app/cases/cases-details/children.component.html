@@ -1,0 +1,105 @@
+<div class="row" *ngIf="caseBook">
+    <div class="d-flex flex-column fill-width">
+        <div class="add-new-button-container">
+            <button class="btn btn-primary" (click)="addNewChild()">Add New Children &nbsp;<i class="fa fa-plus"></i></button>
+        </div>
+        <div class="table-responsive">
+            <table class="table" style="color:whitesmoke">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age(In Years)</th>
+                        <th>Gender</th>
+                        <th>Relationship With Abuser</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let children of caseBook.vChildren; let i = index">
+                        <td>{{children.Name}}</td>
+                        <td>{{children.Age}}</td>
+                        <td>{{children.Gender}}</td>
+                        <td>{{children.Relation}}</td>
+                        <td class="text-right">
+                            <button class="btn btn-link" (click)="editChild(children)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" bsModal #childrenModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Case Children</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildrenModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="caseChildrenForm" *ngIf="caseChildrenForm">
+                    <div class="row">
+                        <div class="col-md-12 d-flex flex-column">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Manage Children Details
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Name *</label>
+                                        <textarea placeholder="Name" [formControl]="caseChildrenForm.controls['Name']" class="form-control"></textarea>
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['Name'].hasError('required') && caseChildrenForm.controls['Name'].touched" class="mat-text-warn">Name is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Age *</label>
+                                        <div class="form-group" [class.has-danger]="caseChildrenForm.controls['Age'].invalid && caseChildrenForm.controls['Age'].touched">
+                                            <input type="number" id="Age" [formControl]="caseChildrenForm.controls['Age']" class="form-control" />
+                                            <small *ngIf="caseChildrenForm.controls['Age'].touched && caseChildrenForm.controls['Age'].invalid">
+                                                Value should be between 0 and 99
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Gender *</label>
+                                        <ng-select [options]="genderLookupOptionsList"
+                                                   placeholder="Select Gender"
+                                                   [formControl]="caseChildrenForm.controls['GenderLookupId']"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['GenderLookupId'].hasError('required') && caseChildrenForm.controls['GenderLookupId'].touched" class="mat-text-warn">Gender is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="PeacemakerId">Relationship With Abuser *</label>
+                                        <ng-select [options]="relationshipWithAbuserLookupOptionsList"
+                                                   placeholder="Select Relationship"
+                                                   [formControl]="caseChildrenForm.controls['RelationshipWithAbuserLookupId']"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseChildrenForm.controls['RelationshipWithAbuserLookupId'].hasError('required') && caseChildrenForm.controls['RelationshipWithAbuserLookupId'].touched" class="mat-text-warn">Relation is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-primary" [disabled]="!caseChildrenForm.valid" (click)="saveChildren()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

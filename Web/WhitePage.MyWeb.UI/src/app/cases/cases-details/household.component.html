@@ -1,0 +1,200 @@
+<form [formGroup]="clientAndHouseholdForm" *ngIf="isHouseHoldDataLoaded">
+    <div class="row">
+
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Family
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="CenterId">Any children deceased/miscarried/aborted?</label>
+                        <ss-multiselect-dropdown [options]="childrenDeceasedLookupOptionsList"
+                                                 [formControl]="clientAndHouseholdForm.controls['ChildrenDeceasedLookupId']"
+                                                 [(ngModel)]="caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Household income</label>
+                        <ng-select [options]="incomeLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['HouseHoldIncomeLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Have you sought help for your issues before coming to My Choices?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['SoughtHelpYesNoLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">yes, specify</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['SoughtHelpDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, what was the outcome of that help?</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['SoughtHelpOutPut']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If you would like Operation Peacemaker to assist you with your current domestic violence situation, please select the services you would make use of</label>
+                        <ss-multiselect-dropdown [options]="peacemakerAssistanceOptionsList"
+                                                 [formControl]="clientAndHouseholdForm.controls['PeacemakerAssistanceLookupId']"
+                                                 [(ngModel)]="caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray">
+
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If other, please specify</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['PeacemakerAssistanceDesc']" class="form-control" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Family (2)
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="CenterId">Would you like a Peacemaker to do follow up with you?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['PeacemakerFollowupYesNoLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Did the client sign the registration form?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['ClientSignedRegistrationFormYesNoLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group" [class.has-danger]="clientAndHouseholdForm.controls['ClientEmailId'].invalid && clientAndHouseholdForm.controls['ClientEmailId'].touched">
+                            <label for="PeaceMakerId">Client's Email</label>
+                            <input type="email" id="ClientEmailId" [formControl]="clientAndHouseholdForm.controls['ClientEmailId']" inputmode="email" class="form-control" />
+                            <small *ngIf="clientAndHouseholdForm.controls['ClientEmailId'].dirty && clientAndHouseholdForm.controls['ClientEmailId'].invalid">
+                                Please provide a valid email
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Religion</label>
+                        <ng-select [options]="religionOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['ReligionLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Level of education</label>
+                        <ng-select [options]="levelOfEducationOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['LevelOfEducationLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Vocational skills</label>
+                        <ng-select [options]="vocationalSkillsOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['VocationalSkillsLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">If other Vocational skills, please specify:</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['VocationalSkillsDesc']" class="form-control" />
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Family (3)
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Occupation</label>
+                        <ng-select [options]="occupationOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['OccupationLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">If self-employed or employed, please specify:</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['OccupationDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Client Income</label>
+                        <ng-select [options]="incomeLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="clientAndHouseholdForm.controls['ClientIncomeLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Household members living in same house</label>
+                        <ss-multiselect-dropdown [options]="householdMembersOptionsList"
+                                                 [formControl]="clientAndHouseholdForm.controls['HouseHoldMembersLivingLookupId']"
+                                                 [(ngModel)]="caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupArray">
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">Year of marriage</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['YearOfMarriage']" digits maxlength="4" class="form-control" />
+                        <small *ngIf="clientAndHouseholdForm.controls['YearOfMarriage'].dirty && clientAndHouseholdForm.controls['YearOfMarriage'].invalid">
+                            Please provide a valid year
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PeaceMakerId">At what age did client have her first child?</label>
+                        <input [formControl]="clientAndHouseholdForm.controls['ClientAgeAtFirstChild']" digits maxlength="2" class="form-control" />
+                        <small *ngIf="clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].dirty && clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].invalid">
+                            Please provide a valid age
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" [disabled]="!clientAndHouseholdForm.valid" (click)="onUpdateHouseHoldInfo()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

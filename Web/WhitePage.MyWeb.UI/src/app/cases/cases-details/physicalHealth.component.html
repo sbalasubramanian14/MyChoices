@@ -1,0 +1,151 @@
+<form [formGroup]="physicalHealthForm" *ngIf="isPhysicalHealthDataLoaded">
+    <div class="row">
+        <div class="col-md-6 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Health
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="CenterId">Are you suffering from any major illness?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['SufferingFromAnyMajorIllnessLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, please specify:?</label>
+                        <input [formControl]="physicalHealthForm.controls['SufferingFromAnyMajorIllnessDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Do you have any diagnosed psychiatric illness?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['DiagnosedPsychiatricIllnessLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, please specify:?</label>
+                        <input [formControl]="physicalHealthForm.controls['DiagnosedPsychiatricIllnessDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">How much do you sleep per night?</label>
+                        <ng-select [options]="sleepPerNightLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['SleepPerNightLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="CenterId">How is your appetite?</label>
+                        <ng-select [options]="appetiteLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['AppetiteLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Do you exercise?</label>
+                        <ng-select [options]="exerciseLookupOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['ExerciseLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Are you on any medication?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['AnyMedicationLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, what medication:?</label>
+                        <input [formControl]="physicalHealthForm.controls['AnyMedicationDesc']" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Health (1)
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="CenterId">Are you on any substance?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['AnySubstanceLookupId']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Please specify:</label>
+                        <input [formControl]="physicalHealthForm.controls['AnySubstanceDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Are you currently pregnant?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   [formControl]="physicalHealthForm.controls['CurrentlyPregnantLookup']"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If yes, give details:</label>
+                        <input [formControl]="physicalHealthForm.controls['CurrentlyPregnantDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">What is the reason for seeking help?</label>
+                        <ss-multiselect-dropdown [options]="reasonForSeekingHelpLookupOptionsList"
+                                                 [formControl]="physicalHealthForm.controls['ReasonForSeekingHelpLookupId']"
+                                                 [(ngModel)]="caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray">
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If other, please specify</label>
+                        <input [formControl]="physicalHealthForm.controls['ReasonForSeekingHelpDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">Who is abusing you?</label>
+                        <ss-multiselect-dropdown [options]="whoIsAbusingYouLookupOptionsList"
+                                                 [formControl]="physicalHealthForm.controls['WhoIsAbusingYouLookupId']"
+                                                 [(ngModel)]="caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray">
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CenterId">If others, please specify </label>
+                        <input [formControl]="physicalHealthForm.controls['WhoIsAbusingYouDesc']" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="onUpdatePhysicalHealth()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
