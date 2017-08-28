@@ -591,7 +591,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
             ClientIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()),
             HouseHoldMembersLivingLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()),
-            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.validationService.numericValidator]),
+            YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage, [this.validationService.validateNumber]),
             ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateNumber])
         });
     }
