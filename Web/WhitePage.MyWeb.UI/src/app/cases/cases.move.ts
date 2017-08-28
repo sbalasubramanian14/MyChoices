@@ -320,7 +320,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required],
             OccupationLookupId: [this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString(), Validators.required],
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
-            YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.required, Validators.minLength(4), this.validationService.numericValidator]],
+            YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.required, this.validationService.validateNumber]],
             HouseHoldIncomeLookupId: [this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString(), Validators.required],
 
             //End of household category 4
