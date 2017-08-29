@@ -90,7 +90,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         public toastr: ToastsManager,
         public vRef: ViewContainerRef,
         public activatedRoute: ActivatedRoute,
-        public validationService: ValidationService) {
+        private validationService: ValidationService) {
         super(casesService, commonService, chartsService);
         
         this.isPrimaryDataLoaded = false;
@@ -1158,7 +1158,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseSessionForm = this.fb.group({
             CounselingDate: ['', Validators.required],
             TypeOfCounselingLookupId: ['', Validators.required],
-            DurationOfSessionMIn: ['', Validators.required],
+            DurationOfSessionMin: ['', Validators.required],
             NextSessionScheduled: [''],
             SessionNotes: ['', Validators.required]
         });
@@ -1180,7 +1180,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
         this.caseSessionForm = this.fb.group({
             CounselingDate: new FormControl(this.caseBook.SelectedSessionLog.CounselingDate, Validators.required),
             TypeOfCounselingLookupId: new FormControl(this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId == undefined ? null : this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId.toString(), Validators.required),
-            DurationOfSessionMIn: new FormControl(this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required),
+            DurationOfSessionMin: new FormControl(this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required),
             NextSessionScheduled: new FormControl(this.caseBook.SelectedSessionLog.NextSessionScheduled),
             SessionNotes: new FormControl(this.caseBook.SelectedSessionLog.SessionNotes, Validators.required)
         });
@@ -1213,7 +1213,7 @@ export class CasesDetailedComponent extends BaseCaseController implements OnInit
        
         this.caseBook.SelectedSessionLog.CounselingDate = this.returnDate(counsDateObj);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
-        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMin'].value;
         
         let nextSchObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
 
