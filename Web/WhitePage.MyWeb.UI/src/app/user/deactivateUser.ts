@@ -17,11 +17,13 @@ import { User } from '../models/entities';
 
 export class DeactivateUserComponent {
 
-    
+    @ViewChild('deactivateModal')
+    public deactivateModal: ModalDirective;
     public enableSpinner: boolean = true;
     public userList: User[] = [];
     public userDictionary: any = new Object;
-    
+    public selectedUserId: number;
+    public selectedUserName: string;    
 
     public rows: Array<any> = [];
     public columns: Array<any> = [
@@ -263,5 +265,29 @@ export class DeactivateUserComponent {
                     this.changeFilteredData(this.page, this.itemsPerPage, config);
                 })
         }
+    }
+
+    public hideDeactivateModal(): void {
+        this.deactivateModal.hide();
+    }
+
+    public onDeleteClick(data: any): any {
+        this.deactivateModal.show();
+        this.selectedUserId = data.row.UserId;
+        this.selectedUserName = data.row.UserName;
+
+    }
+
+    public softDeleteUser(CaseId: number): any {
+        this.enableSpinner = true;
+        this.authenticationService.deactivateUser(CaseId).subscribe(data => {
+            this.toastr.success('User Deactivated Successfully');
+            this.deactivateModal.hide();
+            this.enableSpinner = false;
+            this.getData();
+        },
+            (error: any) => {
+                this.toastr.error("Error while deactivating user, " + error);
+            });
     }
 }

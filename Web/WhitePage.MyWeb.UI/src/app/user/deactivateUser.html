@@ -19,3 +19,33 @@
         </pagination>
     </div>
 </div>
+<div class="modal fade" bsModal #deactivateModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-delete-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Deactivate User</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideDeactivateModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-delete-body">
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-column">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+                                Are you sure you want to deactivate the User {{selectedUserName}} ?
+                            </div>
+                            <div class="card-block">
+                                <div class="form-group text-center">
+                                    <button class="btn btn-primary" (click)="softDeleteUser(this.selectedUserId)">Deactivate User</button>
+                                    <button class="btn btn-primary" (click)="hideDeactivateModal()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
