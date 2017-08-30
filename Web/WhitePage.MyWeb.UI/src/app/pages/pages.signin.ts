@@ -10,7 +10,8 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
     selector: 'app-signin',
-    templateUrl: './pages.signin.html'
+    templateUrl: './pages.signin.html',
+    styleUrls:['./signin.scss']
 })
 export class PagesSignInComponent implements OnInit {
 
