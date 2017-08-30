@@ -56,5 +56,12 @@ namespace WhitePage.ResourceAccess.Implementation.Security
                     .AddParm("@lastName", SqlDbType.VarChar, lastName)
                 ).ToList();
         }
+        public int DeactivateUser(int userId)
+        {
+            var caseObj = this.unitOfWork.DbContext.User.Find(userId);
+            caseObj.IsActive =0;
+            int flag = this.unitOfWork.DbContext.SaveChanges();
+            return 1;
+        }
     }
 }
