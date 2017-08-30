@@ -3,6 +3,7 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using WhitePage.Entities.CaseManagement;
+using WhitePage.Entities.Security;
 using WhitePage.ResourceAccess.Contracts.Core;
 using System.Globalization;
 using System.Linq.Expressions;
@@ -299,6 +300,11 @@ namespace WhitePage.ResourceAccess.Implementation.Core
             var result = q.GroupBy(c => new { lambda1 }).ToList();
 
             return null;
+        }
+       
+        public IQueryable<User> GetAllActiveUsers()
+        {
+            return this.unitOfWork.DbContext.User.Where(user => user.IsActive != 0).OrderBy(user => user.UserId);
         }
     }
 }
