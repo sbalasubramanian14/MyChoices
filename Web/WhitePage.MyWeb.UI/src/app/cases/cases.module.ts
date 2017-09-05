@@ -1,12 +1,14 @@
+//core libraries
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppModule } from '../app.module';
-
+//third-party libraries
 import { SelectModule, IOption } from 'ng-select';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+
+import { AppModule } from '../app.module';
 import { MatchesPipe } from '../pipes/Matches.Pipe'
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
@@ -30,6 +32,8 @@ import { Ng2TableModule } from '../directives/customTable/ng-table-module';
 import { MyDatePickerModule } from 'mydatepicker';
 
 import { SpinnerModule } from '../spinner/spinner.module';
+
+//view case components
 import { PrimaryInfoComponent } from './cases-view/primaryInfo.component'
 import { ChildrenComponent } from './cases-view/children.component'
 import { HouseholdComponent } from './cases-view/household.component'
@@ -43,20 +47,30 @@ import { FeedbackComponent } from './cases-view/feedback.component'
 import { LegalComponent } from './cases-view/legal.component'
 import { ManagementComponent } from './cases-view/management.component'
 
+//edit case components
+import { PrimaryCaseComponent } from './cases-details/primary_case.component'
+import { ChildrenCaseComponent } from './cases-details/children_case.component'
+import { HouseholdCaseComponent } from './cases-details/household_case.component'
+import { SpouseCaseComponent } from './cases-details/spouse_case.component'
+import { PhysicalHealthCaseComponent } from './cases-details/physicalHealth_case.component'
+import { OffenderCaseComponent } from './cases-details/offender_case.component'
+import { AbuseCaseComponent } from './cases-details/abuse_case.component'
+import { SessionsCaseComponent } from './cases-details/sessions_case.component'
+import { MentalCaseComponent } from './cases-details/mental_case.component'
+import { FeedbackCaseComponent } from './cases-details/feedback_case.component'
+import { LegalCaseComponent } from './cases-details/legal_case.component'
+import { ManageCaseComponent } from './cases-details/manage_case.component'
+
 @NgModule({
     imports: [
-        CommonModule,
+        SharedModule,
         CasesRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
         TabsModule.forRoot(),
-        SelectModule,
         ModalModule.forRoot(),
         PaginationModule.forRoot(),
         TooltipModule.forRoot(),
         Ng2TableModule,
         ToastModule.forRoot(),
-        MultiselectDropdownModule,
         MyDatePickerModule,
         SpinnerModule,
     ],
@@ -78,7 +92,20 @@ import { ManagementComponent } from './cases-view/management.component'
         MentalComponent,
         FeedbackComponent,
         LegalComponent,
-        ManagementComponent],
+        ManagementComponent,
+        PrimaryCaseComponent,
+        ChildrenCaseComponent,
+        HouseholdCaseComponent,
+        SpouseCaseComponent,
+        PhysicalHealthCaseComponent,
+        OffenderCaseComponent,
+        AbuseCaseComponent,
+        SessionsCaseComponent,
+        MentalCaseComponent,
+        FeedbackCaseComponent,
+        LegalCaseComponent,
+        ManageCaseComponent,
+    ],
     providers: [
         CasesService,
         CommonService,
