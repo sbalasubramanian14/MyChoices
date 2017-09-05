@@ -1,14 +1,12 @@
-//core libraries
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-//third-party libraries
+import { AppModule } from '../app.module';
+
 import { SelectModule, IOption } from 'ng-select';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-
-import { AppModule } from '../app.module';
 import { MatchesPipe } from '../pipes/Matches.Pipe'
 import { CasesCreateComponent } from './cases.create';
 import { CasesDetailedComponent } from './cases.detailed';
@@ -32,9 +30,9 @@ import { Ng2TableModule } from '../directives/customTable/ng-table-module';
 import { MyDatePickerModule } from 'mydatepicker';
 
 import { SpinnerModule } from '../spinner/spinner.module';
+import { PrimaryInfoComponent } from './cases-view/primaryInfo.component'
 
 //view case components
-import { PrimaryInfoComponent } from './cases-view/primaryInfo.component'
 import { ChildrenComponent } from './cases-view/children.component'
 import { HouseholdComponent } from './cases-view/household.component'
 import { SpouseComponent } from './cases-view/spouse.component'
@@ -63,14 +61,18 @@ import { ManageCaseComponent } from './cases-details/manage_case.component'
 
 @NgModule({
     imports: [
-        SharedModule,
+        CommonModule,
         CasesRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
         TabsModule.forRoot(),
+        SelectModule,
         ModalModule.forRoot(),
         PaginationModule.forRoot(),
         TooltipModule.forRoot(),
         Ng2TableModule,
         ToastModule.forRoot(),
+        MultiselectDropdownModule,
         MyDatePickerModule,
         SpinnerModule,
     ],
