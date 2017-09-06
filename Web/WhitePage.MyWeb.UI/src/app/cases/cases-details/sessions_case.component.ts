@@ -76,14 +76,14 @@ export class SessionsCaseComponent implements OnInit {
 
         this.caseBook.SelectedSessionLog.CounselingDate = sessionLog.CounselingDate;
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = sessionLog.TypeOfCounselingLookupId;
-        this.caseBook.SelectedSessionLog.DurationOfSessionMin = sessionLog.DurationOfSessionMIn;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMin = sessionLog.DurationOfSessionMin;
         this.caseBook.SelectedSessionLog.NextSessionScheduled = sessionLog.NextSessionScheduled;
         this.caseBook.SelectedSessionLog.SessionNotes = sessionLog.SessionNotes;
 
         this.caseSessionForm = this.fb.group({
             CounselingDate: [this.caseBook.SelectedSessionLog.CounselingDate, Validators.required],
             TypeOfCounselingLookupId: [this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId == undefined ? null : this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId.toString(), Validators.required],
-            DurationOfSessionMin: [this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required],
+            DurationOfSessionMin: [this.caseBook.SelectedSessionLog.DurationOfSessionMin, Validators.required],
             NextSessionScheduled: [this.caseBook.SelectedSessionLog.NextSessionScheduled],
             SessionNotes: [this.caseBook.SelectedSessionLog.SessionNotes, Validators.required]
         });
@@ -116,7 +116,7 @@ export class SessionsCaseComponent implements OnInit {
 
         this.caseBook.SelectedSessionLog.CounselingDate = this.returnDate(counsDateObj);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
-        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMin'].value;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMin = this.caseSessionForm.controls['DurationOfSessionMin'].value;
 
         let nextSchObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
 

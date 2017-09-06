@@ -19,7 +19,7 @@
                     <tr *ngFor="let sessionLog of caseBook.vSessionLog; let i = index">
                         <td>{{sessionLog.CounselingDate}}</td>
                         <td>{{sessionLog.TypeOfCounselingDesc}}</td>
-                        <td>{{sessionLog.DurationOfSessionMIn}}</td>
+                        <td>{{sessionLog.DurationOfSessionMin}}</td>
                         <td>{{sessionLog.NextSessionScheduled}}</td>
                         <td>{{sessionLog.SessionNotes}}</td>
                         <td class="text-right">
@@ -72,10 +72,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="DurationOfSessionMIn">Duration (min) *</label>
-                                        <input placeholder="Duration" [formControl]="caseSessionForm.controls['DurationOfSessionMIn']" type="number" max="3" class="form-control" />
+                                        <label for="DurationOfSessionMin">Duration (min) *</label>
+                                        <input placeholder="Duration" [formControl]="caseSessionForm.controls['DurationOfSessionMin']" type="number" max="3" class="form-control" />
                                         <div>
-                                            <small *ngIf="caseSessionForm.controls['DurationOfSessionMIn'].hasError('required') && caseSessionForm.controls['DurationOfSessionMIn'].touched" class="mat-text-warn">Duration is required.</small>
+                                            <small *ngIf="caseSessionForm.controls['DurationOfSessionMin'].hasError('required') && caseSessionForm.controls['DurationOfSessionMin'].touched" class="mat-text-warn">Duration is required.</small>
                                         </div>
                                     </div>
 

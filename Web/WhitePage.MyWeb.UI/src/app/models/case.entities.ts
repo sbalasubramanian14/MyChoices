@@ -442,7 +442,7 @@ export class CaseSessionLog {
     TypeOfCounselingLookupId?: number;
     TypeOfCounselingDesc?: string;
 
-    DurationOfSessionMIn?: number;
+    DurationOfSessionMin?: number;
     NextSessionScheduled?: Date;
     SessionNotes?: string;    
 }
@@ -456,7 +456,7 @@ export class vCaseSessionLog {
     TypeOfCounselingLookupId?: number;
     TypeOfCounselingDesc?: string;
 
-    DurationOfSessionMIn?: number;
+    DurationOfSessionMin?: number;
     NextSessionScheduled?: Date;
     SessionNotes?: string;
 }
