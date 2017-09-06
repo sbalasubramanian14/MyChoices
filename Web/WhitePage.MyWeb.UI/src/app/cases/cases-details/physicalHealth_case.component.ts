@@ -1,23 +1,16 @@
-﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-
-import { CaseBook, Case, CaseAddress, vCaseAddress, CaseFeedback } from '../../models/case.entities';
+﻿import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SelectModule, IOption } from 'ng-select';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { ModalDirective } from 'ng2-bootstrap/modal';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
 
-import { SelectModule, IOption } from 'ng-select';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
-import { ModalDirective } from 'ng2-bootstrap/modal';
-
-import { Center, PeaceMaker, Counselor, Lookup } from '../../models/entities';
-
 import { BaseCaseController } from './../basecase.controller';
 
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-
-import * as moment from 'moment';
+import { CaseBook, Case } from '../../models/case.entities';
 
 @Component({
     selector: 'physicalHealthCase',
@@ -37,10 +30,11 @@ export class PhysicalHealthCaseComponent implements OnInit {
     public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
     public yesNoOptionsList: Array<IOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
-        public toastr: ToastsManager) {
+    constructor(
+        private fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
+        private toastr: ToastsManager) {
 
         this.sleepPerNightLookupOptionsList = BaseCaseController.staticParseLookups("SleepPerNight");
         this.appetiteLookupOptionsList = BaseCaseController.staticParseLookups("Appetite");
@@ -55,34 +49,31 @@ export class PhysicalHealthCaseComponent implements OnInit {
         this.isPhysicalHealthDataLoaded = true;
     }
 
-    /* Physical Health */
-
-
     private loadPhysicalHealthFromGroup() {
         this.physicalHealthForm = this.fb.group({
-            SufferingFromAnyMajorIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId.toString()),
-            SufferingFromAnyMajorIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc),
+            SufferingFromAnyMajorIllnessLookupId: [this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId.toString()],
+            SufferingFromAnyMajorIllnessDesc: [this.caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc],
 
-            DiagnosedPsychiatricIllnessLookupId: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId.toString()),
-            DiagnosedPsychiatricIllnessDesc: new FormControl(this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc),
+            DiagnosedPsychiatricIllnessLookupId: [this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId == undefined ? null : this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId.toString()],
+            DiagnosedPsychiatricIllnessDesc: [this.caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc],
 
-            SleepPerNightLookupId: new FormControl(this.caseBook.PhysicalHealth.SleepPerNightLookupId == undefined ? null : this.caseBook.PhysicalHealth.SleepPerNightLookupId.toString()),
-            AppetiteLookupId: new FormControl(this.caseBook.PhysicalHealth.AppetiteLookupId == undefined ? null : this.caseBook.PhysicalHealth.AppetiteLookupId.toString()),
-            ExerciseLookupId: new FormControl(this.caseBook.PhysicalHealth.ExerciseLookupId == undefined ? null : this.caseBook.PhysicalHealth.ExerciseLookupId.toString()),
+            SleepPerNightLookupId: [this.caseBook.PhysicalHealth.SleepPerNightLookupId == undefined ? null : this.caseBook.PhysicalHealth.SleepPerNightLookupId.toString()],
+            AppetiteLookupId: [this.caseBook.PhysicalHealth.AppetiteLookupId == undefined ? null : this.caseBook.PhysicalHealth.AppetiteLookupId.toString()],
+            ExerciseLookupId: [this.caseBook.PhysicalHealth.ExerciseLookupId == undefined ? null : this.caseBook.PhysicalHealth.ExerciseLookupId.toString()],
 
-            AnyMedicationLookupId: new FormControl(this.caseBook.PhysicalHealth.AnyMedicationLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnyMedicationLookupId.toString()),
-            AnyMedicationDesc: new FormControl(this.caseBook.PhysicalHealth.AnyMedicationDesc),
+            AnyMedicationLookupId: [this.caseBook.PhysicalHealth.AnyMedicationLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnyMedicationLookupId.toString()],
+            AnyMedicationDesc: [this.caseBook.PhysicalHealth.AnyMedicationDesc],
 
-            AnySubstanceLookupId: new FormControl(this.caseBook.PhysicalHealth.AnySubstanceLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnySubstanceLookupId.toString()),
-            AnySubstanceDesc: new FormControl(this.caseBook.PhysicalHealth.AnySubstanceDesc),
+            AnySubstanceLookupId: [this.caseBook.PhysicalHealth.AnySubstanceLookupId == undefined ? null : this.caseBook.PhysicalHealth.AnySubstanceLookupId.toString()],
+            AnySubstanceDesc: [this.caseBook.PhysicalHealth.AnySubstanceDesc],
 
-            CurrentlyPregnantLookup: new FormControl(this.caseBook.PhysicalHealth.CurrentlyPregnantLookup == undefined ? null : this.caseBook.PhysicalHealth.CurrentlyPregnantLookup.toString()),
-            CurrentlyPregnantDesc: new FormControl(this.caseBook.PhysicalHealth.CurrentlyPregnantDesc),
+            CurrentlyPregnantLookup: [this.caseBook.PhysicalHealth.CurrentlyPregnantLookup == undefined ? null : this.caseBook.PhysicalHealth.CurrentlyPregnantLookup.toString()],
+            CurrentlyPregnantDesc: [this.caseBook.PhysicalHealth.CurrentlyPregnantDesc],
 
-            ReasonForSeekingHelpLookupId: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId.toString()),
-            WhoIsAbusingYouLookupId: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString()),
-            WhoIsAbusingYouDesc: new FormControl(this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString()),
-            ReasonForSeekingHelpDesc: new FormControl(this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc.toString())
+            ReasonForSeekingHelpLookupId: [this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId.toString()],
+            WhoIsAbusingYouLookupId: [this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId.toString()],
+            WhoIsAbusingYouDesc: [this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc == undefined ? null : this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc.toString()],
+            ReasonForSeekingHelpDesc: [this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc == undefined ? null : this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc.toString()]
         });
     }
 
@@ -104,18 +95,16 @@ export class PhysicalHealthCaseComponent implements OnInit {
 
         this.caseBook.PhysicalHealth.CurrentlyPregnantLookup = this.physicalHealthForm.controls['CurrentlyPregnantLookup'].value;
         this.caseBook.PhysicalHealth.CurrentlyPregnantDesc = this.physicalHealthForm.controls['CurrentlyPregnantDesc'].value;
-
-        //this.caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = this.physicalHealthForm.controls['ReasonForSeekingHelpLookupId'].value;
-        //this.caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = this.physicalHealthForm.controls['WhoIsAbusingYouLookupId'].value;
         this.caseBook.PhysicalHealth.WhoIsAbusingYouDesc = this.physicalHealthForm.controls['WhoIsAbusingYouDesc'].value;
         this.caseBook.PhysicalHealth.ReasonForSeekingHelpDesc = this.physicalHealthForm.controls['ReasonForSeekingHelpDesc'].value;
 
-        this.casesService
-            .updatePhysicalHealth(this.caseBook).subscribe(data => {
+        this.casesService.updatePhysicalHealth(this.caseBook).subscribe(
+            data => {
                 this.toastr.success('Physical updated successfully');
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
-    /* End of - Physical Health */
 }

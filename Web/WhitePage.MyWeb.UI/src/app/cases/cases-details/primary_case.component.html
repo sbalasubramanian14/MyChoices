@@ -1,5 +1,5 @@
 
-    <form [formGroup]="casePrimaryForm" *ngIf="isPrimaryDataLoaded">
+    <form [formGroup]="casePrimaryForm">
         <div class="row">
 
             <div class="col-md-6 d-flex flex-column">
@@ -12,7 +12,7 @@
                             <label for="CenterId">Center *</label>
                             <ng-select [options]="centerOptionList"
                                        placeholder="Select Center"
-                                       [formControl]="casePrimaryForm.controls['CenterId']"
+                                       formControlName="CenterId"
                                        (selected)="onCenterSelected($event)"
                                        [allowClear]="true">
                             </ng-select>
@@ -22,10 +22,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="CenterId">Peace Maker *</label>
+                            <label for="PeaceMakerId">Peace Maker *</label>
                             <ng-select [options]="peaceMakerOptionsList"
                                        placeholder="Select Peace Maker"
-                                       [formControl]="casePrimaryForm.controls['PeaceMakerId']"
+                                       formControlName="PeaceMakerId"
                                        [allowClear]="true">
                             </ng-select>
                             <div>
@@ -34,41 +34,41 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="CenterId">Counselor *</label>
+                            <label for="CounselorId">Counselor *</label>
                             <ng-select [options]="counselorOptionsList"
-                                       placeholder="Select Peace Maker"
-                                       [formControl]="casePrimaryForm.controls['CounselorId']"
+                                       placeholder="Select Counselor"
+                                       formControlName="CounselorId"
                                        [allowClear]="true">
                             </ng-select>
                             <div>
-                                <small *ngIf="casePrimaryForm.controls['CounselorId'].hasError('required') && casePrimaryForm.controls['CounselorId'].touched" class="mat-text-warn">Peace Maker is required.</small>
+                                <small *ngIf="casePrimaryForm.controls['CounselorId'].hasError('required') && casePrimaryForm.controls['CounselorId'].touched" class="mat-text-warn">Counselor is required.</small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="PeacemakerId">First Name *</label>
-                            <input placeholder="First Name" [formControl]="casePrimaryForm.controls['ClientFirstName']" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
+                            <label for="ClientFirstName">First Name *</label>
+                            <input placeholder="First Name" formControlName="ClientFirstName" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
                             <div>
                                 <small *ngIf="casePrimaryForm.controls['ClientFirstName'].hasError('required') && casePrimaryForm.controls['ClientFirstName'].touched" class="mat-text-warn">First Name is required.</small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="PeacemakerId">Last Name *</label>
-                            <input placeholder="Last Name" [formControl]="casePrimaryForm.controls['ClientLastName']" [(ngModel)]="caseBook.Case.ClientLastName" class="form-control" />
+                            <label for="ClientLastName">Last Name *</label>
+                            <input placeholder="Last Name" formControlName="ClientLastName" [(ngModel)]="caseBook.Case.ClientLastName" class="form-control" />
                             <div>
                                 <small *ngIf="casePrimaryForm.controls['ClientLastName'].hasError('required') && casePrimaryForm.controls['ClientLastName'].touched" class="mat-text-warn">Last Name is required.</small>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="PeacemakerId">M.I.</label>
-                            <textarea placeholder="Middle Initials" [formControl]="casePrimaryForm.controls['Mi']" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000"></textarea>
+                            <label for="Mi">M.I.</label>
+                            <textarea placeholder="Middle Initials" formControlName="Mi" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="PeacemakerId">Father / Husband Name *</label>
-                            <input placeholder="Father / Husband Name" [formControl]="casePrimaryForm.controls['FatherName']" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
+                            <label for="FatherName">Father / Husband Name *</label>
+                            <input placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
                             <div>
                                 <small *ngIf="casePrimaryForm.controls['FatherName'].hasError('required') && casePrimaryForm.controls['FatherName'].touched" class="mat-text-warn">Father / Husband Name is required.</small>
                             </div>
@@ -86,9 +86,9 @@
                     <div class="card-block">
 
                         <div class="form-group">
-                            <label for="PeacemakerId">Mobile *</label>
+                            <label for="MobileNumber">Mobile *</label>
                             <div class="form-group" [class.has-danger]="casePrimaryForm.controls['MobileNumber'].invalid && casePrimaryForm.controls['MobileNumber'].touched">
-                                <input placeholder="Mobile" [formControl]="casePrimaryForm.controls['MobileNumber']" class="form-control" digits maxlength="14" />
+                                <input placeholder="Mobile" formControlName="MobileNumber" class="form-control" digits maxlength="14" />
                                 <div>
                                     <small *ngIf="casePrimaryForm.controls['MobileNumber'].hasError('required') && casePrimaryForm.controls['MobileNumber'].touched">Mobile is required.</small>
                                     <small *ngIf="casePrimaryForm.controls['MobileNumber'].dirty && casePrimaryForm.controls['MobileNumber'].invalid">Please provide a valid Mobile Number</small>
@@ -97,10 +97,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="CenterId">Gender *</label>
+                            <label for="GenderLookupId">Gender *</label>
                             <ng-select [options]="genderLookupOptionsList"
                                        placeholder="Select Gender"
-                                       [formControl]="casePrimaryForm.controls['GenderLookupId']"
+                                       formControlName="GenderLookupId"
                                        [allowClear]="true">
                             </ng-select>
                             <div>
@@ -109,10 +109,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="CenterId">Marital Status *</label>
+                            <label for="MaritalStatusLookupId">Marital Status *</label>
                             <ng-select [options]="maritalStatusLookupOptionsList"
                                        placeholder="Select Marital Status"
-                                       [formControl]="casePrimaryForm.controls['MaritalStatusLookupId']"
+                                       formControlName="MaritalStatusLookupId"
                                        [allowClear]="true">
                             </ng-select>
                             <div>
@@ -121,10 +121,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="CenterId">Required Assistance *</label>
+                            <label for="RequireAssistanceLookupId">Required Assistance *</label>
                             <ng-select [options]="requireAssistanceLookupOptionsList"
                                        placeholder="Required Assistance"
-                                       [formControl]="casePrimaryForm.controls['RequireAssistanceLookupId']"
+                                       formControlName="RequireAssistanceLookupId"
                                        [allowClear]="true">
                             </ng-select>
                             <div>
@@ -133,8 +133,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="PeacemakerId">Remarks</label>
-                            <textarea placeholder="Remarks" [formControl]="casePrimaryForm.controls['Remarks']" class="form-control" maxlength="300"></textarea>
+                            <label for="Remarks">Remarks</label>
+                            <textarea placeholder="Remarks" formControlName="Remarks" class="form-control" maxlength="300"></textarea>
                         </div>
 
                         <div class="form-group">
@@ -202,17 +202,17 @@
                                 <div class="card-block">
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Address *</label>
-                                        <textarea placeholder="Address" [formControl]="caseAddressForm.controls['Address']" class="form-control" maxlength="300"></textarea>
+                                        <label for="Address">Address *</label>
+                                        <textarea placeholder="Address" formControlName="Address" class="form-control" maxlength="300"></textarea>
                                         <div>
-                                            <small *ngIf="caseAddressForm.controls['Address'].hasError('required') && caseAddressForm.controls['Address'].touched" class="mat-text-warn">Fahter / Husband is required.</small>
+                                            <small *ngIf="caseAddressForm.controls['Address'].hasError('required') && caseAddressForm.controls['Address'].touched" class="mat-text-warn">Address is required.</small>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">PIN *</label>
+                                        <label for="PIN">PIN *</label>
                                         <div class="form-group" [class.has-danger]="caseAddressForm.controls['PIN'].invalid && caseAddressForm.controls['PIN'].touched">
-                                            <input placeholder="PIN" [formControl]="caseAddressForm.controls['PIN']" class="form-control" digits maxlength="6" />
+                                            <input placeholder="PIN" formControlName="PIN" class="form-control" digits maxlength="6" />
                                             <div>
                                                 <small *ngIf="caseAddressForm.controls['PIN'].hasError('required') && caseAddressForm.controls['PIN'].touched">PIN is required.</small>
                                                 <small *ngIf="caseAddressForm.controls['PIN'].dirty && caseAddressForm.controls['PIN'].invalid">Please provide a valid PIN</small>
@@ -221,10 +221,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">State *</label>
+                                        <label for="StateId">State *</label>
                                         <ng-select [options]="stateOptionsList"
                                                    placeholder="Select State"
-                                                   [formControl]="caseAddressForm.controls['StateId']"
+                                                   formControlName="StateId"
                                                    (selected)="onStateSelected($event)"
                                                    [allowClear]="true">
                                         </ng-select>
@@ -237,7 +237,7 @@
                                         <label for="CityId">City *</label>
                                         <ng-select [options]="cityOptionsList"
                                                    placeholder="Select"
-                                                   [formControl]="caseAddressForm.controls['CityId']"
+                                                   formControlName="CityId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -246,8 +246,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Area *</label>
-                                        <input placeholder="Area" [formControl]="caseAddressForm.controls['Area']" class="form-control" />
+                                        <label for="Area">Area *</label>
+                                        <input placeholder="Area" formControlName="Area" class="form-control" />
                                         <div>
                                             <small *ngIf="caseAddressForm.controls['Area'].hasError('required') && caseAddressForm.controls['Area'].touched" class="mat-text-warn">Area is required.</small>
                                         </div>

@@ -1,27 +1,18 @@
 ﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-
-import { CaseBook, Case, CaseAddress, vCaseAddress, CaseFeedback, CaseMental, vCaseMental } from '../../models/case.entities';
-
-import { ValidationService } from '../../services/validation.service';
-import { CasesService } from '../../services/cases.services';
-
-import { SelectModule, IOption } from 'ng-select';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
 import { ModalDirective } from 'ng2-bootstrap/modal';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
-import { Center, PeaceMaker, Counselor, Lookup } from '../../models/entities';
+import { CasesService } from '../../services/cases.services';
 
 import { BaseCaseController } from './../basecase.controller';
 
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-
-import * as moment from 'moment';
+import { CaseBook, Case, CaseMental, vCaseMental } from '../../models/case.entities';
 
 @Component({
     selector: 'mentalCase',
-    templateUrl: 'legal_case.component.html',
+    templateUrl: 'mental_case.component.html',
     inputs: ['caseBook'],
 })
 
@@ -29,27 +20,6 @@ export class MentalCaseComponent implements OnInit {
     public caseBook: CaseBook;
     public caseMentalForm: FormGroup;
     public isCaseBookDataLoaded: boolean = false;
-    public sourceOfCaseLookupOptionList: Array<IOption> = [];
-    public typesOfCounselingLookupOptionList: Array<IMultiSelectOption> = [];
-    public typesOfCounselingLookupOptionList_S: Array<IOption> = [];
-    public relationshipWithPMLookupOptionList: Array<IOption> = [];
-
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
-        public toastr: ToastsManager) {
-
-        this.sourceOfCaseLookupOptionList = BaseCaseController.staticParseLookups("SourceOfCase");
-        this.typesOfCounselingLookupOptionList = BaseCaseController.staticParseMultiLookups("TypesOfCounselling");
-        this.typesOfCounselingLookupOptionList_S = BaseCaseController.staticParseLookups("TypesOfCounselling");
-        this.relationshipWithPMLookupOptionList = BaseCaseController.staticParseLookups("RelationshipWithPM");
-    }
-
-    ngOnInit() {
-        this.isCaseBookDataLoaded = true;
-    }
-
-    /* Start - Mental */
     public MentalDressLookupOptionList: Array<IMultiSelectOption> = [];
     public MentalHygieneLookupOptionList: Array<IMultiSelectOption> = [];
     public MentalBodyTypeLookupOptionList: Array<IMultiSelectOption> = [];
@@ -70,36 +40,70 @@ export class MentalCaseComponent implements OnInit {
     public MentalInformationLookupOptionList: Array<IMultiSelectOption> = [];
     public MentalAbstractionLookupOptionList: Array<IMultiSelectOption> = [];
 
+    constructor(
+        private fb: FormBuilder,
+        private casesService: CasesService,
+        private toastr: ToastsManager) {
+
+        this.MentalDressLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalDress");
+        this.MentalHygieneLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalHygiene");
+        this.MentalBodyTypeLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalBodyType");
+        this.MentalExpressionLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalExpression");
+        this.MentalMotorActivityLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalMotorActivity");
+        this.MentalVocabularyLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalVocabulary");
+        this.MentalImpulseControlLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalImpulseControl");
+        this.MentalSpeechLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalSpeech");
+        this.MentalBehaviourLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalBehaviour");
+        this.MentalContentLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalContent");
+        this.MentalFlowOfThoughtLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalFlowOfThought");
+        this.MentalOrientationLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalOrientation");
+        this.MentalEstimatedIntellectLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalEstimatedIntellect");
+        this.MentalAttentionLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalAttention");
+        this.MentalInsightLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalInsight");
+        this.MentalJudgementLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalJudgement");
+        this.MentalMemoryLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalMemory");
+        this.MentalInformationLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalInformation");
+        this.MentalAbstractionLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalAbstraction");
+    }
+
+    ngOnInit() {
+        this.isCaseBookDataLoaded = true;
+    }
+
     @ViewChild('mentalModal') public mentalModal: ModalDirective;
+
+    private returnValue(input: any) {
+        return input == undefined ? null : input.toString()
+    }
 
     public addNewMental() {
         this.caseBook.SelectedMental = new CaseMental();
         this.caseBook.SelectedMental.CaseId = this.caseBook.Case.CaseId;
 
         this.caseMentalForm = this.fb.group({
-            MentalAbstractionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAbstractionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAbstractionLookupId.toString()),
-            MentalAttentionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAttentionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAttentionLookupId.toString()),
-            MentalBehaviourLookupId: new FormControl(this.caseBook.SelectedMental.MentalBehaviourLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBehaviourLookupId.toString()),
-            MentalBodyTypeLookupId: new FormControl(this.caseBook.SelectedMental.MentalBodyTypeLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBodyTypeLookupId.toString()),
+            MentalAbstractionLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalAbstractionLookupId)],
+            MentalAttentionLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalAttentionLookupId)],
+            MentalBehaviourLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalBehaviourLookupId)],
+            MentalBodyTypeLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalBodyTypeLookupId)],
 
-            MentalContentLookupId: new FormControl(this.caseBook.SelectedMental.MentalContentLookupId == undefined ? null : this.caseBook.SelectedMental.MentalContentLookupId.toString()),
-            MentalDressLookupId: new FormControl(this.caseBook.SelectedMental.MentalDressLookupId == undefined ? null : this.caseBook.SelectedMental.MentalDressLookupId.toString()),
-            MentalEstimatedIntellectLookupId: new FormControl(this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId == undefined ? null : this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId.toString()),
-            MentalExpressionLookupId: new FormControl(this.caseBook.SelectedMental.MentalExpressionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalExpressionLookupId.toString()),
+            MentalContentLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalContentLookupId)],
+            MentalDressLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalDressLookupId)],
+            MentalEstimatedIntellectLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId)],
+            MentalExpressionLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalExpressionLookupId)],
 
-            MentalFlowOfThoughtLookupId: new FormControl(this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId == undefined ? null : this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId.toString()),
-            MentalHygieneLookupId: new FormControl(this.caseBook.SelectedMental.MentalHygieneLookupId == undefined ? null : this.caseBook.SelectedMental.MentalHygieneLookupId.toString()),
-            MentalImpulseControlLookupId: new FormControl(this.caseBook.SelectedMental.MentalImpulseControlLookupId == undefined ? null : this.caseBook.SelectedMental.MentalImpulseControlLookupId.toString()),
-            MentalInformationLookupId: new FormControl(this.caseBook.SelectedMental.MentalInformationLookupId == undefined ? null : this.caseBook.SelectedMental.MentalInformationLookupId.toString()),
+            MentalFlowOfThoughtLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId)],
+            MentalHygieneLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalHygieneLookupId)],
+            MentalImpulseControlLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalImpulseControlLookupId)],
+            MentalInformationLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalInformationLookupId)],
 
-            MentalInsightLookupId: new FormControl(this.caseBook.SelectedMental.MentalInsightLookupId == undefined ? null : this.caseBook.SelectedMental.MentalInsightLookupId.toString()),
-            MentalJudgementLookupId: new FormControl(this.caseBook.SelectedMental.MentalJudgementLookupId == undefined ? null : this.caseBook.SelectedMental.MentalJudgementLookupId.toString()),
-            MentalMemoryLookupId: new FormControl(this.caseBook.SelectedMental.MentalMemoryLookupId == undefined ? null : this.caseBook.SelectedMental.MentalMemoryLookupId.toString()),
-            MentalMotorActivityLookupId: new FormControl(this.caseBook.SelectedMental.MentalMotorActivityLookupId == undefined ? null : this.caseBook.SelectedMental.MentalMotorActivityLookupId.toString()),
+            MentalInsightLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalInsightLookupId)],
+            MentalJudgementLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalJudgementLookupId)],
+            MentalMemoryLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalMemoryLookupId)],
+            MentalMotorActivityLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalMotorActivityLookupId)],
 
-            MentalOrientationLookupId: new FormControl(this.caseBook.SelectedMental.MentalOrientationLookupId == undefined ? null : this.caseBook.SelectedMental.MentalOrientationLookupId.toString()),
-            MentalSpeechLookupId: new FormControl(this.caseBook.SelectedMental.MentalSpeechLookupId == undefined ? null : this.caseBook.SelectedMental.MentalSpeechLookupId.toString()),
-            MentalVocabularyLookupId: new FormControl(this.caseBook.SelectedMental.MentalVocabularyLookupId == undefined ? null : this.caseBook.SelectedMental.MentalVocabularyLookupId.toString())
+            MentalOrientationLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalOrientationLookupId)],
+            MentalSpeechLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalSpeechLookupId)],
+            MentalVocabularyLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalVocabularyLookupId)]
         });
         this.mentalModal.show();
     }
@@ -133,25 +137,25 @@ export class MentalCaseComponent implements OnInit {
         this.caseBook.SelectedMental.MentalVocabularyLookupId = caseMental.MentalVocabularyLookupId;
 
         this.caseMentalForm = this.fb.group({
-            MentalAbstractionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAbstractionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAbstractionLookupId.toString()),
-            MentalAttentionLookupId: new FormControl(this.caseBook.SelectedMental.MentalAttentionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalAttentionLookupId.toString()),
-            MentalBehaviourLookupId: new FormControl(this.caseBook.SelectedMental.MentalBehaviourLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBehaviourLookupId.toString()),
-            MentalBodyTypeLookupId: new FormControl(this.caseBook.SelectedMental.MentalBodyTypeLookupId == undefined ? null : this.caseBook.SelectedMental.MentalBodyTypeLookupId.toString()),
-            MentalContentLookupId: new FormControl(this.caseBook.SelectedMental.MentalContentLookupId == undefined ? null : this.caseBook.SelectedMental.MentalContentLookupId.toString()),
-            MentalDressLookupId: new FormControl(this.caseBook.SelectedMental.MentalDressLookupId == undefined ? null : this.caseBook.SelectedMental.MentalDressLookupId.toString()),
-            MentalEstimatedIntellectLookupId: new FormControl(this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId == undefined ? null : this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId.toString()),
-            MentalExpressionLookupId: new FormControl(this.caseBook.SelectedMental.MentalExpressionLookupId == undefined ? null : this.caseBook.SelectedMental.MentalExpressionLookupId.toString()),
-            MentalFlowOfThoughtLookupId: new FormControl(this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId == undefined ? null : this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId.toString()),
-            MentalHygieneLookupId: new FormControl(this.caseBook.SelectedMental.MentalHygieneLookupId == undefined ? null : this.caseBook.SelectedMental.MentalHygieneLookupId.toString()),
-            MentalImpulseControlLookupId: new FormControl(this.caseBook.SelectedMental.MentalImpulseControlLookupId == undefined ? null : this.caseBook.SelectedMental.MentalImpulseControlLookupId.toString()),
-            MentalInformationLookupId: new FormControl(this.caseBook.SelectedMental.MentalInformationLookupId == undefined ? null : this.caseBook.SelectedMental.MentalInformationLookupId.toString()),
-            MentalInsightLookupId: new FormControl(this.caseBook.SelectedMental.MentalInsightLookupId == undefined ? null : this.caseBook.SelectedMental.MentalInsightLookupId.toString()),
-            MentalJudgementLookupId: new FormControl(this.caseBook.SelectedMental.MentalJudgementLookupId == undefined ? null : this.caseBook.SelectedMental.MentalJudgementLookupId.toString()),
-            MentalMemoryLookupId: new FormControl(this.caseBook.SelectedMental.MentalMemoryLookupId == undefined ? null : this.caseBook.SelectedMental.MentalMemoryLookupId.toString()),
-            MentalMotorActivityLookupId: new FormControl(this.caseBook.SelectedMental.MentalMotorActivityLookupId == undefined ? null : this.caseBook.SelectedMental.MentalMotorActivityLookupId.toString()),
-            MentalOrientationLookupId: new FormControl(this.caseBook.SelectedMental.MentalOrientationLookupId == undefined ? null : this.caseBook.SelectedMental.MentalOrientationLookupId.toString()),
-            MentalSpeechLookupId: new FormControl(this.caseBook.SelectedMental.MentalSpeechLookupId == undefined ? null : this.caseBook.SelectedMental.MentalSpeechLookupId.toString()),
-            MentalVocabularyLookupId: new FormControl(this.caseBook.SelectedMental.MentalVocabularyLookupId == undefined ? null : this.caseBook.SelectedMental.MentalVocabularyLookupId.toString())
+            MentalAbstractionLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalAbstractionLookupId)],
+            MentalAttentionLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalAttentionLookupId)],
+            MentalBehaviourLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalBehaviourLookupId)],
+            MentalBodyTypeLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalBodyTypeLookupId)],
+            MentalContentLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalContentLookupId)],
+            MentalDressLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalDressLookupId)],
+            MentalEstimatedIntellectLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalEstimatedIntellectLookupId)],
+            MentalExpressionLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalExpressionLookupId)],
+            MentalFlowOfThoughtLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalFlowOfThoughtLookupId)],
+            MentalHygieneLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalHygieneLookupId)],
+            MentalImpulseControlLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalImpulseControlLookupId)],
+            MentalInformationLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalInformationLookupId)],
+            MentalInsightLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalInsightLookupId)],
+            MentalJudgementLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalJudgementLookupId)],
+            MentalMemoryLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalMemoryLookupId)],
+            MentalMotorActivityLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalMotorActivityLookupId)],
+            MentalOrientationLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalOrientationLookupId)],
+            MentalSpeechLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalSpeechLookupId)],
+            MentalVocabularyLookupId: [this.returnValue(this.caseBook.SelectedMental.MentalVocabularyLookupId)]
         });
         this.mentalModal.show();
     }
@@ -161,15 +165,14 @@ export class MentalCaseComponent implements OnInit {
     }
 
     public saveMental(caseMental: CaseMental) {
-        this.casesService
-            .updateMental(this.caseBook).subscribe(data => {
+        this.casesService.updateMental(this.caseBook).subscribe(
+            data => {
                 this.mentalModal.hide();
                 this.caseBook.vMental.push(data);
                 this.toastr.success('Mental Status updated successfully');
-
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
             });
     }
-    /* End of - Mental */
 }

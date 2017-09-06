@@ -1,23 +1,17 @@
-﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-
-import { CaseBook, Case, CaseAddress, vCaseAddress, CaseFeedback } from '../../models/case.entities';
+﻿import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SelectModule, IOption } from 'ng-select';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { ModalDirective } from 'ng2-bootstrap/modal';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
 
-import { SelectModule, IOption } from 'ng-select';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
-import { ModalDirective } from 'ng2-bootstrap/modal';
-
-import { Center, PeaceMaker, Counselor, Lookup, State } from '../../models/entities';
-
 import { BaseCaseController } from './../basecase.controller';
 
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-
-import * as moment from 'moment';
+import { CaseBook, Case } from '../../models/case.entities';
+import { State } from '../../models/entities';
 
 @Component({
     selector: 'spouseCase',
@@ -36,22 +30,33 @@ export class SpouseCaseComponent implements OnInit {
     public spouseStateOptionsList: Array<IOption> = [];
     public emergencyRelationshipOptionsList: Array<IOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
-        public toastr: ToastsManager) {
-    }
+    constructor(
+        private fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
+        private toastr: ToastsManager) {
 
-    ngOnInit() {
-        this.loadSpouseFormGroup();
-        this.isSpouseDataLoaded = true;
-
-        this.statesList = JSON.parse(localStorage.getItem("getAllStates"));
         this.spouseEducationLookupIdLookupOptionsList = BaseCaseController.staticParseLookups("LevelOfEducation");
         this.emergencyRelationshipOptionsList = BaseCaseController.staticParseLookups("RelationshipWithClient");
     }
 
-    /* Start - Spouse */
+    ngOnInit() {
+        /*getAllStates - starts*/
+        this.statesList = JSON.parse(localStorage.getItem("getAllStates"))
+        var localStatesOptionList = new Array<IOption>();
+        for (var i = 0; i < this.statesList.length; i++) {
+            localStatesOptionList.push({
+                value: this.statesList[i].StateId.toString(),
+                label: this.statesList[i].Title
+            });
+        }
+        this.spouseStateOptionsList = localStatesOptionList;
+        /*getAllStates - ends*/
+
+        this.loadSpouseFormGroup();
+        this.isSpouseDataLoaded = true;
+    }
+
     private onSpouseStateSelected(state: any) {
         if (state == undefined || state.value == undefined) {
             this.spouseCityOptionsList = new Array<IOption>();
@@ -75,6 +80,7 @@ export class SpouseCaseComponent implements OnInit {
 
     private loadSpouseFormGroup() {
         this.onSpouseStateSelected({ value: this.caseBook.Spouse.StateLookupId });
+
         this.spouseForm = this.fb.group({
             SpouseName: [this.caseBook.Spouse.SpouseName],
             SpouseHomePhone: [this.caseBook.Spouse.SpouseHomePhone, [Validators.minLength(10), this.validationService.mobileValidator]],
@@ -93,9 +99,9 @@ export class SpouseCaseComponent implements OnInit {
             PrimaryEmergencyContactAdress: [this.caseBook.Spouse.PrimaryEmergencyContactAdress],
 
             SecondaryEmergencyContactName: [this.caseBook.Spouse.SecondaryEmergencyContactName],
-                SecondaryEmergencyRelationshipToClientLookupId: [this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId.toString()],
-                SecondaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.validationService.mobileValidator]],
-                SecondaryEmergencyContactAdress: [this.caseBook.Spouse.SecondaryEmergencyContactAdress]
+            SecondaryEmergencyRelationshipToClientLookupId: [this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId.toString()],
+            SecondaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.validationService.mobileValidator]],
+            SecondaryEmergencyContactAdress: [this.caseBook.Spouse.SecondaryEmergencyContactAdress]
 
         });
     }
@@ -123,13 +129,13 @@ export class SpouseCaseComponent implements OnInit {
         this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber = this.spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].value;
         this.caseBook.Spouse.SecondaryEmergencyContactAdress = this.spouseForm.controls['SecondaryEmergencyContactAdress'].value;
 
-        this.casesService
-            .updateSpouse(this.caseBook).subscribe(data => {
+        this.casesService.updateSpouse(this.caseBook).subscribe(
+            data => {
                 this.toastr.success('Spouse information updated successfully');
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
-
-    /* End of - Spouse */
 }

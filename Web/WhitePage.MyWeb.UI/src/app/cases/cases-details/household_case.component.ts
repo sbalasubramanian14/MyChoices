@@ -1,23 +1,16 @@
-﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-
-import { CaseBook, Case, CaseAddress, vCaseAddress } from '../../models/case.entities';
+﻿import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SelectModule, IOption } from 'ng-select';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
 
-import { SelectModule, IOption } from 'ng-select';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-
-import { ModalDirective } from 'ng2-bootstrap/modal';
-
-import { Center, PeaceMaker, Counselor, Lookup } from '../../models/entities';
-
 import { BaseCaseController } from './../basecase.controller';
 
-import * as moment from 'moment';
+import { CaseBook, Case } from '../../models/case.entities';
 
 @Component({
     selector: 'householdCase',
@@ -58,43 +51,38 @@ export class HouseholdCaseComponent implements OnInit {
     ngOnInit() {
         this.loadHouseHoldFormGroup();
         this.isHouseHoldDataLoaded = true;
-    }
-
-/* Start - client And Household */    
+    }   
 
     private loadHouseHoldFormGroup() {
     this.clientAndHouseholdForm = this.fb.group({
-        ChildrenDeceasedLookupId: new FormControl(this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId.toString()),
-        HouseHoldIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString()),
-        SoughtHelpYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId.toString()),
-        SoughtHelpDesc: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpDesc),
-        SoughtHelpOutPut: new FormControl(this.caseBook.FamilyHouseHold.SoughtHelpOutPut),
-        PeacemakerAssistanceLookupId: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId.toString()),
-        PeacemakerAssistanceDesc: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc),
-        PeacemakerFollowupYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString()),
-        ClientSignedRegistrationFormYesNoLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString()),
-        ClientEmailId: new FormControl(this.caseBook.FamilyHouseHold.ClientEmailId, this.validationService.emailValidator),
-        ReligionLookupId: new FormControl(this.caseBook.FamilyHouseHold.ReligionLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ReligionLookupId.toString()),
-        LevelOfEducationLookupId: new FormControl(this.caseBook.FamilyHouseHold.LevelOfEducationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.LevelOfEducationLookupId.toString()),
-        VocationalSkillsLookupId: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsLookupId == undefined ? null : this.caseBook.FamilyHouseHold.VocationalSkillsLookupId.toString()),
-        VocationalSkillsDesc: new FormControl(this.caseBook.FamilyHouseHold.VocationalSkillsDesc),
-        OccupationLookupId: new FormControl(this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString()),
-        OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
-        ClientIncomeLookupId: new FormControl(this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()),
-        HouseHoldMembersLivingLookupId: new FormControl(this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()),
-        YearOfMarriage: new FormControl(this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.validationService.numericValidator]),
-        ClientAgeAtFirstChild: new FormControl(this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateNumber])
+        ChildrenDeceasedLookupId: [this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId.toString()],
+        HouseHoldIncomeLookupId: [this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString()],
+        SoughtHelpYesNoLookupId: [this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId.toString()],
+        SoughtHelpDesc: [this.caseBook.FamilyHouseHold.SoughtHelpDesc],
+        SoughtHelpOutPut: [this.caseBook.FamilyHouseHold.SoughtHelpOutPut],
+        PeacemakerAssistanceLookupId: [this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId.toString()],
+        PeacemakerAssistanceDesc: [this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc],
+        PeacemakerFollowupYesNoLookupId: [this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId.toString()],
+        ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString()],
+        ClientEmailId: [this.caseBook.FamilyHouseHold.ClientEmailId, this.validationService.emailValidator],
+        ReligionLookupId: [this.caseBook.FamilyHouseHold.ReligionLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ReligionLookupId.toString()],
+        LevelOfEducationLookupId: [this.caseBook.FamilyHouseHold.LevelOfEducationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.LevelOfEducationLookupId.toString()],
+        VocationalSkillsLookupId: [this.caseBook.FamilyHouseHold.VocationalSkillsLookupId == undefined ? null : this.caseBook.FamilyHouseHold.VocationalSkillsLookupId.toString()],
+        VocationalSkillsDesc: [this.caseBook.FamilyHouseHold.VocationalSkillsDesc],
+        OccupationLookupId: [this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString()],
+        OccupationDesc: [this.caseBook.FamilyHouseHold.OccupationDesc],
+        ClientIncomeLookupId: [this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()],
+        HouseHoldMembersLivingLookupId: [this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()],
+        YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.validationService.numericValidator]],
+        ClientAgeAtFirstChild: [this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateNumber]]
         });
     }
 
     public onUpdateHouseHoldInfo() {
-        //this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupId = this.clientAndHouseholdForm.controls['ChildrenDeceasedLookupId'].value;
         this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.clientAndHouseholdForm.controls['HouseHoldIncomeLookupId'].value;
         this.caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId = this.clientAndHouseholdForm.controls['SoughtHelpYesNoLookupId'].value;
         this.caseBook.FamilyHouseHold.SoughtHelpDesc = this.clientAndHouseholdForm.controls['SoughtHelpDesc'].value;
         this.caseBook.FamilyHouseHold.SoughtHelpOutPut = this.clientAndHouseholdForm.controls['SoughtHelpOutPut'].value;
-
-        //this.caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = this.clientAndHouseholdForm.controls['PeacemakerAssistanceLookupId'].value;
         this.caseBook.FamilyHouseHold.PeacemakerAssistanceDesc = this.clientAndHouseholdForm.controls['PeacemakerAssistanceDesc'].value;
         this.caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId = this.clientAndHouseholdForm.controls['PeacemakerFollowupYesNoLookupId'].value;
         this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.clientAndHouseholdForm.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
@@ -108,17 +96,16 @@ export class HouseholdCaseComponent implements OnInit {
         this.caseBook.FamilyHouseHold.OccupationLookupId = this.clientAndHouseholdForm.controls['OccupationLookupId'].value;
         this.caseBook.FamilyHouseHold.OccupationDesc = this.clientAndHouseholdForm.controls['OccupationDesc'].value;
         this.caseBook.FamilyHouseHold.ClientIncomeLookupId = this.clientAndHouseholdForm.controls['ClientIncomeLookupId'].value;
-
-        //this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId = this.clientAndHouseholdForm.controls['HouseHoldMembersLivingLookupId'].value;
         this.caseBook.FamilyHouseHold.YearOfMarriage = this.clientAndHouseholdForm.controls['YearOfMarriage'].value;
         this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].value;
 
-        this.casesService
-            .updateHouseHold(this.caseBook).subscribe(data => {
+        this.casesService.updateHouseHold(this.caseBook).subscribe(
+            data => {
                 this.toastr.success('Household information updated successfully');
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
-    /* End of - client And Household */
 }

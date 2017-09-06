@@ -1,21 +1,16 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-
-import { CaseBook, Case, CaseAddress, vCaseAddress } from '../../models/case.entities';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IOption } from 'ng-select';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
 
-import { SelectModule, IOption } from 'ng-select';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
-import { ModalDirective } from 'ng2-bootstrap/modal';
-
-import { Center, PeaceMaker, Counselor, Lookup } from '../../models/entities';
+import { CaseBook, Case, CaseAddress, vCaseAddress } from '../../models/case.entities';
+import { Center, PeaceMaker, Counselor, Lookup, State } from '../../models/entities';
 
 import { BaseCaseController } from './../basecase.controller';
-
-import * as moment from 'moment';
 
 @Component({
     selector: 'primaryCase',
@@ -28,11 +23,15 @@ export class PrimaryCaseComponent implements OnInit {
     public casePrimaryForm: FormGroup;
     public caseAddressForm: FormGroup;
     public isPrimaryDataLoaded: boolean = false;
+
     public centerList: Array<Center> = [];
     public peaceMakersList: Array<PeaceMaker> = [];
     public counselorsList: Array<Counselor> = [];
     public lookupsList: Array<Lookup> = [];
+    public statesList: Array<State> = [];
 
+    public stateOptionsList: Array<IOption> = [];
+    public cityOptionsList: Array<IOption> = [];
     public centerOptionList: Array<IOption> = [];
     public peaceMakerOptionsList: Array<IOption> = [];
     public counselorOptionsList: Array<IOption> = [];
@@ -40,21 +39,11 @@ export class PrimaryCaseComponent implements OnInit {
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
-        public toastr: ToastsManager) {
-        /* getAllCenters - starts */
-        this.centerList = JSON.parse(localStorage.getItem("getAllCenters"));
-        var localCenterOptionList = new Array<IOption>();
-        for (var i = 0; i < this.centerList.length; i++) {
-            localCenterOptionList.push({
-                value: this.centerList[i].CenterId.toString(),
-                label: this.centerList[i].Title
-            });
-        }
-        this.centerOptionList = localCenterOptionList;
-        /* getAllCenters - ends */
+    constructor(
+        private fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
+        private toastr: ToastsManager) {
 
         this.genderLookupOptionsList = BaseCaseController.staticParseLookups("Gender");
         this.maritalStatusLookupOptionsList = BaseCaseController.staticParseLookups("MaritalStatus");
@@ -89,6 +78,30 @@ export class PrimaryCaseComponent implements OnInit {
         }
         this.counselorOptionsList = localCounselorOptionsList;
         /* getCounselor - ends */
+
+        /* getAllCenters - starts */
+        this.centerList = JSON.parse(localStorage.getItem("getAllCenters"));
+        var localCenterOptionList = new Array<IOption>();
+        for (var i = 0; i < this.centerList.length; i++) {
+            localCenterOptionList.push({
+                value: this.centerList[i].CenterId.toString(),
+                label: this.centerList[i].Title
+            });
+        }
+        this.centerOptionList = localCenterOptionList;
+        /* getAllCenters - ends */
+
+        /*getAllStates - starts*/
+        this.statesList = JSON.parse(localStorage.getItem("getAllStates"))
+        var localStatesOptionList = new Array<IOption>();
+        for (var i = 0; i < this.statesList.length; i++) {
+            localStatesOptionList.push({
+                value: this.statesList[i].StateId.toString(),
+                label: this.statesList[i].Title
+            });
+        }
+        this.stateOptionsList = localStatesOptionList;
+        /*getAllStates - ends*/
 
         this.loadPrimayCaseTab();
         this.isPrimaryDataLoaded = true;
@@ -125,11 +138,6 @@ export class PrimaryCaseComponent implements OnInit {
         }
         this.counselorOptionsList = localCounselorOptionsList;
     }
-   
-    /* Primary Info */
-    public caseStatusOptionList: Array<IOption> = [];
-    public stateOptionsList: Array<IOption> = [];
-    public cityOptionsList: Array<IOption> = [];
 
     private loadPrimayCaseTab() {
         this.casePrimaryForm = this.fb.group({
@@ -163,57 +171,87 @@ export class PrimaryCaseComponent implements OnInit {
         caseBookNew.Case.Mi = this.casePrimaryForm.controls['Mi'].value;
         caseBookNew.Case.GenderLookupId = this.casePrimaryForm.controls['GenderLookupId'].value;
         caseBookNew.Case.MaritalStatusLookupId = this.casePrimaryForm.controls['MaritalStatusLookupId'].value;
+        caseBookNew.Case.RequireAssistanceLookupId = this.casePrimaryForm.controls['RequireAssistanceLookupId'].value;
         caseBookNew.Case.Remarks = this.casePrimaryForm.controls['Remarks'].value;
         caseBookNew.Case.MobileNumber = this.casePrimaryForm.controls['MobileNumber'].value;
 
-        this.casesService
-            .updatePrimaryInfo(caseBookNew).subscribe(data => {
+        this.casesService.updatePrimaryInfo(caseBookNew).subscribe(
+            data => {
                 this.toastr.success('Primary Info Updated Successfully');
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
             });
     }
 
-    /* End of --- Primary Info */
-    
+    /*Start of - Addresses*/
+
+    private onStateSelected(state: any) {
+        if (state == undefined || state.value == undefined) {
+            this.cityOptionsList = new Array<IOption>();
+            return;
+        }
+
+        //Cities
+        var localCityOptionsList = new Array<IOption>();
+        for (var i = 0; i < this.statesList.length; i++) {
+            if (this.statesList[i].StateId == state.value) {
+                for (var j = 0; j < this.statesList[i].Cities.length; j++) {
+                    localCityOptionsList.push({
+                        value: this.statesList[i].Cities[j].CityId.toString(),
+                        label: this.statesList[i].Cities[j].Title
+                    });
+                }
+            }
+        }
+        this.cityOptionsList = localCityOptionsList;
+    }
 
     @ViewChild('addressModal') public addressModal: ModalDirective;
 
     public addNewAddress() {
-        this.caseBook.SelectedAddress = new CaseAddress();
-        this.caseBook.SelectedAddress.CaseId = this.caseBook.Case.CaseId;
-
+        let addressObject = new CaseAddress();
+        addressObject.CaseId = this.caseBook.Case.CaseId;
+                
         this.caseAddressForm = this.fb.group({
-            Address: [this.caseBook.SelectedAddress.Address, Validators.required],
-            Area: [this.caseBook.SelectedAddress.Area, Validators.required],
-            PIN: [this.caseBook.SelectedAddress.PIN, Validators.required, Validators.minLength(6), this.validationService.numericValidator],
-            StateId: [this.caseBook.SelectedAddress.StateId == undefined ? null : this.caseBook.SelectedAddress.StateId.toString(), Validators.required],
-            CityId: [this.caseBook.SelectedAddress.CityId == undefined ? null : this.caseBook.SelectedAddress.CityId.toString(), Validators.required]
+            Address: ['', Validators.required],
+            Area: ['', Validators.required],
+            PIN: ['', [Validators.required, Validators.minLength(6), this.validationService.numericValidator]],
+            StateId: ['', Validators.required],
+            CityId: ['', Validators.required]
         });
+
+        this.caseBook.SelectedAddress = addressObject;
+
         this.addressModal.show();
     }
 
     public editAddress(address: vCaseAddress) {
-        this.caseBook.SelectedAddress = new CaseAddress();
-        this.caseBook.SelectedAddress.CaseAddressId = address.CaseAddressId;
-        this.caseBook.SelectedAddress.CaseId = address.CaseId;
-        this.caseBook.SelectedAddress.Address = address.Address;
-        this.caseBook.SelectedAddress.Area = address.Area;
-        this.caseBook.SelectedAddress.CityId = address.CityId;
-        this.caseBook.SelectedAddress.StateId = address.StateId;
-        this.caseBook.SelectedAddress.PIN = address.PIN;
-        this.caseBook.SelectedAddress.CreatedBy = address.CreatedBy;
-        this.caseBook.SelectedAddress.CreatedDateTime = address.CreatedDateTime;
-        this.caseBook.SelectedAddress.ModifiedBy = address.ModifiedBy;
-        this.caseBook.SelectedAddress.ModifiedDatetime = address.ModifiedDatetime;
+        let addressObject = new CaseAddress();
+        addressObject.CaseAddressId = address.CaseAddressId;
+        addressObject.CaseId = address.CaseId;
+        addressObject.Address = address.Address;
+        addressObject.Area = address.Area;
+        addressObject.CityId = address.CityId;
+        addressObject.StateId = address.StateId;
+        addressObject.PIN = address.PIN;
+        addressObject.CreatedBy = address.CreatedBy;
+        addressObject.CreatedDateTime = address.CreatedDateTime;
+        addressObject.ModifiedBy = address.ModifiedBy;
+        addressObject.ModifiedDatetime = address.ModifiedDatetime;
 
+        this.onStateSelected({ value: address.StateId });
+
+        this.caseBook.SelectedAddress = addressObject;
+        
         this.caseAddressForm = this.fb.group({
-            Address: [this.caseBook.SelectedAddress.Address, Validators.required],
-            Area: [this.caseBook.SelectedAddress.Area, Validators.required],
-            PIN: [this.caseBook.SelectedAddress.PIN, Validators.required, Validators.minLength(6), this.validationService.numericValidator],
-            StateId: [this.caseBook.SelectedAddress.StateId.toString(), Validators.required],
-            CityId: [this.caseBook.SelectedAddress.CityId.toString(), Validators.required]
+            Address: [addressObject.Address, Validators.required],
+            Area: [addressObject.Area, Validators.required],
+            PIN: [addressObject.PIN, [Validators.required, Validators.minLength(6), this.validationService.numericValidator]],
+            StateId: [addressObject.StateId.toString(), Validators.required],
+            CityId: [addressObject.CityId.toString(), Validators.required]
         });
+
         this.addressModal.show();
     }
 
@@ -222,18 +260,21 @@ export class PrimaryCaseComponent implements OnInit {
     }
 
     public saveAddress(address: vCaseAddress) {
+        
         this.caseBook.SelectedAddress.Address = this.caseAddressForm.controls['Address'].value;
         this.caseBook.SelectedAddress.Area = this.caseAddressForm.controls['Area'].value;
         this.caseBook.SelectedAddress.CityId = this.caseAddressForm.controls['CityId'].value;
         this.caseBook.SelectedAddress.StateId = this.caseAddressForm.controls['StateId'].value;
         this.caseBook.SelectedAddress.PIN = this.caseAddressForm.controls['PIN'].value;
 
-        this.casesService
-            .updateAddress(this.caseBook).subscribe(data => {
+        this.casesService.updateAddress(this.caseBook).subscribe(
+            data => {
                 this.addressModal.hide();
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
     /* End of - Addresses */  
 }

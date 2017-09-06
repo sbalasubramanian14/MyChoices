@@ -1,23 +1,16 @@
-﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-
-import { CaseBook, Case, CaseAddress, vCaseAddress, CaseFeedback } from '../../models/case.entities';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SelectModule, IOption } from 'ng-select';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
 
-import { SelectModule, IOption } from 'ng-select';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
-import { ModalDirective } from 'ng2-bootstrap/modal';
-
-import { Center, PeaceMaker, Counselor, Lookup } from '../../models/entities';
-
 import { BaseCaseController } from './../basecase.controller';
 
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
-
-import * as moment from 'moment';
+import { CaseBook, Case, CaseFeedback } from '../../models/case.entities';
 
 @Component({
     selector: 'feedbackCase',
@@ -29,36 +22,53 @@ export class FeedbackCaseComponent implements OnInit {
     public caseBook: CaseBook;
     public caseFeedbackForm: FormGroup;
     public isFeedbackDataLoaded: boolean = false;
+    public RespectedDuringYourVisitLookupOptionList: Array<IOption> = [];
+    public FeelSafeAndSecureLookupOptionList: Array<IOption> = [];
+    public FeelThatCounsellingLookupOptionList: Array<IOption> = [];
+    public AssistanceOfPeacemakerLookupOptionList: Array<IOption> = [];
+    public RecommendFreeCounsellingLookupOptionList: Array<IOption> = [];
+    public AbleToImproveLookupOptionList: Array<IOption> = [];
+    public OPMTeamToFollowupLookupOptionList: Array<IOption> = [];
 
     constructor(public fb: FormBuilder,
         public validationService: ValidationService,
         public casesService: CasesService,
         public toastr: ToastsManager) {
+
+        this.RespectedDuringYourVisitLookupOptionList = BaseCaseController.staticParseLookups("RespectedDuringYourVisit");
+        this.FeelSafeAndSecureLookupOptionList = BaseCaseController.staticParseLookups("YesNo");
+        this.FeelThatCounsellingLookupOptionList = BaseCaseController.staticParseLookups("FeelThatCounselling");
+        this.AssistanceOfPeacemakerLookupOptionList = BaseCaseController.staticParseLookups("AssistanceOfPeacemaker");
+        this.RecommendFreeCounsellingLookupOptionList = BaseCaseController.staticParseLookups("RecommendFreeCounselling");
+        this.AbleToImproveLookupOptionList = BaseCaseController.staticParseLookups("AbleToImprove");
+        this.OPMTeamToFollowupLookupOptionList = BaseCaseController.staticParseLookups("YesNo");
     }
 
     ngOnInit() {
         this.isFeedbackDataLoaded = true;
     }
-
-    /* Start - Feedback */
-
+    
     @ViewChild('feedbackModal') public feedbackModal: ModalDirective;
+
+    private returnValue(input: any) {
+        return input == undefined ? null : input.toString()
+    }
 
     public addNewFeedback() {
         this.caseBook.SelectedFeedback = new CaseFeedback();
         this.caseBook.SelectedFeedback.CaseId = this.caseBook.Case.CaseId;
 
         this.caseFeedbackForm = this.fb.group({
-            RespectedDuringYourVisitLookupId: new FormControl(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId == undefined ? null : this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId.toString(), Validators.required),
-            FeelSafeAndSecureLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId.toString(), Validators.required),
-            FeelThatCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId.toString(), Validators.required),
-            AssistanceOfPeacemakerLookupId: new FormControl(this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId == undefined ? null : this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId.toString(), Validators.required),
+            RespectedDuringYourVisitLookupId:  [this.returnValue(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId), Validators.required],
+            FeelSafeAndSecureLookupId: [this.returnValue(this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId), Validators.required],
+            FeelThatCounsellingLookupId: [this.returnValue(this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId), Validators.required],
+            AssistanceOfPeacemakerLookupId: [this.returnValue(this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId), Validators.required],
 
-            RecommendFreeCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId.toString(), Validators.required),
-            AbleToImproveLookupId: new FormControl(this.caseBook.SelectedFeedback.AbleToImproveLookupId == undefined ? null : this.caseBook.SelectedFeedback.AbleToImproveLookupId.toString(), Validators.required),
-            OPMTeamToFollowupLookupId: new FormControl(this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId == undefined ? null : this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId.toString(), Validators.required),
+            RecommendFreeCounsellingLookupId: [this.returnValue(this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId), Validators.required],
+            AbleToImproveLookupId: [this.returnValue(this.caseBook.SelectedFeedback.AbleToImproveLookupId), Validators.required],
+            OPMTeamToFollowupLookupId: [this.returnValue(this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId), Validators.required],
 
-            AnySuggestions: new FormControl(this.caseBook.SelectedFeedback.AnySuggestions)
+            AnySuggestions: [this.caseBook.SelectedFeedback.AnySuggestions]
         });
         this.feedbackModal.show();
     }
@@ -80,16 +90,16 @@ export class FeedbackCaseComponent implements OnInit {
         this.caseBook.SelectedFeedback.AnySuggestions = feedback.AnySuggestions;
 
         this.caseFeedbackForm = this.fb.group({
-            RespectedDuringYourVisitLookupId: new FormControl(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId == undefined ? null : this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId.toString(), Validators.required),
-            FeelSafeAndSecureLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId.toString(), Validators.required),
-            FeelThatCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId.toString(), Validators.required),
-            AssistanceOfPeacemakerLookupId: new FormControl(this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId == undefined ? null : this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId.toString(), Validators.required),
+            RespectedDuringYourVisitLookupId: [this.returnValue(this.caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId), Validators.required],
+            FeelSafeAndSecureLookupId: [this.returnValue(this.caseBook.SelectedFeedback.FeelSafeAndSecureLookupId), Validators.required],
+            FeelThatCounsellingLookupId: [this.returnValue(this.caseBook.SelectedFeedback.FeelThatCounsellingLookupId), Validators.required],
+            AssistanceOfPeacemakerLookupId: [this.returnValue(this.caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId), Validators.required],
 
-            RecommendFreeCounsellingLookupId: new FormControl(this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId == undefined ? null : this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId.toString(), Validators.required),
-            AbleToImproveLookupId: new FormControl(this.caseBook.SelectedFeedback.AbleToImproveLookupId == undefined ? null : this.caseBook.SelectedFeedback.AbleToImproveLookupId.toString(), Validators.required),
-            OPMTeamToFollowupLookupId: new FormControl(this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId == undefined ? null : this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId.toString(), Validators.required),
+            RecommendFreeCounsellingLookupId: [this.returnValue(this.caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId), Validators.required],
+            AbleToImproveLookupId: [this.returnValue(this.caseBook.SelectedFeedback.AbleToImproveLookupId), Validators.required],
+            OPMTeamToFollowupLookupId: [this.returnValue(this.caseBook.SelectedFeedback.OPMTeamToFollowupLookupId), Validators.required],
 
-            AnySuggestions: new FormControl(this.caseBook.SelectedFeedback.AnySuggestions)
+            AnySuggestions: [this.caseBook.SelectedFeedback.AnySuggestions]
         });
         this.feedbackModal.show();
     }
@@ -112,15 +122,16 @@ export class FeedbackCaseComponent implements OnInit {
 
         this.caseBook.SelectedFeedback.AnySuggestions = this.caseFeedbackForm.controls['AnySuggestions'].value;
 
-        this.casesService
-            .updateFeedback(this.caseBook).subscribe(data => {
+        this.casesService.updateFeedback(this.caseBook).subscribe(
+            data => {
                 this.feedbackModal.hide();
                 this.caseBook.FeedBack.push(data);
                 this.toastr.success('Feedback updated successfully');
 
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
-    /* End of - Feedback */
 }

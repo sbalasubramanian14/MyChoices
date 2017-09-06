@@ -1,19 +1,15 @@
 ﻿import { Component, Input, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { CaseBook, Case, CaseChildren, vCaseChildren } from '../../models/case.entities';
+import { SelectModule, IOption } from 'ng-select';
+import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
 
-import { SelectModule, IOption } from 'ng-select';
-import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
-
-import { ModalDirective } from 'ng2-bootstrap/modal';
-
 import { BaseCaseController } from './../basecase.controller';
-
-import * as moment from 'moment';
+import { CaseBook, Case, CaseChildren, vCaseChildren } from '../../models/case.entities';
 
 @Component({
     selector: 'childrenCase',
@@ -28,10 +24,11 @@ export class ChildrenCaseComponent implements OnInit {
     public relationshipWithAbuserLookupOptionsList: Array<IOption> = [];
     public genderLookupOptionsList: Array<IOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
-        public toastr: ToastsManager) {
+    constructor(
+        private fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
+        private toastr: ToastsManager) {
     }
 
     ngOnInit() {
@@ -40,43 +37,46 @@ export class ChildrenCaseComponent implements OnInit {
         this.genderLookupOptionsList = BaseCaseController.staticParseLookups("Gender");
     }
 
-    /* Start - Children */
     @ViewChild('childrenModal') public childrenModal: ModalDirective;
 
     public addNewChild() {
         this.caseBook.SelectedChildren = new CaseChildren();
         this.caseBook.SelectedChildren.CaseId = this.caseBook.Case.CaseId;
-        console.log(this.caseBook.SelectedChildren);
 
         this.caseChildrenForm = this.fb.group({
-            Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateNumber]),
-            GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId == undefined ? null : this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
-            RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId == undefined ? null : this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
+            Name: [this.caseBook.SelectedChildren.Name, Validators.required],
+            Age: [this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateNumber]],
+            GenderLookupId: [this.caseBook.SelectedChildren.GenderLookupId == undefined ? null : this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required],
+            RelationshipWithAbuserLookupId: [this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId == undefined ? null : this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required]
         });
+
         this.childrenModal.show();
     }
 
     public editChild(children: vCaseChildren) {
-        this.caseBook.SelectedChildren = new CaseChildren();
-        this.caseBook.SelectedChildren.CaseChildrenId = children.CaseChildrenId;
-        this.caseBook.SelectedChildren.CaseId = children.CaseId;
-        this.caseBook.SelectedChildren.Name = children.Name;
-        this.caseBook.SelectedChildren.Age = children.Age;
-        this.caseBook.SelectedChildren.GenderLookupId = children.GenderLookupId;
-        this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId = children.RelationshipWithAbuserLookupId;
+        let childrenObject = new CaseChildren();
 
-        this.caseBook.SelectedChildren.CreatedBy = children.CreatedBy;
-        this.caseBook.SelectedChildren.CreatedDateTime = children.CreatedDateTime;
-        this.caseBook.SelectedChildren.ModifiedBy = children.ModifiedBy;
-        this.caseBook.SelectedChildren.ModifiedDatetime = children.ModifiedDatetime;
+        childrenObject.CaseChildrenId = children.CaseChildrenId;
+        childrenObject.CaseId = children.CaseId;
+        childrenObject.Name = children.Name;
+        childrenObject.Age = children.Age;
+        childrenObject.GenderLookupId = children.GenderLookupId;
+        childrenObject.RelationshipWithAbuserLookupId = children.RelationshipWithAbuserLookupId;
+
+        childrenObject.CreatedBy = children.CreatedBy;
+        childrenObject.CreatedDateTime = children.CreatedDateTime;
+        childrenObject.ModifiedBy = children.ModifiedBy;
+        childrenObject.ModifiedDatetime = children.ModifiedDatetime;
+
+        this.caseBook.SelectedChildren = childrenObject;
 
         this.caseChildrenForm = this.fb.group({
-            Name: new FormControl(this.caseBook.SelectedChildren.Name, Validators.required),
-            Age: new FormControl(this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateNumber]),
-            GenderLookupId: new FormControl(this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required),
-            RelationshipWithAbuserLookupId: new FormControl(this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required)
+            Name: [childrenObject.Name, Validators.required],
+            Age: [childrenObject.Age, [Validators.required, this.validationService.validateNumber]],
+            GenderLookupId: [childrenObject.GenderLookupId.toString(), Validators.required],
+            RelationshipWithAbuserLookupId: [childrenObject.RelationshipWithAbuserLookupId.toString(), Validators.required]
         });
+
         this.childrenModal.show();
     }
 
@@ -90,14 +90,15 @@ export class ChildrenCaseComponent implements OnInit {
         this.caseBook.SelectedChildren.GenderLookupId = this.caseChildrenForm.controls['GenderLookupId'].value;
         this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId = this.caseChildrenForm.controls['RelationshipWithAbuserLookupId'].value;
 
-        this.casesService
-            .updateChildren(this.caseBook).subscribe(data => {
+        this.casesService.updateChildren(this.caseBook).subscribe(
+            data => {
                 this.childrenModal.hide();
                 this.caseBook.vChildren.push(data);
                 this.toastr.success('Children updated successfully');
-            }, (error: any) => {
+            },
+            (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
-    /* End of - Children */
 }
