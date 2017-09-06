@@ -26,7 +26,7 @@
     </table>
 </div>
 
-<div class="container-fluid case-detail-container" *ngIf="casePrimaryForm">
+<div class="container-fluid case-detail-container" *ngIf="isCaseBookDataLoaded">
     <!-- regular tabs -->
     <tabset>
         <tab heading="Primary Info" class="active" style="width:100%">
@@ -77,12 +77,12 @@
             <feedbackCase [(caseBook)]="caseBook"></feedbackCase>
         </tab>
 
-        <tab heading="Legal" style="width:100%" *ngIf="caseLegalForm">
+        <tab heading="Legal" style="width:100%">
             <my-spinner [isRunning]="!isLegalDataLoaded"></my-spinner>
             <legalCase [(caseBook)]="caseBook"></legalCase>   
         </tab>
 
-        <tab heading="Case Management" style="width:100%" *ngIf="caseManageForm">
+        <tab heading="Case Management" style="width:100%">
             <my-spinner [isRunning]="!isManageDataLoaded"></my-spinner>
             <manageCase [(caseBook)]="caseBook"></manageCase>
         </tab>
