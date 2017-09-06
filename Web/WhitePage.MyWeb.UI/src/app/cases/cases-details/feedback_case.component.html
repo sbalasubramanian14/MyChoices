@@ -1,4 +1,4 @@
-<div class="row" *ngIf="caseBook">
+<div class="row">
     <div class="d-flex flex-column fill-width">
         <div class="add-new-button-container">
             <button class="btn btn-primary" (click)="addNewFeedback()">Add New Feedback &nbsp;<i class="fa fa-plus"></i></button>
@@ -61,7 +61,7 @@
                                 <div class="card-block">
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Did you feel respected during your visit to the center? *</label>
+                                        <label for="RespectedDuringYourVisitLookupId">Did you feel respected during your visit to the center? *</label>
                                         <ng-select [options]="RespectedDuringYourVisitLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['RespectedDuringYourVisitLookupId']"
@@ -73,7 +73,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Did you feel safe and secure to discuss your situation with the counselor? *</label>
+                                        <label for="FeelSafeAndSecureLookupId">Did you feel safe and secure to discuss your situation with the counselor? *</label>
                                         <ng-select [options]="FeelSafeAndSecureLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['FeelSafeAndSecureLookupId']"
@@ -85,7 +85,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Did you feel that the counselling helped you in dealing with your situation? *</label>
+                                        <label for="FeelThatCounsellingLookupId">Did you feel that the counselling helped you in dealing with your situation? *</label>
                                         <ng-select [options]="FeelThatCounsellingLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['FeelThatCounsellingLookupId']"
@@ -97,7 +97,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Did you find the assistance of the Peacemaker to be helpful? *</label>
+                                        <label for="AssistanceOfPeacemakerLookupId">Did you find the assistance of the Peacemaker to be helpful? *</label>
                                         <ng-select [options]="AssistanceOfPeacemakerLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId']"
@@ -109,7 +109,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Would you recommend the free counselling services to a friend or relative? *</label>
+                                        <label for="RecommendFreeCounsellingLookupId">Would you recommend the free counselling services to a friend or relative? *</label>
                                         <ng-select [options]="RecommendFreeCounsellingLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['RecommendFreeCounsellingLookupId']"
@@ -121,7 +121,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Are you now able to improve your situation at home and with your family? *</label>
+                                        <label for="AbleToImproveLookupId">Are you now able to improve your situation at home and with your family? *</label>
                                         <ng-select [options]="AbleToImproveLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['AbleToImproveLookupId']"
@@ -133,7 +133,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Would you like the OPM team to follow-up with you after your case is closed? *</label>
+                                        <label for="OPMTeamToFollowupLookupId">Would you like the OPM team to follow-up with you after your case is closed? *</label>
                                         <ng-select [options]="OPMTeamToFollowupLookupOptionList"
                                                    placeholder="Select"
                                                    [formControl]="caseFeedbackForm.controls['OPMTeamToFollowupLookupId']"
@@ -145,7 +145,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="PeacemakerId">Do you have any suggestions that could improve the client experience with Operation Peacemaker?</label>
+                                        <label for="AnySuggestions">Do you have any suggestions that could improve the client experience with Operation Peacemaker?</label>
                                         <input placeholder="Any Suggestions" [formControl]="caseFeedbackForm.controls['AnySuggestions']" class="form-control" />
                                     </div>
 
