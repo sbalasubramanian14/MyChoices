@@ -7,7 +7,7 @@ import 'rxjs/add/observable/throw';
 import { AuthHttp, JwtHelper, AuthConfig, tokenNotExpired, AUTH_PROVIDERS } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { BaseService } from './base.service';
-import { Center, PeaceMaker, Counselor, Lookup, State, ChartObject, CaseStatus } from '../models/entities';
+import { Center, PeaceMaker, Counselor, Lookup, State, ChartObject, CaseStatus, User } from '../models/entities';
 
 @Injectable()
 export class CommonService extends BaseService {
@@ -41,5 +41,24 @@ export class CommonService extends BaseService {
 
     public getChartsData(): Observable<ChartObject[]> {
         return this.authHttp.get('/api/Common/GetChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
+    }
+    public getAllActiveUsers(pageNumber: number, offset: number): Observable<User[]> {
+        return this.authHttp.get('/api/Common/GetAllActiveUsers/', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <User[]>response.json());
+    }
+    public getUsersCount = (): Observable<number> => {
+        return this.authHttp.get('/api/Common/GetUsersCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
+    }
+    public GetSortedUsersDataAsc(pageNumber: number, offset: number, dictionary: Object, field: string): Observable<User[]> {
+        return this.authHttp.get('/api/Common/GetSortedUsersDataAsc/', this.getSortedDataParamsDictionary(pageNumber, offset, JSON.stringify(dictionary), field)).map((response: Response) => <User[]>response.json());
+    }
+
+    public GetSortedUsersDataDesc(pageNumber: number, offset: number, dictionary: Object, field: string): Observable<User[]> {
+        return this.authHttp.get('/api/Common/GetSortedUsersDataDesc/', this.getSortedDataParamsDictionary(pageNumber, offset, JSON.stringify(dictionary), field)).map((response: Response) => <User[]>response.json());
+    }
+    public GetFilteredUsers(pageNumber: number, offset: number, dictionary: Object): Observable<User[]> {
+        return this.authHttp.get('/api/Common/GetFilteredUsers', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <User[]>response.json());
+    }
+    public GetFilteredUsersCount(pageNumber: number, offset: number, dictionary: Object): Observable<number> {
+        return this.authHttp.get('/api/Common/GetFilteredUsersCount/', this.getValueWithParamsDictionary(pageNumber, offset, JSON.stringify(dictionary))).map((response: Response) => <number>response.json());
     }
 }

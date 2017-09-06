@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using WhitePage.Entities.CaseManagement;
+using WhitePage.Entities.Security;
 using WhitePage.Utilities.Constants;
 
 namespace WhitePage.ResourceAccess
@@ -55,5 +56,7 @@ namespace WhitePage.ResourceAccess
         public DbSet<vCaseFeedback> vFeedback { get; set; }
         public DbSet<CaseFeedback> Feedback { get; set; }
         public DbSet<CaseLegal> Legal { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }

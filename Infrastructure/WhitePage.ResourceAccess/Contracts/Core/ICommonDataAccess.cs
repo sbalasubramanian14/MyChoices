@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WhitePage.Entities.CaseManagement;
+using WhitePage.Entities.Security;
 
 namespace WhitePage.ResourceAccess.Contracts.Core
 {
@@ -20,5 +22,6 @@ namespace WhitePage.ResourceAccess.Contracts.Core
         List<KeyValuePair<string, KeyValuePair<string, float>>> GetCenterWiseAvgChartObjectValues(string column);
         List<KeyValuePair<string, KeyValuePair<string, float>>> GetCounselorWiseAvgChartObjectValues(string column);
         List<KeyValuePair<string, KeyValuePair<string, float>>> GetPeacemakerWiseAvgChartObjectValues(string column);
+        IQueryable<User> GetAllActiveUsers();
     }
 }

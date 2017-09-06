@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using WhitePage.BusinessAccess.Contracts.Security;
 using WhitePage.Entities.CaseManagement;
+using WhitePage.Entities.Security;
 using WhitePage.ResourceAccess.Contracts.Core;
 
 namespace WhitePage.MyWeb.UI.Controllers
@@ -49,7 +50,13 @@ namespace WhitePage.MyWeb.UI.Controllers
             this.loginBusinessAccess.AddNewUserLogin(userdata.username, userdata.roleId, userdata.firstName, userdata.lastName);
             return Ok();
         }
-
+        [HttpPost]
+        public IActionResult DeactivateUser([FromBody] int userId)
+        {
+            var userRoles = this.loginBusinessAccess.DeactivateUser(userId);
+            return Ok(userRoles);
+        }
+       
         //[HttpGet]
         //public IActionResult GetAllPeaceMakers()
         //{

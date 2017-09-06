@@ -18,5 +18,6 @@
 	[ModifiedBy] INT NOT NULL,
 	[ModifiedDate] DATETIME NOT NULL,
 
-	CONSTRAINT UK_trUser_UserName UNIQUE([UserName])
+	[IsActive] INT NOT NULL DEFAULT (1), 
+    CONSTRAINT UK_trUser_UserName UNIQUE([UserName])
 )
