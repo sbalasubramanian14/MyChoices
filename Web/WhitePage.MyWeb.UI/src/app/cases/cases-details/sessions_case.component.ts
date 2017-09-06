@@ -4,6 +4,7 @@ import { IOption } from 'ng-select';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import { IMyOptions } from 'mydatepicker';
 
 import { ValidationService } from '../../services/validation.service';
 import { CasesService } from '../../services/cases.services';
@@ -39,6 +40,10 @@ export class SessionsCaseComponent implements OnInit {
         this.isCaseBookDataLoaded = true;
     }
 
+    private myDatePickerOptions: IMyOptions = {
+        editableDateField: false,
+    };
+
     @ViewChild('sessionsModal') public sessionsModal: ModalDirective;
 
     public RespectedDuringYourVisitLookupOptionList: Array<IOption> = [];
@@ -71,14 +76,14 @@ export class SessionsCaseComponent implements OnInit {
 
         this.caseBook.SelectedSessionLog.CounselingDate = sessionLog.CounselingDate;
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = sessionLog.TypeOfCounselingLookupId;
-        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = sessionLog.DurationOfSessionMIn;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMin = sessionLog.DurationOfSessionMIn;
         this.caseBook.SelectedSessionLog.NextSessionScheduled = sessionLog.NextSessionScheduled;
         this.caseBook.SelectedSessionLog.SessionNotes = sessionLog.SessionNotes;
 
         this.caseSessionForm = this.fb.group({
             CounselingDate: [this.caseBook.SelectedSessionLog.CounselingDate, Validators.required],
             TypeOfCounselingLookupId: [this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId == undefined ? null : this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId.toString(), Validators.required],
-            DurationOfSessionMIn: [this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required],
+            DurationOfSessionMin: [this.caseBook.SelectedSessionLog.DurationOfSessionMIn, Validators.required],
             NextSessionScheduled: [this.caseBook.SelectedSessionLog.NextSessionScheduled],
             SessionNotes: [this.caseBook.SelectedSessionLog.SessionNotes, Validators.required]
         });
@@ -111,7 +116,7 @@ export class SessionsCaseComponent implements OnInit {
 
         this.caseBook.SelectedSessionLog.CounselingDate = this.returnDate(counsDateObj);
         this.caseBook.SelectedSessionLog.TypeOfCounselingLookupId = this.caseSessionForm.controls['TypeOfCounselingLookupId'].value;
-        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMIn'].value;
+        this.caseBook.SelectedSessionLog.DurationOfSessionMIn = this.caseSessionForm.controls['DurationOfSessionMin'].value;
 
         let nextSchObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
 
@@ -131,19 +136,20 @@ export class SessionsCaseComponent implements OnInit {
             data => {
                 this.sessionsModal.hide();
                 this.saveInProgress = false;
-                let selectedId = this.caseBook.SelectedSessionLog.CaseSessionLogId;
-
-                if (selectedId == undefined) {
+                let selectedSessionId = this.caseBook.SelectedSessionLog.CaseSessionLogId;
+                if (selectedSessionId == undefined) {
                     this.caseBook.vSessionLog.push(data);
                 }
                 else {
-                    let k = this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == this.caseBook.SelectedSessionLog.CaseSessionLogId);
-                    this.caseBook.vSessionLog[k] = data;
+                    let vSessionLogId = this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == this.caseBook.SelectedSessionLog.CaseSessionLogId);
+                    this.caseBook.vSessionLog[vSessionLogId] = data;
                 }
+
                 this.toastr.success('Session updated successfully');
             },
             (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
 }

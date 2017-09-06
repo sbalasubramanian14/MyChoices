@@ -73,7 +73,7 @@ export class MentalCaseComponent implements OnInit {
     @ViewChild('mentalModal') public mentalModal: ModalDirective;
 
     private returnValue(input: any) {
-        return input == undefined ? null : input.toString()
+        return input ? input.split(';').map(Number) : null;
     }
 
     public addNewMental() {
@@ -168,11 +168,20 @@ export class MentalCaseComponent implements OnInit {
         this.casesService.updateMental(this.caseBook).subscribe(
             data => {
                 this.mentalModal.hide();
-                this.caseBook.vMental.push(data);
+                let selectedMentalId = this.caseBook.SelectedMental.CaseMentalId;
+                if (selectedMentalId == undefined) {
+                    this.caseBook.vMental.push(data);
+                }
+                else {
+                    let vMentalId = this.caseBook.vMental.findIndex(mental => mental.CaseMentalId == this.caseBook.SelectedMental.CaseMentalId)
+                    this.caseBook.vMental[vMentalId] = data;
+                }
+
                 this.toastr.success('Mental Status updated successfully');
             },
             (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
-            });
+            }
+        );
     }
 }

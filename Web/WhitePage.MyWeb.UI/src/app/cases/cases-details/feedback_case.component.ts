@@ -125,9 +125,17 @@ export class FeedbackCaseComponent implements OnInit {
         this.casesService.updateFeedback(this.caseBook).subscribe(
             data => {
                 this.feedbackModal.hide();
-                this.caseBook.FeedBack.push(data);
-                this.toastr.success('Feedback updated successfully');
 
+                let selectedFeedbackId = this.caseBook.SelectedFeedback.CaseFeedbackId;
+                if (selectedFeedbackId == undefined) {
+                    this.caseBook.FeedBack.push(data);
+                }
+                else {
+                    let vFeedBackId = this.caseBook.FeedBack.findIndex(feedBack => feedBack.CaseFeedbackId == this.caseBook.SelectedFeedback.CaseFeedbackId);
+                    this.caseBook.FeedBack[vFeedBackId] = data;
+                }
+
+                this.toastr.success('Feedback updated successfully');
             },
             (error: any) => {
                 this.toastr.error("Error while updating case, " + error);
