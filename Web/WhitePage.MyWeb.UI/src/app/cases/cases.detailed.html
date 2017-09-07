@@ -3,10 +3,10 @@
         background-color: whitesmoke;
     }
 </style>
-<my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
+<my-spinner [isRunning]="!isCaseBookDataLoaded || !isStatusesLoaded || !isCentersLoaded || !isStatesLoaded || !isLookupsLoaded"></my-spinner>
 
 <div class="table-responsive">
-    <table class="table" *ngIf="caseBook">
+    <table class="table" *ngIf="isCaseBookDataLoaded">
         <thead>
             <tr style="background-color:rgba(10, 10, 10, 0.84); color:whitesmoke">
                 <th>Case Number</th>
@@ -26,7 +26,7 @@
     </table>
 </div>
 
-<div class="container-fluid case-detail-container" *ngIf="isCaseBookDataLoaded">
+<div class="container-fluid case-detail-container" *ngIf="isCaseBookDataLoaded && isStatusesLoaded && isCentersLoaded && isStatesLoaded && isLookupsLoaded">
     <!-- regular tabs -->
     <tabset>
         <tab heading="Primary Info" class="active" style="width:100%">
@@ -73,7 +73,7 @@
         </tab>
 
         <tab heading="Feedback" style="width:100%">
-            <my-spinner [isRunning]="!isFeedbackDataLoaded"></my-spinner>
+            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <feedbackCase [(caseBook)]="caseBook"></feedbackCase>
         </tab>
 

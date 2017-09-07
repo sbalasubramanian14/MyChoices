@@ -53,7 +53,7 @@
 
                                     <div class="form-group">
                                         <label for="Name">Name *</label>
-                                        <textarea placeholder="Name" [formControl]="caseOffenderForm.controls['Name']" class="form-control"></textarea>
+                                        <textarea placeholder="Name" formControlName="Name" class="form-control"></textarea>
                                         <div>
                                             <small *ngIf="caseOffenderForm.controls['Name'].hasError('required') && caseOffenderForm.controls['Name'].touched" class="mat-text-warn">Name is required.</small>
                                         </div>
@@ -62,7 +62,7 @@
                                     <div class="form-group">
                                         <label for="Age">Age *</label>
                                         <div class="form-group" [class.has-danger]="caseOffenderForm.controls['Age'].invalid && caseOffenderForm.controls['Age'].touched">
-                                            <input type="number" id="Age" [formControl]="caseOffenderForm.controls['Age']" class="form-control" />
+                                            <input type="number" id="Age" formControlName="Age" class="form-control" />
                                             <small *ngIf="caseOffenderForm.controls['Age'].touched && caseOffenderForm.controls['Age'].invalid">
                                                 Value should be between 0 and 99
                                             </small>
@@ -73,7 +73,7 @@
                                         <label for="GenderLookupId">Gender *</label>
                                         <ng-select [options]="genderLookupOptionsList"
                                                    placeholder="Select Gender"
-                                                   [formControl]="caseOffenderForm.controls['GenderLookupId']"
+                                                   formControlName="GenderLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -85,7 +85,7 @@
                                         <label for="RelationshipWithVictimLookupId">Relationship With Victim *</label>
                                         <ng-select [options]="relationshipWithVictimLookupOptionsList"
                                                    placeholder="Select Relationship"
-                                                   [formControl]="caseOffenderForm.controls['RelationshipWithVictimLookupId']"
+                                                   formControlName="RelationshipWithVictimLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -95,7 +95,7 @@
 
                                     <div class="form-group">
                                         <label for="OtherRelationship">If other, please specify</label>
-                                        <textarea placeholder="Other Relationship" [formControl]="caseOffenderForm.controls['OtherRelationship']" class="form-control"></textarea>
+                                        <textarea placeholder="Other Relationship" formControlName="OtherRelationship" class="form-control"></textarea>
 
                                     </div>
 

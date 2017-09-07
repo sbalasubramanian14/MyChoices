@@ -83,7 +83,7 @@
                                     <div class="form-group">
                                         <label for="MentalDressLookupId">Dress</label>
                                         <ss-multiselect-dropdown [options]="MentalDressLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalDressLookupId']"
+                                                                 formControlName="MentalDressLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalDressLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -91,7 +91,7 @@
                                     <div class="form-group">
                                         <label for="MentalHygieneLookupId">Hygiene</label>
                                         <ss-multiselect-dropdown [options]="MentalHygieneLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalHygieneLookupId']"
+                                                                 formControlName="MentalHygieneLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalHygieneLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -99,7 +99,7 @@
                                     <div class="form-group">
                                         <label for="MentalBodyTypeLookupId">Body Type</label>
                                         <ss-multiselect-dropdown [options]="MentalBodyTypeLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalBodyTypeLookupId']"
+                                                                 formControlName="MentalBodyTypeLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalBodyTypeLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -107,7 +107,7 @@
                                     <div class="form-group">
                                         <label for="MentalExpressionLookupId">Expression</label>
                                         <ss-multiselect-dropdown [options]="MentalExpressionLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalExpressionLookupId']"
+                                                                 formControlName="MentalExpressionLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalExpressionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -115,7 +115,7 @@
                                     <div class="form-group">
                                         <label for="MentalMotorActivityLookupId">Motor Activity</label>
                                         <ss-multiselect-dropdown [options]="MentalMotorActivityLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalMotorActivityLookupId']"
+                                                                 formControlName="MentalMotorActivityLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalMotorActivityLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -123,14 +123,14 @@
                                     <div class="form-group">
                                         <label for="MentalVocabularyLookupId">Vocabulary</label>
                                         <ss-multiselect-dropdown [options]="MentalVocabularyLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalVocabularyLookupId']"
+                                                                 formControlName="MentalVocabularyLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalVocabularyLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
 
                                     <label for="MentalImpulseControlLookupId">Impulse Control</label>
                                     <ss-multiselect-dropdown [options]="MentalImpulseControlLookupOptionList"
-                                                             [formControl]="caseMentalForm.controls['MentalImpulseControlLookupId']"
+                                                             formControlName="MentalImpulseControlLookupId"
                                                              [(ngModel)]="caseBook.SelectedMental.MentalImpulseControlLookupArray">
                                     </ss-multiselect-dropdown>
                                 </div>
@@ -147,7 +147,7 @@
                                     <div class="form-group">
                                         <label for="MentalSpeechLookupId">Speech</label>
                                         <ss-multiselect-dropdown [options]="MentalSpeechLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalSpeechLookupId']"
+                                                                 formControlName="MentalSpeechLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalSpeechLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -155,7 +155,7 @@
                                     <div class="form-group">
                                         <label for="MentalBehaviourLookupId">Behaviour</label>
                                         <ss-multiselect-dropdown [options]="MentalBehaviourLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalBehaviourLookupId']"
+                                                                 formControlName="MentalBehaviourLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalBehaviourLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -163,7 +163,7 @@
                                     <div class="form-group">
                                         <label for="MentalContentLookupId">Content</label>
                                         <ss-multiselect-dropdown [options]="MentalContentLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalContentLookupId']"
+                                                                 formControlName="MentalContentLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalContentLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -171,7 +171,7 @@
                                     <div class="form-group">
                                         <label for="MentalFlowOfThoughtLookupId">Flow Of Thought</label>
                                         <ss-multiselect-dropdown [options]="MentalFlowOfThoughtLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalFlowOfThoughtLookupId']"
+                                                                 formControlName="MentalFlowOfThoughtLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalFlowOfThoughtLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -179,7 +179,7 @@
                                     <div class="form-group">
                                         <label for="MentalOrientationLookupId">Orientation</label>
                                         <ss-multiselect-dropdown [options]="MentalOrientationLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalOrientationLookupId']"
+                                                                 formControlName="MentalOrientationLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalOrientationLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -187,7 +187,7 @@
                                     <div class="form-group">
                                         <label for="MentalEstimatedIntellectLookupId">Estimated Intellect</label>
                                         <ss-multiselect-dropdown [options]="MentalEstimatedIntellectLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalEstimatedIntellectLookupId']"
+                                                                 formControlName="MentalEstimatedIntellectLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalEstimatedIntellectLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -195,7 +195,7 @@
                                     <div class="form-group">
                                         <label for="MentalAttentionLookupId">Attention</label>
                                         <ss-multiselect-dropdown [options]="MentalAttentionLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalAttentionLookupId']"
+                                                                 formControlName="MentalAttentionLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalAttentionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -213,7 +213,7 @@
                                     <div class="form-group">
                                         <label for="MentalInsightLookupId">Insight</label>
                                         <ss-multiselect-dropdown [options]="MentalInsightLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalInsightLookupId']"
+                                                                 formControlName="MentalInsightLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalInsightLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -221,7 +221,7 @@
                                     <div class="form-group">
                                         <label for="MentalJudgementLookupId">Judgement</label>
                                         <ss-multiselect-dropdown [options]="MentalJudgementLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalJudgementLookupId']"
+                                                                 formControlName="MentalJudgementLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalJudgementLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -229,7 +229,7 @@
                                     <div class="form-group">
                                         <label for="MentalMemoryLookupId">Memory</label>
                                         <ss-multiselect-dropdown [options]="MentalMemoryLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalMemoryLookupId']"
+                                                                 formControlName="MentalMemoryLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalMemoryLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -237,7 +237,7 @@
                                     <div class="form-group">
                                         <label for="MentalInformationLookupId">Information</label>
                                         <ss-multiselect-dropdown [options]="MentalInformationLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalInformationLookupId']"
+                                                                 formControlName="MentalInformationLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalInformationLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>
@@ -245,7 +245,7 @@
                                     <div class="form-group">
                                         <label for="MentalAbstractionLookupId">Abstraction</label>
                                         <ss-multiselect-dropdown [options]="MentalAbstractionLookupOptionList"
-                                                                 [formControl]="caseMentalForm.controls['MentalAbstractionLookupId']"
+                                                                 formControlName="MentalAbstractionLookupId"
                                                                  [(ngModel)]="caseBook.SelectedMental.MentalAbstractionLookupArray">
                                         </ss-multiselect-dropdown>
                                     </div>

@@ -11,35 +11,35 @@
                         <label for="SufferingFromAnyMajorIllnessLookupId">Are you suffering from any major illness?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['SufferingFromAnyMajorIllnessLookupId']"
+                                   formControlName="SufferingFromAnyMajorIllnessLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="SufferingFromAnyMajorIllnessDesc">If yes, please specify:?</label>
-                        <input [formControl]="physicalHealthForm.controls['SufferingFromAnyMajorIllnessDesc']" class="form-control" />
+                        <input formControlName="SufferingFromAnyMajorIllnessDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="DiagnosedPsychiatricIllnessLookupId">Do you have any diagnosed psychiatric illness?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['DiagnosedPsychiatricIllnessLookupId']"
+                                   formControlName="DiagnosedPsychiatricIllnessLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="DiagnosedPsychiatricIllnessDesc">If yes, please specify:?</label>
-                        <input [formControl]="physicalHealthForm.controls['DiagnosedPsychiatricIllnessDesc']" class="form-control" />
+                        <input formControlName="DiagnosedPsychiatricIllnessDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="SleepPerNightLookupId">How much do you sleep per night?</label>
                         <ng-select [options]="sleepPerNightLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['SleepPerNightLookupId']"
+                                   formControlName="SleepPerNightLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -49,7 +49,7 @@
                         <label for="AppetiteLookupId">How is your appetite?</label>
                         <ng-select [options]="appetiteLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['AppetiteLookupId']"
+                                   formControlName="AppetiteLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -58,7 +58,7 @@
                         <label for="ExerciseLookupId">Do you exercise?</label>
                         <ng-select [options]="exerciseLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['ExerciseLookupId']"
+                                   formControlName="ExerciseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -67,14 +67,14 @@
                         <label for="AnyMedicationLookupId">Are you on any medication?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['AnyMedicationLookupId']"
+                                   formControlName="AnyMedicationLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="AnyMedicationDesc">If yes, what medication:?</label>
-                        <input [formControl]="physicalHealthForm.controls['AnyMedicationDesc']" class="form-control" />
+                        <input formControlName="AnyMedicationDesc" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -91,54 +91,54 @@
                         <label for="AnySubstanceLookupId">Are you on any substance?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['AnySubstanceLookupId']"
+                                   formControlName="AnySubstanceLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="AnySubstanceDesc">Please specify:</label>
-                        <input [formControl]="physicalHealthForm.controls['AnySubstanceDesc']" class="form-control" />
+                        <input formControlName="AnySubstanceDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="CurrentlyPregnantLookup">Are you currently pregnant?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="physicalHealthForm.controls['CurrentlyPregnantLookup']"
+                                   formControlName="CurrentlyPregnantLookup"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="CurrentlyPregnantDesc">If yes, give details:</label>
-                        <input [formControl]="physicalHealthForm.controls['CurrentlyPregnantDesc']" class="form-control" />
+                        <input formControlName="CurrentlyPregnantDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="ReasonForSeekingHelpLookupId">What is the reason for seeking help?</label>
                         <ss-multiselect-dropdown [options]="reasonForSeekingHelpLookupOptionsList"
-                                                 [formControl]="physicalHealthForm.controls['ReasonForSeekingHelpLookupId']"
+                                                 formControlName="ReasonForSeekingHelpLookupId"
                                                  [(ngModel)]="caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray">
                         </ss-multiselect-dropdown>
                     </div>
 
                     <div class="form-group">
                         <label for="ReasonForSeekingHelpDesc">If other, please specify</label>
-                        <input [formControl]="physicalHealthForm.controls['ReasonForSeekingHelpDesc']" class="form-control" />
+                        <input formControlName="ReasonForSeekingHelpDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="WhoIsAbusingYouLookupId">Who is abusing you?</label>
                         <ss-multiselect-dropdown [options]="whoIsAbusingYouLookupOptionsList"
-                                                 [formControl]="physicalHealthForm.controls['WhoIsAbusingYouLookupId']"
+                                                 formControlName="WhoIsAbusingYouLookupId"
                                                  [(ngModel)]="caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray">
                         </ss-multiselect-dropdown>
                     </div>
 
                     <div class="form-group">
                         <label for="WhoIsAbusingYouDesc">If others, please specify </label>
-                        <input [formControl]="physicalHealthForm.controls['WhoIsAbusingYouDesc']" class="form-control" />
+                        <input formControlName="WhoIsAbusingYouDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">

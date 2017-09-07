@@ -11,34 +11,34 @@
                         <label for="CaseStatusId">Status</label>
                         <ng-select [options]="caseStatusOptionList"
                                    placeholder="Select"
-                                   [formControl]="caseManageForm.controls['CaseStatusId']"
+                                   formControlName="CaseStatusId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="ReferredToWhom">If Referred, please specify referred to whom</label>
-                        <input [formControl]="caseManageForm.controls['ReferredToWhom']" class="form-control" maxlength="2000" />
+                        <input formControlName="ReferredToWhom" class="form-control" maxlength="2000" />
                     </div>
 
                     <div class="form-group">
                         <label for="SourceOfCaseLookupId">Source of case</label>
                         <ng-select [options]="sourceOfCaseLookupOptionList"
                                    placeholder="Select"
-                                   [formControl]="caseManageForm.controls['SourceOfCaseLookupId']"
+                                   formControlName="SourceOfCaseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="SourceOfCaseDesc">If other, please specify</label>
-                        <input [formControl]="caseManageForm.controls['SourceOfCaseDesc']" class="form-control" maxlength="2000" />
+                        <input formControlName="SourceOfCaseDesc" class="form-control" maxlength="2000" />
                     </div>
 
                     <div class="form-group">
                         <label for="TypesOfCounselingLookupId">Type of counseling</label>
                         <ss-multiselect-dropdown [options]="typesOfCounselingLookupOptionList"
-                                                 [formControl]="caseManageForm.controls['TypesOfCounselingLookupId']"
+                                                 formControlName="TypesOfCounselingLookupId"
                                                  [(ngModel)]="caseBook.Manage.TypesOfCounselingLookupArray">
                         </ss-multiselect-dropdown>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <div class="form-group" [class.has-danger]="caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid && caseManageForm.controls['TotalNoOfSessionsLookupId'].touched">
                             <label for="TotalNoOfSessionsLookupId">Total no of sessions</label>
-                            <input type="number" id="TotalNoOfSessionsLookupId" [formControl]="caseManageForm.controls['TotalNoOfSessionsLookupId']" class="form-control" />
+                            <input type="number" id="TotalNoOfSessionsLookupId" formControlName="TotalNoOfSessionsLookupId" class="form-control" />
                             <small *ngIf="caseManageForm.controls['TotalNoOfSessionsLookupId'].touched && caseManageForm.controls['TotalNoOfSessionsLookupId'].invalid">
                                 Value should be between 0 & 99 And Non-Fractional.
                             </small>
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <div class="form-group" [class.has-danger]="caseManageForm.controls['TotalHoursSpentLookupId'].invalid && caseManageForm.controls['TotalHoursSpentLookupId'].touched">
                             <label for="TotalHoursSpentLookupId">Total hours spent</label>
-                            <input type="number" id="TotalHoursSpentLookupId" [formControl]="caseManageForm.controls['TotalHoursSpentLookupId']" class="form-control" />
+                            <input type="number" id="TotalHoursSpentLookupId" formControlName="TotalHoursSpentLookupId" class="form-control" />
                             <small *ngIf="caseManageForm.controls['TotalHoursSpentLookupId'].touched && caseManageForm.controls['TotalHoursSpentLookupId'].invalid">
                                 Value should be between 0 & 99 And two digit precision.
                             </small>
@@ -65,7 +65,7 @@
 
                     <div class="form-group">
                         <label for="ReasonForClosureStatus">Reason for selected Closure status</label>
-                        <input [formControl]="caseManageForm.controls['ReasonForClosureStatus']" class="form-control" maxlength="2000" />
+                        <input formControlName="ReasonForClosureStatus" class="form-control" maxlength="2000" />
                     </div>
 
 
@@ -83,26 +83,26 @@
 
                     <div class="form-group">
                         <label for="CaseSubject">Subject</label>
-                        <input [formControl]="caseManageForm.controls['CaseSubject']" class="form-control" maxlength="2000" />
+                        <input formControlName="CaseSubject" class="form-control" maxlength="2000" />
                     </div>
 
                     <div class="form-group">
                         <label for="CaseDescription">Description</label>
-                        <textarea [formControl]="caseManageForm.controls['CaseDescription']" class="form-control" maxlength="2000"></textarea>
+                        <textarea formControlName="CaseDescription" class="form-control" maxlength="2000"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="RelationshipWithPMLookupId">Relationship with PM</label>
                         <ng-select [options]="relationshipWithPMLookupOptionList"
                                    placeholder="Select"
-                                   [formControl]="caseManageForm.controls['RelationshipWithPMLookupId']"
+                                   formControlName="RelationshipWithPMLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="ResolutionLog">Case resolution log</label>
-                        <input [formControl]="caseManageForm.controls['ResolutionLog']" class="form-control" maxlength="2000" />
+                        <input formControlName="ResolutionLog" class="form-control" maxlength="2000" />
                     </div>
 
 

@@ -8,29 +8,29 @@
                 <div class="card-block">
                     <div class="form-group">
                         <label for="CaseNumber">Case Number as per court</label>
-                        <input [formControl]="caseLegalForm.controls['CaseNumber']" class="form-control" />
+                        <input formControlName="CaseNumber" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="Court">Court</label>
-                        <input [formControl]="caseLegalForm.controls['Court']" class="form-control" />
+                        <input formControlName="Court" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="Prayer">Prayer</label>
-                        <input [formControl]="caseLegalForm.controls['Prayer']" class="form-control" />
+                        <input formControlName="Prayer" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="LegalRepresentative">Name of legal representative</label>
-                        <input [formControl]="caseLegalForm.controls['LegalRepresentative']" class="form-control" />
+                        <input formControlName="LegalRepresentative" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="LegalConsentFormLookupId">Has the legal consent form been signed and submitted?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseLegalForm.controls['LegalConsentFormLookupId']"
+                                   formControlName="LegalConsentFormLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -39,7 +39,7 @@
                         <label for="LegalActionLookupId">Has any legal action been taken by the client in this regard prior to approaching OPM for help?</label>
                         <ng-select [options]="yesNoOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseLegalForm.controls['LegalActionLookupId']"
+                                   formControlName="LegalActionLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <label for="OutcomeLookupId">Outcome</label>
                         <ss-multiselect-dropdown [options]="outcomeLookupOptionList"
-                                                 [formControl]="caseLegalForm.controls['OutcomeLookupId']"
+                                                 formControlName="OutcomeLookupId"
                                                  [(ngModel)]="caseBook.Legal.OutcomeLookupArray">
                         </ss-multiselect-dropdown>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label for="DocumentsLookupId">List all documents that the client has submitted</label>
                         <ss-multiselect-dropdown [options]="documentsLookupOptionList"
-                                                 [formControl]="caseLegalForm.controls['DocumentsLookupId']"
+                                                 formControlName="DocumentsLookupId"
                                                  [(ngModel)]="caseBook.Legal.DocumentsLookupArray">
                         </ss-multiselect-dropdown>
 

@@ -19,7 +19,7 @@
                     <tr *ngFor="let sessionLog of caseBook.vSessionLog; let i = index">
                         <td>{{sessionLog.CounselingDate}}</td>
                         <td>{{sessionLog.TypeOfCounselingDesc}}</td>
-                        <td>{{sessionLog.DurationOfSessionMin}}</td>
+                        <td>{{sessionLog.DurationOfSessionMIn}}</td>
                         <td>{{sessionLog.NextSessionScheduled}}</td>
                         <td>{{sessionLog.SessionNotes}}</td>
                         <td class="text-right">
@@ -53,7 +53,7 @@
 
                                     <div class="form-group">
                                         <label for="CounselingDate">Date *</label>
-                                        <my-date-picker name="CounselingDate" id="CounselingDate" [formControl]="caseSessionForm.controls['CounselingDate']"></my-date-picker>
+                                        <my-date-picker name="CounselingDate" id="CounselingDate" formControlName="CounselingDate"></my-date-picker>
                                         <div>
                                             <small *ngIf="caseSessionForm.controls['CounselingDate'].hasError('required') && caseSessionForm.controls['CounselingDate'].touched" class="mat-text-warn">Date is required.</small>
                                         </div>
@@ -63,7 +63,7 @@
                                         <label for="TypeOfCounselingLookupId">Counseling Type *</label>
                                         <ng-select [options]="typesOfCounselingLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseSessionForm.controls['TypeOfCounselingLookupId']"
+                                                   formControlName="TypeOfCounselingLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -72,21 +72,21 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="DurationOfSessionMin">Duration (min) *</label>
-                                        <input placeholder="Duration" [formControl]="caseSessionForm.controls['DurationOfSessionMin']" type="number" max="3" class="form-control" />
+                                        <label for="DurationOfSessionMIn">Duration (min) *</label>
+                                        <input placeholder="Duration" formControlName="DurationOfSessionMIn" type="number" max="3" class="form-control" />
                                         <div>
-                                            <small *ngIf="caseSessionForm.controls['DurationOfSessionMin'].hasError('required') && caseSessionForm.controls['DurationOfSessionMin'].touched" class="mat-text-warn">Duration is required.</small>
+                                            <small *ngIf="caseSessionForm.controls['DurationOfSessionMIn'].hasError('required') && caseSessionForm.controls['DurationOfSessionMIn'].touched" class="mat-text-warn">Duration is required.</small>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="NextSessionScheduled">Next Session Date</label>
-                                        <my-date-picker name="NextSessionScheduled" id="NextSessionScheduled" [formControl]="caseSessionForm.controls['NextSessionScheduled']"></my-date-picker>
+                                        <my-date-picker name="NextSessionScheduled" id="NextSessionScheduled" formControlName="NextSessionScheduled"></my-date-picker>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="SessionNotes">Notes *</label>
-                                        <input placeholder="Notes" [formControl]="caseSessionForm.controls['SessionNotes']" class="form-control" />
+                                        <input placeholder="Notes" formControlName="SessionNotes" class="form-control" />
                                         <div>
                                             <small *ngIf="caseSessionForm.controls['SessionNotes'].hasError('required') && caseSessionForm.controls['SessionNotes'].touched" class="mat-text-warn">Notes is required.</small>
                                         </div>

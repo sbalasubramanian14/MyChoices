@@ -64,7 +64,7 @@
                                         <label for="RespectedDuringYourVisitLookupId">Did you feel respected during your visit to the center? *</label>
                                         <ng-select [options]="RespectedDuringYourVisitLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['RespectedDuringYourVisitLookupId']"
+                                                   formControlName="RespectedDuringYourVisitLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -76,7 +76,7 @@
                                         <label for="FeelSafeAndSecureLookupId">Did you feel safe and secure to discuss your situation with the counselor? *</label>
                                         <ng-select [options]="FeelSafeAndSecureLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['FeelSafeAndSecureLookupId']"
+                                                   formControlName="FeelSafeAndSecureLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -88,7 +88,7 @@
                                         <label for="FeelThatCounsellingLookupId">Did you feel that the counselling helped you in dealing with your situation? *</label>
                                         <ng-select [options]="FeelThatCounsellingLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['FeelThatCounsellingLookupId']"
+                                                   formControlName="FeelThatCounsellingLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -100,7 +100,7 @@
                                         <label for="AssistanceOfPeacemakerLookupId">Did you find the assistance of the Peacemaker to be helpful? *</label>
                                         <ng-select [options]="AssistanceOfPeacemakerLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId']"
+                                                   formControlName="AssistanceOfPeacemakerLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -112,7 +112,7 @@
                                         <label for="RecommendFreeCounsellingLookupId">Would you recommend the free counselling services to a friend or relative? *</label>
                                         <ng-select [options]="RecommendFreeCounsellingLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['RecommendFreeCounsellingLookupId']"
+                                                   formControlName="RecommendFreeCounsellingLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -124,7 +124,7 @@
                                         <label for="AbleToImproveLookupId">Are you now able to improve your situation at home and with your family? *</label>
                                         <ng-select [options]="AbleToImproveLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['AbleToImproveLookupId']"
+                                                   formControlName="AbleToImproveLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -136,7 +136,7 @@
                                         <label for="OPMTeamToFollowupLookupId">Would you like the OPM team to follow-up with you after your case is closed? *</label>
                                         <ng-select [options]="OPMTeamToFollowupLookupOptionList"
                                                    placeholder="Select"
-                                                   [formControl]="caseFeedbackForm.controls['OPMTeamToFollowupLookupId']"
+                                                   formControlName="OPMTeamToFollowupLookupId"
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
@@ -146,7 +146,7 @@
 
                                     <div class="form-group">
                                         <label for="AnySuggestions">Do you have any suggestions that could improve the client experience with Operation Peacemaker?</label>
-                                        <input placeholder="Any Suggestions" [formControl]="caseFeedbackForm.controls['AnySuggestions']" class="form-control" />
+                                        <input placeholder="Any Suggestions" formControlName="AnySuggestions" class="form-control" />
                                     </div>
 
                                     <div class="form-group text-center">

@@ -270,6 +270,14 @@ export class PrimaryCaseComponent implements OnInit {
         this.casesService.updateAddress(this.caseBook).subscribe(
             data => {
                 this.addressModal.hide();
+
+                let selectedAddressId = this.caseBook.SelectedAddress.CaseAddressId;
+
+                selectedAddressId == undefined ?
+                    this.caseBook.vAddresses.push(data) :
+                    this.caseBook.vAddresses[this.caseBook.vAddresses.findIndex(address => address.CaseAddressId == selectedAddressId)] = data
+
+                this.toastr.success('Address updated successfully');
             },
             (error: any) => {
                 this.toastr.error("Error while updating case, " + error);

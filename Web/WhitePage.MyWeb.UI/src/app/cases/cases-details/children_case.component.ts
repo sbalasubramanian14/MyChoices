@@ -93,7 +93,13 @@ export class ChildrenCaseComponent implements OnInit {
         this.casesService.updateChildren(this.caseBook).subscribe(
             data => {
                 this.childrenModal.hide();
-                this.caseBook.vChildren.push(data);
+
+                let selectedChildrenId = this.caseBook.SelectedChildren.CaseChildrenId;
+
+                selectedChildrenId == undefined ?
+                    this.caseBook.vChildren.push(data) :
+                    this.caseBook.vChildren[this.caseBook.vChildren.findIndex(child => child.CaseChildrenId == selectedChildrenId)] = data
+
                 this.toastr.success('Children updated successfully');
             },
             (error: any) => {

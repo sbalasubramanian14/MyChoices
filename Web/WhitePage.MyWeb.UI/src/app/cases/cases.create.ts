@@ -143,7 +143,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         //this.caseBook.Case.MaritalStatusLookupId = "4";
 
         this.caseBook.SelectedAddress = new CaseAddress();
-        this.caseBook.vCaseAddress = new Array<vCaseAddress>();
+        this.caseBook.vAddresses = new Array<vCaseAddress>();
 
         this.casePrimaryForm = this.fb.group({
             primaryInfo: new FormGroup({

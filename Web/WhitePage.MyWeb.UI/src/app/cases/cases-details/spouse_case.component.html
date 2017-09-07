@@ -10,13 +10,13 @@
 
                     <div class="form-group">
                         <label for="SpouseName">Spouse Name</label>
-                        <input [formControl]="spouseForm.controls['SpouseName']" maxlength="30" class="form-control" />
+                        <input formControlName="SpouseName" maxlength="30" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="SpouseHomePhone">Spouse Home phone</label>
                         <div class="form-group" [class.has-danger]="spouseForm.controls['SpouseHomePhone'].invalid && spouseForm.controls['SpouseHomePhone'].touched">
-                            <input [formControl]="spouseForm.controls['SpouseHomePhone']" digits maxlength="14" class="form-control" />
+                            <input formControlName="SpouseHomePhone" digits maxlength="14" class="form-control" />
                             <div>
                                 <small *ngIf="spouseForm.controls['SpouseHomePhone'].dirty && spouseForm.controls['SpouseHomePhone'].invalid">Please provide a valid Phone</small>
                             </div>
@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="SpouseMobilePhone">Spouse Mobile phone</label>
                         <div class="form-group" [class.has-danger]="spouseForm.controls['SpouseMobilePhone'].invalid && spouseForm.controls['SpouseMobilePhone'].touched">
-                            <input [formControl]="spouseForm.controls['SpouseMobilePhone']" digits maxlength="14" class="form-control" />
+                            <input formControlName="SpouseMobilePhone" digits maxlength="14" class="form-control" />
                             <div>
                                 <small *ngIf="spouseForm.controls['SpouseMobilePhone'].dirty && spouseForm.controls['SpouseMobilePhone'].invalid">Please provide a valid Mobile</small>
                             </div>
@@ -35,14 +35,14 @@
 
                     <div class="form-group">
                         <label for="SpouseOccupation">Spouse Occupation</label>
-                        <input [formControl]="spouseForm.controls['SpouseOccupation']" maxlength="30" class="form-control" />
+                        <input formControlName="SpouseOccupation" maxlength="30" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="SpouseEducationLookupId">Spouse Education</label>
                         <ng-select [options]="spouseEducationLookupIdLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="spouseForm.controls['SpouseEducationLookupId']"
+                                   formControlName="SpouseEducationLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -62,19 +62,19 @@
                 <div class="card-block">
                     <div class="form-group">
                         <label for="SpouseAddress">Spouse's full address</label>
-                        <textarea type="text" [formControl]="spouseForm.controls['SpouseAddress']" class="form-control" maxlength="300"></textarea>
+                        <textarea type="text" formControlName="SpouseAddress" class="form-control" maxlength="300"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="Area">Area</label>
-                        <input [formControl]="spouseForm.controls['Area']" maxlength="50" class="form-control" />
+                        <input formControlName="Area" maxlength="50" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="StateLookupId">State</label>
                         <ng-select [options]="spouseStateOptionsList"
                                    placeholder="Select State"
-                                   [formControl]="spouseForm.controls['StateLookupId']"
+                                   formControlName="StateLookupId"
                                    (selected)="onSpouseStateSelected($event)"
                                    [allowClear]="true">
                         </ng-select>
@@ -84,7 +84,7 @@
                         <label for="CityLookupId">City</label>
                         <ng-select [options]="spouseCityOptionsList"
                                    placeholder="Select"
-                                   [formControl]="spouseForm.controls['CityLookupId']"
+                                   formControlName="CityLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label for="PIN">PIN</label>
                         <div class="form-group" [class.has-danger]="spouseForm.controls['PIN'].invalid && spouseForm.controls['PIN'].touched">
-                            <input [formControl]="spouseForm.controls['PIN']" digits maxlength="6" class="form-control" />
+                            <input formControlName="PIN" digits maxlength="6" class="form-control" />
                             <div>
                                 <small *ngIf="spouseForm.controls['PIN'].dirty && spouseForm.controls['PIN'].invalid">Please provide a valid PIN</small>
                             </div>
@@ -114,14 +114,14 @@
                 <div class="card-block">
                     <div class="form-group">
                         <label for="PrimaryEmergencyContactName">Primary Emergency Contact Name</label>
-                        <input [formControl]="spouseForm.controls['PrimaryEmergencyContactName']" class="form-control" />
+                        <input formControlName="PrimaryEmergencyContactName" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="PrimaryEmergencyRelationshipToClientLookupId">Relationship to client</label>
                         <ng-select [options]="emergencyRelationshipOptionsList"
                                    placeholder="Select"
-                                   [formControl]="spouseForm.controls['PrimaryEmergencyRelationshipToClientLookupId']"
+                                   formControlName="PrimaryEmergencyRelationshipToClientLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -129,7 +129,7 @@
                     <div class="form-group">
                         <label for="PrimaryEmergencyContactPhoneNumber">Phone number</label>
                         <div class="form-group" [class.has-danger]="spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].invalid && spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].touched">
-                            <input [formControl]="spouseForm.controls['PrimaryEmergencyContactPhoneNumber']" digits maxlength="14" class="form-control" />
+                            <input formControlName="PrimaryEmergencyContactPhoneNumber" digits maxlength="14" class="form-control" />
                             <div>
                                 <small *ngIf="spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].dirty && spouseForm.controls['PrimaryEmergencyContactPhoneNumber'].invalid">Please provide a valid Phone number</small>
                             </div>
@@ -138,19 +138,19 @@
 
                     <div class="form-group">
                         <label for="PrimaryEmergencyContactAdress">Address</label>
-                        <input [formControl]="spouseForm.controls['PrimaryEmergencyContactAdress']" class="form-control" />
+                        <input formControlName="PrimaryEmergencyContactAdress" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="SecondaryEmergencyContactName">Secondary Emergency Contact Name</label>
-                        <input [formControl]="spouseForm.controls['SecondaryEmergencyContactName']" class="form-control" />
+                        <input formControlName="SecondaryEmergencyContactName" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="SecondaryEmergencyRelationshipToClientLookupId">Relationship to client</label>
                         <ng-select [options]="emergencyRelationshipOptionsList"
                                    placeholder="Select"
-                                   [formControl]="spouseForm.controls['SecondaryEmergencyRelationshipToClientLookupId']"
+                                   formControlName="SecondaryEmergencyRelationshipToClientLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -158,7 +158,7 @@
                     <div class="form-group">
                         <label for="SecondaryEmergencyContactPhoneNumber">Phone number</label>
                         <div class="form-group" [class.has-danger]="spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].invalid && spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].touched">
-                            <input [formControl]="spouseForm.controls['SecondaryEmergencyContactPhoneNumber']" digits maxlength="14" class="form-control" />
+                            <input formControlName="SecondaryEmergencyContactPhoneNumber" digits maxlength="14" class="form-control" />
                             <div>
                                 <small *ngIf="spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].dirty && spouseForm.controls['SecondaryEmergencyContactPhoneNumber'].invalid">Please provide a valid Phone number</small>
                             </div>
@@ -167,7 +167,7 @@
 
                     <div class="form-group">
                         <label for="PrimaryEmergencyContactAdress">Address</label>
-                        <input [formControl]="spouseForm.controls['PrimaryEmergencyContactAdress']" class="form-control" />
+                        <input formControlName="PrimaryEmergencyContactAdress" class="form-control" />
                     </div>
 
                 </div>

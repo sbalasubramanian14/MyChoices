@@ -13,20 +13,20 @@
                         <label for="SufferingFromAbuseLookupId">Do you think you are suffering from abuse?</label>
                         <ng-select [options]="sufferingFromAbuseLookupIdLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseAbuseForm.controls['SufferingFromAbuseLookupId']"
+                                   formControlName="SufferingFromAbuseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="SufferingFromAbuseDesc">If no, please specify</label>
-                        <input [formControl]="caseAbuseForm.controls['SufferingFromAbuseDesc']" class="form-control" />
+                        <input formControlName="SufferingFromAbuseDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="FeelAboutAbuseLookupId">If yes, how do you feel about the abuse?</label>
                         <ss-multiselect-dropdown [options]="feelAboutAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['FeelAboutAbuseLookupId']"
+                                                 formControlName="FeelAboutAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.FeelAboutAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <label for="ParentsFeelAboutAbuseLookupId">How do your parents feel about the abuse?</label>
                         <ss-multiselect-dropdown [options]="farentsFeelAboutAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['ParentsFeelAboutAbuseLookupId']"
+                                                 formControlName="ParentsFeelAboutAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.ParentsFeelAboutAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="LawFeelAboutAbuseLookupId">How do your in laws feel about the abuse?</label>
                         <ss-multiselect-dropdown [options]="lawFeelAboutAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['LawFeelAboutAbuseLookupId']"
+                                                 formControlName="LawFeelAboutAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.LawFeelAboutAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -54,27 +54,27 @@
                         <label for="SignsOfPhysicalAbuseLookupId">Are there any signs of physical abuse? </label>
                         <ng-select [options]="signsOfPhysicalAbuseLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseAbuseForm.controls['SignsOfPhysicalAbuseLookupId']"
+                                   formControlName="SignsOfPhysicalAbuseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
 
                     <div class="form-group">
                         <label for="SignsOfPhysicalAbuseDesc">If yes, Please specify</label>
-                        <input [formControl]="caseAbuseForm.controls['SignsOfPhysicalAbuseDesc']" class="form-control" />
+                        <input formControlName="SignsOfPhysicalAbuseDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="WeaponsUsedLookupId">Weapons used by abuser on victim</label>
                         <ss-multiselect-dropdown [options]="weaponsUsedLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['WeaponsUsedLookupId']"
+                                                 formControlName="WeaponsUsedLookupId"
                                                  [(ngModel)]="caseBook.Abuse.WeaponsUsedLookupArray">
 
                         </ss-multiselect-dropdown>
                     </div>
                     <div class="form-group">
                         <label for="WeaponsUsedDesc">If others, Please specify</label>
-                        <input [formControl]="caseAbuseForm.controls['WeaponsUsedDesc']" class="form-control" />
+                        <input formControlName="WeaponsUsedDesc" class="form-control" />
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <label for="TypesOfPhyscialAbuseLookupId">Types of physical abuse - tick all applicable situations</label>
                         <ss-multiselect-dropdown [options]="typesOfPhyscialAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['TypesOfPhyscialAbuseLookupId']"
+                                                 formControlName="TypesOfPhyscialAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.TypesOfPhyscialAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -101,7 +101,7 @@
                         <label for="FrequencyOfPhyscialAbuseLookupId">Frequency of physical abuse</label>
                         <ng-select [options]="frequencyOfPhyscialAbuseLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseAbuseForm.controls['FrequencyOfPhyscialAbuseLookupId']"
+                                   formControlName="FrequencyOfPhyscialAbuseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -109,7 +109,7 @@
                     <div class="form-group">
                         <label for="NumberOfYearsOfPhyscialAbuse">Number of years physical abuse has been occuring</label>
                         <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].touched">
-                            <input type="number" id="NumberOfYearsOfPhyscialAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse']" class="form-control" />
+                            <input type="number" id="NumberOfYearsOfPhyscialAbuse" formControlName="NumberOfYearsOfPhyscialAbuse" class="form-control" />
                             <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfPhyscialAbuse'].invalid">
                                 Value should be between 0 and 99
                             </small>
@@ -119,7 +119,7 @@
                     <div class="form-group">
                         <label for="TypesOfEmotionalAbuseLookupId">Types of emotional abuse - tick all applicable situations</label>
                         <ss-multiselect-dropdown [options]="typesOfEmotionalAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['TypesOfEmotionalAbuseLookupId']"
+                                                 formControlName="TypesOfEmotionalAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.TypesOfEmotionalAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -129,7 +129,7 @@
                         <label for="FrequencyOfEmotionalAbuseLookupId">Frequency of emotional abuse</label>
                         <ng-select [options]="frequencyOfEmotionalAbuseLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseAbuseForm.controls['FrequencyOfEmotionalAbuseLookupId']"
+                                   formControlName="FrequencyOfEmotionalAbuseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -137,7 +137,7 @@
                     <div class="form-group">
                         <label for="NumberOfYearsOfEmotionalAbuse">Number of years emotional abuse has been occurring</label>
                         <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].touched">
-                            <input type="number" id="NumberOfYearsOfEmotionalAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse']" class="form-control" />
+                            <input type="number" id="NumberOfYearsOfEmotionalAbuse" formControlName="NumberOfYearsOfEmotionalAbuse" class="form-control" />
                             <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfEmotionalAbuse'].invalid">
                                 Value should be between 0 and 99
                             </small>
@@ -147,7 +147,7 @@
                     <div class="form-group">
                         <label for="TypesOfSexualAbuseLookupId">Types of sexual abuse - tick all applicable situations</label>
                         <ss-multiselect-dropdown [options]="typesOfSexualAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['TypesOfSexualAbuseLookupId']"
+                                                 formControlName="TypesOfSexualAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.TypesOfSexualAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -157,7 +157,7 @@
                         <label for="FrequencyOfSexualAbuseLookupId">Frequency of sexual abuse</label>
                         <ng-select [options]="frequencyOfSexualAbuseLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseAbuseForm.controls['FrequencyOfSexualAbuseLookupId']"
+                                   formControlName="FrequencyOfSexualAbuseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -167,7 +167,7 @@
                     <div class="form-group">
                         <label for="NumberOfYearsOfSexualAbuse">Number of years sexual abuse has been occurring</label>
                         <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].touched">
-                            <input type="number" id="NumberOfYearsOfSexualAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse']" class="form-control" />
+                            <input type="number" id="NumberOfYearsOfSexualAbuse" formControlName="NumberOfYearsOfSexualAbuse" class="form-control" />
                             <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfSexualAbuse'].invalid">
                                 Value should be between 0 and 99
                             </small>
@@ -187,7 +187,7 @@
                     <div class="form-group">
                         <label for="TypesOfEconomicAbuseLookupId">Types of economic abuse - tick all applicable situations</label>
                         <ss-multiselect-dropdown [options]="typesOfEconomicAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['TypesOfEconomicAbuseLookupId']"
+                                                 formControlName="TypesOfEconomicAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.TypesOfEconomicAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -197,7 +197,7 @@
                         <label for="FrequencyOfEconomicAbuseLookupId">Frequency of economic abuse</label>
                         <ng-select [options]="frequencyOfEconomicAbuseLookupOptionsList"
                                    placeholder="Select"
-                                   [formControl]="caseAbuseForm.controls['FrequencyOfEconomicAbuseLookupId']"
+                                   formControlName="FrequencyOfEconomicAbuseLookupId"
                                    [allowClear]="true">
                         </ng-select>
                     </div>
@@ -205,7 +205,7 @@
                     <div class="form-group">
                         <label for="NumberOfYearsOfEconomicAbuse">Number of years economic abuse has been occurring</label>
                         <div class="form-group" [class.has-danger]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].invalid && caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].touched">
-                            <input type="number" id="NumberOfYearsOfEconomicAbuse" [formControl]="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse']" class="form-control" />
+                            <input type="number" id="NumberOfYearsOfEconomicAbuse" formControlName="NumberOfYearsOfEconomicAbuse" class="form-control" />
                             <small *ngIf="caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].touched && caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].invalid">
                                 Value should be between 0 and 99
                             </small>
@@ -215,7 +215,7 @@
                     <div class="form-group">
                         <label for="ReasonsForAbuseLookupId">Reasons for abuse from abuser side</label>
                         <ss-multiselect-dropdown [options]="reasonsForAbuseLookupOptionsList"
-                                                 [formControl]="caseAbuseForm.controls['ReasonsForAbuseLookupId']"
+                                                 formControlName="ReasonsForAbuseLookupId"
                                                  [(ngModel)]="caseBook.Abuse.ReasonsForAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
@@ -223,7 +223,7 @@
 
                     <div class="form-group">
                         <label for="ReasonForAbuseDesc">If other, please specify</label>
-                        <input [formControl]="caseAbuseForm.controls['ReasonForAbuseDesc']" class="form-control" />
+                        <input formControlName="ReasonForAbuseDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">

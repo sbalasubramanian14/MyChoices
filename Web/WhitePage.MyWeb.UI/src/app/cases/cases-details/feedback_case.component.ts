@@ -21,7 +21,7 @@ import { CaseBook, Case, CaseFeedback } from '../../models/case.entities';
 export class FeedbackCaseComponent implements OnInit {
     public caseBook: CaseBook;
     public caseFeedbackForm: FormGroup;
-    public isFeedbackDataLoaded: boolean = false;
+    public isCaseBookDataLoaded: boolean = false;
     public RespectedDuringYourVisitLookupOptionList: Array<IOption> = [];
     public FeelSafeAndSecureLookupOptionList: Array<IOption> = [];
     public FeelThatCounsellingLookupOptionList: Array<IOption> = [];
@@ -45,7 +45,7 @@ export class FeedbackCaseComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.isFeedbackDataLoaded = true;
+        this.isCaseBookDataLoaded = true;
     }
     
     @ViewChild('feedbackModal') public feedbackModal: ModalDirective;
@@ -127,13 +127,10 @@ export class FeedbackCaseComponent implements OnInit {
                 this.feedbackModal.hide();
 
                 let selectedFeedbackId = this.caseBook.SelectedFeedback.CaseFeedbackId;
-                if (selectedFeedbackId == undefined) {
-                    this.caseBook.FeedBack.push(data);
-                }
-                else {
-                    let vFeedBackId = this.caseBook.FeedBack.findIndex(feedBack => feedBack.CaseFeedbackId == this.caseBook.SelectedFeedback.CaseFeedbackId);
-                    this.caseBook.FeedBack[vFeedBackId] = data;
-                }
+
+                selectedFeedbackId == undefined ?
+                    this.caseBook.FeedBack.push(data) :
+                    this.caseBook.FeedBack[this.caseBook.FeedBack.findIndex(feedBack => feedBack.CaseFeedbackId == selectedFeedbackId)] = data
 
                 this.toastr.success('Feedback updated successfully');
             },
