@@ -41,10 +41,10 @@ export class AbuseCaseComponent implements OnInit {
     public relationshipWithVictimLookupOptionsList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private validationService: ValidationService,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
 
         this.sufferingFromAbuseLookupIdLookupOptionsList = BaseCaseController.staticParseLookups("YesNo");
         this.feelAboutAbuseLookupOptionsList = BaseCaseController.staticParseMultiLookups("AbusingFeel");

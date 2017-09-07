@@ -33,10 +33,12 @@ export class HouseholdCaseComponent implements OnInit {
     public occupationOptionsList: Array<IOption> = [];
     public householdMembersOptionsList: Array<IMultiSelectOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
+    constructor(
+        public fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
         public toastr: ToastsManager) {
+
         this.childrenDeceasedLookupOptionsList = BaseCaseController.staticParseMultiLookups("ChildrenDeceased");
         this.incomeLookupOptionsList = BaseCaseController.staticParseLookups("Income");
         this.yesNoOptionsList = BaseCaseController.staticParseLookups("YesNo");

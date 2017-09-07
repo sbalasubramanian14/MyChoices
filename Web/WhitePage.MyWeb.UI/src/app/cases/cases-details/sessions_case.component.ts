@@ -18,6 +18,7 @@ import * as moment from 'moment';
 @Component({
     selector: 'sessionsCase',
     templateUrl: 'sessions_case.component.html',
+    styleUrls: ['../cases.detailed.scss'],
     inputs: ['caseBook'],
 })
 
@@ -28,10 +29,10 @@ export class SessionsCaseComponent implements OnInit {
     public typesOfCounselingLookupOptionList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private validationService: ValidationService,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
 
         this.typesOfCounselingLookupOptionList = BaseCaseController.staticParseLookups("TypesOfCounselling");
     }

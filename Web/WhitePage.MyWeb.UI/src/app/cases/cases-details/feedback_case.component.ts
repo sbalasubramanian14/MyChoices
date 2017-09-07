@@ -15,6 +15,7 @@ import { CaseBook, Case, CaseFeedback } from '../../models/case.entities';
 @Component({
     selector: 'feedbackCase',
     templateUrl: 'feedback_case.component.html',
+    styleUrls: ['../cases.detailed.scss'],
     inputs: ['caseBook'],
 })
 
@@ -30,9 +31,10 @@ export class FeedbackCaseComponent implements OnInit {
     public AbleToImproveLookupOptionList: Array<IOption> = [];
     public OPMTeamToFollowupLookupOptionList: Array<IOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
+    constructor(
+        public fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
         public toastr: ToastsManager) {
 
         this.RespectedDuringYourVisitLookupOptionList = BaseCaseController.staticParseLookups("RespectedDuringYourVisit");

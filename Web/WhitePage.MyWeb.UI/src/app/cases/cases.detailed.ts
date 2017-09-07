@@ -13,6 +13,7 @@ import { CaseBook} from '../models/case.entities';
 
 @Component({
     templateUrl: 'cases.detailed.html',
+    styleUrls: ['cases.detailed.scss'],
 })
 
 export class CasesDetailedComponent extends BaseCaseController implements OnInit {

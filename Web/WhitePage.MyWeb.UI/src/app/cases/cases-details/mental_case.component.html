@@ -1,11 +1,11 @@
 <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
-<div class="row" style="">
+<div class="row">
     <div class="d-flex flex-column fill-width">
         <div class="add-new-button-container">
             <button class="btn btn-primary" (click)="addNewMental()">Add New Mental Status &nbsp;<i class="fa fa-plus"></i></button>
         </div>
-        <div class="" style="position: relative; width: 100%">
-            <table class="table table-responsive" style="position: absolute; width: 100%; color:whitesmoke">
+        <div class="mentalTab">
+            <table class="table table-responsive mentalResponsive tableColor">
                 <thead class="thead-inverse">
                     <tr>
                         <th>Dress</th>
@@ -74,7 +74,7 @@
             <div class="modal-body">
                 <form [formGroup]="caseMentalForm" *ngIf="caseMentalForm">
                     <div class="d-flex flex-column">
-                        <div class="d-flex flex-column" style="margin-bottom: 10px;">
+                        <div class="d-flex flex-column mentalTabData">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status
@@ -138,7 +138,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column" style="margin-bottom: 10px;">
+                        <div class="d-flex flex-column mentalTabData">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status
@@ -204,7 +204,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column" style="margin-bottom: 10px;">
+                        <div class="d-flex flex-column mentalTabData">
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     Mental Status

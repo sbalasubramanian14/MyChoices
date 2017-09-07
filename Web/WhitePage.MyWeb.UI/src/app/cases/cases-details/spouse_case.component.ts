@@ -31,10 +31,10 @@ export class SpouseCaseComponent implements OnInit {
     public emergencyRelationshipOptionsList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private validationService: ValidationService,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
 
         this.spouseEducationLookupIdLookupOptionsList = BaseCaseController.staticParseLookups("LevelOfEducation");
         this.emergencyRelationshipOptionsList = BaseCaseController.staticParseLookups("RelationshipWithClient");

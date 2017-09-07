@@ -14,6 +14,7 @@ import { BaseCaseController } from './../basecase.controller';
 @Component({
     selector: 'offenderCase',
     templateUrl: 'offender_case.component.html',
+    styleUrls: ['../cases.detailed.scss'],
     inputs: ['caseBook'],
 })
 
@@ -25,10 +26,10 @@ export class OffenderCaseComponent implements OnInit {
     public genderLookupOptionsList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private validationService: ValidationService,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
 
         this.genderLookupOptionsList = BaseCaseController.staticParseLookups("Gender");
         this.relationshipWithVictimLookupOptionsList = BaseCaseController.staticParseLookups("AbusingPerson");

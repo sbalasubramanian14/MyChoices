@@ -29,9 +29,10 @@ export class ManageCaseComponent implements OnInit {
     public typesOfCounselingLookupOptionList: Array<IMultiSelectOption> = [];
     public relationshipWithPMLookupOptionList: Array<IOption> = [];
 
-    constructor(public fb: FormBuilder,
-        public validationService: ValidationService,
-        public casesService: CasesService,
+    constructor(
+        public fb: FormBuilder,
+        private validationService: ValidationService,
+        private casesService: CasesService,
         public toastr: ToastsManager) {
 
         this.sourceOfCaseLookupOptionList = BaseCaseController.staticParseLookups("SourceOfCase");

@@ -31,10 +31,10 @@ export class PhysicalHealthCaseComponent implements OnInit {
     public yesNoOptionsList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private validationService: ValidationService,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
 
         this.sleepPerNightLookupOptionsList = BaseCaseController.staticParseLookups("SleepPerNight");
         this.appetiteLookupOptionsList = BaseCaseController.staticParseLookups("Appetite");

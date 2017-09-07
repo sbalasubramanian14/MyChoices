@@ -13,6 +13,7 @@ import { CaseBook, Case, CaseMental, vCaseMental } from '../../models/case.entit
 @Component({
     selector: 'mentalCase',
     templateUrl: 'mental_case.component.html',
+    styleUrls: ['../cases.detailed.scss'],
     inputs: ['caseBook'],
 })
 
@@ -41,9 +42,9 @@ export class MentalCaseComponent implements OnInit {
     public MentalAbstractionLookupOptionList: Array<IMultiSelectOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
 
         this.MentalDressLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalDress");
         this.MentalHygieneLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalHygiene");

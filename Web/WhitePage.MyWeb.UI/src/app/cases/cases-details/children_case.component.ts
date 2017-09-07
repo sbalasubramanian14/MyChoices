@@ -14,6 +14,7 @@ import { CaseBook, Case, CaseChildren, vCaseChildren } from '../../models/case.e
 @Component({
     selector: 'childrenCase',
     templateUrl: 'children_case.component.html',
+    styleUrls: ['../cases.detailed.scss'],
     inputs: ['caseBook'],
 })
 
@@ -25,10 +26,10 @@ export class ChildrenCaseComponent implements OnInit {
     public genderLookupOptionsList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private validationService: ValidationService,
         private casesService: CasesService,
-        private toastr: ToastsManager) {
+        public toastr: ToastsManager) {
     }
 
     ngOnInit() {

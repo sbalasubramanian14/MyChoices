@@ -25,7 +25,7 @@ export class LegalCaseComponent implements OnInit {
     public yesNoOptionsList: Array<IOption> = [];
 
     constructor(
-        private fb: FormBuilder,
+        public fb: FormBuilder,
         private casesService: CasesService,
         private toastr: ToastsManager) {
 
