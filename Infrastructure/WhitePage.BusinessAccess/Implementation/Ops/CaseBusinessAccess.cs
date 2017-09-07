@@ -118,7 +118,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             return this.caseDataAccess.UpdatePrimaryInfo(caseBook);
         }
-        public CaseHeader UpdateAddress(CaseBook caseBook)
+        public vCaseAddress UpdateAddress(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateAddress(caseBook);
         }
