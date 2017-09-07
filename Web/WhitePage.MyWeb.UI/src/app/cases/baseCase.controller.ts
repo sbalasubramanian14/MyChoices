@@ -107,6 +107,18 @@ export class BaseCaseController {
         });
     }
 
+    private LoadStates(): any {
+        this.commonService.getAllStates().subscribe(data => {
+            data.forEach(
+                state => {
+                    this.statesList.push(state);
+                }
+            );
+            localStorage.setItem("getAllStates", JSON.stringify(this.statesList));
+            this.observerDataSubject.next("States");
+        });
+    }
+
     public getCenterWiseChartsData(id: number, observer: string): any {
         this.chartsService.getCenterWiseChartsData(id).subscribe(data => {
             data.forEach(
@@ -171,19 +183,7 @@ export class BaseCaseController {
             localStorage.setItem("getPeacemakerChartsData", JSON.stringify(this.peacemakerChartObjectsList));
             this.observerDataSubject.next(observer);
         });
-    }
-
-    private LoadStates(): any {
-        this.commonService.getAllStates().subscribe(data => {
-            data.forEach(
-                state => {
-                    this.statesList.push(state);
-                }
-            );
-            localStorage.setItem("getAllStates", JSON.stringify(this.statesList));
-            this.observerDataSubject.next("States");
-        });
-    }
+    }    
 
     public ParseLookups(lookupName: string): Array<IOption> {
         
