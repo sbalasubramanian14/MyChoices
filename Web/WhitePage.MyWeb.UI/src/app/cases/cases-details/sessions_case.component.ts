@@ -136,14 +136,12 @@ export class SessionsCaseComponent implements OnInit {
             data => {
                 this.sessionsModal.hide();
                 this.saveInProgress = false;
+
                 let selectedSessionId = this.caseBook.SelectedSessionLog.CaseSessionLogId;
-                if (selectedSessionId == undefined) {
-                    this.caseBook.vSessionLog.push(data);
-                }
-                else {
-                    let vSessionLogId = this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == this.caseBook.SelectedSessionLog.CaseSessionLogId);
-                    this.caseBook.vSessionLog[vSessionLogId] = data;
-                }
+
+                selectedSessionId == undefined ?
+                    this.caseBook.vSessionLog.push(data):
+                    this.caseBook.vSessionLog[this.caseBook.vSessionLog.findIndex(sLog => sLog.CaseSessionLogId == selectedSessionId)] = data;
 
                 this.toastr.success('Session updated successfully');
             },

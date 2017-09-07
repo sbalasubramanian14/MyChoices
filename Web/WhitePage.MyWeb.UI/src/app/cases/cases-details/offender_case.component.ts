@@ -88,15 +88,12 @@ export class OffenderCaseComponent implements OnInit {
         this.casesService.updateOffender(this.caseBook).subscribe(
             data => {
                 this.offenderModal.hide();
+
                 let selectedOffenderId = this.caseBook.SelectedOffender.CaseOffenderId;
 
-                if (selectedOffenderId == undefined) {
-                    this.caseBook.vOffender.push(data);
-                }
-                else {
-                    let vOffenderId = this.caseBook.vOffender.findIndex(offender => offender.CaseOffenderId == this.caseBook.SelectedOffender.CaseOffenderId);
-                    this.caseBook.vOffender[vOffenderId] = data;
-                }
+                selectedOffenderId == undefined ?
+                    this.caseBook.vOffender.push(data) :                   
+                    this.caseBook.vOffender[this.caseBook.vOffender.findIndex(offender => offender.CaseOffenderId == selectedOffenderId)] = data;
 
                 this.toastr.success('Offender updated successfully');
             },

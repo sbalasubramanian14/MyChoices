@@ -168,14 +168,12 @@ export class MentalCaseComponent implements OnInit {
         this.casesService.updateMental(this.caseBook).subscribe(
             data => {
                 this.mentalModal.hide();
+
                 let selectedMentalId = this.caseBook.SelectedMental.CaseMentalId;
-                if (selectedMentalId == undefined) {
-                    this.caseBook.vMental.push(data);
-                }
-                else {
-                    let vMentalId = this.caseBook.vMental.findIndex(mental => mental.CaseMentalId == this.caseBook.SelectedMental.CaseMentalId)
-                    this.caseBook.vMental[vMentalId] = data;
-                }
+
+                selectedMentalId == undefined ?
+                    this.caseBook.vMental.push(data) :
+                    this.caseBook.vMental[this.caseBook.vMental.findIndex(mental => mental.CaseMentalId == selectedMentalId)] = data
 
                 this.toastr.success('Mental Status updated successfully');
             },

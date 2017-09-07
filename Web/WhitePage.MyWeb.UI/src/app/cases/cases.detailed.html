@@ -30,60 +30,48 @@
     <!-- regular tabs -->
     <tabset>
         <tab heading="Primary Info" class="active" style="width:100%">
-            <my-spinner [isRunning]="!isPrimaryDataLoaded"></my-spinner>
             <primaryCase [(caseBook)]="caseBook"></primaryCase>
         </tab>
-        <tab heading="Children" style="width:100%">
-            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
+        <tab heading="Children" style="width:100%">            
             <childrenCase [(caseBook)]="caseBook"></childrenCase>
         </tab>
         <tab heading="Client & Household" style="width:100%">
-            <my-spinner [isRunning]="!isHouseHoldDataLoaded"></my-spinner>
             <householdCase [(caseBook)]="caseBook"></householdCase>
         </tab>
 
         <tab heading="Spouse" style="width:100%">
-            <my-spinner [isRunning]="!isSpouseDataLoaded"></my-spinner>
             <spouseCase [(caseBook)]="caseBook"></spouseCase>
         </tab>
 
         <tab heading="Physical Health" style="width:100%">
-            <my-spinner [isRunning]="!isPhysicalHealthDataLoaded"></my-spinner>
             <physicalHealthCase [(caseBook)]="caseBook"></physicalHealthCase>                
         </tab>
 
-        <tab heading="Offender" style="width:100%">
-            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
+        <tab heading="Offender" style="width:100%">            
             <offenderCase [(caseBook)]="caseBook"></offenderCase> 
         </tab>
 
         <tab heading="Abuse" style="width:100%">
-            <my-spinner [isRunning]="!isAbuseDataLoaded"></my-spinner>
             <abuseCase [(caseBook)]="caseBook"></abuseCase>
         </tab>
 
         <tab heading="Sessions" style="width:100%">
-            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <sessionsCase [(caseBook)]="caseBook"></sessionsCase>  
         </tab>
 
         <tab heading="Mental Status" style="">
-            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <mentalCase [(caseBook)]="caseBook"></mentalCase>
         </tab>
 
         <tab heading="Feedback" style="width:100%">
-            <my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
             <feedbackCase [(caseBook)]="caseBook"></feedbackCase>
         </tab>
 
         <tab heading="Legal" style="width:100%">
-            <my-spinner [isRunning]="!isLegalDataLoaded"></my-spinner>
             <legalCase [(caseBook)]="caseBook"></legalCase>   
         </tab>
 
         <tab heading="Case Management" style="width:100%">
-            <my-spinner [isRunning]="!isManageDataLoaded"></my-spinner>
             <manageCase [(caseBook)]="caseBook"></manageCase>
         </tab>
     </tabset>
