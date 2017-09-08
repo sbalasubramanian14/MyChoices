@@ -57,7 +57,7 @@ export class SpouseCaseComponent implements OnInit {
         this.isSpouseDataLoaded = true;
     }
 
-    private onSpouseStateSelected(state: any) {
+    public onSpouseStateSelected(state: any) {
         if (state == undefined || state.value == undefined) {
             this.spouseCityOptionsList = new Array<IOption>();
             return;

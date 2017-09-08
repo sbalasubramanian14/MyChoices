@@ -108,7 +108,7 @@ export class PrimaryCaseComponent implements OnInit {
         this.isPrimaryDataLoaded = true;
     }
 
-    private onCenterSelected(center: any) {
+    public onCenterSelected(center: any) {
         if (this.caseBook.Case.CenterId == null || this.caseBook.Case.CenterId <= 0) {
             this.peaceMakerOptionsList = new Array<IOption>();
             this.counselorOptionsList = new Array<IOption>();
