@@ -538,7 +538,7 @@ export class CaseBook {
     Case: Case;
     CaseHeader: CaseHeader;
 
-    vCaseAddress: Array<vCaseAddress>;
+    vAddresses: Array<vCaseAddress>;
     vChildren: Array<vCaseChildren>;
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;
