@@ -10,7 +10,6 @@ import { BaseCaseController } from './../basecase.controller';
     templateUrl: 'household.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class HouseholdComponent implements OnInit {
 
@@ -29,7 +28,6 @@ export class HouseholdComponent implements OnInit {
     public householdMembersOptionsList: Array<IMultiSelectOption> = [];
 
     constructor() {
-
         this.childrenDeceasedLookupOptionsList = BaseCaseController.staticParseMultiLookups("ChildrenDeceased");
         this.incomeLookupOptionsList = BaseCaseController.staticParseLookups("Income");
         this.yesNoOptionsList = BaseCaseController.staticParseLookups("YesNo");
@@ -41,9 +39,7 @@ export class HouseholdComponent implements OnInit {
         this.householdMembersOptionsList = BaseCaseController.staticParseMultiLookups("HouseholdMembers");
     }
 
-
     ngOnInit() {
-
         this.familyHouseHold = this.caseBook.FamilyHouseHold;
         this.isHouseholdDataLoaded = true;
     }

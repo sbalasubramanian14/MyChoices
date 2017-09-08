@@ -6,7 +6,7 @@
 <div class="table-responsive">
     <table class="table" *ngIf="caseBook">
         <thead>
-            <tr style="background-color:rgba(10, 10, 10, 0.84); color:whitesmoke">
+            <tr class="tr-heading">
                 <th>Case Number</th>
                 <th>Client Name</th>
                 <th>Status</th>
@@ -14,7 +14,7 @@
                 <th>Register Date</th>
             </tr>
         </thead>
-        <tr style="color:white">
+        <tr class="tr-data">
             <td>{{caseBook.CaseHeader.CaseNumber}}</td>
             <td>{{caseBook.CaseHeader.ClientName}}</td>
             <td>{{caseBook.CaseHeader.CaseStatus}}</td>
@@ -27,41 +27,41 @@
 <div class="container-fluid case-detail-container" *ngIf="caseBook">
     <!-- regular tabs -->
     <tabset>
-        <tab heading="Primary Info" class="active" style="width:100%">
-            <primaryInfo [(caseBook)]="caseBook"></primaryInfo>
+        <tab heading="Primary Info" class="active">
+            <primary-info [(caseBook)]="caseBook"></primary-info>
         </tab>
-        <tab heading="Children" style="width:100%">
+        <tab heading="Children">
             <children [(caseBook)]="caseBook"></children>
         </tab>
-        <tab heading="Client & Household" style="width:100%">
+        <tab heading="Client & Household">
             <household [(caseBook)]="caseBook"></household>
         </tab>
-        <tab heading="Spouse" style="width:100%">
+        <tab heading="Spouse">
             <spouse [(caseBook)]="caseBook"></spouse>
         </tab>
-        <tab heading="Physical Health" style="width:100%">
-            <physicalHealth [(caseBook)]="caseBook"></physicalHealth>
+        <tab heading="Physical Health">
+            <physical-health [(caseBook)]="caseBook"></physical-health>
         </tab>
-        <tab heading="Offender" style="width:100%">
+        <tab heading="Offender">
             <offender [(caseBook)]="caseBook"></offender>
         </tab>
-        <tab heading="Abuse" style="width:100%">
+        <tab heading="Abuse">
             <abuse [(caseBook)]="caseBook"></abuse>
         </tab>
-        <tab heading="Sessions" style="width:100%">
+        <tab heading="Sessions">
             <sessions [(caseBook)]="caseBook"></sessions>
         </tab>
-        <tab heading="Mental Status" style="">
+        <tab heading="Mental Status">
             <mental [(caseBook)]="caseBook"></mental>
         </tab>
-        <tab heading="Feedback" style="width:100%">
+        <tab heading="Feedback">
             <feedback [(caseBook)]="caseBook"></feedback>
         </tab>
-        <tab heading="Legal" style="width:100%">
+        <tab heading="Legal">
             <legal [(caseBook)]="caseBook"></legal>
         </tab>
-        <tab heading="Case Management" style="width:100%">
-            <management [(caseBook)]="caseBook"></management>
+        <tab heading="Case Management">
+            <case-management [(caseBook)]="caseBook"></case-management>
         </tab>
     </tabset>
 </div>

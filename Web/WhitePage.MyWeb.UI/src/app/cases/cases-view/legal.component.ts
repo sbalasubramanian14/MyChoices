@@ -10,7 +10,6 @@ import { BaseCaseController } from './../basecase.controller';
     templateUrl: 'legal.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class LegalComponent implements OnInit {
 

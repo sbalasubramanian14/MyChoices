@@ -6,11 +6,10 @@ import { CaseBook } from '../../models/case.entities';
 import { BaseCaseController } from './../basecase.controller';
 
 @Component({
-    selector: 'physicalHealth',
-    templateUrl: 'physicalHealth.component.html',
+    selector: 'physical-health',
+    templateUrl: 'physical-health.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class PhysicalHealthComponent implements OnInit {
 
@@ -25,8 +24,7 @@ export class PhysicalHealthComponent implements OnInit {
     public whoIsAbusingYouLookupOptionsList: Array<IMultiSelectOption> = [];
     public yesNoOptionsList: Array<IOption> = [];
 
-    constructor() {
-        
+    constructor() {    
         this.sleepPerNightLookupOptionsList = BaseCaseController.staticParseLookups("SleepPerNight");
         this.appetiteLookupOptionsList = BaseCaseController.staticParseLookups("Appetite");
         this.exerciseLookupOptionsList = BaseCaseController.staticParseLookups("Exercise");

@@ -6,13 +6,12 @@ import { CaseBook } from '../../models/case.entities';
 import { BaseCaseController } from './../basecase.controller';
 
 @Component({
-    selector: 'management',
-    templateUrl: 'management.component.html',
+    selector: 'case-management',
+    templateUrl: 'case-management.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
-export class ManagementComponent implements OnInit {
+export class CaseManagementComponent implements OnInit {
 
     public caseBook: CaseBook;
     public manageForm: any;
@@ -24,13 +23,11 @@ export class ManagementComponent implements OnInit {
     public relationshipWithPMLookupOptionList: Array<IOption> = [];
 
     constructor() {
-
             this.sourceOfCaseLookupOptionList = BaseCaseController.staticParseLookups("SourceOfCase");
             this.typesOfCounselingLookupOptionList = BaseCaseController.staticParseMultiLookups("TypesOfCounselling");
             this.typesOfCounselingLookupOptionList_S = BaseCaseController.staticParseLookups("TypesOfCounselling");
             this.relationshipWithPMLookupOptionList = BaseCaseController.staticParseLookups("RelationshipWithPM");
     }
-
 
     ngOnInit() {
         this.manageForm = this.caseBook.Manage;

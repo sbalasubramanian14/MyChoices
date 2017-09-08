@@ -1,7 +1,7 @@
 <div class="row" *ngIf="caseBook" >
     <div class="d-flex flex-column fill-width">
-        <div class="" style="position:relative; width:100%">
-            <table class="table table-responsive" style="position:absolute; width:100%; color:whitesmoke">
+        <div class="div-mental" >
+            <table class="table table-responsive table-mental" >
                 <thead class="thead-inverse">
                     <tr>
                         <th>Dress</th>
@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let mental of caseBook.vMental; let i = index">
+                    <tr *ngFor="let mental of caseBook.vMental;">
                         <td>{{mental.MentalDress}}</td>
                         <td>{{mental.MentalHygiene}}</td>
                         <td>{{mental.MentalBodyType}}</td>

@@ -1,21 +1,21 @@
 <div class="row" *ngIf="caseBook">
     <div class="d-flex flex-column fill-width">
         <div class="table-responsive">
-            <table class="table" style="color  :whitesmoke">
+            <table class="table" >
                 <thead class="thead-inverse">
                     <tr>
                         <th>Respect</th>
                         <th>Feel Safe and Secure</th>
                         <th>Counselling</th>
                         <th>Assistance</th>
-                        <th>Recommend Fee</th>
+                        <th>Recommend To Others</th>
                         <th>Able To Improve</th>
                         <th>OPM Team Followup</th>
                         <th>Suggestions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let feedback of caseBook.FeedBack; let i = index">
+                    <tr class="tr-data" *ngFor="let feedback of caseBook.FeedBack;">
                         <td>{{feedback.RespectedDuringYourVisit}}</td>
                         <td>{{feedback.FeelSafeAndSecure}}</td>
                         <td>{{feedback.FeelThatCounselling}}</td>
