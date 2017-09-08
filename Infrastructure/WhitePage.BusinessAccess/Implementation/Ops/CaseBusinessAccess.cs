@@ -23,7 +23,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         Func<IQueryable<CaseHeader>, string, IEnumerable<CaseHeader>> returnDateSearchList =
             (cases, searchString) => cases.ToList().Where(s => s.RegisterDateString.ToUpper().Contains(searchString.ToUpper()));
 
-        public List<CaseHeader> GetAllActiveCases(int pageNumber, int offset)
+        public IList<CaseHeader> GetAllActiveCases(int pageNumber, int offset)
         {
             return returnCasesList(this.caseDataAccess.GetAllActiveCases(), pageNumber, offset);
         }
@@ -55,7 +55,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     s.MobileNumber.Contains(mobileNumberFilterString));
         }
 
-        public List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        public IList<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
             return
                 returnDateSearchList(this.GetFilteredData(pageNumber, offset, dictionary), dictionary["RegisterDateString"]).
@@ -78,7 +78,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return lambda;
         }
 
-        public List<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
+        public IList<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
         {
             if (field == "RegisterDateString")
             {
@@ -93,7 +93,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                 GetFilteredData(pageNumber, offset, dictionary).OrderBy(returnObjectExpression(field)).Skip((pageNumber - 1) * 10).Take(offset).ToList();
         }
 
-        public List<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
+        public IList<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
         {
             if (field == "RegisterDateString")
             {

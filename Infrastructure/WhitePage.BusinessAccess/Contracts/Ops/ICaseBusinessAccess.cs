@@ -9,12 +9,12 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         vCaseAddress UpdateAddress(CaseBook caseBook);
         vCaseChildren UpdateChildren(CaseBook caseBook);        
-        List<CaseHeader> GetAllActiveCases(int pageNumber, int offset);
-        List<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary);        
+        IList<CaseHeader> GetAllActiveCases(int pageNumber, int offset);
+        IList<CaseHeader> GetFilteredCases(int pageNumber, int offset, IDictionary<string, string> dictionary);        
         int GetCasesCount();
         int GetFilteredCasesCount(int pageNumber, int offset, IDictionary<string, string> dictionary);
-        List<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);
-        List<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);
+        IList<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);
+        IList<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdateHouseHold(CaseBook caseBook);
         CaseHeader UpdateSpouse(CaseBook caseBook);
