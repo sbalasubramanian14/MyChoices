@@ -13,7 +13,7 @@ import { CaseBook, Case, CaseMental, vCaseMental } from '../../models/case.entit
 @Component({
     selector: 'mentalCase',
     templateUrl: 'mental_case.component.html',
-    styleUrls: ['../cases.detailed.scss'],
+    styleUrls: ['mental_case.component.scss'],
     inputs: ['caseBook'],
 })
 

@@ -121,7 +121,7 @@ export class SessionsCaseComponent implements OnInit {
 
         let nextSchObject = this.caseSessionForm.controls['NextSessionScheduled'].value;
 
-        if (nextSchObject == null || nextSchObject == "") {
+        if (nextSchObject == null || nextSchObject == "" || nextSchObject.date == null) {
             this.caseBook.SelectedSessionLog.NextSessionScheduled = null;
         }
         else {

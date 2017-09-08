@@ -12,7 +12,7 @@
                         <th>Feel Safe and Secure</th>
                         <th>Counselling</th>
                         <th>Assistance</th>
-                        <th>Recommend Fee</th>
+                        <th>Recommend To Others</th>
                         <th>Able To Improve</th>
                         <th>OPM Team Followup</th>
                         <th>Suggestions</th>
@@ -41,14 +41,13 @@
 </div>
 
 
-<div class="modal fade" bsModal #feedbackModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #feedbackModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Client Feedback</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="hideFeedbackModal()">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close pull-right" label="Close" (click)="hideFeedbackModal()">
+                    <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -69,7 +68,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['RespectedDuringYourVisitLookupId'].hasError('required') && caseFeedbackForm.controls['RespectedDuringYourVisitLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.RespectedDuringYourVisitLookupId.hasError('required') && caseFeedbackForm.controls.RespectedDuringYourVisitLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 
@@ -81,7 +80,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['FeelSafeAndSecureLookupId'].hasError('required') && caseFeedbackForm.controls['FeelSafeAndSecureLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.FeelSafeAndSecureLookupId.hasError('required') && caseFeedbackForm.controls.FeelSafeAndSecureLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 
@@ -93,7 +92,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['FeelThatCounsellingLookupId'].hasError('required') && caseFeedbackForm.controls['FeelThatCounsellingLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.FeelThatCounsellingLookupId.hasError('required') && caseFeedbackForm.controls.FeelThatCounsellingLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 
@@ -105,7 +104,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId'].hasError('required') && caseFeedbackForm.controls['AssistanceOfPeacemakerLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.AssistanceOfPeacemakerLookupId.hasError('required') && caseFeedbackForm.controls.AssistanceOfPeacemakerLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 
@@ -117,7 +116,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['RecommendFreeCounsellingLookupId'].hasError('required') && caseFeedbackForm.controls['RecommendFreeCounsellingLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.RecommendFreeCounsellingLookupId.hasError('required') && caseFeedbackForm.controls.RecommendFreeCounsellingLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 
@@ -129,7 +128,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['AbleToImproveLookupId'].hasError('required') && caseFeedbackForm.controls['AbleToImproveLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.AbleToImproveLookupId.hasError('required') && caseFeedbackForm.controls.AbleToImproveLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 
@@ -141,7 +140,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseFeedbackForm.controls['OPMTeamToFollowupLookupId'].hasError('required') && caseFeedbackForm.controls['OPMTeamToFollowupLookupId'].touched" class="mat-text-warn">Required.</small>
+                                            <small *ngIf="caseFeedbackForm.controls.OPMTeamToFollowupLookupId.hasError('required') && caseFeedbackForm.controls.OPMTeamToFollowupLookupId.touched" class="mat-text-warn">Required.</small>
                                         </div>
                                     </div>
 

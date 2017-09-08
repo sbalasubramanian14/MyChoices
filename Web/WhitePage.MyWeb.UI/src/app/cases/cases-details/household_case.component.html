@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="PeacemakerAssistanceDesc">If other, please specify</label>
+                        <label for="PeacemakerAssistanceDesc">If others, please specify</label>
                         <input formControlName="PeacemakerAssistanceDesc" class="form-control" />
                     </div>
 
@@ -90,10 +90,10 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="form-group" [class.has-danger]="clientAndHouseholdForm.controls['ClientEmailId'].invalid && clientAndHouseholdForm.controls['ClientEmailId'].touched">
+                        <div class="form-group" [class.has-danger]="clientAndHouseholdForm.controls.ClientEmailId.invalid && clientAndHouseholdForm.controls.ClientEmailId.touched">
                             <label for="ClientEmailId">Client's Email</label>
                             <input type="email" id="ClientEmailId" formControlName="ClientEmailId" inputmode="email" class="form-control" />
-                            <small *ngIf="clientAndHouseholdForm.controls['ClientEmailId'].dirty && clientAndHouseholdForm.controls['ClientEmailId'].invalid">
+                            <small *ngIf="clientAndHouseholdForm.controls.ClientEmailId.dirty && clientAndHouseholdForm.controls.ClientEmailId.invalid">
                                 Please provide a valid email
                             </small>
                         </div>
@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="VocationalSkillsDesc">If other Vocational skills, please specify:</label>
+                        <label for="VocationalSkillsDesc">If other vocational skills, please specify</label>
                         <input formControlName="VocationalSkillsDesc" class="form-control" />
                     </div>
 
@@ -153,7 +153,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="OccupationDesc">If self-employed or employed, please specify:</label>
+                        <label for="OccupationDesc">If self-employed or employed, please specify</label>
                         <input formControlName="OccupationDesc" class="form-control" />
                     </div>
 
@@ -177,7 +177,7 @@
                     <div class="form-group">
                         <label for="YearOfMarriage">Year of marriage</label>
                         <input formControlName="YearOfMarriage" digits maxlength="4" class="form-control" />
-                        <small *ngIf="clientAndHouseholdForm.controls['YearOfMarriage'].dirty && clientAndHouseholdForm.controls['YearOfMarriage'].invalid">
+                        <small *ngIf="clientAndHouseholdForm.controls.YearOfMarriage.dirty && clientAndHouseholdForm.controls.YearOfMarriage.invalid">
                             Please provide a valid year
                         </small>
                     </div>
@@ -185,7 +185,7 @@
                     <div class="form-group">
                         <label for="ClientAgeAtFirstChild">At what age did client have her first child?</label>
                         <input formControlName="ClientAgeAtFirstChild" digits maxlength="2" class="form-control" />
-                        <small *ngIf="clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].dirty && clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].invalid">
+                        <small *ngIf="clientAndHouseholdForm.controls.ClientAgeAtFirstChild.dirty && clientAndHouseholdForm.controls.ClientAgeAtFirstChild.invalid">
                             Please provide a valid age
                         </small>
                     </div>

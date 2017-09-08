@@ -30,14 +30,13 @@
         </div>
     </div>
 </div>
-<div class="modal fade" bsModal #childrenModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #childrenModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" >
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Case Children</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildrenModal()">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close pull-right" label="Close" (click)="hideChildrenModal()">
+                    <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -54,15 +53,15 @@
                                         <label for="Name">Name *</label>
                                         <textarea placeholder="Name" formControlName="Name" class="form-control"></textarea>
                                         <div>
-                                            <small *ngIf="caseChildrenForm.controls['Name'].hasError('required') && caseChildrenForm.controls['Name'].touched" class="mat-text-warn">Name is required.</small>
+                                            <small *ngIf="caseChildrenForm.controls.Name.hasError('required') && caseChildrenForm.controls.Name.touched" class="mat-text-warn">Name is required.</small>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Age">Age *</label>
-                                        <div class="form-group" [class.has-danger]="caseChildrenForm.controls['Age'].invalid && caseChildrenForm.controls['Age'].touched">
+                                        <div class="form-group" [class.has-danger]="caseChildrenForm.controls.Age.invalid && caseChildrenForm.controls.Age.touched">
                                             <input type="number" id="Age" formControlName="Age" class="form-control" />
-                                            <small *ngIf="caseChildrenForm.controls['Age'].touched && caseChildrenForm.controls['Age'].invalid">
+                                            <small *ngIf="caseChildrenForm.controls.Age.touched && caseChildrenForm.controls.Age.invalid">
                                                 Value should be between 0 and 99
                                             </small>
                                         </div>
@@ -76,7 +75,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseChildrenForm.controls['GenderLookupId'].hasError('required') && caseChildrenForm.controls['GenderLookupId'].touched" class="mat-text-warn">Gender is required.</small>
+                                            <small *ngIf="caseChildrenForm.controls.GenderLookupId.hasError('required') && caseChildrenForm.controls.GenderLookupId.touched" class="mat-text-warn">Gender is required.</small>
                                         </div>
                                     </div>
 
@@ -88,7 +87,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseChildrenForm.controls['RelationshipWithAbuserLookupId'].hasError('required') && caseChildrenForm.controls['RelationshipWithAbuserLookupId'].touched" class="mat-text-warn">Relationship With Abuser is required.</small>
+                                            <small *ngIf="caseChildrenForm.controls.RelationshipWithAbuserLookupId.hasError('required') && caseChildrenForm.controls.RelationshipWithAbuserLookupId.touched" class="mat-text-warn">Relationship With Abuser is required.</small>
                                         </div>
                                     </div>
 

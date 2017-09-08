@@ -70,7 +70,7 @@ export class OffenderCaseComponent implements OnInit {
             Age: [this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]],
             GenderLookupId: [this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required],
             RelationshipWithVictimLookupId: [this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required],
-            OtherRelationship: [this.caseBook.SelectedOffender.OtherRelationship, Validators.required]
+            OtherRelationship: [this.caseBook.SelectedOffender.OtherRelationship]
         });
         this.offenderModal.show();
     }

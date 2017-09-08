@@ -110,9 +110,7 @@ export class BaseCaseController {
     private LoadStates(): any {
         this.commonService.getAllStates().subscribe(data => {
             data.forEach(
-                state => {
-                    this.statesList.push(state);
-                }
+                state => this.statesList.push(state)
             );
             localStorage.setItem("getAllStates", JSON.stringify(this.statesList));
             this.observerDataSubject.next("States");

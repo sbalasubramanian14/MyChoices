@@ -68,7 +68,7 @@ export class LegalCaseComponent implements OnInit {
             data => {
                 this.toastr.success('Legal updated successfully');
             },
-            (error: any) => {
+            error => {
                 this.toastr.error("Error while updating case, " + error);
             }
         );

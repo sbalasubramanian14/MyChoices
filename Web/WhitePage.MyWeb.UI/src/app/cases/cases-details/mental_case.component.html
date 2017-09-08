@@ -61,14 +61,13 @@
     </div>
 </div>
 
-<div class="modal fade" bsModal #mentalModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog">
+<div class="modal fade" bsModal #mentalModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Mental Status</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="hideMentalModal()">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close pull-right" label="Close" (click)="hideMentalModal()">
+                    <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">

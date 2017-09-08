@@ -32,14 +32,13 @@
         </div>
     </div>
 </div>
-<div class="modal fade" bsModal #sessionsModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #sessionsModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Session Management</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="hideSessionModal()" *ngIf="!saveInProgress">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close pull-right" label="Close" (click)="hideSessionModal()" *ngIf="!saveInProgress">
+                    <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -56,7 +55,7 @@
                                         <label for="CounselingDate">Date *</label>
                                         <my-date-picker name="CounselingDate" id="CounselingDate" formControlName="CounselingDate"></my-date-picker>
                                         <div>
-                                            <small *ngIf="caseSessionForm.controls['CounselingDate'].hasError('required') && caseSessionForm.controls['CounselingDate'].touched" class="mat-text-warn">Date is required.</small>
+                                            <small *ngIf="caseSessionForm.controls.CounselingDate.hasError('required') && caseSessionForm.controls.CounselingDate.touched" class="mat-text-warn">Date is required.</small>
                                         </div>
                                     </div>
 
@@ -68,7 +67,7 @@
                                                    [allowClear]="true">
                                         </ng-select>
                                         <div>
-                                            <small *ngIf="caseSessionForm.controls['TypeOfCounselingLookupId'].hasError('required') && caseSessionForm.controls['TypeOfCounselingLookupId'].touched" class="mat-text-warn">Counseling is required.</small>
+                                            <small *ngIf="caseSessionForm.controls.TypeOfCounselingLookupId.hasError('required') && caseSessionForm.controls.TypeOfCounselingLookupId.touched" class="mat-text-warn">Counseling is required.</small>
                                         </div>
                                     </div>
 
@@ -76,7 +75,7 @@
                                         <label for="DurationOfSessionMIn">Duration (min) *</label>
                                         <input placeholder="Duration" formControlName="DurationOfSessionMIn" type="number" max="3" class="form-control" />
                                         <div>
-                                            <small *ngIf="caseSessionForm.controls['DurationOfSessionMIn'].hasError('required') && caseSessionForm.controls['DurationOfSessionMIn'].touched" class="mat-text-warn">Duration is required.</small>
+                                            <small *ngIf="caseSessionForm.controls.DurationOfSessionMIn.hasError('required') && caseSessionForm.controls.DurationOfSessionMIn.touched" class="mat-text-warn">Duration is required.</small>
                                         </div>
                                     </div>
 
@@ -89,7 +88,7 @@
                                         <label for="SessionNotes">Notes *</label>
                                         <input placeholder="Notes" formControlName="SessionNotes" class="form-control" />
                                         <div>
-                                            <small *ngIf="caseSessionForm.controls['SessionNotes'].hasError('required') && caseSessionForm.controls['SessionNotes'].touched" class="mat-text-warn">Notes is required.</small>
+                                            <small *ngIf="caseSessionForm.controls.SessionNotes.hasError('required') && caseSessionForm.controls.SessionNotes.touched" class="mat-text-warn">Notes is required.</small>
                                         </div>
                                     </div>
 
