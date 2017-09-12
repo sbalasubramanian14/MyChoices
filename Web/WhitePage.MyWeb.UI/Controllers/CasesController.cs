@@ -207,12 +207,12 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult UpdateCase([FromBody] CaseBook caseBook)
+        public IActionResult UpdateCaseManagement([FromBody] CaseBook caseBook)
         {
             caseBook.Manage.CaseId = caseBook.Case.CaseId;
             caseBook.Manage.TypesOfCounselingLookupId = caseBook.Manage.TypesOfCounselingLookupArray.ToArrayString();
 
-            var updatedCase = this.caseBusinessAccess.UpdateCase(caseBook);
+            var updatedCase = this.caseBusinessAccess.UpdateCaseManagement(caseBook);
             return Ok(updatedCase);
         }
 

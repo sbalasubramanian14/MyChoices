@@ -463,25 +463,28 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public int UpdateCase(CaseBook caseBook)
+        public int UpdateCaseManagement(CaseBook caseBook)
         {
-            CaseManage caseObj;
+            CaseManage caseManageObj;
+            Case caseObj;
             try
             {
-                caseObj = this.unitOfWork.DbContext.Manage.Find(caseBook.Manage.CaseManageId);
-                if (caseObj != null)
+                caseManageObj = this.unitOfWork.DbContext.Manage.Find(caseBook.Manage.CaseManageId);
+                if (caseManageObj != null)
                 {
-                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.Manage);
+                    this.unitOfWork.DbContext.Entry(caseManageObj).CurrentValues.SetValues(caseBook.Manage);
                 }
                 else
-                    caseObj = this.unitOfWork.DbContext.Manage.Add(caseBook.Manage);
+                    caseManageObj = this.unitOfWork.DbContext.Manage.Add(caseBook.Manage);
+                caseObj = this.unitOfWork.DbContext.Cases.Find(caseBook.Case.CaseId);
+                caseObj.CaseStausId = caseManageObj.CaseStatusId;
                 int flag = this.unitOfWork.DbContext.SaveChanges();
             }
             catch (Exception ex)
             {
                 return -1;
             }
-            return caseObj.CaseManageId;
+            return caseManageObj.CaseManageId;
         }
 
         public vCaseMental UpdateMental(CaseBook caseBook)
@@ -594,13 +597,13 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public CaseHeader UpdateCaseStatus(CaseBook caseBook)
         {
-            var updatedFlag1 = UpdateCase(caseBook);
-            var updatedFlag2 = UpdateHouseHold(caseBook);
-            updatedFlag2 = UpdateSpouse(caseBook);
-            updatedFlag2 = UpdatePhysicalHealth(caseBook);
-            updatedFlag2 = UpdateAbuse(caseBook);
+            UpdateCaseManagement(caseBook);
+            var updatedCaseHeader = UpdateHouseHold(caseBook);
+            updatedCaseHeader = UpdateSpouse(caseBook);
+            updatedCaseHeader = UpdatePhysicalHealth(caseBook);
+            updatedCaseHeader = UpdateAbuse(caseBook);
 
-            return updatedFlag2;
+            return updatedCaseHeader;
         }
         public bool DeleteCase(int caseId)
         {
