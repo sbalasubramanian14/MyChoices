@@ -9,7 +9,8 @@
                 <div class="card-block">
                     <div class="form-group">
                         <label for="CenterId">Center *</label>
-                        <ng-select [options]="centerOptionList"
+                        <ng-select id="CenterId"
+                                   [options]="centerOptionList"
                                    placeholder="Select Center"
                                    formControlName="CenterId"
                                    [(ngModel)]="caseBook.Case.CenterId"
@@ -21,8 +22,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="CenterId">Peace Maker *</label>
-                        <ng-select [options]="peaceMakerOptionsList"
+                        <label for="PeaceMakerId">Peace Maker *</label>
+                        <ng-select id="PeaceMakerId"
+                                   [options]="peaceMakerOptionsList"
                                    placeholder="Select Peace Maker"
                                    [(ngModel)]="caseBook.Case.PeaceMakerId"
                                    formControlName="PeaceMakerId"
@@ -33,8 +35,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="CenterId">Counselor *</label>
-                        <ng-select [options]="counselorOptionsList"
+                        <label for="CounselorId">Counselor *</label>
+                        <ng-select id="CounselorId"
+                                   [options]="counselorOptionsList"
                                    placeholder="Select Peace Maker"
                                    [(ngModel)]="caseBook.Case.CounselorId"
                                    formControlName="CounselorId"
@@ -45,26 +48,26 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">First Name *</label>
-                        <input placeholder="First Name" formControlName="ClientFirstName" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
+                        <label for="FirstNameId">First Name *</label>
+                        <input id="FirstNameId" placeholder="First Name" formControlName="ClientFirstName" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.ClientFirstName.hasError('required') && casePrimaryForm.controls.ClientFirstName.touched" class="mat-text-warn">First Name is required.</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">Last Name *</label>
-                        <input placeholder="Last Name" formControlName="ClientLastName" [(ngModel)]="caseBook.Case.ClientLastName" class="form-control" />
+                        <label for="LastNameId">Last Name *</label>
+                        <input id="LastNameId" placeholder="Last Name" formControlName="ClientLastName" [(ngModel)]="caseBook.Case.ClientLastName" class="form-control" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.ClientLastName.hasError('required') && casePrimaryForm.controls.ClientLastName.touched" class="mat-text-warn">Last Name is required.</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">M.I.</label>
-                        <textarea placeholder="Middle Initials" formControlName="Mi" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000"></textarea>
+                        <label for="MiddleInitialId">M.I.</label>
+                        <input id="MiddleInitialId" placeholder="Middle Initials" formControlName="Mi" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000" />
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">Father / Husband Name *</label>
-                        <input placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
+                        <label for="FatherHusbandNameId">Father / Husband Name *</label>
+                        <input id="FatherHusbandNameId" placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.FatherName.hasError('required') && casePrimaryForm.controls.FatherName.touched" class="mat-text-warn">Father / Husband Name is required.</small>
                         </div>
@@ -79,15 +82,15 @@
                 </div>
                 <div class="card-block">
                     <div class="form-group">
-                        <label for="PeacemakerId">Address *</label>
-                        <textarea placeholder="Address" formControlName="Address" class="form-control" [(ngModel)]="caseBook.SelectedAddress.Address" maxlength="300"></textarea>
+                        <label for="AddressId">Address *</label>
+                        <textarea id="AddressId" placeholder="Address" formControlName="Address" class="form-control" [(ngModel)]="caseBook.SelectedAddress.Address" maxlength="300"></textarea>
                         <div>
                             <small *ngIf="casePrimaryForm.controls.Address.hasError('required') && casePrimaryForm.controls.Address.touched" class="mat-text-warn">Address is required.</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">PIN *</label>
-                        <input placeholder="PIN" formControlName="PIN"
+                        <label for="PinId">PIN *</label>
+                        <input id="PinId" placeholder="PIN" formControlName="PIN"
                                class="form-control" [(ngModel)]="caseBook.SelectedAddress.PIN" digits maxlength="6" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.PIN.hasError('required') && casePrimaryForm.controls.PIN.touched" class="mat-text-warn">PIN is required.</small>
@@ -95,8 +98,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">State *</label>
-                        <ng-select [options]="stateOptionsList"
+                        <label for="StateId">State *</label>
+                        <ng-select id="StateId"
+                                   [options]="stateOptionsList"
                                    placeholder="Select State"
                                    formControlName="StateId"
                                    [(ngModel)]="caseBook.SelectedAddress.StateId"
@@ -108,8 +112,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">City *</label>
-                        <ng-select [options]="cityOptionsList"
+                        <label for="CityId">City *</label>
+                        <ng-select id="CityId"
+                                   [options]="cityOptionsList"
                                    placeholder="Select City"
                                    formControlName="CityId"
                                    [(ngModel)]="caseBook.SelectedAddress.CityId"
@@ -120,8 +125,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">Area *</label>
-                        <input placeholder="Area" formControlName="Area" class="form-control" [(ngModel)]="caseBook.SelectedAddress.Area" />
+                        <label for="AreaId">Area *</label>
+                        <input id="AreaId" placeholder="Area" formControlName="Area" class="form-control" [(ngModel)]="caseBook.SelectedAddress.Area" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.Area.hasError('required') && casePrimaryForm.controls.Area.touched" class="mat-text-warn">Area is required.</small>
                         </div>
@@ -136,17 +141,18 @@
                 </div>
                 <div class="card-block">
                     <div class="form-group">
-                        <label for="PeacemakerId">Mobile *</label>
-                        <input placeholder="Mobile" formControlName="MobileNumber"
+                        <label for="MobileId">Mobile *</label>
+                        <input id="MobileId" placeholder="Mobile" formControlName="MobileNumber"
                                class="form-control" [(ngModel)]="caseBook.Case.MobileNumber" digits maxlength="14" />
                         <div>
-                            <small *ngIf="casePrimaryForm.controls.MobileNumber.hasError('required') && casePrimaryForm.controls.MobileNumber.touched" class="mat-text-warn">Mobile is required.</small>
+                            <small *ngIf="casePrimaryForm.controls.MobileNumber.hasError('required') && casePrimaryForm.controls.MobileNumber.touched" class="mat-text-warn">Mobile number is required.</small>
                             <small *ngIf="casePrimaryForm.controls.MobileNumber.dirty && casePrimaryForm.controls.MobileNumber.invalid" class="mat-text-warn">Please provide a valid Mobile Number</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="CenterId">Gender *</label>
-                        <ng-select [options]="genderLookupOptionsList"
+                        <label for="GenderId">Gender *</label>
+                        <ng-select id="GenderId"
+                                   [options]="genderLookupOptionsList"
                                    placeholder="Select Gender"
                                    [(ngModel)]="caseBook.Case.GenderLookupId"
                                    formControlName="GenderLookupId"
@@ -157,8 +163,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="CenterId">Marital Status *</label>
-                        <ng-select [options]="maritalStatusLookupOptionsList"
+                        <label for="MaritalStatusId">Marital Status *</label>
+                        <ng-select id="MaritalStatusId"
+                                   [options]="maritalStatusLookupOptionsList"
                                    placeholder="Select Marital Status"
                                    [(ngModel)]="caseBook.Case.MaritalStatusLookupId"
                                    formControlName="MaritalStatusLookupId"
@@ -169,8 +176,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="CenterId">Required Assistance *</label>
-                        <ng-select [options]="requireAssistanceLookupOptionsList"
+                        <label for="AssistanceId">Required Assistance *</label>
+                        <ng-select id="AssistanceId"
+                                   [options]="requireAssistanceLookupOptionsList"
                                    placeholder="Required Assistance"
                                    [(ngModel)]="caseBook.Case.RequireAssistanceLookupId"
                                    formControlName="RequireAssistanceLookupId"
@@ -181,8 +189,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="PeacemakerId">Remarks</label>
-                        <textarea placeholder="Remarks" [formControl]="casePrimaryForm.controls.Remarks" [(ngModel)]="caseBook.Case.Remarks" class="form-control" maxlength="300"></textarea>
+                        <label for="RemarksId">Remarks</label>
+                        <textarea id="RemarksId" placeholder="Remarks" [formControl]="casePrimaryForm.controls.Remarks" [(ngModel)]="caseBook.Case.Remarks" class="form-control" maxlength="300"></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" [disabled]="!casePrimaryForm.valid" (click)="onCaseSave()">Save</button>
