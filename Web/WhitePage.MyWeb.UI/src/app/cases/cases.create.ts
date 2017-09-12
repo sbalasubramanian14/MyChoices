@@ -66,13 +66,13 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             }
         });
         var localCenterOptionList = new Array<IOption>();
-                    for (var i = 0; i < this.centersList.length; i++) {
-                        localCenterOptionList.push({
-                            value: this.centersList[i].CenterId.toString(),
-                            label: this.centersList[i].Title
-                        });
-                    }
-                    this.centerOptionList = localCenterOptionList;
+             for (var i = 0; i < this.centersList.length; i++) {
+                localCenterOptionList.push({
+                    value: this.centersList[i].CenterId.toString(),
+                    label: this.centersList[i].Title
+                });
+             }
+             this.centerOptionList = localCenterOptionList;
 
     }
     public caseBook: CaseBook;
@@ -179,7 +179,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                 this.router.navigate(['/cases/detailed/' + data.CaseId]).then(() => {
                     this.toastr.success(data.CaseNumber + ' has been created successfully');
                 });
-            }, (error) => {
+            }, error => {
                 this.toastr.error("Error while creating case, " + error);
             });
     }
