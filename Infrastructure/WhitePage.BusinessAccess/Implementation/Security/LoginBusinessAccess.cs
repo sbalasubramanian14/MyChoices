@@ -40,5 +40,9 @@ namespace WhitePage.BusinessAccess.Implementation.Security
         {
             this.loginDataAccess.AddNewUserLogin(userName, roleId, firstName, lastName);
         }
+        public int DeactivateUser(int userId)
+        {
+            return this.loginDataAccess.DeactivateUser(userId);
+        }
     }
 }

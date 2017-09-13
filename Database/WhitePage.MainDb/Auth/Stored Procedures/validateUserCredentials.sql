@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [Auth].[validateUserCredentials]
+CREATE PROCEDURE [Auth].[validateUserCredentials]
 	@userName VARCHAR(2000),
 	@password VARCHAR(2000),
 	@ipAddress VARCHAR(70)
@@ -20,7 +20,7 @@ BEGIN
 		SET @remarks = @userName;
 	END
 
-	IF EXISTS (SELECT * FROM Auth.trUser WHERE UserName = @userName AND Password = @password AND IsLocked = 0 AND IsSuspended=0)
+	IF EXISTS (SELECT * FROM Auth.trUser WHERE UserName = @userName AND Password = @password AND IsLocked = 0 AND IsSuspended=0 AND IsActive=1)
 	BEGIN
 		INSERT INTO @claims (ClaimType, ClaimValue) VALUES('Status', 'Success');
 		INSERT INTO @claims (ClaimType, ClaimValue) VALUES('AuthenticationMethod', 'myChoices');		

@@ -10,7 +10,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserCreateComponent } from './user.create';
 import { PeacemakerCreateComponent } from './peacemaker.create';
 import { CounselorCreateComponent } from './counselor.create';
-
+import { DeactivateUserComponent } from './deactivateUser'
 import { CommonService } from '../services/common.services';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
@@ -36,7 +36,7 @@ import { MyDatePickerModule } from 'mydatepicker';
         MultiselectDropdownModule,
         MyDatePickerModule
     ],
-    declarations: [UserCreateComponent, PeacemakerCreateComponent, CounselorCreateComponent],
+    declarations: [UserCreateComponent, PeacemakerCreateComponent, CounselorCreateComponent, DeactivateUserComponent],
     providers: [
         CommonService
     ]

@@ -20,5 +20,5 @@ BEGIN
 
 	declare @CaseId INT;
 	select @CaseId = CaseId from @caseAddressType;
-	select * from [Ops].[vCaseHeader] where CaseId = @CaseId;
+	select * from [Ops].[vCaseAddress] where CaseId = @CaseId;
 END

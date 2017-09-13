@@ -11,5 +11,6 @@ namespace WhitePage.ResourceAccess.Contracts.Security
         void AddPeaceMaker(PeaceMaker peaceMaker);
         void AddCounselor(Counselor counselor);
         void AddNewUserLogin(string userName, int roleId, string firstName, string lastName);
+        int DeactivateUser(int userId);
     }
 }
