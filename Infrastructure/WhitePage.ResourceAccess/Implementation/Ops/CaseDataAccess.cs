@@ -482,8 +482,9 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             }
             catch (Exception ex)
             {
-                return -1;
+                throw;
             }
+
             return caseManageObj.CaseManageId;
         }
 

@@ -11,6 +11,8 @@ using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
 using WhitePage.Utilities.Extensions;
 using Newtonsoft.Json.Linq;
+using System.Data.Entity.Core;
+using System.Data;
 
 namespace WhitePage.MyWeb.UI.Controllers
 {
@@ -209,10 +211,23 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdateCaseManagement([FromBody] CaseBook caseBook)
         {
+            int updatedCase = 0;
             caseBook.Manage.CaseId = caseBook.Case.CaseId;
             caseBook.Manage.TypesOfCounselingLookupId = caseBook.Manage.TypesOfCounselingLookupArray.ToArrayString();
-
-            var updatedCase = this.caseBusinessAccess.UpdateCaseManagement(caseBook);
+            updatedCase = this.caseBusinessAccess.UpdateCaseManagement(caseBook);
+            try
+            {
+                updatedCase = this.caseBusinessAccess.UpdateCaseManagement(caseBook);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException is DeletedRowInaccessibleException)
+                    return StatusCode(409);
+                else if (ex.InnerException is UpdateException)
+                    return StatusCode(500);
+                else
+                    return StatusCode(400);
+            }
             return Ok(updatedCase);
         }
 

@@ -155,7 +155,19 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
         public int UpdateCaseManagement(CaseBook caseBook)
         {
-            return this.caseDataAccess.UpdateCaseManagement(caseBook);
+            int updatedCaseManagement;
+            try
+            {
+                updatedCaseManagement = this.caseDataAccess.UpdateCaseManagement(caseBook);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            return updatedCaseManagement;
+
+
+
         }
 
         public vCaseMental UpdateMental(CaseBook caseBook)
