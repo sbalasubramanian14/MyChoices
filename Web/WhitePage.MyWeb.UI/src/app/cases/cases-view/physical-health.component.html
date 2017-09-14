@@ -4,7 +4,7 @@
                 <div class="card-header">
                     Health
                 </div>
-                <div class="card-block primary-info-view">
+                <div class="card-block info-view">
                     <div class="form-group">
                         <label>Are you suffering from any major illness?  :</label>
                         <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.SufferingFromAnyMajorIllnessLookupId) }}</span>
@@ -49,13 +49,13 @@
                 <div class="card-header">
                     Health (1)
                 </div>
-                <div class="card-block primary-info-view">
+                <div class="card-block info-view">
                     <div class="form-group">
                         <label>Are you on any substance?  :</label>
                         <span>{{ (yesNoOptionsList | MatchesPipe:physicalHealthForm.AnySubstanceLookupId) }}</span>
                     </div>
                     <div class="form-group">
-                        <label>Please specify  :</label>
+                        <label>If yes, please specify  :</label>
                         <span>{{ physicalHealthForm.AnySubstanceDesc }}</span>
                     </div>
                     <div class="form-group">
@@ -71,7 +71,7 @@
                         <span>{{ (reasonForSeekingHelpLookupOptionsList | MatchesPipe:physicalHealthForm.ReasonForSeekingHelpLookupId:"multiselect") }}</span>
                     </div>
                     <div class="form-group">
-                        <label>If other, please specify  :</label>
+                        <label>If others, please specify  :</label>
                         <span>{{ physicalHealthForm.ReasonForSeekingHelpDesc }}</span>
                     </div>
                     <div class="form-group">

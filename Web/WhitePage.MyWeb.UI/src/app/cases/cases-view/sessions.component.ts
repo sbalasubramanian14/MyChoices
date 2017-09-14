@@ -6,13 +6,9 @@ import { CaseBook } from '../../models/case.entities';
     templateUrl: 'sessions.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class SessionsComponent {
- 
+
     public caseBook: CaseBook;
-
-    constructor() {
-    }
-
+    constructor() { }
 }

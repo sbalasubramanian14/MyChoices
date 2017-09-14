@@ -4,7 +4,7 @@
                 <div class="card-header">
                     Family
                 </div>
-                <div class="card-block primary-info-view">
+                <div class="card-block info-view">
                     <div class="form-group">
                         <label>Any children deceased/miscarried/aborted?  :</label>
                         <span>{{ (childrenDeceasedLookupOptionsList | MatchesPipe:familyHouseHold.ChildrenDeceasedLookupId:"multiselect") }}</span>
@@ -18,7 +18,7 @@
                         <span>{{ (yesNoOptionsList | MatchesPipe:familyHouseHold.SoughtHelpYesNoLookupId) }}</span>
                     </div>
                     <div class="form-group">
-                        <label>yes, specify  :</label>
+                        <label>If yes, specify  :</label>
                         <span>{{ familyHouseHold.SoughtHelpDesc }}</span>
                     </div>
                     <div class="form-group">
@@ -30,7 +30,7 @@
                         <span>{{ (peacemakerAssistanceOptionsList | MatchesPipe:familyHouseHold.PeacemakerAssistanceLookupId:"multiselect") }}</span>
                     </div>
                     <div class="form-group">
-                        <label>If other, please specify  :</label>
+                        <label>If others, please specify  :</label>
                         <span>{{ familyHouseHold.PeacemakerAssistanceDesc }}</span>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="card-header">
                     Family (2)
                 </div>
-                <div class="card-block primary-info-view">
+                <div class="card-block info-view">
                     <div class="form-group">
                         <label>Would you like a Peacemaker to do follow up with you?  :</label>
                         <span>{{ (yesNoOptionsList | MatchesPipe:familyHouseHold.PeacemakerFollowupYesNoLookupId) }}</span>
@@ -82,7 +82,7 @@
                 <div class="card-header">
                     Family (3)
                 </div>
-                <div class="card-block primary-info-view">
+                <div class="card-block info-view">
                     <div class="form-group">
                         <label>Occupation  :</label>
                         <span>{{ (occupationOptionsList | MatchesPipe:familyHouseHold.OccupationLookupId) }}</span>

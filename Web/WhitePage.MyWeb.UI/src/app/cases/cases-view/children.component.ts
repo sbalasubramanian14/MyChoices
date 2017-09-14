@@ -9,7 +9,6 @@ import { BaseCaseController } from './../basecase.controller';
     templateUrl: 'children.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class ChildrenComponent {
 
@@ -18,6 +17,5 @@ export class ChildrenComponent {
 
     constructor() {
        this.relationshipWithAbuserLookupOptionsList = BaseCaseController.staticParseLookups("RelationshipWithAbuser");
- 
     }
 }

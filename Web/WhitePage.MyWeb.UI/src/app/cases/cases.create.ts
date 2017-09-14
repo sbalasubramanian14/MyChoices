@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
@@ -66,13 +65,20 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                     break;
             }
         });
-    }
+        var localCenterOptionList = new Array<IOption>();
+             for (var i = 0; i < this.centersList.length; i++) {
+                localCenterOptionList.push({
+                    value: this.centersList[i].CenterId.toString(),
+                    label: this.centersList[i].Title
+                });
+             }
+             this.centerOptionList = localCenterOptionList;
 
+    }
+    public caseBook: CaseBook;
     public casePrimaryForm: FormGroup;
     public router: Router;
     public isDataLoaded = false;
-
-    public caseBook: CaseBook;
 
     public centerOptionList: Array<IOption> = [];
     public peaceMakerOptionsList: Array<IOption> = [];
@@ -89,7 +95,6 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             this.cityOptionsList = new Array<IOption>();
             return;
         }
-
         //Cities
         var localCityOptionsList = new Array<IOption>();
         for (var i = 0; i < this.statesList.length; i++) {
@@ -111,7 +116,6 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             this.counselorOptionsList = new Array<IOption>();
             return;
         }
-
         //Peace Maker
         var localPeaceMakerOptionsList = new Array<IOption>();
         for (var i = 0; i < this.peaceMakersList.length; i++) {
@@ -140,40 +144,33 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
     ngOnInit() {
         this.caseBook = new CaseBook();
         this.caseBook.Case = new Case();
-        //this.caseBook.Case.MaritalStatusLookupId = "4";
-
+        
         this.caseBook.SelectedAddress = new CaseAddress();
         this.caseBook.vAddresses = new Array<vCaseAddress>();
 
         this.casePrimaryForm = this.fb.group({
-            primaryInfo: new FormGroup({
-                CenterId: new FormControl(this.caseBook.Case.CenterId, Validators.required),
-                PeaceMakerId: new FormControl(this.caseBook.Case.PeaceMakerId, Validators.required),
-                CounselorId: new FormControl(this.caseBook.Case.CounselorId, Validators.required),
+                CenterId: [this.caseBook.Case.CenterId, Validators.required],
+                PeaceMakerId: [this.caseBook.Case.PeaceMakerId, Validators.required],
+                CounselorId: [this.caseBook.Case.CounselorId, Validators.required],
 
-                ClientFirstName: new FormControl(this.caseBook.Case.ClientFirstName, Validators.required),
-                ClientLastName: new FormControl(this.caseBook.Case.ClientLastName, Validators.required),
-                FatherName: new FormControl(this.caseBook.Case.FatherName, Validators.required),
-                Mi: new FormControl(this.caseBook.Case.Mi),
-                GenderLookupId: new FormControl(this.caseBook.Case.GenderLookupId, Validators.required),
+                ClientFirstName: [this.caseBook.Case.ClientFirstName, Validators.required],
+                ClientLastName:[this.caseBook.Case.ClientLastName, Validators.required],
+                FatherName:[this.caseBook.Case.FatherName, Validators.required],
+                Mi:[this.caseBook.Case.Mi],
+                GenderLookupId:[this.caseBook.Case.GenderLookupId, Validators.required],
 
-                MaritalStatusLookupId: new FormControl(this.caseBook.Case.MaritalStatusLookupId, Validators.required),
-                RequireAssistanceLookupId: new FormControl(this.caseBook.Case.RequireAssistanceLookupId, Validators.required),
-                Remarks: new FormControl(this.caseBook.Case.Remarks),
-                MobileNumber: new FormControl(this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.validationService.mobileValidator])
-            }),
-            address: new FormGroup({
-                Address: new FormControl(this.caseBook.SelectedAddress.Address, Validators.required),
-                Area: new FormControl(this.caseBook.SelectedAddress.Area, Validators.required),
-                PIN: new FormControl(this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.validationService.numericValidator]),
-                StateId: new FormControl(this.caseBook.SelectedAddress.StateId, Validators.required),
-                CityId: new FormControl(this.caseBook.SelectedAddress.CityId, Validators.required)
-            })
+                MaritalStatusLookupId:[this.caseBook.Case.MaritalStatusLookupId, Validators.required],
+                RequireAssistanceLookupId:[this.caseBook.Case.RequireAssistanceLookupId, Validators.required],
+                Remarks:[this.caseBook.Case.Remarks],
+                MobileNumber:[this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.validationService.mobileValidator]],
+                Address:[this.caseBook.SelectedAddress.Address, Validators.required],
+                Area:[this.caseBook.SelectedAddress.Area, Validators.required],
+                PIN:[this.caseBook.SelectedAddress.PIN, [Validators.required, Validators.minLength(6), this.validationService.numericValidator]],
+                StateId:[this.caseBook.SelectedAddress.StateId, Validators.required],
+                CityId:[this.caseBook.SelectedAddress.CityId, Validators.required]
         });
-
         //Load default values
         this.caseBook.Case.MaritalStatusLookupId = "4";
-        //this.casePrimaryForm.get('primaryInfo').get('MaritalStatusLookupId').setValue("4");
     }
 
     onCaseSave() {
@@ -181,11 +178,9 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
             .addCasePrimary(this.caseBook).subscribe(data => {
                 this.router.navigate(['/cases/detailed/' + data.CaseId]).then(() => {
                     this.toastr.success(data.CaseNumber + ' has been created successfully');
-                });                
-
-            }, (error: any) => {
-                this.toastr.success("Error while creating case, " + error);
+                });
+            }, error => {
+                this.toastr.error("Error while creating case, " + error);
             });
     }
-
 }

@@ -1,7 +1,7 @@
     <div class="row" *ngIf="caseBook">
         <div class="d-flex flex-column fill-width">
             <div class="table-responsive">
-                <table class="table" style="color  :whitesmoke">
+                <table class="table" >
                     <thead class="thead-inverse">
                         <tr>
                             <th>Name</th>
@@ -11,7 +11,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let children of caseBook.vChildren; let i = index">
+                        <tr class="tr-data" *ngFor="let children of caseBook.vChildren" >
                             <td>{{children.Name}}</td>
                             <td>{{children.Age}}</td>
                             <td>{{children.Gender}}</td>
