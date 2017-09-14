@@ -8,10 +8,10 @@ BEGIn
 	WHEN NOT MATCHED THEN
 		INSERT (CaseId, ChildrenDeceasedLookupId, HouseHoldIncomeLookupId, SoughtHelpYesNoLookupId,SoughtHelpDesc, SoughtHelpOutPut, PeacemakerAssistanceLookupId, PeacemakerAssistanceDesc,
 			PeacemakerFollowupYesNoLookupId, ClientSignedRegistrationFormYesNoLookupId, ClientEmailId, ReligionLookupId, LevelOfEducationLookupId, VocationalSkillsLookupId, VocationalSkillsDesc,
-			OccupationLookupId, OccupationDesc, ClientIncomeLookupId, HouseHoldMembersLivingLookupId, YearOfMarriage, ClientAgeAtFirstChild)
+			OccupationLookupId, OccupationDesc, ClientIncomeLookupId, HouseHoldMembersLivingLookupId, YearsOfMarriage, ClientAgeAtFirstChild)
 		VALUES (S.CaseId, S.ChildrenDeceasedLookupId, S.HouseHoldIncomeLookupId, S.SoughtHelpYesNoLookupId, S.SoughtHelpDesc, S.SoughtHelpOutPut, S.PeacemakerAssistanceLookupId, S.PeacemakerAssistanceDesc,
 			S.PeacemakerFollowupYesNoLookupId, S.ClientSignedRegistrationFormYesNoLookupId, S.ClientEmailId, S.ReligionLookupId, S.LevelOfEducationLookupId, S.VocationalSkillsLookupId, S.VocationalSkillsDesc,
-			S.OccupationLookupId, S.OccupationDesc, S.ClientIncomeLookupId, S.HouseHoldMembersLivingLookupId, S.YearOfMarriage, S.ClientAgeAtFirstChild)
+			S.OccupationLookupId, S.OccupationDesc, S.ClientIncomeLookupId, S.HouseHoldMembersLivingLookupId, S.YearsOfMarriage, S.ClientAgeAtFirstChild)
 	WHEN MATCHED THEN 
 		UPDATE 
 		SET 			
@@ -33,7 +33,7 @@ BEGIn
 			,T.OccupationDesc = S.OccupationDesc
 			,T.ClientIncomeLookupId = S.ClientIncomeLookupId
 			,T.HouseHoldMembersLivingLookupId = S.HouseHoldMembersLivingLookupId
-			,T.YearOfMarriage = S.YearOfMarriage
+			,T.YearsOfMarriage = S.YearsOfMarriage
 			,T.ClientAgeAtFirstChild = S.ClientAgeAtFirstChild;
 
 	declare @CaseId INT;

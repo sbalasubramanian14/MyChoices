@@ -75,7 +75,7 @@ export class HouseholdCaseComponent implements OnInit {
         OccupationDesc: [this.caseBook.FamilyHouseHold.OccupationDesc],
         ClientIncomeLookupId: [this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()],
         HouseHoldMembersLivingLookupId: [this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()],
-        YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.minLength(4), this.validationService.numericValidator]],
+        YearsOfMarriage: [this.caseBook.FamilyHouseHold.YearsOfMarriage, [this.validationService.validateYears, this.validationService.validateYears]],
         ClientAgeAtFirstChild: [this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateNumber]]
         });
     }
@@ -98,7 +98,7 @@ export class HouseholdCaseComponent implements OnInit {
         this.caseBook.FamilyHouseHold.OccupationLookupId = this.clientAndHouseholdForm.controls['OccupationLookupId'].value;
         this.caseBook.FamilyHouseHold.OccupationDesc = this.clientAndHouseholdForm.controls['OccupationDesc'].value;
         this.caseBook.FamilyHouseHold.ClientIncomeLookupId = this.clientAndHouseholdForm.controls['ClientIncomeLookupId'].value;
-        this.caseBook.FamilyHouseHold.YearOfMarriage = this.clientAndHouseholdForm.controls['YearOfMarriage'].value;
+        this.caseBook.FamilyHouseHold.YearsOfMarriage = this.clientAndHouseholdForm.controls['YearsOfMarriage'].value;
         this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild = this.clientAndHouseholdForm.controls['ClientAgeAtFirstChild'].value;
 
         this.casesService.updateHouseHold(this.caseBook).subscribe(

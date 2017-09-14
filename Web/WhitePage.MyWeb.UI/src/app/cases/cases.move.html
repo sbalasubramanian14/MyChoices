@@ -371,10 +371,10 @@
 
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Years of marriage *</label>
-                                    <input [formControl]="category4Form.controls['YearOfMarriage']" digits maxlength="2" class="form-control" />
+                                    <input [formControl]="category4Form.controls['YearsOfMarriage']" digits maxlength="2" class="form-control" />
                                     <div>
-                                        <small *ngIf="category4Form.controls['YearOfMarriage'].hasError('required') && category4Form.controls['YearOfMarriage'].touched" class="mat-text-warn">Year is required</small>
-                                        <small *ngIf="category4Form.controls['YearOfMarriage'].dirty && category4Form.controls['YearOfMarriage'].invalid" class="mat-text-warn">Please provide valid Years of marriage</small>
+                                        <small *ngIf="category4Form.controls['YearsOfMarriage'].hasError('required') && category4Form.controls['YearsOfMarriage'].touched" class="mat-text-warn">Years of marriage is required</small>
+                                        <small *ngIf="category4Form.controls['YearsOfMarriage'].dirty && category4Form.controls['YearsOfMarriage'].invalid" class="mat-text-warn">Please provide valid Years of marriage</small>
                                     </div>
                                 </div>
 

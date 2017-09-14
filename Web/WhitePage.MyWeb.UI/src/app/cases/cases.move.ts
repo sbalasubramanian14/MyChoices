@@ -320,7 +320,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required],
             OccupationLookupId: [this.caseBook.FamilyHouseHold.OccupationLookupId == undefined ? null : this.caseBook.FamilyHouseHold.OccupationLookupId.toString(), Validators.required],
             OccupationDesc: new FormControl(this.caseBook.FamilyHouseHold.OccupationDesc),
-            YearOfMarriage: [this.caseBook.FamilyHouseHold.YearOfMarriage, [Validators.required, this.validationService.validateNumber]],
+            YearsOfMarriage: [this.caseBook.FamilyHouseHold.YearsOfMarriage, [Validators.required, this.validationService.validateYears, this.validationService.validateYears]],
             HouseHoldIncomeLookupId: [this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId.toString(), Validators.required],
 
             //End of household category 4
@@ -497,7 +497,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId = this.category4Form.controls['ClientSignedRegistrationFormYesNoLookupId'].value;
         this.caseBook.FamilyHouseHold.OccupationLookupId = this.category4Form.controls['OccupationLookupId'].value;
         this.caseBook.FamilyHouseHold.OccupationDesc = this.category4Form.controls['OccupationDesc'].value;
-        this.caseBook.FamilyHouseHold.YearOfMarriage = this.category4Form.controls['YearOfMarriage'].value;
+        this.caseBook.FamilyHouseHold.YearsOfMarriage = this.category4Form.controls['YearsOfMarriage'].value;
         this.caseBook.FamilyHouseHold.HouseHoldIncomeLookupId = this.category4Form.controls['HouseHoldIncomeLookupId'].value;
 
         //End of Household category 4
