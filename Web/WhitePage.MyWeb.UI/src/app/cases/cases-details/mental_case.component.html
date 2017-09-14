@@ -1,0 +1,264 @@
+<my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
+<div class="row">
+    <div class="d-flex flex-column fill-width">
+        <div class="add-new-button-container">
+            <button class="btn btn-primary" (click)="addNewMental()">Add New Mental Status &nbsp;<i class="fa fa-plus"></i></button>
+        </div>
+        <div class="mentalTab">
+            <table class="table table-responsive mentalResponsive tableColor">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Dress</th>
+                        <th>Hygiene</th>
+                        <th>BodyType</th>
+                        <th>Expression</th>
+                        <th>MotorActivity</th>
+                        <th>Vocabulary</th>
+                        <th>ImpulseControl</th>
+                        <th>Speech</th>
+                        <th>Behaviour</th>
+                        <th>Content</th>
+                        <th>FlowOfThought</th>
+                        <th>Orientation</th>
+                        <th>EstimatedIntellect</th>
+                        <th>Attention</th>
+                        <th>Insight</th>
+                        <th>Judgement</th>
+                        <th>Memory</th>
+                        <th>Information</th>
+                        <th>Abstraction</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let mental of caseBook.vMental; let i = index">
+                        <td>{{mental.MentalDress}}</td>
+                        <td>{{mental.MentalHygiene}}</td>
+                        <td>{{mental.MentalBodyType}}</td>
+                        <td>{{mental.MentalExpression}}</td>
+                        <td>{{mental.MentalMotorActivity}}</td>
+                        <td>{{mental.MentalVocabulary}}</td>
+                        <td>{{mental.MentalImpulseControl}}</td>
+                        <td>{{mental.MentalSpeech}}</td>
+                        <td>{{mental.MentalBehaviour}}</td>
+                        <td>{{mental.MentalContent}}</td>
+                        <td>{{mental.MentalFlowOfThought}}</td>
+                        <td>{{mental.MentalOrientation}}</td>
+                        <td>{{mental.MentalEstimatedIntellect}}</td>
+                        <td>{{mental.MentalAttention}}</td>
+                        <td>{{mental.MentalInsight}}</td>
+                        <td>{{mental.MentalJudgement}}</td>
+                        <td>{{mental.MentalMemory}}</td>
+                        <td>{{mental.MentalInformation}}</td>
+                        <td>{{mental.MentalAbstraction}}</td>
+                        <td class="text-right">
+                            <button class="btn btn-link" (click)="editMental(mental)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #mentalModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Mental Status</h4>
+                <button type="button" class="close pull-right" label="Close" (click)="hideMentalModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="caseMentalForm" *ngIf="caseMentalForm">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-column mentalTabData">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Mental Status
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="MentalDressLookupId">Dress</label>
+                                        <ss-multiselect-dropdown [options]="MentalDressLookupOptionList"
+                                                                 formControlName="MentalDressLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalDressLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalHygieneLookupId">Hygiene</label>
+                                        <ss-multiselect-dropdown [options]="MentalHygieneLookupOptionList"
+                                                                 formControlName="MentalHygieneLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalHygieneLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalBodyTypeLookupId">Body Type</label>
+                                        <ss-multiselect-dropdown [options]="MentalBodyTypeLookupOptionList"
+                                                                 formControlName="MentalBodyTypeLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalBodyTypeLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalExpressionLookupId">Expression</label>
+                                        <ss-multiselect-dropdown [options]="MentalExpressionLookupOptionList"
+                                                                 formControlName="MentalExpressionLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalExpressionLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalMotorActivityLookupId">Motor Activity</label>
+                                        <ss-multiselect-dropdown [options]="MentalMotorActivityLookupOptionList"
+                                                                 formControlName="MentalMotorActivityLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalMotorActivityLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalVocabularyLookupId">Vocabulary</label>
+                                        <ss-multiselect-dropdown [options]="MentalVocabularyLookupOptionList"
+                                                                 formControlName="MentalVocabularyLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalVocabularyLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <label for="MentalImpulseControlLookupId">Impulse Control</label>
+                                    <ss-multiselect-dropdown [options]="MentalImpulseControlLookupOptionList"
+                                                             formControlName="MentalImpulseControlLookupId"
+                                                             [(ngModel)]="caseBook.SelectedMental.MentalImpulseControlLookupArray">
+                                    </ss-multiselect-dropdown>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mentalTabData">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Mental Status
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="MentalSpeechLookupId">Speech</label>
+                                        <ss-multiselect-dropdown [options]="MentalSpeechLookupOptionList"
+                                                                 formControlName="MentalSpeechLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalSpeechLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalBehaviourLookupId">Behaviour</label>
+                                        <ss-multiselect-dropdown [options]="MentalBehaviourLookupOptionList"
+                                                                 formControlName="MentalBehaviourLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalBehaviourLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalContentLookupId">Content</label>
+                                        <ss-multiselect-dropdown [options]="MentalContentLookupOptionList"
+                                                                 formControlName="MentalContentLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalContentLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalFlowOfThoughtLookupId">Flow Of Thought</label>
+                                        <ss-multiselect-dropdown [options]="MentalFlowOfThoughtLookupOptionList"
+                                                                 formControlName="MentalFlowOfThoughtLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalFlowOfThoughtLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalOrientationLookupId">Orientation</label>
+                                        <ss-multiselect-dropdown [options]="MentalOrientationLookupOptionList"
+                                                                 formControlName="MentalOrientationLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalOrientationLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalEstimatedIntellectLookupId">Estimated Intellect</label>
+                                        <ss-multiselect-dropdown [options]="MentalEstimatedIntellectLookupOptionList"
+                                                                 formControlName="MentalEstimatedIntellectLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalEstimatedIntellectLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalAttentionLookupId">Attention</label>
+                                        <ss-multiselect-dropdown [options]="MentalAttentionLookupOptionList"
+                                                                 formControlName="MentalAttentionLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalAttentionLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mentalTabData">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Mental Status
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="MentalInsightLookupId">Insight</label>
+                                        <ss-multiselect-dropdown [options]="MentalInsightLookupOptionList"
+                                                                 formControlName="MentalInsightLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalInsightLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalJudgementLookupId">Judgement</label>
+                                        <ss-multiselect-dropdown [options]="MentalJudgementLookupOptionList"
+                                                                 formControlName="MentalJudgementLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalJudgementLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalMemoryLookupId">Memory</label>
+                                        <ss-multiselect-dropdown [options]="MentalMemoryLookupOptionList"
+                                                                 formControlName="MentalMemoryLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalMemoryLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalInformationLookupId">Information</label>
+                                        <ss-multiselect-dropdown [options]="MentalInformationLookupOptionList"
+                                                                 formControlName="MentalInformationLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalInformationLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="MentalAbstractionLookupId">Abstraction</label>
+                                        <ss-multiselect-dropdown [options]="MentalAbstractionLookupOptionList"
+                                                                 formControlName="MentalAbstractionLookupId"
+                                                                 [(ngModel)]="caseBook.SelectedMental.MentalAbstractionLookupArray">
+                                        </ss-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-primary" (click)="saveMental()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

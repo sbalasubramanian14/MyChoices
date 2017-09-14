@@ -10,7 +10,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         IQueryable<CaseHeader> GetAllActiveCases();
         CaseBook GetCaseById(int caseId);
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
-        CaseHeader UpdateAddress(CaseBook caseBook);
+        vCaseAddress UpdateAddress(CaseBook caseBook);
         vCaseChildren UpdateChildren(CaseBook caseBook);
         CaseHeader UpdateHouseHold(CaseBook caseBook);
         CaseHeader UpdateSpouse(CaseBook caseBook);

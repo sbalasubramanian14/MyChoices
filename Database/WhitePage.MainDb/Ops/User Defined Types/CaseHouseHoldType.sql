@@ -20,6 +20,6 @@
 	OccupationDesc varchar(200) NULL,
 	ClientIncomeLookupId INT NULL,
 	HouseHoldMembersLivingLookupId varchar(100) NULL,
-	YearOfMarriage smallint NULL,
+	YearsOfMarriage smallint NULL,
 	ClientAgeAtFirstChild tinyint NULL
 )

@@ -149,7 +149,7 @@ export class CaseFamilyHouseHold {
     HouseHoldMembersLivingLookupId?: number;
     HouseHoldMembersLivingLookupArray: Array<Number>;    
 
-    YearOfMarriage?: number;
+    YearsOfMarriage?: number;
     ClientAgeAtFirstChild?: number;
 }
 
@@ -538,7 +538,7 @@ export class CaseBook {
     Case: Case;
     CaseHeader: CaseHeader;
 
-    vCaseAddress: Array<vCaseAddress>;
+    vAddresses: Array<vCaseAddress>;
     vChildren: Array<vCaseChildren>;
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;

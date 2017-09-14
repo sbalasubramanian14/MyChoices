@@ -31,6 +31,8 @@ import { MyDatePickerModule } from 'mydatepicker';
 
 import { SpinnerModule } from '../spinner/spinner.module';
 import { PrimaryInfoComponent } from './cases-view/primary-info.component'
+
+//view case components
 import { ChildrenComponent } from './cases-view/children.component'
 import { HouseholdComponent } from './cases-view/household.component'
 import { SpouseComponent } from './cases-view/spouse.component'
@@ -42,6 +44,20 @@ import { MentalComponent } from './cases-view/mental.component'
 import { FeedbackComponent } from './cases-view/feedback.component'
 import { LegalComponent } from './cases-view/legal.component'
 import { CaseManagementComponent } from './cases-view/case-management.component'
+
+//edit case components
+import { PrimaryCaseComponent } from './cases-details/primary_case.component'
+import { ChildrenCaseComponent } from './cases-details/children_case.component'
+import { HouseholdCaseComponent } from './cases-details/household_case.component'
+import { SpouseCaseComponent } from './cases-details/spouse_case.component'
+import { PhysicalHealthCaseComponent } from './cases-details/physicalHealth_case.component'
+import { OffenderCaseComponent } from './cases-details/offender_case.component'
+import { AbuseCaseComponent } from './cases-details/abuse_case.component'
+import { SessionsCaseComponent } from './cases-details/sessions_case.component'
+import { MentalCaseComponent } from './cases-details/mental_case.component'
+import { FeedbackCaseComponent } from './cases-details/feedback_case.component'
+import { LegalCaseComponent } from './cases-details/legal_case.component'
+import { ManageCaseComponent } from './cases-details/manage_case.component'
 
 @NgModule({
     imports: [
@@ -78,7 +94,19 @@ import { CaseManagementComponent } from './cases-view/case-management.component'
         MentalComponent,
         FeedbackComponent,
         LegalComponent,
-        CaseManagementComponent
+        CaseManagementComponent,
+        PrimaryCaseComponent,
+        ChildrenCaseComponent,
+        HouseholdCaseComponent,
+        SpouseCaseComponent,
+        PhysicalHealthCaseComponent,
+        OffenderCaseComponent,
+        AbuseCaseComponent,
+        SessionsCaseComponent,
+        MentalCaseComponent,
+        FeedbackCaseComponent,
+        LegalCaseComponent,
+        ManageCaseComponent,
     ],
     providers: [
         CasesService,

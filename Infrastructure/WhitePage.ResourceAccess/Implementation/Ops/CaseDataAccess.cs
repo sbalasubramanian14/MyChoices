@@ -209,7 +209,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public CaseHeader UpdateAddress(CaseBook caseBook)
+        public vCaseAddress UpdateAddress(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
 
@@ -229,12 +229,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseAddressTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveAddress]",
+            var updatedAddress = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseAddress>("[Ops].[saveAddress]",
                 parmsCollection
                     .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
-                ).First();
+                ).Last();
 
-            return updatedCase;
+            return updatedAddress;
         }
 
         public vCaseChildren UpdateChildren(CaseBook caseBook)
@@ -256,12 +256,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseChildren>("[Ops].[saveChildren]",
+            var updatedChildren = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseChildren>("[Ops].[saveChildren]",
                 parmsCollection
                     .AddParm("@caseChildrenType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseChildrenType]")
                 ).Last();
 
-            return updatedCase;
+            return updatedChildren;
         }
 
         public CaseHeader UpdateHouseHold(CaseBook caseBook)
@@ -290,7 +290,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.FamilyHouseHold.OccupationDesc,
                 caseBook.FamilyHouseHold.ClientIncomeLookupId,
                 caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId,
-                caseBook.FamilyHouseHold.YearOfMarriage,
+                caseBook.FamilyHouseHold.YearsOfMarriage,
                 caseBook.FamilyHouseHold.ClientAgeAtFirstChild
                 });
             caseChildrenTable.AcceptChanges();

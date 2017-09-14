@@ -146,7 +146,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         this.caseBook.Case = new Case();
         
         this.caseBook.SelectedAddress = new CaseAddress();
-        this.caseBook.vCaseAddress = new Array<vCaseAddress>();
+        this.caseBook.vAddresses = new Array<vCaseAddress>();
 
         this.casePrimaryForm = this.fb.group({
                 CenterId: [this.caseBook.Case.CenterId, Validators.required],
