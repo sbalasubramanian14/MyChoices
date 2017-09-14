@@ -27,6 +27,15 @@ export class ValidationService {
         return null;
     }
 
+    public validateYears(input: AbstractControl) {
+
+        if (input.value == null || input.value == "") {
+            return null;
+        }
+
+        return input.value >= 0 && input.value <= 99 ? null : { valid: false };
+    }
+
     public numericValidator(input: AbstractControl) {
 
         var numericPattern = /^[0-9]*$/;

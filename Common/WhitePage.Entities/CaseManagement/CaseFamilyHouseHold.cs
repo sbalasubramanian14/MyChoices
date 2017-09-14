@@ -42,7 +42,7 @@ namespace WhitePage.Entities.CaseManagement
         [NotMapped]
         public int[] HouseHoldMembersLivingLookupArray { get; set; }
 
-        public short? YearOfMarriage { get; set; }
+        public short? YearsOfMarriage { get; set; }
         public byte? ClientAgeAtFirstChild { get; set; }
 
     }

@@ -125,7 +125,7 @@ namespace WhitePage.ResourceAccess
                     .AddColumn("ClientIncomeLookupId", DbColumnType.Int)
 
                     .AddColumn("HouseHoldMembersLivingLookupId", DbColumnType.String)
-                    .AddColumn("YearOfMarriage", DbColumnType.Short)
+                    .AddColumn("YearsOfMarriage", DbColumnType.Short)
                     .AddColumn("ClientAgeAtFirstChild", DbColumnType.Byte);
 
                 foreach (var item in columnCollection) result.Columns.Add(item);

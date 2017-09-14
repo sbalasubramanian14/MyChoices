@@ -149,7 +149,7 @@ export class CaseFamilyHouseHold {
     HouseHoldMembersLivingLookupId?: number;
     HouseHoldMembersLivingLookupArray: Array<Number>;    
 
-    YearOfMarriage?: number;
+    YearsOfMarriage?: number;
     ClientAgeAtFirstChild?: number;
 }
 

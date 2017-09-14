@@ -290,7 +290,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.FamilyHouseHold.OccupationDesc,
                 caseBook.FamilyHouseHold.ClientIncomeLookupId,
                 caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId,
-                caseBook.FamilyHouseHold.YearOfMarriage,
+                caseBook.FamilyHouseHold.YearsOfMarriage,
                 caseBook.FamilyHouseHold.ClientAgeAtFirstChild
                 });
             caseChildrenTable.AcceptChanges();
