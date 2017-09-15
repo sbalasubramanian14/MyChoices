@@ -4,7 +4,7 @@
             <div class="card-header">
                 Legal Data
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
                     <label>Case Number as per court  :</label>
                     <span>{{ caseLegalForm.CaseNumber }}</span>
@@ -37,7 +37,7 @@
             <div class="card-header">
                 Outcome
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
                     <label>Outcome  :</label>
                     <span>{{ (outcomeLookupOptionList | MatchesPipe:caseLegalForm.OutcomeLookupId:"multiselect") }}</span>

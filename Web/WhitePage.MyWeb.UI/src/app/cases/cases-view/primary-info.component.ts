@@ -3,15 +3,13 @@ import { IOption } from 'ng-select';
 
 import { CaseBook } from '../../models/case.entities';
 import { Center, PeaceMaker, Counselor, Lookup } from '../../models/entities';
-
 import { BaseCaseController } from './../basecase.controller';
 
 @Component({
-    selector:'primaryInfo',
-    templateUrl: 'primaryInfo.component.html',
+    selector:'primary-info',
+    templateUrl: 'primary-info.component.html',
     inputs:['caseBook'],
-    styleUrls: ['../cases.view.scss'],
-   
+    styleUrls: ['../cases.view.scss'],   
 })
 export class PrimaryInfoComponent  implements OnInit  {
     
@@ -31,10 +29,7 @@ export class PrimaryInfoComponent  implements OnInit  {
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
 
-    
- 
     constructor() {
-
         /* getAllCenters - starts */
         this.centerList = JSON.parse(localStorage.getItem("getAllCenters"));
         var localCenterOptionList = new Array<IOption>();
@@ -49,8 +44,7 @@ export class PrimaryInfoComponent  implements OnInit  {
 
         this.genderLookupOptionsList = BaseCaseController.staticParseLookups("Gender");
         this.maritalStatusLookupOptionsList = BaseCaseController.staticParseLookups("MaritalStatus");
-        this.requireAssistanceLookupOptionsList = BaseCaseController.staticParseLookups("RequiredAssistance");
-        
+        this.requireAssistanceLookupOptionsList = BaseCaseController.staticParseLookups("RequiredAssistance");       
     }
     ngOnInit() {
         /* getPeacemaker - starts */

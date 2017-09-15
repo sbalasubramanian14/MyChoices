@@ -17,7 +17,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdatePhysicalHealth(CaseBook caseBook);
         vCaseOffender UpdateOffender(CaseBook caseBook);
         CaseHeader UpdateAbuse(CaseBook caseBook);
-        int UpdateCase(CaseBook caseBook);
+        int UpdateCaseManagement(CaseBook caseBook);
         vCaseMental UpdateMental(CaseBook caseBook);
         vCaseSessionLog UpdateSessionLog(CaseBook caseBook);
         vCaseFeedback UpdateFeedback(CaseBook caseBook);

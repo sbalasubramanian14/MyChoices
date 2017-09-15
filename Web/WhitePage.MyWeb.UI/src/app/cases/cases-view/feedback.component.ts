@@ -6,13 +6,9 @@ import { CaseBook } from '../../models/case.entities';
     templateUrl: 'feedback.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class FeedbackComponent {
 
     public caseBook: CaseBook;
-
-    constructor() {
-        
-   }
+    constructor() { }
 }

@@ -1,6 +1,4 @@
 import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation';
 import { ToastsManager, Toast } from 'ng2-toastr/ng2-toastr';
 import { CasesService } from '../services/cases.services';
 import { Observable } from 'rxjs/Observable';
@@ -12,9 +10,9 @@ import { AuthenticationService } from '../services/authentication.service';
     templateUrl: 'cases.list.html'
 })
 export class CasesListComponent implements OnInit {
-    @ViewChild('moveModal')
-    public moveModal: ModalDirective;
-    @ViewChild('deleteModal') public deleteModal: ModalDirective;
+   
+    @ViewChild('deleteModal')
+    public deleteModal: ModalDirective;
     public router: Router;
     public casesList: CaseHeader[] = [];
     public selectedCaseHeader: CaseHeader;
@@ -154,33 +152,6 @@ export class CasesListComponent implements OnInit {
         }
     }
 
-    viewCase(caseDetails: any) {
-        var url = '/cases/detailed/' + caseDetails.CaseId;
-        this.router.navigate([url]);
-    }
-
-    editCase(caseDetails: any) {
-        var url = '/cases/detailedview/' + caseDetails.CaseId;
-        this.router.navigate([url]);
-    }
-
-    deleteCase(caseDetails: any) {
-        var url = '/cases/detailed/' + caseDetails.CaseId;
-        this.router.navigate([url]);
-    }
-
-    moveCase(caseDetails: CaseHeader) {
-        //console.log(caseDetails);
-        //this.selectedCaseHeader = caseDetails;
-        //this.moveModal.show();
-        var url = '/cases/detailed/' + caseDetails.CaseId;
-        this.router.navigate([url]);
-    }
-
-    public hideChildModal(): void {
-        this.moveModal.hide();
-    }
-
     public rows: Array<any> = [];
     public columns: Array<any> = [
         { title: 'No#', name: 'CaseNumber', sort: true, filtering: { filterString: '', placeholder: 'No#' } },
@@ -315,15 +286,14 @@ export class CasesListComponent implements OnInit {
         var url = '/cases/view/' + data.row.CaseId;
         this.router.navigate([url]);
     }
-    public hideDeleteModal(): void {
-        this.deleteModal.hide();
-    }
+    
     public onDeleteClick(data: any): any {
         this.deleteModal.show();
         this.selectedCaseId = data.row.CaseId;
         this.caseNumber = data.row.CaseNumber;    
        
     }
+    
     public softDeleteCase(CaseId: number): any {
         this.enableSpinner = true;
         this.casesService.deleteCase(CaseId).subscribe(data => {
@@ -335,6 +305,10 @@ export class CasesListComponent implements OnInit {
             (error: any) => {
             this.toastr.error("Error while deleting case, " + error);
         });
+    }
+
+    public hideDeleteModal(): void {
+        this.deleteModal.hide();
     }
 }
 
