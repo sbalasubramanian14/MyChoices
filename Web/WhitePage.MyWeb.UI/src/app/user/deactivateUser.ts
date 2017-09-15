@@ -29,7 +29,7 @@ export class DeactivateUserComponent {
     public columns: Array<any> = [
         { title: 'First Name', name: 'FirstName', sort: true, filtering: { filterString: '', placeholder: 'First Name' } },
         { title: 'Last Name', name: 'LastName', sort: true, filtering: { filterString: '', placeholder: 'Last Name' } },
-        { title: 'EMail', name: 'UserName', sort: true, filtering: { filterString: '', placeholder: 'Email' } },
+        { title: 'Email', name: 'UserName', sort: true, filtering: { filterString: '', placeholder: 'Email' } },
     ];
 
     public userData = this.authenticationService.getUser();
