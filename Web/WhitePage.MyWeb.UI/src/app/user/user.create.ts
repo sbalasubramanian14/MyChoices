@@ -14,5 +14,5 @@ export class UserCreateComponent {
         this.toastr.setRootViewContainerRef(vRef);
     }
     public userData = this.authenticationService.getUser();
-    public adminFlag = this.userData.typ == "1" ? true : false;
+    public isUserAdmin = this.userData.typ == "1" ? true : false;
 }
