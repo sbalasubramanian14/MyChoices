@@ -59,9 +59,9 @@ export class DeactivateUserComponent {
         sorting: { columns: this.columns },
         filtering: { filterString: '' },
         className: ['case-list-table', 'table-bordered'],
-        DisableMove: true,
-        DisableEdit: true,
-        DisableView: true,
+        enableMove: false,
+        enableEdit: false,
+        enableView: false,
         enableDelete: this.userData.typ == "1" ? true : false, //Enabled delete for roleid 1
     };
 
