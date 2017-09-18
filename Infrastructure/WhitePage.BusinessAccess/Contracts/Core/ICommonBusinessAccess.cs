@@ -21,6 +21,7 @@ namespace WhitePage.BusinessAccess.Contracts.Core
         List<KeyValuePair<string, KeyValuePair<string, float>>> GetCounselorWiseAvgChartObjectValues(string column);
         List<KeyValuePair<string, KeyValuePair<string, float>>> GetPeacemakerWiseAvgChartObjectValues(string column);
         int GetUsersCount();
+        int GetNonAdminUsersCount();
         List<User> GetAllActiveUsers(int pageNumber, int offset);
         List<User> GetActiveNonAdminUsers(int pageNumber, int offset);
         List<User> GetSortedUsersDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);

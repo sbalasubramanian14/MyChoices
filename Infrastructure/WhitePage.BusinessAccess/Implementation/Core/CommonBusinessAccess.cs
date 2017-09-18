@@ -94,7 +94,10 @@ namespace WhitePage.BusinessAccess.Implementation.Core
         {
             return this.commonDataAccess.GetAllActiveUsers().Count();
         }
-       
+        public int GetNonAdminUsersCount()
+        {
+            return this.commonDataAccess.GetAllActiveUsers().Where(user => user.UserName != "admin").Count();
+        }
         public List<User> GetAllActiveUsers(int pageNumber, int offset)
         {
             return returnUsersList(this.commonDataAccess.GetAllActiveUsers(), pageNumber, offset);
