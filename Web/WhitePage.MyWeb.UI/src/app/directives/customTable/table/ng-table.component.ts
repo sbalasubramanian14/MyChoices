@@ -27,7 +27,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
         </thead>
         <tbody>
             <tr *ngIf="showFilterRow">
-                <td style="text-align:center">
+                <td style="text-align:center; padding-top: 18px;">
                     Manage
                 </td>
                 <td *ngFor="let column of columns">
