@@ -78,6 +78,13 @@ export class SpouseCaseComponent implements OnInit {
         this.spouseCityOptionsList = localCityOptionsList;
     }
 
+    public onSpouseStateDeselected() {
+
+        this.spouseCityOptionsList = new Array<IOption>();
+
+        this.spouseForm.controls['CityLookupId'].reset();
+    }
+
     private loadSpouseFormGroup() {
         this.onSpouseStateSelected({ value: this.caseBook.Spouse.StateLookupId });
 

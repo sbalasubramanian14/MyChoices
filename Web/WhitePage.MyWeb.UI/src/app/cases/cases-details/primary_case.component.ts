@@ -140,6 +140,15 @@ export class PrimaryCaseComponent implements OnInit {
         this.counselorOptionsList = localCounselorOptionsList;
     }
 
+    public onCenterDeselected() {
+
+        this.peaceMakerOptionsList = new Array<IOption>();
+        this.counselorOptionsList = new Array<IOption>();
+
+        this.casePrimaryForm.controls['PeaceMakerId'].reset();
+        this.casePrimaryForm.controls['CounselorId'].reset();
+    }
+
     private loadPrimayCaseTab() {
         this.casePrimaryForm = this.fb.group({
             CenterId: [this.caseBook.Case.CenterId.toString(), Validators.required],

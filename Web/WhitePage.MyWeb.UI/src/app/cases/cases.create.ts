@@ -141,6 +141,22 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         this.counselorOptionsList = localCounselorOptionsList;
     }
 
+    public onStateDeselected() {
+
+        this.cityOptionsList = new Array<IOption>();
+
+        this.casePrimaryForm.controls['CityId'].reset();
+    }
+
+    public onCenterDeselected() {
+
+        this.peaceMakerOptionsList = new Array<IOption>();
+        this.counselorOptionsList = new Array<IOption>();
+
+        this.casePrimaryForm.controls['PeaceMakerId'].reset();
+        this.casePrimaryForm.controls['CounselorId'].reset();
+    }
+
     ngOnInit() {
         this.caseBook = new CaseBook();
         this.caseBook.Case = new Case();
