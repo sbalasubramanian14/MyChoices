@@ -304,7 +304,7 @@ namespace WhitePage.ResourceAccess.Implementation.Core
        
         public IQueryable<User> GetAllActiveUsers()
         {
-            return this.unitOfWork.DbContext.User.Where(user => user.IsActive != 0 && !user.UserName.Equals("admin")).OrderBy(user => user.UserId);
+            return this.unitOfWork.DbContext.User.Where(user => user.IsActive != 0).OrderBy(user => user.UserId);
         }
     }
 }

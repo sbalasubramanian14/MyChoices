@@ -42,11 +42,14 @@ export class CommonService extends BaseService {
     public getChartsData(): Observable<ChartObject[]> {
         return this.authHttp.get('/api/Common/GetChartObjectValues/', this.getRequestOptions()).map((response: Response) => <ChartObject[]>response.json());
     }
-    public getAllActiveUsers(pageNumber: number, offset: number): Observable<User[]> {
-        return this.authHttp.get('/api/Common/GetAllActiveUsers/', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <User[]>response.json());
+    public getActiveNonAdminUsers(pageNumber: number, offset: number): Observable<User[]> {
+        return this.authHttp.get('/api/Common/GetActiveNonAdminUsers/', this.getValueWithParams(pageNumber, offset)).map((response: Response) => <User[]>response.json());
     }
     public getUsersCount = (): Observable<number> => {
         return this.authHttp.get('/api/Common/GetUsersCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
+    }
+    public getNonAdminUsersCount = (): Observable<number> => {
+        return this.authHttp.get('/api/Common/GetNonAdminUsersCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
     public GetSortedUsersDataAsc(pageNumber: number, offset: number, dictionary: Object, field: string): Observable<User[]> {
         return this.authHttp.get('/api/Common/GetSortedUsersDataAsc/', this.getSortedDataParamsDictionary(pageNumber, offset, JSON.stringify(dictionary), field)).map((response: Response) => <User[]>response.json());

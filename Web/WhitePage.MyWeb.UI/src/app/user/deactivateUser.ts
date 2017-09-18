@@ -29,7 +29,7 @@ export class DeactivateUserComponent {
     public columns: Array<any> = [
         { title: 'First Name', name: 'FirstName', sort: true, filtering: { filterString: '', placeholder: 'First Name' } },
         { title: 'Last Name', name: 'LastName', sort: true, filtering: { filterString: '', placeholder: 'Last Name' } },
-        { title: 'EMail', name: 'UserName', sort: true, filtering: { filterString: '', placeholder: 'Email' } },
+        { title: 'Email', name: 'UserName', sort: true, filtering: { filterString: '', placeholder: 'Email' } },
     ];
 
     public userData = this.authenticationService.getUser();
@@ -59,9 +59,9 @@ export class DeactivateUserComponent {
         sorting: { columns: this.columns },
         filtering: { filterString: '' },
         className: ['case-list-table', 'table-bordered'],
-        DisableMove: true,
-        DisableEdit: true,
-        DisableView: true,
+        enableMove: false,
+        enableEdit: false,
+        enableView: false,
         enableDelete: this.userData.typ == "1" ? true : false, //Enabled delete for roleid 1
     };
 
@@ -153,7 +153,7 @@ export class DeactivateUserComponent {
     }
 
     public getUserCount() {
-        this.commonService.getUsersCount().subscribe(
+        this.commonService.getNonAdminUsersCount().subscribe(
             data => {
                 this.length = Number(data);
                 this.getAllUsers(1, 10);
@@ -162,7 +162,7 @@ export class DeactivateUserComponent {
 
     private getAllUsers(page: any, itemsPerPage: any) {
         this.commonService.
-            getAllActiveUsers(page, itemsPerPage)
+            getActiveNonAdminUsers(page, itemsPerPage)
             .subscribe(data => {
                 this.userList = [];
                 data.forEach(d => this.userList.push(d));

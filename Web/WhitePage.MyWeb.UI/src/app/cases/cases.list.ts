@@ -176,6 +176,9 @@ export class CasesListComponent implements OnInit {
         sorting: { columns: this.columns },
         filtering: { filterString: '' },
         className: ['case-list-table', 'table-bordered'],
+        enableMove: true,
+        enableEdit: true,
+        enableView: true,
         enableDelete: this.userData.typ == "1" ? true : false, //Enabled delete for roleid 1
     };
 

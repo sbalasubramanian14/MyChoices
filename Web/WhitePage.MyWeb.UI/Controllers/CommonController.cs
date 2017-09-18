@@ -75,9 +75,23 @@ namespace WhitePage.MyWeb.UI.Controllers
         }
         [Route("[action]")]
         [HttpGet]
+        public IActionResult GetNonAdminUsersCount()
+        {
+            var count = this.commonBusinessAccess.GetNonAdminUsersCount();
+            return Ok(count);
+        }
+        [Route("[action]")]
+        [HttpGet]
         public IActionResult GetAllActiveUsers(int pageNumber, int offset)
         {
             var users = this.commonBusinessAccess.GetAllActiveUsers(pageNumber, offset);
+            return Ok(users);
+        }
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetActiveNonAdminUsers(int pageNumber, int offset)
+        {
+            var users = this.commonBusinessAccess.GetActiveNonAdminUsers(pageNumber, offset);
             return Ok(users);
         }
         [Route("[action]")]

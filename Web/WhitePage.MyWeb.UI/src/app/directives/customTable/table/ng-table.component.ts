@@ -40,10 +40,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
             </tr>
             <tr *ngFor="let row of rows">
                 <td>
-                <div style="display: flex">
-                    <span><i class="fa fa-lg fa-arrows table-fa-icon" (click)="moveClick(row)" tooltip="Move" *ngIf="!config.DisableMove"></i></span>
-                    <span><i class="fa fa-lg fa-pencil-square table-fa-icon" (click)="editClick(row)" tooltip="Edit" *ngIf="!config.DisableEdit"></i></span>
-                    <span><i class="fa fa-lg fa-eye table-fa-icon" (click)="viewClick(row)" tooltip="View" *ngIf="!config.DisableView"></i></span>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <span><i class="fa fa-lg fa-arrows table-fa-icon" (click)="moveClick(row)" tooltip="Move" *ngIf="config.enableMove"></i></span>
+                    <span><i class="fa fa-lg fa-pencil-square table-fa-icon" (click)="editClick(row)" tooltip="Edit" *ngIf="config.enableEdit"></i></span>
+                    <span><i class="fa fa-lg fa-eye table-fa-icon" (click)="viewClick(row)" tooltip="View"  *ngIf="config.enableView" ></i></span>
                     <span><i class="fa fa-lg fa-trash table-fa-icon" (click)="deleteClick(row)" tooltip="Delete" *ngIf="config.enableDelete"></i></span>  
                 </div>
                 </td>
