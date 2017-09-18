@@ -153,7 +153,7 @@ export class DeactivateUserComponent {
     }
 
     public getUserCount() {
-        this.commonService.getUsersCount().subscribe(
+        this.commonService.getNonAdminUsersCount().subscribe(
             data => {
                 this.length = Number(data);
                 this.getAllUsers(1, 10);

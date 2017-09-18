@@ -48,6 +48,9 @@ export class CommonService extends BaseService {
     public getUsersCount = (): Observable<number> => {
         return this.authHttp.get('/api/Common/GetUsersCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
+    public getNonAdminUsersCount = (): Observable<number> => {
+        return this.authHttp.get('/api/Common/GetNonAdminUsersCount/', this.getRequestOptions()).map((response: Response) => <number>response.json());
+    }
     public GetSortedUsersDataAsc(pageNumber: number, offset: number, dictionary: Object, field: string): Observable<User[]> {
         return this.authHttp.get('/api/Common/GetSortedUsersDataAsc/', this.getSortedDataParamsDictionary(pageNumber, offset, JSON.stringify(dictionary), field)).map((response: Response) => <User[]>response.json());
     }
