@@ -13,10 +13,10 @@
                 </thead>
                 <tbody>
                     <tr class="tr-data" *ngFor="let sessionLog of caseBook.vSessionLog">
-                        <td>{{sessionLog.CounselingDate}}</td>
+                        <td>{{sessionLog.CounselingDate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{sessionLog.TypeOfCounselingDesc}}</td>
                         <td>{{sessionLog.DurationOfSessionMIn}}</td>
-                        <td>{{sessionLog.NextSessionScheduled}}</td>
+                        <td>{{sessionLog.NextSessionScheduled | date: 'dd-MM-yyyy'}}</td>
                         <td>{{sessionLog.SessionNotes}}</td>
                     </tr>
                 </tbody>
