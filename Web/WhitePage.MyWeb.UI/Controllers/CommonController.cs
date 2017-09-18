@@ -82,6 +82,13 @@ namespace WhitePage.MyWeb.UI.Controllers
         }
         [Route("[action]")]
         [HttpGet]
+        public IActionResult GetActiveNonAdminUsers(int pageNumber, int offset)
+        {
+            var users = this.commonBusinessAccess.GetActiveNonAdminUsers(pageNumber, offset);
+            return Ok(users);
+        }
+        [Route("[action]")]
+        [HttpGet]
         public IActionResult GetSortedUsersDataAsc(int pageNumber, int offset, string dictionary, string field)
         {
             var sortedUsers = this.commonBusinessAccess.GetSortedUsersDataAsc(pageNumber, offset, JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionary), field);

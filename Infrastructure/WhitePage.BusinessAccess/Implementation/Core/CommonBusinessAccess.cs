@@ -99,6 +99,12 @@ namespace WhitePage.BusinessAccess.Implementation.Core
         {
             return returnUsersList(this.commonDataAccess.GetAllActiveUsers(), pageNumber, offset);
         }
+        public List<User> GetActiveNonAdminUsers( int pageNumber, int offset)
+        {
+            IQueryable<User> queryableUserList = this.commonDataAccess.GetAllActiveUsers();
+            queryableUserList = queryableUserList.Where(user => user.UserName != "admin");
+            return returnUsersList(queryableUserList, pageNumber, offset);
+        }
         public List<User> GetSortedUsersDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
         {
            return
@@ -113,7 +119,7 @@ namespace WhitePage.BusinessAccess.Implementation.Core
         public List<User> GetFilteredUsers(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
             return
-                returnUserSearchList(this.GetFilteredData(pageNumber, offset, dictionary), dictionary["FirstName"]).
+                this.GetFilteredData(pageNumber, offset, dictionary).
                 Skip((pageNumber - 1) * 10).
                 Take(offset).
                 ToList();
@@ -121,11 +127,8 @@ namespace WhitePage.BusinessAccess.Implementation.Core
 
         public int GetFilteredUsersCount(int pageNumber, int offset, IDictionary<string, string> dictionary)
         {
-            return returnUserSearchList(this.GetFilteredData(pageNumber, offset, dictionary), dictionary["FirstName"]).Count();
+            return this.GetFilteredData(pageNumber, offset, dictionary).Count();
         }
-
-        Func<IQueryable<User>, string, IEnumerable<User>> returnUserSearchList =
-            (users, searchString) => users.ToList().Where(s => s.FirstName.ToLower().Contains(searchString.ToLower()));
 
         Func<IQueryable<User>, int, int, List<User>> returnUsersList =
             (users, pageNumber, offset) => users.Skip((pageNumber - 1) * 10).Take(offset).ToList();
@@ -147,9 +150,9 @@ namespace WhitePage.BusinessAccess.Implementation.Core
             return
                 this.commonDataAccess.GetAllActiveUsers().
                 Where(
-                    s => s.FirstName.Contains(firstNameFilterString) &&
-                    s.LastName.Contains(lastNameFilterString) &&
-                    s.UserName.Contains(userNameFilterString));
+                    user => user.UserName != "admin" && user.FirstName.Contains(firstNameFilterString) &&
+                    user.LastName.Contains(lastNameFilterString) &&
+                    user.UserName.Contains(userNameFilterString));
         }
         
     }
