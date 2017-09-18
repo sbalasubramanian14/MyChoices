@@ -162,7 +162,7 @@ export class DeactivateUserComponent {
 
     private getAllUsers(page: any, itemsPerPage: any) {
         this.commonService.
-            getAllActiveUsers(page, itemsPerPage)
+            getActiveNonAdminUsers(page, itemsPerPage)
             .subscribe(data => {
                 this.userList = [];
                 data.forEach(d => this.userList.push(d));
