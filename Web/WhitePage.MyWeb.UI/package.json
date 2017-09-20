@@ -34,6 +34,7 @@
     "angular2-social-login": "^3.1.1",
     "chart.js": "2.5.0",
     "core-js": "2.4.1",
+    "highcharts": "^5.0.14",
     "lodash": "^4.17.4",
     "moment": "2.18.1",
     "mydatepicker": "1.10.1",
@@ -48,7 +49,7 @@
     "zone.js": "0.8.5"
   },
   "devDependencies": {
-    "@angular/cli": "1.2.6",
+    "@angular/cli": "^1.4.2",
     "@angular/common": "4.0.0",
     "@angular/compiler": "4.0.0",
     "@angular/compiler-cli": "4.0.0",
