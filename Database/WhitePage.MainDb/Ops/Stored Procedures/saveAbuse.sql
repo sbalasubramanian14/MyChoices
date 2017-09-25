@@ -42,8 +42,8 @@ BEGIN
 			,T.ReasonForAbuseDesc = S.ReasonForAbuseDesc
 			,T.PhysicalAbuseDesc = S.PhysicalAbuseDesc
 			,T.EmotionalAbuseDesc = S.EmotionalAbuseDesc
-			,T.SexualAbuseDesc = T.SexualAbuseDesc
-			,T.EconomicAbuseDesc = T.EconomicAbuseDesc;
+			,T.SexualAbuseDesc = S.SexualAbuseDesc
+			,T.EconomicAbuseDesc = S.EconomicAbuseDesc;
 
 declare @CaseId INT;
 	select @CaseId = CaseId from @caseAbuseType;
