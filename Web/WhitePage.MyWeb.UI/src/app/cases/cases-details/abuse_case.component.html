@@ -77,6 +77,21 @@
                         <label for="WeaponsUsedDesc">If others, please specify</label>
                         <input formControlName="WeaponsUsedDesc" class="form-control" />
                     </div>
+
+                    <div class="form-group">
+                        <label for="TypesOfPhyscialAbuseLookupId">Types of physical abuse - tick all applicable situations</label>
+                        <ss-multiselect-dropdown [options]="typesOfPhyscialAbuseLookupOptionsList"
+                                                 formControlName="TypesOfPhyscialAbuseLookupId"
+                                                 [(ngModel)]="caseBook.Abuse.TypesOfPhyscialAbuseLookupArray">
+
+                        </ss-multiselect-dropdown>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PhysicalAbuseDesc">If other, please specify</label>
+                        <input formControlName="PhysicalAbuseDesc" class="form-control" />
+                    </div>
                 </div>
 
             </div>
@@ -88,15 +103,7 @@
                     Others (2)
                 </div>
                 <div class="card-block">
-                    <div class="form-group">
-                        <label for="TypesOfPhyscialAbuseLookupId">Types of physical abuse - tick all applicable situations</label>
-                        <ss-multiselect-dropdown [options]="typesOfPhyscialAbuseLookupOptionsList"
-                                                 formControlName="TypesOfPhyscialAbuseLookupId"
-                                                 [(ngModel)]="caseBook.Abuse.TypesOfPhyscialAbuseLookupArray">
-
-                        </ss-multiselect-dropdown>
-
-                    </div>
+                    
 
                     <div class="form-group">
                         <label for="FrequencyOfPhyscialAbuseLookupId">Frequency of physical abuse</label>
@@ -127,6 +134,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="EmotionalAbuseDesc">If other, please specify</label>
+                        <input formControlName="EmotionalAbuseDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="FrequencyOfEmotionalAbuseLookupId">Frequency of emotional abuse</label>
                         <ng-select [options]="frequencyOfEmotionalAbuseLookupOptionsList"
                                    placeholder="Select"
@@ -152,6 +164,11 @@
                                                  [(ngModel)]="caseBook.Abuse.TypesOfSexualAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SexualAbuseDesc">If other, please specify</label>
+                        <input formControlName="SexualAbuseDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">
@@ -192,6 +209,11 @@
                                                  [(ngModel)]="caseBook.Abuse.TypesOfEconomicAbuseLookupArray">
 
                         </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="EconomicAbuseDesc">If other, please specify</label>
+                        <input formControlName="EconomicAbuseDesc" class="form-control" />
                     </div>
 
                     <div class="form-group">

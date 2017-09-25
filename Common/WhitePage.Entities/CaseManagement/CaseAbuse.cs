@@ -61,5 +61,13 @@ namespace WhitePage.Entities.CaseManagement
         public int[] ReasonsForAbuseLookupArray { get; set; }
 
         public string ReasonForAbuseDesc { get; set; }
+
+        public string PhysicalAbuseDesc { get; set; }
+
+        public string EmotionalAbuseDesc { get; set; }
+
+        public string SexualAbuseDesc { get; set; }
+
+        public string EconomicAbuseDesc { get; set; }
     }
 }
