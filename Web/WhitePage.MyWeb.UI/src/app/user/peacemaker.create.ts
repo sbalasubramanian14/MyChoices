@@ -31,15 +31,6 @@ export class PeacemakerCreateComponent {
         private fb: FormBuilder,
         private toastr: ToastsManager) {
 
-        
-
-        this.authenticationService.getUserRoles().subscribe(userRoles => {
-            this.roles = userRoles.map(role => <IOption>{ label: role.Title, value: role.RoleId.toString() });
-        }, error => console.log("unable to get user roles"));
-
-        this.commonService.getAllCenters().subscribe(centers => {
-            this.centers = centers.map(center => <IOption>{ label: center.Title, value: center.CenterId.toString() });
-        }, error => console.log("unable to get centers"));
     }
 
     ngOnInit() {
@@ -53,6 +44,8 @@ export class PeacemakerCreateComponent {
         });
 
         this.setNewLoginValidation();
+        this.roles = JSON.parse(localStorage.getItem('roles'));
+        this.centers = JSON.parse(localStorage.getItem('centers'));
     }
 
     private setNewLoginValidation() {

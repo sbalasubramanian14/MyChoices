@@ -1,12 +1,18 @@
-﻿<form [formGroup]="addCounselorForm" *ngIf="roles" novalidate>
+﻿<form [formGroup]="addCounselorForm" novalidate>
     <div class="form-group">
         <label for="firstname">First Name *</label>
         <input placeholder="First Name" id="firstname" class="form-control" formControlName="firstname" />
+        <div>
+            <small *ngIf="addCounselorForm.controls.firstname.hasError('required') && addCounselorForm.controls.firstname.touched" class="mat-text-warn">First Name is required.</small>
+        </div>
     </div>
 
     <div class="form-group">
         <label for="lastname">Last Name *</label>
         <input placeholder="Last Name" id="lastname" class="form-control" formControlName="lastname" />
+        <div>
+            <small *ngIf="addCounselorForm.controls.lastname.hasError('required') && addCounselorForm.controls.lastname.touched" class="mat-text-warn">Last Name is required.</small>
+        </div>
     </div>
 
     <div class="form-group">
@@ -20,6 +26,9 @@
     <div class="form-group" *ngIf="isNewLogin">
         <label for="email">Email *</label>
         <input placeholder="Email" id="email" class="form-control" formControlName="email" />
+        <div>
+            <small *ngIf="(addCounselorForm.controls.email.hasError('required') || addCounselorForm.controls.email.hasError('email')) && addCounselorForm.controls.email.touched" class="mat-text-warn">Please provide a valid email.</small>
+        </div>
     </div>
 
     <div class="form-group" *ngIf="isNewLogin">
@@ -31,6 +40,9 @@
                    id="roleId"
                    formControlName="role">
         </ng-select>
+        <div>
+            <small *ngIf="addCounselorForm.controls.role.hasError('required') && addCounselorForm.controls.role.touched" class="mat-text-warn">Role is required.</small>
+        </div>
     </div>
 
     <div class="form-group">
@@ -50,6 +62,9 @@
                    id="centerId"
                    formControlName="center">
         </ng-select>
+        <div>
+            <small *ngIf="addCounselorForm.controls.center.hasError('required') && addCounselorForm.controls.center.touched" class="mat-text-warn">Center is required.</small>
+        </div>
     </div>
 
     <div class="form-group" style="text-align: center">
