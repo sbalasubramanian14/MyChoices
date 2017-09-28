@@ -74,7 +74,7 @@ export class ValidationService {
         return null;
     }
     public nameValidator(input: AbstractControl) {
-        var namePattern = /^[A-z  /]+$/g
+        var namePattern = /^[A-z][A-z . /]*$/g
 
         if (input.value == null || input.value == "") {
             return null;
