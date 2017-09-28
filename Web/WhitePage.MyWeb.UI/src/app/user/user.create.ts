@@ -13,6 +13,4 @@ export class UserCreateComponent {
         private authenticationService: AuthenticationService,) {
         this.toastr.setRootViewContainerRef(vRef);
     }
-    public userData = this.authenticationService.getUser();
-    public isUserAdmin = this.userData.typ == "1" ? true : false;
 }
