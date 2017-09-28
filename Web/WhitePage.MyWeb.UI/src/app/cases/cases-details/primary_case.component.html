@@ -51,6 +51,7 @@
                         <input placeholder="First Name" formControlName="ClientFirstName" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.ClientFirstName.hasError('required') && casePrimaryForm.controls.ClientFirstName.touched" class="mat-text-warn">First Name is required.</small>
+                            <small *ngIf="casePrimaryForm.controls.ClientFirstName.dirty && casePrimaryForm.controls.ClientFirstName.invalid" class="mat-text-warn">Please provide a valid First Name</small>                        
                         </div>
                     </div>
 
@@ -59,6 +60,7 @@
                         <input placeholder="Last Name" formControlName="ClientLastName" [(ngModel)]="caseBook.Case.ClientLastName" class="form-control" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.ClientLastName.hasError('required') && casePrimaryForm.controls.ClientLastName.touched" class="mat-text-warn">Last Name is required.</small>
+                            <small *ngIf="casePrimaryForm.controls.ClientLastName.dirty && casePrimaryForm.controls.ClientLastName.invalid" class="mat-text-warn">Please provide a valid Last Name</small>                        
                         </div>
                     </div>
 
@@ -72,6 +74,7 @@
                         <input placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
                         <div>
                             <small *ngIf="casePrimaryForm.controls.FatherName.hasError('required') && casePrimaryForm.controls.FatherName.touched" class="mat-text-warn">Father / Husband Name is required.</small>
+                            <small *ngIf="casePrimaryForm.controls.FatherName.dirty && casePrimaryForm.controls.FatherName.invalid" class="mat-text-warn">Please provide a valid Father / Husband Name</small>
                         </div>
                     </div>
 

@@ -12,6 +12,9 @@
                     <div class="form-group">
                         <label for="SpouseName">Spouse Name</label>
                         <input formControlName="SpouseName" maxlength="30" class="form-control" />
+                        <div>
+                            <small *ngIf="spouseForm.controls.SpouseName.dirty && spouseForm.controls.SpouseName.invalid" class="mat-text-warn">Please provide a valid Spouse Name</small>
+                        </div>
                     </div>
 
                     <div class="form-group">

@@ -73,4 +73,15 @@ export class ValidationService {
         }
         return null;
     }
+    public nameValidator(input: AbstractControl) {
+        var namePattern = /^[A-z  /]+$/g
+
+        if (input.value == null || input.value == "") {
+            return null;
+        }
+        if (!namePattern.test(input.value)) {
+            return { 'Please provide valid name': true };
+        }
+        return null;
+    }
 }

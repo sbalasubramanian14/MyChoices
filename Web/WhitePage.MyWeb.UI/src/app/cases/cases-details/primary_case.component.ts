@@ -155,9 +155,9 @@ export class PrimaryCaseComponent implements OnInit {
             PeaceMakerId: [this.caseBook.Case.PeaceMakerId.toString(), Validators.required],
             CounselorId: [this.caseBook.Case.CounselorId.toString(), Validators.required],
 
-            ClientFirstName: [this.caseBook.Case.ClientFirstName, Validators.required],
-            ClientLastName: [this.caseBook.Case.ClientLastName, Validators.required],
-            FatherName: [this.caseBook.Case.FatherName, Validators.required],
+            ClientFirstName: [this.caseBook.Case.ClientFirstName, [Validators.required, this.validationService.nameValidator]],
+            ClientLastName: [this.caseBook.Case.ClientLastName, [Validators.required, this.validationService.nameValidator]],
+            FatherName: [this.caseBook.Case.FatherName, [Validators.required, this.validationService.nameValidator]],
             Mi: [this.caseBook.Case.Mi],
             GenderLookupId: [this.caseBook.Case.GenderLookupId.toString(), Validators.required],
 
