@@ -297,7 +297,6 @@ export class CaseManage {
 
     CaseManageId?: number;
     CaseId?: number;
-    CaseStatusId?: number;
     ReferredToWhom: string;
 
     SourceOfCaseLookupId?: number;
