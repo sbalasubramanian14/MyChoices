@@ -27,7 +27,9 @@
         <label for="email">Email *</label>
         <input placeholder="Email" id="email" class="form-control" formControlName="email" />
         <div>
-            <small *ngIf="(addPeacemakerForm.controls.email.hasError('required') || addPeacemakerForm.controls.email.hasError('email')) && addPeacemakerForm.controls.email.touched" class="mat-text-warn">Please provide a valid email.</small>
+            <small *ngIf="addPeacemakerForm.controls.email.hasError('required') && addPeacemakerForm.controls.email.touched" class="mat-text-warn">Email is required.</small>
+            <small *ngIf="addPeacemakerForm.controls.email.dirty && addPeacemakerForm.controls.email.invalid" class="mat-text-warn">Please provide a valid email.</small>
+
         </div>
     </div>
 

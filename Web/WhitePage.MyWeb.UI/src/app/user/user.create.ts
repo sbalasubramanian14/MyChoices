@@ -50,7 +50,6 @@ export class UserCreateComponent {
     }
 
     public onDeactivateUserLoaded(status: boolean): void {
-        console.log(status);
         this.isDeactivateUserLoaded = status;
         this.isDataLoaded = this.isRolesLoaded && this.isCentersLoaded && this.isDeactivateUserLoaded;
     }
