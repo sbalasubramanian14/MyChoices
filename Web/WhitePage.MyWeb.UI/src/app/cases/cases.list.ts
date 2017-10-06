@@ -155,7 +155,7 @@ export class CasesListComponent implements OnInit {
     public rows: Array<any> = [];
     public columns: Array<any> = [
         { title: 'No#', name: 'CaseNumber', sort: true, filtering: { filterString: '', placeholder: 'No#' } },
-        { title: 'Name', name: 'ClientName', sort: true, filtering: { filterString: '', placeholder: 'Name#' } },
+        { title: 'Name', name: 'ClientName', sort: true, filtering: { filterString: '', placeholder: 'Name' } },
         { title: 'Status', name: 'CaseStatus', sort: true, filtering: { filterString: '', placeholder: 'Status' } },
         { title: 'Date', name: 'RegisterDateString', sort: true, filtering: { filterString: '', placeholder: 'Date' } },
         { title: 'Center', name: 'CenterTitle', sort: true, filtering: { filterString: '', placeholder: 'Center' } },
