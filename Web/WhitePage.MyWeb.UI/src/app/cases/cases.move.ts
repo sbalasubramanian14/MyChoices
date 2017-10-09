@@ -378,6 +378,11 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString(), Validators.required),
             ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc),
 
+            PhysicalAbuseDesc: [this.caseBook.Abuse.PhysicalAbuseDesc],
+            EmotionalAbuseDesc: [this.caseBook.Abuse.EmotionalAbuseDesc],
+            SexualAbuseDesc: [this.caseBook.Abuse.SexualAbuseDesc],
+            EconomicAbuseDesc: [this.caseBook.Abuse.EconomicAbuseDesc],
+
             //End of Abuse category 4
 
             //Case Category 4
@@ -533,6 +538,10 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.category4Form.controls['FrequencyOfEmotionalAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.category4Form.controls['NumberOfYearsOfEmotionalAbuse'].value;
         this.caseBook.Abuse.ReasonForAbuseDesc = this.category4Form.controls['ReasonForAbuseDesc'].value;
+        this.caseBook.Abuse.PhysicalAbuseDesc = this.category4Form.controls['PhysicalAbuseDesc'].value;
+        this.caseBook.Abuse.EmotionalAbuseDesc = this.category4Form.controls['EmotionalAbuseDesc'].value;
+        this.caseBook.Abuse.SexualAbuseDesc = this.category4Form.controls['SexualAbuseDesc'].value;
+        this.caseBook.Abuse.EconomicAbuseDesc = this.category4Form.controls['EconomicAbuseDesc'].value;
 
         //End of Abuse category 4
 

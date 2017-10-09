@@ -57,6 +57,10 @@
                     <span>{{ (typesOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfPhyscialAbuseLookupId:"multiselect") }}</span>
                 </div>
                 <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.PhysicalAbuseDesc }}</span>
+                </div>
+                <div class="form-group">
                     <label>Frequency of physical abuse  :</label>
                     <span>{{ (frequencyOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfPhyscialAbuseLookupId) }}</span>
                 </div>
@@ -65,8 +69,12 @@
                     <span>{{ caseAbuseForm.NumberOfYearsOfPhyscialAbuse }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Types of emotional abuse :</label>
+                    <label>Types of emotional abuse  :</label>
                     <span>{{ (typesOfEmotionalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEmotionalAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.EmotionalAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of emotional abuse  :</label>
@@ -79,6 +87,10 @@
                 <div class="form-group">
                     <label>Types of sexual abuse  :</label>
                     <span>{{ (typesOfSexualAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfSexualAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.SexualAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of sexual abuse  :</label>
@@ -102,6 +114,10 @@
                 <div class="form-group">
                     <label>Types of economic abuse  :</label>
                     <span>{{ (typesOfEconomicAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEconomicAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.EconomicAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of economic abuse  :</label>

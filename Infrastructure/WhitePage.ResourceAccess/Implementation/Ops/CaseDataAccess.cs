@@ -451,6 +451,11 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Abuse.ReasonsForAbuseLookupId,
                 caseBook.Abuse.ReasonForAbuseDesc,
 
+                caseBook.Abuse.PhysicalAbuseDesc,
+                caseBook.Abuse.EmotionalAbuseDesc,
+                caseBook.Abuse.SexualAbuseDesc,
+                caseBook.Abuse.EconomicAbuseDesc,
+
                 });
             caseChildrenTable.AcceptChanges();
 
