@@ -31,20 +31,8 @@ export class CounselorCreateComponent {
         private fb: FormBuilder,
         private toastr: ToastsManager) {
 
-        this.getUserRoles();
-        this.getAllCenters();
-    }
-
-    private getUserRoles() {
-        this.authenticationService.getUserRoles().subscribe(userRoles => {
-            this.roles = userRoles.map(role => <IOption>{ label: role.Title, value: role.RoleId.toString() });
-        }, error => console.log("unable to get user roles"));
-    }
-
-    private getAllCenters() {
-        this.commonService.getAllCenters().subscribe(centers => {
-            this.centers = centers.map(center => <IOption>{ label: center.Title, value: center.CenterId.toString() });
-        }, error => console.log("unable to get centers"));
+        this.roles = JSON.parse(localStorage.getItem('roles'));
+        this.centers = JSON.parse(localStorage.getItem('centers'));
     }
 
     ngOnInit() {

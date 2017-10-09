@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+﻿import { Component, Input, Output, OnInit, ViewChild, ViewContainerRef, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
@@ -24,6 +24,7 @@ export class DeactivateUserComponent {
     public userDictionary: any = new Object;
     public selectedUserId: number;
     public selectedUserName: string;    
+    @Output() onDeactivateUserLoaded: EventEmitter<any> = new EventEmitter<any>();
 
     public rows: Array<any> = [];
     public columns: Array<any> = [
@@ -167,6 +168,7 @@ export class DeactivateUserComponent {
                 this.userList = [];
                 data.forEach(d => this.userList.push(d));
                 this.enableSpinner = false;
+                this.onDeactivateUserLoaded.emit(true);
                 this.onChangeTable(this.config, { page: page, itemsPerPage: itemsPerPage });
                
             });
