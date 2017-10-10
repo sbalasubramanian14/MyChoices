@@ -290,6 +290,11 @@ export class CaseAbuse {
     ReasonsForAbuseLookupId: string;
     ReasonsForAbuseLookupArray: Array<number>;
     ReasonForAbuseDesc?: string;
+
+    PhysicalAbuseDesc: string;
+    EmotionalAbuseDesc: string;
+    SexualAbuseDesc: string;
+    EconomicAbuseDesc: string;
 }
 
 export class CaseManage {
@@ -297,7 +302,6 @@ export class CaseManage {
 
     CaseManageId?: number;
     CaseId?: number;
-    CaseStatusId?: number;
     ReferredToWhom: string;
 
     SourceOfCaseLookupId?: number;

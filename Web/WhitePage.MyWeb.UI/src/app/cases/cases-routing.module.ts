@@ -56,7 +56,7 @@ const routes: Routes = [
             component: CasesMoveComponent,
             canActivate: [AuthGuard],
             data: {
-                title: 'Manage Case'
+                title: 'Move Case'
             }
         },]
     }

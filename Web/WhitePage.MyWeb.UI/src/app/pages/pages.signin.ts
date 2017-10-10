@@ -20,6 +20,7 @@ export class PagesSignInComponent implements OnInit {
     errorMsg: string;
     public enableSpinner: boolean = true;
     public isButtonVisible: boolean = true;
+    public unsupportedBrowser: boolean = false;
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService,
@@ -32,6 +33,7 @@ export class PagesSignInComponent implements OnInit {
         });
         this.enableSpinner = false;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.unsupportedBrowser = this.detectIE();
     }
     public user: any;
     signIn(provider: string) {
@@ -68,6 +70,26 @@ export class PagesSignInComponent implements OnInit {
                 console.log(error);
                 this.errorMsg = "Your identity not authorized; please contact your administrator.";
             });
+    }
+
+    detectIE() {
+        var ua = window.navigator.userAgent;
+
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            // IE 10 or older => return version number 
+            return true;
+        }
+
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return true;
+        }
+
+        // other browser
+        return false;
     }
 
 }

@@ -281,6 +281,11 @@ namespace WhitePage.ResourceAccess
 
                     .AddColumn("ReasonsForAbuseLookupId", DbColumnType.String)
                     .AddColumn("ReasonForAbuseDesc", DbColumnType.String)
+
+                    .AddColumn("PhysicalAbuseDesc", DbColumnType.String)
+                    .AddColumn("EmotionalAbuseDesc", DbColumnType.String)
+                    .AddColumn("SexualAbuseDesc", DbColumnType.String)
+                    .AddColumn("EconomicAbuseDesc", DbColumnType.String)
                     ;
 
                 foreach (var item in columnCollection) result.Columns.Add(item);
@@ -299,7 +304,6 @@ namespace WhitePage.ResourceAccess
                 columnCollection
                     .AddColumn("CaseManageId", DbColumnType.Int)
                     .AddColumn("CaseId", DbColumnType.Int)
-                    .AddColumn("CaseStatusId", DbColumnType.Byte)
                     .AddColumn("ReferredToWhom", DbColumnType.String)
 
                     .AddColumn("SourceOfCaseLookupId", DbColumnType.Int)

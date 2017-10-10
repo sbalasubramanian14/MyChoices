@@ -117,7 +117,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     private changeStatus() {
 
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;                                                            
 
         var previousCaseStatusLevel = this.caseStatusesList.find(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId).Level;
         var currentCaseStatus = this.caseBook.Case.CaseStausId;
@@ -379,6 +378,11 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             ReasonsForAbuseLookupId: new FormControl(this.caseBook.Abuse.ReasonsForAbuseLookupId == undefined ? null : this.caseBook.Abuse.ReasonsForAbuseLookupId.toString(), Validators.required),
             ReasonForAbuseDesc: new FormControl(this.caseBook.Abuse.ReasonForAbuseDesc),
 
+            PhysicalAbuseDesc: [this.caseBook.Abuse.PhysicalAbuseDesc],
+            EmotionalAbuseDesc: [this.caseBook.Abuse.EmotionalAbuseDesc],
+            SexualAbuseDesc: [this.caseBook.Abuse.SexualAbuseDesc],
+            EconomicAbuseDesc: [this.caseBook.Abuse.EconomicAbuseDesc],
+
             //End of Abuse category 4
 
             //Case Category 4
@@ -410,7 +414,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
         //Case category 2
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
         this.caseBook.Manage.CaseSubject = this.category2Form.controls['CaseSubject'].value;
         this.caseBook.Manage.CaseDescription = this.category2Form.controls['CaseDescription'].value;
 
@@ -459,7 +462,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
     public updateCategory3() {
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
 
         this.caseBook.Manage.CaseSubject = this.category3Form.controls['CaseSubject'].value;
         this.caseBook.Manage.CaseDescription = this.category3Form.controls['CaseDescription'].value;
@@ -485,7 +487,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     public updateCategory4() {
 
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
         this.caseBook.Manage.CaseSubject = this.category4Form.controls['CaseSubject'].value;
         this.caseBook.Manage.CaseDescription = this.category4Form.controls['CaseDescription'].value;
         //Household category 4
@@ -537,6 +538,10 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId = this.category4Form.controls['FrequencyOfEmotionalAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse = this.category4Form.controls['NumberOfYearsOfEmotionalAbuse'].value;
         this.caseBook.Abuse.ReasonForAbuseDesc = this.category4Form.controls['ReasonForAbuseDesc'].value;
+        this.caseBook.Abuse.PhysicalAbuseDesc = this.category4Form.controls['PhysicalAbuseDesc'].value;
+        this.caseBook.Abuse.EmotionalAbuseDesc = this.category4Form.controls['EmotionalAbuseDesc'].value;
+        this.caseBook.Abuse.SexualAbuseDesc = this.category4Form.controls['SexualAbuseDesc'].value;
+        this.caseBook.Abuse.EconomicAbuseDesc = this.category4Form.controls['EconomicAbuseDesc'].value;
 
         //End of Abuse category 4
 
@@ -558,7 +563,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     public updateCategory5() {
 
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseStatusId = this.mainForm.controls['CaseStatusId'].value;
 
         this.caseBook.Legal.CaseId = this.caseBook.Case.CaseId;
 
