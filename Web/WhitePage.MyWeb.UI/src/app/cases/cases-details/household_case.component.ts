@@ -114,14 +114,14 @@ export class HouseholdCaseComponent implements OnInit {
 
     disableItems(selectedArray: Array<number>) {
         if (selectedArray !== null) {
-            let id = 63 //"None of the above"
+            let id = this.childrenDeceasedLookupOptionsList.find(item => item.name === "None of the above").id;            
             let lastSelected = selectedArray[selectedArray.length - 1];
 
             if (lastSelected == id) {
-                this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray = selectedArray.filter(value => value = id);
+                this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray = selectedArray.filter(value => value === id);
             }
             else {
-                this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray = selectedArray.filter(value => value != id);
+                this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray = selectedArray.filter(value => value !== id);
             }
         }
     }
