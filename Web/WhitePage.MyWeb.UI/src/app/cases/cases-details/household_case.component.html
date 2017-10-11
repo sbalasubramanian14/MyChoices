@@ -13,7 +13,8 @@
                         <label for="ChildrenDeceasedLookupId">Any children deceased/miscarried/aborted?</label>
                         <ss-multiselect-dropdown [options]="childrenDeceasedLookupOptionsList"
                                                  formControlName="ChildrenDeceasedLookupId"
-                                                 [(ngModel)]="caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray">
+                                                 [(ngModel)]="caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray"
+                                                 (ngModelChange)="disableItems($event)">
 
                         </ss-multiselect-dropdown>
                     </div>
