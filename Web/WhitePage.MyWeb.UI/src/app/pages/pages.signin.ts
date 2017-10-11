@@ -18,9 +18,9 @@ export class PagesSignInComponent implements OnInit {
     public form: FormGroup;
     returnUrl: string;
     errorMsg: string;
-    public enableSpinner: boolean = true;
-    public isButtonVisible: boolean = true;
-    public unsupportedBrowser: boolean = false;
+    public enableSpinner = true;
+    public isButtonVisible = true;
+    public unsupportedBrowser = false;
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService,
