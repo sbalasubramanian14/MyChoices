@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core'
+﻿import { Component,Output,EventEmitter } from '@angular/core'
 import { CaseBook } from '../../models/case.entities'
 import { CasesService } from '../../services/cases.services';
 import { CommonService } from '../../services/common.services';
@@ -16,11 +16,14 @@ import { HighChartsThemeSettings } from './highcharts.theme';
 )
 
 export class TotalSessionsComponent extends ChartsController {
+
+    @Output() onSessionChartsLoaded: EventEmitter<any> = new EventEmitter<any>();
     public caseModel: CaseBook;
     public centers: string;
-    public isCenterChartLoaded: boolean;
-    public isCounselorChartLoaded: boolean;
-    public isPeaceMakerChartLoaded: boolean;
+    public isCenterChartLoaded = false;
+    public isCounselorChartLoaded = false;
+    public isPeaceMakerChartLoaded = false;
+
     public breakdownTypes: any;
 
     public quarter1 = ["January", "February", "March"];
@@ -104,6 +107,7 @@ export class TotalSessionsComponent extends ChartsController {
                     };
                     this.isCenterChartLoaded = true;
                     this.centerOptions = this.centerMonthlyOptions;
+                    this.testIfDataLoaded();
                     break;
                 case "SessionsCounselorWise":
                     var monthlyOptionsList = [];
@@ -165,6 +169,7 @@ export class TotalSessionsComponent extends ChartsController {
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
                     this.isCounselorChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 case "SessionsPeacemakerWise":
                     var monthlyOptionsList = [];
@@ -226,6 +231,7 @@ export class TotalSessionsComponent extends ChartsController {
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
                     this.isPeaceMakerChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 default:
                     break;
@@ -311,7 +317,10 @@ export class TotalSessionsComponent extends ChartsController {
                 break;
         }
     }
-
+    public testIfDataLoaded() {
+        if (this.isCenterChartLoaded && this.isCounselorChartLoaded && this.isPeaceMakerChartLoaded)
+            this.onSessionChartsLoaded.emit("SessionsLoaded");
+    }
     public centerMonthlyOptions: Object;
     public centerQuaterlyOptions: Object;
     public centerYearlyOptions: Object;
