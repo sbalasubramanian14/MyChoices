@@ -173,40 +173,24 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public CaseHeader UpdatePrimaryInfo(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-            var caseTable = UserDefinedTableTypes.Case;
-            caseTable.Rows.Add(new object[]{
-                caseBook.Case.CaseId,
-                caseBook.Case.CaseNumber,
-                caseBook.Case.CenterId,
-                caseBook.Case.CaseStausId,
-                caseBook.Case.CounselorId,
-                caseBook.Case.PeaceMakerId,
-                caseBook.Case.ClientFirstName,
-                caseBook.Case.ClientLastName,
-                caseBook.Case.Mi,
-                caseBook.Case.FatherName,
-                caseBook.Case.GenderLookupId,
+            Case caseObj;
+            CaseHeader caseHeaderObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Cases.Find(caseBook.Case.CaseId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.Case);
+                    int SaveStatus = this.unitOfWork.DbContext.SaveChanges();
+                }
+                caseHeaderObj = this.unitOfWork.DbContext.CaseHeaders.Find(caseBook.Case.CaseId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
-                caseBook.Case.RequireAssistanceLookupId,
-                caseBook.Case.MaritalStatusLookupId,
-                caseBook.Case.Remarks,
-                caseBook.Case.RegisterDate,
-                caseBook.Case.MobileNumber,
-
-                caseBook.Case.CreatedBy,
-                caseBook.Case.CreatedDateTime,
-                caseBook.Case.ModifiedBy,
-                caseBook.Case.ModifiedDatetime,
-                });
-            caseTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[updatePrimaryInfo]",
-                parmsCollection
-                    .AddParm("@caseType", SqlDbType.Structured, caseTable, "[Ops].[CaseType]")
-                ).First();
-
-            return updatedCase;
+            return caseHeaderObj;
         }
 
         public vCaseAddress UpdateAddress(CaseBook caseBook)
