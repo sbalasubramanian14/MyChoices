@@ -160,7 +160,7 @@ export class PrimaryCaseComponent implements OnInit {
             FatherName: [this.caseBook.Case.FatherName, Validators.required],
             Mi: [this.caseBook.Case.Mi],
             GenderLookupId: [this.caseBook.Case.GenderLookupId.toString(), Validators.required],
-
+            ClientAge: [this.caseBook.Case.ClientAge, [Validators.required, Validators.min(1), Validators.max(99), Validators.pattern('^[0-9]*$')]],
             MaritalStatusLookupId: [this.caseBook.Case.MaritalStatusLookupId.toString(), Validators.required],
             RequireAssistanceLookupId: [this.caseBook.Case.RequireAssistanceLookupId.toString(), Validators.required],
             Remarks: [this.caseBook.Case.Remarks],
@@ -172,6 +172,8 @@ export class PrimaryCaseComponent implements OnInit {
         var caseBookNew = new CaseBook();
         caseBookNew.Case = new Case();
         caseBookNew.Case.CaseId = this.caseBook.Case.CaseId;
+        caseBookNew.Case.CaseNumber = this.caseBook.Case.CaseNumber;
+        caseBookNew.Case.CaseStausId = this.caseBook.Case.CaseStausId;
         caseBookNew.Case.CenterId = this.casePrimaryForm.controls['CenterId'].value;
         caseBookNew.Case.PeaceMakerId = this.casePrimaryForm.controls['PeaceMakerId'].value;
         caseBookNew.Case.CounselorId = this.casePrimaryForm.controls['CounselorId'].value;
@@ -180,6 +182,7 @@ export class PrimaryCaseComponent implements OnInit {
         caseBookNew.Case.FatherName = this.casePrimaryForm.controls['FatherName'].value;
         caseBookNew.Case.Mi = this.casePrimaryForm.controls['Mi'].value;
         caseBookNew.Case.GenderLookupId = this.casePrimaryForm.controls['GenderLookupId'].value;
+        caseBookNew.Case.ClientAge = this.casePrimaryForm.controls['ClientAge'].value;
         caseBookNew.Case.MaritalStatusLookupId = this.casePrimaryForm.controls['MaritalStatusLookupId'].value;
         caseBookNew.Case.RequireAssistanceLookupId = this.casePrimaryForm.controls['RequireAssistanceLookupId'].value;
         caseBookNew.Case.Remarks = this.casePrimaryForm.controls['Remarks'].value;
