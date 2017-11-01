@@ -13,6 +13,7 @@
     Mi?: string;
     FatherName?: string;
     GenderLookupId?: any;
+    ClientAge?: number;
 
     RequireAssistanceLookupId?: any;
     MaritalStatusLookupId?: any;
