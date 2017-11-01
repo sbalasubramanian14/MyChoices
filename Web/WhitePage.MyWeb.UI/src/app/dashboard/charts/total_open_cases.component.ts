@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core'
+﻿import { Component,Output,EventEmitter } from '@angular/core'
 import { CaseBook } from '../../models/case.entities'
 import { ChartsController } from '../../dashboard/charts.controller';
 import { CasesService } from '../../services/cases.services';
@@ -15,11 +15,14 @@ import { HighChartsThemeSettings } from './highcharts.theme';
 })
 
 export class TotalOpenCasesComponent extends ChartsController {
+
+    @Output() onOpenCasesChartsLoaded: EventEmitter<any> = new EventEmitter<any>();
     public caseModel: CaseBook;
     public centers: string;
-    public isCenterChartLoaded: boolean;
-    public isCounselorChartLoaded: boolean;
-    public isPeaceMakerChartLoaded: boolean;
+    public isCenterChartLoaded = false;
+    public isCounselorChartLoaded = false;
+    public isPeaceMakerChartLoaded = false;
+    public isOpenCasesChartsLoaded = false;
     public breakdownTypes: any;
     public quarter1 = ["January", "February", "March"];
     public quarter2 = ["April", "May", "June"]
@@ -101,6 +104,7 @@ export class TotalOpenCasesComponent extends ChartsController {
                     };
                     this.isCenterChartLoaded = true;
                     this.centerOptions = this.centerMonthlyOptions;
+                    this.testIfDataLoaded();
                     break;
                 case "OpenCounselorWise":
                     var monthlyOptionsList = [];
@@ -162,6 +166,7 @@ export class TotalOpenCasesComponent extends ChartsController {
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
                     this.isCounselorChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 case "OpenPeacemakerWise":
                     var monthlyOptionsList = [];
@@ -223,6 +228,7 @@ export class TotalOpenCasesComponent extends ChartsController {
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
                     this.isPeaceMakerChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 default:
                     break;
@@ -307,6 +313,10 @@ export class TotalOpenCasesComponent extends ChartsController {
             default:
                 break;
         }
+    }
+    public testIfDataLoaded() {
+        if (this.isCenterChartLoaded && this.isCounselorChartLoaded && this.isPeaceMakerChartLoaded)
+            this.onOpenCasesChartsLoaded.emit("OpenCasesLoaded");
     }
 
     public centerMonthlyOptions: Object;

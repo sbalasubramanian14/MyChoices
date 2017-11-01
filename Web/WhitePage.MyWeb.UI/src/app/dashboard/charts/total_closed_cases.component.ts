@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core'
+﻿import { Component,Output,EventEmitter } from '@angular/core'
 import { CaseBook } from '../../models/case.entities'
 import { ChartsController } from '../../dashboard/charts.controller';
 import { CasesService } from '../../services/cases.services';
@@ -15,6 +15,8 @@ import * as _ from 'lodash';
 )
 
 export class TotalClosedCasesComponent extends ChartsController {
+
+    @Output() onClosedCasesChartsLoaded: EventEmitter<any> = new EventEmitter<any>();
     public caseModel: CaseBook;
     public centers: string;
     public isCenterChartLoaded: boolean;
@@ -102,6 +104,7 @@ export class TotalClosedCasesComponent extends ChartsController {
                     };
                     this.isCenterChartLoaded = true;
                     this.centerOptions = this.centerMonthlyOptions;
+                    this.testIfDataLoaded();
                     break;
                 case "ClosedCounselorWise":
                     var monthlyOptionsList = [];
@@ -163,6 +166,7 @@ export class TotalClosedCasesComponent extends ChartsController {
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
                     this.isCounselorChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 case "ClosedPeacemakerWise":
                     var monthlyOptionsList = [];
@@ -224,6 +228,7 @@ export class TotalClosedCasesComponent extends ChartsController {
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
                     this.isPeaceMakerChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 default:
                     break;
@@ -308,6 +313,10 @@ export class TotalClosedCasesComponent extends ChartsController {
             default:
                 break;
         }
+    }
+    public testIfDataLoaded() {
+        if (this.isCenterChartLoaded && this.isCounselorChartLoaded && this.isPeaceMakerChartLoaded)
+            this.onClosedCasesChartsLoaded.emit("ClosedCasesLoaded");
     }
 
     public centerMonthlyOptions: Object;
