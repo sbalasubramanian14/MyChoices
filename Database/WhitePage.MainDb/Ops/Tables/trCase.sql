@@ -11,6 +11,7 @@
 	Mi VARCHAR(2000) NULL,
 	FatherName VARCHAR(200) NOT NULL,
 	GenderLookupId int NOT NULL,
+	ClientAge int,
 	RequireAssistanceLookupId int NOT NULL,	
 	MaritalStatusLookupId int NOT NULL,
 	Remarks VARCHAR(300) NULL,

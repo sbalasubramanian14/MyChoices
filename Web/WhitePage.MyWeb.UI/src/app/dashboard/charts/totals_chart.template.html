@@ -1,44 +1,43 @@
-﻿<div class="row">
-    <my-spinner [isRunning]="!isCenterChartLoaded || !isCounselorChartLoaded || !isPeaceMakerChartLoaded"></my-spinner>
-    <div class="col-md-6" *ngIf="isCenterChartLoaded">
-        <div class="justify-chart-labels">
-            <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
-                <input type="radio" [attr.id]="radioIndex + i + breakdown.value" [checked]="i === 0"
-                       (change)="loadCenterNewCasesChart(breakdown.value)" formControlName="breakdownTypes" name="radio1" />
-                <label [attr.for]="radioIndex + i + breakdown.value"><span></span>{{breakdown.value}}</label>
-            </span>
+﻿    <div class="row">
+        <div class="col-md-6">
+            <div class="justify-chart-labels">
+                <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
+                    <input type="radio" [attr.id]="radioIndex + i + breakdown.value" [checked]="i == 0"
+                           (change)="loadCenterNewCasesChart(breakdown.value)" formControlName="breakdownTypes" attr.name="{{ radioIndex + 'centre'}}" />
+                    <label [attr.for]="radioIndex + i + breakdown.value"><span></span>{{breakdown.value}}</label>
+                </span>
+            </div>
+            <div>
+                <chart [options]="centerOptions"></chart>
+            </div>
         </div>
-        <div>
-            <chart [options]="centerOptions"></chart>
+
+        <div class="col-md-6">
+            <div class="justify-chart-labels">
+                <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
+                    <input type="radio" [attr.id]="radioIndex + (i + 3) + breakdown.value" [checked]="i == 0"
+                           (change)="loadCounselorNewCasesChart(breakdown.value)" formControlName="breakdownTypes" attr.name="{{ radioIndex + 'counselor'}}" />
+                    <label [attr.for]="radioIndex + (i + 3) + breakdown.value"><span></span>{{breakdown.value}}</label>
+                </span>
+            </div>
+            <div>
+                <chart [options]="counselorOptions"></chart>
+            </div>
         </div>
     </div>
 
-    <div class="col-md-6" *ngIf="isCounselorChartLoaded">
-        <div class="justify-chart-labels">
-            <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
-                <input type="radio" [attr.id]="radioIndex + (i + 3) + breakdown.value" [checked]="i == 0"
-                       (change)="loadCounselorNewCasesChart(breakdown.value)" formControlName="breakdownTypes" name="radio2" />
-                <label [attr.for]="radioIndex + (i + 3) + breakdown.value"><span></span>{{breakdown.value}}</label>
-            </span>
-        </div>
-        <div>
-            <chart [options]="counselorOptions"></chart>
-        </div>
-    </div>
-</div>
-
-<br />
-<div class="row">
-    <div class="col-md-12" *ngIf="isPeaceMakerChartLoaded">
-        <div class="justify-chart-labels">
-            <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
-                <input type="radio" [attr.id]="radioIndex + (i + 6) + breakdown.value" [checked]="i == 0"
-                       (change)="loadPeaceMakerNewCasesChart(breakdown.value)" formControlName="breakdownTypes" name="radio3" />
-                <label [attr.for]="radioIndex + (i + 6) + breakdown.value"><span></span>{{breakdown.value}}</label>
-            </span>
-        </div>
-        <div>
-            <chart [options]="peacemakerOptions"></chart>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="justify-chart-labels">
+                <span *ngFor="let breakdown of breakdownTypes; let i = index" style="margin-right: 10px">
+                    <input type="radio" [attr.id]="radioIndex + (i + 6) + breakdown.value" [checked]="i == 0"
+                           (change)="loadPeaceMakerNewCasesChart(breakdown.value)" formControlName="breakdownTypes" attr.name="{{ radioIndex + 'peacemaker'}}" />
+                    <label [attr.for]="radioIndex + (i + 6) + breakdown.value"><span></span>{{breakdown.value}}</label>
+                </span>
+            </div>
+            <div>
+                <chart [options]="peacemakerOptions"></chart>
+            </div>
         </div>
     </div>
-</div>

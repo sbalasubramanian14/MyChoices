@@ -16,7 +16,7 @@ const routes: Routes = [
             component: UserCreateComponent,
             canActivate: [AuthGuard],
             data: {
-                title: 'Add new user'
+                title: 'User Management'
             }
         }, 
         ]

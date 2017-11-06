@@ -4,7 +4,10 @@
         <div class="auth-title">
             <img src="/assets/img/logo-mychoices.png" alt="My Choices" style="height: 60px" />
         </div>
-        <div class="container" style="display:flex; justify-content: center">
+        <div *ngIf="unsupportedBrowser">
+            <h5 class="BrowserSupportWarning">Your browser is not supported. Please use Chrome, Firefox, Opera, Edge or Safari</h5>
+        </div>
+        <div *ngIf="isButtonVisible && !unsupportedBrowser" class="container btn-signin">
             <button role="button" type="submit" name="login-submit" id="my-signin2" tabindex="4" class="btn btn-login transparent-btn"
                     value="Log In" (click)="signIn('google')">
                 <div style="display:flex">

@@ -16,6 +16,7 @@ BEGIN
 			T.FatherName = S.FatherName,
 			T.Mi = S.Mi,
 			T.GenderLookupId = S.GenderLookupId,
+			T.RequireAssistanceLookupId = S.RequireAssistanceLookupId,
 			T.MaritalStatusLookupId = S.MaritalStatusLookupId,
 			T.Remarks = S.Remarks,
 			T.MobileNumber = S.MobileNumber;

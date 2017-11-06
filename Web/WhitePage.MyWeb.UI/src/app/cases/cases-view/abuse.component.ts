@@ -10,7 +10,6 @@ import { BaseCaseController } from './../basecase.controller';
     templateUrl: 'abuse.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class AbuseComponent implements OnInit {
 
@@ -35,8 +34,7 @@ export class AbuseComponent implements OnInit {
     public frequencyOfEconomicAbuseLookupOptionsList: Array<IOption> = [];
     public reasonsForAbuseLookupOptionsList: Array<IMultiSelectOption> = [];
 
-    constructor() {
-        
+    constructor() {        
         this.sufferingFromAbuseLookupIdLookupOptionsList = BaseCaseController.staticParseLookups("YesNo");
         this.feelAboutAbuseLookupOptionsList = BaseCaseController.staticParseMultiLookups("AbusingFeel");
         this.farentsFeelAboutAbuseLookupOptionsList = BaseCaseController.staticParseMultiLookups("AbusingParentsFeel");

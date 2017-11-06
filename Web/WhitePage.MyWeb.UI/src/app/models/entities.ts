@@ -84,3 +84,24 @@ export class UserRole {
     RoleId: number;
     Title: string;
 }
+export class User {
+    constructor() { }
+    UserId: string;
+    UserName: string;
+    Password: string;
+    FirstName: string;
+    LastName: string;
+    DoB ?: Date
+    MobileNumber: string;
+    FailureAttempts: number;
+    IsLocked: boolean;
+    LockedDate ?: Date;
+    IsSuspended: boolean;
+    SuspendedDate ?: Date;
+    CreatedBy: number;
+    CreatedDate: Date;
+    ModifiedBy: number;
+    ModifiedDate: Date;
+    IsActive: number;
+
+}

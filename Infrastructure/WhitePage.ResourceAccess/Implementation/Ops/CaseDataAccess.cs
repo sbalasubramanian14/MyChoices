@@ -140,7 +140,6 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             if (result.Spouse == null) result.Spouse = new CaseSpouse();
             if (result.PhysicalHealth == null) result.PhysicalHealth = new CasePhysicalHealth();
             if (result.Abuse == null) result.Abuse = new CaseAbuse();
-            if (result.Manage == null) result.Manage = new CaseManage() { CaseStatusId = result.Case.CaseStausId };
             if (result.Legal == null) result.Legal = new CaseLegal();
 
             result.SelectedMental = this.unitOfWork.DbContext.Mental.Where(c => c.CaseId == caseId).FirstOrDefault();
@@ -173,43 +172,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public CaseHeader UpdatePrimaryInfo(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-            var caseTable = UserDefinedTableTypes.Case;
-            caseTable.Rows.Add(new object[]{
-                caseBook.Case.CaseId,
-                caseBook.Case.CaseNumber,
-                caseBook.Case.CenterId,
-                caseBook.Case.CaseStausId,
-                caseBook.Case.CounselorId,
-                caseBook.Case.PeaceMakerId,
-                caseBook.Case.ClientFirstName,
-                caseBook.Case.ClientLastName,
-                caseBook.Case.Mi,
-                caseBook.Case.FatherName,
-                caseBook.Case.GenderLookupId,
+            Case caseObj;
+            CaseHeader caseHeaderObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Cases.Find(caseBook.Case.CaseId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.Case);
+                    int SaveStatus = this.unitOfWork.DbContext.SaveChanges();
+                }
+                caseHeaderObj = this.unitOfWork.DbContext.CaseHeaders.Find(caseBook.Case.CaseId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
-                caseBook.Case.RequireAssistanceLookupId,
-                caseBook.Case.MaritalStatusLookupId,
-                caseBook.Case.Remarks,
-                caseBook.Case.RegisterDate,
-                caseBook.Case.MobileNumber,
-
-                caseBook.Case.CreatedBy,
-                caseBook.Case.CreatedDateTime,
-                caseBook.Case.ModifiedBy,
-                caseBook.Case.ModifiedDatetime,
-                });
-            caseTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[updatePrimaryInfo]",
-                parmsCollection
-                    .AddParm("@caseType", SqlDbType.Structured, caseTable, "[Ops].[CaseType]")
-                ).First();
-
-            return updatedCase;
+            return caseHeaderObj;
         }
 
-        public CaseHeader UpdateAddress(CaseBook caseBook)
+        public vCaseAddress UpdateAddress(CaseBook caseBook)
         {
             var parmsCollection = new ParmsCollection();
 
@@ -229,12 +212,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseAddressTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveAddress]",
+            var updatedAddress = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseAddress>("[Ops].[saveAddress]",
                 parmsCollection
                     .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
-                ).First();
+                ).Last();
 
-            return updatedCase;
+            return updatedAddress;
         }
 
         public vCaseChildren UpdateChildren(CaseBook caseBook)
@@ -256,12 +239,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 });
             caseChildrenTable.AcceptChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseChildren>("[Ops].[saveChildren]",
+            var updatedChildren = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseChildren>("[Ops].[saveChildren]",
                 parmsCollection
                     .AddParm("@caseChildrenType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseChildrenType]")
                 ).Last();
 
-            return updatedCase;
+            return updatedChildren;
         }
 
         public CaseHeader UpdateHouseHold(CaseBook caseBook)
@@ -290,7 +273,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.FamilyHouseHold.OccupationDesc,
                 caseBook.FamilyHouseHold.ClientIncomeLookupId,
                 caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId,
-                caseBook.FamilyHouseHold.YearOfMarriage,
+                caseBook.FamilyHouseHold.YearsOfMarriage,
                 caseBook.FamilyHouseHold.ClientAgeAtFirstChild
                 });
             caseChildrenTable.AcceptChanges();
@@ -389,28 +372,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseOffender UpdateOffender(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Offender;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedOffender.CaseOffenderId,
-                caseBook.SelectedOffender.CaseId,
-
-                caseBook.SelectedOffender.Name,
-                caseBook.SelectedOffender.Age,
-
-                caseBook.SelectedOffender.GenderLookupId,
-                caseBook.SelectedOffender.RelationshipWithVictimLookupId,
-                caseBook.SelectedOffender.OtherRelationship
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseOffender>("[Ops].[saveOffender]",
-                parmsCollection
-                    .AddParm("@caseOffenderType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseOffenderType]")
-                ).Last();
-
-            return updatedCase;
+            CaseOffender caseObj;
+            vCaseOffender vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Offenders.Find(caseBook.SelectedOffender.CaseOffenderId);
+                if(caseObj!=null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedOffender);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Offenders.Add(caseBook.SelectedOffender);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vOffenders.Find(caseObj.CaseOffenderId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return vCaseObj;
         }
 
         public CaseHeader UpdateAbuse(CaseBook caseBook)
@@ -453,6 +435,11 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 caseBook.Abuse.ReasonsForAbuseLookupId,
                 caseBook.Abuse.ReasonForAbuseDesc,
 
+                caseBook.Abuse.PhysicalAbuseDesc,
+                caseBook.Abuse.EmotionalAbuseDesc,
+                caseBook.Abuse.SexualAbuseDesc,
+                caseBook.Abuse.EconomicAbuseDesc,
+
                 });
             caseChildrenTable.AcceptChanges();
 
@@ -464,64 +451,53 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public int UpdateCase(CaseBook caseBook)
+        public int UpdateCaseManagement(CaseBook caseBook)
         {
-            CaseManage caseObj;
+            CaseManage caseManageObj;
+            Case caseObj;
             try
             {
-                caseObj = this.unitOfWork.DbContext.Manage.Find(caseBook.Manage.CaseManageId);
-                if (caseObj != null)
+                caseManageObj = this.unitOfWork.DbContext.Manage.Find(caseBook.Manage.CaseManageId);
+                if (caseManageObj != null)
                 {
-                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.Manage);
+                    this.unitOfWork.DbContext.Entry(caseManageObj).CurrentValues.SetValues(caseBook.Manage);
                 }
                 else
-                    caseObj = this.unitOfWork.DbContext.Manage.Add(caseBook.Manage);
+                    caseManageObj = this.unitOfWork.DbContext.Manage.Add(caseBook.Manage);
+                caseObj = this.unitOfWork.DbContext.Cases.Find(caseBook.Case.CaseId);
                 int flag = this.unitOfWork.DbContext.SaveChanges();
             }
             catch (Exception ex)
             {
-                return -1;
+                throw;
             }
-            return caseObj.CaseManageId;
+
+            return caseManageObj.CaseManageId;
         }
 
         public vCaseMental UpdateMental(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Mental;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedMental.CaseMentalId,
-                caseBook.SelectedMental.CaseId,
-
-                caseBook.SelectedMental.MentalDressLookupId,
-                caseBook.SelectedMental.MentalHygieneLookupId,
-                caseBook.SelectedMental.MentalBodyTypeLookupId,
-                caseBook.SelectedMental.MentalExpressionLookupId,
-                caseBook.SelectedMental.MentalMotorActivityLookupId,
-                caseBook.SelectedMental.MentalVocabularyLookupId,
-                caseBook.SelectedMental.MentalImpulseControlLookupId,
-                caseBook.SelectedMental.MentalSpeechLookupId,
-                caseBook.SelectedMental.MentalBehaviourLookupId,
-                caseBook.SelectedMental.MentalContentLookupId,
-                caseBook.SelectedMental.MentalFlowOfThoughtLookupId,
-                caseBook.SelectedMental.MentalOrientationLookupId,
-                caseBook.SelectedMental.MentalEstimatedIntellectLookupId,
-                caseBook.SelectedMental.MentalAttentionLookupId,
-                caseBook.SelectedMental.MentalInsightLookupId,
-                caseBook.SelectedMental.MentalJudgementLookupId,
-                caseBook.SelectedMental.MentalMemoryLookupId,
-                caseBook.SelectedMental.MentalInformationLookupId,
-                caseBook.SelectedMental.MentalAbstractionLookupId,
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseMental>("[Ops].[saveMental]",
-                parmsCollection
-                    .AddParm("@caseMentalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseMentalType]")
-                ).Last();
-
-            return updatedCase;
+            CaseMental caseObj;
+            vCaseMental vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Mental.Find(caseBook.SelectedMental.CaseMentalId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedMental);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Mental.Add(caseBook.SelectedMental);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vMental.Find(caseObj.CaseMentalId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return vCaseObj;
         }
 
         public vCaseSessionLog UpdateSessionLog(CaseBook caseBook)
@@ -552,33 +528,28 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseFeedback UpdateFeedback(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
+            CaseFeedback caseObj;
+            vCaseFeedback vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Feedback.Find(caseBook.SelectedFeedback.CaseFeedbackId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedFeedback);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Feedback.Add(caseBook.SelectedFeedback);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vFeedback.Find(caseObj.CaseFeedbackId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
-            var caseChildrenTable = UserDefinedTableTypes.Feedback;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedFeedback.CaseFeedbackId,
-                caseBook.SelectedFeedback.CaseId,
-
-                caseBook.SelectedFeedback.RespectedDuringYourVisitLookupId,
-                caseBook.SelectedFeedback.FeelSafeAndSecureLookupId,
-
-                caseBook.SelectedFeedback.FeelThatCounsellingLookupId,
-                caseBook.SelectedFeedback.AssistanceOfPeacemakerLookupId,
-
-                caseBook.SelectedFeedback.RecommendFreeCounsellingLookupId,
-                caseBook.SelectedFeedback.AbleToImproveLookupId,
-
-                caseBook.SelectedFeedback.OPMTeamToFollowupLookupId,
-                caseBook.SelectedFeedback.AnySuggestions
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseFeedback>("[Ops].[saveFeedback]",
-                parmsCollection
-                    .AddParm("@caseFeedbackType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseFeedbackType]")
-                ).Last();
-
-            return updatedCase;
+            return vCaseObj;
         }
 
         public CaseHeader UpdateLegal(CaseBook caseBook)
@@ -614,13 +585,13 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public CaseHeader UpdateCaseStatus(CaseBook caseBook)
         {
-            var updatedFlag1 = UpdateCase(caseBook);
-            var updatedFlag2 = UpdateHouseHold(caseBook);
-            updatedFlag2 = UpdateSpouse(caseBook);
-            updatedFlag2 = UpdatePhysicalHealth(caseBook);
-            updatedFlag2 = UpdateAbuse(caseBook);
+            UpdateCaseManagement(caseBook);
+            var updatedCaseHeader = UpdateHouseHold(caseBook);
+            updatedCaseHeader = UpdateSpouse(caseBook);
+            updatedCaseHeader = UpdatePhysicalHealth(caseBook);
+            updatedCaseHeader = UpdateAbuse(caseBook);
 
-            return updatedFlag2;
+            return updatedCaseHeader;
         }
         public bool DeleteCase(int caseId)
         {

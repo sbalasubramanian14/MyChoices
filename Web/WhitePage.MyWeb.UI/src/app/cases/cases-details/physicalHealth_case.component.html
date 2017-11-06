@@ -1,0 +1,152 @@
+<my-spinner [isRunning]="!isPhysicalHealthDataLoaded"></my-spinner>
+<form [formGroup]="physicalHealthForm">
+    <div class="row">
+        <div class="col-md-6 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Health
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="SufferingFromAnyMajorIllnessLookupId">Are you suffering from any major illness?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   formControlName="SufferingFromAnyMajorIllnessLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SufferingFromAnyMajorIllnessDesc">If yes, please specify</label>
+                        <input formControlName="SufferingFromAnyMajorIllnessDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DiagnosedPsychiatricIllnessLookupId">Do you have any diagnosed psychiatric illness?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   formControlName="DiagnosedPsychiatricIllnessLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DiagnosedPsychiatricIllnessDesc">If yes, please specify</label>
+                        <input formControlName="DiagnosedPsychiatricIllnessDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SleepPerNightLookupId">How much do you sleep per night?</label>
+                        <ng-select [options]="sleepPerNightLookupOptionsList"
+                                   placeholder="Select"
+                                   formControlName="SleepPerNightLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="AppetiteLookupId">How is your appetite?</label>
+                        <ng-select [options]="appetiteLookupOptionsList"
+                                   placeholder="Select"
+                                   formControlName="AppetiteLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ExerciseLookupId">Do you exercise?</label>
+                        <ng-select [options]="exerciseLookupOptionsList"
+                                   placeholder="Select"
+                                   formControlName="ExerciseLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="AnyMedicationLookupId">Are you on any medication?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   formControlName="AnyMedicationLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="AnyMedicationDesc">If yes, what medication?</label>
+                        <input formControlName="AnyMedicationDesc" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column">
+            <div class="card">
+                <div class="card-header">
+                    Health (1)
+                </div>
+                <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="AnySubstanceLookupId">Are you on any substance?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   formControlName="AnySubstanceLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="AnySubstanceDesc">If yes, please specify</label>
+                        <input formControlName="AnySubstanceDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CurrentlyPregnantLookup">Are you currently pregnant?</label>
+                        <ng-select [options]="yesNoOptionsList"
+                                   placeholder="Select"
+                                   formControlName="CurrentlyPregnantLookup"
+                                   [allowClear]="true">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CurrentlyPregnantDesc">If yes, give details</label>
+                        <input formControlName="CurrentlyPregnantDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ReasonForSeekingHelpLookupId">What is the reason for seeking help?</label>
+                        <ss-multiselect-dropdown [options]="reasonForSeekingHelpLookupOptionsList"
+                                                 formControlName="ReasonForSeekingHelpLookupId"
+                                                 [(ngModel)]="caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray">
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ReasonForSeekingHelpDesc">If others, please specify</label>
+                        <input formControlName="ReasonForSeekingHelpDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WhoIsAbusingYouLookupId">Who is abusing you?</label>
+                        <ss-multiselect-dropdown [options]="whoIsAbusingYouLookupOptionsList"
+                                                 formControlName="WhoIsAbusingYouLookupId"
+                                                 [(ngModel)]="caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray">
+                        </ss-multiselect-dropdown>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="WhoIsAbusingYouDesc">If others, please specify </label>
+                        <input formControlName="WhoIsAbusingYouDesc" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="onUpdatePhysicalHealth()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

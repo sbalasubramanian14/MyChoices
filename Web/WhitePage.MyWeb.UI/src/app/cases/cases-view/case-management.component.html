@@ -4,17 +4,21 @@
             <div class="card-header">
                 Case Data
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
                     <label>Status  :</label>
                     <span>{{caseBook.CaseHeader.CaseStatus}}</span>
                 </div>
                 <div class="form-group">
-                    <label>Source of case  :</label>
-                    <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:manageForm.SourceOfCaseLookupId) }}</span>
+                    <label>If Referred, please specify "Referred to whom" :</label>
+                    <span>{{ manageForm.ReferredToWhom }}</span>
                 </div>
                 <div class="form-group">
-                    <label>If other, please specify  :</label>
+                    <label>Source of case  :</label>
+                    <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:manageForm.SourceOfCaseLookupId) }}</span>
+                </div> 
+                <div class="form-group">
+                    <label>If others, please specify  :</label>
                     <span>{{ manageForm.SourceOfCaseDesc }}</span>
                 </div>
                 <div class="form-group">
@@ -22,7 +26,7 @@
                     <span>{{ (typesOfCounselingLookupOptionList | MatchesPipe:manageForm.TypesOfCounselingLookupId:"multiselect") }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Total no of sessions  :</label>
+                    <label>Total number of sessions  :</label>
                     <span>{{ manageForm.TotalNoOfSessionsLookupId }}</span>
                 </div>
                 <div class="form-group">
@@ -39,9 +43,9 @@
     <div class="col-md-6 d-flex flex-column">
         <div class="card">
             <div class="card-header">
-                Other Info (1)
+                Other Info
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
                     <label>Subject  :</label>
                     <span>{{ manageForm.CaseSubject }}</span>

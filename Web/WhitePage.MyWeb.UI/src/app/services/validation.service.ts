@@ -27,6 +27,15 @@ export class ValidationService {
         return null;
     }
 
+    public validateYears(input: AbstractControl) {
+
+        if (input.value == null || input.value == "") {
+            return null;
+        }
+
+        return input.value >= 0 && input.value <= 99 ? null : { valid: false };
+    }
+
     public numericValidator(input: AbstractControl) {
 
         var numericPattern = /^[0-9]*$/;
@@ -54,14 +63,25 @@ export class ValidationService {
         return null;
     }
     public validateTime(input: AbstractControl) {
+
         var timePattern = /^\d+([/.]\d{1,2})?$/;
 
         if (input.value == null || input.value == "") {
             return null;
         }
         if (!timePattern.test(input.value)) {
-            return { 'Please provide valid Hours': true };
+            return { 'invalid': true };
         }
-        return null;
+    }
+    public nameValidator(input: AbstractControl) {
+
+        var namePattern = /^[A-z][A-z . /]*$/g;
+
+        if (input.value == null || input.value == "") {
+            return null;
+        }
+        if (!namePattern.test(input.value)) {
+            return { 'invalid': true };
+        }
     }
 }

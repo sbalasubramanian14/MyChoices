@@ -9,11 +9,11 @@ BEGIN
 		INSERT (CaseId, SufferingFromAbuseLookupId, SufferingFromAbuseDesc, FeelAboutAbuseLookupId, ParentsFeelAboutAbuseLookupId, LawFeelAboutAbuseLookupId, SignsOfPhysicalAbuseLookupId, SignsOfPhysicalAbuseDesc,
 				WeaponsUsedLookupId, WeaponsUsedDesc, TypesOfPhyscialAbuseLookupId, FrequencyOfPhyscialAbuseLookupId, NumberOfYearsOfPhyscialAbuse, TypesOfEmotionalAbuseLookupId, FrequencyOfEmotionalAbuseLookupId,
 				NumberOfYearsOfEmotionalAbuse, TypesOfSexualAbuseLookupId, FrequencyOfSexualAbuseLookupId, NumberOfYearsOfSexualAbuse, TypesOfEconomicAbuseLookupId, FrequencyOfEconomicAbuseLookupId, NumberOfYearsOfEconomicAbuse,
-				ReasonsForAbuseLookupId, ReasonForAbuseDesc)
+				ReasonsForAbuseLookupId, ReasonForAbuseDesc, PhysicalAbuseDesc, EmotionalAbuseDesc, SexualAbuseDesc, EconomicAbuseDesc)
 		VALUES (S.CaseId, S.SufferingFromAbuseLookupId, S.SufferingFromAbuseDesc, S.FeelAboutAbuseLookupId, S.ParentsFeelAboutAbuseLookupId, S.LawFeelAboutAbuseLookupId, S.SignsOfPhysicalAbuseLookupId, S.SignsOfPhysicalAbuseDesc,
 				S.WeaponsUsedLookupId, S.WeaponsUsedDesc, S.TypesOfPhyscialAbuseLookupId, S.FrequencyOfPhyscialAbuseLookupId, S.NumberOfYearsOfPhyscialAbuse, S.TypesOfEmotionalAbuseLookupId, S.FrequencyOfEmotionalAbuseLookupId,
 				S.NumberOfYearsOfEmotionalAbuse, S.TypesOfSexualAbuseLookupId, S.FrequencyOfSexualAbuseLookupId, S.NumberOfYearsOfSexualAbuse, S.TypesOfEconomicAbuseLookupId, S.FrequencyOfEconomicAbuseLookupId, S.NumberOfYearsOfEconomicAbuse,
-				S.ReasonsForAbuseLookupId, S.ReasonForAbuseDesc)
+				S.ReasonsForAbuseLookupId, S.ReasonForAbuseDesc, S.PhysicalAbuseDesc, S.EmotionalAbuseDesc, S.SexualAbuseDesc, S.EconomicAbuseDesc)
 	WHEN MATCHED THEN 
 		UPDATE 
 		SET 			
@@ -39,7 +39,11 @@ BEGIN
 			,T.FrequencyOfEconomicAbuseLookupId = S.FrequencyOfEconomicAbuseLookupId
 			,T.NumberOfYearsOfEconomicAbuse = S.NumberOfYearsOfEconomicAbuse
 			,T.ReasonsForAbuseLookupId = S.ReasonsForAbuseLookupId
-			,T.ReasonForAbuseDesc = S.ReasonForAbuseDesc;
+			,T.ReasonForAbuseDesc = S.ReasonForAbuseDesc
+			,T.PhysicalAbuseDesc = S.PhysicalAbuseDesc
+			,T.EmotionalAbuseDesc = S.EmotionalAbuseDesc
+			,T.SexualAbuseDesc = S.SexualAbuseDesc
+			,T.EconomicAbuseDesc = S.EconomicAbuseDesc;
 
 declare @CaseId INT;
 	select @CaseId = CaseId from @caseAbuseType;

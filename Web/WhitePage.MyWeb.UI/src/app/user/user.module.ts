@@ -10,7 +10,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserCreateComponent } from './user.create';
 import { PeacemakerCreateComponent } from './peacemaker.create';
 import { CounselorCreateComponent } from './counselor.create';
-
+import { DeactivateUserComponent } from './deactivateUser'
 import { CommonService } from '../services/common.services';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
@@ -19,6 +19,7 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { ModalModule, PaginationModule, TooltipModule, TabsModule } from 'ng2-bootstrap';
 import { Ng2TableModule } from '../directives/customTable/ng-table-module';
 import { MyDatePickerModule } from 'mydatepicker';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
     imports: [
@@ -34,9 +35,10 @@ import { MyDatePickerModule } from 'mydatepicker';
         Ng2TableModule,
         ToastModule.forRoot(),
         MultiselectDropdownModule,
-        MyDatePickerModule
+        MyDatePickerModule,
+        SpinnerModule
     ],
-    declarations: [UserCreateComponent, PeacemakerCreateComponent, CounselorCreateComponent],
+    declarations: [UserCreateComponent, PeacemakerCreateComponent, CounselorCreateComponent, DeactivateUserComponent],
     providers: [
         CommonService
     ]

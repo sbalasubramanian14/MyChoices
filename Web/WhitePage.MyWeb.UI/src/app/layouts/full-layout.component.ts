@@ -10,8 +10,12 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class FullLayoutComponent implements OnInit {
 
+    public userData: any;
+    public isUserAdmin: boolean;
     constructor(private router: Router
         , private authenticationService: AuthenticationService) {
+        this.userData = this.authenticationService.getUser();
+        this.isUserAdmin = this.userData.typ == "1" ? true : false;
      }
 
   public disabled:boolean = false;

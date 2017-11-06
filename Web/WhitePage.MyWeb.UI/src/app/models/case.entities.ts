@@ -13,6 +13,7 @@
     Mi?: string;
     FatherName?: string;
     GenderLookupId?: any;
+    ClientAge?: number;
 
     RequireAssistanceLookupId?: any;
     MaritalStatusLookupId?: any;
@@ -149,7 +150,7 @@ export class CaseFamilyHouseHold {
     HouseHoldMembersLivingLookupId?: number;
     HouseHoldMembersLivingLookupArray: Array<Number>;    
 
-    YearOfMarriage?: number;
+    YearsOfMarriage?: number;
     ClientAgeAtFirstChild?: number;
 }
 
@@ -290,6 +291,11 @@ export class CaseAbuse {
     ReasonsForAbuseLookupId: string;
     ReasonsForAbuseLookupArray: Array<number>;
     ReasonForAbuseDesc?: string;
+
+    PhysicalAbuseDesc: string;
+    EmotionalAbuseDesc: string;
+    SexualAbuseDesc: string;
+    EconomicAbuseDesc: string;
 }
 
 export class CaseManage {
@@ -297,7 +303,6 @@ export class CaseManage {
 
     CaseManageId?: number;
     CaseId?: number;
-    CaseStatusId?: number;
     ReferredToWhom: string;
 
     SourceOfCaseLookupId?: number;
@@ -538,7 +543,7 @@ export class CaseBook {
     Case: Case;
     CaseHeader: CaseHeader;
 
-    vCaseAddress: Array<vCaseAddress>;
+    vAddresses: Array<vCaseAddress>;
     vChildren: Array<vCaseChildren>;
     vOffender: Array<vCaseOffender>;
     vMental: Array<vCaseMental>;

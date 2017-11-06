@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using WhitePage.BusinessAccess.Contracts.Core;
 using WhitePage.Entities.CaseManagement;
 using WhitePage.ResourceAccess.Contracts.Core;
+using WhitePage.Entities.Security;
+using System.Linq.Expressions;
 using WhitePage.ResourceAccess.Contracts.Ops;
 
 namespace WhitePage.BusinessAccess.Implementation.Core
@@ -88,5 +90,73 @@ namespace WhitePage.BusinessAccess.Implementation.Core
         {
             return this.commonDataAccess.GetPeacemakerWiseAvgChartObjectValues(column);
         }        
+        public int GetUsersCount()
+        {
+            return this.commonDataAccess.GetAllActiveUsers().Count();
+        }
+        public int GetNonAdminUsersCount()
+        {
+            return this.commonDataAccess.GetAllActiveUsers().Where(user => user.UserName != "admin").Count();
+        }
+        public List<User> GetAllActiveUsers(int pageNumber, int offset)
+        {
+            return returnUsersList(this.commonDataAccess.GetAllActiveUsers(), pageNumber, offset);
+        }
+        public List<User> GetActiveNonAdminUsers( int pageNumber, int offset)
+        {
+            IQueryable<User> queryableUserList = this.commonDataAccess.GetAllActiveUsers();
+            queryableUserList = queryableUserList.Where(user => user.UserName != "admin");
+            return returnUsersList(queryableUserList, pageNumber, offset);
+        }
+        public List<User> GetSortedUsersDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
+        {
+           return
+                GetFilteredData(pageNumber, offset, dictionary).OrderBy(returnObjectExpression(field)).Skip((pageNumber - 1) * 10).Take(offset).ToList();
+        }
+
+        public List<User> GetSortedUsersDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field)
+        {
+            return
+                returnUsersList(GetFilteredData(pageNumber, offset, dictionary).OrderByDescending(returnObjectExpression(field)), pageNumber, offset);
+        }
+        public List<User> GetFilteredUsers(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        {
+            return
+                this.GetFilteredData(pageNumber, offset, dictionary).
+                Skip((pageNumber - 1) * 10).
+                Take(offset).
+                ToList();
+        }
+
+        public int GetFilteredUsersCount(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        {
+            return this.GetFilteredData(pageNumber, offset, dictionary).Count();
+        }
+
+        Func<IQueryable<User>, int, int, List<User>> returnUsersList =
+            (users, pageNumber, offset) => users.Skip((pageNumber - 1) * 10).Take(offset).ToList();
+
+        public Expression<Func<User, string>> returnObjectExpression(string field)
+        {
+            var itemParam = Expression.Parameter(typeof(User), "ch");
+            var entityAccess = Expression.MakeMemberAccess(itemParam, typeof(User).GetMember(field).First());
+            var lambda = Expression.Lambda<Func<User, string>>(entityAccess, itemParam);
+
+            return lambda;
+        }
+        public IQueryable<User> GetFilteredData(int pageNumber, int offset, IDictionary<string, string> dictionary)
+        {
+            string firstNameFilterString = dictionary["FirstName"];
+            string lastNameFilterString = dictionary["LastName"];
+            string userNameFilterString = dictionary["UserName"];
+
+            return
+                this.commonDataAccess.GetAllActiveUsers().
+                Where(
+                    user => user.UserName != "admin" && user.FirstName.Contains(firstNameFilterString) &&
+                    user.LastName.Contains(lastNameFilterString) &&
+                    user.UserName.Contains(userNameFilterString));
+        }
+        
     }
 }

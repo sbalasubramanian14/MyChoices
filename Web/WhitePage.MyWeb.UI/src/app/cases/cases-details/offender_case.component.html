@@ -1,0 +1,111 @@
+<my-spinner [isRunning]="!isCaseBookDataLoaded"></my-spinner>
+<div class="row">
+    <div class="d-flex flex-column fill-width">
+        <div class="add-new-button-container">
+            <button class="btn btn-primary" (click)="addNewOffender()">Add New Offender &nbsp;<i class="fa fa-plus"></i></button>
+        </div>
+        <div class="table-responsive">
+            <table class="table tableColor">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age(In Years)</th>
+                        <th>Gender</th>
+                        <th>Relationship With Victim</th>
+                        <th>OtherRelationship</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let offender of caseBook.vOffender; let i = index">
+                        <td>{{offender.Name}}</td>
+                        <td>{{offender.Age}}</td>
+                        <td>{{offender.Gender}}</td>
+                        <td>{{offender.RelationshipWithVictim}}</td>
+                        <td>{{offender.OtherRelationship}}</td>
+                        <td class="text-right">
+                            <button class="btn btn-link" (click)="editOffender(offender)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" bsModal #offenderModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Case Offender</h4>
+                <button type="button" class="close pull-right" label="Close" (click)="hideOffenderModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="caseOffenderForm" *ngIf="caseOffenderForm">
+                    <div class="row">
+                        <div class="col-md-12 d-flex flex-column">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Manage Offender Details
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="form-group">
+                                        <label for="Name">Name *</label>
+                                        <input placeholder="Name" formControlName="Name" class="form-control" maxlength="200" />
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls.Name.hasError('required') && caseOffenderForm.controls.Name.touched" class="mat-text-warn">Name is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Age">Age *</label>
+                                        <input type="number" id="Age" formControlName="Age" class="form-control" />
+                                            <small *ngIf="caseOffenderForm.controls.Age.touched && caseOffenderForm.controls.Age.invalid" class="mat-text-warn">
+                                                Value should be between 0 and 99
+                                            </small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="GenderLookupId">Gender *</label>
+                                        <ng-select [options]="genderLookupOptionsList"
+                                                   placeholder="Select Gender"
+                                                   formControlName="GenderLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls.GenderLookupId.hasError('required') && caseOffenderForm.controls.GenderLookupId.touched" class="mat-text-warn">Gender is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="RelationshipWithVictimLookupId">Relationship With Victim *</label>
+                                        <ng-select [options]="relationshipWithVictimLookupOptionsList"
+                                                   placeholder="Select Relationship"
+                                                   formControlName="RelationshipWithVictimLookupId"
+                                                   [allowClear]="true">
+                                        </ng-select>
+                                        <div>
+                                            <small *ngIf="caseOffenderForm.controls.RelationshipWithVictimLookupId.hasError('required') && caseOffenderForm.controls.RelationshipWithVictimLookupId.touched" class="mat-text-warn">Relationship With Victim is required.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="OtherRelationship">If others, please specify</label>
+                                        <textarea placeholder="Other Relationship" formControlName="OtherRelationship" class="form-control"></textarea>
+
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-primary" [disabled]="!caseOffenderForm.valid" (click)="saveOffender()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

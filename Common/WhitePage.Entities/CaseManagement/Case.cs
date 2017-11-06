@@ -21,6 +21,7 @@ namespace WhitePage.Entities.CaseManagement
         public string Mi { get; set; }
         public string FatherName { get; set; }
         public int? GenderLookupId { get; set; }
+        public int? ClientAge { get; set; }
 
         public int? RequireAssistanceLookupId { get; set; }
         public int? MaritalStatusLookupId { get; set; }

@@ -4,7 +4,7 @@
             <div class="card-header">
                 Others
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
                     <label>Do you think you are suffering from abuse?  :</label>
                     <span>{{ (sufferingFromAbuseLookupIdLookupOptionsList | MatchesPipe:caseAbuseForm.SufferingFromAbuseLookupId) }}</span>
@@ -22,7 +22,7 @@
                     <span>{{ (farentsFeelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.ParentsFeelAboutAbuseLookupId:"multiselect") }}</span>
                 </div>
                 <div class="form-group">
-                    <label>How do your in laws feel about the abuse?  :</label>
+                    <label>How do your in-laws feel about the abuse?  :</label>
                     <span>{{ (lawFeelAboutAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.LawFeelAboutAbuseLookupId:"multiselect") }}</span>
                 </div>
                 <div class="form-group">
@@ -30,7 +30,7 @@
                     <span>{{ (signsOfPhysicalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.SignsOfPhysicalAbuseLookupId) }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Please specify  :</label>
+                    <label>If yes, please specify  :</label>
                     <span>{{ caseAbuseForm.SignsOfPhysicalAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
@@ -38,7 +38,7 @@
                     <span>{{ (weaponsUsedLookupOptionsList | MatchesPipe:caseAbuseForm.WeaponsUsedLookupId:"multiselect") }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Please specify  :</label>
+                    <label>If other, please specify  :</label>
                     <span>{{ caseAbuseForm.WeaponsUsedDesc }}</span>
                 </div>
             </div>
@@ -51,22 +51,30 @@
             <div class="card-header">
                 Others (2)
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
-                    <label>Types of physical abuse - tick all applicable situations  :</label>
+                    <label>Types of physical abuse :</label>
                     <span>{{ (typesOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfPhyscialAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.PhysicalAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of physical abuse  :</label>
                     <span>{{ (frequencyOfPhyscialAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.FrequencyOfPhyscialAbuseLookupId) }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Number of years physical abuse has been occuring  :</label>
+                    <label>Number of years physical abuse has been occurring  :</label>
                     <span>{{ caseAbuseForm.NumberOfYearsOfPhyscialAbuse }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Types of emotional abuse - tick all applicable situations  :</label>
+                    <label>Types of emotional abuse  :</label>
                     <span>{{ (typesOfEmotionalAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEmotionalAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.EmotionalAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of emotional abuse  :</label>
@@ -77,8 +85,12 @@
                     <span>{{ caseAbuseForm.NumberOfYearsOfEmotionalAbuse }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Types of sexual abuse - tick all applicable situations  :</label>
+                    <label>Types of sexual abuse  :</label>
                     <span>{{ (typesOfSexualAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfSexualAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.SexualAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of sexual abuse  :</label>
@@ -98,10 +110,14 @@
             <div class="card-header">
                 Others (3)
             </div>
-            <div class="card-block primary-info-view">
+            <div class="card-block info-view">
                 <div class="form-group">
-                    <label>Types of economic abuse - tick all applicable situations  :</label>
+                    <label>Types of economic abuse  :</label>
                     <span>{{ (typesOfEconomicAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.TypesOfEconomicAbuseLookupId:"multiselect") }}</span>
+                </div>
+                <div class="form-group">
+                    <label>If other, please specify  :</label>
+                    <span>{{ caseAbuseForm.EconomicAbuseDesc }}</span>
                 </div>
                 <div class="form-group">
                     <label>Frequency of economic abuse  :</label>
@@ -116,7 +132,7 @@
                     <span>{{ (reasonsForAbuseLookupOptionsList | MatchesPipe:caseAbuseForm.ReasonsForAbuseLookupId:"multiselect") }}</span>
                 </div>
                 <div class="form-group">
-                    <label>If other, please specify  :</label>
+                    <label>If others, please specify  :</label>
                     <span>{{ caseAbuseForm.ReasonForAbuseDesc }}</span>
                 </div>
             </div>

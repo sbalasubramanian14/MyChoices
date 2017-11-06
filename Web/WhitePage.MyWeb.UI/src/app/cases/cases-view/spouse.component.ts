@@ -10,7 +10,6 @@ import { State } from '../../models/entities';
     templateUrl: 'spouse.component.html',
     inputs: ['caseBook'],
     styleUrls: ['../cases.view.scss'],
-
 })
 export class SpouseComponent implements OnInit {
 
@@ -25,13 +24,10 @@ export class SpouseComponent implements OnInit {
     public emergencyRelationshipOptionsList: Array<IOption> = [];
 
     constructor() {
-
         this.statesList = JSON.parse(localStorage.getItem("getAllStates"));
         this.spouseEducationLookupIdLookupOptionsList = BaseCaseController.staticParseLookups("LevelOfEducation");
         this.emergencyRelationshipOptionsList = BaseCaseController.staticParseLookups("RelationshipWithClient");
- 
     }
-
 
     ngOnInit() {
         this.spouseForm = this.caseBook.Spouse;

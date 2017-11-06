@@ -8,8 +8,7 @@ import { BaseCaseController } from './../basecase.controller';
     selector: 'mental',
     templateUrl: 'mental.component.html',
     inputs: ['caseBook'],
-    styleUrls: ['../cases.view.scss'],
-
+    styleUrls: ['../cases.view.scss','./mental-view.scss'],
 })
 export class MentalComponent {
 
@@ -36,7 +35,6 @@ export class MentalComponent {
     public MentalAbstractionLookupOptionList: Array<IMultiSelectOption> = [];
 
     constructor() {
-
             this.MentalDressLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalDress");
             this.MentalHygieneLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalHygiene");
             this.MentalBodyTypeLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalBodyType");
@@ -55,7 +53,6 @@ export class MentalComponent {
             this.MentalJudgementLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalJudgement");
             this.MentalMemoryLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalMemory");
             this.MentalInformationLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalInformation");
-            this.MentalAbstractionLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalAbstraction");
-        
+            this.MentalAbstractionLookupOptionList = BaseCaseController.staticParseMultiLookups("MentalAbstraction");       
     }
 }

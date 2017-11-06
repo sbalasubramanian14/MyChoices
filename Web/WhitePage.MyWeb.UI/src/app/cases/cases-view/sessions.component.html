@@ -1,9 +1,9 @@
 <div class="row" *ngIf="caseBook">
     <div class="d-flex flex-column fill-width">
         <div class="table-responsive">
-            <table class="table" style="color  :whitesmoke">
+            <table class="table">
                 <thead class="thead-inverse">
-                    <tr>
+                    <tr class="tr-heading">
                         <th>Date</th>
                         <th>Type</th>
                         <th>Duration (Min)</th>
@@ -12,11 +12,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let sessionLog of caseBook.vSessionLog; let i = index">
-                        <td>{{sessionLog.CounselingDate}}</td>
+                    <tr class="tr-data" *ngFor="let sessionLog of caseBook.vSessionLog">
+                        <td>{{sessionLog.CounselingDate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{sessionLog.TypeOfCounselingDesc}}</td>
                         <td>{{sessionLog.DurationOfSessionMIn}}</td>
-                        <td>{{sessionLog.NextSessionScheduled}}</td>
+                        <td>{{sessionLog.NextSessionScheduled | date: 'dd-MM-yyyy'}}</td>
                         <td>{{sessionLog.SessionNotes}}</td>
                     </tr>
                 </tbody>

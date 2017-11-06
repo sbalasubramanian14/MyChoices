@@ -29,83 +29,83 @@ BEGIN
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('archie@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Archie', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('archie@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Archie', 'Brian', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('farzana@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Farzana', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('farzana@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Farzana', 'Begum', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('ravi@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Ravi', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('ravi@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Ravi', 'Kumar', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('raju@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Raju', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('raju@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Raju', 'Nallabelly', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('uzma@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Uzma', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('uzma@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Uzma', 'Firdous', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('elca@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Elca', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('elca@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Elca', 'Grobler', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('louisa@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Archie', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('louisa@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Archie', 'Brian', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('hannah@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Hannah', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('hannah@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Hannah', 'Surabhi', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('purushotam@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Purushotam', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('purushotam@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Purushotam', 'Gnana', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('hajera@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Hajera', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('hajera@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Hajera', 'Unnisa', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('rahimunnisa@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Rahimunnisa', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('rahimunnisa@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Rahimunnisa', '', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('noorjahan@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Noorjahan', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('noorjahan@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Noorjahan', 'Siddiqui', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('aparna@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Aparna', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('aparna@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Aparna', 'Ghose', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('tajwar@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Tajwar', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('tajwar@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Tajwar', 'Lodhi', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('kavitha@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Kavitha', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('kavitha@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Kavitha', 'Krishnaraj', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('pearl@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Pearl', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('pearl@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Pearl', 'Choragudi', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('madhuri@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Madhuri', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('madhuri@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Madhuri', 'NNS', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('beena@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Beena', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('beena@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Beena', 'Dorcas', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('d.reena@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Reena', 'B', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('d.reena@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Reena', 'Doulaghar', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 	INSERT INTO Auth.trUser ([UserName], [Password] , [FirstName] , [LastName] , [DoB] , [MobileNumber] , [FailureAttempts] , [IsLocked] , [LockedDate] , [IsSuspended] ,[SuspendedDate] 
 	, [CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate])
-	VALUES('ratna@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Ratna', 'A', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
+	VALUES('ratna@mychoicesfoundation.org','JDyZM/ezxLoDjR4xsK8w7w==','Ratna', 'Sri', NULL, '0000000000', 0, 0, NULL, 0, NULL , 0, GETDATE(), 0, GETDATE());
 
 END
 
@@ -795,7 +795,7 @@ INSERT INTO @lookupDetails VALUES(6, 'Religion',				346, 'Jain'					,	5,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				347, 'Buddhist'				,	6,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				348, 'Atheist'				,	7,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				349, 'Agnostic'				,	8,1)
---INSERT INTO @lookupDetails VALUES(6, 'Religion',				350, 'Atheist'				,	9,1)
+INSERT INTO @lookupDetails VALUES(6, 'Religion',				350, 'Sikh'				,	9,1)
 
 INSERT INTO @lookupDetails VALUES(19, 'Substance',		351, 'Drugs'		,	1,1)
 INSERT INTO @lookupDetails VALUES(19, 'Substance',		352, 'Alchohol'		,	2,1)
