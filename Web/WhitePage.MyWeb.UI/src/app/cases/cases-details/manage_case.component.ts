@@ -41,15 +41,6 @@ export class ManageCaseComponent implements OnInit {
     }
 
     ngOnInit() {
-        var localStatusesOptionList = new Array<IOption>();
-        this.caseStatusesList = JSON.parse(localStorage.getItem("getAllCaseStatuses"));
-        for (var i = 0; i < this.caseStatusesList.length; i++) {
-            localStatusesOptionList.push({
-                value: this.caseStatusesList[i].CaseStatusId.toString(),
-                label: this.caseStatusesList[i].Title
-            });
-        }
-        this.caseStatusOptionList = localStatusesOptionList;
 
         this.loadManageFromGroup();
         this.isManageDataLoaded = true;

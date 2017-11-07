@@ -141,6 +141,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             if (result.PhysicalHealth == null) result.PhysicalHealth = new CasePhysicalHealth();
             if (result.Abuse == null) result.Abuse = new CaseAbuse();
             if (result.Legal == null) result.Legal = new CaseLegal();
+            if (result.Manage == null) result.Manage = new CaseManage();
 
             result.SelectedMental = this.unitOfWork.DbContext.Mental.Where(c => c.CaseId == caseId).FirstOrDefault();
 
