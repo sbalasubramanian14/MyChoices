@@ -466,6 +466,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
                 else
                     caseManageObj = this.unitOfWork.DbContext.Manage.Add(caseBook.Manage);
                 caseObj = this.unitOfWork.DbContext.Cases.Find(caseBook.Case.CaseId);
+                caseObj.CaseStausId = caseBook.Case.CaseStausId;
                 int flag = this.unitOfWork.DbContext.SaveChanges();
             }
             catch (Exception ex)
