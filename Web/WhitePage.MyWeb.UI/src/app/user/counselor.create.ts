@@ -24,6 +24,8 @@ export class CounselorCreateComponent {
 
     public roles: IOption[];
     public centers: IOption[];
+    public isNewLogin: boolean;
+    public isGlobal: boolean;
 
     constructor(
         private authenticationService: AuthenticationService,

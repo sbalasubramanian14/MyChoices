@@ -24,6 +24,7 @@ export class PeacemakerCreateComponent {
 
     public roles: IOption[];
     public centers: IOption[];
+    public isNewLogin: boolean;
 
     constructor(
         private authenticationService: AuthenticationService,
