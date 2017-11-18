@@ -109,5 +109,20 @@ export class HouseholdCaseComponent implements OnInit {
                 this.toastr.error("Error while updating case, " + error);
             }
         );
+
+    }
+
+    public disableItems(selectedArray: Array<number>) {
+        if (selectedArray !== null) {
+            let id:number = this.childrenDeceasedLookupOptionsList.find(item => item.name === "None of the above").id;            
+            let lastSelected:number = selectedArray[selectedArray.length - 1];
+
+            if (lastSelected === id) {
+                this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray = selectedArray.filter(value => value === id);
+            }
+            else {
+                this.caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray = selectedArray.filter(value => value !== id);
+            }
+        }
     }
 }

@@ -89,7 +89,7 @@ export class SpouseCaseComponent implements OnInit {
         this.onSpouseStateSelected({ value: this.caseBook.Spouse.StateLookupId });
 
         this.spouseForm = this.fb.group({
-            SpouseName: [this.caseBook.Spouse.SpouseName],
+            SpouseName: [this.caseBook.Spouse.SpouseName, this.validationService.nameValidator],
             SpouseHomePhone: [this.caseBook.Spouse.SpouseHomePhone, [Validators.minLength(10), this.validationService.mobileValidator]],
             SpouseMobilePhone: [this.caseBook.Spouse.SpouseMobilePhone, [Validators.minLength(10), this.validationService.mobileValidator]],
             SpouseOccupation: [this.caseBook.Spouse.SpouseOccupation],

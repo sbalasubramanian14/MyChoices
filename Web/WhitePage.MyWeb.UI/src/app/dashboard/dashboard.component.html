@@ -1,11 +1,12 @@
-<div class="case-detail-container justify-tabs">
+<my-spinner [isRunning]="!isAllChartsLoaded"></my-spinner>
+<div class="case-detail-container justify-tabs" [hidden]="!isAllChartsLoaded">
     <tabset>
         <tab heading="New cases" class="active" style="width:100%">
             <div class="row justify-content-center">
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card flex-fill">
                         <div class="card-block primary-info-view">
-                            <total_new_cases></total_new_cases>
+                            <total_new_cases (onNewCasesChartsLoaded)="onChartsLoaded($event)"></total_new_cases>
                         </div>
                     </div>
                 </div>
@@ -18,7 +19,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <total_closed_cases></total_closed_cases>
+                            <total_closed_cases (onClosedCasesChartsLoaded)="onChartsLoaded($event)"></total_closed_cases>
                         </div>
                     </div>
                 </div>
@@ -29,7 +30,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <total_open_cases></total_open_cases>
+                            <total_open_cases (onOpenCasesChartsLoaded)="onChartsLoaded($event)"></total_open_cases>
                         </div>
                     </div>
                 </div>
@@ -40,7 +41,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <case_resolution_rate></case_resolution_rate>
+                            <case_resolution_rate (onResolutionRatesChartsLoaded)="onChartsLoaded($event)"></case_resolution_rate>
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <total_counseling_hours></total_counseling_hours>
+                            <total_counseling_hours (onCounsellingHoursChartsLoaded)="onChartsLoaded($event)"></total_counseling_hours>
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <total_sessions></total_sessions>
+                            <total_sessions (onSessionChartsLoaded)="onChartsLoaded($event)"></total_sessions>
                         </div>
                     </div>
                 </div>
@@ -73,7 +74,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <percentage_cases_sought_help></percentage_cases_sought_help>
+                            <percentage_cases_sought_help (onSoughtHelpChartsLoaded)="onChartsLoaded($event)"></percentage_cases_sought_help>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                 <div class="col-md-12 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
                         <div class="card-block primary-info-view">
-                            <percentage_cases_signed></percentage_cases_signed>
+                            <percentage_cases_signed (onSignedCasesChartsLoaded)="onChartsLoaded($event)"></percentage_cases_signed>
                         </div>
                     </div>
                 </div>

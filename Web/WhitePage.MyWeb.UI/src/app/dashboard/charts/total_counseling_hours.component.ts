@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core'
+﻿import { Component,Output,EventEmitter } from '@angular/core'
 import { CaseBook } from '../../models/case.entities'
 import { ChartsController } from '../../dashboard/charts.controller';
 import { CasesService } from '../../services/cases.services';
@@ -15,11 +15,13 @@ import * as _ from 'lodash';
 )
 
 export class TotalCounselingHoursComponent extends ChartsController {
+
+    @Output() onCounsellingHoursChartsLoaded: EventEmitter<any> = new EventEmitter<any>();
     public caseModel: CaseBook;
     public centers: string;
-    public isCenterChartLoaded: boolean;
-    public isCounselorChartLoaded: boolean;
-    public isPeaceMakerChartLoaded: boolean;
+    public isCenterChartLoaded = false;
+    public isCounselorChartLoaded = false;
+    public isPeaceMakerChartLoaded = false;
     public breakdownTypes: any;
     public quarter1 = ["January", "February", "March"];
     public quarter2 = ["April", "May", "June"]
@@ -102,6 +104,7 @@ export class TotalCounselingHoursComponent extends ChartsController {
                     };
                     this.isCenterChartLoaded = true;
                     this.centerOptions = this.centerMonthlyOptions;
+                    this.testIfDataLoaded();
                     break;
                 case "HoursCounselorWise":
                     var monthlyOptionsList = [];
@@ -163,6 +166,7 @@ export class TotalCounselingHoursComponent extends ChartsController {
                     };
                     this.counselorOptions = this.counselorMonthlyOptions;
                     this.isCounselorChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 case "HoursPeacemakerWise":
                     var monthlyOptionsList = [];
@@ -224,6 +228,7 @@ export class TotalCounselingHoursComponent extends ChartsController {
                     };
                     this.peacemakerOptions = this.peacemakerMonthlyOptions;
                     this.isPeaceMakerChartLoaded = true;
+                    this.testIfDataLoaded();
                     break;
                 default:
                     break;
@@ -309,7 +314,10 @@ export class TotalCounselingHoursComponent extends ChartsController {
                 break;
         }
     }
-
+    public testIfDataLoaded() {
+        if (this.isCenterChartLoaded && this.isCounselorChartLoaded && this.isPeaceMakerChartLoaded)
+            this.onCounsellingHoursChartsLoaded.emit("CounsellingHoursLoaded");
+    }
     public centerMonthlyOptions: Object;
     public centerQuaterlyOptions: Object;
     public centerYearlyOptions: Object;

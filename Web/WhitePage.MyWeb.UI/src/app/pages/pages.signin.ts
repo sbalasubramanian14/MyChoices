@@ -18,8 +18,9 @@ export class PagesSignInComponent implements OnInit {
     public form: FormGroup;
     returnUrl: string;
     errorMsg: string;
-    public enableSpinner: boolean = true;
-    public buttonFlag: boolean = true;
+    public enableSpinner = true;
+    public isButtonVisible = true;
+    public unsupportedBrowser = false;
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
         private authenticationService: AuthenticationService,
@@ -32,11 +33,13 @@ export class PagesSignInComponent implements OnInit {
         });
         this.enableSpinner = false;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.unsupportedBrowser = this.detectIE();
     }
     public user: any;
     signIn(provider: string) {
         this.enableSpinner = true;
-        this.buttonFlag = false;
+        this.isButtonVisible = false;
+        
         this._auth.login(provider).subscribe(data => {
             this.zone.run(() => {
                 this.user = data;
@@ -49,15 +52,11 @@ export class PagesSignInComponent implements OnInit {
                     },
                     error => {
                         this.enableSpinner = false;
-                        console.log(error);
-                        this.buttonFlag = true;
+                        this.isButtonVisible = true;
                         this.errorMsg = "Your identity not authorized; please contact your administrator.";
                     });
             });
         });
-
-
-
         //this.router.navigate(['/home']);
     }
 
@@ -71,6 +70,26 @@ export class PagesSignInComponent implements OnInit {
                 console.log(error);
                 this.errorMsg = "Your identity not authorized; please contact your administrator.";
             });
+    }
+
+    detectIE() {
+        var ua = window.navigator.userAgent;
+
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            // IE 10 or older => return version number 
+            return true;
+        }
+
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return true;
+        }
+
+        // other browser
+        return false;
     }
 
 }

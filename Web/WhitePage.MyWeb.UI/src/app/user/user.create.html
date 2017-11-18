@@ -1,6 +1,7 @@
-﻿<div class="container-fluid case-detail-container justify-tabs">
+﻿<my-spinner [isRunning]="!isDataLoaded"></my-spinner>
+<div [hidden]="!isDataLoaded" class="container-fluid case-detail-container justify-tabs">
     <tabset>
-        <tab heading="Add PeaceMaker" class="active" style="width:100%">
+        <tab heading="Add PeaceMaker" class="active" style="width:100%" *ngIf="isRolesLoaded && isCentersLoaded">
             <div class="row justify-content-center">
                 <div class="col-md-4 d-flex flex-column" style="min-width: 450px">
                     <div class="card flex-fill">
@@ -12,11 +13,9 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
-            <hr />
         </tab>
-        <tab heading="Add Counselor" style="width:100%">
+        <tab heading="Add Counselor" style="width:100%" *ngIf="isRolesLoaded && isCentersLoaded">
             <div class="row justify-content-center">
                 <div class="col-md-4 d-flex flex-column" style="min-width: 450px">
                     <div class="card">
@@ -30,7 +29,7 @@
                 </div>
             </div>
         </tab>
-        <tab heading="Deactivate User" style="width:100%" *ngIf="isUserAdmin">
+        <tab heading="Deactivate User" style="width:100%" *ngIf="isRolesLoaded && isCentersLoaded">
             <div class="row justify-content-center">
                 <div class="col-md-4 d-flex flex-column" style="min-width: 700px">
                     <div class="card">
@@ -38,7 +37,7 @@
                             User details
                         </div>
                         <div class="card-block primary-info-view">
-                            <deactivate-user></deactivate-user>
+                            <deactivate-user (onDeactivateUserLoaded)="onDeactivateUserLoaded($event)"></deactivate-user>
                         </div>
                     </div>
                 </div>

@@ -103,7 +103,12 @@ export class AbuseCaseComponent implements OnInit {
             NumberOfYearsOfEconomicAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse), [Validators.maxLength(2), this.validationService.validateNumber]],
 
             ReasonsForAbuseLookupId: [this.returnValue(this.caseBook.Abuse.ReasonsForAbuseLookupId)],
-            ReasonForAbuseDesc: [this.caseBook.Abuse.ReasonForAbuseDesc]
+            ReasonForAbuseDesc: [this.caseBook.Abuse.ReasonForAbuseDesc],
+
+            PhysicalAbuseDesc: [this.caseBook.Abuse.PhysicalAbuseDesc],
+            EmotionalAbuseDesc: [this.caseBook.Abuse.EmotionalAbuseDesc],
+            SexualAbuseDesc: [this.caseBook.Abuse.SexualAbuseDesc],
+            EconomicAbuseDesc: [this.caseBook.Abuse.EconomicAbuseDesc],
         });
     }
 
@@ -122,6 +127,10 @@ export class AbuseCaseComponent implements OnInit {
         this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId = this.caseAbuseForm.controls['FrequencyOfEconomicAbuseLookupId'].value;
         this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse = this.caseAbuseForm.controls['NumberOfYearsOfEconomicAbuse'].value;
         this.caseBook.Abuse.ReasonForAbuseDesc = this.caseAbuseForm.controls['ReasonForAbuseDesc'].value;
+        this.caseBook.Abuse.PhysicalAbuseDesc = this.caseAbuseForm.controls['PhysicalAbuseDesc'].value;
+        this.caseBook.Abuse.EmotionalAbuseDesc = this.caseAbuseForm.controls['EmotionalAbuseDesc'].value;
+        this.caseBook.Abuse.SexualAbuseDesc = this.caseAbuseForm.controls['SexualAbuseDesc'].value;
+        this.caseBook.Abuse.EconomicAbuseDesc = this.caseAbuseForm.controls['EconomicAbuseDesc'].value;
 
         this.casesService.updateAbuse(this.caseBook).subscribe(
             data => {

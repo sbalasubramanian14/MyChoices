@@ -33,5 +33,10 @@
 	NumberOfYearsOfEconomicAbuse tinyint,
 
 	ReasonsForAbuseLookupId varchar(200),
-	ReasonForAbuseDesc VARCHAR(200)
+	ReasonForAbuseDesc VARCHAR(200),
+	
+	PhysicalAbuseDesc VARCHAR(2000),
+	EmotionalAbuseDesc VARCHAR(2000),
+	SexualAbuseDesc VARCHAR(2000),
+	EconomicAbuseDesc VARCHAR(2000)
 )
