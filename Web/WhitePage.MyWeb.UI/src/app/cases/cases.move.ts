@@ -177,19 +177,21 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     }
 
     private getCaseStatuses(): any {
-        var localStatusesOptionList = new Array<IOption>();
 
-        var previousCaseStatusLevel = this.caseStatusesList.find(caseStatusNode => caseStatusNode.CaseStatusId == this.caseBook.Case.CaseStausId).Level;
-        ++previousCaseStatusLevel;
+        var previousCaseStatus = this.caseBook.Case.CaseStausId;
 
-        for (var i = 0; i < this.caseStatusesList.length; i++) {
+        if (previousCaseStatus == 3 || previousCaseStatus == 8) {
 
-            if (this.caseStatusesList[i].Level >= previousCaseStatusLevel) {
-                localStatusesOptionList.push({ value: this.caseStatusesList[i].CaseStatusId.toString(), label: this.caseStatusesList[i].Title });
+            this.caseStatusOptionList = new Array<IOption>();
+        }
+        else {
+
+            for (var i = 1; i < this.caseStatusesList.length; i++) {
+
+                if (this.caseStatusesList[i].CaseStatusId != 9)
+                    this.caseStatusOptionList.push({ value: this.caseStatusesList[i].CaseStatusId.toString(), label: this.caseStatusesList[i].Title });
             }
         }
-        this.caseStatusOptionList = localStatusesOptionList;
-        
     }
 
     private loadLookups(): any {
