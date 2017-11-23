@@ -1,10 +1,14 @@
 ﻿ss-multiselect-dropdown {
     border: 1px solid transparent !important;
 
+    div {
+        width: 100%;
+    }
+
     button {
         background-color: rgba(0, 0, 0, 0.15) !important;
         border-radius: 16px;
-        color: white !important;
+        color: #aaa !important;
         white-space: normal !important;
         width: 100%;
         display: flex !important;
@@ -13,6 +17,8 @@
 
         &::after {
             margin-top: 6px;
+            font-size: 1.65em;
+            transform: scale(0.8, 1.4);
         }
 
         &:focus {
@@ -99,4 +105,10 @@ ng-select {
 
 ng-select > div > div.single > div.value{
     color: whitesmoke;
+}
+[ng-reflect-model] > div > button {
+    color: white !important;
+}
+[ng-reflect-model=""] > div > button {
+    color: #aaa !important;
 }
