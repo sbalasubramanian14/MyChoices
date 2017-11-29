@@ -223,29 +223,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseChildren UpdateChildren(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.CaseChildren;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.SelectedChildren.CaseChildrenId,
-                caseBook.SelectedChildren.CaseId,
-                caseBook.SelectedChildren.Name,
-                caseBook.SelectedChildren.Age,
-                caseBook.SelectedChildren.GenderLookupId,
-                caseBook.SelectedChildren.RelationshipWithAbuserLookupId,
-                caseBook.SelectedChildren.CreatedBy,
-                caseBook.SelectedChildren.CreatedDateTime,
-                caseBook.SelectedChildren.ModifiedBy,
-                caseBook.SelectedChildren.ModifiedDatetime,
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedChildren = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseChildren>("[Ops].[saveChildren]",
-                parmsCollection
-                    .AddParm("@caseChildrenType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseChildrenType]")
-                ).Last();
-
-            return updatedChildren;
+            CaseChildren caseObj;
+            vCaseChildren vCaseObj;
+            try
+            {
+                caseObj = this.unitOfWork.DbContext.Children.Find(caseBook.SelectedChildren.CaseChildrenId);
+                if (caseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseObj).CurrentValues.SetValues(caseBook.SelectedChildren);
+                }
+                else
+                {
+                    caseObj = this.unitOfWork.DbContext.Children.Add(caseBook.SelectedChildren);
+                }
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+                vCaseObj = this.unitOfWork.DbContext.vChildren.Find(caseObj.CaseChildrenId);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            return vCaseObj;
         }
 
         public CaseHeader UpdateHouseHold(CaseBook caseBook)
