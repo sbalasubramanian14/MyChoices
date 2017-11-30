@@ -53,7 +53,7 @@ export class PagesSignInComponent implements OnInit {
                     error => {
                         this.enableSpinner = false;
                         this.isButtonVisible = true;
-                        this.errorMsg = "Your identity is not authorized; Please contact your administrator.";
+                        this.errorMsg = "Your identity is not authorized. Please contact your administrator.";
                     });
             });
         });
@@ -68,7 +68,7 @@ export class PagesSignInComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                this.errorMsg = "Your identity is not authorized; Please contact your administrator.";
+                this.errorMsg = "Your identity is not authorized. Please contact your administrator.";
             });
     }
 
