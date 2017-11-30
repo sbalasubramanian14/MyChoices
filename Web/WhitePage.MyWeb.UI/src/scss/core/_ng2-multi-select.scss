@@ -106,9 +106,11 @@ ng-select {
 ng-select > div > div.single > div.value{
     color: whitesmoke;
 }
+
 [ng-reflect-model] > div > button {
     color: white !important;
 }
+
 [ng-reflect-model=""] > div > button {
     color: #aaa !important;
 }
