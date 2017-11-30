@@ -18,10 +18,10 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let sessionLog of caseBook.vSessionLog; let i = index">
-                        <td>{{sessionLog.CounselingDate | date: 'dd-MM-yyyy'}}</td>
+                        <td class="date-style">{{sessionLog.CounselingDate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{sessionLog.TypeOfCounselingDesc}}</td>
                         <td>{{sessionLog.DurationOfSessionMIn}}</td>
-                        <td>{{sessionLog.NextSessionScheduled | date: 'dd-MM-yyyy'}}</td>
+                        <td class="date-style">{{sessionLog.NextSessionScheduled | date: 'dd-MM-yyyy'}}</td>
                         <td>{{sessionLog.SessionNotes}}</td>
                         <td class="text-right">
                             <button class="btn btn-link" (click)="editSession(sessionLog)">Edit</button>
