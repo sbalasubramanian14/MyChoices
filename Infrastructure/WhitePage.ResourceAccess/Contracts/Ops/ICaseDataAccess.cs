@@ -21,7 +21,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         vCaseMental UpdateMental(CaseBook caseBook);
         vCaseSessionLog UpdateSessionLog(CaseBook caseBook);
         vCaseFeedback UpdateFeedback(CaseBook caseBook);
-        CaseHeader UpdateLegal(CaseBook caseBook);
+        int UpdateLegal(CaseBook caseBook);
         CaseHeader UpdateCaseStatus(CaseBook caseBook);
         bool DeleteCase(int caseId);
     }
