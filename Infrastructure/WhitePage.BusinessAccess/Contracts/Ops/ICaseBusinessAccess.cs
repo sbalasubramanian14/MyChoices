@@ -16,11 +16,11 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         IList<CaseHeader> GetSortedCasesDataAsc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);
         IList<CaseHeader> GetSortedCasesDataDesc(int pageNumber, int offset, IDictionary<string, string> dictionary, string field);
         CaseBook GetCaseById(int caseId);
-        CaseHeader UpdateHouseHold(CaseBook caseBook);
-        CaseHeader UpdateSpouse(CaseBook caseBook);
-        CaseHeader UpdatePhysicalHealth(CaseBook caseBook);
+        int UpdateHouseHold(CaseBook caseBook);
+        int UpdateSpouse(CaseBook caseBook);
+        int UpdatePhysicalHealth(CaseBook caseBook);
         vCaseOffender UpdateOffender(CaseBook caseBook);
-        CaseHeader UpdateAbuse(CaseBook caseBook);
+        int UpdateAbuse(CaseBook caseBook);
         int UpdateCaseManagement(CaseBook caseBook);
         vCaseMental UpdateMental(CaseBook caseBook);
         vCaseSessionLog UpdateSessionLog(CaseBook caseBook);

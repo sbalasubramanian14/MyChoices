@@ -12,11 +12,11 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         CaseHeader UpdatePrimaryInfo(CaseBook caseBook);
         vCaseAddress UpdateAddress(CaseBook caseBook);
         vCaseChildren UpdateChildren(CaseBook caseBook);
-        CaseHeader UpdateHouseHold(CaseBook caseBook);
-        CaseHeader UpdateSpouse(CaseBook caseBook);
-        CaseHeader UpdatePhysicalHealth(CaseBook caseBook);
+        int UpdateHouseHold(CaseBook caseBook);
+        int UpdateSpouse(CaseBook caseBook);
+        int UpdatePhysicalHealth(CaseBook caseBook);
         vCaseOffender UpdateOffender(CaseBook caseBook);
-        CaseHeader UpdateAbuse(CaseBook caseBook);
+        int UpdateAbuse(CaseBook caseBook);
         int UpdateCaseManagement(CaseBook caseBook);
         vCaseMental UpdateMental(CaseBook caseBook);
         vCaseSessionLog UpdateSessionLog(CaseBook caseBook);
