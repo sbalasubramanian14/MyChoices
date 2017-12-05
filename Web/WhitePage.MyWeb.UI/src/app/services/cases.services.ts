@@ -59,28 +59,28 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/UpdateChildren', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <vCaseChildren>response.json());
     }
 
-    public updateHouseHold = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdateHouseHold', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updateHouseHold = (caseBook: CaseBook): Observable<number> => {
+        return this.authHttp.post('/api/cases/UpdateHouseHold', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
 
-    public updateSpouse = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdateSpouse', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updateSpouse = (caseBook: CaseBook): Observable<number> => {
+        return this.authHttp.post('/api/cases/UpdateSpouse', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
 
     public updateCaseStatus = (caseBook: CaseBook): Observable<CaseBook> => {
         return this.authHttp.post('/api/cases/UpdateCaseStatus', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
     }
 
-    public updatePhysicalHealth = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdatePhysicalHealth', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updatePhysicalHealth = (caseBook: CaseBook): Observable<number> => {
+        return this.authHttp.post('/api/cases/UpdatePhysicalHealth', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
 
     public updateOffender = (caseBook: CaseBook): Observable<vCaseOffender> => {
         return this.authHttp.post('/api/cases/UpdateOffender', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <vCaseOffender>response.json());
     }
 
-    public updateAbuse = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdateAbuse', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updateAbuse = (caseBook: CaseBook): Observable<number> => {
+        return this.authHttp.post('/api/cases/UpdateAbuse', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
 
     public updateCase = (caseBook: CaseBook): Observable<number> => {

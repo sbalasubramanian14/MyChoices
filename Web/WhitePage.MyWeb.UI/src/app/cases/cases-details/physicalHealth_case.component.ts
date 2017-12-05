@@ -100,6 +100,7 @@ export class PhysicalHealthCaseComponent implements OnInit {
 
         this.casesService.updatePhysicalHealth(this.caseBook).subscribe(
             data => {
+                this.caseBook.PhysicalHealth.CasePhysicalHealthId = data;
                 this.toastr.success('Physical updated successfully');
             },
             (error: any) => {

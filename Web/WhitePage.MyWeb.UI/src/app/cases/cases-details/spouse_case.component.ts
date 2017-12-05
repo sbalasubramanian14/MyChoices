@@ -138,6 +138,7 @@ export class SpouseCaseComponent implements OnInit {
 
         this.casesService.updateSpouse(this.caseBook).subscribe(
             data => {
+                this.caseBook.Spouse.CaseSpouseId = data;
                 this.toastr.success('Spouse information updated successfully');
             },
             (error: any) => {
