@@ -24,57 +24,37 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-            var caseTable = UserDefinedTableTypes.Case;
-            caseTable.Rows.Add(new object[]{
-                caseBook.Case.CaseId,
-                caseBook.Case.CaseNumber,
-                caseBook.Case.CenterId,
-                caseBook.Case.CaseStausId,
-                caseBook.Case.CounselorId,
-                caseBook.Case.PeaceMakerId,
-                caseBook.Case.ClientFirstName,
-                caseBook.Case.ClientLastName,
-                caseBook.Case.Mi,
-                caseBook.Case.FatherName,
-                caseBook.Case.GenderLookupId,
+            /*Case Number generation */
+            int maxSerialNumber = this.unitOfWork.DbContext.SerialNumberTracker.Max(serialNumber => serialNumber.SerialValue);
+            String padding = "0000";
+            String serialNumberComponent = padding.Remove(padding.Length - maxSerialNumber.ToString().Length) + (++maxSerialNumber).ToString();
+            DateTime generatedDate = DateTime.Now;
+            caseBook.Case.CaseNumber = generatedDate.Year.ToString().Substring(2) + generatedDate.Month.ToString()+'-'+ serialNumberComponent;
 
-                caseBook.Case.RequireAssistanceLookupId,
-                caseBook.Case.MaritalStatusLookupId,
-                caseBook.Case.Remarks,
-                caseBook.Case.RegisterDate,
-                caseBook.Case.MobileNumber,
+            Case caseObj;
+            CaseHeader caseHeaderObj;
+            CaseAddress caseAddressObj;
+            SerialNumberTracker serialNumberTrackerObj= new SerialNumberTracker();
 
-                caseBook.Case.CreatedBy,
-                caseBook.Case.CreatedDateTime,
-                caseBook.Case.ModifiedBy,
-                caseBook.Case.ModifiedDatetime,
-                });
-            caseTable.AcceptChanges();
+            /*Initializing Serial Number Object*/
+            serialNumberTrackerObj.SerialNumberId = 1;
+            serialNumberTrackerObj.SerialValue = maxSerialNumber;
+            serialNumberTrackerObj.GeneratedDate = generatedDate;
 
-            var caseAddressTable = UserDefinedTableTypes.CaseAddress;
-            caseAddressTable.Rows.Add(new object[]{
-                caseBook.SelectedAddress.CaseAddressId,
-                caseBook.SelectedAddress.CaseId,
-                caseBook.SelectedAddress.Address,
-                caseBook.SelectedAddress.Area,
-                caseBook.SelectedAddress.CityId,
-                caseBook.SelectedAddress.StateId,
-                caseBook.SelectedAddress.PIN,
-                caseBook.SelectedAddress.CreatedBy,
-                caseBook.SelectedAddress.CreatedDateTime,
-                caseBook.SelectedAddress.ModifiedBy,
-                caseBook.SelectedAddress.ModifiedDatetime,
-                });
-            caseAddressTable.AcceptChanges();
+            /*Serial Number entry*/
+            this.unitOfWork.DbContext.SerialNumberTracker.Add(serialNumberTrackerObj);
+            /*Case entry*/
+            caseBook.Case.CaseStausId = 1;
+            caseObj =this.unitOfWork.DbContext.Cases.Add(caseBook.Case);
+            this.unitOfWork.DbContext.SaveChanges();
+            /*Address entry*/
+            caseBook.SelectedAddress.CaseId = caseObj.CaseId;
+            caseAddressObj = this.unitOfWork.DbContext.Addresses.Add(caseBook.SelectedAddress);
+            this.unitOfWork.DbContext.SaveChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[savePrimaryCase]",
-                parmsCollection
-                    .AddParm("@caseType", SqlDbType.Structured, caseTable, "[Ops].[CaseType]")
-                    .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
-                ).First();
-
-            return updatedCase;
+            /*Getting CaseHeader object*/
+            caseHeaderObj = this.unitOfWork.DbContext.CaseHeaders.Find(caseObj.CaseId);
+            return caseHeaderObj;
         }
 
         public CaseBook GetCaseById(int caseId)
@@ -195,30 +175,25 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseAddress UpdateAddress(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseAddressTable = UserDefinedTableTypes.CaseAddress;
-            caseAddressTable.Rows.Add(new object[]{
-                caseBook.SelectedAddress.CaseAddressId,
-                caseBook.SelectedAddress.CaseId,
-                caseBook.SelectedAddress.Address,
-                caseBook.SelectedAddress.Area,
-                caseBook.SelectedAddress.CityId,
-                caseBook.SelectedAddress.StateId,
-                caseBook.SelectedAddress.PIN,
-                caseBook.SelectedAddress.CreatedBy,
-                caseBook.SelectedAddress.CreatedDateTime,
-                caseBook.SelectedAddress.ModifiedBy,
-                caseBook.SelectedAddress.ModifiedDatetime,
-                });
-            caseAddressTable.AcceptChanges();
-
-            var updatedAddress = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseAddress>("[Ops].[saveAddress]",
-                parmsCollection
-                    .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
-                ).Last();
-
-            return updatedAddress;
+            CaseAddress caseAddressObj;
+            vCaseAddress vcaseAddressObj;
+            try
+            {
+                caseAddressObj = this.unitOfWork.DbContext.Addresses.Find(caseBook.SelectedAddress.CaseAddressId);
+                if (caseAddressObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseAddressObj).CurrentValues.SetValues(caseBook.SelectedAddress);
+                }
+                else
+                    caseAddressObj = this.unitOfWork.DbContext.Addresses.Add(caseBook.SelectedAddress);
+                int saveflag = this.unitOfWork.DbContext.SaveChanges();
+                vcaseAddressObj = this.unitOfWork.DbContext.vAddresses.Find(caseAddressObj.CaseAddressId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return vcaseAddressObj;
         }
 
         public vCaseChildren UpdateChildren(CaseBook caseBook)

@@ -65,6 +65,7 @@
     <Compile Include="CaseManagement\Lookup.cs" />
     <Compile Include="CaseManagement\LookupDetail.cs" />
     <Compile Include="CaseManagement\PeaceMaker.cs" />
+    <Compile Include="CaseManagement\SerialNumberTracker.cs" />
     <Compile Include="CaseManagement\State.cs" />
     <Compile Include="CaseManagement\vCaseAddress.cs" />
     <Compile Include="CaseManagement\vCaseChildren.cs" />
