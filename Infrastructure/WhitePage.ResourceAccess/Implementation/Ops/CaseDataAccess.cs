@@ -43,10 +43,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             /*Serial Number entry*/
             this.unitOfWork.DbContext.SerialNumberTracker.Add(serialNumberTrackerObj);
+            
             /*Case entry*/
             caseBook.Case.CaseStausId = 1;
             caseObj =this.unitOfWork.DbContext.Cases.Add(caseBook.Case);
             this.unitOfWork.DbContext.SaveChanges();
+            
             /*Address entry*/
             caseBook.SelectedAddress.CaseId = caseObj.CaseId;
             caseAddressObj = this.unitOfWork.DbContext.Addresses.Add(caseBook.SelectedAddress);
