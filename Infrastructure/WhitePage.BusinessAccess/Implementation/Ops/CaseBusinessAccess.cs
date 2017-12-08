@@ -190,9 +190,11 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateLegal(caseBook);
         }
 
-        public CaseHeader UpdateCaseStatus(CaseBook caseBook)
+        public Boolean UpdateCaseStatus(CaseBook caseBook)
         {
-            return this.caseDataAccess.UpdateCaseStatus(caseBook);
+            return (this.caseDataAccess.UpdateCaseManagement(caseBook) != 0) & (this.caseDataAccess.UpdateSpouse(caseBook) != 0) 
+                 & (this.caseDataAccess.UpdatePhysicalHealth(caseBook) != 0) & (this.caseDataAccess.UpdateHouseHold(caseBook) != 0) 
+                 & (this.caseDataAccess.UpdateAbuse(caseBook) != 0);
         }
         public bool DeleteCase(int caseId)
         {

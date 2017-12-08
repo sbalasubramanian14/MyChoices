@@ -43,10 +43,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             /*Serial Number entry*/
             this.unitOfWork.DbContext.SerialNumberTracker.Add(serialNumberTrackerObj);
+
             /*Case entry*/
             caseBook.Case.CaseStausId = 1;
             caseObj =this.unitOfWork.DbContext.Cases.Add(caseBook.Case);
             this.unitOfWork.DbContext.SaveChanges();
+
             /*Address entry*/
             caseBook.SelectedAddress.CaseId = caseObj.CaseId;
             caseAddressObj = this.unitOfWork.DbContext.Addresses.Add(caseBook.SelectedAddress);
@@ -463,16 +465,6 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return updatedCase;
         }
 
-        public CaseHeader UpdateCaseStatus(CaseBook caseBook)
-        {
-            UpdateCaseManagement(caseBook);
-            UpdateSpouse(caseBook);
-            UpdatePhysicalHealth(caseBook);
-            UpdateHouseHold(caseBook);
-            UpdateAbuse(caseBook);
-            CaseHeader caseHeaderObj = this.unitOfWork.DbContext.CaseHeaders.Find(caseBook.Case.CaseId);
-            return caseHeaderObj;
-        }
         public bool DeleteCase(int caseId)
         {
             try

@@ -26,7 +26,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         vCaseSessionLog UpdateSessionLog(CaseBook caseBook);
         vCaseFeedback UpdateFeedback(CaseBook caseBook);
         CaseHeader UpdateLegal(CaseBook caseBook);
-        CaseHeader UpdateCaseStatus(CaseBook casebook);
+        bool UpdateCaseStatus(CaseBook casebook);
         bool DeleteCase(int caseId);
     }
 }
