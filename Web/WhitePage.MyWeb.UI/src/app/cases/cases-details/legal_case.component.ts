@@ -66,6 +66,7 @@ export class LegalCaseComponent implements OnInit {
 
         this.casesService.updateLegal(this.caseBook).subscribe(
             data => {
+                this.caseBook.Legal.CaseLegalId = data;
                 this.toastr.success('Legal updated successfully');
             },
             error => {

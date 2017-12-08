@@ -552,35 +552,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return vCaseObj;
         }
 
-        public CaseHeader UpdateLegal(CaseBook caseBook)
+        public int UpdateLegal(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
+            CaseLegal caseLegalObj;
+            try
+            {
+                caseLegalObj = this.unitOfWork.DbContext.Legal.Find(caseBook.Legal.CaseLegalId);
+                if (caseLegalObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseLegalObj).CurrentValues.SetValues(caseBook.Legal);
+                }
+                else
+                    caseLegalObj = this.unitOfWork.DbContext.Legal.Add(caseBook.Legal);
+                int flag = this.unitOfWork.DbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
-            var caseChildrenTable = UserDefinedTableTypes.Legal;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.Legal.CaseLegalId,
-                caseBook.Legal.CaseId,
+            return caseLegalObj.CaseLegalId;
 
-                caseBook.Legal.CaseNumber,
-                caseBook.Legal.Court,
-
-                caseBook.Legal.Prayer,
-                caseBook.Legal.LegalRepresentative,
-
-                caseBook.Legal.LegalConsentFormLookupId,
-                caseBook.Legal.LegalActionLookupId,
-
-                caseBook.Legal.OutcomeLookupId,
-                caseBook.Legal.DocumentsLookupId
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveLegal]",
-                parmsCollection
-                    .AddParm("@caseLegalType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseLegalType]")
-                ).First();
-
-            return updatedCase;
         }
 
         public CaseHeader UpdateCaseStatus(CaseBook caseBook)
