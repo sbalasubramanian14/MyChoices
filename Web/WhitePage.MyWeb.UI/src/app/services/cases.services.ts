@@ -99,8 +99,8 @@ export class CasesService extends BaseService {
         return this.authHttp.post('/api/cases/UpdateFeedback', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <vCaseFeedback>response.json());
     }
 
-    public updateLegal = (caseBook: CaseBook): Observable<CaseBook> => {
-        return this.authHttp.post('/api/cases/UpdateLegal', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <CaseBook>response.json());
+    public updateLegal = (caseBook: CaseBook): Observable<number> => {
+        return this.authHttp.post('/api/cases/UpdateLegal', JSON.stringify(caseBook), this.getRequestOptions()).map((response: Response) => <number>response.json());
     }
     public deleteCase = (caseId: number): Observable<boolean> => {
         return this.authHttp.post('/api/cases/DeleteCase', JSON.stringify(caseId), this.getRequestOptions()).map((response: Response) => <boolean>response.json());
