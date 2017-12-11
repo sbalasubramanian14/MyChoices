@@ -128,17 +128,17 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateChildren(caseBook);
         }
 
-        public CaseHeader UpdateHouseHold(CaseBook caseBook)
+        public int UpdateHouseHold(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateHouseHold(caseBook);
         }
 
-        public CaseHeader UpdateSpouse(CaseBook caseBook)
+        public int UpdateSpouse(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateSpouse(caseBook);
         }
 
-        public CaseHeader UpdatePhysicalHealth(CaseBook caseBook)
+        public int UpdatePhysicalHealth(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdatePhysicalHealth(caseBook);
         }
@@ -148,7 +148,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateOffender(caseBook);
         }
 
-        public CaseHeader UpdateAbuse(CaseBook caseBook)
+        public int UpdateAbuse(CaseBook caseBook)
         {
             return this.caseDataAccess.UpdateAbuse(caseBook);
         }
@@ -190,9 +190,11 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return this.caseDataAccess.UpdateLegal(caseBook);
         }
 
-        public CaseHeader UpdateCaseStatus(CaseBook caseBook)
+        public Boolean UpdateCaseStatus(CaseBook caseBook)
         {
-            return this.caseDataAccess.UpdateCaseStatus(caseBook);
+            return (this.caseDataAccess.UpdateCaseManagement(caseBook) != 0) & (this.caseDataAccess.UpdateSpouse(caseBook) != 0) 
+                 & (this.caseDataAccess.UpdatePhysicalHealth(caseBook) != 0) & (this.caseDataAccess.UpdateHouseHold(caseBook) != 0) 
+                 & (this.caseDataAccess.UpdateAbuse(caseBook) != 0);
         }
         public bool DeleteCase(int caseId)
         {

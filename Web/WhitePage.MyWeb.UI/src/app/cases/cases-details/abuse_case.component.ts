@@ -134,6 +134,7 @@ export class AbuseCaseComponent implements OnInit {
 
         this.casesService.updateAbuse(this.caseBook).subscribe(
             data => {
+                this.caseBook.Abuse.CaseAbuseId = data;
                 this.toastr.success('Abuse information updated successfully');
             },
             error => {

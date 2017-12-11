@@ -147,8 +147,6 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdateHouseHold([FromBody] CaseBook caseBook)
         {
-            caseBook.FamilyHouseHold.CaseId = caseBook.Case.CaseId;
-
             caseBook.FamilyHouseHold.ChildrenDeceasedLookupId = caseBook.FamilyHouseHold.ChildrenDeceasedLookupArray.ToArrayString();
             caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray.ToArrayString();
             caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId = caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupArray.ToArrayString();
@@ -161,7 +159,6 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdateSpouse([FromBody] CaseBook caseBook)
         {
-            caseBook.Spouse.CaseId = caseBook.Case.CaseId;
             var updatedCase = this.caseBusinessAccess.UpdateSpouse(caseBook);
             return Ok(updatedCase);
         }
@@ -170,7 +167,6 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdatePhysicalHealth([FromBody] CaseBook caseBook)
         {
-            caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
             caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray.ToArrayString();
             caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray.ToArrayString();
 
@@ -295,20 +291,13 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdateCaseStatus([FromBody] CaseBook caseBook)
         {
-            //var caseBook = JsonConvert.DeserializeObject<CaseBook>(cb.ToString());
-            caseBook.Manage.CaseId = caseBook.Case.CaseId;
             caseBook.Manage.TypesOfCounselingLookupId = caseBook.Manage.TypesOfCounselingLookupArray.ToArrayString();
 
-            caseBook.FamilyHouseHold.CaseId = caseBook.Case.CaseId;
             caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId = caseBook.FamilyHouseHold.PeacemakerAssistanceLookupArray.ToArrayString();
 
-            caseBook.Spouse.CaseId = caseBook.Case.CaseId;
-
-            caseBook.PhysicalHealth.CaseId = caseBook.Case.CaseId;
             caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId = caseBook.PhysicalHealth.ReasonForSeekingHelpLookupArray.ToArrayString();
             caseBook.PhysicalHealth.WhoIsAbusingYouLookupId = caseBook.PhysicalHealth.WhoIsAbusingYouLookupArray.ToArrayString();
 
-            caseBook.Abuse.CaseId = caseBook.Case.CaseId;
             caseBook.Abuse.FeelAboutAbuseLookupId = caseBook.Abuse.FeelAboutAbuseLookupArray.ToArrayString();
             caseBook.Abuse.ParentsFeelAboutAbuseLookupId = caseBook.Abuse.ParentsFeelAboutAbuseLookupArray.ToArrayString();
             caseBook.Abuse.LawFeelAboutAbuseLookupId = caseBook.Abuse.LawFeelAboutAbuseLookupArray.ToArrayString();
@@ -326,7 +315,6 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult DeleteCase([FromBody] int caseId)
         {
-            //caseBook.Case.CaseStausId = 9;
             var updatedCase = this.caseBusinessAccess.DeleteCase(caseId);
             return Ok(updatedCase);
         }

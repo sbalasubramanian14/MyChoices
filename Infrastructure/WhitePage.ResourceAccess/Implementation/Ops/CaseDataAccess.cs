@@ -24,57 +24,39 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-            var caseTable = UserDefinedTableTypes.Case;
-            caseTable.Rows.Add(new object[]{
-                caseBook.Case.CaseId,
-                caseBook.Case.CaseNumber,
-                caseBook.Case.CenterId,
-                caseBook.Case.CaseStausId,
-                caseBook.Case.CounselorId,
-                caseBook.Case.PeaceMakerId,
-                caseBook.Case.ClientFirstName,
-                caseBook.Case.ClientLastName,
-                caseBook.Case.Mi,
-                caseBook.Case.FatherName,
-                caseBook.Case.GenderLookupId,
+            /*Case Number generation */
+            int maxSerialNumber = this.unitOfWork.DbContext.SerialNumberTracker.Max(serialNumber => serialNumber.SerialValue);
+            String padding = "0000";
+            String serialNumberComponent = padding.Remove(padding.Length - maxSerialNumber.ToString().Length) + (++maxSerialNumber).ToString();
+            DateTime generatedDate = DateTime.Now;
+            caseBook.Case.CaseNumber = generatedDate.Year.ToString().Substring(2) + generatedDate.Month.ToString()+'-'+ serialNumberComponent;
 
-                caseBook.Case.RequireAssistanceLookupId,
-                caseBook.Case.MaritalStatusLookupId,
-                caseBook.Case.Remarks,
-                caseBook.Case.RegisterDate,
-                caseBook.Case.MobileNumber,
+            Case caseObj;
+            CaseHeader caseHeaderObj;
+            CaseAddress caseAddressObj;
+            SerialNumberTracker serialNumberTrackerObj= new SerialNumberTracker();
 
-                caseBook.Case.CreatedBy,
-                caseBook.Case.CreatedDateTime,
-                caseBook.Case.ModifiedBy,
-                caseBook.Case.ModifiedDatetime,
-                });
-            caseTable.AcceptChanges();
+            /*Initializing Serial Number Object*/
+            serialNumberTrackerObj.SerialNumberId = 1;
+            serialNumberTrackerObj.SerialValue = maxSerialNumber;
+            serialNumberTrackerObj.GeneratedDate = generatedDate;
 
-            var caseAddressTable = UserDefinedTableTypes.CaseAddress;
-            caseAddressTable.Rows.Add(new object[]{
-                caseBook.SelectedAddress.CaseAddressId,
-                caseBook.SelectedAddress.CaseId,
-                caseBook.SelectedAddress.Address,
-                caseBook.SelectedAddress.Area,
-                caseBook.SelectedAddress.CityId,
-                caseBook.SelectedAddress.StateId,
-                caseBook.SelectedAddress.PIN,
-                caseBook.SelectedAddress.CreatedBy,
-                caseBook.SelectedAddress.CreatedDateTime,
-                caseBook.SelectedAddress.ModifiedBy,
-                caseBook.SelectedAddress.ModifiedDatetime,
-                });
-            caseAddressTable.AcceptChanges();
+            /*Serial Number entry*/
+            this.unitOfWork.DbContext.SerialNumberTracker.Add(serialNumberTrackerObj);
+            
+            /*Case entry*/
+            caseBook.Case.CaseStausId = 1;
+            caseObj =this.unitOfWork.DbContext.Cases.Add(caseBook.Case);
+            this.unitOfWork.DbContext.SaveChanges();
+            
+            /*Address entry*/
+            caseBook.SelectedAddress.CaseId = caseObj.CaseId;
+            caseAddressObj = this.unitOfWork.DbContext.Addresses.Add(caseBook.SelectedAddress);
+            this.unitOfWork.DbContext.SaveChanges();
 
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[savePrimaryCase]",
-                parmsCollection
-                    .AddParm("@caseType", SqlDbType.Structured, caseTable, "[Ops].[CaseType]")
-                    .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
-                ).First();
-
-            return updatedCase;
+            /*Getting CaseHeader object*/
+            caseHeaderObj = this.unitOfWork.DbContext.CaseHeaders.Find(caseObj.CaseId);
+            return caseHeaderObj;
         }
 
         public CaseBook GetCaseById(int caseId)
@@ -195,30 +177,25 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
         public vCaseAddress UpdateAddress(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseAddressTable = UserDefinedTableTypes.CaseAddress;
-            caseAddressTable.Rows.Add(new object[]{
-                caseBook.SelectedAddress.CaseAddressId,
-                caseBook.SelectedAddress.CaseId,
-                caseBook.SelectedAddress.Address,
-                caseBook.SelectedAddress.Area,
-                caseBook.SelectedAddress.CityId,
-                caseBook.SelectedAddress.StateId,
-                caseBook.SelectedAddress.PIN,
-                caseBook.SelectedAddress.CreatedBy,
-                caseBook.SelectedAddress.CreatedDateTime,
-                caseBook.SelectedAddress.ModifiedBy,
-                caseBook.SelectedAddress.ModifiedDatetime,
-                });
-            caseAddressTable.AcceptChanges();
-
-            var updatedAddress = this.unitOfWork.DbContext.ExecuteStoredProcedure<vCaseAddress>("[Ops].[saveAddress]",
-                parmsCollection
-                    .AddParm("@caseAddressType", SqlDbType.Structured, caseAddressTable, "[Ops].[CaseAddressType]")
-                ).Last();
-
-            return updatedAddress;
+            CaseAddress caseAddressObj;
+            vCaseAddress vcaseAddressObj;
+            try
+            {
+                caseAddressObj = this.unitOfWork.DbContext.Addresses.Find(caseBook.SelectedAddress.CaseAddressId);
+                if (caseAddressObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseAddressObj).CurrentValues.SetValues(caseBook.SelectedAddress);
+                }
+                else
+                    caseAddressObj = this.unitOfWork.DbContext.Addresses.Add(caseBook.SelectedAddress);
+                int saveflag = this.unitOfWork.DbContext.SaveChanges();
+                vcaseAddressObj = this.unitOfWork.DbContext.vAddresses.Find(caseAddressObj.CaseAddressId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return vcaseAddressObj;
         }
 
         public vCaseChildren UpdateChildren(CaseBook caseBook)
@@ -246,127 +223,67 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return vCaseObj;
         }
 
-        public CaseHeader UpdateHouseHold(CaseBook caseBook)
+        public int UpdateHouseHold(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.HouseHold;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.FamilyHouseHold.CaseFamilyHouseHoldId,
-                caseBook.FamilyHouseHold.CaseId,
-                caseBook.FamilyHouseHold.ChildrenDeceasedLookupId,
-                caseBook.FamilyHouseHold.HouseHoldIncomeLookupId,
-                caseBook.FamilyHouseHold.SoughtHelpYesNoLookupId,
-                caseBook.FamilyHouseHold.SoughtHelpDesc,
-                caseBook.FamilyHouseHold.SoughtHelpOutPut,
-                caseBook.FamilyHouseHold.PeacemakerAssistanceLookupId,
-                caseBook.FamilyHouseHold.PeacemakerAssistanceDesc,
-                caseBook.FamilyHouseHold.PeacemakerFollowupYesNoLookupId,
-                caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId,
-                caseBook.FamilyHouseHold.ClientEmailId,
-                caseBook.FamilyHouseHold.ReligionLookupId,
-                caseBook.FamilyHouseHold.LevelOfEducationLookupId,
-                caseBook.FamilyHouseHold.VocationalSkillsLookupId,
-                caseBook.FamilyHouseHold.VocationalSkillsDesc,
-                caseBook.FamilyHouseHold.OccupationLookupId,
-                caseBook.FamilyHouseHold.OccupationDesc,
-                caseBook.FamilyHouseHold.ClientIncomeLookupId,
-                caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId,
-                caseBook.FamilyHouseHold.YearsOfMarriage,
-                caseBook.FamilyHouseHold.ClientAgeAtFirstChild
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveHouseHold]",
-                parmsCollection
-                    .AddParm("@caseHouseHoldType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseHouseHoldType]")
-                ).First();
-
-            return updatedCase;
+            CaseFamilyHouseHold caseHouseholdObj;
+            try
+            {
+                caseHouseholdObj = this.unitOfWork.DbContext.FamilyHouseHold.Find(caseBook.FamilyHouseHold.CaseFamilyHouseHoldId);
+                if (caseHouseholdObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseHouseholdObj).CurrentValues.SetValues(caseBook.FamilyHouseHold);
+                }
+                else
+                    caseHouseholdObj = this.unitOfWork.DbContext.FamilyHouseHold.Add(caseBook.FamilyHouseHold);
+                int saveflag = this.unitOfWork.DbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return caseHouseholdObj.CaseFamilyHouseHoldId;
         }
 
-        public CaseHeader UpdateSpouse(CaseBook caseBook)
+        public int UpdateSpouse(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Spouse;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.Spouse.CaseSpouseId,
-                caseBook.Spouse.CaseId,
-                caseBook.Spouse.SpouseName,
-                caseBook.Spouse.SpouseDOB,
-                caseBook.Spouse.SpouseHomePhone,
-                caseBook.Spouse.SpouseMobilePhone,
-
-                caseBook.Spouse.SpouseOccupation,
-                caseBook.Spouse.SpouseEducationLookupId,
-                caseBook.Spouse.SpouseAddress,
-                caseBook.Spouse.Area,
-                caseBook.Spouse.CityLookupId,
-                caseBook.Spouse.StateLookupId,
-                caseBook.Spouse.PIN,
-
-                caseBook.Spouse.PrimaryEmergencyContactName,
-                caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId,
-                caseBook.Spouse.PrimaryEmergencyContactPhoneNumber,
-                caseBook.Spouse.PrimaryEmergencyContactAdress,
-
-                caseBook.Spouse.SecondaryEmergencyContactName,
-                caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId,
-                caseBook.Spouse.SecondaryEmergencyContactPhoneNumber,
-                caseBook.Spouse.SecondaryEmergencyContactAdress,
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveSpouse]",
-                parmsCollection
-                    .AddParm("@caseSpouseType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseSpouseType]")
-                ).First();
-
-            return updatedCase;
+            CaseSpouse caseSpouseObj;
+            try
+            {
+                caseSpouseObj = this.unitOfWork.DbContext.Spouse.Find(caseBook.Spouse.CaseSpouseId);
+                if (caseSpouseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseSpouseObj).CurrentValues.SetValues(caseBook.Spouse);
+                }
+                else
+                    caseSpouseObj = this.unitOfWork.DbContext.Spouse.Add(caseBook.Spouse);
+                int saveflag = this.unitOfWork.DbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return caseSpouseObj.CaseSpouseId;
         }
 
-        public CaseHeader UpdatePhysicalHealth(CaseBook caseBook)
+        public int UpdatePhysicalHealth(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.PhysicalHealth;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.PhysicalHealth.CasePhysicalHealthId,
-                caseBook.PhysicalHealth.CaseId,
-
-                caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessLookupId,
-                caseBook.PhysicalHealth.SufferingFromAnyMajorIllnessDesc,
-
-                caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessLookupId,
-                caseBook.PhysicalHealth.DiagnosedPsychiatricIllnessDesc,
-
-                caseBook.PhysicalHealth.SleepPerNightLookupId,
-                caseBook.PhysicalHealth.AppetiteLookupId,
-                caseBook.PhysicalHealth.ExerciseLookupId,
-
-                caseBook.PhysicalHealth.AnyMedicationLookupId,
-                caseBook.PhysicalHealth.AnyMedicationDesc,
-
-                caseBook.PhysicalHealth.AnySubstanceLookupId,
-                caseBook.PhysicalHealth.AnySubstanceDesc,
-
-                caseBook.PhysicalHealth.CurrentlyPregnantLookup,
-                caseBook.PhysicalHealth.CurrentlyPregnantDesc,
-
-                caseBook.PhysicalHealth.ReasonForSeekingHelpLookupId,
-                caseBook.PhysicalHealth.WhoIsAbusingYouLookupId,
-                caseBook.PhysicalHealth.WhoIsAbusingYouDesc,
-                caseBook.PhysicalHealth.ReasonForSeekingHelpDesc
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[savePhysicalHealth]",
-                parmsCollection
-                    .AddParm("@casePhysicalHealthType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CasePhysicalHealthType]")
-                ).First();
-
-            return updatedCase;
+            CasePhysicalHealth casePhysicalHealthObj;
+            try
+            {
+                casePhysicalHealthObj = this.unitOfWork.DbContext.PhysicalHealth.Find(caseBook.PhysicalHealth.CasePhysicalHealthId);
+                if (casePhysicalHealthObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(casePhysicalHealthObj).CurrentValues.SetValues(caseBook.PhysicalHealth);
+                }
+                else
+                    casePhysicalHealthObj = this.unitOfWork.DbContext.PhysicalHealth.Add(caseBook.PhysicalHealth);
+                int saveflag = this.unitOfWork.DbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return casePhysicalHealthObj.CasePhysicalHealthId;
         }
 
         public vCaseOffender UpdateOffender(CaseBook caseBook)
@@ -394,60 +311,25 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return vCaseObj;
         }
 
-        public CaseHeader UpdateAbuse(CaseBook caseBook)
+        public int UpdateAbuse(CaseBook caseBook)
         {
-            var parmsCollection = new ParmsCollection();
-
-            var caseChildrenTable = UserDefinedTableTypes.Abuse;
-            caseChildrenTable.Rows.Add(new object[]{
-                caseBook.Abuse.CaseAbuseId,
-                caseBook.Abuse.CaseId,
-
-                caseBook.Abuse.SufferingFromAbuseLookupId,
-                caseBook.Abuse.SufferingFromAbuseDesc,
-
-                caseBook.Abuse.FeelAboutAbuseLookupId,
-                caseBook.Abuse.ParentsFeelAboutAbuseLookupId,
-                caseBook.Abuse.LawFeelAboutAbuseLookupId,
-                caseBook.Abuse.SignsOfPhysicalAbuseLookupId,
-                caseBook.Abuse.SignsOfPhysicalAbuseDesc,
-
-                caseBook.Abuse.WeaponsUsedLookupId,
-                caseBook.Abuse.WeaponsUsedDesc,
-
-                caseBook.Abuse.TypesOfPhyscialAbuseLookupId,
-                caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId,
-                caseBook.Abuse.NumberOfYearsOfPhyscialAbuse,
-
-                caseBook.Abuse.TypesOfEmotionalAbuseLookupId,
-                caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId,
-                caseBook.Abuse.NumberOfYearsOfEmotionalAbuse,
-
-                caseBook.Abuse.TypesOfSexualAbuseLookupId,
-                caseBook.Abuse.FrequencyOfSexualAbuseLookupId,
-                caseBook.Abuse.NumberOfYearsOfSexualAbuse,
-
-                caseBook.Abuse.TypesOfEconomicAbuseLookupId,
-                caseBook.Abuse.FrequencyOfEconomicAbuseLookupId,
-                caseBook.Abuse.NumberOfYearsOfEconomicAbuse,
-
-                caseBook.Abuse.ReasonsForAbuseLookupId,
-                caseBook.Abuse.ReasonForAbuseDesc,
-
-                caseBook.Abuse.PhysicalAbuseDesc,
-                caseBook.Abuse.EmotionalAbuseDesc,
-                caseBook.Abuse.SexualAbuseDesc,
-                caseBook.Abuse.EconomicAbuseDesc,
-
-                });
-            caseChildrenTable.AcceptChanges();
-
-            var updatedCase = this.unitOfWork.DbContext.ExecuteStoredProcedure<CaseHeader>("[Ops].[saveAbuse]",
-                parmsCollection
-                    .AddParm("@caseAbuseType", SqlDbType.Structured, caseChildrenTable, "[Ops].[CaseAbuseType]")
-                ).First();
-
-            return updatedCase;
+            CaseAbuse caseAbuseObj;
+            try
+            {
+                caseAbuseObj = this.unitOfWork.DbContext.Abuse.Find(caseBook.Abuse.CaseAbuseId);
+                if (caseAbuseObj != null)
+                {
+                    this.unitOfWork.DbContext.Entry(caseAbuseObj).CurrentValues.SetValues(caseBook.Abuse);
+                }
+                else
+                    caseAbuseObj = this.unitOfWork.DbContext.Abuse.Add(caseBook.Abuse);
+                int saveflag = this.unitOfWork.DbContext.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            return caseAbuseObj.CaseAbuseId;
         }
 
         public int UpdateCaseManagement(CaseBook caseBook)
@@ -573,17 +455,6 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             return caseLegalObj.CaseLegalId;
 
-        }
-
-        public CaseHeader UpdateCaseStatus(CaseBook caseBook)
-        {
-            UpdateCaseManagement(caseBook);
-            var updatedCaseHeader = UpdateHouseHold(caseBook);
-            updatedCaseHeader = UpdateSpouse(caseBook);
-            updatedCaseHeader = UpdatePhysicalHealth(caseBook);
-            updatedCaseHeader = UpdateAbuse(caseBook);
-
-            return updatedCaseHeader;
         }
         public bool DeleteCase(int caseId)
         {

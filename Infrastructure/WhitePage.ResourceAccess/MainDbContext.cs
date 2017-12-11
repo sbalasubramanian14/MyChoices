@@ -58,5 +58,6 @@ namespace WhitePage.ResourceAccess
         public DbSet<CaseLegal> Legal { get; set; }
 
         public DbSet<User> User { get; set; }
+        public DbSet<SerialNumberTracker> SerialNumberTracker { get; set; }
     }
 }

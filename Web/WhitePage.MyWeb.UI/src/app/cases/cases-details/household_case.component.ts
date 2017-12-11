@@ -103,6 +103,7 @@ export class HouseholdCaseComponent implements OnInit {
 
         this.casesService.updateHouseHold(this.caseBook).subscribe(
             data => {
+                this.caseBook.FamilyHouseHold.CaseFamilyHouseHoldId = data;
                 this.toastr.success('Household information updated successfully');
             },
             (error: any) => {
