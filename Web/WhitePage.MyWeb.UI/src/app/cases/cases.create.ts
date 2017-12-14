@@ -173,7 +173,8 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                 ClientLastName: [this.caseBook.Case.ClientLastName, [Validators.required,this.validationService.nameValidator]],
                 FatherName: [this.caseBook.Case.FatherName,[Validators.required, this.validationService.nameValidator]],
                 Mi:[this.caseBook.Case.Mi],
-                GenderLookupId:[this.caseBook.Case.GenderLookupId, Validators.required],
+                GenderLookupId: [this.caseBook.Case.GenderLookupId, Validators.required],
+                ClientAge: [this.caseBook.Case.ClientAge, [Validators.required, Validators.min(1), Validators.max(99), Validators.pattern('^[0-9]*$')]],
 
                 MaritalStatusLookupId:[this.caseBook.Case.MaritalStatusLookupId, Validators.required],
                 RequireAssistanceLookupId:[this.caseBook.Case.RequireAssistanceLookupId, Validators.required],

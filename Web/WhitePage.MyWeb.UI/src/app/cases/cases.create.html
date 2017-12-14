@@ -168,6 +168,16 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="ClientAge">Client Age *</label>
+                        <div class="form-group" [class.has-danger]="casePrimaryForm.controls.ClientAge.invalid && casePrimaryForm.controls.ClientAge.touched">
+                            <input type="number" id='ClientAge' placeholder="Age" formControlName="ClientAge" [(ngModel)]="caseBook.Case.ClientAge" class="form-control" />
+                            <div>
+                                <small *ngIf="casePrimaryForm.controls.ClientAge.hasError('required') && casePrimaryForm.controls.ClientAge.touched" class="mat-text-warn">Client age is required.</small>
+                                <small *ngIf="casePrimaryForm.controls.ClientAge.dirty && casePrimaryForm.controls.ClientAge.invalid" class="mat-text-warn">Please provide a valid age</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="MaritalStatusId">Marital Status *</label>
                         <ng-select id="MaritalStatusId"
                                    [options]="maritalStatusLookupOptionsList"
