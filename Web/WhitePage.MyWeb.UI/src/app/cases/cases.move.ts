@@ -178,20 +178,11 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
     private getCaseStatuses(): any {
 
-        var previousCaseStatus = this.caseBook.Case.CaseStausId;
-
-        if (previousCaseStatus == 3 || previousCaseStatus == 8) {
-
-            this.caseStatusOptionList = new Array<IOption>();
-        }
-        else {
-
-            for (var i = 1; i < this.caseStatusesList.length; i++) {
+        for (var i = 1; i < this.caseStatusesList.length; i++) {
 
                 if (this.caseStatusesList[i].CaseStatusId != 9)
                     this.caseStatusOptionList.push({ value: this.caseStatusesList[i].CaseStatusId.toString(), label: this.caseStatusesList[i].Title });
             }
-        }
     }
 
     private loadLookups(): any {
