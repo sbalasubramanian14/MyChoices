@@ -16,6 +16,9 @@ namespace WhitePage.Entities.CaseManagement
         public int CounselorId { get; set; }
         public int PeaceMakerId { get; set; }
 
+        public int? SourceOfCaseLookupId { get; set; }
+        public string SourceOfCaseDesc { get; set; }
+
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
         public string Mi { get; set; }

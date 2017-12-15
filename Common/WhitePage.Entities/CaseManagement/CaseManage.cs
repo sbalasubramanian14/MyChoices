@@ -10,10 +10,8 @@ namespace WhitePage.Entities.CaseManagement
         [Key]
         public int CaseManageId { get; set; }
         public int CaseId { get; set; }
-        public int? SourceOfCaseLookupId { get; set; }
 
         public string ReferredToWhom { get; set; }
-        public string SourceOfCaseDesc { get; set; }
 
         public string TypesOfCounselingLookupId { get; set; }
         [NotMapped]
