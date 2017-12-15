@@ -10,14 +10,6 @@
                     <span>{{ manageForm.ReferredToWhom }}</span>
                 </div>
                 <div class="form-group">
-                    <label>Source of case  :</label>
-                    <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:manageForm.SourceOfCaseLookupId) }}</span>
-                </div> 
-                <div class="form-group">
-                    <label>If others, please specify  :</label>
-                    <span>{{ manageForm.SourceOfCaseDesc }}</span>
-                </div>
-                <div class="form-group">
                     <label>Type of counseling  :</label>
                     <span>{{ (typesOfCounselingLookupOptionList | MatchesPipe:manageForm.TypesOfCounselingLookupId:"multiselect") }}</span>
                 </div>

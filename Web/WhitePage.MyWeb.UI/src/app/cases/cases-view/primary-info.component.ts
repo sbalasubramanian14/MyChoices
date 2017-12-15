@@ -25,6 +25,7 @@ export class PrimaryInfoComponent  implements OnInit  {
     public centerOptionList: Array<IOption> = [];
     public peaceMakerOptionsList: Array<IOption> = [];
     public counselorOptionsList: Array<IOption> = [];
+    public sourceOfCaseLookupOptionList: Array<IOption> = [];
     public genderLookupOptionsList: Array<IOption> = [];
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
@@ -42,6 +43,7 @@ export class PrimaryInfoComponent  implements OnInit  {
         this.centerOptionList = localCenterOptionList;
         /* getAllCenters - ends */
 
+        this.sourceOfCaseLookupOptionList = BaseCaseController.staticParseLookups("SourceOfCase");
         this.genderLookupOptionsList = BaseCaseController.staticParseLookups("Gender");
         this.maritalStatusLookupOptionsList = BaseCaseController.staticParseLookups("MaritalStatus");
         this.requireAssistanceLookupOptionsList = BaseCaseController.staticParseLookups("RequiredAssistance");       

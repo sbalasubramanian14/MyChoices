@@ -8,6 +8,9 @@
     CounselorId?: number;
 
     PeaceMakerId?: number;
+    SourceOfCaseLookupId?: number;
+    SourceOfCaseDesc?: string;
+
     ClientFirstName?: string;
     ClientLastName?: string;
     Mi?: string;
@@ -302,11 +305,9 @@ export class CaseManage {
     constructor() { }
 
     CaseManageId?: number;
+
     CaseId?: number;
     ReferredToWhom: string;
-
-    SourceOfCaseLookupId?: number;
-    SourceOfCaseDesc?: string;
 
     TypesOfCounselingLookupId?: number;
     TypesOfCounselingLookupArray: Array<Number>;    

@@ -47,6 +47,23 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="SourceOfCaseLookupId">Source of case</label>
+                        <ng-select [options]="sourceOfCaseLookupOptionList"
+                                   placeholder="Select"
+                                   formControlName="SourceOfCaseLookupId"
+                                   [allowClear]="true">
+                        </ng-select>
+                        <div>
+                            <small *ngIf="casePrimaryForm.controls.SourceOfCaseLookupId.hasError('required') && casePrimaryForm.controls.SourceOfCaseLookupId.touched" class="mat-text-warn">Source of case is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SourceOfCaseDesc">If others, please specify</label>
+                        <input formControlName="SourceOfCaseDesc" class="form-control" maxlength="2000" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="ClientFirstName">First Name *</label>
                         <input placeholder="First Name" formControlName="ClientFirstName" [(ngModel)]="caseBook.Case.ClientFirstName" class="form-control" />
                         <div>
@@ -69,15 +86,6 @@
                         <input placeholder="Middle Initials" formControlName="Mi" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000" />
                     </div>
 
-                    <div class="form-group">
-                        <label for="FatherName">Father / Husband Name *</label>
-                        <input placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
-                        <div>
-                            <small *ngIf="casePrimaryForm.controls.FatherName.hasError('required') && casePrimaryForm.controls.FatherName.touched" class="mat-text-warn">Father / Husband Name is required.</small>
-                            <small *ngIf="casePrimaryForm.controls.FatherName.dirty && casePrimaryForm.controls.FatherName.invalid" class="mat-text-warn">Please provide a valid Father / Husband Name</small>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -88,6 +96,15 @@
                     Client Details
                 </div>
                 <div class="card-block">
+
+                    <div class="form-group">
+                        <label for="FatherName">Father / Husband Name *</label>
+                        <input placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />
+                        <div>
+                            <small *ngIf="casePrimaryForm.controls.FatherName.hasError('required') && casePrimaryForm.controls.FatherName.touched" class="mat-text-warn">Father / Husband Name is required.</small>
+                            <small *ngIf="casePrimaryForm.controls.FatherName.dirty && casePrimaryForm.controls.FatherName.invalid" class="mat-text-warn">Please provide a valid Father / Husband Name</small>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="MobileNumber">Mobile *</label>

@@ -54,8 +54,6 @@ export class ManageCaseComponent implements OnInit {
         this.caseManageForm = this.fb.group({
 
             ReferredToWhom: [this.caseBook.Manage.ReferredToWhom],
-            SourceOfCaseLookupId: [this.returnValue(this.caseBook.Manage.SourceOfCaseLookupId)],
-            SourceOfCaseDesc: [this.caseBook.Manage.SourceOfCaseDesc],
             TypesOfCounselingLookupId: [this.returnValue(this.caseBook.Manage.TypesOfCounselingLookupId)],
             TotalNoOfSessionsLookupId: [this.returnValue(this.caseBook.Manage.TotalNoOfSessionsLookupId), [Validators.maxLength(3), this.validationService.validateNumber, Validators.pattern("^[0-9]*$")]],
             TotalHoursSpentLookupId: [this.returnValue(this.caseBook.Manage.TotalHoursSpentLookupId), [Validators.maxLength(5), this.validationService.validateNumber, this.validationService.validateTime]],
@@ -71,8 +69,6 @@ export class ManageCaseComponent implements OnInit {
     public onUpdateManage() {
         this.caseBook.Manage.CaseId = this.caseBook.Case.CaseId;
         this.caseBook.Manage.ReferredToWhom = this.caseManageForm.controls['ReferredToWhom'].value;
-        this.caseBook.Manage.SourceOfCaseLookupId = this.caseManageForm.controls['SourceOfCaseLookupId'].value;
-        this.caseBook.Manage.SourceOfCaseDesc = this.caseManageForm.controls['SourceOfCaseDesc'].value;
         this.caseBook.Manage.TotalNoOfSessionsLookupId = this.caseManageForm.controls['TotalNoOfSessionsLookupId'].value;
         this.caseBook.Manage.TotalHoursSpentLookupId = this.caseManageForm.controls['TotalHoursSpentLookupId'].value;
         this.caseBook.Manage.ReasonForClosureStatus = this.caseManageForm.controls['ReasonForClosureStatus'].value;

@@ -39,6 +39,7 @@ export class PrimaryCaseComponent implements OnInit {
     public genderLookupOptionsList: Array<IOption> = [];
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
+    public sourceOfCaseLookupOptionList: Array<IOption> = [];
 
     constructor(
         public fb: FormBuilder,
@@ -46,6 +47,7 @@ export class PrimaryCaseComponent implements OnInit {
         private casesService: CasesService,
         public toastr: ToastsManager) {
 
+        this.sourceOfCaseLookupOptionList = BaseCaseController.staticParseLookups("SourceOfCase");
         this.genderLookupOptionsList = BaseCaseController.staticParseLookups("Gender");
         this.maritalStatusLookupOptionsList = BaseCaseController.staticParseLookups("MaritalStatus");
         this.requireAssistanceLookupOptionsList = BaseCaseController.staticParseLookups("RequiredAssistance");
@@ -148,12 +150,17 @@ export class PrimaryCaseComponent implements OnInit {
         this.casePrimaryForm.controls['PeaceMakerId'].reset();
         this.casePrimaryForm.controls['CounselorId'].reset();
     }
+    private returnValue(input: any) {
+        return input == undefined ? null : input.toString()
+    }
 
     private loadPrimayCaseTab() {
         this.casePrimaryForm = this.fb.group({
             CenterId: [this.caseBook.Case.CenterId.toString(), Validators.required],
             PeaceMakerId: [this.caseBook.Case.PeaceMakerId.toString(), Validators.required],
             CounselorId: [this.caseBook.Case.CounselorId.toString(), Validators.required],
+            SourceOfCaseLookupId: [this.returnValue(this.caseBook.Case.SourceOfCaseLookupId), Validators.required],
+            SourceOfCaseDesc: [this.caseBook.Case.SourceOfCaseDesc],
 
             ClientFirstName: [this.caseBook.Case.ClientFirstName, [Validators.required, this.validationService.nameValidator]],
             ClientLastName: [this.caseBook.Case.ClientLastName, [Validators.required, this.validationService.nameValidator]],
@@ -177,6 +184,8 @@ export class PrimaryCaseComponent implements OnInit {
         caseBookNew.Case.CenterId = this.casePrimaryForm.controls['CenterId'].value;
         caseBookNew.Case.PeaceMakerId = this.casePrimaryForm.controls['PeaceMakerId'].value;
         caseBookNew.Case.CounselorId = this.casePrimaryForm.controls['CounselorId'].value;
+        caseBookNew.Case.SourceOfCaseLookupId = this.casePrimaryForm.controls['SourceOfCaseLookupId'].value;
+        caseBookNew.Case.SourceOfCaseDesc = this.casePrimaryForm.controls['SourceOfCaseDesc'].value;
         caseBookNew.Case.ClientFirstName = this.casePrimaryForm.controls['ClientFirstName'].value;
         caseBookNew.Case.ClientLastName = this.casePrimaryForm.controls['ClientLastName'].value;
         caseBookNew.Case.FatherName = this.casePrimaryForm.controls['FatherName'].value;
