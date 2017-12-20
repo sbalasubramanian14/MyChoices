@@ -8,7 +8,7 @@
     button {
         background-color: rgba(0, 0, 0, 0.15) !important;
         border-radius: 16px;
-        color: #aaa !important;
+        color: #fff !important;
         white-space: normal !important;
         width: 100%;
         display: flex !important;
@@ -107,10 +107,4 @@ ng-select > div > div.single > div.value{
     color: whitesmoke;
 }
 
-[ng-reflect-model] > div > button {
-    color: white !important;
-}
 
-[ng-reflect-model=""] > div > button {
-    color: #aaa !important;
-}
