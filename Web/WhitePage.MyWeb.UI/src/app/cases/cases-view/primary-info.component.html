@@ -18,6 +18,14 @@
                         <span>{{ (counselorOptionsList | MatchesPipe:primaryForm.CounselorId) }}</span>
                     </div>
                     <div class="form-group">
+                        <label>Source of case  :</label>
+                        <span>{{ (sourceOfCaseLookupOptionList | MatchesPipe:primaryForm.SourceOfCaseLookupId) }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>If others, please specify  :</label>
+                        <span>{{ primaryForm.SourceOfCaseDesc }}</span>
+                    </div>
+                    <div class="form-group">
                         <label>First Name  :</label>
                         <span>{{ primaryForm.ClientFirstName }}</span>
                     </div>
@@ -29,10 +37,6 @@
                         <label>M.I.  :</label>
                         <span>{{ primaryForm.Mi }}</span>
                     </div>
-                    <div class="form-group">
-                        <label>Father / Husband Name  :</label>
-                        <span>{{ primaryForm.FatherName }}</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -42,6 +46,10 @@
                     Client Details
                 </div>
                 <div class="card-block info-view">
+                    <div class="form-group">
+                        <label>Father / Husband Name  :</label>
+                        <span>{{ primaryForm.FatherName }}</span>
+                    </div>
                     <div class="form-group">
                         <label>Mobile  :</label>
                         <span>{{ primaryForm.MobileNumber }}</span>

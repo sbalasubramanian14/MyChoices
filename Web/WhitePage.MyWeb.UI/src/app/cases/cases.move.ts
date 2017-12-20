@@ -379,8 +379,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             //End of Abuse category 4
 
             //Case Category 4
-            SourceOfCaseLookupId: new FormControl(this.caseBook.Manage.SourceOfCaseLookupId == undefined ? null : this.caseBook.Manage.SourceOfCaseLookupId.toString(), Validators.required),
-            SourceOfCaseDesc: new FormControl(this.caseBook.Manage.SourceOfCaseDesc),
+            SourceOfCaseLookupId: new FormControl(this.caseBook.Case.SourceOfCaseLookupId == undefined ? null : this.caseBook.Case.SourceOfCaseLookupId.toString(), Validators.required),
+            SourceOfCaseDesc: new FormControl(this.caseBook.Case.SourceOfCaseDesc),
 
             TypesOfCounselingLookupId: new FormControl(this.caseBook.Manage.TypesOfCounselingLookupId == undefined ? null : this.caseBook.Manage.TypesOfCounselingLookupId.toString(), Validators.required),
             TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]),
@@ -539,8 +539,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         //End of Abuse category 4
 
         //Case category 4
-        this.caseBook.Manage.SourceOfCaseLookupId = this.category4Form.controls['SourceOfCaseLookupId'].value;
-        this.caseBook.Manage.SourceOfCaseDesc = this.category4Form.controls['SourceOfCaseDesc'].value;
+        this.caseBook.Case.SourceOfCaseLookupId = this.category4Form.controls['SourceOfCaseLookupId'].value;
+        this.caseBook.Case.SourceOfCaseDesc = this.category4Form.controls['SourceOfCaseDesc'].value;
         this.caseBook.Manage.TotalNoOfSessionsLookupId = this.category4Form.controls['TotalNoOfSessionsLookupId'].value;
         this.caseBook.Manage.TotalHoursSpentLookupId = this.category4Form.controls['TotalHoursSpentLookupId'].value;
 
