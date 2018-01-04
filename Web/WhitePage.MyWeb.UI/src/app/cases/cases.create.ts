@@ -59,6 +59,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                     this.genderLookupOptionsList = this.ParseLookups("Gender");
                     this.maritalStatusLookupOptionsList = this.ParseLookups("MaritalStatus");
                     this.requireAssistanceLookupOptionsList = this.ParseLookups("RequiredAssistance");
+                    this.sourceOfCaseLookupOptionList = this.ParseLookups("SourceOfCase");
                     this.isDataLoaded = true;
                     break;
                 default:
@@ -89,6 +90,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
     public genderLookupOptionsList: Array<IOption> = [];
     public maritalStatusLookupOptionsList: Array<IOption> = [];
     public requireAssistanceLookupOptionsList: Array<IOption> = [];
+    public sourceOfCaseLookupOptionList: Array<IOption> = [];
 
     private onStateSelected(state: any) {
         if (this.caseBook.SelectedAddress.StateId == null || this.caseBook.SelectedAddress.StateId <= 0) {
@@ -157,6 +159,10 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         this.casePrimaryForm.controls['CounselorId'].reset();
     }
 
+    private returnValue(input: any) {
+        return input == undefined ? null : input.toString()
+    }
+
     ngOnInit() {
         this.caseBook = new CaseBook();
         this.caseBook.Case = new Case();
@@ -168,6 +174,8 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
                 CenterId: [this.caseBook.Case.CenterId, Validators.required],
                 PeaceMakerId: [this.caseBook.Case.PeaceMakerId, Validators.required],
                 CounselorId: [this.caseBook.Case.CounselorId, Validators.required],
+                SourceOfCaseLookupId: [this.returnValue(this.caseBook.Case.SourceOfCaseLookupId), Validators.required],
+                SourceOfCaseDesc: [this.caseBook.Case.SourceOfCaseDesc],
 
                 ClientFirstName: [this.caseBook.Case.ClientFirstName,[ Validators.required, this.validationService.nameValidator]],
                 ClientLastName: [this.caseBook.Case.ClientLastName, [Validators.required,this.validationService.nameValidator]],
