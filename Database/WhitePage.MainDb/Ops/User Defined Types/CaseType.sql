@@ -16,6 +16,9 @@
 	Remarks VARCHAR(300) NULL,
 	RegisterDate DateTime NULL,
 	MobileNumber VARCHAR(20) NULL,
+	
+	SourceOfCaseLookupId INT,
+	SourceOfCaseDesc varchar(2000),
 
 	CreatedBy int ,
 	CreatedDateTime datetime ,

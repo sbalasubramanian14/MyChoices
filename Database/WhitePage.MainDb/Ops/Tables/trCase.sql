@@ -21,5 +21,7 @@
 	[CreatedBy] int not null,
 	[CreatedDateTime] datetime not null,
 	[ModifiedBy] int not null,
-	[ModifiedDatetime] datetime not null
+	[ModifiedDatetime] datetime not null, 
+    [SourceOfCaseLookupId] INT NULL, 
+    [SourceOfCaseDesc] VARCHAR(2000) NULL
 )

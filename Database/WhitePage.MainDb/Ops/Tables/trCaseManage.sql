@@ -4,8 +4,6 @@
 	CaseId INT,
 	ReferredToWhom varchar(2000),
 
-	SourceOfCaseLookupId INT,
-	SourceOfCaseDesc varchar(2000),
 
 	TypesOfCounselingLookupId varchar(100),
 	TotalNoOfSessionsLookupId INT,
