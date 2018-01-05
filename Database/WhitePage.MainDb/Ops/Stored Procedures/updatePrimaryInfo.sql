@@ -9,6 +9,8 @@ BEGIN
 		UPDATE 
 		SET 
 			T.CenterId = S.CenterId, 
+			T.SourceOfCaseLookupId = S.SourceOfCaseLookupId,
+			T.SourceOfCaseDesc = S.SourceOfCaseDesc,
 			T.PeaceMakerId = S.PeaceMakerId,
 			T.CounselorId = S.CounselorId,
 			T.ClientFirstName = S.ClientFirstName,
