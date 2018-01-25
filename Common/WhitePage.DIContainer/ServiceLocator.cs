@@ -51,10 +51,12 @@ namespace WhitePage.DIContainer
             _serviceCollection.AddTransient<ILoginDataAccess, LoginDataAccess>();
             _serviceCollection.AddTransient<ICaseDataAccess, CaseDataAccess>();
             _serviceCollection.AddTransient<ICommonDataAccess, CommonDataAccess>();
+            _serviceCollection.AddTransient<ISvpDataAccess, SvpDataAccess>();
 
             //Business Access
             _serviceCollection.AddTransient<ILoginBusinessAccess, LoginBusinessAccess>();
             _serviceCollection.AddTransient<ICaseBusinessAccess, CaseBusinessAccess>();
+            _serviceCollection.AddTransient<ISvpBusinessAccess, SvpBusinessAccess>();
             _serviceCollection.AddTransient<ICommonBusinessAccess, CommonBusinessAccess>();
 
             //Build Service Provider

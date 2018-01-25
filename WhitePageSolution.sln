@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A3928E10-77D5-4B64-AEDA-FBA41E58CCD0}"
 EndProject
@@ -27,9 +27,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitePage.ResourceAccess", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitePage.BusinessAccess", "Infrastructure\WhitePage.BusinessAccess\WhitePage.BusinessAccess.csproj", "{CF14755A-92AC-42C9-B8F1-5C9DE321F1A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitePage.MyWeb.UI", "Web\WhitePage.MyWeb.UI\WhitePage.MyWeb.UI.csproj", "{9ABC6D3F-7D96-4FC6-9F45-086DE4C83009}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhitePage.MyWeb.UI", "Web\WhitePage.MyWeb.UI\WhitePage.MyWeb.UI.csproj", "{9ABC6D3F-7D96-4FC6-9F45-086DE4C83009}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitePage.UtilitiesTests", "Common\WhitePage.UtilitiesTests\WhitePage.UtilitiesTests.csproj", "{D175079F-B98E-4CE5-ADF5-F8C89D65C76C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NexGenMobileApp", "NexGenMobileApp", "{9F3CE7C7-C7C9-40CC-B9C0-1BF5CC802E45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexGenRedAlert.Android", "NexGenRedAlert\NexGenRedAlert.Android\NexGenRedAlert.Android.csproj", "{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexGenRedAlert", "NexGenRedAlert\NexGenRedAlert\NexGenRedAlert.csproj", "{72EA1717-4C1D-42E0-B645-46BED583F9C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +77,16 @@ Global
 		{D175079F-B98E-4CE5-ADF5-F8C89D65C76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D175079F-B98E-4CE5-ADF5-F8C89D65C76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D175079F-B98E-4CE5-ADF5-F8C89D65C76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{72EA1717-4C1D-42E0-B645-46BED583F9C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EA1717-4C1D-42E0-B645-46BED583F9C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EA1717-4C1D-42E0-B645-46BED583F9C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EA1717-4C1D-42E0-B645-46BED583F9C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,5 +99,10 @@ Global
 		{E7A061D5-6CFA-42C2-B161-282C0EA4E7B2} = {600D0094-72CF-4925-B363-BEE2F4E99304}
 		{CF14755A-92AC-42C9-B8F1-5C9DE321F1A1} = {600D0094-72CF-4925-B363-BEE2F4E99304}
 		{9ABC6D3F-7D96-4FC6-9F45-086DE4C83009} = {E2B5486F-0464-4546-841C-56FDE024CD4A}
+		{EFA771E9-10C2-4D0E-9868-97A1AD349DCF} = {9F3CE7C7-C7C9-40CC-B9C0-1BF5CC802E45}
+		{72EA1717-4C1D-42E0-B645-46BED583F9C5} = {9F3CE7C7-C7C9-40CC-B9C0-1BF5CC802E45}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67A42FD8-EAF2-47F7-982D-CC1EF6164A43}
 	EndGlobalSection
 EndGlobal

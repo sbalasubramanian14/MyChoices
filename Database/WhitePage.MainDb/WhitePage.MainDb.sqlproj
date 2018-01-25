@@ -153,6 +153,10 @@
     <Build Include="Ops\Views\vCaseSessionLog.sql" />
     <Build Include="Auth\Stored Procedures\getUserRoles.sql" />
     <Build Include="Auth\Stored Procedures\AddNewUserLogin.sql" />
+    <Build Include="Ops\Tables\trPreSvp.sql" />
+    <Build Include="Ops\Tables\trPostSvp.sql" />
+    <Build Include="Core\Tables\trSerialNumberTrackerRA.sql" />
+    <Build Include="Ops\Tables\IpDetails.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

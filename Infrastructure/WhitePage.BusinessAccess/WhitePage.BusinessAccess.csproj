@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Contracts\Core\ICommonBusinessAccess.cs" />
     <Compile Include="Contracts\Ops\ICaseBusinessAccess.cs" />
+    <Compile Include="Contracts\Ops\ISvpBusinessAccess.cs" />
     <Compile Include="Contracts\Security\ILoginBusinessAccess.cs" />
     <Compile Include="Implementation\Core\CommonBusinessAccess.cs" />
     <Compile Include="Implementation\Ops\CaseBusinessAccess.cs" />
+    <Compile Include="Implementation\Ops\SvpBusinessAccess.cs" />
     <Compile Include="Implementation\Security\LoginBusinessAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

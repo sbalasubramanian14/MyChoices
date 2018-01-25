@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Ops\ISvpDataAccess.cs" />
     <Compile Include="ECaseStatus.cs" />
     <Compile Include="Contracts\Core\ICommonDataAccess.cs" />
     <Compile Include="Contracts\Ops\ICaseDataAccess.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="Implementation\Core\CommonDataAccess.cs" />
     <Compile Include="Implementation\Ops\CaseDataAccess.cs" />
+    <Compile Include="Implementation\Ops\SvpDataAccess.cs" />
     <Compile Include="Implementation\Security\LoginDataAccess.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MainDbContext.cs" />
