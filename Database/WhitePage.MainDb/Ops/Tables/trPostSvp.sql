@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Ops].[trPostSvp]
 (
-	[FormId] INT NOT NULL PRIMARY KEY,
+	[FormId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[PostSvpNumber] VARCHAR(200) NOT NULL,
 	[PostSvpDate] DATE NOT NULL,
 	[TravelHours] DECIMAL(3,1) NOT NULL,

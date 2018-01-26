@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Ops].[trPreSvp]
 (
-	[FormId] INT NOT NULL PRIMARY KEY,	
+	[FormId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,	
 	[PreSvpNumber] VARCHAR(200) NOT NULL,
 	[VillageCode] INT NOT NULL ,
 	
