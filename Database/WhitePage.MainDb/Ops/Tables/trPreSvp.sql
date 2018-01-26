@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [Ops].[trPreSvp]
 (
 	[FormId] INT NOT NULL PRIMARY KEY,	
-	[SvpNumber] VARCHAR(200) NOT NULL,
+	[PreSvpNumber] VARCHAR(200) NOT NULL,
 	[VillageCode] INT NOT NULL ,
 	
 	[PreSvpDate] DATE NOT NULL,
