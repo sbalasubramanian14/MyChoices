@@ -37,10 +37,9 @@ namespace NexGenRedAlert.Views
             ItemsListView.SelectedItem = null;
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
+        void AddItem_Clicked(object sender, EventArgs e)
         {
-            PreSvp PreSvpForm=new PreSvp();
-            await App.SvpServices.PostAsyncSavePreSvpForm(PreSvpForm);  //Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
         protected override void OnAppearing()

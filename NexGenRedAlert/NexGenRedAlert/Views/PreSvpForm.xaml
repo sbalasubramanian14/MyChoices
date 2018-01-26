@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.PreSvpForm"
+             Title="PreSvp Forms">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,20,20,0" Padding="0,20,0,0">
+                <Entry x:Name="VillageCodeEntry" Placeholder="VillageCode"/>
+                <Frame x:Name="frame"  IsVisible="False" Margin="0,50,0,0" >
+                    <Label x:Name="VillageName" Text="" FontSize="20" />
+                    <Label x:Name="DistrictName" Text="" FontSize="20" />
+                </Frame>
+                <Label x:Name="SvpDateLabel" Text="PreSvpDate" TextColor="Black"/>
+                <DatePicker Format="D" TextColor="Black" />
+                <Entry x:Name="DistanceToVillageEntry" Placeholder="One Way Distance to Village" />
+                <Entry x:Name="LocationDescEntry" Placeholder="Location Description" />
+                <Entry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income" />
+                <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program"/>
+                <Editor x:Name="ActiveCommunityDetailsEntry" />
+                <Entry x:Name="ChildAbuseEntry" Placeholder="Child Abuse count" />
+                <Entry x:Name="DomesticAbuseEntry" Placeholder="Domestic Abuse count" />
+                <Entry x:Name="TraffickingAbuseEntry" Placeholder="Trafficking Abuse count" />
+                <Entry x:Name="MissingAbuseEntry" Placeholder="Missing count" />
+                <Entry x:Name="SchoolDropoutEntry" Placeholder="School dropout count" />
+                <Entry x:Name="TrafficProneDescEntry" Placeholder="Details of Neighbourhood trafficking-prone villages" />
+                <Entry x:Name="LocalIssuesEntry" Placeholder="Local Issues description" />
+                <Entry x:Name="TraffickingAwarenessEntry" Placeholder="Is there awareness about trafficking ?" />
+                <Entry x:Name="CausesOfTraffickingEntry" Placeholder="Causes of Trafficking (Risks)" />
+                <Picker x:Name="PreviousAwarnessPicker" Title="Previous Awarness (Yes/No) ?"  ItemsSource="{Binding Path=PreviousAwarenessList, Mode=TwoWay}"  />
+                <Entry x:Name="PreviousAwarnessDescEntry" Placeholder="Details of previous anti-trafficking awareness program"/>
+               
+
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
