@@ -4,37 +4,52 @@
              x:Class="NexGenRedAlert.Views.PreSvpForm"
              Title="PreSvp Forms">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Margin="20,20,20,0" Padding="0,20,0,0">
-                <Entry x:Name="VillageCodeEntry" Placeholder="VillageCode"/>
+        <ScrollView >
+            <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric"/>
                 <Frame x:Name="frame"  IsVisible="False" Margin="0,50,0,0" >
                     <Label x:Name="VillageName" Text="" FontSize="20" />
                     <Label x:Name="DistrictName" Text="" FontSize="20" />
                 </Frame>
-                <Label x:Name="SvpDateLabel" Text="PreSvpDate" TextColor="Black"/>
+                <Label x:Name="SvpDateLabel" Text="PreSvpDate" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                 <DatePicker Format="D" TextColor="Black" />
-                <Entry x:Name="DistanceToVillageEntry" Placeholder="One Way Distance to Village" />
+
+                <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="DistanceToVillageEntry" Placeholder="kilometers" Keyboard="Numeric" />
+                <Label x:Name="LocationDescLabel" Text="Location Description:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="LocationDescEntry" Placeholder="Location Description" />
+                <Label x:Name="MajorEmploymentLabel" Text="Major Source of Income:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income" />
-                <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program"/>
-                <Editor x:Name="ActiveCommunityDetailsEntry" />
-                <Entry x:Name="ChildAbuseEntry" Placeholder="Child Abuse count" />
-                <Entry x:Name="DomesticAbuseEntry" Placeholder="Domestic Abuse count" />
-                <Entry x:Name="TraffickingAbuseEntry" Placeholder="Trafficking Abuse count" />
-                <Entry x:Name="MissingAbuseEntry" Placeholder="Missing count" />
-                <Entry x:Name="SchoolDropoutEntry" Placeholder="School dropout count" />
-                <Entry x:Name="TrafficProneDescEntry" Placeholder="Details of Neighbourhood trafficking-prone villages" />
-                <Entry x:Name="LocalIssuesEntry" Placeholder="Local Issues description" />
-                <Entry x:Name="TraffickingAwarenessEntry" Placeholder="Is there awareness about trafficking ?" />
-                <Entry x:Name="CausesOfTraffickingEntry" Placeholder="Causes of Trafficking (Risks)" />
+                <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="ActiveCommunityDetailsEntry"  />
+                <Label x:Name="ChildAbuseCountLabel" Text="Child Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="ChildAbuseCountEntry" Placeholder="Child Abuse count" Keyboard="Numeric" Text="{Binding PreSvp.ChildAbuseCount, Mode=TwoWay}" />
+                <Label x:Name="DomesticAbuseCountLabel" Text="Domestic Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="DomesticAbuseCountEntry" Placeholder="Domestic Abuse count" Keyboard="Numeric" />
+                <Label x:Name="TraffickingAbuseCountLabel" Text="Trafficking Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="TraffickingAbuseCountEntry" Placeholder="Trafficking Abuse count" Keyboard="Numeric" Text="{Binding PreSvp.ChildAbuseCount, Mode=TwoWay}" />
+                <Label x:Name="MissingCountLabel" Text="Missing Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="MissingCountEntry" Placeholder="Missing count" Keyboard="Numeric" />
+                <Label x:Name="SchoolDropoutCountLabel" Text="School Dropout Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="SchoolDropoutCountEntry" Placeholder="School dropout count" Keyboard="Numeric" />
+                <Label x:Name="TrafficProneDescLabel" Text="Details of Neighbourhood trafficking-prone villages:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="TrafficProneDescEntry" />
+                <Label x:Name="LocalIssuesLabel" Text="Local Issues description:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="LocalIssuesEntry"/>
+                <Label x:Name="TraffickingAwarenessLabel" Text="Is there awareness about trafficking ?:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="TraffickingAwarenessEntry" Placeholder="Description" />
+                <Label x:Name="CausesOfTraffickingLabel" Text="Causes of Trafficking (Risks):" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="CausesOfTraffickingEntry" />
+                <Label x:Name="PreviousAwarnessLabel" Text="Previous Awarness (Yes/No) ?:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                 <Picker x:Name="PreviousAwarnessPicker" Title="Previous Awarness (Yes/No) ?"  ItemsSource="{Binding Path=PreviousAwarenessList, Mode=TwoWay}"  />
-                <Entry x:Name="PreviousAwarnessDescEntry" Placeholder="Details of previous anti-trafficking awareness program"/>
-               
-
-
-
-
-
+                <Label x:Name="PreviousAwarnessDescLabel" Text="Details of previous anti-trafficking awareness program:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="PreviousAwarnessDescEntry"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="SaveAndExitButton" Text="Save And Exit" />
+                    <Button x:Name="Submit" Text="Submit" />
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
