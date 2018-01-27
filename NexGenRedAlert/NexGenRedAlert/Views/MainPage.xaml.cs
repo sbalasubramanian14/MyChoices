@@ -18,5 +18,10 @@ namespace NexGenRedAlert.Views
         {
             await Navigation.PushAsync(new NavigationPage(new PreSvpForm()));
         }
+
+        async void OpenPostSvpPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NavigationPage(new PostSvpFormTabbed()));
+        }
     }
 }

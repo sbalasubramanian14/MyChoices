@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.PostSvpFormTabbed"
+            Title="Post-Svp Form">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Page 1" >
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Text="{Binding PostSvp.VillageCode, Mode=TwoWay}" />
+                    <Frame x:Name="frame"  IsVisible="False" Margin="0,50,0,0" >
+                        <Label x:Name="VillageName" Text="" FontSize="20" />
+                        <Label x:Name="DistrictName" Text="" FontSize="20" />
+                    </Frame>
+                    <Label x:Name="SvpDateLabel" Text="PreSvpDate" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <DatePicker Format="D" TextColor="Black" Date="{Binding PostSvp.PostSvpDate, Mode=OneWayToSource}" />
+
+                    <Label x:Name="TravelHoursLabel" Text="Travel time to Village:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TravelHoursEntry" Placeholder="Hours" Keyboard="Numeric" Text="{Binding PostSvp.TravelHours, Mode=TwoWay}" />
+
+                    <Label x:Name="TotalCampaignHoursLabel" Text="Total Campaigning Hours:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TotalCampaignHoursEntry" Placeholder="Hours" Keyboard="Numeric" Text="{Binding PostSvp.TotalCampaignHours, Mode=TwoWay}" />
+
+                    <Label x:Name="MajorEmploymentLabel" Text="Major Source of Income:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income" Text="{Binding PreSvp.MajorSourceOfIncome, Mode=TwoWay}" />
+
+                    <Label x:Name="FieldWorkerNamesLabel" Text="Names of Field Workers" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="FieldWorkerNamesEntry" Text="{Binding PostSvp.FieldWorkerNames, Mode=TwoWay}" />
+
+                    <Label x:Name="ORAVisitedLabel" Text="Did ORA Visit (Yes/No) ?:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="ORAVisitedEntry" Title="Did ORA Visit ?"  SelectedItem="{Binding PostSvp.ORAVisited, Mode=TwoWay}" ItemsSource="{Binding Path=ORAVisitedList, Mode=TwoWay}"   />
+
+                    <Label x:Name="ConfirmedChildAbuseCountLabel" Text="Confirmed Child Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ConfirmedChildAbuseCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedChildAbuseCount, Mode=TwoWay}" />
+
+                    <Label x:Name="ConfirmedDomesticViolenceCasesCountLabel" Text="Confirmed Domestic Violence Cases Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ConfirmedDomesticViolenceCasesCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedDomesticViolenceCasesCount, Mode=TwoWay}" />
+
+                    <Label x:Name="ConfirmedTraffickingCasesCountLabel" Text="Confirmed Trafficking Cases Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ConfirmedTraffickingCasesCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedTraffickingCasesCount, Mode=TwoWay}" />
+
+                    <Label x:Name="ConfirmedMissingCasesCountLabel" Text="Confirmed Missing Cases Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ConfirmedMissingCasesCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedMissingCasesCount, Mode=TwoWay}" />
+
+                    <Label x:Name="ConfirmedSchoolDropOutsCountLabel" Text="Confirmed School DropOuts Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ConfirmedSchoolDropOutsCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedSchoolDropOutsCount, Mode=TwoWay}" />
+
+                    <Label x:Name="NeighbouringTrafficProneDescLabel" Text="Neighbouring Traffic Prone Desc:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="NeighbouringTrafficProneDescEntry" Text="{Binding PostSvp.NeighbouringTrafficProneDesc, Mode=TwoWay}"/>
+
+                    <Label x:Name="MothersParticipationCountLabel" Text="Mothers Participation Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="MothersParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.MothersParticipationCount, Mode=TwoWay}" />
+
+                    <Label x:Name="FathersParticipationCountLabel" Text="Fathers Participation Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="FathersParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedDomesticViolenceCasesCount, Mode=TwoWay}" />
+
+                    <Label x:Name="SchoolParticipationCountLabel" Text="School Participation Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="SchoolParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.SchoolParticipationCount, Mode=TwoWay}" />
+
+                    <Label x:Name="EldersParticipationCountLabel" Text="Elders Participation Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="EldersParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.EldersParticipationCount, Mode=TwoWay}" />
+
+                    <Label x:Name="MovieParticipationCountLabel" Text="Movie Participation Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="MovieParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.MovieParticipationCount, Mode=TwoWay}" />
+
+                    <Label x:Name="TotalParticipationCountLabel" Text="Total Participation Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TotalParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.TotalParticipationCount, Mode=TwoWay}" />
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="ResetButton1" Text="Reset" />
+                        <Button x:Name="SaveAndExitButton1" Text="Save And Exit" />
+                        <Button x:Name="NextPage" Text="Next Page" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Page 2" >
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="MothersFeedbackLabel" Text="Mothers Feedback" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="MothersFeedbackEntry" Text="{Binding PostSvp.MothersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="FathersFeedbackLabel" Text="Fathers Feedback :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="FathersFeedbackEntry" Text="{Binding PostSvp.FathersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="SchoolFeedbackLabel" Text="School Feedback :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SchoolFeedbackEntry" Text="{Binding PostSvp.SchoolFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="EldersFeedbackLabel" Text="Elders Feedback :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="EldersFeedbackEntry" Text="{Binding PostSvp.EldersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="SchoolNameLabel" Text="School Name :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="SchoolNameEntry" Placeholder="School Name" Text="{Binding PostSvp.SchoolName, Mode=TwoWay}" />
+
+                    <Label x:Name="ComicBooksCountLabel" Text="Comic Books Count :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ComicBooksCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvp.ComicBooksCount, Mode=TwoWay}" />
+
+                    <Label x:Name="TotalSvpCostLabel" Text="Total Svp Cost :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TotalSvpCostEntry" Placeholder="Cost" Keyboard="Numeric" Text="{Binding PostSvp.TotalSvpCost, Mode=TwoWay}" />
+
+                    <Label x:Name="SummaryLabel" Text="Summary:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SummaryEntry" Text="{Binding PostSvp.Summary, Mode=TwoWay}" />
+
+                    <Label x:Name="PositiveFeedbackLabel" Text="Positive Feedback :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="PositiveFeedbackEntry" Text="{Binding PostSvp.PositiveFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="ChallengesDescLabel" Text="Challenges :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="ChallengesDescEntry" Text="{Binding PostSvp.ChallengesDesc, Mode=TwoWay}" />
+
+                    <Label x:Name="IsFollowUpRequiredDescLabel" Text="Is Follow-Up Required ?" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="IsFollowUpRequiredDescEntry" Text="{Binding PostSvp.IsFollowUpRequiredDesc, Mode=TwoWay}" />
+
+                    <Label x:Name="RecomendationsLabel" Text="Recomendations :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="RecomendationsEntry" Text="{Binding PostSvp.Recomendations, Mode=TwoWay}" />
+
+                    <Label x:Name="ElderNameLabel" Text="Village Elder Name:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ElderNameEntry" Placeholder="Name"  Text="{Binding PostSvp.ElderName, Mode=TwoWay}" />
+
+                    <Label x:Name="ElderDesignationLabel" Text="Elder's Designation :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ElderDesignationEntry" Placeholder="Designation" Text="{Binding PostSvp.ElderDesignation, Mode=TwoWay}" />
+
+                    <Label x:Name="ElderContactNumberLabel" Text="Elder Contact Number :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ElderContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding PostSvp.ElderContactNumber, Mode=TwoWay}" />
+
+                    <Label x:Name="PoliceNameLabel" Text="Village Policeman Name:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="PoliceNameEntry" Placeholder="Name"  Text="{Binding PostSvp.PoliceName, Mode=TwoWay}" />
+
+                    <Label x:Name="PoliceDesignationLabel" Text="Policeman's Designation :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="PoliceDesignationEntry" Placeholder="Designation" Text="{Binding PostSvp.PoliceDesignation, Mode=TwoWay}" />
+
+                    <Label x:Name="PoliceContactNumberLabel" Text="Police Contact Number :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="PoliceContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding PostSvp.PoliceContactNumber, Mode=TwoWay}" />
+
+
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="ResetButton2" Text="Reset" />
+                        <Button x:Name="SaveAndExitButton2" Text="Save And Exit" />
+                        <Button x:Name="Submit" Text="Submit" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>
