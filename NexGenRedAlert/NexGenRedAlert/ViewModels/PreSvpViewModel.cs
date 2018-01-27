@@ -8,12 +8,12 @@ namespace NexGenRedAlert.ViewModels
 {
     class PreSvpViewModel : BaseViewModel
     {
-        public PreSvp PreSvp { get; set; }
+        public PreSvp PreSvp = new PreSvp();
         private ObservableCollection<string> _previousAwarenessList = new ObservableCollection<string>();
 
-        public PreSvpViewModel(PreSvp preSvp = null)
+        public PreSvpViewModel()
         {
-            PreSvp = preSvp;
+            
         }
         
         public ObservableCollection<string> PreviousAwarenessList
