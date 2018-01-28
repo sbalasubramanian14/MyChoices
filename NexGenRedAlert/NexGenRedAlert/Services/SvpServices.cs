@@ -25,7 +25,7 @@ namespace NexGenRedAlert.Services
             Client = new HttpClient();
         }
 
-        public string PostAsyncSavePreSvpForm(PreSvp PreSvpForm)
+        public async Task<string> PostAsyncSavePreSvpForm(PreSvp PreSvpForm)
         {
             var httpClient = new HttpClient();
 
@@ -33,7 +33,7 @@ namespace NexGenRedAlert.Services
             HttpContent httpContent = new StringContent(json);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var result =  httpClient.PostAsync(WebServiceUrl+ "SavePreSvp", httpContent).Result;
+            var result =  await httpClient.PostAsync(WebServiceUrl+ "SavePreSvp", httpContent);
 
             return result.Content.ToString();
         }

@@ -20,6 +20,12 @@ namespace NexGenRedAlert.Views
             BindingContext = postSvpviewModel = new PostSvpViewModel();
         }
 
-        
+        public void onClickChangeTab(object sender, EventArgs evt)
+        {
+            var parentPage =  page2.Parent as TabbedPage;
+            parentPage.CurrentPage = parentPage.Children[1];
+        }
+
+
     }
 }

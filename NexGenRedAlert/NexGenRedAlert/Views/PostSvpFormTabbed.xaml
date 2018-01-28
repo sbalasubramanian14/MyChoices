@@ -4,7 +4,7 @@
              x:Class="NexGenRedAlert.Views.PostSvpFormTabbed"
             Title="Post-Svp Form">
   <!--Pages can be added as references or inline-->
-    <ContentPage Title="Page 1" >
+    <ContentPage x:Name="page1" Title="Page 1" >
         <ContentPage.Content>
             <ScrollView >
                 <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
@@ -70,13 +70,13 @@
                     <StackLayout Orientation="Horizontal">
                         <Button x:Name="ResetButton1" Text="Reset" />
                         <Button x:Name="SaveAndExitButton1" Text="Save And Exit" />
-                        <Button x:Name="NextPage" Text="Next Page" />
+                        <Button x:Name="NextPage" Text="Next Page" Clicked="onClickChangeTab" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
         </ContentPage.Content>
     </ContentPage>
-    <ContentPage Title="Page 2" >
+    <ContentPage x:Name="page2" Title="Page 2" >
         <ContentPage.Content>
             <ScrollView >
                 <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
@@ -134,11 +134,10 @@
                     <Label x:Name="PoliceContactNumberLabel" Text="Police Contact Number :" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="PoliceContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding PostSvp.PoliceContactNumber, Mode=TwoWay}" />
 
-
                     <StackLayout Orientation="Horizontal">
                         <Button x:Name="ResetButton2" Text="Reset" />
                         <Button x:Name="SaveAndExitButton2" Text="Save And Exit" />
-                        <Button x:Name="Submit" Text="Submit" />
+                        <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitPostSvpForm}" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

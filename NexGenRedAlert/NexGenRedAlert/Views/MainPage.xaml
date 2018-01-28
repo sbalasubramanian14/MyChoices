@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:NexGenRedAlert.Views"
-            x:Class="NexGenRedAlert.Views.MainPage">
+            x:Class="NexGenRedAlert.Views.MainPage"
+             Title="Red Alert">
     <ContentPage.Content>
         <StackLayout x:Name="MainLayout">
             <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
@@ -11,11 +12,10 @@
             <StackLayout VerticalOptions="StartAndExpand" Margin="20,0,20,0" >
                 <ActivityIndicator x:Name="activityIndicator" IsRunning="True" Color="Crimson"/>
                 <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpPage" />
-                <Button x:Name="postSvpButton" Text="Post-Svp Form" Command="{Binding OpenPostSvpForms}" />
-                <Button x:Name="button_login" Text="Incomplete Forms" Command="{Binding OpenPostSvpForms}" />
-                <Label Text="ROTATION"
-               BindingContext="{x:Reference Name=slider}"
-               Rotation="{Binding Path=Value}"
+                <Button x:Name="postSvpButton" Text="Post-Svp Form" Clicked="OpenPostSvpPage" />
+                <Button x:Name="button_login" Text="Incomplete Forms" Clicked="OpenAboutPage" />
+                <Label x:Name="label" Text="ROTATION"
+               Rotation="{Binding Source={x:Reference Name=slider}, Path=Value}"
                FontAttributes="Bold"
                FontSize="Large"
                HorizontalOptions="Center"
@@ -24,6 +24,7 @@
                 <Slider x:Name="slider"
                 Maximum="360"
                 VerticalOptions="CenterAndExpand" />
+                <Label Text="{Binding Source={x:Reference slider}, Path=Value , StringFormat='The Value is {0}'}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

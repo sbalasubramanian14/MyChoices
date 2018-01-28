@@ -63,7 +63,7 @@
                 <StackLayout Orientation="Horizontal">
                     <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
                     <Button x:Name="SaveAndExitButton" Text="Save And Exit" />
-                    <Button x:Name="Submit" Text="Submit" />
+                    <Button x:Name="Submit" Text="Submit" Command="Binding SubmitPreSvpForm"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
