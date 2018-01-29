@@ -34,7 +34,7 @@ namespace WhitePage.Entities.RedAlert
         public string LocalIssuesDesc { get; set; }
         public string AwarenessDesc { get; set; }
         public string TraffickingCausesDesc { get; set; }
-        public bool PreviousAwareness { get; set; }
+        public String PreviousAwareness { get; set; }
         public string PreviousAwarenessDesc { get; set; }
 
         public DateTime CreatedDateTime { get; set; }

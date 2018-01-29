@@ -22,7 +22,7 @@ namespace WhitePage.Entities.RedAlert
         public float TravelHours { get; set; }
         public float TotalCampaignHours { get; set; }
         public string FieldWorkerNames { get; set; }
-        public bool ORAVisited { get; set; }
+        public String ORAVisited { get; set; }
 
         public byte ConfirmedChildAbuseCount { get; set; }
         public byte ConfirmedDomesticViolenceCasesCount { get; set; }

@@ -21,7 +21,7 @@
 	[LocalIssuesDesc] VARCHAR(500) NOT NULL,
 	[AwarenessDesc] VARCHAR(500) NOT NULL,
 	[TraffickingCausesDesc] VARCHAR(500) NOT NULL,
-	[PreviousAwareness] BIT NOT NULL,
+	[PreviousAwareness] VARCHAR(3) NOT NULL,
 	[PreviousAwarenessDesc] VARCHAR(500),
 
 	[CreatedDateTime] DATETIME NOT NULL,

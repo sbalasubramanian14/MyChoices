@@ -6,7 +6,7 @@
 	[TravelHours] DECIMAL(3,1) NOT NULL,
 	[TotalCampaignHours] DECIMAL(4,2) NOT NULL,
 	[FieldWorkerNames] VARCHAR(200) NOT NULL,
-	[ORAVisited] BIT NOT NULL,
+	[ORAVisited] VARCHAR(3) NOT NULL,
 
 	[VillageCode] INT NOT NULL,
 	
