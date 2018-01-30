@@ -13,7 +13,7 @@ namespace NexGenRedAlert.Services
     public class SvpServices
     {
         HttpClient Client;
-        private const string WebServiceUrl = "http://localhost:58841/api/";
+        private const string WebServiceUrl = "https://mychoicesredalert.azurewebsites.net/api/svp/";
 
         public SvpServices(HttpClient client)
         {
@@ -27,20 +27,30 @@ namespace NexGenRedAlert.Services
 
         public async Task<string> PostAsyncSavePreSvpForm(PreSvp PreSvpForm)
         {
-            var httpClient = new HttpClient();
+            try
+            {
+                var httpClient = new HttpClient();
+                PreSvpForm.CreatedBy = PreSvpForm.CreatedBy.ToUpper();
 
-            var json = JsonConvert.SerializeObject(PreSvpForm);
-            HttpContent httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var json = JsonConvert.SerializeObject(PreSvpForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var result =  await httpClient.PostAsync(WebServiceUrl+ "SavePreSvp", httpContent);
+                var result = await httpClient.PostAsync(WebServiceUrl + "SavePreSvp", httpContent);
 
-            return result.Content.ToString();
+                return result.Content.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
         }
 
         public async Task<string> PostAsyncSavePostSvpForm(PostSvp PostSvpForm)
         {
             var httpClient = new HttpClient();
+            PostSvpForm.CreatedBy = PostSvpForm.CreatedBy.ToUpper();
 
             var json = JsonConvert.SerializeObject(PostSvpForm);
             HttpContent httpContent = new StringContent(json);
