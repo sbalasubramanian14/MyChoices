@@ -12,8 +12,11 @@
                     <Label x:Name="VillageName" Text="" FontSize="20" />
                     <Label x:Name="DistrictName" Text="" FontSize="20" />
                 </Frame>
+                <Label x:Name="IpCodeLabel" Text="IP Code:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="IpCodeEntry" Placeholder="IP Code"   Text="{Binding PreSvp.CreatedBy}"/>
+                
                 <Label x:Name="SvpDateLabel" Text="PreSvp Date" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
-                <DatePicker Format="D" TextColor="Black" MinimumDate="1/01/2017" Date="{Binding PreSvp.PreSvpDate}" />
+                <DatePicker x:Name="PreSvpDatePicker" Format="D" TextColor="Black"  Date="{Binding PreSvp.PreSvpDate}" />
 
                 <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="DistanceToVillageEntry" Placeholder="kilometers" Keyboard="Numeric" Text="{Binding PreSvp.DistanceToVillage}" />
@@ -60,10 +63,9 @@
                 <Label x:Name="PreviousAwarnessDescLabel" Text="Details of previous anti-trafficking awareness program:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="PreviousAwarnessDescEntry" Text="{Binding PreSvp.PreviousAwarenessDesc}"/>
                 
-                <StackLayout Orientation="Horizontal">
-                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
-                    <Button x:Name="SaveAndExitButton" Text="Save And Exit" />
-                    <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitPreSvpForm}"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ResetButton" FontSize="10"  Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="Submit" Text="Submit" FontSize="10" Command="{Binding SubmitPreSvpForm}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

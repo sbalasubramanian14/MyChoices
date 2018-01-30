@@ -19,6 +19,7 @@ namespace NexGenRedAlert.Views
 		{
 			InitializeComponent ();
             BindingContext = preSvpviewModel = new PreSvpViewModel();
+            PreSvpDatePicker.Date = DateTime.Now;
 		}
 
         async void OnResetClicked(object sender , EventArgs evt)
