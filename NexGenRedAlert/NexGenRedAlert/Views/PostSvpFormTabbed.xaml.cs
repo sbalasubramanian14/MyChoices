@@ -18,6 +18,7 @@ namespace NexGenRedAlert.Views
         {
             InitializeComponent();
             BindingContext = postSvpviewModel = new PostSvpViewModel();
+            SvpDatePicker.Date = DateTime.Now;
         }
 
         public void onClickChangeTab(object sender, EventArgs evt)
