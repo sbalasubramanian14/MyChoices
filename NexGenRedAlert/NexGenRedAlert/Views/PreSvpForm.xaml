@@ -6,61 +6,61 @@
     <ContentPage.Content>
         <ScrollView >
             <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Text="{Binding PreSvp.VillageCode}" />
                 <Frame x:Name="frame"  IsVisible="False" Margin="0,50,0,0" >
-                    <Label x:Name="VillageName" Text="" FontSize="20" />
-                    <Label x:Name="DistrictName" Text="" FontSize="20" />
+                    <Label x:Name="VillageName" Text="" FontSize="15" />
+                    <Label x:Name="DistrictName" Text="" FontSize="15" />
                 </Frame>
-                <Label x:Name="IpCodeLabel" Text="IP Code:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="IpCodeLabel" Text="IP Code:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="IpCodeEntry" Placeholder="IP Code"   Text="{Binding PreSvp.CreatedBy}"/>
                 
-                <Label x:Name="SvpDateLabel" Text="PreSvp Date" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="SvpDateLabel" Text="PreSvp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <DatePicker x:Name="PreSvpDatePicker" Format="D" TextColor="Black"  Date="{Binding PreSvp.PreSvpDate}" />
 
-                <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="DistanceToVillageEntry" Placeholder="kilometers" Keyboard="Numeric" Text="{Binding PreSvp.DistanceToVillage}" />
                 
-                <Label x:Name="LocationDescLabel" Text="Location Description:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="LocationDescLabel" Text="Location Description:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="LocationDescEntry" Placeholder="Location Description" Text="{Binding PreSvp.LocationDesc}" />
                 
-                <Label x:Name="MajorEmploymentLabel" Text="Major Source of Income:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="MajorEmploymentLabel" Text="Major Source of Income:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income" Text="{Binding PreSvp.MajorSourceOfIncome}" />
                 
-                <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="ActiveCommunityDetailsEntry" Text="{Binding PreSvp.ActiveCommunityGroup}" />
                 
-                <Label x:Name="ChildAbuseCountLabel" Text="Child Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="ChildAbuseCountLabel" Text="Child Abuse Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="ChildAbuseCountEntry" Placeholder="Child Abuse count" Keyboard="Numeric" Text="{Binding PreSvp.ChildAbuseCount}" />
                 
-                <Label x:Name="DomesticAbuseCountLabel" Text="Domestic Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="DomesticAbuseCountLabel" Text="Domestic Abuse Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="DomesticAbuseCountEntry" Placeholder="Domestic Abuse count" Keyboard="Numeric" Text="{Binding PreSvp.DomesticViolenceCasesCount}" />
                 
-                <Label x:Name="TraffickingAbuseCountLabel" Text="Trafficking Abuse Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="TraffickingAbuseCountLabel" Text="Trafficking Abuse Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="TraffickingAbuseCountEntry" Placeholder="Trafficking Abuse count" Keyboard="Numeric" Text="{Binding PreSvp.TraffickingCasesCount}" />
                 
-                <Label x:Name="MissingCountLabel" Text="Missing Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="MissingCountLabel" Text="Missing Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="MissingCountEntry" Placeholder="Missing count" Keyboard="Numeric" Text="{Binding PreSvp.MissingCasesCount}" />
                 
-                <Label x:Name="SchoolDropoutCountLabel" Text="School Dropout Count:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="SchoolDropoutCountLabel" Text="School Dropout Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="SchoolDropoutCountEntry" Placeholder="School dropout count" Keyboard="Numeric" Text="{Binding PreSvp.SchoolDropOutsCount}" />
                 
-                <Label x:Name="TrafficProneDescLabel" Text="Details of Neighbourhood trafficking-prone villages:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="TrafficProneDescLabel" Text="Details of Neighbourhood trafficking-prone villages:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="TrafficProneDescEntry" Text="{Binding PreSvp.NeighbouringTrafficProneDesc}" />
                 
-                <Label x:Name="LocalIssuesLabel" Text="Local Issues description:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="LocalIssuesLabel" Text="Local Issues description:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="LocalIssuesEntry" Text="{Binding PreSvp.LocalIssuesDesc}"/>
                 
-                <Label x:Name="TraffickingAwarenessLabel" Text="Is there awareness about trafficking ?:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="TraffickingAwarenessLabel" Text="Is there awareness about trafficking ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="TraffickingAwarenessEntry" Placeholder="Description" Text="{Binding PreSvp.AwarenessDesc}" />
                 
-                <Label x:Name="CausesOfTraffickingLabel" Text="Causes of Trafficking (Risks):" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="CausesOfTraffickingLabel" Text="Causes of Trafficking (Risks):" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="CausesOfTraffickingEntry" Text="{Binding PreSvp.TraffickingCausesDesc}" />
                 
-                <Label x:Name="PreviousAwarnessLabel" Text="Previous Awarness (Yes/No) ?:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="PreviousAwarnessLabel" Text="Previous Awarness (Yes/No) ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Picker x:Name="PreviousAwarnessPicker" Title="Previous Awarness (Yes/No) ?" SelectedItem="{Binding PreSvp.PreviousAwareness}" ItemsSource="{Binding Path=PreviousAwarenessList, Mode=TwoWay}"  />
                 
-                <Label x:Name="PreviousAwarnessDescLabel" Text="Details of previous anti-trafficking awareness program:" FontSize="20" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="PreviousAwarnessDescLabel" Text="Details of previous anti-trafficking awareness program:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="PreviousAwarnessDescEntry" Text="{Binding PreSvp.PreviousAwarenessDesc}"/>
                 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
