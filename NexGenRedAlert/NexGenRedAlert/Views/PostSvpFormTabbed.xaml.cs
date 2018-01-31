@@ -14,11 +14,15 @@ namespace NexGenRedAlert.Views
     public partial class PostSvpFormTabbed : TabbedPage
     {
         PostSvpViewModel postSvpviewModel;
+        private List<string> OraVisitedList = new List<string>();
         public PostSvpFormTabbed ()
         {
             InitializeComponent();
             BindingContext = postSvpviewModel = new PostSvpViewModel();
             SvpDatePicker.Date = DateTime.Now;
+            OraVisitedList.Add("Yes");
+            OraVisitedList.Add("No");
+            ORAVisitedEntry.ItemsSource = OraVisitedList;
         }
 
         public void onClickChangeTab(object sender, EventArgs evt)

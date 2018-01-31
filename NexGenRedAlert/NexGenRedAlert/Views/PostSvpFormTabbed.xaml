@@ -33,7 +33,7 @@
                     <Editor x:Name="FieldWorkerNamesEntry" Text="{Binding PostSvp.FieldWorkerNames, Mode=TwoWay}" />
 
                     <Label x:Name="ORAVisitedLabel" Text="Did ORA Visit (Yes/No) ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Picker x:Name="ORAVisitedEntry" Title="Did ORA Visit ?"  SelectedItem="{Binding PostSvp.ORAVisited, Mode=TwoWay}" ItemsSource="{Binding Path=ORAVisitedList, Mode=TwoWay}"   />
+                    <Picker x:Name="ORAVisitedEntry" Title="Did ORA Visit ?"  SelectedItem="{Binding PostSvp.ORAVisited, Mode=TwoWay}" />
 
                     <Label x:Name="ConfirmedChildAbuseCountLabel" Text="Confirmed Child Abuse Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="ConfirmedChildAbuseCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding PostSvp.ConfirmedChildAbuseCount, Mode=TwoWay}" />

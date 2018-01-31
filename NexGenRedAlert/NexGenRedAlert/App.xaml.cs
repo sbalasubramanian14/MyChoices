@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using NexGenRedAlert.Services;
 using NexGenRedAlert.Views;
 using Xamarin.Forms;
@@ -12,7 +13,6 @@ namespace NexGenRedAlert
         public App ()
 		{
 			InitializeComponent();
-
 
             MainPage = new NavigationPage(new MainPage());
         }

@@ -20,7 +20,11 @@ namespace NexGenRedAlert.Views
 			InitializeComponent ();
             BindingContext = preSvpviewModel = new PreSvpViewModel();
             PreSvpDatePicker.Date = DateTime.Now;
-		}
+            PreviousAwarenessList.Add("Yes");
+            PreviousAwarenessList.Add("No");
+            PreviousAwarnessPicker.ItemsSource = PreviousAwarenessList;
+
+        }
 
         async void OnResetClicked(object sender , EventArgs evt)
         {

@@ -13,7 +13,6 @@ namespace NexGenRedAlert.ViewModels
     class PostSvpViewModel : BaseViewModel
     {
         public ICommand SubmitPostSvpForm { get; }
-        private ObservableCollection<string> _ORAVisitedListList = new ObservableCollection<string>();
 
         public PostSvpViewModel()
         {
@@ -25,16 +24,6 @@ namespace NexGenRedAlert.ViewModels
         {
             get { return _PostSvp; }
             set { SetProperty(ref _PostSvp, value); }
-        }
-        public ObservableCollection<string> ORAVisitedList
-        {
-            get
-            {
-                _ORAVisitedListList.Add("Yes");
-                _ORAVisitedListList.Add("No");
-                return _ORAVisitedListList;
-            }
-            set { SetProperty(ref _ORAVisitedListList, value); }
         }
     }
     

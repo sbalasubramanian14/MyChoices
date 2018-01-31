@@ -58,7 +58,7 @@
                 <Editor x:Name="CausesOfTraffickingEntry" Text="{Binding PreSvp.TraffickingCausesDesc}" />
                 
                 <Label x:Name="PreviousAwarnessLabel" Text="Previous Awarness (Yes/No) ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <Picker x:Name="PreviousAwarnessPicker" Title="Previous Awarness (Yes/No) ?" SelectedItem="{Binding PreSvp.PreviousAwareness}" ItemsSource="{Binding Path=PreviousAwarenessList, Mode=TwoWay}"  />
+                <Picker x:Name="PreviousAwarnessPicker" Title="Previous Awarness (Yes/No) ?" SelectedItem="{Binding PreSvp.PreviousAwareness}" />
                 
                 <Label x:Name="PreviousAwarnessDescLabel" Text="Details of previous anti-trafficking awareness program:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="PreviousAwarnessDescEntry" Text="{Binding PreSvp.PreviousAwarenessDesc}"/>

@@ -6,14 +6,12 @@
              Title="Red Alert">
     <ContentPage.Content>
         <StackLayout x:Name="MainLayout">
-            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
-                <Image x:Name="LoginIcon" Source="logoMychoices.png" Margin="0,10,50,0" />
+            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
             </StackLayout>
             <StackLayout VerticalOptions="StartAndExpand" Margin="20,0,20,0" >
                 <ActivityIndicator x:Name="activityIndicator" IsRunning="True" Color="Crimson"/>
                 <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpPage" />
                 <Button x:Name="postSvpButton" Text="Post-Svp Form" Clicked="OpenPostSvpPage" />
-                <Button x:Name="button_login" Text="Incomplete Forms" Clicked="OpenAboutPage" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

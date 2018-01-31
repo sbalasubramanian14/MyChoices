@@ -12,9 +12,6 @@ namespace NexGenRedAlert.ViewModels
     {
         public ICommand SubmitPreSvpForm { get; }
 
-
-        private ObservableCollection<string> _previousAwarenessList = new ObservableCollection<string>();
-
         public PreSvpViewModel()
         {
             SubmitPreSvpForm = new Command(async () => await App.SvpServices.PostAsyncSavePreSvpForm(PreSvp));
@@ -25,18 +22,6 @@ namespace NexGenRedAlert.ViewModels
         {
             get { return _PreSvp; }
             set { SetProperty(ref _PreSvp, value); }
-        }
-
-
-        public ObservableCollection<string> PreviousAwarenessList
-        {
-            get
-            {
-                _previousAwarenessList.Add("Yes");
-                _previousAwarenessList.Add("No");
-                return _previousAwarenessList;
-            }
-            set { SetProperty(ref _previousAwarenessList, value); }
         }
     }
 }
