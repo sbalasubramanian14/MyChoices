@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using NexGenRedAlert.contracts;
 using NexGenRedAlert.Services;
 using NexGenRedAlert.Views;
 using Xamarin.Forms;
@@ -14,9 +15,23 @@ namespace NexGenRedAlert
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());
+            InitialisePage();
         }
 
+        private void InitialisePage()
+        {
+            var networkConnection =DependencyService.Get<INetworkConnection>();
+            networkConnection.CheckNetworkConnection();
+            if(networkConnection.IsConnected)
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
+        }
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
