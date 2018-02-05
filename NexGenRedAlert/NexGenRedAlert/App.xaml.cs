@@ -21,13 +21,14 @@ namespace NexGenRedAlert
 
         private void InitialisePage()
         {
-            var networkConnection =DependencyService.Get<INetworkConnection>();
+           /*  commented for now do disable Login Page
+            * var networkConnection =DependencyService.Get<INetworkConnection>();
             networkConnection.CheckNetworkConnection();
             if(networkConnection.IsConnected)
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
-            else
+            else*/
             {
                 MainPage = new NavigationPage(new MainPage());
             }
