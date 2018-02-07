@@ -5,13 +5,16 @@ using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.BusinessAccess.Contracts.Security;
 using WhitePage.BusinessAccess.Implementation.Core;
 using WhitePage.BusinessAccess.Implementation.Ops;
+using WhitePage.BusinessAccess.Implementation.RedAlert.Security;
 using WhitePage.BusinessAccess.Implementation.Security;
 using WhitePage.ResourceAccess;
 using WhitePage.ResourceAccess.Contracts.Core;
 using WhitePage.ResourceAccess.Contracts.Ops;
+using WhitePage.ResourceAccess.Contracts.RedAlert.Security;
 using WhitePage.ResourceAccess.Contracts.Security;
 using WhitePage.ResourceAccess.Implementation.Core;
 using WhitePage.ResourceAccess.Implementation.Ops;
+using WhitePage.ResourceAccess.Implementation.RedAlert.Security;
 using WhitePage.ResourceAccess.Implementation.Security;
 
 namespace WhitePage.DIContainer
@@ -52,12 +55,15 @@ namespace WhitePage.DIContainer
             _serviceCollection.AddTransient<ICaseDataAccess, CaseDataAccess>();
             _serviceCollection.AddTransient<ICommonDataAccess, CommonDataAccess>();
             _serviceCollection.AddTransient<ISvpDataAccess, SvpDataAccess>();
+            _serviceCollection.AddTransient<IRALoginDataAccess, RALoginDataAccess>();
+
 
             //Business Access
             _serviceCollection.AddTransient<ILoginBusinessAccess, LoginBusinessAccess>();
             _serviceCollection.AddTransient<ICaseBusinessAccess, CaseBusinessAccess>();
-            _serviceCollection.AddTransient<ISvpBusinessAccess, SvpBusinessAccess>();
             _serviceCollection.AddTransient<ICommonBusinessAccess, CommonBusinessAccess>();
+            _serviceCollection.AddTransient<ISvpBusinessAccess, SvpBusinessAccess>();
+            _serviceCollection.AddTransient<IRALoginBusinessAccess, RALoginBusinessAccess>();
 
             //Build Service Provider
             _serviceProvider = services.BuildServiceProvider();

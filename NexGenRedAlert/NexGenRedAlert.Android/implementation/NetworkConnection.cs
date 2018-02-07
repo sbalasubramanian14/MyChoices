@@ -24,6 +24,7 @@ namespace NexGenRedAlert.Droid.implementation
         public bool IsConnected { get; set; }
         public void CheckNetworkConnection()
         {
+            // TODO: To be refactored later to inject via constructor injection
             var connectivityManager = (ConnectivityManager)Forms.Context.ApplicationContext.GetSystemService(Context.ConnectivityService);
             NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
             IsConnected = networkInfo.IsConnected;

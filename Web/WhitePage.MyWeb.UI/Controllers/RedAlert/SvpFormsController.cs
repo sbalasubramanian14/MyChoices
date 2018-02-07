@@ -20,27 +20,19 @@ using WhitePage.Entities.RedAlert;
 namespace WhitePage.MyWeb.UI.Controllers
 {
     
-    [Route("api/[controller]")]
-    public class SvpController : WhitePageController
+    [Route("api/redalert/[controller]")]
+    public class SvpFormsController : WhitePageController
     {
         private ISvpBusinessAccess svpBusinessAccess;
 
-        public SvpController(ISvpBusinessAccess svpBusinessAccess)
+        public SvpFormsController(ISvpBusinessAccess svpBusinessAccess)
         {
             this.svpBusinessAccess = svpBusinessAccess;
         }
 
-        [Route("[action]/{id:int}")]
-        [HttpGet]
-        public IActionResult GetSvpById(int id)
-        {
-            //var selectedCase = this.caseBusinessAccess.GetCaseById(id);
-            return Ok("hi");
-        }
-
         [Route("[action]")]
         [HttpPost]
-        public IActionResult SavePreSvp([FromBody] PreSvp PreSvpForm)
+        public IActionResult SavePreSvpForm([FromBody] PreSvp PreSvpForm)
         {
 
             PreSvpForm.CreatedDateTime = DateTime.Now;
@@ -51,7 +43,7 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult SavePostSvp([FromBody] PostSvp PostSvpForm)
+        public IActionResult SaveSvpForm([FromBody] PostSvp PostSvpForm)
         {
 
             PostSvpForm.CreatedDateTime = DateTime.Now;

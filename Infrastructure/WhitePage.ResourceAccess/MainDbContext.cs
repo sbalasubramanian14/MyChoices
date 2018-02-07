@@ -64,5 +64,7 @@ namespace WhitePage.ResourceAccess
         public DbSet<PostSvp> PostSvp { get; set; }
         public DbSet<PreSvp> PreSvp { get; set; }
         public DbSet<SerialNumbertrackerRA> SerialNumbertrackerRA { get; set; }
+
+        public DbSet<ImplementingPartner> ImplementingPartner { get; set; }
     }
 }

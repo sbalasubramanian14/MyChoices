@@ -8,14 +8,20 @@ using System.Threading.Tasks;
 
 namespace WhitePage.Entities.RedAlert
 {
-    [Table(name: "IpDetails", Schema = "Core")]
-    public class IpDetails
+    [Table(name: "trImplementingPartner", Schema = "Auth")]
+    public class ImplementingPartner
     {
         [Key]
+        public string UserName { get; set; }
+        public int UserId { get; set; }
+
         public string IpCode { get; set; }
         public string NgoName { get; set; }
         public string PrimaryContact { get; set; }
-        public string PrimaryEmail { get; set; }
+        public string PrimaryContactNumber { get; set; }
+        
+        public int CreatedBy { get; set; }	
+        public DateTime CreatedDate { get; set; }
 
     }
 }
