@@ -21,14 +21,14 @@ namespace NexGenRedAlert
 
         private void InitialisePage()
         {
-           /*  commented for now do disable Login Page
-            * var networkConnection =DependencyService.Get<INetworkConnection>();
+            var networkConnection =DependencyService.Get<INetworkConnection>();
             networkConnection.CheckNetworkConnection();
+
             if(networkConnection.IsConnected)
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
-            else*/
+            else
             {
                 MainPage = new NavigationPage(new MainPage());
             }
@@ -47,6 +47,7 @@ namespace NexGenRedAlert
 		{
 			// Handle when your app resumes
 		}
+
         public static SvpServices SvpServices
         {
             get
