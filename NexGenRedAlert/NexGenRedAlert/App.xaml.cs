@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using NexGenRedAlert.contracts;
+using NexGenRedAlert.Models;
 using NexGenRedAlert.Services;
 using NexGenRedAlert.Views;
 using Xamarin.Forms;
@@ -10,6 +11,7 @@ namespace NexGenRedAlert
 	public partial class App : Application
 	{
         static SvpServices SvpService;
+        static AuthServices AuthService;
 
         public App ()
 		{
@@ -23,8 +25,7 @@ namespace NexGenRedAlert
         {
             var networkConnection =DependencyService.Get<INetworkConnection>();
             networkConnection.CheckNetworkConnection();
-
-            if(networkConnection.IsConnected)
+            if (networkConnection.IsConnected)
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
@@ -60,5 +61,16 @@ namespace NexGenRedAlert
             }
         }
 
+        public static AuthServices AuthServices
+        {
+            get
+            {
+                if (AuthService == null)
+                {
+                    AuthService = new AuthServices();
+                }
+                return AuthService;
+            }
+        }
     }
 }

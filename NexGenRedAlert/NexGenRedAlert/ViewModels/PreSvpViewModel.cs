@@ -20,7 +20,7 @@ namespace NexGenRedAlert.ViewModels
             SubmitPreSvpForm = new Command(async () => {
             this.result =await App.SvpServices.PostAsyncSavePreSvpForm(PreSvp);
 
-            DependencyService.Get<ToastMessage>().ShortAlert("Submission Successful");
+          //  DependencyService.Get<IToastMessage>().ShortAlert("Submission Successful");
 
             await Application.Current.MainPage.Navigation.PushAsync(new MainPage());
             });

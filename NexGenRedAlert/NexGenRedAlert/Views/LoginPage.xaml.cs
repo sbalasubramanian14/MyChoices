@@ -9,6 +9,10 @@ using Xamarin.Forms;
 using Xamarin.Auth;
 using Xamarin.Forms.Xaml;
 using NexGenRedAlert.Auth;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using NexGenRedAlert.Models;
 
 namespace NexGenRedAlert.Views
 {
@@ -20,10 +24,14 @@ namespace NexGenRedAlert.Views
             InitializeComponent();
         }
         public static readonly string ClientId = "604822021872-052g10g9q6qpkkr1nlk2p6r5kqk6f0ke.apps.googleusercontent.com";
+        public static readonly string GMAIL_REQUESTURL = "https://www.googleapis.com/oauth2/v2/userinfo";
         Xamarin.Auth.OAuth2Authenticator authenticator = null;
+
+         
 
         public void GoogleAuth(object sender, EventArgs evt) 
         {
+            LoginActivityIndicator.IsVisible = true;
             authenticator
                  = new Xamarin.Auth.OAuth2Authenticator
                  (
@@ -31,7 +39,7 @@ namespace NexGenRedAlert.Views
                      clientSecret: null,
                      authorizeUrl: new Uri("https://accounts.google.com/o/oauth2/v2/auth"),
                      redirectUrl: new Uri("com.googleusercontent.apps.604822021872-052g10g9q6qpkkr1nlk2p6r5kqk6f0ke:/oauth2redirect"),
-                     scope: "profile",
+                     scope: "email",
                      accessTokenUrl: new Uri("https://www.googleapis.com/oauth2/v4/token"),
                      getUsernameAsync: null,
                      isUsingNativeUI: true
@@ -40,7 +48,7 @@ namespace NexGenRedAlert.Views
                      AllowCancel = true,
                  };
 
-            authenticator.Completed += OnAuthCompleted;
+            authenticator.Completed += OnAuthCompletedAsync;
             authenticator.Error += OnAuthError;
 
             AuthenticationState.Authenticator = authenticator;
@@ -50,35 +58,58 @@ namespace NexGenRedAlert.Views
             return;
         }
 
-        void OnAuthCompleted(object sender, AuthenticatorCompletedEventArgs e)
+         async void OnAuthCompletedAsync(object sender, AuthenticatorCompletedEventArgs e)
         {
             var authenticator = sender as OAuth2Authenticator;
-
-            if (authenticator != null)
-            {
-                authenticator.Completed -= OnAuthCompleted;
-                authenticator.Error -= OnAuthError;
-            }
+            ImplementingPartner implementingPartner;
 
             if (e.IsAuthenticated)
             {
-                DisplayAlert("Authentication", "Success", "ok");
+                string userEmail="";
+                var request = new OAuth2Request
+                                (
+                                    "GET",
+                                    new Uri(GMAIL_REQUESTURL),
+                                    null,
+                                    e.Account
+                                );
+                var response = await request.GetResponseAsync();
+
+                if (response != null)
+                {
+                    //Get the user data here
+                    var userData = JObject.Parse(response.GetResponseText());
+                    userEmail=userData["email"].ToString();
+                }
+
+
+                implementingPartner = await App.AuthServices.PostAsyncValidateImplementingPartner(userEmail);
+
+                LoginActivityIndicator.IsVisible = false;
+
+                if(implementingPartner != null)
+                {
+                    await DisplayAlert("Authentication", "Successfully Logged in: "+ implementingPartner.NgoName, "ok");
+                    Application.Current.Properties["IpCode"] = implementingPartner.IpCode;
+                    Application.Current.Properties["NgoName"] = implementingPartner.NgoName;
+                    await this.Navigation.PushAsync(new NavigationPage(new MainPage()));
+                }
+                else
+                {
+                    await DisplayAlert("Authentication", "Failed", "ok");
+                }
+                
             }
             else
             {
-                DisplayAlert("Authentication", "Failed", "ok");
+                LoginActivityIndicator.IsVisible = true;
+               await DisplayAlert("Authentication", "Failed", "ok");
             }
         }
 
         void OnAuthError(object sender, AuthenticatorErrorEventArgs e)
         {
             var authenticator = sender as OAuth2Authenticator;
-
-            if (authenticator != null)
-            {
-                authenticator.Completed -= OnAuthCompleted;
-                authenticator.Error -= OnAuthError;
-            }
 
             DisplayAlert("Authentication error", e.Message, "ok");
         }

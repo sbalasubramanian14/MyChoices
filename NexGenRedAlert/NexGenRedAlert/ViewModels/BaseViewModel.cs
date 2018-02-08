@@ -31,13 +31,17 @@ namespace NexGenRedAlert.ViewModels
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
         {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return false;
+            Boolean status = false;
 
-            backingStore = value;
-            onChanged?.Invoke();
-            OnPropertyChanged(propertyName);
-            return true;
+            if (!EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
+                backingStore = value;
+                onChanged?.Invoke();
+                OnPropertyChanged(propertyName);
+                status = true;
+            }
+
+            return status;
         }
 
         #region INotifyPropertyChanged

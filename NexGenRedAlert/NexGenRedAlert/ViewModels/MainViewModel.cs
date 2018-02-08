@@ -12,7 +12,6 @@ namespace NexGenRedAlert.ViewModels
         public MainViewModel()
         {
             Title = "About";
-
         }  
     }
 }
