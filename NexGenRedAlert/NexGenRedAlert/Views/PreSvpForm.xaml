@@ -12,8 +12,9 @@
                     <Label x:Name="VillageName" Text="" FontSize="15" />
                     <Label x:Name="DistrictName" Text="" FontSize="15" />
                 </Frame>
+                
                 <Label x:Name="IpCodeLabel" Text="IP Code:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <Entry x:Name="IpCodeEntry" Placeholder="IP Code"   Text="{Binding PreSvp.CreatedBy}"/>
+                <Entry x:Name="IpCodeEntry" Placeholder="IP Code" Text="{Binding PreSvp.CreatedBy}"/>
                 
                 <Label x:Name="SvpDateLabel" Text="PreSvp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <DatePicker x:Name="PreSvpDatePicker" Format="D" TextColor="Black"  Date="{Binding PreSvp.PreSvpDate}" />
@@ -65,8 +66,9 @@
                 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Button x:Name="ResetButton" FontSize="10"  Text="Reset" Clicked="OnResetClicked" />
-                    <Button x:Name="Submit" Text="Submit" FontSize="10" Command="{Binding SubmitPreSvpForm}"/>
+                    <Button x:Name="Submit" Text="Submit" FontSize="10"  Command="{Binding SubmitPreSvpForm}"/>
                 </StackLayout>
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

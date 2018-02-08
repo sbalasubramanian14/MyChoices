@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:views="clr-namespace:NexGenRedAlert.Views"
-            x:Class="NexGenRedAlert.Views.MainPage"
-             Title="Red Alert">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.MenuPage"
+             NavigationPage.HasBackButton="False">
     <ContentPage.Content>
         <StackLayout x:Name="MainLayout">
             <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
@@ -12,6 +11,7 @@
                 <ActivityIndicator x:Name="activityIndicator" IsRunning="True" Color="Crimson"/>
                 <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpPage" />
                 <Button x:Name="postSvpButton" Text="Post-Svp Form" Clicked="OpenPostSvpPage" />
+                <Button x:Name="LogoutButton" Text="Logout" Command="{Binding LogoutCurrentUser }" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

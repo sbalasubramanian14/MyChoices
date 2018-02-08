@@ -19,7 +19,9 @@ namespace NexGenRedAlert.Views
         {
             InitializeComponent();
             BindingContext = postSvpviewModel = new PostSvpViewModel();
+
             SvpDatePicker.Date = DateTime.Now;
+
             OraVisitedList.Add("Yes");
             OraVisitedList.Add("No");
             ORAVisitedEntry.ItemsSource = OraVisitedList;
@@ -27,8 +29,13 @@ namespace NexGenRedAlert.Views
 
         public void onClickChangeTab(object sender, EventArgs evt)
         {
-            var parentPage =  page2.Parent as TabbedPage;
+            var parentPage =  pageTwo.Parent as TabbedPage;
             parentPage.CurrentPage = parentPage.Children[1];
+        }
+
+        async void OnResetClicked(object sender, EventArgs evt)
+        {
+            await Navigation.PushAsync(new PostSvpFormTabbed());
         }
 
 

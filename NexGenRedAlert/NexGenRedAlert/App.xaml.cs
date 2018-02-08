@@ -10,12 +10,16 @@ namespace NexGenRedAlert
 {
 	public partial class App : Application
 	{
-        static SvpServices SvpService;
-        static AuthServices AuthService;
+        public static SvpServices SvpService;
+        public static AuthServices AuthService;
+
+        public static ICredentialService CredentialService;
 
         public App ()
 		{
-			InitializeComponent();
+            InitializeComponent();
+
+            CredentialService= DependencyService.Get<ICredentialService>();
 
             //MainPage = new NavigationPage(new MainPage());
             InitialisePage();
@@ -27,14 +31,15 @@ namespace NexGenRedAlert
             networkConnection.CheckNetworkConnection();
             if (networkConnection.IsConnected)
             {
-                MainPage = new NavigationPage(new LoginPage());
+                MainPage = new NavigationPage(new LoginPage());                
             }
             else
             {
-                MainPage = new NavigationPage(new MainPage());
+                MainPage = new NavigationPage(new AboutPage());
             }
         }
-		protected override void OnStart ()
+
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

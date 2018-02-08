@@ -9,6 +9,8 @@ namespace NexGenRedAlert.Services
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using System.Net.Http.Headers;
+    using NexGenRedAlert.contracts;
+    using Xamarin.Forms;
 
     public class SvpServices
     {
@@ -30,14 +32,13 @@ namespace NexGenRedAlert.Services
             try
             {
                 var httpClient = new HttpClient();
-               // PreSvpForm.CreatedBy = PreSvpForm.CreatedBy.ToUpper();
-
+                PreSvpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
                 var json = JsonConvert.SerializeObject(PreSvpForm);
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                var result = await httpClient.PostAsync(WebServiceUrl + "SavePreSvpForm", httpContent);
-                var preSvpNumber = JsonConvert.DeserializeObject<string>(await result.Content.ReadAsStringAsync());
+                var result = await httpClient.PostAsync(WebServiceUrl + "SavePreSvpForm", httpContent); 
+                string preSvpNumber = await result.Content.ReadAsStringAsync();
                 return preSvpNumber;
             }
             catch (Exception ex)
@@ -47,18 +48,26 @@ namespace NexGenRedAlert.Services
             }
         }
 
-        public async Task<string> PostAsyncSavePostSvpForm(PostSvp PostSvpForm)
+        public async Task<string> PostAsyncSaveSvpForm(PostSvp SvpForm)
         {
-            var httpClient = new HttpClient();
-            PostSvpForm.CreatedBy = PostSvpForm.CreatedBy.ToUpper();
+            try
+            {
+                var httpClient = new HttpClient();
+                SvpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
 
-            var json = JsonConvert.SerializeObject(PostSvpForm);
-            HttpContent httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var json = JsonConvert.SerializeObject(SvpForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var result = await httpClient.PostAsync(WebServiceUrl + "SaveSvpForm", httpContent);
-
-            return result.Content.ToString();
+                var result = await httpClient.PostAsync(WebServiceUrl + "SaveSvpForm", httpContent);
+                string SvpFormNumber = await result.Content.ReadAsStringAsync();
+                return SvpFormNumber;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
         }
     }
 }

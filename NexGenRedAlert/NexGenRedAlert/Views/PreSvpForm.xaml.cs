@@ -28,7 +28,7 @@ namespace NexGenRedAlert.Views
 
         async void OnResetClicked(object sender , EventArgs evt)
         {
-            await Navigation.PushAsync(new NavigationPage( new PreSvpForm()));
+            await Navigation.PushAsync( new PreSvpForm());
         }
     }
 }

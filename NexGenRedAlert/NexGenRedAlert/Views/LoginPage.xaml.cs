@@ -13,21 +13,35 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NexGenRedAlert.Models;
+using NexGenRedAlert.contracts;
 
 namespace NexGenRedAlert.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
-        {
-            InitializeComponent();
-        }
+        private ICredentialService credentialService;
+
         public static readonly string ClientId = "604822021872-052g10g9q6qpkkr1nlk2p6r5kqk6f0ke.apps.googleusercontent.com";
         public static readonly string GMAIL_REQUESTURL = "https://www.googleapis.com/oauth2/v2/userinfo";
         Xamarin.Auth.OAuth2Authenticator authenticator = null;
 
-         
+        public LoginPage()
+        {
+            this.credentialService = DependencyService.Get<ICredentialService>();
+            InitialisePageAsync();
+            InitializeComponent();
+           
+        }
+
+        public async void InitialisePageAsync()
+        {
+           if (this.credentialService.DoCredentialsExist())
+            {
+                await this.Navigation.PushAsync(new MenuPage());
+            }
+        }
+       
 
         public void GoogleAuth(object sender, EventArgs evt) 
         {
@@ -90,9 +104,8 @@ namespace NexGenRedAlert.Views
                 if(implementingPartner != null)
                 {
                     await DisplayAlert("Authentication", "Successfully Logged in: "+ implementingPartner.NgoName, "ok");
-                    Application.Current.Properties["IpCode"] = implementingPartner.IpCode;
-                    Application.Current.Properties["NgoName"] = implementingPartner.NgoName;
-                    await this.Navigation.PushAsync(new NavigationPage(new MainPage()));
+                    this.credentialService.SaveCredentials(implementingPartner.UserName, implementingPartner.IpCode);
+                    await this.Navigation.PushAsync(new MenuPage());
                 }
                 else
                 {

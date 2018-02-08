@@ -12,12 +12,20 @@ namespace NexGenRedAlert.ViewModels
     class PostSvpViewModel : BaseViewModel
     {
         public ICommand SubmitPostSvpForm { get; }
+        public string svpNumber;
+        public string AlertMessage = "Submitted Succesfully!\nSvpNumber is :";
 
         public PostSvpViewModel()
         {
             SubmitPostSvpForm = new Command(async () => {
-                await App.SvpServices.PostAsyncSavePostSvpForm(PostSvp);
-                await Application.Current.MainPage.Navigation.PushAsync(new MainPage());
+                this.svpNumber=await App.SvpServices.PostAsyncSaveSvpForm(PostSvp);
+                if (string.IsNullOrEmpty(this.svpNumber))
+                {
+                    this.AlertMessage = "Form Submission failed ! Retry later";
+                }
+
+                await Application.Current.MainPage.DisplayAlert("Submission Status", this.AlertMessage + this.svpNumber, "Ok");
+                await Application.Current.MainPage.Navigation.PopAsync(); 
             });
         }
 
