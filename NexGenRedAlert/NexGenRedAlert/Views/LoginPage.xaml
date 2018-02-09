@@ -7,7 +7,7 @@
             <Image Source="MyChoicesLogo.png" HorizontalOptions="FillAndExpand"
                        VerticalOptions="Start" Margin="20,20,50,20" />
             <ActivityIndicator x:Name="LoginActivityIndicator" HeightRequest="40" VerticalOptions="Start"
-                          HorizontalOptions="Center" IsRunning="True" IsVisible="False" />
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="True" IsVisible="False" />
             
             <Button x:Name="loginButton" Text="Sign In With Google" Margin="20,20,20,20" VerticalOptions="End"  Clicked="GoogleAuth" />
         </StackLayout>

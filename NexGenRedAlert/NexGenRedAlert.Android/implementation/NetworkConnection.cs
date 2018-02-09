@@ -20,14 +20,12 @@ namespace NexGenRedAlert.Droid.implementation
 {
     public class NetworkConnection : INetworkConnection
     {
-        private ConnectivityManager _connectivityManager;
         public bool IsConnected { get; set; }
         public void CheckNetworkConnection()
         {
             // TODO: To be refactored later to inject via constructor injection
-            var connectivityManager = (ConnectivityManager)Forms.Context.ApplicationContext.GetSystemService(Context.ConnectivityService);
-            NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
-            IsConnected = networkInfo.IsConnected;
+            var connectivityManager = (ConnectivityManager)Android.App.Application.Context.ApplicationContext.GetSystemService(Context.ConnectivityService);
+            IsConnected = connectivityManager.IsDefaultNetworkActive;
         }
     }
 }

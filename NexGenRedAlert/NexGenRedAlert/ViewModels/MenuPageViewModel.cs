@@ -15,13 +15,15 @@ namespace NexGenRedAlert.ViewModels
         {
             Title = "RedAlert";
             LogoutCurrentUser = new Command(async () => {
-                DependencyService.Get<ICredentialService>().DeleteCredentials();
-                await Application.Current.MainPage.Navigation.PopToRootAsync();
+
+                var confirmation = await Application.Current.MainPage.DisplayAlert("Logout Confirmation","Are you sure ?","Yes" ,"No");
+                if(confirmation)
+                {
+                    DependencyService.Get<ICredentialService>().DeleteCredentials();
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                 
             });
-        }
-        public void OnLogoutClicked()
-        {
-            
         }
     }
 }
