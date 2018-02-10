@@ -29,6 +29,12 @@
     <Compile Update="Views\AboutPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\PreSvpFormPage.xaml.cs">
+      <DependentUpon>PreSvpFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SvpFormTabbedPage.xaml.cs">
+      <DependentUpon>SvpFormTabbedPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +44,10 @@
     <EmbeddedResource Update="Views\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PostSvpFormTabbed.xaml">
+    <EmbeddedResource Update="Views\SvpFormTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PreSvpForm.xaml">
+    <EmbeddedResource Update="Views\PreSvpFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

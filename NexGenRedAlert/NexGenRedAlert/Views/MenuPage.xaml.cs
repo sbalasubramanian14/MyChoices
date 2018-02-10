@@ -22,12 +22,12 @@ namespace NexGenRedAlert.Views
 
         async void OpenPreSvpPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PreSvpForm());
+            await Navigation.PushAsync(new PreSvpFormPage());
         }
 
         async void OpenPostSvpPage(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PostSvpFormTabbed());
+            await Navigation.PushAsync(new SvpFormTabbedPage());
         }
 
         async void OpenAboutPage(object sender, EventArgs e)

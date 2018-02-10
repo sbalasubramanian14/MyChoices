@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NexGenRedAlert.Models
 {
-    public class PostSvp : Entity
+    public class SvpForm : Entity
     {
         #region variables
         private int _FormId;

@@ -10,8 +10,9 @@ namespace NexGenRedAlert.contracts
         string UserName { get; }
 
         string IpCode { get; }
+        string NgoName { get; }
 
-        void SaveCredentials(string UserName, string IpCode);
+        void SaveCredentials(string UserName, string IpCode, string Ngoname);
 
         void DeleteCredentials();
 

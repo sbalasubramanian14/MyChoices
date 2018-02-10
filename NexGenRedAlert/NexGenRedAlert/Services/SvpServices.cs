@@ -27,13 +27,16 @@ namespace NexGenRedAlert.Services
             Client = new HttpClient();
         }
 
-        public async Task<string> PostAsyncSavePreSvpForm(PreSvp PreSvpForm)
+        public async Task<string> PostAsyncSavePreSvpForm(PreSvpForm preSvpForm)
         {
             try
             {
                 var httpClient = new HttpClient();
-                PreSvpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
-                var json = JsonConvert.SerializeObject(PreSvpForm);
+
+                // IpCode Detail is Obtained from AccountStore object
+                preSvpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+
+                var json = JsonConvert.SerializeObject(preSvpForm);
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
@@ -48,14 +51,14 @@ namespace NexGenRedAlert.Services
             }
         }
 
-        public async Task<string> PostAsyncSaveSvpForm(PostSvp SvpForm)
+        public async Task<string> PostAsyncSaveSvpForm(SvpForm svpForm)
         {
             try
             {
                 var httpClient = new HttpClient();
-                SvpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+                svpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
 
-                var json = JsonConvert.SerializeObject(SvpForm);
+                var json = JsonConvert.SerializeObject(svpForm);
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 

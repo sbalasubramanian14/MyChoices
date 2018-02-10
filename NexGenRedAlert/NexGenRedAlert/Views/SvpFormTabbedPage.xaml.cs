@@ -11,14 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace NexGenRedAlert.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PostSvpFormTabbed : TabbedPage
+    public partial class SvpFormTabbedPage : TabbedPage
     {
-        PostSvpViewModel postSvpviewModel;
+        SvpViewModel svpViewModel;
         private List<string> OraVisitedList = new List<string>();
-        public PostSvpFormTabbed ()
+        public SvpFormTabbedPage ()
         {
             InitializeComponent();
-            BindingContext = postSvpviewModel = new PostSvpViewModel();
+            BindingContext = svpViewModel = new SvpViewModel();
 
             SvpDatePicker.Date = DateTime.Now;
 
@@ -35,7 +35,7 @@ namespace NexGenRedAlert.Views
 
         async void OnResetClicked(object sender, EventArgs evt)
         {
-            await Navigation.PushAsync(new PostSvpFormTabbed());
+            await Navigation.PushAsync(new SvpFormTabbedPage());
         }
 
 

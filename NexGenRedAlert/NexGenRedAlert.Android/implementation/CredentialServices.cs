@@ -27,6 +27,14 @@ namespace NexGenRedAlert.Services
                 return (account != null) ? account.Properties["IpCode"] : null;
             }
         }
+        public string NgoName
+        {
+            get
+            {
+                var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
+                return (account != null) ? account.Properties["NgoName"] : null;
+            }
+        }
 
         public void DeleteCredentials()
         {
@@ -42,15 +50,16 @@ namespace NexGenRedAlert.Services
             return AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).Any() ? true : false;
         }
 
-        public void SaveCredentials(string UserName, string IpCode)
+        public void SaveCredentials(string UserName, string IpCode , string NgoName)
         {
-            if (!string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(IpCode))
+            if (!string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(IpCode) && !string.IsNullOrWhiteSpace(NgoName))
             {
                 Account account = new Account
                 {
                     Username = UserName
                 };
                 account.Properties.Add("IpCode",IpCode);
+                account.Properties.Add("NgoName", NgoName);
                 AccountStore.Create(Application.Context).Save(account, Application.Context.ApplicationInfo.Name);
             }
         }

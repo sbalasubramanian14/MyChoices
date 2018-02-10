@@ -25,5 +25,13 @@ namespace NexGenRedAlert.ViewModels
                  
             });
         }
+        
+        public string WelcomeMessage
+        {
+            get
+            {
+                return "Welcome "+DependencyService.Get<ICredentialService>().NgoName +" !";
+            }
+        }
     }
 }

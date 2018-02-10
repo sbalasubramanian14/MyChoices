@@ -5,12 +5,14 @@
              NavigationPage.HasBackButton="False">
     <ContentPage.Content>
         <StackLayout x:Name="MainLayout">
-            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+            <StackLayout x:Name="WelcomeStack" VerticalOptions="FillAndExpand" HorizontalOptions="Center" Margin="0,20,0,0">
+                <Label x:Name="UserNameLabel" Text="{Binding WelcomeMessage}" FontSize="22" TextColor="{StaticResource PrimaryDark}" />
             </StackLayout>
+            
             <StackLayout VerticalOptions="StartAndExpand" Margin="20,0,20,0" >
                 <ActivityIndicator x:Name="activityIndicator" IsRunning="True" Color="Crimson"/>
                 <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpPage" />
-                <Button x:Name="postSvpButton" Text="Post-Svp Form" Clicked="OpenPostSvpPage" />
+                <Button x:Name="SvpButton" Text="Svp Form" Clicked="OpenPostSvpPage" />
                 <Button x:Name="LogoutButton" Text="Logout" Command="{Binding LogoutCurrentUser }" />
             </StackLayout>
         </StackLayout>
