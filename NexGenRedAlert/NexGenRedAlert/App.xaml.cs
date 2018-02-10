@@ -31,7 +31,12 @@ namespace NexGenRedAlert
             networkConnection.CheckNetworkConnection();
             if (networkConnection.IsConnected)
             {
-                MainPage = new NavigationPage(new LoginPage());                
+                if (CredentialService.DoCredentialsExist())
+                {
+                    MainPage = new NavigationPage(new MenuPage());
+                }
+                else
+                    MainPage = new NavigationPage(new LoginPage());                
             }
             else
             {

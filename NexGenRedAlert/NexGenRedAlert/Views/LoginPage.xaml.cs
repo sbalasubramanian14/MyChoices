@@ -29,17 +29,8 @@ namespace NexGenRedAlert.Views
         public LoginPage()
         {
             this.credentialService = DependencyService.Get<ICredentialService>();
-            InitialisePageAsync();
-            InitializeComponent();
            
-        }
-
-        public async void InitialisePageAsync()
-        {
-           if (this.credentialService.DoCredentialsExist())
-            {
-                await this.Navigation.PushAsync(new MenuPage());
-            }
+            InitializeComponent();
         }
        
 
@@ -105,7 +96,7 @@ namespace NexGenRedAlert.Views
                 {
                     await DisplayAlert("Authentication", "Successfully Logged in: "+ implementingPartner.NgoName, "ok");
                     this.credentialService.SaveCredentials(implementingPartner.UserName, implementingPartner.IpCode);
-                    await this.Navigation.PushAsync(new MenuPage());
+                    Application.Current.MainPage = new NavigationPage(new MenuPage());
                 }
                 else
                 {

@@ -20,7 +20,7 @@ namespace NexGenRedAlert.ViewModels
                 if(confirmation)
                 {
                     DependencyService.Get<ICredentialService>().DeleteCredentials();
-                    await Application.Current.MainPage.Navigation.PopAsync();
+                    Application.Current.MainPage = new NavigationPage(new LoginPage());
                 }
                  
             });
