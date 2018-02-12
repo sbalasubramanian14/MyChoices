@@ -12,7 +12,7 @@ namespace WhitePage.Entities.RedAlert
     public class Svp
     {
         [Key]
-        public int FormId { get; set; }
+        public int SVPId { get; set; }
         public string SvpNumber { get; set; }
         
 

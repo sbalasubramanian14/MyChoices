@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Core].[trSerialNumberTrackerRA]
 (
-	[SerialNumberTrackerId] [int] NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	[SerialNumberTrackerRAId] [int] NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[FormType] [varchar](5) NOT NULL,
 	[IpCode] [VARCHAR](10) NOT NULL,
 	[SerialValue] [int] NOT NULL,

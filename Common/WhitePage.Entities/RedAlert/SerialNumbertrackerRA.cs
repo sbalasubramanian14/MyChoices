@@ -12,7 +12,7 @@ namespace WhitePage.Entities.RedAlert
     public class SerialNumbertrackerRA
     {
        [Key]
-       public int SerialNumberTrackerId { get; set; }
+       public int SerialNumberTrackerRAId { get; set; }
        public string FormType { get; set; }
        public string IpCode { get; set; }
        public int SerialValue { get; set; }
