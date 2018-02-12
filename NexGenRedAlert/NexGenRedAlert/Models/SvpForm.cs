@@ -7,107 +7,107 @@ namespace NexGenRedAlert.Models
     public class SvpForm : Entity
     {
         #region variables
-        private int _FormId;
-        private string _PostSvpNumber;
-        private int _VillageCode;
-        private DateTime _PostSvpDate;
+        private int _formId;
+        private string _svpNumber;
+        private int _villageCode;
+        private DateTime _svpDate;
 
-        private float _TravelHours;
-        private float _TotalCampaignHours;
-        private string _FieldWorkerNames;
-        private string _ORAVisited;
+        private float _travelHours;
+        private float _totalCampaignHours;
+        private string _fieldWorkerNames;
+        private string _oraVisited;
 
-        private byte _ConfirmedChildAbuseCount;
-        private byte _ConfirmedDomesticViolenceCasesCount;
-        private byte _ConfirmedTraffickingCasesCount;
-        private byte _ConfirmedMissingCasesCount;
-        private byte _ConfirmedSchoolDropOutsCount;
-        private string _NeighbouringTrafficProneDesc;
+        private byte _confirmedChildAbuseCount;
+        private byte _confirmedDomesticViolenceCasesCount;
+        private byte _confirmedTraffickingCasesCount;
+        private byte _confirmedMissingCasesCount;
+        private byte _confirmedSchoolDropOutsCount;
+        private string _neighbouringTrafficProneDesc;
 
-        private short _MothersParticipationCount;
-        private short _FathersParticipationCount;
-        private short _SchoolParticipationCount;
-        private short _EldersParticipationCount;
-        private short _MovieParticipationCount;
-        private short _TotalParticipationCount;
+        private short _mothersParticipationCount;
+        private short _fathersParticipationCount;
+        private short _schoolParticipationCount;
+        private short _eldersParticipationCount;
+        private short _movieParticipationCount;
+        private short _totalParticipationCount;
 
-        private string _MothersFeedback;
-        private string _FathersFeedback;
-        private string _SchoolFeedback;
-        private string _EldersFeedback;
+        private string _mothersFeedback;
+        private string _fathersFeedback;
+        private string _schoolFeedback;
+        private string _eldersFeedback;
 
-        private string _SchoolName;
-        private short _ComicBooksCount;
-        private int _TotalSvpCost;
-        private string _Summary;
-        private string _PositiveFeedback;
-        private string _ChallengesDesc;
-        private string _IsFollowUpRequiredDesc;
-        private string _Recomendations;
+        private string _schoolName;
+        private short _comicBooksCount;
+        private int _totalSvpCost;
+        private string _summary;
+        private string _positiveFeedback;
+        private string _challengesDesc;
+        private string _isFollowUpRequiredDesc;
+        private string _recomendations;
 
-        private string _ElderName;
-        private string _ElderDesignation;
-        private string _ElderContactNumber;
+        private string _elderName;
+        private string _elderDesignation;
+        private string _elderContactNumber;
 
-        private string _PoliceName;
-        private string _PoliceDesignation;
-        private string _PoliceContactNumber;
+        private string _policeName;
+        private string _policeDesignation;
+        private string _policeContactNumber;
 
         private DateTime _CreatedDateTime;
-        private string _CreatedBy;
+        private string _createdBy;
 
         #endregion
 
-        public int FormId { get { return _FormId; } set { SetProperty(ref _FormId, value); } }
-        public string PostSvpNumber { get { return _PostSvpNumber; } set { SetProperty(ref _PostSvpNumber, value); } }
+        public int FormId { get { return _formId; } set { SetProperty(ref _formId, value); } }
+        public string SvpNumber { get { return _svpNumber; } set { SetProperty(ref _svpNumber, value); } }
 
 
-        public int VillageCode { get { return _VillageCode; } set { SetProperty(ref _VillageCode, value); } }
-        public DateTime PostSvpDate { get { return _PostSvpDate; } set { SetProperty(ref _PostSvpDate, value); } }
+        public int VillageCode { get { return _villageCode; } set { SetProperty(ref _villageCode, value); } }
+        public DateTime SvpDate { get { return _svpDate; } set { SetProperty(ref _svpDate, value); } }
 
-        public float TravelHours { get { return _TravelHours; } set { SetProperty(ref _TravelHours, value); } }
-        public float TotalCampaignHours { get { return _TotalCampaignHours; } set { SetProperty(ref _TotalCampaignHours, value); } }
-        public string FieldWorkerNames { get { return _FieldWorkerNames; } set { SetProperty(ref _FieldWorkerNames, value); } }
-        public string ORAVisited { get { return _ORAVisited; } set { SetProperty(ref _ORAVisited, value); } }
+        public float TravelHours { get { return _travelHours; } set { SetProperty(ref _travelHours, value); } }
+        public float TotalCampaignHours { get { return _totalCampaignHours; } set { SetProperty(ref _totalCampaignHours, value); } }
+        public string FieldWorkerNames { get { return _fieldWorkerNames; } set { SetProperty(ref _fieldWorkerNames, value); } }
+        public string ORAVisited { get { return _oraVisited; } set { SetProperty(ref _oraVisited, value); } }
 
-        public byte ConfirmedChildAbuseCount { get { return _ConfirmedChildAbuseCount; } set { SetProperty(ref _ConfirmedChildAbuseCount, value); } }
-        public byte ConfirmedDomesticViolenceCasesCount { get { return _ConfirmedDomesticViolenceCasesCount; } set { SetProperty(ref _ConfirmedDomesticViolenceCasesCount, value); } }
-        public byte ConfirmedTraffickingCasesCount { get { return _ConfirmedTraffickingCasesCount; } set { SetProperty(ref _ConfirmedTraffickingCasesCount, value); } }
-        public byte ConfirmedMissingCasesCount { get { return _ConfirmedMissingCasesCount; } set { SetProperty(ref _ConfirmedMissingCasesCount, value); } }
-        public byte ConfirmedSchoolDropOutsCount { get { return _ConfirmedSchoolDropOutsCount; } set { SetProperty(ref _ConfirmedSchoolDropOutsCount, value); } }
-        public string NeighbouringTrafficProneDesc { get { return _NeighbouringTrafficProneDesc; } set { SetProperty(ref _NeighbouringTrafficProneDesc, value); } }
+        public byte ConfirmedChildAbuseCount { get { return _confirmedChildAbuseCount; } set { SetProperty(ref _confirmedChildAbuseCount, value); } }
+        public byte ConfirmedDomesticViolenceCasesCount { get { return _confirmedDomesticViolenceCasesCount; } set { SetProperty(ref _confirmedDomesticViolenceCasesCount, value); } }
+        public byte ConfirmedTraffickingCasesCount { get { return _confirmedTraffickingCasesCount; } set { SetProperty(ref _confirmedTraffickingCasesCount, value); } }
+        public byte ConfirmedMissingCasesCount { get { return _confirmedMissingCasesCount; } set { SetProperty(ref _confirmedMissingCasesCount, value); } }
+        public byte ConfirmedSchoolDropOutsCount { get { return _confirmedSchoolDropOutsCount; } set { SetProperty(ref _confirmedSchoolDropOutsCount, value); } }
+        public string NeighbouringTrafficProneDesc { get { return _neighbouringTrafficProneDesc; } set { SetProperty(ref _neighbouringTrafficProneDesc, value); } }
 
-        public short MothersParticipationCount { get { return _MothersParticipationCount; } set { SetProperty(ref _MothersParticipationCount, value); } }
-        public short FathersParticipationCount { get { return _FathersParticipationCount; } set { SetProperty(ref _FathersParticipationCount, value); } }
-        public short SchoolParticipationCount { get { return _SchoolParticipationCount; } set { SetProperty(ref _SchoolParticipationCount, value); } }
-        public short EldersParticipationCount { get { return _EldersParticipationCount; } set { SetProperty(ref _EldersParticipationCount, value); } }
-        public short MovieParticipationCount { get { return _MovieParticipationCount; } set { SetProperty(ref _MovieParticipationCount, value); } }
-        public short TotalParticipationCount { get { return _TotalParticipationCount; } set { SetProperty(ref _TotalParticipationCount, value); } }
+        public short MothersParticipationCount { get { return _mothersParticipationCount; } set { SetProperty(ref _mothersParticipationCount, value); } }
+        public short FathersParticipationCount { get { return _fathersParticipationCount; } set { SetProperty(ref _fathersParticipationCount, value); } }
+        public short SchoolParticipationCount { get { return _schoolParticipationCount; } set { SetProperty(ref _schoolParticipationCount, value); } }
+        public short EldersParticipationCount { get { return _eldersParticipationCount; } set { SetProperty(ref _eldersParticipationCount, value); } }
+        public short MovieParticipationCount { get { return _movieParticipationCount; } set { SetProperty(ref _movieParticipationCount, value); } }
+        public short TotalParticipationCount { get { return _totalParticipationCount; } set { SetProperty(ref _totalParticipationCount, value); } }
 
-        public string MothersFeedback { get { return _MothersFeedback; } set { SetProperty(ref _MothersFeedback, value); } }
-        public string FathersFeedback { get { return _FathersFeedback; } set { SetProperty(ref _FathersFeedback, value); } }
-        public string SchoolFeedback { get { return _SchoolFeedback; } set { SetProperty(ref _SchoolFeedback, value); } }
-        public string EldersFeedback { get { return _EldersFeedback; } set { SetProperty(ref _EldersFeedback, value); } }
+        public string MothersFeedback { get { return _mothersFeedback; } set { SetProperty(ref _mothersFeedback, value); } }
+        public string FathersFeedback { get { return _fathersFeedback; } set { SetProperty(ref _fathersFeedback, value); } }
+        public string SchoolFeedback { get { return _schoolFeedback; } set { SetProperty(ref _schoolFeedback, value); } }
+        public string EldersFeedback { get { return _eldersFeedback; } set { SetProperty(ref _eldersFeedback, value); } }
 
-        public string SchoolName { get { return _SchoolName; } set { SetProperty(ref _SchoolName, value); } }
-        public short ComicBooksCount { get { return _ComicBooksCount; } set { SetProperty(ref _ComicBooksCount, value); } }
-        public int TotalSvpCost { get { return _TotalSvpCost; } set { SetProperty(ref _TotalSvpCost, value); } }
-        public string Summary { get { return _Summary; } set { SetProperty(ref _Summary, value); } }
-        public string PositiveFeedback { get { return _PositiveFeedback; } set { SetProperty(ref _PositiveFeedback, value); } }
-        public string ChallengesDesc { get { return _ChallengesDesc; } set { SetProperty(ref _ChallengesDesc, value); } }
-        public string IsFollowUpRequiredDesc { get { return _IsFollowUpRequiredDesc; } set { SetProperty(ref _IsFollowUpRequiredDesc, value); } }
-        public string Recomendations { get { return _Recomendations; } set { SetProperty(ref _Recomendations, value); } }
+        public string SchoolName { get { return _schoolName; } set { SetProperty(ref _schoolName, value); } }
+        public short ComicBooksCount { get { return _comicBooksCount; } set { SetProperty(ref _comicBooksCount, value); } }
+        public int TotalSvpCost { get { return _totalSvpCost; } set { SetProperty(ref _totalSvpCost, value); } }
+        public string Summary { get { return _summary; } set { SetProperty(ref _summary, value); } }
+        public string PositiveFeedback { get { return _positiveFeedback; } set { SetProperty(ref _positiveFeedback, value); } }
+        public string ChallengesDesc { get { return _challengesDesc; } set { SetProperty(ref _challengesDesc, value); } }
+        public string IsFollowUpRequiredDesc { get { return _isFollowUpRequiredDesc; } set { SetProperty(ref _isFollowUpRequiredDesc, value); } }
+        public string Recomendations { get { return _recomendations; } set { SetProperty(ref _recomendations, value); } }
 
-        public string ElderName { get { return _ElderName; } set { SetProperty(ref _ElderName, value); } }
-        public string ElderDesignation { get { return _ElderDesignation; } set { SetProperty(ref _ElderDesignation, value); } }
-        public string ElderContactNumber { get { return _ElderContactNumber; } set { SetProperty(ref _ElderContactNumber, value); } }
+        public string ElderName { get { return _elderName; } set { SetProperty(ref _elderName, value); } }
+        public string ElderDesignation { get { return _elderDesignation; } set { SetProperty(ref _elderDesignation, value); } }
+        public string ElderContactNumber { get { return _elderContactNumber; } set { SetProperty(ref _elderContactNumber, value); } }
 
-        public string PoliceName { get { return _PoliceName; } set { SetProperty(ref _PoliceName, value); } }
-        public string PoliceDesignation { get { return _PoliceDesignation; } set { SetProperty(ref _PoliceDesignation, value); } }
-        public string PoliceContactNumber { get { return _PoliceContactNumber; } set { SetProperty(ref _PoliceContactNumber, value); } }
+        public string PoliceName { get { return _policeName; } set { SetProperty(ref _policeName, value); } }
+        public string PoliceDesignation { get { return _policeDesignation; } set { SetProperty(ref _policeDesignation, value); } }
+        public string PoliceContactNumber { get { return _policeContactNumber; } set { SetProperty(ref _policeContactNumber, value); } }
 
         public DateTime CreatedDateTime { get { return _CreatedDateTime; } set { SetProperty(ref _CreatedDateTime, value); } }
-        public string CreatedBy { get { return _CreatedBy; } set { SetProperty(ref _CreatedBy, value); } }
+        public string CreatedBy { get { return _createdBy; } set { SetProperty(ref _createdBy, value); } }
     }
 }
 
