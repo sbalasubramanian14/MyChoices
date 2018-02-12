@@ -15,12 +15,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
 
         }
-        public string SavePostSvpForm(PostSvp PostSvpForm)
+        public string SaveSvpForm(Svp SvpForm)
         {
             int newFormNumber;
             try
             {
-                 newFormNumber = this.unitOfWork.DbContext.SerialNumbertrackerRA.Where(Ip=>Ip.IpCode==PostSvpForm.CreatedBy && Ip.FormType=="SV").Max(serial => serial.SerialValue) + 1;
+                 newFormNumber = this.unitOfWork.DbContext.SerialNumbertrackerRA.Where(Ip=>Ip.IpCode==SvpForm.CreatedBy && Ip.FormType=="SV").Max(serial => serial.SerialValue) + 1;
             }
             catch (InvalidOperationException ex)
             {
@@ -28,23 +28,23 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             }
             String padding = "000";
             String serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
-            PostSvpForm.PostSvpNumber = "SV-" + PostSvpForm.CreatedBy + "-" + serialNumberComponent;
+            SvpForm.SvpNumber = "SV-" + SvpForm.CreatedBy + "-" + serialNumberComponent;
 
             /*Form entry*/
-            PostSvp postSvpObj;
-            postSvpObj = this.unitOfWork.DbContext.PostSvp.Add(PostSvpForm);
+            Svp svpObj;
+            svpObj = this.unitOfWork.DbContext.Svp.Add(SvpForm);
 
             /*Serial Number updation*/
             SerialNumbertrackerRA serialNumbertrackerRAObj= new SerialNumbertrackerRA();
             serialNumbertrackerRAObj.FormType = "SV";
-            serialNumbertrackerRAObj.IpCode = PostSvpForm.CreatedBy;
+            serialNumbertrackerRAObj.IpCode = SvpForm.CreatedBy;
             serialNumbertrackerRAObj.SerialValue = newFormNumber;
             serialNumbertrackerRAObj.GeneratedDate = DateTime.Now;
             serialNumbertrackerRAObj = this.unitOfWork.DbContext.SerialNumbertrackerRA.Add(serialNumbertrackerRAObj);
 
             this.unitOfWork.DbContext.SaveChanges();
 
-            return postSvpObj.PostSvpNumber;
+            return svpObj.SvpNumber;
         }
 
         public string SavePreSvpForm(PreSvp PreSvpForm)

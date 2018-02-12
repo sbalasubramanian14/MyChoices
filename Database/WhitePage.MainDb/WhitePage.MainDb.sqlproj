@@ -158,7 +158,7 @@
     <Build Include="Ops\Views\vCaseSessionLog.sql" />
     <Build Include="Auth\Stored Procedures\getUserRoles.sql" />
     <Build Include="Auth\Stored Procedures\AddNewUserLogin.sql" />
-    <Build Include="RedAlert\Ops\Tables\trPostSvp.sql" />
+    <Build Include="RedAlert\Ops\Tables\trSvp.sql" />
     <Build Include="RedAlert\Ops\Tables\trPreSvp.sql" />
     <Build Include="RedAlert\Ops\Tables\IpDetails.sql" />
     <Build Include="RedAlert\Core\trSerialNumberTrackerRA.sql" />

@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace WhitePage.Entities.RedAlert
 {
-    [Table(name: "trPostSvp", Schema = "Ops")]
-    public class PostSvp
+    [Table(name: "trSvp", Schema = "Ops")]
+    public class Svp
     {
         [Key]
         public int FormId { get; set; }
-        public string PostSvpNumber { get; set; }
+        public string SvpNumber { get; set; }
         
 
         public int VillageCode { get; set; }
-        public DateTime PostSvpDate { get; set; }
+        public DateTime SvpDate { get; set; }
 
         public float TravelHours { get; set; }
         public float TotalCampaignHours { get; set; }

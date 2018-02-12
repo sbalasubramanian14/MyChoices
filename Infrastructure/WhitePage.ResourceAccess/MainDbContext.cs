@@ -61,7 +61,7 @@ namespace WhitePage.ResourceAccess
         public DbSet<User> User { get; set; }
         public DbSet<SerialNumberTracker> SerialNumberTracker { get; set; }
 
-        public DbSet<PostSvp> PostSvp { get; set; }
+        public DbSet<Svp> Svp { get; set; }
         public DbSet<PreSvp> PreSvp { get; set; }
         public DbSet<SerialNumbertrackerRA> SerialNumbertrackerRA { get; set; }
 

@@ -21,9 +21,9 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             return this.svpDataAccess.SavePreSvpForm(PreSvpForm);
         }
-        public string SavePostSvpForm(PostSvp PostSvpForm)
+        public string SaveSvpForm(Svp SvpForm)
         {
-            return this.svpDataAccess.SavePostSvpForm(PostSvpForm);
+            return this.svpDataAccess.SaveSvpForm(SvpForm);
         }
 
         

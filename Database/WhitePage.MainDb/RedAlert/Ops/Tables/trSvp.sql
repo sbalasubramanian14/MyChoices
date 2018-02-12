@@ -1,8 +1,8 @@
-﻿CREATE TABLE [Ops].[trPostSvp]
+﻿CREATE TABLE [Ops].[trSvp]
 (
 	[FormId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	[PostSvpNumber] VARCHAR(200) NOT NULL,
-	[PostSvpDate] DATE NOT NULL,
+	[SvpNumber] VARCHAR(200) NOT NULL,
+	[SvpDate] DATE NOT NULL,
 	[TravelHours] DECIMAL(3,1) NOT NULL,
 	[TotalCampaignHours] DECIMAL(4,2) NOT NULL,
 	[FieldWorkerNames] VARCHAR(200) NOT NULL,

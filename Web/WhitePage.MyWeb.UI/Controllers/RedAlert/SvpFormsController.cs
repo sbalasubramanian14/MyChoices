@@ -43,12 +43,12 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult SaveSvpForm([FromBody] PostSvp PostSvpForm)
+        public IActionResult SaveSvpForm([FromBody] Svp PostSvpForm)
         {
 
             PostSvpForm.CreatedDateTime = DateTime.Now;
 
-            var updatedForm = this.svpBusinessAccess.SavePostSvpForm(PostSvpForm);
+            var updatedForm = this.svpBusinessAccess.SaveSvpForm(PostSvpForm);
             return Ok(updatedForm);
         }
 
