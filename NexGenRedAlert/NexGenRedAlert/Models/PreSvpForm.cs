@@ -8,7 +8,7 @@ namespace NexGenRedAlert.Models
     public class PreSvpForm : Entity
     {
         #region variables
-        private int _formId;
+        private int _preSVPId;
         private string _preSvpNumber;
         private int _villageCode;
         private DateTime _preSvpDate;
@@ -35,7 +35,7 @@ namespace NexGenRedAlert.Models
 
         #endregion
 
-        public int FormId { get { return _formId; } set { SetProperty(ref _formId, value); } }
+        public int PreSVPId { get { return _preSVPId; } set { SetProperty(ref _preSVPId, value); } }
         public string PreSvpNumber { get { return _preSvpNumber; } set { SetProperty(ref _preSvpNumber, value); } }
 
 
