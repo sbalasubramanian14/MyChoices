@@ -16,7 +16,7 @@ namespace WhitePage.ResourceAccess.Implementation.RedAlert.Security
 
         public ImplementingPartner ValidateImplementingPartner(string userName)
         {
-            return this.unitOfWork.DbContext.ImplementingPartner.Find(userName);            
+            return this.unitOfWork.DbContext.ImplementingPartner.Where(IP => IP.UserName == userName).FirstOrDefault();
         }
     }
 }

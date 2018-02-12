@@ -12,8 +12,8 @@ namespace WhitePage.Entities.RedAlert
     public class ImplementingPartner
     {
         [Key]
+        public int ImplementingPartnerId { get; set; }
         public string UserName { get; set; }
-        public int UserId { get; set; }
 
         public string IpCode { get; set; }
         public string NgoName { get; set; }
