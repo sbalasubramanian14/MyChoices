@@ -18,8 +18,7 @@ using WhitePage.Entities.RedAlert;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WhitePage.MyWeb.UI.Controllers
-{
-    
+{    
     [Route("api/redalert/[controller]")]
     public class SvpFormsController : WhitePageController
     {
@@ -34,7 +33,6 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult SavePreSvpForm([FromBody] PreSvp PreSvpForm)
         {
-
             PreSvpForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5); 
 
             var updatedForm = this.svpBusinessAccess.SavePreSvpForm(PreSvpForm);
@@ -45,7 +43,6 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult SaveSvpForm([FromBody] Svp PostSvpForm)
         {
-
             PostSvpForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
 
             var updatedForm = this.svpBusinessAccess.SaveSvpForm(PostSvpForm);

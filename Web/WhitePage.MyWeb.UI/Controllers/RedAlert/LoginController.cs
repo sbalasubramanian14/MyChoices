@@ -18,7 +18,6 @@ using WhitePage.BusinessAccess.Implementation.RedAlert.Security;
 
 namespace WhitePage.MyWeb.UI.Controllers
 {
-    
     [Route("api/redalert/[controller]")]
     public class LoginController : WhitePageController
     {
