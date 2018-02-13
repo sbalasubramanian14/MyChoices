@@ -35,7 +35,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult SavePreSvpForm([FromBody] PreSvp PreSvpForm)
         {
 
-            PreSvpForm.CreatedDateTime = DateTime.Now;
+            PreSvpForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5); 
 
             var updatedForm = this.svpBusinessAccess.SavePreSvpForm(PreSvpForm);
             return Ok(updatedForm);
@@ -46,7 +46,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         public IActionResult SaveSvpForm([FromBody] Svp PostSvpForm)
         {
 
-            PostSvpForm.CreatedDateTime = DateTime.Now;
+            PostSvpForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
 
             var updatedForm = this.svpBusinessAccess.SaveSvpForm(PostSvpForm);
             return Ok(updatedForm);
