@@ -11,15 +11,15 @@ namespace NexGenRedAlert.ViewModels
 {
     class SvpViewModel : BaseViewModel
     {
-        public ICommand SubmitPostSvpForm { get; }
+        public ICommand SubmitSvpForm { get; }
         public string svpNumber;
         public string AlertMessage = "Submitted Succesfully!\nSvpNumber is :";
 
         public SvpViewModel()
         {
-            SubmitPostSvpForm = new Command(async () => {
+            SubmitSvpForm = new Command(async () => {
                 IsLoading = true;
-                this.svpNumber=await App.SvpServices.PostAsyncSaveSvpForm(PostSvp);
+                this.svpNumber=await App.SvpServices.PostAsyncSaveSvpForm(Svp);
                 IsLoading = false;
                 if (string.IsNullOrEmpty(this.svpNumber))
                 {
@@ -31,11 +31,11 @@ namespace NexGenRedAlert.ViewModels
             });
         }
 
-        private SvpForm _PostSvp = new SvpForm();
-        public SvpForm PostSvp
+        private SvpForm _Svp = new SvpForm();
+        public SvpForm Svp
         {
-            get { return _PostSvp; }
-            set { SetProperty(ref _PostSvp, value); }
+            get { return _Svp; }
+            set { SetProperty(ref _Svp, value); }
         }
 
         private bool _isLoading;
