@@ -1,17 +1,15 @@
-﻿[assembly: Xamarin.Forms.Dependency(typeof(NexGenRedAlert.Services.SvpServices))]
+﻿using NexGenRedAlert.Models;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using NexGenRedAlert.contracts;
+using Xamarin.Forms;
+
+[assembly: Xamarin.Forms.Dependency(typeof(NexGenRedAlert.Services.SvpServices))]
 namespace NexGenRedAlert.Services
 {
-    using NexGenRedAlert.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
-    using System.Net.Http.Headers;
-    using NexGenRedAlert.contracts;
-    using Xamarin.Forms;
-
     public class SvpServices
     {
         HttpClient Client;
@@ -44,10 +42,17 @@ namespace NexGenRedAlert.Services
                 string preSvpNumber = await result.Content.ReadAsStringAsync();
                 return preSvpNumber;
             }
-            catch (Exception ex)
+
+            catch (HttpRequestException ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return ex.Message;
             }
         }
 
@@ -65,6 +70,12 @@ namespace NexGenRedAlert.Services
                 var result = await httpClient.PostAsync(WebServiceUrl + "SaveSvpForm", httpContent);
                 string SvpFormNumber = await result.Content.ReadAsStringAsync();
                 return SvpFormNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
             }
             catch (Exception ex)
             {

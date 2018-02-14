@@ -1,8 +1,5 @@
 ﻿using NexGenRedAlert.contracts;
 using NexGenRedAlert.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -21,8 +18,7 @@ namespace NexGenRedAlert.ViewModels
                 {
                     DependencyService.Get<ICredentialService>().DeleteCredentials();
                     Application.Current.MainPage = new NavigationPage(new LoginPage());
-                }
-                 
+                }                 
             });
         }
         
@@ -30,7 +26,7 @@ namespace NexGenRedAlert.ViewModels
         {
             get
             {
-                return "Welcome "+DependencyService.Get<ICredentialService>().NgoName +" !";
+                return $"Welcome {DependencyService.Get<ICredentialService>().NgoName} !";
             }
         }
     }

@@ -1,7 +1,5 @@
-﻿using NexGenRedAlert.contracts;
-using NexGenRedAlert.ViewModels;
+﻿using NexGenRedAlert.ViewModels;
 using System;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,14 +9,13 @@ namespace NexGenRedAlert.Views
     public partial class MenuPage : ContentPage
     {
         MenuPageViewModel menuPageViewModel;
+
         public MenuPage()
         {
             InitializeComponent();
             BindingContext = menuPageViewModel = new MenuPageViewModel();
             activityIndicator.IsVisible = false;
         }
-
-
 
         async void OpenPreSvpPage(object sender, EventArgs e)
         {

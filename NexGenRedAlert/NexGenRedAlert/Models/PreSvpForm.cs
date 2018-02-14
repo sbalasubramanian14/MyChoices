@@ -37,8 +37,7 @@ namespace NexGenRedAlert.Models
 
         public int PreSVPId { get { return _preSVPId; } set { SetProperty(ref _preSVPId, value); } }
         public string PreSvpNumber { get { return _preSvpNumber; } set { SetProperty(ref _preSvpNumber, value); } }
-
-
+        
         public int VillageCode { get { return _villageCode; } set { SetProperty(ref _villageCode, value); } }
         public DateTime PreSvpDate { get { return _preSvpDate; } set { SetProperty(ref _preSvpDate, value); } }
 
@@ -46,8 +45,7 @@ namespace NexGenRedAlert.Models
         public string LocationDesc { get { return _locationDesc; } set { SetProperty(ref _locationDesc, value); } }
         public string MajorSourceOfIncome { get { return _majorSourceOfIncome; } set { SetProperty(ref _majorSourceOfIncome, value); } }
         public string ActiveCommunityGroup { get { return _activeCommunityGroup; } set { SetProperty(ref _activeCommunityGroup, value); } }
-
-
+        
         public byte ChildAbuseCount { get { return _childAbuseCount; } set { SetProperty(ref _childAbuseCount, value); } }
         public byte DomesticViolenceCasesCount { get { return _domesticViolenceCasesCount; } set { SetProperty(ref _domesticViolenceCasesCount, value); } }
         public byte TraffickingCasesCount { get { return _traffickingCasesCount; } set { SetProperty(ref _traffickingCasesCount, value); } }

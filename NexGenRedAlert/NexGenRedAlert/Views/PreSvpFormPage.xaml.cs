@@ -1,10 +1,6 @@
 ﻿using NexGenRedAlert.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +19,6 @@ namespace NexGenRedAlert.Views
             PreviousAwarenessList.Add("Yes");
             PreviousAwarenessList.Add("No");
             PreviousAwarenessPicker.ItemsSource = PreviousAwarenessList;
-
         }
 
         async void OnResetClicked(object sender , EventArgs evt)

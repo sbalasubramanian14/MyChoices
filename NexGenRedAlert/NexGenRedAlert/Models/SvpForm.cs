@@ -60,8 +60,7 @@ namespace NexGenRedAlert.Models
 
         public int SVPId { get { return _svpId; } set { SetProperty(ref _svpId, value); } }
         public string SvpNumber { get { return _svpNumber; } set { SetProperty(ref _svpNumber, value); } }
-
-
+        
         public int VillageCode { get { return _villageCode; } set { SetProperty(ref _villageCode, value); } }
         public DateTime SvpDate { get { return _svpDate; } set { SetProperty(ref _svpDate, value); } }
 

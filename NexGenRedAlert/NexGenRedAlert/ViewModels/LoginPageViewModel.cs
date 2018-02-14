@@ -4,8 +4,6 @@ using NexGenRedAlert.contracts;
 using NexGenRedAlert.Models;
 using NexGenRedAlert.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Auth;
 using Xamarin.Forms;
@@ -16,7 +14,6 @@ namespace NexGenRedAlert.ViewModels
     {
         public ICommand AuthenticateUser { get; }
         private ICredentialService credentialService;
-
 
         public static readonly string ClientId = "604822021872-052g10g9q6qpkkr1nlk2p6r5kqk6f0ke.apps.googleusercontent.com";
         public static readonly string GMAIL_REQUESTURL = "https://www.googleapis.com/oauth2/v2/userinfo";
@@ -87,21 +84,19 @@ namespace NexGenRedAlert.ViewModels
                     var userData = JObject.Parse(response.GetResponseText());
                     userEmail = userData["email"].ToString();
                 }
-
-
+                
                 implementingPartner = await App.AuthServices.PostAsyncValidateImplementingPartner(userEmail);
 
                 IsLoading = false;
 
                 if (implementingPartner != null)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Authentication", "Successfully Logged in: " + implementingPartner.NgoName, "ok");
                     this.credentialService.SaveCredentials(implementingPartner.UserName, implementingPartner.IpCode, implementingPartner.NgoName);
                     Application.Current.MainPage = new NavigationPage(new MenuPage());
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Authentication", "Failed", "ok");
+                    await Application.Current.MainPage.DisplayAlert("Authentication", "Failed ! Contact your Admin.", "ok");
                 }
 
             }

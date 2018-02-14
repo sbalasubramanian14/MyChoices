@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NexGenRedAlert.contracts
+﻿namespace NexGenRedAlert.contracts
 {
      public interface ICredentialService
     {
-
         string UserName { get; }
 
         string IpCode { get; }

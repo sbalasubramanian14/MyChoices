@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using NexGenRedAlert.contracts;
 using NexGenRedAlert.Services;
-using System;
 using System.Linq;
 using Xamarin.Auth;
 

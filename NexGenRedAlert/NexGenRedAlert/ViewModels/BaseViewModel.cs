@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using NexGenRedAlert.Models;
-using NexGenRedAlert.Services;
-
 namespace NexGenRedAlert.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-
         bool isBusy = false;
         public bool IsBusy
         {
