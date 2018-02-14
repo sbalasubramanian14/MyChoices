@@ -1,9 +1,6 @@
 ﻿using NexGenRedAlert.Models;
-using NexGenRedAlert.Views;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+using System.Net.Http;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -18,16 +15,26 @@ namespace NexGenRedAlert.ViewModels
         public SvpViewModel()
         {
             SubmitSvpForm = new Command(async () => {
-                IsLoading = true;
-                this.svpNumber=await App.SvpServices.PostAsyncSaveSvpForm(Svp);
-                IsLoading = false;
-                if (string.IsNullOrEmpty(this.svpNumber))
+                try
                 {
-                    this.AlertMessage = "Form Submission failed ! Retry later";
+                    IsLoading = true;
+                    this.svpNumber = await App.SvpServices.PostAsyncSaveSvpForm(Svp);
+                    IsLoading = false;
+                    if (String.IsNullOrEmpty(this.svpNumber))
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Submission Status", "Form Submission failed ! Check all fields and retry.", "Ok");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Submission Status", this.AlertMessage + this.svpNumber, "Ok");
+                        await Application.Current.MainPage.Navigation.PopToRootAsync();
+                    }                    
                 }
-
-                await Application.Current.MainPage.DisplayAlert("Submission Status", this.AlertMessage + this.svpNumber, "Ok");
-                await Application.Current.MainPage.Navigation.PopToRootAsync(); 
+                catch (HttpRequestException ex)
+                {
+                    IsLoading = false;
+                    await Application.Current.MainPage.DisplayAlert("Submission Status", "Network Issues, Try later !", "Ok");
+                }
             });
         }
 

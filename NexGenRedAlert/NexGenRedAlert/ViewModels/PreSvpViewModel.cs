@@ -1,10 +1,6 @@
-﻿using NexGenRedAlert.contracts;
-using NexGenRedAlert.Models;
-using NexGenRedAlert.Views;
+﻿using NexGenRedAlert.Models;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+using System.Net.Http;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -19,16 +15,27 @@ namespace NexGenRedAlert.ViewModels
         public PreSvpViewModel()
         {
             SubmitPreSvpForm = new Command(async () => {
-                IsLoading = true;
-                this.preSvpNumber = await App.SvpServices.PostAsyncSavePreSvpForm((Models.PreSvpForm)PreSvp);
-                IsLoading = false;
-                if (string.IsNullOrEmpty(this.preSvpNumber))
-                {
-                    this.AlertMessage = "Form Submission failed ! Retry later";
-                }
-                await Application.Current.MainPage.DisplayAlert("Submission Status", this.AlertMessage + this.preSvpNumber, "Ok");
 
-                await Application.Current.MainPage.Navigation.PopToRootAsync();
+                try
+                {
+                    IsLoading = true;
+                    this.preSvpNumber = await App.SvpServices.PostAsyncSavePreSvpForm(PreSvp);
+                    IsLoading = false;
+                    if(String.IsNullOrEmpty(this.preSvpNumber))
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Submission Status", "Form Submission failed ! Check all fields and retry.", "Ok");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Submission Status", this.AlertMessage + this.preSvpNumber, "Ok");
+                        await Application.Current.MainPage.Navigation.PopToRootAsync();
+                    }                    
+                }
+                catch(HttpRequestException ex)
+                {
+                    IsLoading = false;
+                    await Application.Current.MainPage.DisplayAlert("Submission Status","Network Issues, Try later !", "Ok");
+                }
             });
         }
 
