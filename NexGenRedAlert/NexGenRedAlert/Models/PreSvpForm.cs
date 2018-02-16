@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace NexGenRedAlert.Models
 {
@@ -21,7 +18,7 @@ namespace NexGenRedAlert.Models
         private byte _domesticViolenceCasesCount;
         private byte _traffickingCasesCount;
         private byte _MissingCasesCount;
-        private byte _schoolDropOutsCount;
+        private byte _schoolDropoutsCount;
         private string _neighbouringTrafficProneDesc;
         private string _localIssuesDesc;
         private string _awarenessDesc;
@@ -50,7 +47,7 @@ namespace NexGenRedAlert.Models
         public byte DomesticViolenceCasesCount { get { return _domesticViolenceCasesCount; } set { SetProperty(ref _domesticViolenceCasesCount, value); } }
         public byte TraffickingCasesCount { get { return _traffickingCasesCount; } set { SetProperty(ref _traffickingCasesCount, value); } }
         public byte MissingCasesCount { get { return _MissingCasesCount; } set { SetProperty(ref _MissingCasesCount, value); } }
-        public byte SchoolDropOutsCount { get { return _schoolDropOutsCount; } set { SetProperty(ref _schoolDropOutsCount, value); } }
+        public byte SchoolDropoutsCount { get { return _schoolDropoutsCount; } set { SetProperty(ref _schoolDropoutsCount, value); } }
 
         public string NeighbouringTrafficProneDesc { get { return _neighbouringTrafficProneDesc; } set { SetProperty(ref _neighbouringTrafficProneDesc, value); } }
         public string LocalIssuesDesc { get { return _localIssuesDesc; } set { SetProperty(ref _localIssuesDesc, value); } }

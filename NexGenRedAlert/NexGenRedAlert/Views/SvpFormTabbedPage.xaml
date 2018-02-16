@@ -2,7 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NexGenRedAlert.Views.SvpFormTabbedPage"
-            Title="Post-Svp Form">
+            Title="Svp Form">
     <ContentPage x:Name="pageOne" Title="Page 1" >
         <ContentPage.Content>
             <ScrollView >
@@ -44,8 +44,8 @@
                     <Label x:Name="ConfirmedMissingCasesCountLabel" Text="Confirmed Missing Cases Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="ConfirmedMissingCasesCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding Svp.ConfirmedMissingCasesCount, Mode=TwoWay}" />
 
-                    <Label x:Name="ConfirmedSchoolDropOutsCountLabel" Text="Confirmed School DropOuts Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Entry x:Name="ConfirmedSchoolDropOutsCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding Svp.ConfirmedSchoolDropOutsCount, Mode=TwoWay}" />
+                    <Label x:Name="ConfirmedSchoolDropoutsCountLabel" Text="Confirmed School Dropouts Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ConfirmedSchoolDropoutsCountEntry" Placeholder="Confirmed Count" Keyboard="Numeric" Text="{Binding Svp.ConfirmedSchoolDropoutsCount, Mode=TwoWay}" />
 
                     <Label x:Name="NeighbouringTrafficProneDescLabel" Text="Neighbouring Traffic Prone Desc:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="NeighbouringTrafficProneDescEntry" Text="{Binding Svp.NeighbouringTrafficProneDesc, Mode=TwoWay}"/>
@@ -131,8 +131,8 @@
                     <Label x:Name="IsFollowUpRequiredDescLabel" Text="Is Follow-Up Required ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="IsFollowUpRequiredDescEntry" Text="{Binding Svp.IsFollowUpRequiredDesc, Mode=TwoWay}" />
 
-                    <Label x:Name="RecomendationsLabel" Text="Recomendations :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Editor x:Name="RecomendationsEntry" Text="{Binding Svp.Recomendations, Mode=TwoWay}" />
+                    <Label x:Name="RecommendationsLabel" Text="Recommendations :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="RecomendationsEntry" Text="{Binding Svp.Recommendations, Mode=TwoWay}" />
 
                     <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
                           HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />

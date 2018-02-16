@@ -21,7 +21,7 @@ namespace NexGenRedAlert.Models
         private byte _confirmedDomesticViolenceCasesCount;
         private byte _confirmedTraffickingCasesCount;
         private byte _confirmedMissingCasesCount;
-        private byte _confirmedSchoolDropOutsCount;
+        private byte _confirmedSchoolDropoutsCount;
         private string _neighbouringTrafficProneDesc;
 
         private short _mothersParticipationCount;
@@ -43,7 +43,7 @@ namespace NexGenRedAlert.Models
         private string _positiveFeedback;
         private string _challengesDesc;
         private string _isFollowUpRequiredDesc;
-        private string _recomendations;
+        private string _recommendations;
 
         private string _elderName;
         private string _elderDesignation;
@@ -73,7 +73,7 @@ namespace NexGenRedAlert.Models
         public byte ConfirmedDomesticViolenceCasesCount { get { return _confirmedDomesticViolenceCasesCount; } set { SetProperty(ref _confirmedDomesticViolenceCasesCount, value); } }
         public byte ConfirmedTraffickingCasesCount { get { return _confirmedTraffickingCasesCount; } set { SetProperty(ref _confirmedTraffickingCasesCount, value); } }
         public byte ConfirmedMissingCasesCount { get { return _confirmedMissingCasesCount; } set { SetProperty(ref _confirmedMissingCasesCount, value); } }
-        public byte ConfirmedSchoolDropOutsCount { get { return _confirmedSchoolDropOutsCount; } set { SetProperty(ref _confirmedSchoolDropOutsCount, value); } }
+        public byte ConfirmedSchoolDropoutsCount { get { return _confirmedSchoolDropoutsCount; } set { SetProperty(ref _confirmedSchoolDropoutsCount, value); } }
         public string NeighbouringTrafficProneDesc { get { return _neighbouringTrafficProneDesc; } set { SetProperty(ref _neighbouringTrafficProneDesc, value); } }
 
         public short MothersParticipationCount { get { return _mothersParticipationCount; } set { SetProperty(ref _mothersParticipationCount, value); } }
@@ -95,7 +95,7 @@ namespace NexGenRedAlert.Models
         public string PositiveFeedback { get { return _positiveFeedback; } set { SetProperty(ref _positiveFeedback, value); } }
         public string ChallengesDesc { get { return _challengesDesc; } set { SetProperty(ref _challengesDesc, value); } }
         public string IsFollowUpRequiredDesc { get { return _isFollowUpRequiredDesc; } set { SetProperty(ref _isFollowUpRequiredDesc, value); } }
-        public string Recomendations { get { return _recomendations; } set { SetProperty(ref _recomendations, value); } }
+        public string Recommendations { get { return _recommendations; } set { SetProperty(ref _recommendations, value); } }
 
         public string ElderName { get { return _elderName; } set { SetProperty(ref _elderName, value); } }
         public string ElderDesignation { get { return _elderDesignation; } set { SetProperty(ref _elderDesignation, value); } }
