@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Auth].[trImplementingPartner]
+﻿CREATE TABLE [RedAlert].[trImplementingPartner]
 (
 	[ImplementingPartnerId] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[UserName] [varchar](200) NOT NULL,

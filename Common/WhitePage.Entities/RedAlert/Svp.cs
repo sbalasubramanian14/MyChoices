@@ -1,34 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WhitePage.Entities.RedAlert
 {
-    [Table(name: "trSvp", Schema = "Ops")]
+    [Table(name: "trSvp", Schema = "RedAlert")]
     public class Svp
     {
         [Key]
         public int SVPId { get; set; }
         public string SvpNumber { get; set; }
-        
-
         public int VillageCode { get; set; }
         public DateTime SvpDate { get; set; }
 
         public float TravelHours { get; set; }
         public float TotalCampaignHours { get; set; }
         public string FieldWorkerNames { get; set; }
-        public String ORAVisited { get; set; }
+        public string ORAVisited { get; set; }
 
         public byte ConfirmedChildAbuseCount { get; set; }
         public byte ConfirmedDomesticViolenceCasesCount { get; set; }
         public byte ConfirmedTraffickingCasesCount { get; set; }
         public byte ConfirmedMissingCasesCount { get; set; }
-        public byte ConfirmedSchoolDropOutsCount { get; set; }
+        public byte ConfirmedSchoolDropoutsCount { get; set; }
         public string NeighbouringTrafficProneDesc { get; set; }
 
         public short MothersParticipationCount { get; set; }
@@ -50,7 +44,7 @@ namespace WhitePage.Entities.RedAlert
         public string PositiveFeedback { get; set; }
         public string ChallengesDesc { get; set; }
         public string IsFollowUpRequiredDesc { get; set; }
-        public string Recomendations { get; set; }
+        public string Recommendations { get; set; }
 
         public string ElderName { get; set; }
         public string ElderDesignation { get; set;}

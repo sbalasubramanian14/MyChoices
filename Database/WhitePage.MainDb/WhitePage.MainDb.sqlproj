@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{ea6f1b4d-37b9-48f3-9c46-3e0e7b1a2dbb}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -79,8 +79,8 @@
     <Folder Include="RedAlert" />
     <Folder Include="RedAlert\Auth" />
     <Folder Include="RedAlert\Ops" />
-    <Folder Include="RedAlert\Ops\Tables" />
     <Folder Include="RedAlert\Core" />
+    <Folder Include="RedAlert\Ops\Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\Auth.sql" />
@@ -158,13 +158,15 @@
     <Build Include="Ops\Views\vCaseSessionLog.sql" />
     <Build Include="Auth\Stored Procedures\getUserRoles.sql" />
     <Build Include="Auth\Stored Procedures\AddNewUserLogin.sql" />
-    <Build Include="RedAlert\Ops\Tables\trSvp.sql" />
-    <Build Include="RedAlert\Ops\Tables\trPreSvp.sql" />
-    <Build Include="RedAlert\Ops\Tables\IpDetails.sql" />
     <Build Include="RedAlert\Core\trSerialNumberTrackerRA.sql" />
     <Build Include="RedAlert\Auth\trImplementingPartner.sql" />
+    <Build Include="RedAlert\Ops\Tables\trSvp.sql" />
+    <Build Include="RedAlert\Ops\Tables\trPreSvp.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\RedAlert.sql" />
   </ItemGroup>
 </Project>
