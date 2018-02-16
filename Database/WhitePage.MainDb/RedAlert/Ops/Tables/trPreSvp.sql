@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Ops].[trPreSvp]
+﻿CREATE TABLE [RedAlert].[trPreSvp]
 (
 	[PreSVPId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,	
 	[PreSvpNumber] VARCHAR(200) NOT NULL,
@@ -15,7 +15,7 @@
 	[DomesticViolenceCasesCount] TINYINT NOT NULL,
 	[TraffickingCasesCount] TINYINT NOT NULL,
 	[MissingCasesCount] TINYINT NOT NULL,
-	[SchoolDropOutsCount] TINYINT NOT NULL,
+	[SchoolDropoutsCount] TINYINT NOT NULL,
 
 	[NeighbouringTrafficProneDesc] VARCHAR(500) NOT NULL,
 	[LocalIssuesDesc] VARCHAR(500) NOT NULL,

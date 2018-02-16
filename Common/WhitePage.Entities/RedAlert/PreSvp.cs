@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WhitePage.Entities.RedAlert
 {
-    [Table(name: "trPreSvp", Schema = "Ops")]
+    [Table(name: "trPreSvp", Schema = "RedAlert")]
     public class PreSvp
     {
         [Key]
@@ -23,12 +19,11 @@ namespace WhitePage.Entities.RedAlert
         public string MajorSourceOfIncome { get; set; }
         public string ActiveCommunityGroup { get; set; }
 
-
         public byte ChildAbuseCount { get; set; }
         public byte DomesticViolenceCasesCount { get; set; }
         public byte TraffickingCasesCount { get; set; }
         public byte MissingCasesCount { get; set; }
-        public byte SchoolDropOutsCount { get; set; }
+        public byte SchoolDropoutsCount { get; set; }
 
         public string NeighbouringTrafficProneDesc { get; set; }
         public string LocalIssuesDesc { get; set; }

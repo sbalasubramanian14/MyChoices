@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Ops].[trSvp]
+﻿CREATE TABLE [RedAlert].[trSvp]
 (
 	[SVPId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[SvpNumber] VARCHAR(200) NOT NULL,
@@ -8,15 +8,13 @@
 	[FieldWorkerNames] VARCHAR(200) NOT NULL,
 	[ORAVisited] VARCHAR(3) NOT NULL,
 
-	[VillageCode] INT NOT NULL,
-	
+	[VillageCode] INT NOT NULL,	
 	[ConfirmedChildAbuseCount] TINYINT NOT NULL,
 	[ConfirmedDomesticViolenceCasesCount] TINYINT NOT NULL,
 	[ConfirmedTraffickingCasesCount] TINYINT NOT NULL,
 	[ConfirmedMissingCasesCount] TINYINT NOT NULL,
-	[ConfirmedSchoolDropOutsCount] TINYINT NOT NULL,
+	[ConfirmedSchoolDropoutsCount] TINYINT NOT NULL,
 	[NeighbouringTrafficProneDesc] VARCHAR(500) NOT NULL,
-	
 
 	-- participants count
 	[MothersParticipationCount] SMALLINT NOT NULL,
@@ -40,7 +38,7 @@
 	[PositiveFeedback] VARCHAR(500) NOT NULL,
 	[ChallengesDesc] VARCHAR(500) NOT NULL,
 	[IsFollowUpRequiredDesc] VARCHAR(500) NOT NULL,
-	[Recomendations] VARCHAR(500) NOT NULL,
+	[Recommendations] VARCHAR(500) NOT NULL,
 
 	-- Name,designation and phone number of elders and police
 	[ElderName] VARCHAR(50) NOT NULL,

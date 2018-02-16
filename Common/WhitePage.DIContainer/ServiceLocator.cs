@@ -54,16 +54,21 @@ namespace WhitePage.DIContainer
             _serviceCollection.AddTransient<ILoginDataAccess, LoginDataAccess>();
             _serviceCollection.AddTransient<ICaseDataAccess, CaseDataAccess>();
             _serviceCollection.AddTransient<ICommonDataAccess, CommonDataAccess>();
+
+            /*Start of Red Alert services */
             _serviceCollection.AddTransient<ISvpDataAccess, SvpDataAccess>();
             _serviceCollection.AddTransient<IRALoginDataAccess, RALoginDataAccess>();
-
+            /* End of Red Alert services */
 
             //Business Access
             _serviceCollection.AddTransient<ILoginBusinessAccess, LoginBusinessAccess>();
             _serviceCollection.AddTransient<ICaseBusinessAccess, CaseBusinessAccess>();
             _serviceCollection.AddTransient<ICommonBusinessAccess, CommonBusinessAccess>();
+
+            /*Start of Red Alert services */
             _serviceCollection.AddTransient<ISvpBusinessAccess, SvpBusinessAccess>();
             _serviceCollection.AddTransient<IRALoginBusinessAccess, RALoginBusinessAccess>();
+            /* End of Red Alert services */
 
             //Build Service Provider
             _serviceProvider = services.BuildServiceProvider();

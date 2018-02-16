@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Core].[trSerialNumberTrackerRA]
+﻿CREATE TABLE [RedAlert].[trSerialNumberTrackerRA]
 (
 	[SerialNumberTrackerRAId] [int] NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	[FormType] [varchar](5) NOT NULL,
