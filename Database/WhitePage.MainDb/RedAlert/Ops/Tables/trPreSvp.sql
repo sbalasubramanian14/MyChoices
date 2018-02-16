@@ -5,7 +5,7 @@
 	[VillageCode] INT NOT NULL ,
 	
 	[PreSvpDate] DATE NOT NULL,
-	[DistanceToVillage] SMALLINT NOT NULL,
+	[DistanceToVillageInKms] SMALLINT NOT NULL,
 	[LocationDesc] VARCHAR(500) NOT NULL,
 
 	[MajorSourceOfIncome] VARCHAR(200) NOT NULL,

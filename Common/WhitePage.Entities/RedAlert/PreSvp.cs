@@ -14,7 +14,7 @@ namespace WhitePage.Entities.RedAlert
         public int VillageCode { get; set; }
         public DateTime PreSvpDate { get; set; }
 
-        public short DistanceToVillage { get; set; }
+        public short DistanceToVillageInKms { get; set; }
         public string LocationDesc { get; set; }
         public string MajorSourceOfIncome { get; set; }
         public string ActiveCommunityGroup { get; set; }
