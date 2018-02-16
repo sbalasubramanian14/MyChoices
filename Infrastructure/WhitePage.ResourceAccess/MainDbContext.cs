@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using WhitePage.Entities.CaseManagement;
+using WhitePage.Entities.RedAlert;
 using WhitePage.Entities.Security;
 using WhitePage.Utilities.Constants;
 
@@ -59,5 +60,13 @@ namespace WhitePage.ResourceAccess
 
         public DbSet<User> User { get; set; }
         public DbSet<SerialNumberTracker> SerialNumberTracker { get; set; }
+
+        /* Start of RedAlert */
+        public DbSet<Svp> Svp { get; set; }
+        public DbSet<PreSvp> PreSvp { get; set; }
+        public DbSet<SerialNumbertrackerRA> SerialNumbertrackerRA { get; set; }
+
+        public DbSet<ImplementingPartner> ImplementingPartner { get; set; }
+        /* End of RedAlert */
     }
 }

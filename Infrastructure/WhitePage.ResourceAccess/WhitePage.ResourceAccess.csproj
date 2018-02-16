@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\RedAlert\Ops\ISvpDataAccess.cs" />
+    <Compile Include="Contracts\RedAlert\Security\IRALoginDataAccess.cs" />
     <Compile Include="ECaseStatus.cs" />
     <Compile Include="Contracts\Core\ICommonDataAccess.cs" />
     <Compile Include="Contracts\Ops\ICaseDataAccess.cs" />
@@ -57,6 +59,8 @@
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="Implementation\Core\CommonDataAccess.cs" />
     <Compile Include="Implementation\Ops\CaseDataAccess.cs" />
+    <Compile Include="Implementation\RedAlert\Ops\SvpDataAccess.cs" />
+    <Compile Include="Implementation\RedAlert\Security\RALoginDataAccess.cs" />
     <Compile Include="Implementation\Security\LoginDataAccess.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MainDbContext.cs" />
