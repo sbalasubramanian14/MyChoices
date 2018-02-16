@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WhitePage.BusinessAccess.Contracts.Ops;
+﻿using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.Entities.RedAlert;
 using WhitePage.ResourceAccess.Contracts.RedAlert.Security;
 

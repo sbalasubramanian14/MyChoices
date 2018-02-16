@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WhitePage.BusinessAccess.Contracts.Ops;
+﻿using WhitePage.BusinessAccess.Contracts.Ops;
 using WhitePage.ResourceAccess.Contracts.Ops;
 using WhitePage.Entities.RedAlert;
 
@@ -24,8 +19,6 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         public string SaveSvpForm(Svp SvpForm)
         {
             return this.svpDataAccess.SaveSvpForm(SvpForm);
-        }
-
-        
+        }        
     }
 }
