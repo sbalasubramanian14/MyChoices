@@ -9,7 +9,7 @@ namespace NexGenRedAlert.Models
         private string _preSvpNumber;
         private int _villageCode;
         private DateTime _preSvpDate;
-        private short _distanceToVillage;
+        private short _distanceToVillageInKms;
         private string _locationDesc;
         private string _majorSourceOfIncome;
         private string _activeCommunityGroup;
@@ -38,7 +38,7 @@ namespace NexGenRedAlert.Models
         public int VillageCode { get { return _villageCode; } set { SetProperty(ref _villageCode, value); } }
         public DateTime PreSvpDate { get { return _preSvpDate; } set { SetProperty(ref _preSvpDate, value); } }
 
-        public short DistanceToVillage { get { return _distanceToVillage; } set { SetProperty(ref _distanceToVillage, value); } }
+        public short DistanceToVillageInKms { get { return _distanceToVillageInKms; } set { SetProperty(ref _distanceToVillageInKms, value); } }
         public string LocationDesc { get { return _locationDesc; } set { SetProperty(ref _locationDesc, value); } }
         public string MajorSourceOfIncome { get { return _majorSourceOfIncome; } set { SetProperty(ref _majorSourceOfIncome, value); } }
         public string ActiveCommunityGroup { get { return _activeCommunityGroup; } set { SetProperty(ref _activeCommunityGroup, value); } }

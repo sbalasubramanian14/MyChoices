@@ -16,8 +16,8 @@
                 <Label x:Name="SvpDateLabel" Text="PreSvp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <DatePicker x:Name="PreSvpDatePicker" Format="D" TextColor="Black"  Date="{Binding PreSvp.PreSvpDate}" />
 
-                <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <Entry x:Name="DistanceToVillageEntry" Placeholder="kilometers" Keyboard="Numeric" Text="{Binding PreSvp.DistanceToVillage}" />
+                <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village (KMs):" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="DistanceToVillageEntry" Placeholder="kilometers" Keyboard="Numeric" Text="{Binding PreSvp.DistanceToVillageInKms}" />
                 
                 <Label x:Name="LocationDescLabel" Text="Location Description:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="LocationDescEntry" Placeholder="Location Description" Text="{Binding PreSvp.LocationDesc}" />
