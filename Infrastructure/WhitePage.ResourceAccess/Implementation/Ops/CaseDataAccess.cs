@@ -25,21 +25,26 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         public CaseHeader SavePrimaryCase(CaseBook caseBook)
         {
             /*Case Number generation */
-            int maxSerialNumber = this.unitOfWork.DbContext.SerialNumberTracker.Max(serialNumber => serialNumber.SerialValue);
-            String padding = "0000";
-            String serialNumberComponent = padding.Remove(padding.Length - maxSerialNumber.ToString().Length) + (++maxSerialNumber).ToString();
-            DateTime generatedDate = DateTime.Now;
-            caseBook.Case.CaseNumber = generatedDate.Year.ToString().Substring(2) + generatedDate.Month.ToString()+'-'+ serialNumberComponent;
+            int newSerialNumber = this.unitOfWork.DbContext.SerialNumberTracker.Max(serialNumber => serialNumber.SerialValue) + 1 ;
+            String serialNumberPadding = "0000";
+            String serialNumberComponent = serialNumberPadding.Remove(serialNumberPadding.Length - newSerialNumber.ToString().Length) + (newSerialNumber).ToString();
+
+            DateTime generatedDate = DateTime.UtcNow.AddHours(5.5);
+            string monthPadding = "00";
+            String monthComponent = monthPadding.Remove(monthPadding.Length - generatedDate.Month.ToString().Length) + generatedDate.Month.ToString();
+            caseBook.Case.CaseNumber = generatedDate.Year.ToString().Substring(2) + monthComponent + '-'+ serialNumberComponent;
 
             Case caseObj;
             CaseHeader caseHeaderObj;
             CaseAddress caseAddressObj;
-            SerialNumberTracker serialNumberTrackerObj= new SerialNumberTracker();
 
             /*Initializing Serial Number Object*/
-            serialNumberTrackerObj.SerialNumberId = 1;
-            serialNumberTrackerObj.SerialValue = maxSerialNumber;
-            serialNumberTrackerObj.GeneratedDate = generatedDate;
+            SerialNumberTracker serialNumberTrackerObj = new SerialNumberTracker
+            {               
+                SerialNumberId = 1,
+                SerialValue = newSerialNumber,
+                GeneratedDate = generatedDate
+            };
 
             /*Serial Number entry*/
             this.unitOfWork.DbContext.SerialNumberTracker.Add(serialNumberTrackerObj);
