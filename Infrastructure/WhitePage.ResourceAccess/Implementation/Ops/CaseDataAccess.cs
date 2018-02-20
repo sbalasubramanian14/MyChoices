@@ -26,12 +26,12 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
             /*Case Number generation */
             int newSerialNumber = this.unitOfWork.DbContext.SerialNumberTracker.Max(serialNumber => serialNumber.SerialValue) + 1 ;
-            String serialNumberPadding = "0000";
-            String serialNumberComponent = serialNumberPadding.Remove(serialNumberPadding.Length - newSerialNumber.ToString().Length) + (newSerialNumber).ToString();
+            string serialNumberPadding = "0000";
+            string serialNumberComponent = serialNumberPadding.Remove(serialNumberPadding.Length - newSerialNumber.ToString().Length) + newSerialNumber.ToString();
 
             DateTime generatedDate = DateTime.UtcNow.AddHours(5.5);
             string monthPadding = "00";
-            String monthComponent = monthPadding.Remove(monthPadding.Length - generatedDate.Month.ToString().Length) + generatedDate.Month.ToString();
+            string monthComponent = monthPadding.Remove(monthPadding.Length - generatedDate.Month.ToString().Length) + generatedDate.Month.ToString();
             caseBook.Case.CaseNumber = generatedDate.Year.ToString().Substring(2) + monthComponent + '-'+ serialNumberComponent;
 
             Case caseObj;
