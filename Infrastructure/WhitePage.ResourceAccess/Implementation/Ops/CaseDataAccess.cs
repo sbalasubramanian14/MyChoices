@@ -41,7 +41,6 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             /*Initializing Serial Number Object*/
             SerialNumberTracker serialNumberTrackerObj = new SerialNumberTracker
             {               
-                SerialNumberId = 1,
                 SerialValue = newSerialNumber,
                 GeneratedDate = generatedDate
             };
