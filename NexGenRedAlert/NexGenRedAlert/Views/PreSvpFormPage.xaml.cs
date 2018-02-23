@@ -1,5 +1,7 @@
-﻿using NexGenRedAlert.ViewModels;
+﻿using NexGenRedAlert.Models;
+using NexGenRedAlert.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,6 +13,7 @@ namespace NexGenRedAlert.Views
 	{
         PreSvpViewModel preSvpviewModel;
         private List<string> PreviousAwarenessList =new List<string>();
+        private MultipickerPage<MultiselectItem> multipickerPage;
         public PreSvpFormPage()
 		{
 			InitializeComponent ();
@@ -24,6 +27,54 @@ namespace NexGenRedAlert.Views
         async void OnResetClicked(object sender , EventArgs evt)
         {
             await Navigation.PushAsync( new PreSvpFormPage());
+        }
+
+
+        async void OnFocusedMajorEmploymentEntry(Object sender, EventArgs evt)
+        {
+            var selectedItemList = new List<MultiselectItem>
+            {
+                new MultiselectItem { Name = "Agriculture" },
+                new MultiselectItem { Name = "Industrial" },
+                new MultiselectItem { Name = "Casual Labour" },
+                new MultiselectItem { Name = "Self-Employed" },
+                new MultiselectItem { Name = "Other" }
+            };
+            if (multipickerPage == null)
+            {
+                multipickerPage = new MultipickerPage<MultiselectItem>(selectedItemList) { Title = "Choose Applicable" };
+            }
+            await Navigation.PushAsync(multipickerPage);
+        }
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if(multipickerPage != null)
+            {
+                MajorEmploymentEntry.Text = "";
+
+                IList<MultiselectItem> selection = multipickerPage.GetSelection();
+                string selectionString="";
+                if (selection.Count != 0)
+                {
+                    foreach (var x in selection)
+                    {
+                        selectionString += x.Name + ", ";
+                    }
+                    MajorEmploymentEntry.Text = selectionString.Remove(selectionString.Length - 2);
+                }
+                else
+                {
+                    MajorEmploymentEntry.Text = "Choose Source of Income > ";
+                }
+            }
+            else
+            {
+                MajorEmploymentEntry.Text = "Choose Source of Income > ";
+            }
         }
     }
 }

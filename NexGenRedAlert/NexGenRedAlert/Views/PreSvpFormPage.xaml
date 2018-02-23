@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:NexGenRedAlert.Custom"
              x:Class="NexGenRedAlert.Views.PreSvpFormPage"
              Title="PreSvp Forms">
     <ContentPage.Content>
@@ -23,7 +24,7 @@
                 <Entry x:Name="LocationDescEntry" Placeholder="Location Description" Text="{Binding PreSvp.LocationDesc}" />
                 
                 <Label x:Name="MajorEmploymentLabel" Text="Major Source of Income:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <Entry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income" Text="{Binding PreSvp.MajorSourceOfIncome}" />
+                <local:MultiselectEntry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income" Focused="OnFocusedMajorEmploymentEntry" Text="{Binding PreSvp.MajorSourceOfIncome}" />
                 
                 <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="ActiveCommunityDetailsEntry" Text="{Binding PreSvp.ActiveCommunityGroup}" />
