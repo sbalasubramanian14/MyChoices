@@ -13,7 +13,9 @@ namespace NexGenRedAlert.Views
 	{
         PreSvpViewModel preSvpviewModel;
         private List<string> PreviousAwarenessList =new List<string>();
-        private MultipickerPage<MultiselectItem> multipickerPage;
+        private MultipickerPage<MultiselectItem> multipickerSourceOfIncomePage;
+        private MultipickerPage<MultiselectItem> multipickerLocalIssuesPage;
+
         public PreSvpFormPage()
 		{
 			InitializeComponent ();
@@ -40,11 +42,29 @@ namespace NexGenRedAlert.Views
                 new MultiselectItem { Name = "Self-Employed" },
                 new MultiselectItem { Name = "Other" }
             };
-            if (multipickerPage == null)
+            if (multipickerSourceOfIncomePage == null)
             {
-                multipickerPage = new MultipickerPage<MultiselectItem>(selectedItemList) { Title = "Choose Applicable" };
+                multipickerSourceOfIncomePage = new MultipickerPage<MultiselectItem>(selectedItemList) { Title = "Choose Applicable" };
             }
-            await Navigation.PushAsync(multipickerPage);
+            await Navigation.PushAsync(multipickerSourceOfIncomePage);
+        }
+
+        async void OnFocusedLocalIssuesEntry(object sender, EventArgs evt)
+        {
+            var selectedItemList = new List<MultiselectItem>
+            {
+                new MultiselectItem { Name = "Prone to Natural calamities" },
+                new MultiselectItem { Name = "Lack of Livelihood options" },
+                new MultiselectItem { Name = "Civil and Political unrest" },
+                new MultiselectItem { Name = "Border Interstate" },
+                new MultiselectItem { Name = "Border International" }
+            };
+            if (multipickerLocalIssuesPage == null)
+            {
+                multipickerLocalIssuesPage = new MultipickerPage<MultiselectItem>(selectedItemList) { Title = "Choose Applicable" };
+            }
+            await Navigation.PushAsync(multipickerLocalIssuesPage);
+
         }
 
 
@@ -52,11 +72,11 @@ namespace NexGenRedAlert.Views
         {
             base.OnAppearing();
 
-            if(multipickerPage != null)
+            if(multipickerSourceOfIncomePage != null)
             {
                 MajorEmploymentEntry.Text = "";
 
-                IList<MultiselectItem> selection = multipickerPage.GetSelection();
+                IList<MultiselectItem> selection = multipickerSourceOfIncomePage.GetSelection();
                 string selectionString="";
                 if (selection.Count != 0)
                 {
@@ -71,10 +91,27 @@ namespace NexGenRedAlert.Views
                     MajorEmploymentEntry.Text = "Choose Source of Income > ";
                 }
             }
-            else
+
+            if (multipickerLocalIssuesPage != null)
             {
-                MajorEmploymentEntry.Text = "Choose Source of Income > ";
+                LocalIssuesEntry.Text = "";
+
+                IList<MultiselectItem> selection = multipickerLocalIssuesPage.GetSelection();
+                string selectionString = "";
+                if (selection.Count != 0)
+                {
+                    foreach (var x in selection)
+                    {
+                        selectionString += x.Name + ", ";
+                    }
+                    LocalIssuesEntry.Text = selectionString.Remove(selectionString.Length - 2);
+                }
+                else
+                {
+                    LocalIssuesEntry.Text = "Choose Local Issues > ";
+                }
             }
+
         }
     }
 }

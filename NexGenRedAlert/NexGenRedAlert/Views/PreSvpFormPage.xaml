@@ -48,7 +48,7 @@
                 <Editor x:Name="TrafficProneDescEntry" Text="{Binding PreSvp.NeighbouringTrafficProneDesc}" />
                 
                 <Label x:Name="LocalIssuesLabel" Text="Local Issues description:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <Editor x:Name="LocalIssuesEntry" Text="{Binding PreSvp.LocalIssuesDesc}"/>
+                <local:MultiselectEntry x:Name="LocalIssuesEntry" Placeholder="Choose Local issues" Focused="OnFocusedLocalIssuesEntry" Text="{Binding PreSvp.LocalIssuesDesc}" />
                 
                 <Label x:Name="TraffickingAwarenessLabel" Text="Is there awareness about trafficking ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="TraffickingAwarenessEntry" Placeholder="Description" Text="{Binding PreSvp.AwarenessDesc}" />
