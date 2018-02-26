@@ -398,8 +398,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
             LegalConsentFormLookupId: [this.caseBook.Legal.LegalConsentFormLookupId == undefined ? null : this.caseBook.Legal.LegalConsentFormLookupId.toString(), Validators.required],
             LegalActionLookupId: [this.caseBook.Legal.LegalActionLookupId == undefined ? null : this.caseBook.Legal.LegalActionLookupId.toString(), Validators.required],
-            OutcomeLookupId: [this.caseBook.Legal.OutcomeLookupId == undefined ? null : this.caseBook.Legal.OutcomeLookupId.toString(), Validators.required],
-            DocumentsLookupId: [this.caseBook.Legal.DocumentsLookupId == undefined ? null : this.caseBook.Legal.DocumentsLookupId.toString(), Validators.required]
+            OutcomeLookupId: [this.caseBook.Legal.OutcomeLookupId == undefined ? null : this.caseBook.Legal.OutcomeLookupId.toString()],
+            DocumentsLookupId: [this.caseBook.Legal.DocumentsLookupId == undefined ? null : this.caseBook.Legal.DocumentsLookupId.toString()]
         });
     }
 
