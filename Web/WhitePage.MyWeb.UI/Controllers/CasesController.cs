@@ -316,6 +316,9 @@ namespace WhitePage.MyWeb.UI.Controllers
             caseBook.Abuse.TypesOfEconomicAbuseLookupId = caseBook.Abuse.TypesOfEconomicAbuseLookupArray.ToArrayString();
             caseBook.Abuse.ReasonsForAbuseLookupId = caseBook.Abuse.ReasonsForAbuseLookupArray.ToArrayString();
 
+            caseBook.Legal.OutcomeLookupId = caseBook.Legal.OutcomeLookupArray.ToArrayString();
+            caseBook.Legal.DocumentsLookupId = caseBook.Legal.DocumentsLookupArray.ToArrayString();
+
             var updatedCase = this.caseBusinessAccess.UpdateCaseStatus(caseBook);
 
             return Ok(updatedCase);

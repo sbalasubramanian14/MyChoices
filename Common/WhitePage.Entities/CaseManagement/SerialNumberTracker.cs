@@ -9,7 +9,6 @@ namespace WhitePage.Entities.CaseManagement
     {
         [Key]
         public int SerialNumberTrackerId { get; set; }
-        public int SerialNumberId { get; set; }
         public int SerialValue { get; set; }        
         public DateTime GeneratedDate { get; set; }
     }
