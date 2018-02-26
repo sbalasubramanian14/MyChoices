@@ -50,14 +50,14 @@ export class ValidationService {
 
     public mobileValidator(input: AbstractControl) {
 
-        var mobilePattern = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+        var mobilePattern = /^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$/;
 
         if (input.value == null || input.value == "") {
             return null;
         }
 
         if (!mobilePattern.test(input.value)) {
-            return { 'Please provide a valid phone': true };
+            return { 'invalid': true };
         }
 
         return null;
