@@ -13,7 +13,7 @@ BEGIN
 	set @caseNumber = Right(Year(getDate()),2) + RIGHT('00'+CAST(Month(getDate()) AS VARCHAR(2)),2)  + '-' + RIGHT('0000'+CAST(@caseSerial AS VARCHAR(4)),4);
 
 	insert into Core.trSerialNumberTracker
-	values(1, @caseSerial, GETDATE());
+	values(@caseSerial, GETDATE());
 
 	declare @caseId INT;
 
