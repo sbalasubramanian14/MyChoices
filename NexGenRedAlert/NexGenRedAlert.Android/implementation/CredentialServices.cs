@@ -5,18 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Auth;
 
+
 [assembly: Xamarin.Forms.Dependency(typeof(CredentialServices))]
 namespace NexGenRedAlert.Services
 {
     public class CredentialServices : ICredentialService
     {
-        private IEnumerable<Account> _accountStore = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name);
-
         public string UserName
         {
             get
             {
-                var account = _accountStore.FirstOrDefault();
+                var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
                 return (account != null) ? account.Username : null;
             }
         }
@@ -25,7 +24,7 @@ namespace NexGenRedAlert.Services
         {
             get
             {
-                var account = _accountStore.FirstOrDefault();
+                var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
                 return (account != null) ? account.Properties["IpCode"] : null;
             }
         }
@@ -33,14 +32,14 @@ namespace NexGenRedAlert.Services
         {
             get
             {
-                var account = _accountStore.FirstOrDefault();
+                var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
                 return (account != null) ? account.Properties["NgoName"] : null;
             }
         }
 
         public void DeleteCredentials()
         {
-            var account = _accountStore.FirstOrDefault();
+            var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
             if (account != null)
             {
                 AccountStore.Create(Application.Context).Delete(account, Application.Context.ApplicationInfo.Name);
@@ -49,7 +48,7 @@ namespace NexGenRedAlert.Services
 
         public bool DoCredentialsExist()
         {
-            return _accountStore.Any() ? true : false;
+            return AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).Any() ? true : false;
         }
 
         public void SaveCredentials(string userName, string ipCode , string ngoName)
