@@ -10,6 +10,7 @@ namespace NexGenRedAlert
         public static SvpServices SvpService;
         public static AuthServices AuthService;
         public ICredentialService CredentialService;
+        public static VillageProfileServices DatabaseService;
 
         public App ()
 		{
@@ -39,7 +40,7 @@ namespace NexGenRedAlert
             }
             else
             {
-                MainPage = new NavigationPage(new AboutPage());
+                MainPage = new NavigationPage(new NetworkAlertPage());
             }
         }
 

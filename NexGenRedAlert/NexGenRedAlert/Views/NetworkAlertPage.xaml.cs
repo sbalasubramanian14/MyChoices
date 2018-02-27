@@ -1,14 +1,12 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace NexGenRedAlert.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AboutPage : ContentPage
+	public partial class NetworkAlertPage : ContentPage
 	{
-		public AboutPage ()
+		public NetworkAlertPage ()
 		{
 			InitializeComponent ();
 		}

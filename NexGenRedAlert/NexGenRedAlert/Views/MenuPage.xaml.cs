@@ -26,10 +26,5 @@ namespace NexGenRedAlert.Views
         {
             await Navigation.PushAsync(new SvpFormTabbedPage());
         }
-
-        async void OpenAboutPage(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AboutPage());
-        }
     }
 }
