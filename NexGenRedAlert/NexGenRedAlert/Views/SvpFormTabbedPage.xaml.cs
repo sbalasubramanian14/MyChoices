@@ -1,4 +1,5 @@
-﻿using NexGenRedAlert.ViewModels;
+﻿using NexGenRedAlert.Models;
+using NexGenRedAlert.ViewModels;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -23,7 +24,7 @@ namespace NexGenRedAlert.Views
             ORAVisitedEntry.ItemsSource = OraVisitedList;
         }
 
-        public void onClickChangeTab(object sender, EventArgs evt)
+        public void OnClickChangeTab(object sender, EventArgs evt)
         {
             var parentPage =  pageTwo.Parent as TabbedPage;
             parentPage.CurrentPage = parentPage.Children[1];
@@ -32,6 +33,22 @@ namespace NexGenRedAlert.Views
         async void OnResetClicked(object sender, EventArgs evt)
         {
             await Navigation.PushAsync(new SvpFormTabbedPage());
+        }
+
+        public async void OnUnfocusedVillageCodeEntryAsync(object sender , EventArgs evt)
+        {
+            VillageProfile villageProfile = await App.SQLiteDatabaseServices.GetVillageAsync(VillageCodeEntry.Text);
+
+            if(villageProfile!=null)
+            {
+                VillageProfileLabel.Text = $"Village: {villageProfile.VillageName} ,{villageProfile.DistrictName}";
+            }
+            else
+            {
+                VillageProfileLabel.Text = "Invalid Village code";
+            }
+            
+            VillageProfileFrame.IsVisible = true;
         }
     }
 }

@@ -96,7 +96,22 @@ namespace NexGenRedAlert.Views
                     LocalIssuesEntry.Text = "Choose Local Issues > ";
                 }
             }
+        }
 
+        public async void OnUnfocusedVillageCodeEntryAsync(object sender, EventArgs evt)
+        {
+            VillageProfile villageProfile = await App.SQLiteDatabaseServices.GetVillageAsync(VillageCodeEntry.Text);
+
+            if (villageProfile != null)
+            {
+                VillageProfileLabel.Text = $"Village: {villageProfile.VillageName} ,{villageProfile.DistrictName}";
+            }
+            else
+            {
+                VillageProfileLabel.Text = "Invalid Village code";
+            }
+
+            VillageProfileFrame.IsVisible = true;
         }
     }
 }
