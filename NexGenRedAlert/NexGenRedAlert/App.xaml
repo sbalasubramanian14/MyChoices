@@ -4,6 +4,7 @@
              x:Class="NexGenRedAlert.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="Black">#000000</Color>
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="PrimaryDark">#1976D2</Color>
             <Color x:Key="Accent">#96d1ff</Color>

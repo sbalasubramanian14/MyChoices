@@ -8,10 +8,9 @@
             <ScrollView >
                 <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
                     <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Text="{Binding Svp.VillageCode, Mode=TwoWay}" />
-                    <Frame x:Name="frame"  IsVisible="False" Margin="0,50,0,0" >
-                        <Label x:Name="VillageName" Text="" FontSize="15" />
-                        <Label x:Name="DistrictName" Text="" FontSize="15" />
+                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding Svp.VillageCode, Mode=TwoWay}" />
+                    <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                        <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
                     </Frame>
                     
                     <Label x:Name="SvpDateLabel" Text="SvpDate" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
@@ -70,7 +69,7 @@
                     
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <Button x:Name="ResetButton1" Text="Reset" Clicked="OnResetClicked" />
-                        <Button x:Name="NextPage" Text="Next Page" Clicked="onClickChangeTab" />
+                        <Button x:Name="NextPage" Text="Next Page" Clicked="OnClickChangeTab" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

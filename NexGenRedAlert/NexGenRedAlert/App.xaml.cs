@@ -10,7 +10,7 @@ namespace NexGenRedAlert
         public static SvpServices SvpService;
         public static AuthServices AuthService;
         public ICredentialService CredentialService;
-        public static VillageProfileServices DatabaseService;
+        public static VillageProfileServices SQLiteDatabaseService;
 
         public App ()
 		{
@@ -80,6 +80,18 @@ namespace NexGenRedAlert
                     AuthService = new AuthServices();
                 }
                 return AuthService;
+            }
+        }
+
+        public static VillageProfileServices SQLiteDatabaseServices
+        {
+            get
+            {
+                if(SQLiteDatabaseService == null)
+                {
+                    SQLiteDatabaseService = new VillageProfileServices(DependencyService.Get<IFilehelper>().GetLocalFilePath("NeXGenDB.db3"));
+                }
+                return SQLiteDatabaseService;
             }
         }
     }
