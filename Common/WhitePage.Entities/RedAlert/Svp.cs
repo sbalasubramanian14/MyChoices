@@ -37,6 +37,7 @@ namespace WhitePage.Entities.RedAlert
         public string SchoolFeedback { get; set; }
         public string EldersFeedback { get; set; }
 
+        public string IsRakshakInstituted { get; set; }
         public string SchoolName { get; set; }
         public short ComicBooksCount { get; set; }
         public int TotalSvpCost { get; set; }

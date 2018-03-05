@@ -30,7 +30,8 @@
 	[SchoolFeedback] VARCHAR(500) NOT NULL,
 	[EldersFeedback] VARCHAR(500) NOT NULL,
 
-	--others
+	--others 
+	[IsRakshakInstituted] VARCHAR(3) NOT NULL,
 	[SchoolName] VARCHAR(100) NOT NULL,
 	[ComicBooksCount] SMALLINT NOT NULL,
 	[TotalSvpCost] INT NOT NULL,
