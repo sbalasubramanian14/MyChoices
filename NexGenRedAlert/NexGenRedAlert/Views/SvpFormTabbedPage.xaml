@@ -25,7 +25,7 @@
                     <Label x:Name="FieldWorkerNamesLabel" Text="Names of Field Workers" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="FieldWorkerNamesEntry" Text="{Binding Svp.FieldWorkerNames, Mode=OneWayToSource}" />
 
-                    <Label x:Name="ORAVisitedLabel" Text="Did ORA Visit (Yes/No) ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Label x:Name="ORAVisitedLabel" Text="Did ORA team Visit ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Picker x:Name="ORAVisitedEntry" Title="Did ORA Visit ?"  SelectedItem="{Binding Svp.ORAVisited, Mode=OneWayToSource}" />
 
                     <Label x:Name="ConfirmedChildAbuseCountLabel" Text="Confirmed Child Abuse Count:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
@@ -84,6 +84,9 @@
 
                     <Label x:Name="EldersFeedbackLabel" Text="Elders Feedback :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="EldersFeedbackEntry" Text="{Binding Svp.EldersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="IsRakshakInstitutedLabel" Text="Has Rakshak been Identified ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="IsRakshakInstitutedEntry" Title="Has Rakshak been Identified ?" SelectedItem="{Binding Svp.IsRakshakInstituted, Mode=OneWayToSource}" />
 
                     <Label x:Name="SchoolNameLabel" Text="School Name :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="SchoolNameEntry" Placeholder="School Name" Text="{Binding Svp.SchoolName, Mode=TwoWay}" />

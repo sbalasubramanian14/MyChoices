@@ -36,6 +36,7 @@ namespace NexGenRedAlert.Models
         private string _schoolFeedback;
         private string _eldersFeedback;
 
+        private string _isRakshakInstituted;
         private string _schoolName;
         private short _comicBooksCount;
         private int _totalSvpCost;
@@ -88,6 +89,7 @@ namespace NexGenRedAlert.Models
         public string SchoolFeedback { get { return _schoolFeedback; } set { SetProperty(ref _schoolFeedback, value); } }
         public string EldersFeedback { get { return _eldersFeedback; } set { SetProperty(ref _eldersFeedback, value); } }
 
+        public string IsRakshakInstituted { get { return _isRakshakInstituted;  } set { SetProperty(ref _isRakshakInstituted, value);  } }
         public string SchoolName { get { return _schoolName; } set { SetProperty(ref _schoolName, value); } }
         public short ComicBooksCount { get { return _comicBooksCount; } set { SetProperty(ref _comicBooksCount, value); } }
         public int TotalSvpCost { get { return _totalSvpCost; } set { SetProperty(ref _totalSvpCost, value); } }

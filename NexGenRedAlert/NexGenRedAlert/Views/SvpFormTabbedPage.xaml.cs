@@ -11,7 +11,7 @@ namespace NexGenRedAlert.Views
     public partial class SvpFormTabbedPage : TabbedPage
     {
         SvpViewModel svpViewModel;
-        private List<string> OraVisitedList = new List<string>();
+        private List<string> DropdownList = new List<string>();
         public SvpFormTabbedPage ()
         {
             InitializeComponent();
@@ -19,9 +19,10 @@ namespace NexGenRedAlert.Views
 
             SvpDatePicker.Date = DateTime.Now;
 
-            OraVisitedList.Add("Yes");
-            OraVisitedList.Add("No");
-            ORAVisitedEntry.ItemsSource = OraVisitedList;
+            DropdownList.Add("Yes");
+            DropdownList.Add("No");
+            ORAVisitedEntry.ItemsSource = DropdownList;
+            IsRakshakInstitutedEntry.ItemsSource = DropdownList;
         }
 
         public void OnClickChangeTab(object sender, EventArgs evt)
