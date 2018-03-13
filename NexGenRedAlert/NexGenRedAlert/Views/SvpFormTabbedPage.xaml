@@ -2,7 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NexGenRedAlert.Views.SvpFormTabbedPage"
-            Title="Svp Form">
+            Title="Svp Form"
+            BarBackgroundColor="{StaticResource DarkBlue}"
+            BarTextColor="White">
     <ContentPage x:Name="pageOne" Title="Page 1" >
         <ContentPage.Content>
             <ScrollView >
