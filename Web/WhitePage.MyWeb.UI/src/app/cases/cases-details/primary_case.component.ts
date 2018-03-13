@@ -176,28 +176,24 @@ export class PrimaryCaseComponent implements OnInit {
     }
 
     public onPrimayUpdate() {
-        var caseBookNew = new CaseBook();
-        caseBookNew.Case = new Case();
-        caseBookNew.Case.CaseId = this.caseBook.Case.CaseId;
-        caseBookNew.Case.CaseNumber = this.caseBook.Case.CaseNumber;
-        caseBookNew.Case.CaseStausId = this.caseBook.Case.CaseStausId;
-        caseBookNew.Case.CenterId = this.casePrimaryForm.controls['CenterId'].value;
-        caseBookNew.Case.PeaceMakerId = this.casePrimaryForm.controls['PeaceMakerId'].value;
-        caseBookNew.Case.CounselorId = this.casePrimaryForm.controls['CounselorId'].value;
-        caseBookNew.Case.SourceOfCaseLookupId = this.casePrimaryForm.controls['SourceOfCaseLookupId'].value;
-        caseBookNew.Case.SourceOfCaseDesc = this.casePrimaryForm.controls['SourceOfCaseDesc'].value;
-        caseBookNew.Case.ClientFirstName = this.casePrimaryForm.controls['ClientFirstName'].value;
-        caseBookNew.Case.ClientLastName = this.casePrimaryForm.controls['ClientLastName'].value;
-        caseBookNew.Case.FatherName = this.casePrimaryForm.controls['FatherName'].value;
-        caseBookNew.Case.Mi = this.casePrimaryForm.controls['Mi'].value;
-        caseBookNew.Case.GenderLookupId = this.casePrimaryForm.controls['GenderLookupId'].value;
-        caseBookNew.Case.ClientAge = this.casePrimaryForm.controls['ClientAge'].value;
-        caseBookNew.Case.MaritalStatusLookupId = this.casePrimaryForm.controls['MaritalStatusLookupId'].value;
-        caseBookNew.Case.RequireAssistanceLookupId = this.casePrimaryForm.controls['RequireAssistanceLookupId'].value;
-        caseBookNew.Case.Remarks = this.casePrimaryForm.controls['Remarks'].value;
-        caseBookNew.Case.MobileNumber = this.casePrimaryForm.controls['MobileNumber'].value;
 
-        this.casesService.updatePrimaryInfo(caseBookNew).subscribe(
+        this.caseBook.Case.CenterId = this.casePrimaryForm.controls['CenterId'].value;
+        this.caseBook.Case.PeaceMakerId = this.casePrimaryForm.controls['PeaceMakerId'].value;
+        this.caseBook.Case.CounselorId = this.casePrimaryForm.controls['CounselorId'].value;
+        this.caseBook.Case.SourceOfCaseLookupId = this.casePrimaryForm.controls['SourceOfCaseLookupId'].value;
+        this.caseBook.Case.SourceOfCaseDesc = this.casePrimaryForm.controls['SourceOfCaseDesc'].value;
+        this.caseBook.Case.ClientFirstName = this.casePrimaryForm.controls['ClientFirstName'].value;
+        this.caseBook.Case.ClientLastName = this.casePrimaryForm.controls['ClientLastName'].value;
+        this.caseBook.Case.FatherName = this.casePrimaryForm.controls['FatherName'].value;
+        this.caseBook.Case.Mi = this.casePrimaryForm.controls['Mi'].value;
+        this.caseBook.Case.GenderLookupId = this.casePrimaryForm.controls['GenderLookupId'].value;
+        this.caseBook.Case.ClientAge = this.casePrimaryForm.controls['ClientAge'].value;
+        this.caseBook.Case.MaritalStatusLookupId = this.casePrimaryForm.controls['MaritalStatusLookupId'].value;
+        this.caseBook.Case.RequireAssistanceLookupId = this.casePrimaryForm.controls['RequireAssistanceLookupId'].value;
+        this.caseBook.Case.Remarks = this.casePrimaryForm.controls['Remarks'].value;
+        this.caseBook.Case.MobileNumber = this.casePrimaryForm.controls['MobileNumber'].value;
+
+        this.casesService.updatePrimaryInfo(this.caseBook).subscribe(
             data => {
                 this.toastr.success('Primary Info Updated Successfully');
             },
