@@ -109,9 +109,7 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdatePrimaryInfo([FromBody] CaseBook caseBook)
         {
-            caseBook.Case.CreatedDateTime = DateTime.Now;
             caseBook.Case.ModifiedDatetime = DateTime.Now;
-            caseBook.Case.RegisterDate = DateTime.Now.Date;
 
             var updatedCase = this.caseBusinessAccess.UpdatePrimaryInfo(caseBook);
             return Ok(updatedCase);
@@ -134,9 +132,12 @@ namespace WhitePage.MyWeb.UI.Controllers
         [HttpPost]
         public IActionResult UpdateChildren([FromBody] CaseBook caseBook)
         {
-            caseBook.SelectedChildren.CreatedBy = this.LoggedInUserId;
-            caseBook.SelectedChildren.ModifiedBy = this.LoggedInUserId;
-            caseBook.SelectedChildren.CreatedDateTime = DateTime.Now;
+            if(caseBook.SelectedChildren.CaseChildrenId==0)
+            {
+                caseBook.SelectedChildren.CreatedBy = this.LoggedInUserId;
+                caseBook.SelectedChildren.ModifiedBy = this.LoggedInUserId;
+                caseBook.SelectedChildren.CreatedDateTime = DateTime.Now;
+            }            
             caseBook.SelectedChildren.ModifiedDatetime = DateTime.Now;
 
             var updatedCase = this.caseBusinessAccess.UpdateChildren(caseBook);
