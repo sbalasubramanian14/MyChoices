@@ -5,13 +5,15 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Black">#000000</Color>
-            <Color x:Key="Primary">#2196F3</Color>
-            <Color x:Key="PrimaryDark">#1976D2</Color>
+            <Color x:Key="Primary">#1C1C1C</Color>
+            <Color x:Key="PrimaryDark">#0A43C9</Color>
             <Color x:Key="Accent">#96d1ff</Color>
             <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
             <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="LightGrey">#F0F0F0</Color>
+            <Color x:Key="DarkBlue">#110763</Color>
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
