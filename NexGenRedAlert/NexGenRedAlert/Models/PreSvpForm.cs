@@ -28,8 +28,6 @@ namespace NexGenRedAlert.Models
         private DateTime _createdDateTime;
         private string _createdBy;
 
-
-
         #endregion
 
         public int PreSVPId { get { return _preSVPId; } set { SetProperty(ref _preSVPId, value); } }

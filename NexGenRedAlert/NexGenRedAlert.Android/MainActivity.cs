@@ -19,8 +19,12 @@ namespace NexGenRedAlert.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+
+            // Initialise SQLite Database with Village Profile data
             InitLocalDB();
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            // Google Authentication
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, bundle);
             
             LoadApplication(new App());

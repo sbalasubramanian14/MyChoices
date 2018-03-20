@@ -10,7 +10,7 @@ namespace NexGenRedAlert.ViewModels
     {        
         public ICommand SubmitPreSvpForm { get; }
         public string preSvpNumber;
-        public string alertMessage="Submitted succesfully !\nPreSvpNumber is :";
+        public string alertMessage="Submitted successfully !\nPreSvpNumber is :";
 
         public PreSvpViewModel()
         {
@@ -39,7 +39,7 @@ namespace NexGenRedAlert.ViewModels
             });
         }
 
-        private Models.PreSvpForm _PreSvp = new Models.PreSvpForm();
+        private PreSvpForm _PreSvp = new PreSvpForm();
         public PreSvpForm PreSvp
         {
             get { return _PreSvp; }
