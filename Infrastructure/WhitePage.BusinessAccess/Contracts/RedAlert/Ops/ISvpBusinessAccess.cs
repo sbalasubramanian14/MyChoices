@@ -4,7 +4,8 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
 {
     public interface ISvpBusinessAccess
     {
-        string SavePreSvpForm(PreSvp PreSvpForm);
-        string SaveSvpForm(Svp SvpForm);
+        string SavePreSvpForm(PreSvp preSvpForm);
+        string SaveSvpForm(Svp svpForm);
+        string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm);
     }
 }

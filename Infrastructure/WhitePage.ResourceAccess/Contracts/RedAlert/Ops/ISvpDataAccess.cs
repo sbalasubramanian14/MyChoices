@@ -4,7 +4,8 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
 {
     public interface ISvpDataAccess
     {
-        string SavePreSvpForm(PreSvp PreSvpForm);
-        string SaveSvpForm(Svp SvpForm);
+        string SavePreSvpForm(PreSvp preSvpForm);
+        string SaveSvpForm(Svp svpForm);
+        string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm);
     }
 }

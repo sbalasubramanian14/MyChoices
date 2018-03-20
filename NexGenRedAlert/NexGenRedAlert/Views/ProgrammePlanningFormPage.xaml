@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NexGenRedAlert.Custom"
+             xmlns:picker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             x:Class="NexGenRedAlert.Views.ProgrammePlanningFormPage"
+             Title="Planning Form">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Margin="20,20,20,0" Spacing="10" VerticalOptions="StartAndExpand">
+                    <Label x:Name="PlanningMonthLabel" Text="Planning Month and Year" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+
+                    <Entry x:Name="PlanningMonthAndYearEntry" Placeholder="Choose month " Focused="OnPlanningMonthAndYearEntryFocused" Text="{ Binding ProgrammePlanningForm.PlanningMonthAndYear }" />
+                    <local:CustomMonthYearPicker x:Name="PlanningMonthAndYearPicker" ColumnHeaderHeight="50" HeaderBackgroundColor="Black" IsVisible="False" HorizontalOptions="Center" PickerHeight="200" PickerMode="Dialog"  PickerWidth="300" />
+
+                    <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding ProgrammePlanningForm.VillageCode, Mode=OneWayToSource}"/>
+                
+                    <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                        <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
+                    </Frame>
+
+                    <Label x:Name="PlanningTypeLabel" Text="Programme Type ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="PlanningTypePicker" Title="Programme Type" SelectedItem="{Binding ProgrammePlanningForm.PlanningCategory}" />
+
+                    <Label x:Name="PlannedPreSvpDateLabel" Text="Planned PreSvp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <DatePicker x:Name="PlannedPreSvpDatePicker" Format="D" TextColor="{StaticResource Black}" Date="{Binding ProgrammePlanningForm.PlannedPreSvpDate}" />
+
+                    <Label x:Name="PlannedSvpDateLabel" Text="Planned Svp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <DatePicker x:Name="PlannedSvpDatePicker" Format="D" TextColor="{StaticResource Black}" Date="{Binding ProgrammePlanningForm.PlannedSvpDate}" />
+
+                    <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                                  HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
+                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitProgrammePlanningForm}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

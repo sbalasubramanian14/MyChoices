@@ -162,6 +162,7 @@
     <Build Include="RedAlert\Auth\trImplementingPartner.sql" />
     <Build Include="RedAlert\Ops\Tables\trSvp.sql" />
     <Build Include="RedAlert\Ops\Tables\trPreSvp.sql" />
+    <Build Include="RedAlert\Ops\Tables\trProgrammePlanning.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

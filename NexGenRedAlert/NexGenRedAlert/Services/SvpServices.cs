@@ -13,7 +13,7 @@ namespace NexGenRedAlert.Services
     public class SvpServices
     {
         HttpClient Client;
-        private const string WebServiceUrl = "https://mychoicesredalert.azurewebsites.net/api/redalert/svpforms/";
+        private const string WebServiceUrl = "https://mcptstaging.azurewebsites.net/api/redalert/forms/";
 
         public SvpServices(HttpClient client)
         {
@@ -23,6 +23,34 @@ namespace NexGenRedAlert.Services
         public SvpServices()
         {
             Client = new HttpClient();
+        }
+
+        public async Task<string> PostAsyncSaveProgrammePlanningForm(ProgrammePlanningForm programmePlanningForm)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                programmePlanningForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+
+                var json = JsonConvert.SerializeObject(programmePlanningForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(WebServiceUrl + "SaveProgrammePlanningForm", httpContent);
+                string PlanningFormNumber = await result.Content.ReadAsStringAsync();
+                return PlanningFormNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
         }
 
         public async Task<string> PostAsyncSavePreSvpForm(PreSvpForm preSvpForm)

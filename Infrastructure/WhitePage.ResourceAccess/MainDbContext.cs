@@ -61,12 +61,14 @@ namespace WhitePage.ResourceAccess
         public DbSet<User> User { get; set; }
         public DbSet<SerialNumberTracker> SerialNumberTracker { get; set; }
 
-        /* Start of RedAlert */
+        /// <summary>
+        /// Red Alert Project DbContexts
+        /// </summary>
         public DbSet<Svp> Svp { get; set; }
         public DbSet<PreSvp> PreSvp { get; set; }
+        public DbSet<ProgrammePlanning> ProgrammePlanning { get; set; }
         public DbSet<SerialNumbertrackerRA> SerialNumbertrackerRA { get; set; }
 
         public DbSet<ImplementingPartner> ImplementingPartner { get; set; }
-        /* End of RedAlert */
     }
 }
