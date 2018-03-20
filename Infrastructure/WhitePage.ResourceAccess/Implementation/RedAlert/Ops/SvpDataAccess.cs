@@ -12,28 +12,28 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
 
         }
-        public string SaveSvpForm(Svp SvpForm)
+        public string SaveSvpForm(Svp svpForm)
         {
             int newFormNumber=1;
 
             IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
-                                                                                                   .Where(x => x.IpCode == SvpForm.CreatedBy && x.FormType == "SV"); 
+                                                                                                   .Where(x => x.IpCode == svpForm.CreatedBy && x.FormType == "SV"); 
             if(queryableSerialNumberTrackerRAData.Any())
             {
                newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1; ;
             }
             string padding = "000";
             string serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
-            SvpForm.SvpNumber = "SV-" + SvpForm.CreatedBy + "-" + serialNumberComponent;
+            svpForm.SvpNumber = "SV-" + svpForm.CreatedBy + "-" + serialNumberComponent;
 
             /*Form entry*/
-            Svp svpObj = this.unitOfWork.DbContext.Svp.Add(SvpForm);
+            Svp svpObj = this.unitOfWork.DbContext.Svp.Add(svpForm);
 
             /*Serial Number updation*/
             SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
             {
                 FormType = "SV",
-                IpCode = SvpForm.CreatedBy,
+                IpCode = svpForm.CreatedBy,
                 SerialValue = newFormNumber,
                 GeneratedDate = DateTime.UtcNow.AddHours(5.5)
             };
@@ -44,27 +44,27 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return svpObj.SvpNumber;
         }
 
-        public string SavePreSvpForm(PreSvp PreSvpForm)
+        public string SavePreSvpForm(PreSvp preSvpForm)
         {
             int newFormNumber =1;
             IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
-                                                                                                   .Where(x => x.IpCode == PreSvpForm.CreatedBy && x.FormType == "PV"); 
+                                                                                                   .Where(x => x.IpCode == preSvpForm.CreatedBy && x.FormType == "PV"); 
             if(queryableSerialNumberTrackerRAData.Any())
             {
                 newFormNumber= queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1;
             }
             string padding = "000";
             string serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
-            PreSvpForm.PreSvpNumber = "PV-" + PreSvpForm.CreatedBy + "-" + serialNumberComponent;
+            preSvpForm.PreSvpNumber = "PV-" + preSvpForm.CreatedBy + "-" + serialNumberComponent;
 
             /*Form entry */
-            PreSvp preSvpObj = this.unitOfWork.DbContext.PreSvp.Add(PreSvpForm);
+            PreSvp preSvpObj = this.unitOfWork.DbContext.PreSvp.Add(preSvpForm);
 
             /*Serial Number updation*/
             SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
             {
                 FormType = "PV",
-                IpCode = PreSvpForm.CreatedBy,
+                IpCode = preSvpForm.CreatedBy,
                 SerialValue = newFormNumber,
                 GeneratedDate = DateTime.UtcNow.AddHours(5.5)
             };
@@ -74,6 +74,38 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             this.unitOfWork.DbContext.SaveChanges();
 
             return preSvpObj.PreSvpNumber;
+        }
+
+        public string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm)
+        {
+            int newFormNumber = 1;
+            IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
+                                                                                                   .Where(x => x.IpCode == programmePlanningForm.CreatedBy && x.FormType == "PL");
+            if (queryableSerialNumberTrackerRAData.Any())
+            {
+                newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1;
+            }
+            string padding = "000";
+            string serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
+            programmePlanningForm.PlanningNumber = "PL-" + programmePlanningForm.CreatedBy + "-" + serialNumberComponent;
+
+            /*Form entry */
+            ProgrammePlanning planningObj = this.unitOfWork.DbContext.ProgrammePlanning.Add(programmePlanningForm);
+
+            /*Serial Number updation*/
+            SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
+            {
+                FormType = "PL",
+                IpCode = programmePlanningForm.CreatedBy,
+                SerialValue = newFormNumber,
+                GeneratedDate = DateTime.UtcNow.AddHours(5.5)
+            };
+
+            serialNumbertrackerRAObj = this.unitOfWork.DbContext.SerialNumbertrackerRA.Add(serialNumbertrackerRAObj);
+
+            this.unitOfWork.DbContext.SaveChanges();
+
+            return planningObj.PlanningNumber;
         }
     }
 }

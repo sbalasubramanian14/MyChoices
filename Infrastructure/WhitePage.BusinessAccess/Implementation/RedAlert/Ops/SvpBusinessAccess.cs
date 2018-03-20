@@ -12,18 +12,24 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             this.svpDataAccess = svpDataAccess;
         }
-        public string SavePreSvpForm(PreSvp PreSvpForm)
+
+        public string SavePreSvpForm(PreSvp preSvpForm)
         {
-            return this.svpDataAccess.SavePreSvpForm(PreSvpForm);
+            return this.svpDataAccess.SavePreSvpForm(preSvpForm);
         }
-        public string SaveSvpForm(Svp SvpForm)
+        public string SaveSvpForm(Svp svpForm)
         {
-            SvpForm.TotalParticipationCount = (short)(SvpForm.MothersParticipationCount
-                                                + SvpForm.FathersParticipationCount
-                                                + SvpForm.SchoolParticipationCount
-                                                + SvpForm.EldersParticipationCount
-                                                + SvpForm.MovieParticipationCount);
-            return this.svpDataAccess.SaveSvpForm(SvpForm);
+            svpForm.TotalParticipationCount = (short)(svpForm.MothersParticipationCount
+                                                + svpForm.FathersParticipationCount
+                                                + svpForm.SchoolParticipationCount
+                                                + svpForm.EldersParticipationCount
+                                                + svpForm.MovieParticipationCount);
+            return this.svpDataAccess.SaveSvpForm(svpForm);
         }        
+
+        public string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm)
+        {
+            return this.svpDataAccess.SaveProgrammePlanningForm(programmePlanningForm);
+        }
     }
 }
