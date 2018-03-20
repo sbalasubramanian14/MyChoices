@@ -14,15 +14,19 @@ namespace NexGenRedAlert.Views
         {
             InitializeComponent();
             BindingContext = menuPageViewModel = new MenuPageViewModel();
-            activityIndicator.IsVisible = false;
         }
 
-        async void OpenPreSvpPage(object sender, EventArgs e)
+        async void OpenPlanningFormPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProgrammePlanningFormPage());
+        }
+
+        async void OpenPreSvpFormPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PreSvpFormPage());
         }
 
-        async void OpenPostSvpPage(object sender, EventArgs e)
+        async void OpenSvpFormPage(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SvpFormTabbedPage());
         }

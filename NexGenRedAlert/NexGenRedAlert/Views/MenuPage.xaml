@@ -15,9 +15,9 @@
             </StackLayout>
 
             <StackLayout VerticalOptions="StartAndExpand" Margin="20,0,20,0" >
-                <ActivityIndicator x:Name="activityIndicator" IsRunning="True" Color="Crimson"/>
-                <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpPage" />
-                <Button x:Name="SvpButton" Text="Svp Form" Clicked="OpenPostSvpPage" />
+                <Button x:Name="planningButton" Text="Planning Form" Clicked="OpenPlanningFormPage" />
+                <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpFormPage" />
+                <Button x:Name="SvpButton" Text="Svp Form" Clicked="OpenSvpFormPage" />
                 <Button x:Name="LogoutButton" Text="Logout" Command="{Binding LogoutCurrentUser }" HeightRequest="50" BackgroundColor="Black" TextColor="White" />
             </StackLayout>
             <StackLayout x:Name="FooterStackLayout" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}">

@@ -13,6 +13,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1-beta3" />
     <PackageReference Include="PCLCrypto" Version="2.0.147" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.166-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.1.0.26" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0" />
     <PackageReference Include="Xamarin.Auth" Version="1.5.0.3" />
@@ -31,6 +32,9 @@
       <SubType>Code</SubType>
       <DependentUpon>NetworkAlertPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ProgrammePlanningFormPage.xaml.cs">
+      <DependentUpon>ProgrammePlanningFormPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PreSvpFormPage.xaml.cs">
       <DependentUpon>PreSvpFormPage.xaml</DependentUpon>
     </Compile>
@@ -44,6 +48,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProgrammePlanningFormPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SvpFormTabbedPage.xaml">
