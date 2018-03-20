@@ -32,7 +32,6 @@ namespace NexGenRedAlert.Views
             await Navigation.PushAsync( new PreSvpFormPage());
         }
 
-
         async void OnFocusedMajorEmploymentEntry(Object sender, EventArgs evt)
         {
             if (multipickerSourceOfIncomePage == null)

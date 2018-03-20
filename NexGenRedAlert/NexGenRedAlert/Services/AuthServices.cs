@@ -10,7 +10,7 @@ namespace NexGenRedAlert.Services
     public class AuthServices
     {
         HttpClient Client;
-        private const string WebServiceUrl = "https://mychoicesredalert.azurewebsites.net/api/redalert/login/";
+        private const string WebServiceUrl = "https://mcptstaging.azurewebsites.net/api/redalert/login/";
 
         public AuthServices(HttpClient client)
         {

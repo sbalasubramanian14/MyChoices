@@ -10,7 +10,7 @@ namespace NexGenRedAlert.ViewModels
     {
         public ICommand SubmitSvpForm { get; }
         public string svpNumber;
-        public string alertMessage = "Submitted succesfully!\nSvpNumber is :";
+        public string alertMessage = "Submitted successfully!\nSvpNumber is :";
 
         public SvpViewModel()
         {

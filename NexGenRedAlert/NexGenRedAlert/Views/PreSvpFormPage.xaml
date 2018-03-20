@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:local="clr-namespace:NexGenRedAlert.Custom"
              x:Class="NexGenRedAlert.Views.PreSvpFormPage"
-             Title="PreSvp Forms">
+             Title="PreSvp Form">
     <ContentPage.Content>
         <ScrollView >
-            <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout Margin="20,20,20,0" Spacing="10">
                 <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding PreSvp.VillageCode, Mode=OneWayToSource}"/>
                 <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
                     <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
                 </Frame>
 
-                <Label x:Name="SvpDateLabel" Text="PreSvp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Label x:Name="PreSvpDateLabel" Text="PreSvp Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <DatePicker x:Name="PreSvpDatePicker" Format="D" TextColor="{StaticResource Black}" Date="{Binding PreSvp.PreSvpDate}" />
 
                 <Label x:Name="DistanceToVillageLabel" Text="One Way Distance to Village (KMs):" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
