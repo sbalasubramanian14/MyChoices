@@ -39,7 +39,7 @@ namespace NexGenRedAlert.Custom
         private void PopulateMonthAndYear()
         {
             // Populate Year
-            for (int i=2017; i<2100; i++)
+            for (int i=2018; i<2100; i++)
             {
                 Year.Add(i.ToString());
             }
