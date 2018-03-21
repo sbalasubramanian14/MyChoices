@@ -61,7 +61,7 @@ namespace NexGenRedAlert
             ListView mainList = new ListView()
             {
                 ItemsSource = WrappedItems,
-                ItemTemplate = new DataTemplate(typeof(WrappedItemSelectionTemplate)),
+                ItemTemplate = new DataTemplate(typeof(WrappedItemSelectionTemplate))
             };
 
             mainList.ItemSelected += (sender, e) =>
@@ -78,7 +78,7 @@ namespace NexGenRedAlert
                 Font = Font.SystemFontOfSize(NamedSize.Large),
                 BorderWidth = 1,
                 HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.CenterAndExpand
+                VerticalOptions = LayoutOptions.StartAndExpand
             };
             CloseButton.Clicked += OnCloseButtonClicked;
 
