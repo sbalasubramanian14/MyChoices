@@ -72,7 +72,7 @@ namespace NexGenRedAlert.Views
                 }
                 else
                 {
-                    MajorEmploymentEntry.Text = "Choose Source of Income > ";
+                    MajorEmploymentEntry.Text = "";
                 }
             }
 
@@ -92,7 +92,7 @@ namespace NexGenRedAlert.Views
                 }
                 else
                 {
-                    LocalIssuesEntry.Text = "Choose Local Issues > ";
+                    LocalIssuesEntry.Text = "";
                 }
             }
         }
