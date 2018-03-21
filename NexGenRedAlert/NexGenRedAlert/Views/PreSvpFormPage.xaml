@@ -23,7 +23,7 @@
                 <Entry x:Name="LocationDescEntry" Placeholder="Location Description" Text="{Binding PreSvp.LocationDesc}" />
                 
                 <Label x:Name="MajorEmploymentLabel" Text="Major Source of Income:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <local:MultiselectEntry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income"  Focused="OnFocusedMajorEmploymentEntry" Text="{Binding PreSvp.MajorSourceOfIncome}" />
+                <local:KeyboardDisabledEntry x:Name="MajorEmploymentEntry" Placeholder="Major Source of Income"  Focused="OnFocusedMajorEmploymentEntry" Text="{Binding PreSvp.MajorSourceOfIncome}" />
                 
                 <Label x:Name="ActiveCommunityLabel" Text="Mention the details of active Community Groups (SHG/CVC) to facilitate the program" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Editor x:Name="ActiveCommunityDetailsEntry" Text="{Binding PreSvp.ActiveCommunityGroup}" />
@@ -47,7 +47,7 @@
                 <Editor x:Name="TrafficProneDescEntry" Text="{Binding PreSvp.NeighbouringTrafficProneDesc}" />
                 
                 <Label x:Name="LocalIssuesLabel" Text="Local Issues description:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                <local:MultiselectEntry x:Name="LocalIssuesEntry" Placeholder="Choose Local issues" Focused="OnFocusedLocalIssuesEntry" Text="{Binding PreSvp.LocalIssuesDesc}" />
+                <local:KeyboardDisabledEntry x:Name="LocalIssuesEntry" Placeholder="Choose Local issues" Focused="OnFocusedLocalIssuesEntry" Text="{Binding PreSvp.LocalIssuesDesc}" />
                 
                 <Label x:Name="TraffickingAwarenessLabel" Text="Is there awareness about trafficking ?:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                 <Entry x:Name="TraffickingAwarenessEntry" Placeholder="Description" Text="{Binding PreSvp.AwarenessDesc}" />

@@ -5,28 +5,24 @@ using NexGenRedAlert.Droid.Custom;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(MultiselectEntry), typeof(MultiselectEntryRenderer))]
+[assembly: ExportRenderer(typeof(KeyboardDisabledEntry), typeof(KeyboardDisabledEntryRenderer))]
 namespace NexGenRedAlert.Droid.Custom
 {
-    public class MultiselectEntryRenderer : EntryRenderer
+    public class KeyboardDisabledEntryRenderer : EntryRenderer
     {
-        //public MultiselectEntryRenderer() : base(Android.App.Application.Context) { }
-        public MultiselectEntryRenderer(Context context) : base(context)
-        {
-
-        }
+        public KeyboardDisabledEntryRenderer(Context context) : base(context) { }
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
 
             if (e.NewElement != null)
             {
-                ((MultiselectEntry)e.NewElement).PropertyChanging += OnPropertyChanging;
+                ((KeyboardDisabledEntry)e.NewElement).PropertyChanging += OnPropertyChanging;
             }
 
             if (e.OldElement != null)
             {
-                ((MultiselectEntry)e.OldElement).PropertyChanging -= OnPropertyChanging;
+                ((KeyboardDisabledEntry)e.OldElement).PropertyChanging -= OnPropertyChanging;
             }
 
             // Disable the Keyboard on Focus

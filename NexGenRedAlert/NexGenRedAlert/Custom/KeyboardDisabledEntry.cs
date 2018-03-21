@@ -2,7 +2,7 @@
 
 namespace NexGenRedAlert.Custom
 {
-    public class MultiselectEntry : Entry
+    public class KeyboardDisabledEntry : Entry
     {
     }
 }
