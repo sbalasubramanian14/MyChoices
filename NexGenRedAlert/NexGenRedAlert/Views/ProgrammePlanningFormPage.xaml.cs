@@ -1,5 +1,6 @@
 ﻿using NexGenRedAlert.Models;
 using NexGenRedAlert.ViewModels;
+using Syncfusion.SfPicker.XForms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace NexGenRedAlert.Views
             ProgrammeTypeList.Add("SVP");
             ProgrammeTypeList.Add("Revisit");
             PlanningTypePicker.ItemsSource = ProgrammeTypeList;
-            PlanningMonthAndYearPicker.OkButtonClicked += Month_OkButtonClicked;
+            PlanningMonthAndYearPicker.OkButtonClicked += MonthAndYearPicker_OkButtonClicked;
         }
 
         public void OnPlanningMonthAndYearEntryFocused(object sender, EventArgs evt)
@@ -30,7 +31,7 @@ namespace NexGenRedAlert.Views
             PlanningMonthAndYearPicker.IsOpen = true;
         }
 
-        private void Month_OkButtonClicked(object sender, Syncfusion.SfPicker.XForms.SelectionChangedEventArgs e)
+        private void MonthAndYearPicker_OkButtonClicked(object sender, SelectionChangedEventArgs e)
         {
             string MonthAndYear = "";
             if (e.NewValue is IEnumerable selectedValue)
@@ -38,8 +39,9 @@ namespace NexGenRedAlert.Views
                 foreach (object element in selectedValue)
                     MonthAndYear += element + ", ";
             }
-            PlanningMonthAndYearEntry.Text = MonthAndYear.Remove(MonthAndYear.Length-2);
-            VillageCodeEntry.Focus();
+            if(!String.IsNullOrEmpty(MonthAndYear))
+                PlanningMonthAndYearEntry.Text = MonthAndYear.Remove(MonthAndYear.Length-2);
+            PlanningMonthAndYearEntry.Unfocus();
         }
 
         public async void OnUnfocusedVillageCodeEntryAsync(object sender, EventArgs evt)

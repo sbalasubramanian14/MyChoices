@@ -11,7 +11,7 @@
                 <StackLayout Margin="20,20,20,0" Spacing="10" VerticalOptions="StartAndExpand">
                     <Label x:Name="PlanningMonthLabel" Text="Planning Month and Year" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
 
-                    <Entry x:Name="PlanningMonthAndYearEntry" Placeholder="Choose month " Focused="OnPlanningMonthAndYearEntryFocused" Text="{ Binding ProgrammePlanningForm.PlanningMonthAndYear }" />
+                    <local:KeyboardDisabledEntry x:Name="PlanningMonthAndYearEntry" Placeholder="Choose Month and Year" Focused="OnPlanningMonthAndYearEntryFocused" Text="{ Binding ProgrammePlanningForm.PlanningMonthAndYear }" />
                     <local:CustomMonthYearPicker x:Name="PlanningMonthAndYearPicker" ColumnHeaderHeight="50" HeaderBackgroundColor="Black" IsVisible="False" HorizontalOptions="Center" PickerHeight="200" PickerMode="Dialog"  PickerWidth="300" />
 
                     <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
