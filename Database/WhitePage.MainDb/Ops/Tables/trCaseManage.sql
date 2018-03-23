@@ -14,6 +14,7 @@
 	CaseDescription varchar(2000),
 	RelationshipWithPMLookupId INT,
 
-	ResolutionLog varchar(2000)
+	ResolutionLog varchar(2000),
+	CaseClosureDate DATETIME NULL
 
 )

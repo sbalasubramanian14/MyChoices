@@ -26,5 +26,6 @@ namespace WhitePage.Entities.CaseManagement
         public int? RelationshipWithPMLookupId { get; set; }
 
         public string ResolutionLog { get; set; }
+        public DateTime? CaseClosureDate { get; set; }
     }
 }

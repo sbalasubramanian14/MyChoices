@@ -31,6 +31,7 @@ namespace WhitePage.Entities.CaseManagement
         public string Remarks { get; set; }
         public DateTime RegisterDate { get; set; }
         public string MobileNumber { get; set; }
+        public DateTime? CaseStartDate { get; set; }
 
         public int CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
