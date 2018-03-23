@@ -12,6 +12,8 @@ import { BaseCaseController } from './../basecase.controller';
 
 import { CaseBook } from '../../models/case.entities';
 import { CaseStatus } from '../../models/entities';
+import { IMyOptions } from 'mydatepicker';
+import * as moment from 'moment';
 
 @Component({
     selector: 'manageCase',
@@ -50,6 +52,20 @@ export class ManageCaseComponent implements OnInit {
         return input == undefined ? null : input.toString()
     }
 
+    // Date Picker Options
+    private myDatePickerOptions: IMyOptions = {
+        editableDateField: false,
+    };
+
+    private returnDate(object: any): any {
+        var formatted = object['formatted'];
+        if (formatted != undefined) {
+            return moment.utc(formatted).format();
+        }
+
+        return moment.utc(object['date']).format();
+    }
+
     private loadManageFromGroup() {
         this.caseManageForm = this.fb.group({
 
@@ -62,8 +78,11 @@ export class ManageCaseComponent implements OnInit {
             CaseSubject: [this.caseBook.Manage.CaseSubject],
             CaseDescription: [this.caseBook.Manage.CaseDescription],
             RelationshipWithPMLookupId: [this.returnValue(this.caseBook.Manage.RelationshipWithPMLookupId)],
+            CaseClosureDate: [this.caseBook.Manage.CaseClosureDate],
             ResolutionLog: [this.caseBook.Manage.ResolutionLog]
         });
+
+        this.caseManageForm.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
     }
 
     public onUpdateManage() {
@@ -76,6 +95,9 @@ export class ManageCaseComponent implements OnInit {
         this.caseBook.Manage.CaseDescription = this.caseManageForm.controls['CaseDescription'].value;
         this.caseBook.Manage.RelationshipWithPMLookupId = this.caseManageForm.controls['RelationshipWithPMLookupId'].value;
         this.caseBook.Manage.ResolutionLog = this.caseManageForm.controls['ResolutionLog'].value;
+
+        let CaseClosureDateObj = this.caseManageForm.controls['CaseClosureDate'].value;
+        this.caseBook.Manage.CaseClosureDate = this.returnDate(CaseClosureDateObj);
 
 
         this.casesService.updateCase(this.caseBook).subscribe(

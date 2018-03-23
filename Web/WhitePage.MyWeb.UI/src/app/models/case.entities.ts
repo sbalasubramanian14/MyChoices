@@ -24,7 +24,7 @@
 
     RegisterDate?: Date;
     MobileNumber?: Date;
-
+    CaseStartDate?: Date;
     CreatedBy?: number;
     CreatedDateTime?: Date;
     ModifiedBy?: number;
@@ -322,6 +322,7 @@ export class CaseManage {
 
     RelationshipWithPMLookupId?: number;
     ResolutionLog: string;
+    CaseClosureDate?: Date;
 }
 
 export class CaseMental {
