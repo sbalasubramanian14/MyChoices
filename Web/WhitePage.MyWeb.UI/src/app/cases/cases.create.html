@@ -8,6 +8,13 @@
                 </div>
                 <div class="card-block">
                     <div class="form-group">
+                        <label for="CaseStartDate">Case Start Date *</label>
+                        <my-date-picker name="CaseStartDate" id="CaseStartDate" [options]="myDatePickerOptions" formControlName="CaseStartDate"></my-date-picker>
+                        <div>
+                            <small *ngIf="casePrimaryForm.controls.CaseStartDate.hasError('required') && casePrimaryForm.controls.CaseStartDate.touched" class="mat-text-warn">Date is required.</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="CenterId">Center *</label>
                         <ng-select id="CenterId"
                                    [options]="centerOptionList"
@@ -81,11 +88,6 @@
                             <small *ngIf="casePrimaryForm.controls.ClientLastName.dirty && casePrimaryForm.controls.ClientLastName.invalid" class="mat-text-warn">Please provide a valid Last Name</small>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="MiddleInitialId">M.I.</label>
-                        <input id="MiddleInitialId" placeholder="Middle Initials" formControlName="Mi" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000" />
-                    </div>
-                    
                 </div>
             </div>
         </div>
@@ -95,6 +97,10 @@
                     Client Details
                 </div>
                 <div class="card-block">
+                    <div class="form-group">
+                        <label for="MiddleInitialId">M.I.</label>
+                        <input id="MiddleInitialId" placeholder="Middle Initials" formControlName="Mi" [(ngModel)]="caseBook.Case.Mi" class="form-control" maxlength="2000" />
+                    </div>
                     <div class="form-group">
                         <label for="FatherHusbandNameId">Father / Husband Name *</label>
                         <input id="FatherHusbandNameId" placeholder="Father / Husband Name" formControlName="FatherName" [(ngModel)]="caseBook.Case.FatherName" class="form-control" />

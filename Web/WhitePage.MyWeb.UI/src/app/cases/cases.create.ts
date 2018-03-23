@@ -14,6 +14,8 @@ import { ValidationService } from '../services/validation.service'
 import { CaseBook, Case, CaseAddress, vCaseAddress, CaseChildren, vCaseChildren } from '../models/case.entities';
 import { BaseCaseController } from './basecase.controller';
 import { CasesDetailedComponent } from './cases.detailed';
+import { IMyOptions } from 'mydatepicker';
+import * as moment from 'moment';
 
 @Component({
     templateUrl: 'cases.create.html',
@@ -163,6 +165,20 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         return input == undefined ? null : input.toString()
     }
 
+    // Date Picker Options
+    private myDatePickerOptions: IMyOptions = {
+        editableDateField: false,
+    };
+
+    private returnDate(object: any): any {
+        var formatted = object['formatted'];
+        if (formatted != undefined) {
+            return moment.utc(formatted).format();
+        }
+
+        return moment.utc(object['date']).format();
+    }
+
     ngOnInit() {
         this.caseBook = new CaseBook();
         this.caseBook.Case = new Case();
@@ -171,6 +187,7 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
         this.caseBook.vAddresses = new Array<vCaseAddress>();
 
         this.casePrimaryForm = this.fb.group({
+                CaseStartDate: [this.caseBook.Case.CaseStartDate, Validators.required],
                 CenterId: [this.caseBook.Case.CenterId, Validators.required],
                 PeaceMakerId: [this.caseBook.Case.PeaceMakerId, Validators.required],
                 CounselorId: [this.caseBook.Case.CounselorId, Validators.required],
@@ -199,6 +216,10 @@ export class CasesCreateComponent extends BaseCaseController implements OnInit {
     }
 
     onCaseSave() {
+
+        let CaseStartDateObj = this.casePrimaryForm.controls['CaseStartDate'].value;
+        this.caseBook.Case.CaseStartDate = this.returnDate(CaseStartDateObj);
+
         this.casesService
             .addCasePrimary(this.caseBook).subscribe(data => {
                 this.router.navigate(['/cases/detailed/' + data.CaseId]).then(() => {

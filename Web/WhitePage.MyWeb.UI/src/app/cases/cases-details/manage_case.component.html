@@ -40,8 +40,6 @@
                         <label for="ReasonForClosureStatus">Reason for selected Closure status</label>
                         <input formControlName="ReasonForClosureStatus" class="form-control" maxlength="2000" />
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -74,20 +72,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="CaseClosureDate">Case Closure Date </label>
+                        <my-date-picker name="CaseClosureDate" id="CaseClosureDate" [options]="myDatePickerOptions" formControlName="CaseClosureDate"></my-date-picker>
+                    </div>
+
+                    <div class="form-group">
                         <label for="ResolutionLog">Case resolution log</label>
                         <input formControlName="ResolutionLog" class="form-control" maxlength="2000" />
                     </div>
-
 
                     <div class="form-group">
                         <button class="btn btn-primary" [disabled]="!caseManageForm.valid" (click)="onUpdateManage()">Update</button>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-
     </div>
 </form>

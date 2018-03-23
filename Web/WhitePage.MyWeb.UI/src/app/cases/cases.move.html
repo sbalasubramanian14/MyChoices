@@ -85,6 +85,14 @@
                             <div class="card-block primary-info-view">
 
                                 <div class="form-group">
+                                    <label for="CaseClosureDate">Case Closure Date * </label>
+                                    <my-date-picker name="CaseClosureDate" id="CaseClosureDate" [options]="myDatePickerOptions" formControlName="CaseClosureDate"></my-date-picker>
+                                    <div>
+                                        <small *ngIf="category2Form.controls.CaseClosureDate.hasError('required') && category2Form.controls.CaseClosureDate.touched" class="mat-text-warn">Closure date is required.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="CaseSubject">Subject *</label>
                                     <input [formControl]="category2Form.controls['CaseSubject']" class="form-control" maxlength="2000" />
                                     <div>
@@ -770,6 +778,14 @@
                                     Case Management
                                 </div>
                                 <div class="card-block primary-info-view">
+
+                                    <div class="form-group">
+                                        <label for="CaseClosureDate">Case Closure Date * </label>
+                                        <my-date-picker name="CaseClosureDate" id="CaseClosureDate" [options]="myDatePickerOptions" formControlName="CaseClosureDate"></my-date-picker>
+                                        <div>
+                                            <small *ngIf="category4Form.controls.CaseClosureDate.hasError('required') && category4Form.controls.CaseClosureDate.touched" class="mat-text-warn">Closure date is required.</small>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="CaseSubject">Subject *</label>

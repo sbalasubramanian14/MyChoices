@@ -11,6 +11,8 @@ import { CaseBook, Case, CaseAddress, vCaseAddress } from '../../models/case.ent
 import { Center, PeaceMaker, Counselor, Lookup, State } from '../../models/entities';
 
 import { BaseCaseController } from './../basecase.controller';
+import { IMyOptions } from 'mydatepicker';
+import * as moment from 'moment';
 
 @Component({
     selector: 'primaryCase',
@@ -154,8 +156,23 @@ export class PrimaryCaseComponent implements OnInit {
         return input == undefined ? null : input.toString()
     }
 
+    // Date Picker Options
+    private myDatePickerOptions: IMyOptions = {
+        editableDateField: false,
+    };
+
+    private returnDate(object: any): any {
+        var formatted = object['formatted'];
+        if (formatted != undefined) {
+            return moment.utc(formatted).format();
+        }
+
+        return moment.utc(object['date']).format();
+    }
+
     private loadPrimayCaseTab() {
         this.casePrimaryForm = this.fb.group({
+            CaseStartDate: [this.caseBook.Case.CaseStartDate, Validators.required],
             CenterId: [this.caseBook.Case.CenterId.toString(), Validators.required],
             PeaceMakerId: [this.caseBook.Case.PeaceMakerId.toString(), Validators.required],
             CounselorId: [this.caseBook.Case.CounselorId.toString(), Validators.required],
@@ -173,10 +190,12 @@ export class PrimaryCaseComponent implements OnInit {
             Remarks: [this.caseBook.Case.Remarks],
             MobileNumber: [this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.validationService.mobileValidator]],
         });
+
+        this.casePrimaryForm.patchValue({ CaseStartDate: { date: this.caseBook.Case.CaseStartDate } });
     }
 
     public onPrimayUpdate() {
-
+        
         this.caseBook.Case.CenterId = this.casePrimaryForm.controls['CenterId'].value;
         this.caseBook.Case.PeaceMakerId = this.casePrimaryForm.controls['PeaceMakerId'].value;
         this.caseBook.Case.CounselorId = this.casePrimaryForm.controls['CounselorId'].value;
@@ -192,6 +211,9 @@ export class PrimaryCaseComponent implements OnInit {
         this.caseBook.Case.RequireAssistanceLookupId = this.casePrimaryForm.controls['RequireAssistanceLookupId'].value;
         this.caseBook.Case.Remarks = this.casePrimaryForm.controls['Remarks'].value;
         this.caseBook.Case.MobileNumber = this.casePrimaryForm.controls['MobileNumber'].value;
+
+        let CaseStartDateObj = this.casePrimaryForm.controls['CaseStartDate'].value;
+        this.caseBook.Case.CaseStartDate = this.returnDate(CaseStartDateObj);
 
         this.casesService.updatePrimaryInfo(this.caseBook).subscribe(
             data => {

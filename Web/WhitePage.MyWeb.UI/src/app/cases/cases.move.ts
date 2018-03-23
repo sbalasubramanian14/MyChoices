@@ -184,6 +184,19 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
                     this.caseStatusOptionList.push({ value: this.caseStatusesList[i].CaseStatusId.toString(), label: this.caseStatusesList[i].Title });
             }
     }
+    // Date Picker Options
+    private myDatePickerOptions: IMyOptions = {
+        editableDateField: false,
+    };
+
+    private returnDate(object: any): any {
+        var formatted = object['formatted'];
+        if (formatted != undefined) {
+            return moment.utc(formatted).format();
+        }
+
+        return moment.utc(object['date']).format();
+    }
 
     private loadLookups(): any {
         this.yesNoOptionsList = this.ParseLookups("YesNo");
@@ -251,7 +264,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
             // Manage category 2
 
-            //CaseStatusId: [this.caseBook.Case.CaseStausId.toString(), Validators.required],
+            CaseClosureDate: [this.caseBook.Manage.CaseClosureDate, Validators.required],
             CaseSubject: [this.caseBook.Manage.CaseSubject, Validators.required],
             CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
             //End of Manage category 2 
@@ -283,6 +296,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             //End of physical health category 2
 
         });
+        this.category2Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
         this.isMainDataLoaded = true;
     }
 
@@ -379,6 +393,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             //End of Abuse category 4
 
             //Case Category 4
+            CaseClosureDate: new FormControl(this.caseBook.Manage.CaseClosureDate == undefined ? null : this.caseBook.Manage.CaseClosureDate, Validators.required),
             SourceOfCaseLookupId: new FormControl(this.caseBook.Case.SourceOfCaseLookupId == undefined ? null : this.caseBook.Case.SourceOfCaseLookupId.toString(), Validators.required),
             SourceOfCaseDesc: new FormControl(this.caseBook.Case.SourceOfCaseDesc),
 
@@ -386,6 +401,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]),
             TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.validationService.validateNumber, Validators.required])
         });
+        this.category4Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
     }
 
     private loadCategory5Form() {
@@ -407,6 +423,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
         //Case category 2
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseClosureDate = this.returnDate(this.category2Form.controls['CaseClosureDate'].value);
         this.caseBook.Manage.CaseSubject = this.category2Form.controls['CaseSubject'].value;
         this.caseBook.Manage.CaseDescription = this.category2Form.controls['CaseDescription'].value;
 
@@ -480,6 +497,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     public updateCategory4() {
 
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.caseBook.Manage.CaseClosureDate = this.returnDate(this.category4Form.controls['CaseClosureDate'].value);
         this.caseBook.Manage.CaseSubject = this.category4Form.controls['CaseSubject'].value;
         this.caseBook.Manage.CaseDescription = this.category4Form.controls['CaseDescription'].value;
         //Household category 4

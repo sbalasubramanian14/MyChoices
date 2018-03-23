@@ -47,6 +47,10 @@
                     <span>{{ (relationshipWithPMLookupOptionList | MatchesPipe:manageForm.RelationshipWithPMLookupId) }}</span>
                 </div>
                 <div class="form-group">
+                    <label>Case Closure Date  :</label>
+                    <span>{{ manageForm.CaseClosureDate | date: 'dd-MM-yyyy' }}</span>
+                </div>
+                <div class="form-group">
                     <label>Case resolution log  :</label>
                     <span>{{ manageForm.ResolutionLog }}</span>
                 </div>

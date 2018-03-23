@@ -6,6 +6,10 @@
                 </div>
                 <div class="card-block info-view">
                     <div class="form-group">
+                        <label>Case Start Date  :</label>
+                        <span>{{ primaryForm.CaseStartDate | date: 'dd-MM-yyyy' }}</span>
+                    </div>
+                    <div class="form-group">
                         <label>Center  :</label>
                         <span>{{ (centerOptionList | MatchesPipe:primaryForm.CenterId) }}</span>
                     </div>
