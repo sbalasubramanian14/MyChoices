@@ -47,7 +47,7 @@ export class OffenderCaseComponent implements OnInit {
 
         this.caseOffenderForm = this.fb.group({
             Name: [this.caseBook.SelectedOffender.Name, Validators.required],
-            Age: [this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]],
+            Age: [this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateYears, Validators.required]],
             GenderLookupId: [this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required],
             RelationshipWithVictimLookupId: [this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required],
             OtherRelationship: [this.caseBook.SelectedOffender.OtherRelationship]
@@ -67,7 +67,7 @@ export class OffenderCaseComponent implements OnInit {
 
         this.caseOffenderForm = this.fb.group({
             Name: [this.caseBook.SelectedOffender.Name, Validators.required],
-            Age: [this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateNumber, Validators.required]],
+            Age: [this.caseBook.SelectedOffender.Age, [Validators.maxLength(2), this.validationService.validateYears, Validators.required]],
             GenderLookupId: [this.caseBook.SelectedOffender.GenderLookupId == undefined ? null : this.caseBook.SelectedOffender.GenderLookupId.toString(), Validators.required],
             RelationshipWithVictimLookupId: [this.caseBook.SelectedOffender.RelationshipWithVictimLookupId == undefined ? null : this.caseBook.SelectedOffender.RelationshipWithVictimLookupId.toString(), Validators.required],
             OtherRelationship: [this.caseBook.SelectedOffender.OtherRelationship]

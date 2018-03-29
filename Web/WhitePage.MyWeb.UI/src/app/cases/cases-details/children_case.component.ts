@@ -46,7 +46,7 @@ export class ChildrenCaseComponent implements OnInit {
 
         this.caseChildrenForm = this.fb.group({
             Name: [this.caseBook.SelectedChildren.Name, Validators.required],
-            Age: [this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateNumber]],
+            Age: [this.caseBook.SelectedChildren.Age, [Validators.required, this.validationService.validateYears]],
             GenderLookupId: [this.caseBook.SelectedChildren.GenderLookupId == undefined ? null : this.caseBook.SelectedChildren.GenderLookupId.toString(), Validators.required],
             RelationshipWithAbuserLookupId: [this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId == undefined ? null : this.caseBook.SelectedChildren.RelationshipWithAbuserLookupId.toString(), Validators.required]
         });
@@ -73,7 +73,7 @@ export class ChildrenCaseComponent implements OnInit {
 
         this.caseChildrenForm = this.fb.group({
             Name: [childrenObject.Name, Validators.required],
-            Age: [childrenObject.Age, [Validators.required, this.validationService.validateNumber]],
+            Age: [childrenObject.Age, [Validators.required, this.validationService.validateYears]],
             GenderLookupId: [childrenObject.GenderLookupId.toString(), Validators.required],
             RelationshipWithAbuserLookupId: [childrenObject.RelationshipWithAbuserLookupId.toString(), Validators.required]
         });

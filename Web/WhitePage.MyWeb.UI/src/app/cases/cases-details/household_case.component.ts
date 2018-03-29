@@ -76,7 +76,7 @@ export class HouseholdCaseComponent implements OnInit {
         ClientIncomeLookupId: [this.caseBook.FamilyHouseHold.ClientIncomeLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientIncomeLookupId.toString()],
         HouseHoldMembersLivingLookupId: [this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId == undefined ? null : this.caseBook.FamilyHouseHold.HouseHoldMembersLivingLookupId.toString()],
         YearsOfMarriage: [this.caseBook.FamilyHouseHold.YearsOfMarriage, [this.validationService.validateYears, this.validationService.validateYears]],
-        ClientAgeAtFirstChild: [this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateNumber]]
+        ClientAgeAtFirstChild: [this.caseBook.FamilyHouseHold.ClientAgeAtFirstChild, [Validators.minLength(2), this.validationService.validateYears]]
         });
     }
 

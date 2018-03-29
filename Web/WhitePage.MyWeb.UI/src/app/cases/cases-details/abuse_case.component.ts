@@ -88,19 +88,19 @@ export class AbuseCaseComponent implements OnInit {
 
             TypesOfPhyscialAbuseLookupId: [this.returnValue(this.caseBook.Abuse.TypesOfPhyscialAbuseLookupId)],
             FrequencyOfPhyscialAbuseLookupId: [this.returnValue(this.caseBook.Abuse.FrequencyOfPhyscialAbuseLookupId)],
-            NumberOfYearsOfPhyscialAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse), [Validators.maxLength(2), this.validationService.validateNumber]],
+            NumberOfYearsOfPhyscialAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfPhyscialAbuse), [Validators.maxLength(2), this.validationService.validateYears]],
 
             TypesOfEmotionalAbuseLookupId: [this.returnValue(this.caseBook.Abuse.TypesOfEmotionalAbuseLookupId)],
             FrequencyOfEmotionalAbuseLookupId: [this.returnValue(this.caseBook.Abuse.FrequencyOfEmotionalAbuseLookupId)],
-            NumberOfYearsOfEmotionalAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse), [Validators.maxLength(2), this.validationService.validateNumber]],
+            NumberOfYearsOfEmotionalAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfEmotionalAbuse), [Validators.maxLength(2), this.validationService.validateYears]],
 
             TypesOfSexualAbuseLookupId: [this.returnValue(this.caseBook.Abuse.TypesOfSexualAbuseLookupId)],
             FrequencyOfSexualAbuseLookupId: [this.returnValue(this.caseBook.Abuse.FrequencyOfSexualAbuseLookupId)],
-            NumberOfYearsOfSexualAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse), [Validators.maxLength(2), this.validationService.validateNumber]],
+            NumberOfYearsOfSexualAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfSexualAbuse), [Validators.maxLength(2), this.validationService.validateYears]],
 
             TypesOfEconomicAbuseLookupId: [this.returnValue(this.caseBook.Abuse.TypesOfEconomicAbuseLookupId)],
             FrequencyOfEconomicAbuseLookupId: [this.returnValue(this.caseBook.Abuse.FrequencyOfEconomicAbuseLookupId)],
-            NumberOfYearsOfEconomicAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse), [Validators.maxLength(2), this.validationService.validateNumber]],
+            NumberOfYearsOfEconomicAbuse: [this.returnValue(this.caseBook.Abuse.NumberOfYearsOfEconomicAbuse), [Validators.maxLength(2), this.validationService.validateYears]],
 
             ReasonsForAbuseLookupId: [this.returnValue(this.caseBook.Abuse.ReasonsForAbuseLookupId)],
             ReasonForAbuseDesc: [this.caseBook.Abuse.ReasonForAbuseDesc],
