@@ -53,7 +53,7 @@ export class ManageCaseComponent implements OnInit {
     }
 
     // Date Picker Options
-    private myDatePickerOptions: IMyOptions = {
+    public myDatePickerOptions: IMyOptions = {
         editableDateField: false,
     };
 
