@@ -13,6 +13,7 @@ import { Center, PeaceMaker, Counselor, Lookup, State } from '../../models/entit
 import { BaseCaseController } from './../basecase.controller';
 import { IMyOptions } from 'mydatepicker';
 import * as moment from 'moment';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'primaryCase',
@@ -172,7 +173,7 @@ export class PrimaryCaseComponent implements OnInit {
 
     private loadPrimayCaseTab() {
         this.casePrimaryForm = this.fb.group({
-            CaseStartDate: [this.caseBook.Case.CaseStartDate, Validators.required],
+            CaseStartDate: [this.caseBook.Case.CaseStartDate, [Validators.required, Validators.minLength(1)]],
             CenterId: [this.caseBook.Case.CenterId.toString(), Validators.required],
             PeaceMakerId: [this.caseBook.Case.PeaceMakerId.toString(), Validators.required],
             CounselorId: [this.caseBook.Case.CounselorId.toString(), Validators.required],
@@ -191,7 +192,8 @@ export class PrimaryCaseComponent implements OnInit {
             MobileNumber: [this.caseBook.Case.MobileNumber, [Validators.required, Validators.minLength(10), this.validationService.mobileValidator]],
         });
 
-        this.casePrimaryForm.patchValue({ CaseStartDate: { date: this.caseBook.Case.CaseStartDate } });
+        if (!isNullOrUndefined(this.caseBook.Case.CaseStartDate))
+            this.casePrimaryForm.patchValue({ CaseStartDate: { date: this.caseBook.Case.CaseStartDate } });
     }
 
     public onPrimayUpdate() {

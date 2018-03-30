@@ -23,6 +23,7 @@ import 'rxjs/add/observable/forkJoin';
 import { IMyOptions } from 'mydatepicker';
 
 import * as moment from 'moment';
+import { isNullOrUndefined } from 'util';
 
 @Component({
     templateUrl: 'cases.move.html',
@@ -296,7 +297,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             //End of physical health category 2
 
         });
-        this.category2Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
+        if (!isNullOrUndefined(this.caseBook.Manage.CaseClosureDate))
+            this.category2Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
         this.isMainDataLoaded = true;
     }
 
@@ -401,7 +403,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             TotalNoOfSessionsLookupId: new FormControl(this.caseBook.Manage.TotalNoOfSessionsLookupId == undefined ? null : this.caseBook.Manage.TotalNoOfSessionsLookupId.toString(), [Validators.maxLength(2), this.validationService.validateYears, Validators.required]),
             TotalHoursSpentLookupId: new FormControl(this.caseBook.Manage.TotalHoursSpentLookupId == undefined ? null : this.caseBook.Manage.TotalHoursSpentLookupId.toString(), [Validators.maxLength(2), this.validationService.validateYears, Validators.required])
         });
-        this.category4Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
+        if (!isNullOrUndefined(this.caseBook.Manage.CaseClosureDate))
+            this.category4Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
     }
 
     private loadCategory5Form() {
