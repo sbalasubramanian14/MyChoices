@@ -53,7 +53,7 @@
 
                                     <div class="form-group">
                                         <label for="CounselingDate">Date *</label>
-                                        <my-date-picker name="CounselingDate" id="CounselingDate" formControlName="CounselingDate"></my-date-picker>
+                                        <my-date-picker name="CounselingDate" id="CounselingDate" [options]="myDatePickerOptions" formControlName="CounselingDate"></my-date-picker>
                                         <div>
                                             <small *ngIf="caseSessionForm.controls.CounselingDate.hasError('required') && caseSessionForm.controls.CounselingDate.touched" class="mat-text-warn">Date is required.</small>
                                         </div>

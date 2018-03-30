@@ -53,7 +53,7 @@ export class ManageCaseComponent implements OnInit {
     }
 
     // Date Picker Options
-    private myDatePickerOptions: IMyOptions = {
+    public myDatePickerOptions: IMyOptions = {
         editableDateField: false,
     };
 
@@ -71,8 +71,8 @@ export class ManageCaseComponent implements OnInit {
 
             ReferredToWhom: [this.caseBook.Manage.ReferredToWhom],
             TypesOfCounselingLookupId: [this.returnValue(this.caseBook.Manage.TypesOfCounselingLookupId)],
-            TotalNoOfSessionsLookupId: [this.returnValue(this.caseBook.Manage.TotalNoOfSessionsLookupId), [Validators.maxLength(3), this.validationService.validateNumber, Validators.pattern("^[0-9]*$")]],
-            TotalHoursSpentLookupId: [this.returnValue(this.caseBook.Manage.TotalHoursSpentLookupId), [Validators.maxLength(5), this.validationService.validateNumber, this.validationService.validateTime]],
+            TotalNoOfSessionsLookupId: [this.returnValue(this.caseBook.Manage.TotalNoOfSessionsLookupId), [Validators.maxLength(3), this.validationService.validateYears, Validators.pattern("^[0-9]*$")]],
+            TotalHoursSpentLookupId: [this.returnValue(this.caseBook.Manage.TotalHoursSpentLookupId), [Validators.maxLength(5), this.validationService.validateYears, this.validationService.validateTime]],
 
             ReasonForClosureStatus: [this.caseBook.Manage.ReasonForClosureStatus],
             CaseSubject: [this.caseBook.Manage.CaseSubject],
