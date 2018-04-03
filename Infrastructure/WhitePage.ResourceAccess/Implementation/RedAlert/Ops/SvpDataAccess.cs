@@ -107,5 +107,37 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             return planningObj.PlanningNumber;
         }
+
+        public string SaveRevisitForm(Revisit revisitForm)
+        {
+            int newFormNumber = 1;
+
+            IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
+                                                                                                   .Where(x => x.IpCode == revisitForm.CreatedBy && x.FormType == "RV");
+            if (queryableSerialNumberTrackerRAData.Any())
+            {
+                newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1; ;
+            }
+            string padding = "000";
+            string serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
+            revisitForm.RevisitNumber = "RV-" + revisitForm.CreatedBy + "-" + serialNumberComponent;
+
+            /*Form entry*/
+            Revisit revisitObj = this.unitOfWork.DbContext.Revisit.Add(revisitForm);
+
+            /*Serial Number updation*/
+            SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
+            {
+                FormType = "RV",
+                IpCode = revisitForm.CreatedBy,
+                SerialValue = newFormNumber,
+                GeneratedDate = DateTime.UtcNow.AddHours(5.5)
+            };
+            serialNumbertrackerRAObj = this.unitOfWork.DbContext.SerialNumbertrackerRA.Add(serialNumbertrackerRAObj);
+
+            this.unitOfWork.DbContext.SaveChanges();
+
+            return revisitObj.RevisitNumber;
+        }
     }
 }

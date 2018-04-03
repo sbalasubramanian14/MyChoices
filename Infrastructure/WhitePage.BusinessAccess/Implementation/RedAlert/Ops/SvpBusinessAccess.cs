@@ -31,5 +31,10 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         {
             return this.svpDataAccess.SaveProgrammePlanningForm(programmePlanningForm);
         }
+
+        public string SaveRevisitForm(Revisit revisitForm)
+        {
+            return this.svpDataAccess.SaveRevisitForm(revisitForm);
+        }
     }
 }
