@@ -70,5 +70,6 @@ namespace WhitePage.ResourceAccess
         public DbSet<SerialNumbertrackerRA> SerialNumbertrackerRA { get; set; }
 
         public DbSet<ImplementingPartner> ImplementingPartner { get; set; }
+        public DbSet<Revisit> Revisit { get; set; }
     }
 }

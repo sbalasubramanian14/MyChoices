@@ -47,5 +47,14 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(updatedForm);
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult SaveRevisitForm([FromBody] Revisit revisitForm)
+        {
+            revisitForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
+
+            var updatedForm = this._svpBusinessAccess.SaveRevisitForm(revisitForm);
+            return Ok(updatedForm);
+        }
     }
 }
