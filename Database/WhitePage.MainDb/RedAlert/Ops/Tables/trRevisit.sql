@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[trRevisit]
+﻿CREATE TABLE [RedAlert].[trRevisit]
 (
 	[RevisitId] INT NOT NULL PRIMARY KEY,
     [RevisitNumber] VARCHAR(15) NOT NULL,
