@@ -11,7 +11,7 @@ namespace WhitePage.Entities.RedAlert
         public string RevisitNumber { get; set; }
         public int VillageCode { get; set; }
 
-        public DateTime DateofRevisit { get; set; }
+        public DateTime RevisitDate { get; set; }
         public short TrafficCountBeforeSVP { get; set; }
         public short TrafficCountAfterSVP { get; set; }
         public short ChildMarriageCountBeforeSVP { get; set; }

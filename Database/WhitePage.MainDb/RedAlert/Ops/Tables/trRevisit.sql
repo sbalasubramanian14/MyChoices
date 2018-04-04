@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [RedAlert].[trRevisit]
 (
-	[RevisitId] INT NOT NULL PRIMARY KEY,
+	[RevisitId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     [RevisitNumber] VARCHAR(15) NOT NULL,
 	[VillageCode] INT NOT NULL,
-	[DateofRevisit] DATETIME NOT NULL,
+	[RevisitDate] DATE NOT NULL,
 
 	[TrafficCountBeforeSVP] SMALLINT NOT NULL, 
 	[TrafficCountAfterSVP] SMALLINT NOT NULL,
