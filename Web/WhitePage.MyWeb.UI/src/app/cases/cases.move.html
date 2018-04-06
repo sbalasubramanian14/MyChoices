@@ -60,6 +60,15 @@
                     <div class="col-md-12 d-flex flex-column">
                         <div class="card">
                             <div class="card-block primary-info-view">
+
+                                <div class="form-group">
+                                    <label for="CaseClosureDate">Case Closure Date * </label>
+                                    <my-date-picker name="CaseClosureDate" id="CaseClosureDate" [options]="myDatePickerOptions" formControlName="CaseClosureDate"></my-date-picker>
+                                    <div>
+                                        <small *ngIf="closedForm.controls.CaseClosureDate.hasError('required') && closedForm.controls.CaseClosureDate.touched" class="mat-text-warn">Closure date is required.</small>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="PeaceMakerId">Reason for selected Closure status *</label>
                                     <input [formControl]="closedForm.controls['ReasonForClosureStatus']" class="form-control" maxlength="2000" />
@@ -83,14 +92,6 @@
                                 Case Management
                             </div>
                             <div class="card-block primary-info-view">
-
-                                <div class="form-group">
-                                    <label for="CaseClosureDate">Case Closure Date * </label>
-                                    <my-date-picker name="CaseClosureDate" id="CaseClosureDate" [options]="myDatePickerOptions" formControlName="CaseClosureDate"></my-date-picker>
-                                    <div>
-                                        <small *ngIf="category2Form.controls.CaseClosureDate.hasError('required') && category2Form.controls.CaseClosureDate.touched" class="mat-text-warn">Closure date is required.</small>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="CaseSubject">Subject *</label>
@@ -947,6 +948,5 @@
                 <button class="btn btn-primary" [disabled]="!category5Form.valid || !mainForm.valid" (click)="updateCategory5()">Update</button>
             </div>
         </form>
-
     </div>
 </div>

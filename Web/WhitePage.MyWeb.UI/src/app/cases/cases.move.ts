@@ -243,7 +243,8 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
     private loadClosedForm() {
         this.closedForm = this.fb.group({
-            ReasonForClosureStatus: [this.caseBook.Manage.ReasonForClosureStatus, Validators.required]
+            ReasonForClosureStatus: [this.caseBook.Manage.ReasonForClosureStatus, Validators.required],
+            CaseClosureDate: [this.caseBook.Manage.CaseClosureDate, Validators.required]
         });
     }
 
@@ -264,8 +265,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
         this.category2Form = this.fb.group({
 
             // Manage category 2
-
-            CaseClosureDate: [this.caseBook.Manage.CaseClosureDate, Validators.required],
             CaseSubject: [this.caseBook.Manage.CaseSubject, Validators.required],
             CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
             //End of Manage category 2 
@@ -426,7 +425,6 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
         //Case category 2
         this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
-        this.caseBook.Manage.CaseClosureDate = this.returnDate(this.category2Form.controls['CaseClosureDate'].value);
         this.caseBook.Manage.CaseSubject = this.category2Form.controls['CaseSubject'].value;
         this.caseBook.Manage.CaseDescription = this.category2Form.controls['CaseDescription'].value;
 
@@ -436,6 +434,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
         if (this.isCloseStatus) {
             this.caseBook.Manage.ReasonForClosureStatus = this.closedForm.controls['ReasonForClosureStatus'].value;
+            this.caseBook.Manage.CaseClosureDate = this.returnDate(this.closedForm.controls['CaseClosureDate'].value);
         }
         //End of Case Category 2
 
