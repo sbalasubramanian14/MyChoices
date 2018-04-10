@@ -43,7 +43,7 @@ namespace WhitePage.Entities.RedAlert
         public string ProgrammeFeedbackSummary { get; set; }
 
         public string SVPImplementationChallenges { get; set; }
-        public string ORAHelplineCallDesc { get; set; }
+        public string WereCallsMadeToORAHelpline { get; set; }
         public string IsAnotherSVPRequired { get; set; }
         public string NextStepsRecommendations { get; set; }
 

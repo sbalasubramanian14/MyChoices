@@ -36,7 +36,7 @@
 	[ProgrammeFeedbackSummary] VARCHAR(500) NOT NULL,
 
 	[SVPImplementationChallenges] VARCHAR(500) NOT NULL,
-	[ORAHelplineCallDesc] VARCHAR(500) NOT NULL,
+	[WereCallsMadeToORAHelpline] VARCHAR(3) NOT NULL,
 	[IsAnotherSVPRequired] VARCHAR(3) NOT NULL,
 	[NextStepsRecommendations] VARCHAR(500) NOT NULL,
 	[ComicBooksCount] INT NOT NULL,
