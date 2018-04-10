@@ -18,6 +18,7 @@
                 <Button x:Name="planningButton" Text="Planning Form" Clicked="OpenPlanningFormPage" />
                 <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpFormPage" />
                 <Button x:Name="SvpButton" Text="Svp Form" Clicked="OpenSvpFormPage" />
+                <Button x:Name="RevisitButton" Text="Revisit Form" Clicked="OpenRevisitFormPage" />
                 <Button x:Name="LogoutButton" Text="Logout" Command="{Binding LogoutCurrentUser }" HeightRequest="50" BackgroundColor="Black" TextColor="White" />
             </StackLayout>
             <StackLayout x:Name="FooterStackLayout" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Primary}">

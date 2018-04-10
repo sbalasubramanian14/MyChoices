@@ -111,5 +111,33 @@ namespace NexGenRedAlert.Services
                 throw;
             }
         }
+
+        public async Task<string> PostAsyncSaveRevisitForm(RevisitForm revisitForm)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                revisitForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+
+                var json = JsonConvert.SerializeObject(revisitForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(WebServiceUrl + "SaveRevisitForm", httpContent);
+                string RevisitFormNumber = await result.Content.ReadAsStringAsync();
+                return RevisitFormNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
     }
 }

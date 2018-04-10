@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.RevisitFormTabbedPage"
+            Title="Revisit Form"
+            BarBackgroundColor="{StaticResource DarkBlue}"
+            BarTextColor="White">
+    <ContentPage x:Name="pageOne" Title="Page 1" >
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding Revisit.VillageCode, Mode=OneWayToSource}" />
+                    <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                        <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
+                    </Frame>
+
+                    <Label x:Name="RevisitDateLabel" Text="Revisit Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <DatePicker x:Name="RevisitDatePicker" Format="D" TextColor="Black" Date="{Binding Revisit.RevisitDate, Mode=OneWayToSource}" />
+
+                    <Label x:Name="TrafficCountBeforeSVPLabel" Text="Traffic Count Before SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TrafficCountBeforeSVPEntry" Placeholder="Traffic Count Before" Keyboard="Numeric" Text="{Binding Revisit.TrafficCountBeforeSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="TrafficCountAfterSVPLabel" Text="Traffic Count After SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TrafficCountAfterSVPEntry" Placeholder="Traffic Count After" Keyboard="Numeric" Text="{Binding Revisit.TrafficCountAfterSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="ChildMarriageCountBeforeSVPLabel" Text="Child Marriage Count Before SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ChildMarriageCountBeforeSVPEntry" Placeholder="Child Marriage Count Before SVP" Keyboard="Numeric" Text="{Binding Revisit.ChildMarriageCountBeforeSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="ChildMarriageCountAfterSVPLabel" Text="Child Marriage Count After SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ChildMarriageCountAfterSVPEntry" Placeholder="Child Marriage Count After SVP" Keyboard="Numeric" Text="{Binding Revisit.ChildMarriageCountAfterSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="IsVillageSafeForGirlsDescLabel" Text="Is Village Safe For Girls  ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="IsVillageSafeForGirlsDescEntry" Text="{Binding Revisit.IsVillageSafeForGirlsDesc, Mode=TwoWay}" />
+
+                    <Label x:Name="IsStrategicNetworkingHelpfulDescLabel" Text="Is Strategic Networking(Helpline/Partners) Helpful? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="IsStrategicNetworkingHelpfulDescEntry" Text="{Binding Revisit.IsStrategicNetworkingHelpfulDesc, Mode=OneWayToSource}"/>
+
+                    <Label x:Name="IsVillageLeadershipHelpfulDescLabel" Text="Does the village/school leadership help in anti-trafficking efforts ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="IsVillageLeadershipHelpfulDescEntry" Text="{Binding Revisit.IsVillageLeadershipHelpfulDesc, Mode=OneWayToSource}"/>
+
+                    <Label x:Name="IsCVCActiveDescLabel" Text="Is CVC Active in Anti-Trafficking activities ? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="IsCVCActiveDescEntry" Text="{Binding Revisit.IsCVCActiveDesc, Mode=OneWayToSource}"/>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButtonOne" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="NextPageButtonOne" ClassId="Page1" Text="Next Page" Clicked="OnClickChangeTab" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="pageTwo" Title="Page 2" >
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+                    <Label x:Name="DoFathersRememberSVPLabel" Text="Do Fathers remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoFathersRememberSVPPicker" Title="Do Fathers remember SVP ?"  SelectedItem="{Binding Revisit.DoFathersRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="FathersFeedbackLabel" Text="Fathers Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="FathersFeedbackEntry" Text="{Binding Revisit.FathersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="DoMothersRememberSVPLabel" Text="Do Mothers remember SVP?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoMothersRememberSVPPicker" Title="Do Mothers Remember SVP?"  SelectedItem="{Binding Revisit.DoMothersRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="MothersFeedbackLabel" Text="Mothers Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="MothersFeedbackEntry" Text="{Binding Revisit.MothersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="DoGirlsRememberSVPLabel" Text="Do Girls remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoGirlsRememberSVPPicker" Title="Do Girls Remember SVP ?"  SelectedItem="{Binding Revisit.DoGirlsRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="GirlsFeedbackLabel" Text="Girls Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="GirlsFeedbackEntry" Text="{Binding Revisit.GirlsFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="DoBoysRememberSVPLabel" Text="Do Boys remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoBoysRememberSVPPicker" Title="Do Boys Remember SVP ?"  SelectedItem="{Binding Revisit.DoBoysRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="BoysFeedbackLabel" Text="Boys Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="BoysFeedbackEntry" Text="{Binding Revisit.BoysFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="DoVillageEldersRememberSVPLabel" Text="Do Village Elders remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoVillageEldersRememberSVPPicker" Title="Do Village Elders Remember SVP ?"  SelectedItem="{Binding Revisit.DoVillageEldersRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="VillageEldersFeedbackLabel" Text="Village Elders Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="VillageEldersFeedbackEntry" Text="{Binding Revisit.VillageEldersFeedback, Mode=TwoWay}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButtonTwo" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="NextPageButtonTwo" ClassId="Page2" Text="Next Page" Clicked="OnClickChangeTab" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="pageThree" Title="Page 3">
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+                    <Label x:Name="DoPoliceRememberSVPLabel" Text="Do Police remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoPoliceRememberSVPPicker" Title="Do Police remember SVP ?"  SelectedItem="{Binding Revisit.DoPoliceRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="PoliceFeedbackLabel" Text="Police Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="PoliceFeedbackEntry" Text="{Binding Revisit.PoliceFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="VillageElderContactNumberLabel" Text="Village Elder Contact Number :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="VillageElderContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding Revisit.VillageElderContactNumber, Mode=TwoWay}" />
+
+                    <Label x:Name="PoliceContactNumberLabel" Text="Police Contact Number :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="PoliceContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding Revisit.PoliceContactNumber, Mode=TwoWay}" />
+
+                    <Label x:Name="DoSchoolStaffRememberSVPLabel" Text="Do school staff remember SVP?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoSchoolStaffRememberSVPPicker" Title="Do school staff Remember SVP?"  SelectedItem="{Binding Revisit.DoSchoolStaffRememberSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="SchoolStaffFeedbackLabel" Text="School staff Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SchoolStaffFeedbackEntry" Text="{Binding Revisit.SchoolStaffFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="SchoolPrincipalContactNumberLabel" Text="School Principal Contact Number :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="SchoolPrincipalContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding Revisit.SchoolPrincipalContactNumber, Mode=TwoWay}" />
+
+                    <Label x:Name="WasSkitConductedLabel" Text="Was skit conducted ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasSkitConductedPicker" Title="Was skit conducted ?"  SelectedItem="{Binding Revisit.WasSkitConducted, Mode=OneWayToSource}" />
+
+                    <Label x:Name="SVPSuccessStoryLabel" Text="Brief summary of SVP Success Story" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SVPSuccessStoryEntry" Text="{Binding Revisit.SVPSuccessStory, Mode=TwoWay}" />
+
+                    <Label x:Name="ProgrammeFeedbackSummaryLabel" Text="Summary of Program Feedback:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="ProgrammeFeedbackSummaryEntry" Text="{Binding Revisit.ProgrammeFeedbackSummary, Mode=TwoWay}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButtonThree" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="NextPageButtonThree" ClassId="Page3" Text="Next Page" Clicked="OnClickChangeTab" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="pageFour" Title="Page 4">
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+                    <Label x:Name="SVPImplementationChallengesLabel" Text="Challenges that caused ineffective implementation of SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SVPImplementationChallengesEntry" Text="{Binding Revisit.SVPImplementationChallenges, Mode=TwoWay}" />
+
+                    <Label x:Name="WereCallsMadeToORAHelplineLabel" Text="Were any calls made to ORA Helpline?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereCallsMadeToORAHelplinePicker" Title="Were any calls made to ORA Helpline?"  SelectedItem="{Binding Revisit.WereCallsMadeToORAHelpline, Mode=OneWayToSource}" />
+
+                    <Label x:Name="IsAnotherSVPRequiredLabel" Text="Is this village highly trafficking prone to conduct another SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="IsAnotherSVPRequiredPicker" Title="Is another SVP required ?"  SelectedItem="{Binding Revisit.IsAnotherSVPRequired, Mode=OneWayToSource}" />
+
+                    <Label x:Name="NextStepsRecommendationsLabel" Text="Recommendations for next steps - an action plan to keep this village safe ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="NextStepsRecommendationsEntry" Text="{Binding Revisit.NextStepsRecommendations, Mode=TwoWay}" />
+
+                    <Label x:Name="ComicBooksCountLabel" Text="Comic Books count :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ComicBooksCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding Revisit.ComicBooksCount, Mode=TwoWay}" />
+
+                    <Label x:Name="StudentsParticipationCountLabel" Text="Student participation count" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="StudentsParticipationCountEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding Revisit.StudentsParticipationCount, Mode=TwoWay}" />
+
+                    <Label x:Name="RakshakDescLabel" Text="Rakshak Details" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="RakshakDescEntry" Text="{Binding Revisit.RakshakDesc, Mode=TwoWay}" />
+
+                    <Label x:Name="HelplineNumberLabel" Text="Helpline Number" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="HelplineNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding Revisit.HelplineNumber, Mode=TwoWay}" />
+
+                    <Label x:Name="RevisitSummaryLabel" Text="Summary of Revisit Activity:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="RevisitSummaryEntry" Text="{Binding Revisit.RevisitSummary, Mode=TwoWay}" />
+
+                    <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButtonFourth" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitRevisitForm}" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>
