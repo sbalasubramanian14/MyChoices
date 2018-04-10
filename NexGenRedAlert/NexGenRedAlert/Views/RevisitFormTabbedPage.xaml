@@ -19,10 +19,10 @@
                     <DatePicker x:Name="RevisitDatePicker" Format="D" TextColor="Black" Date="{Binding Revisit.RevisitDate, Mode=OneWayToSource}" />
 
                     <Label x:Name="TrafficCountBeforeSVPLabel" Text="Traffic Count Before SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Entry x:Name="TrafficCountBeforeSVPEntry" Placeholder="Traffic Count Before" Keyboard="Numeric" Text="{Binding Revisit.TrafficCountBeforeSVP, Mode=OneWayToSource}" />
+                    <Entry x:Name="TrafficCountBeforeSVPEntry" Placeholder="Traffic Count Before SVP" Keyboard="Numeric" Text="{Binding Revisit.TrafficCountBeforeSVP, Mode=OneWayToSource}" />
 
                     <Label x:Name="TrafficCountAfterSVPLabel" Text="Traffic Count After SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Entry x:Name="TrafficCountAfterSVPEntry" Placeholder="Traffic Count After" Keyboard="Numeric" Text="{Binding Revisit.TrafficCountAfterSVP, Mode=OneWayToSource}" />
+                    <Entry x:Name="TrafficCountAfterSVPEntry" Placeholder="Traffic Count After SVP" Keyboard="Numeric" Text="{Binding Revisit.TrafficCountAfterSVP, Mode=OneWayToSource}" />
 
                     <Label x:Name="ChildMarriageCountBeforeSVPLabel" Text="Child Marriage Count Before SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="ChildMarriageCountBeforeSVPEntry" Placeholder="Child Marriage Count Before SVP" Keyboard="Numeric" Text="{Binding Revisit.ChildMarriageCountBeforeSVP, Mode=OneWayToSource}" />
@@ -30,17 +30,17 @@
                     <Label x:Name="ChildMarriageCountAfterSVPLabel" Text="Child Marriage Count After SVP:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="ChildMarriageCountAfterSVPEntry" Placeholder="Child Marriage Count After SVP" Keyboard="Numeric" Text="{Binding Revisit.ChildMarriageCountAfterSVP, Mode=OneWayToSource}" />
 
-                    <Label x:Name="IsVillageSafeForGirlsDescLabel" Text="Is Village Safe For Girls  ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Label x:Name="IsVillageSafeForGirlsDescLabel" Text="Is Village Safe For Girls ? Give reasons." FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="IsVillageSafeForGirlsDescEntry" Text="{Binding Revisit.IsVillageSafeForGirlsDesc, Mode=TwoWay}" />
 
-                    <Label x:Name="IsStrategicNetworkingHelpfulDescLabel" Text="Is Strategic Networking(Helpline/Partners) Helpful? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Editor x:Name="IsStrategicNetworkingHelpfulDescEntry" Text="{Binding Revisit.IsStrategicNetworkingHelpfulDesc, Mode=OneWayToSource}"/>
+                    <Label x:Name="IsStrategicNetworkingHelpfulLabel" Text="Is Strategic Networking(Helpline/Partners) Helpful? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="IsStrategicNetworkingHelpfulPicker" Title="Is Strategic Networking Helpful ?"  SelectedItem="{Binding Revisit.IsStrategicNetworkingHelpful, Mode=OneWayToSource}" />
 
-                    <Label x:Name="IsVillageLeadershipHelpfulDescLabel" Text="Does the village/school leadership help in anti-trafficking efforts ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Editor x:Name="IsVillageLeadershipHelpfulDescEntry" Text="{Binding Revisit.IsVillageLeadershipHelpfulDesc, Mode=OneWayToSource}"/>
+                    <Label x:Name="IsVillageLeadershipHelpfulLabel" Text="Does the village/school leadership help in anti-trafficking efforts ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="IsVillageLeadershipHelpfulPicker" Title="Is Village/School Leadership Helpful ?"  SelectedItem="{Binding Revisit.IsVillageLeadershipHelpful, Mode=OneWayToSource}" />
 
-                    <Label x:Name="IsCVCActiveDescLabel" Text="Is CVC Active in Anti-Trafficking activities ? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Editor x:Name="IsCVCActiveDescEntry" Text="{Binding Revisit.IsCVCActiveDesc, Mode=OneWayToSource}"/>
+                    <Label x:Name="IsCVCActiveLabel" Text="Is CVC Active in Anti-Trafficking activities ? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="IsCVCActivePicker" Title="Is CVC Active in Anti-Trafficking activities ?"  SelectedItem="{Binding Revisit.IsCVCActive, Mode=OneWayToSource}" />
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <Button x:Name="ResetButtonOne" Text="Reset" Clicked="OnResetClicked" />

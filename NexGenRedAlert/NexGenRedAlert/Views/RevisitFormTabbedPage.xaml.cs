@@ -21,6 +21,9 @@ namespace NexGenRedAlert.Views
             BindingContext = revisitViewModel = new RevisitViewModel();
             DropdownList.Add("Yes");
             DropdownList.Add("No");
+            IsStrategicNetworkingHelpfulPicker.ItemsSource = DropdownList;
+            IsVillageLeadershipHelpfulPicker.ItemsSource = DropdownList;
+            IsCVCActivePicker.ItemsSource = DropdownList;
             DoFathersRememberSVPPicker.ItemsSource = DropdownList;
             DoMothersRememberSVPPicker.ItemsSource = DropdownList;
             DoGirlsRememberSVPPicker.ItemsSource = DropdownList;

@@ -15,9 +15,9 @@ namespace NexGenRedAlert.Models
         private short _childMarriageCountBeforeSVP;
         private short _childMarriageCountAfterSVP;
         private string _isVillageSafeForGirlsDesc;
-        private string _isStrategicNetworkingHelpfulDesc;
-        private string _isVillageLeadershipHelpfulDesc;
-        private string _isCVCActiveDesc;
+        private string _isStrategicNetworkingHelpful;
+        private string _isVillageLeadershipHelpful;
+        private string _isCVCActive;
 
         private string _doFathersRememberSVP;
         private string _fathersFeedback;
@@ -65,9 +65,9 @@ namespace NexGenRedAlert.Models
         public short ChildMarriageCountBeforeSVP { get { return _childMarriageCountBeforeSVP; } set { SetProperty(ref _childMarriageCountBeforeSVP, value); } }
         public short ChildMarriageCountAfterSVP { get { return _childMarriageCountAfterSVP; } set { SetProperty(ref _childMarriageCountAfterSVP, value); } }
         public string IsVillageSafeForGirlsDesc { get { return _isVillageSafeForGirlsDesc; } set { SetProperty(ref _isVillageSafeForGirlsDesc, value); } }
-        public string IsStrategicNetworkingHelpfulDesc { get { return _isStrategicNetworkingHelpfulDesc; } set { SetProperty(ref _isStrategicNetworkingHelpfulDesc, value); } }
-        public string IsVillageLeadershipHelpfulDesc { get { return _isVillageLeadershipHelpfulDesc; } set { SetProperty(ref _isVillageLeadershipHelpfulDesc, value); } }
-        public string IsCVCActiveDesc { get { return _isCVCActiveDesc; } set { SetProperty(ref _isCVCActiveDesc, value); } }
+        public string IsStrategicNetworkingHelpful { get { return _isStrategicNetworkingHelpful; } set { SetProperty(ref _isStrategicNetworkingHelpful, value); } }
+        public string IsVillageLeadershipHelpful { get { return _isVillageLeadershipHelpful; } set { SetProperty(ref _isVillageLeadershipHelpful, value); } }
+        public string IsCVCActive { get { return _isCVCActive; } set { SetProperty(ref _isCVCActive, value); } }
 
         public string DoFathersRememberSVP { get { return _doFathersRememberSVP; } set { SetProperty(ref _doFathersRememberSVP, value); } }
         public string FathersFeedback { get { return _fathersFeedback; } set { SetProperty(ref _fathersFeedback, value); } }
