@@ -10,9 +10,9 @@
     [ChildMarriageCountBeforeSVP] SMALLINT NOT NULL,
     [ChildMarriageCountAfterSVP] SMALLINT NOT NULL,
     [IsVillageSafeForGirlsDesc] VARCHAR(500) NOT NULL,
-	[IsStrategicNetworkingHelpfulDesc] VARCHAR(500) NOT NULL,
-	[IsVillageLeadershipHelpfulDesc] VARCHAR(500) NOT NULL,
-    [IsCVCActiveDesc] VARCHAR(500) NOT NULL,
+	[IsStrategicNetworkingHelpful] VARCHAR(3) NOT NULL,
+	[IsVillageLeadershipHelpful] VARCHAR(3) NOT NULL,
+    [IsCVCActive] VARCHAR(3) NOT NULL,
 
 	[DoFathersRememberSVP] VARCHAR(3) NOT NULL,
 	[FathersFeedback] VARCHAR(200) NOT NULL,

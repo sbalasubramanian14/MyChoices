@@ -17,9 +17,9 @@ namespace WhitePage.Entities.RedAlert
         public short ChildMarriageCountBeforeSVP { get; set; }
         public short ChildMarriageCountAfterSVP { get; set; }
         public string IsVillageSafeForGirlsDesc { get; set; }
-        public string IsStrategicNetworkingHelpfulDesc { get; set; }
-        public string IsVillageLeadershipHelpfulDesc { get; set; }
-        public string IsCVCActiveDesc { get; set; }
+        public string IsStrategicNetworkingHelpful { get; set; }
+        public string IsVillageLeadershipHelpful { get; set; }
+        public string IsCVCActive { get; set; }
 
         public string DoFathersRememberSVP { get; set; }
         public string FathersFeedback { get; set; }
