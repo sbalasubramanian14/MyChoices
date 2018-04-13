@@ -50,7 +50,7 @@ namespace WhitePage.Entities.RedAlert
         public int ComicBooksCount { get; set; }
         public short StudentsParticipationCount { get; set; }
         public string RakshakDesc { get; set; }
-        public string HelplineNumber { get; set; }
+        public string WasHelplineNumberMentioned { get; set; }
         public string RevisitSummary { get; set; }
 
         public DateTime CreatedDateTime { get; set; }

@@ -42,7 +42,7 @@
 	[ComicBooksCount] INT NOT NULL,
 	[StudentsParticipationCount] SMALLINT NOT NULL,
 	[RakshakDesc] VARCHAR(500) NOT NULL,
-	[HelplineNumber] VARCHAR(14) NOT NULL,
+	[WasHelplineNumberMentioned] VARCHAR(3) NOT NULL,
 	[RevisitSummary] VARCHAR(200) NOT NULL,
 
 	[CreatedDateTime] DATETIME NOT NULL,
