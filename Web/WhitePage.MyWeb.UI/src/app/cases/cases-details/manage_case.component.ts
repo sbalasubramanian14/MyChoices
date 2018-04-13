@@ -97,8 +97,13 @@ export class ManageCaseComponent implements OnInit {
         this.caseBook.Manage.ResolutionLog = this.caseManageForm.controls['ResolutionLog'].value;
 
         let CaseClosureDateObj = this.caseManageForm.controls['CaseClosureDate'].value;
-        this.caseBook.Manage.CaseClosureDate = this.returnDate(CaseClosureDateObj);
 
+        if (CaseClosureDateObj == null || CaseClosureDateObj == "" || CaseClosureDateObj.date == null) {
+            this.caseBook.Manage.CaseClosureDate = null;
+        }
+        else {
+            this.caseBook.Manage.CaseClosureDate = this.returnDate(CaseClosureDateObj);
+        }
 
         this.casesService.updateCase(this.caseBook).subscribe(
             data => {
