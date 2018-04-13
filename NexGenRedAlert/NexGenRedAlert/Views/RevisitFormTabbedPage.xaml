@@ -61,8 +61,8 @@
                     <Label x:Name="FathersFeedbackLabel" Text="Fathers Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="FathersFeedbackEntry" Text="{Binding Revisit.FathersFeedback, Mode=TwoWay}" />
 
-                    <Label x:Name="DoMothersRememberSVPLabel" Text="Do Mothers remember SVP?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Picker x:Name="DoMothersRememberSVPPicker" Title="Do Mothers Remember SVP?"  SelectedItem="{Binding Revisit.DoMothersRememberSVP, Mode=OneWayToSource}" />
+                    <Label x:Name="DoMothersRememberSVPLabel" Text="Do Mothers remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoMothersRememberSVPPicker" Title="Do Mothers Remember SVP ?"  SelectedItem="{Binding Revisit.DoMothersRememberSVP, Mode=OneWayToSource}" />
 
                     <Label x:Name="MothersFeedbackLabel" Text="Mothers Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="MothersFeedbackEntry" Text="{Binding Revisit.MothersFeedback, Mode=TwoWay}" />
@@ -110,8 +110,8 @@
                     <Label x:Name="PoliceContactNumberLabel" Text="Police Contact Number :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="PoliceContactNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding Revisit.PoliceContactNumber, Mode=TwoWay}" />
 
-                    <Label x:Name="DoSchoolStaffRememberSVPLabel" Text="Do school staff remember SVP?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Picker x:Name="DoSchoolStaffRememberSVPPicker" Title="Do school staff Remember SVP?"  SelectedItem="{Binding Revisit.DoSchoolStaffRememberSVP, Mode=OneWayToSource}" />
+                    <Label x:Name="DoSchoolStaffRememberSVPLabel" Text="Do school staff remember SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoSchoolStaffRememberSVPPicker" Title="Do school staff Remember SVP ?"  SelectedItem="{Binding Revisit.DoSchoolStaffRememberSVP, Mode=OneWayToSource}" />
 
                     <Label x:Name="SchoolStaffFeedbackLabel" Text="School staff Feedback" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="SchoolStaffFeedbackEntry" Text="{Binding Revisit.SchoolStaffFeedback, Mode=TwoWay}" />
@@ -162,8 +162,8 @@
                     <Label x:Name="RakshakDescLabel" Text="Rakshak Details" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="RakshakDescEntry" Text="{Binding Revisit.RakshakDesc, Mode=TwoWay}" />
 
-                    <Label x:Name="HelplineNumberLabel" Text="Helpline Number" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Entry x:Name="HelplineNumberEntry" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding Revisit.HelplineNumber, Mode=TwoWay}" />
+                    <Label x:Name="WasHelplineNumberMentionedLabel" Text="Was helpline number mentioned to all stakeholders ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasHelplineNumberMentionedPicker" Title="Was helpline number mentioned to all stakeholders ?"  SelectedItem="{Binding Revisit.WasHelplineNumberMentioned, Mode=OneWayToSource}" />
 
                     <Label x:Name="RevisitSummaryLabel" Text="Summary of Revisit Activity:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="RevisitSummaryEntry" Text="{Binding Revisit.RevisitSummary, Mode=TwoWay}" />

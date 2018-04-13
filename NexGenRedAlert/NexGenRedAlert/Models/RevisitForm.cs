@@ -48,7 +48,7 @@ namespace NexGenRedAlert.Models
         private int _comicBooksCount;
         private short _studentsParticipationCount;
         private string _rakshakDesc;
-        private string _helplineNumber;
+        private string _wasHelplineNumberMentioned;
         private string _revisitSummary;
 
         private DateTime _createdDateTime;
@@ -98,7 +98,7 @@ namespace NexGenRedAlert.Models
         public int ComicBooksCount { get { return _comicBooksCount; } set { SetProperty(ref _comicBooksCount, value); } }
         public short StudentsParticipationCount { get { return _studentsParticipationCount; } set { SetProperty(ref _studentsParticipationCount, value); } }
         public string RakshakDesc { get { return _rakshakDesc; } set { SetProperty(ref _rakshakDesc, value); } }
-        public string HelplineNumber { get { return _helplineNumber; } set { SetProperty(ref _helplineNumber, value); } }
+        public string WasHelplineNumberMentioned { get { return _wasHelplineNumberMentioned; } set { SetProperty(ref _wasHelplineNumberMentioned, value); } }
         public string RevisitSummary { get { return _revisitSummary; } set { SetProperty(ref _revisitSummary, value); } }
 
         public DateTime CreatedDateTime { get { return _createdDateTime; } set { SetProperty(ref _createdDateTime, value); } }

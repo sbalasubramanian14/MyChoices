@@ -34,6 +34,7 @@ namespace NexGenRedAlert.Views
             WasSkitConductedPicker.ItemsSource = DropdownList;
             WereCallsMadeToORAHelplinePicker.ItemsSource = DropdownList;
             IsAnotherSVPRequiredPicker.ItemsSource = DropdownList;
+            WasHelplineNumberMentionedPicker.ItemsSource = DropdownList;
         }
 
         public void OnClickChangeTab(object sender, EventArgs evt)
