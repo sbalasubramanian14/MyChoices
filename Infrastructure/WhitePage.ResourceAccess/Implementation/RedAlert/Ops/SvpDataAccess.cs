@@ -139,5 +139,10 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
 
             return revisitObj.RevisitNumber;
         }
+
+        public ImplementingPartner GetIpDetails(string IpCode)
+        {
+            return this.unitOfWork.DbContext.ImplementingPartner.FirstOrDefault(Ip => Ip.IpCode == IpCode);
+        }
     }
 }
