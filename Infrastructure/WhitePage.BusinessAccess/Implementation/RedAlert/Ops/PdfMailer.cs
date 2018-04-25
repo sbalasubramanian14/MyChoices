@@ -8,6 +8,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
     {
         private const string FromMailID = "oranexgen@mychoicesfoundation.org";
         private const string MailPassword = "jvobndlfgppsmevs";
+        private const string CCMailID = "manjula@mychoicesfoundation.org";
         
         public void SendMailToUser(string generatedPdfTemplateString, string IpMailID, string subject, string body, string pdfName)
         {
@@ -21,7 +22,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                 Body = body,
                 IsBodyHtml = true
             };
-
+            mailMessage.CC.Add(CCMailID);
             mailMessage.Attachments.Add(new Attachment(new MemoryStream(pdfBytes), pdfName));
             SmtpClient smtp = new SmtpClient
             {
