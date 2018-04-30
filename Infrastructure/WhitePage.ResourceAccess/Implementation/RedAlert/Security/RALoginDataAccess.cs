@@ -10,9 +10,9 @@ namespace WhitePage.ResourceAccess.Implementation.RedAlert.Security
         {
         }
 
-        public ImplementingPartner ValidateImplementingPartner(string userName)
+        public RedAlertUser ValidateUser(string userName)
         {
-            return this.unitOfWork.DbContext.ImplementingPartner.Where(IP => IP.UserName == userName).FirstOrDefault();
+            return this.unitOfWork.DbContext.RedAlertUser.Where(User => User.UserName == userName).FirstOrDefault();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         string SaveSvpForm(Svp svpForm);
         string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm);
         string SaveRevisitForm(Revisit revisitForm);
-        ImplementingPartner GetIpDetails(string ipCode);
+        RedAlertUser GetUserDetails(string userCode);
     }
 }

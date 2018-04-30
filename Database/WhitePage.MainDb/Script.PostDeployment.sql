@@ -1544,3 +1544,35 @@ BEGIN
 	INSERT INTO [Core].[dmnCity] VALUES(671 , 'Uttar Dinajpur', 36);
 
 END
+
+-- Red Alert Scripts
+
+--Roles
+IF NOT EXISTS (SELECT 1 FROM RedAlert.dmnRedAlertRole WHERE Title = 'Administrator')
+BEGIN
+	INSERT INTO RedAlert.dmnRedAlertRole ([Title], [IsActive], [CreatedBy], [CreatedDate])
+	VALUES('Administrator', 1, 0, GETDATE());
+END
+
+IF NOT EXISTS (SELECT 1 FROM RedAlert.dmnRedAlertRole WHERE Title = 'ORA Team')
+BEGIN	
+	INSERT INTO RedAlert.dmnRedAlertRole ([Title], [IsActive], [CreatedBy], [CreatedDate])
+	VALUES('ORA Team', 1, 0, GETDATE());
+END
+
+IF NOT EXISTS (SELECT 1 FROM RedAlert.dmnRedAlertRole WHERE Title = 'Implementing Partners')
+BEGIN		
+	INSERT INTO RedAlert.dmnRedAlertRole ([Title], [IsActive], [CreatedBy], [CreatedDate])
+	VALUES('Implementing Partner', 1, 0, GETDATE());
+END
+
+--Users
+IF NOT EXISTS (SELECT 1 FROM RedAlert.trRedAlertUser WHERE [UserName] = 'nextgen@mychoicesfoundation.org')
+BEGIN
+	INSERT INTO RedAlert.trRedAlertUser ([UserName], [UserCode], [Organization], [PrimaryContact], [PrimaryContactNumber], [RoleId], [IsActive], [CreatedBy], [CreatedDate])
+	VALUES('nextgen@mychoicesfoundation.org', '000','Quantium','Karthik', '9677712774', 1, 1, 0, GETDATE());
+
+	INSERT INTO RedAlert.trRedAlertUser ([UserName], [UserCode], [Organization], [PrimaryContact], [PrimaryContactNumber], [RoleId], [IsActive], [CreatedBy], [CreatedDate])
+	VALUES('oranexgen@gmail.com', '001','ORA Admin','Sudha', '9492108715', 1, 1, 0, GETDATE());
+
+END

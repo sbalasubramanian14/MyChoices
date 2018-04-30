@@ -140,9 +140,9 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return revisitObj.RevisitNumber;
         }
 
-        public ImplementingPartner GetIpDetails(string IpCode)
+        public RedAlertUser GetUserDetails(string userCode)
         {
-            return this.unitOfWork.DbContext.ImplementingPartner.FirstOrDefault(Ip => Ip.IpCode == IpCode);
+            return this.unitOfWork.DbContext.RedAlertUser.FirstOrDefault(User => User.UserCode == userCode );
         }
     }
 }

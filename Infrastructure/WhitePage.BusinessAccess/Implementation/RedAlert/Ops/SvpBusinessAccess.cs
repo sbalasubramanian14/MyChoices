@@ -49,61 +49,61 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         public void SendPlanningFormResponseMail(ProgrammePlanning programmePlanningForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PlanningFormMailGenerator(programmePlanningForm);
-            var implementingPartner = this.svpDataAccess.GetIpDetails(programmePlanningForm.CreatedBy);
+            var redAlertUser = this.svpDataAccess.GetUserDetails(programmePlanningForm.CreatedBy);
 
             string subject = $"Team ORA - Confirmation: Planning Form {programmePlanningForm.PlanningNumber} Received ";
-            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {implementingPartner.NgoName}, " +
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertUser.Organization}, " +
                     $"<br/><br/><br/>We received the planning details for the month of {programmePlanningForm.PlanningMonthAndYear}. " +
                     $"Please find the attached PDF for the submitted details.<br/><br/>Wish you all the best for the upcoming programs." +
                     $"<br/><br/>Team ORA";
             string pdfName = $"{programmePlanningForm.PlanningNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, implementingPartner.UserName, subject, body, pdfName);
+            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
 
         public void SendPreSVPFormResponseMail(PreSvp preSvpForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PreSVPMailGenerator(preSvpForm);
-            var implementingPartner = this.svpDataAccess.GetIpDetails(preSvpForm.CreatedBy);
+            var redAlertUser = this.svpDataAccess.GetUserDetails(preSvpForm.CreatedBy);
 
             string subject = $"Team ORA - Confirmation: Pre-SVP Form {preSvpForm.PreSvpNumber} Received ";
-            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {implementingPartner.NgoName}, " +
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertUser.Organization}, " +
                     $"<br/><br/><br/>We received the Pre-SVP form for the village code {preSvpForm.VillageCode}. " +
                     $"Please find the attached PDF for the submitted details.<br/><br/>Wish you all the best for the upcoming programs." +
                     $"<br/><br/>Team ORA"; ;
             string pdfName = $"{preSvpForm.PreSvpNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, implementingPartner.UserName, subject, body, pdfName);
+            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
 
         public void SendSVPFormResponseMail(Svp svpForm)
         {
             var generatedPdfTemplateString = pdfTemplate.SVPMailGenerator(svpForm);
-            var implementingPartner = this.svpDataAccess.GetIpDetails(svpForm.CreatedBy);
+            var redAlertUser = this.svpDataAccess.GetUserDetails(svpForm.CreatedBy);
 
             string subject = $"Team ORA - Confirmation: SVP Form {svpForm.SvpNumber} Received ";
-            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {implementingPartner.NgoName}, " +
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertUser.Organization}, " +
                     $"<br/><br/><br/>We received the SVP form for the village code {svpForm.VillageCode}. " +
                     $"Please find the attached PDF for the submitted details.<br/><br/>Wish you all the best for the upcoming programs." +
                     $"<br/><br/>Team ORA"; ;
             string pdfName = $"{svpForm.SvpNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, implementingPartner.UserName, subject, body, pdfName);
+            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
 
         public void SendRevisitFormResponseMail(Revisit revisitForm)
         {
             var generatedPdfTemplateString = pdfTemplate.RevisitFormMailGenerator(revisitForm);
-            var implementingPartner = this.svpDataAccess.GetIpDetails(revisitForm.CreatedBy);
+            var redAlertUser = this.svpDataAccess.GetUserDetails(revisitForm.CreatedBy);
 
             string subject = $"Team ORA - Confirmation: Revisit Form {revisitForm.RevisitNumber} Received ";
-            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {implementingPartner.NgoName}, " +
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertUser.Organization}, " +
                     $"<br/><br/><br/>We received the Revisit form for the village code {revisitForm.VillageCode}. " +
                     $"Please find the attached PDF for the submitted details.<br/><br/>Wish you all the best for the upcoming programs." +
                     $"<br/><br/>Team ORA"; ;
             string pdfName = $"{revisitForm.RevisitNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, implementingPartner.UserName, subject, body, pdfName);
+            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
     }
 }

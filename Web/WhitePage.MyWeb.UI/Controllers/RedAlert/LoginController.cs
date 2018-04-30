@@ -18,10 +18,10 @@ namespace WhitePage.MyWeb.UI.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public IActionResult ValidateImplementingPartner([FromBody] String userName)
+        public IActionResult ValidateUser([FromBody] String userName)
         {
-            var implementingPartner = this._raLoginBusinessAccess.ValidateImplementingPartner(userName);
-            return Ok(implementingPartner);
+            var redAlertUser = this._raLoginBusinessAccess.ValidateUser(userName);
+            return Ok(redAlertUser);
         }
     }
 }

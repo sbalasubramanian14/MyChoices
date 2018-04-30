@@ -13,9 +13,9 @@ namespace WhitePage.BusinessAccess.Implementation.RedAlert.Security
             this.raLoginDataAccess = raLoginDataAccess;
         }
 
-        public ImplementingPartner ValidateImplementingPartner(string userName)
+        public RedAlertUser ValidateUser(string userName)
         {
-            return this.raLoginDataAccess.ValidateImplementingPartner(userName);
+            return this.raLoginDataAccess.ValidateUser(userName);
         }
     }
 }

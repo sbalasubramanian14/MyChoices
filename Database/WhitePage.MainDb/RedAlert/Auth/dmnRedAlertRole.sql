@@ -1,0 +1,9 @@
+﻿CREATE TABLE [RedAlert].[dmnRedAlertRole]
+(
+	[RoleId] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	[Title] VARCHAR(200) NOT NULL,
+	[IsActive] BIT NOT NULL DEFAULT(1),
+
+	[CreatedBy] INT NOT NULL,
+	[CreatedDate] DATETIME NOT NULL,
+)

@@ -159,11 +159,12 @@
     <Build Include="Auth\Stored Procedures\getUserRoles.sql" />
     <Build Include="Auth\Stored Procedures\AddNewUserLogin.sql" />
     <Build Include="RedAlert\Core\trSerialNumberTrackerRA.sql" />
-    <Build Include="RedAlert\Auth\trImplementingPartner.sql" />
     <Build Include="RedAlert\Ops\Tables\trSvp.sql" />
     <Build Include="RedAlert\Ops\Tables\trPreSvp.sql" />
     <Build Include="RedAlert\Ops\Tables\trProgrammePlanning.sql" />
     <Build Include="RedAlert\Ops\Tables\trRevisit.sql" />
+    <Build Include="RedAlert\Auth\trRedAlertUser.sql" />
+    <Build Include="RedAlert\Auth\dmnRedAlertRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

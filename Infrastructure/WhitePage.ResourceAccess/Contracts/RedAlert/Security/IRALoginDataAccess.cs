@@ -4,6 +4,6 @@ namespace WhitePage.ResourceAccess.Contracts.RedAlert.Security
 {
     public interface IRALoginDataAccess
     {
-        ImplementingPartner ValidateImplementingPartner(string userName);
+        RedAlertUser ValidateUser(string userName);
     }
 }

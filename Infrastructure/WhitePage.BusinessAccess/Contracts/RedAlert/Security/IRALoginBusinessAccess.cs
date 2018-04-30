@@ -4,6 +4,6 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
 {
     public interface IRALoginBusinessAccess
     {
-        ImplementingPartner ValidateImplementingPartner(string userName);
+        RedAlertUser ValidateUser(string userName);
     }
 }

@@ -68,8 +68,8 @@ namespace WhitePage.ResourceAccess
         public DbSet<PreSvp> PreSvp { get; set; }
         public DbSet<ProgrammePlanning> ProgrammePlanning { get; set; }
         public DbSet<SerialNumbertrackerRA> SerialNumbertrackerRA { get; set; }
-
-        public DbSet<ImplementingPartner> ImplementingPartner { get; set; }
+        
+        public DbSet<RedAlertUser> RedAlertUser { get; set; }
         public DbSet<Revisit> Revisit { get; set; }
     }
 }
