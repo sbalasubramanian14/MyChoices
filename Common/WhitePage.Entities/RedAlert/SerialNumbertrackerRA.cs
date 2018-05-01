@@ -10,7 +10,7 @@ namespace WhitePage.Entities.RedAlert
        [Key]
        public int SerialNumberTrackerRAId { get; set; }
        public string FormType { get; set; }
-       public string IpCode { get; set; }
+       public string UserCode { get; set; }
        public int SerialValue { get; set; }
        public DateTime GeneratedDate { get; set; }
     }

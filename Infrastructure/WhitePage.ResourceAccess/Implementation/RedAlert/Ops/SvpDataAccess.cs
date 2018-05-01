@@ -17,7 +17,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             int newFormNumber=1;
 
             IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
-                                                                                                   .Where(x => x.IpCode == svpForm.CreatedBy && x.FormType == "SV"); 
+                                                                                                   .Where(x => x.UserCode == svpForm.CreatedBy && x.FormType == "SV"); 
             if(queryableSerialNumberTrackerRAData.Any())
             {
                newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1; ;
@@ -33,7 +33,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
             {
                 FormType = "SV",
-                IpCode = svpForm.CreatedBy,
+                UserCode = svpForm.CreatedBy,
                 SerialValue = newFormNumber,
                 GeneratedDate = DateTime.UtcNow.AddHours(5.5)
             };
@@ -48,7 +48,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
             int newFormNumber =1;
             IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
-                                                                                                   .Where(x => x.IpCode == preSvpForm.CreatedBy && x.FormType == "PV"); 
+                                                                                                   .Where(x => x.UserCode == preSvpForm.CreatedBy && x.FormType == "PV"); 
             if(queryableSerialNumberTrackerRAData.Any())
             {
                 newFormNumber= queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1;
@@ -64,7 +64,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
             {
                 FormType = "PV",
-                IpCode = preSvpForm.CreatedBy,
+                UserCode = preSvpForm.CreatedBy,
                 SerialValue = newFormNumber,
                 GeneratedDate = DateTime.UtcNow.AddHours(5.5)
             };
@@ -80,7 +80,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
         {
             int newFormNumber = 1;
             IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
-                                                                                                   .Where(x => x.IpCode == programmePlanningForm.CreatedBy && x.FormType == "PL");
+                                                                                                   .Where(x => x.UserCode == programmePlanningForm.CreatedBy && x.FormType == "PL");
             if (queryableSerialNumberTrackerRAData.Any())
             {
                 newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1;
@@ -96,7 +96,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
             {
                 FormType = "PL",
-                IpCode = programmePlanningForm.CreatedBy,
+                UserCode = programmePlanningForm.CreatedBy,
                 SerialValue = newFormNumber,
                 GeneratedDate = DateTime.UtcNow.AddHours(5.5)
             };
@@ -113,7 +113,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             int newFormNumber = 1;
 
             IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
-                                                                                                   .Where(x => x.IpCode == revisitForm.CreatedBy && x.FormType == "RV");
+                                                                                                   .Where(x => x.UserCode == revisitForm.CreatedBy && x.FormType == "RV");
             if (queryableSerialNumberTrackerRAData.Any())
             {
                 newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1; ;
@@ -129,7 +129,7 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
             {
                 FormType = "RV",
-                IpCode = revisitForm.CreatedBy,
+                UserCode = revisitForm.CreatedBy,
                 SerialValue = newFormNumber,
                 GeneratedDate = DateTime.UtcNow.AddHours(5.5)
             };
