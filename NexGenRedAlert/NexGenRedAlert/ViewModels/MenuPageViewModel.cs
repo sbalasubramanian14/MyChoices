@@ -1,4 +1,5 @@
 ﻿using NexGenRedAlert.contracts;
+using NexGenRedAlert.Custom;
 using NexGenRedAlert.Views;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -26,7 +27,23 @@ namespace NexGenRedAlert.ViewModels
         {
             get
             {
-                return $"Welcome {DependencyService.Get<ICredentialService>().NgoName} !";
+                return $"Welcome {DependencyService.Get<ICredentialService>().Organization} !";
+            }
+        }
+
+        public bool IsSVPFormsLayoutVisible
+        {
+            get
+            {
+                return DependencyService.Get<ICredentialService>().RoleId != (int)ERoleId.ORATeam ? true : false;
+            }
+        }
+
+        public bool IsQCFormsLayoutVisible
+        {
+            get
+            {
+                return DependencyService.Get<ICredentialService>().RoleId != (int)ERoleId.ImplementingPartner ? true : false;
             }
         }
     }

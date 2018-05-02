@@ -30,7 +30,7 @@ namespace NexGenRedAlert.Services
             try
             {
                 var httpClient = new HttpClient();
-                programmePlanningForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+                programmePlanningForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
 
                 var json = JsonConvert.SerializeObject(programmePlanningForm);
                 HttpContent httpContent = new StringContent(json);
@@ -60,7 +60,7 @@ namespace NexGenRedAlert.Services
                 var httpClient = new HttpClient();
 
                 // IpCode Detail is Obtained from AccountStore object
-                preSvpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+                preSvpForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
 
                 var json = JsonConvert.SerializeObject(preSvpForm);
                 HttpContent httpContent = new StringContent(json);
@@ -89,7 +89,7 @@ namespace NexGenRedAlert.Services
             try
             {
                 var httpClient = new HttpClient();
-                svpForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+                svpForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
 
                 var json = JsonConvert.SerializeObject(svpForm);
                 HttpContent httpContent = new StringContent(json);
@@ -117,7 +117,7 @@ namespace NexGenRedAlert.Services
             try
             {
                 var httpClient = new HttpClient();
-                revisitForm.CreatedBy = DependencyService.Get<ICredentialService>().IpCode;
+                revisitForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
 
                 var json = JsonConvert.SerializeObject(revisitForm);
                 HttpContent httpContent = new StringContent(json);

@@ -4,10 +4,10 @@
     {
         string UserName { get; }
 
-        string IpCode { get; }
-        string NgoName { get; }
-
-        void SaveCredentials(string UserName, string IpCode, string Ngoname);
+        string UserCode { get; }
+        string Organization { get; }
+        int RoleId { get; }
+        void SaveCredentials(string userName, string userCode, string organization, int roleId);
 
         void DeleteCredentials();
 

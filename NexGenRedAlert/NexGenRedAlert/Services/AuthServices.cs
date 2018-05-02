@@ -22,7 +22,7 @@ namespace NexGenRedAlert.Services
             Client = new HttpClient();
         }
 
-        public async Task<ImplementingPartner> PostAsyncValidateImplementingPartner(string userName)
+        public async Task<RedAlertUser> PostAsyncValidateUser(string userName)
         {
             try
             {
@@ -31,10 +31,10 @@ namespace NexGenRedAlert.Services
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                var result = await httpClient.PostAsync(WebServiceUrl + "ValidateImplementingPartner", httpContent);
-                ImplementingPartner implementingPartnerData =JsonConvert.DeserializeObject<ImplementingPartner>(await result.Content.ReadAsStringAsync());
+                var result = await httpClient.PostAsync(WebServiceUrl + "ValidateUser", httpContent);
+                RedAlertUser redAlertUser =JsonConvert.DeserializeObject<RedAlertUser>(await result.Content.ReadAsStringAsync());
 
-                return implementingPartnerData;
+                return redAlertUser;
             }
             catch (Exception ex)
             {

@@ -64,7 +64,7 @@ namespace NexGenRedAlert.ViewModels
         async void OnAuthCompletedAsync(object sender, AuthenticatorCompletedEventArgs e)
         {
             var authenticator = sender as OAuth2Authenticator;
-            ImplementingPartner implementingPartner;
+            RedAlertUser redAlertUser;
 
             if (e.IsAuthenticated)
             {
@@ -85,13 +85,13 @@ namespace NexGenRedAlert.ViewModels
                     userEmail = userData["email"].ToString();
                 }
                 
-                implementingPartner = await App.AuthServices.PostAsyncValidateImplementingPartner(userEmail);
+                redAlertUser = await App.AuthServices.PostAsyncValidateUser(userEmail);
 
                 IsLoading = false;
 
-                if (implementingPartner != null)
+                if (redAlertUser != null)
                 {
-                    this.credentialService.SaveCredentials(implementingPartner.UserName, implementingPartner.IpCode, implementingPartner.NgoName);
+                    this.credentialService.SaveCredentials(redAlertUser.UserName, redAlertUser.UserCode, redAlertUser.Organization,redAlertUser.RoleId);
                     Application.Current.MainPage = new NavigationPage(new MenuPage());
                 }
                 else

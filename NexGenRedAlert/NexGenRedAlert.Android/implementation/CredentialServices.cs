@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using NexGenRedAlert.contracts;
 using NexGenRedAlert.Services;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using Xamarin.Auth;
 
@@ -20,20 +20,29 @@ namespace NexGenRedAlert.Services
             }
         }
 
-        public string IpCode
+        public string UserCode
         {
             get
             {
                 var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
-                return (account != null) ? account.Properties["IpCode"] : null;
+                return (account != null) ? account.Properties["UserCode"] : null;
             }
         }
-        public string NgoName
+        public string Organization
         {
             get
             {
                 var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
-                return (account != null) ? account.Properties["NgoName"] : null;
+                return (account != null) ? account.Properties["Organization"] : null;
+            }
+        }
+
+        public int RoleId
+        {
+            get
+            {
+                var account = AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).FirstOrDefault();
+                return (account != null) ? Convert.ToInt32(account.Properties["RoleId"]) : 0;
             }
         }
 
@@ -51,16 +60,17 @@ namespace NexGenRedAlert.Services
             return AccountStore.Create(Application.Context).FindAccountsForService(Application.Context.ApplicationInfo.Name).Any() ? true : false;
         }
 
-        public void SaveCredentials(string userName, string ipCode , string ngoName)
+        public void SaveCredentials(string userName, string userCode , string organization, int roleId)
         {
-            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(ipCode) && !string.IsNullOrWhiteSpace(ngoName))
+            if (!string.IsNullOrWhiteSpace(userName) && !string.IsNullOrWhiteSpace(userCode) && !string.IsNullOrWhiteSpace(organization))
             {
                 Account account = new Account
                 {
                     Username = userName
                 };
-                account.Properties.Add("IpCode",ipCode);
-                account.Properties.Add("NgoName", ngoName);
+                account.Properties.Add("UserCode",userCode);
+                account.Properties.Add("Organization", organization);
+                account.Properties.Add("RoleId", roleId.ToString());
                 AccountStore.Create(Application.Context).Save(account, Application.Context.ApplicationInfo.Name);
             }
         }
