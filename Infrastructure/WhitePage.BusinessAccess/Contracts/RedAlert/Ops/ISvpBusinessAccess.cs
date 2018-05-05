@@ -8,5 +8,6 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         string SaveSvpForm(Svp svpForm);
         string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm);
         string SaveRevisitForm(Revisit revisitForm);
+        string SavePreSvpQCForm(PreSvpQC preSvpQC);
     }
 }

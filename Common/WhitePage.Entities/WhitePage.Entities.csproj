@@ -74,6 +74,7 @@
     <Compile Include="CaseManagement\vCaseOffender.cs" />
     <Compile Include="CaseManagement\vCaseSessionLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedAlert\PreSvpQC.cs" />
     <Compile Include="RedAlert\ProgrammePlanning.cs" />
     <Compile Include="RedAlert\Revisit.cs" />
     <Compile Include="RedAlert\Security\RedAlertUser.cs" />

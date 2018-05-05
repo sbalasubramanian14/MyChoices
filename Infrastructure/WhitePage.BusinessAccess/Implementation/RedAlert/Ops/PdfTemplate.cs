@@ -356,5 +356,39 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
             return sb.ToString();
         }
+
+        public string PreSvpQCFormMailGenerator(PreSvpQC preSvpQCForm)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<br/><br/> <hr size='5' style='background-color:#E00'/><br/>" +
+                "<table cellpadding='10' style='border-spacing:15px 0rem; font-family:'Times New Roman', Times, serif; font-size:16px;'>" +
+                "<tr><td style='width:350px;word-wrap:break-word;'>Pre-SVP QC Number :</td><td>");
+            sb.Append(preSvpQCForm.PreSvpQCNumber);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Village Code :</td><td>");
+            sb.Append(preSvpQCForm.VillageCode);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Stakeholder Description :</td><td>");
+            sb.Append(preSvpQCForm.StakeholdersDescription);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>IP Facilator Communication skill level :</td><td>");
+            sb.Append(preSvpQCForm.IpFacilitatorCommunicationSkillLevel);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>CVC Status :</td><td>");
+            sb.Append(preSvpQCForm.CVCStatus);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Logistic arangements done according to Pre-SVP guidelines :</td><td>");
+            sb.Append(preSvpQCForm.WasLogisticArrangementsMade);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Are the villagers looking forward for the SVP ? :</td><td>");
+            sb.Append(preSvpQCForm.AreVillagersInterested);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Summary :</td><td>");
+            sb.Append(preSvpQCForm.Summary);
+            sb.Append("</td></tr>");
+            sb.Append("</table><br/><br/><hr size='5' style='background-color:#E00'/><br/>");
+
+            return sb.ToString();
+        }
     }
 }

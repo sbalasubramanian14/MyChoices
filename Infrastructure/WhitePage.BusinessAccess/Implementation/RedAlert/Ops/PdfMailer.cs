@@ -8,8 +8,12 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
     {
         private const string FromMailID = "oranexgen@mychoicesfoundation.org";
         private const string MailPassword = "jvobndlfgppsmevs";
-        private const string CCMailID = "manjula@mychoicesfoundation.org";
-        
+        private string _ccMailID;
+
+        public PdfMailer( string ccMailID)
+        {
+            this._ccMailID = ccMailID;
+        }
         public void SendMailToUser(string generatedPdfTemplateString, string IpMailID, string subject, string body, string pdfName)
         {
 
@@ -22,7 +26,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                 Body = body,
                 IsBodyHtml = true
             };
-            mailMessage.CC.Add(CCMailID);
+            mailMessage.CC.Add(_ccMailID);
             mailMessage.Attachments.Add(new Attachment(new MemoryStream(pdfBytes), pdfName));
             SmtpClient smtp = new SmtpClient
             {

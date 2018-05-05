@@ -136,8 +136,39 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             serialNumbertrackerRAObj = this.unitOfWork.DbContext.SerialNumbertrackerRA.Add(serialNumbertrackerRAObj);
 
             this.unitOfWork.DbContext.SaveChanges();
-
             return revisitObj.RevisitNumber;
+        }
+
+        public string SavePreSvpQCForm(PreSvpQC preSvpQCForm)
+        {
+            int newFormNumber = 1;
+
+            IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
+                                                                                                   .Where(x => x.UserCode == preSvpQCForm.CreatedBy && x.FormType == "PQ");
+            if (queryableSerialNumberTrackerRAData.Any())
+            {
+                newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1; ;
+            }
+            string padding = "000";
+            string serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
+            preSvpQCForm.PreSvpQCNumber= "PQ-" + preSvpQCForm.CreatedBy + "-" + serialNumberComponent;
+
+            /*Form entry*/
+            PreSvpQC preSvpQCObj= this.unitOfWork.DbContext.PreSvpQC.Add(preSvpQCForm);
+
+            /*Serial Number updation*/
+            SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
+            {
+                FormType = "PQ",
+                UserCode = preSvpQCForm.CreatedBy,
+                SerialValue = newFormNumber,
+                GeneratedDate = DateTime.UtcNow.AddHours(5.5)
+            };
+            serialNumbertrackerRAObj = this.unitOfWork.DbContext.SerialNumbertrackerRA.Add(serialNumbertrackerRAObj);
+
+            this.unitOfWork.DbContext.SaveChanges();
+
+            return preSvpQCObj.PreSvpQCNumber;
         }
 
         public RedAlertUser GetUserDetails(string userCode)

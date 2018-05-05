@@ -7,8 +7,12 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
     public class SvpBusinessAccess : ISvpBusinessAccess
     {
         private ISvpDataAccess svpDataAccess;
-        private PdfMailer pdfMailer = new PdfMailer();
+        private static string ipCCMailId = "manjula@mychoicesfoundation.org";
+        private static string qcCCMailId = "vivian@mychoicesfoundation.org";
+        private PdfMailer ipPdfMailer = new PdfMailer(ipCCMailId);
+        private PdfMailer qcPdfMailer = new PdfMailer(qcCCMailId);
         private PdfTemplate pdfTemplate = new PdfTemplate();
+
         public SvpBusinessAccess(ISvpDataAccess svpDataAccess)
         {
             this.svpDataAccess = svpDataAccess;
@@ -46,6 +50,12 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return revisitNumber;
         }
 
+        public string SavePreSvpQCForm(PreSvpQC preSvpQCForm)
+        {
+            var preSvpQCNumber = this.svpDataAccess.SavePreSvpQCForm(preSvpQCForm);
+            this.SendPreSvpQCFormResponseMail(preSvpQCForm);
+            return preSvpQCNumber;
+        }
         public void SendPlanningFormResponseMail(ProgrammePlanning programmePlanningForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PlanningFormMailGenerator(programmePlanningForm);
@@ -58,7 +68,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     $"<br/><br/>Team ORA";
             string pdfName = $"{programmePlanningForm.PlanningNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
+            ipPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
 
         public void SendPreSVPFormResponseMail(PreSvp preSvpForm)
@@ -73,7 +83,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     $"<br/><br/>Team ORA"; ;
             string pdfName = $"{preSvpForm.PreSvpNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
+            ipPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
 
         public void SendSVPFormResponseMail(Svp svpForm)
@@ -88,7 +98,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     $"<br/><br/>Team ORA"; ;
             string pdfName = $"{svpForm.SvpNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
+            ipPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
 
         public void SendRevisitFormResponseMail(Revisit revisitForm)
@@ -103,7 +113,22 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     $"<br/><br/>Team ORA"; ;
             string pdfName = $"{revisitForm.RevisitNumber}.pdf";
 
-            pdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
+            ipPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
+        }
+
+        public void SendPreSvpQCFormResponseMail(PreSvpQC preSvpQCForm)
+        {
+            var generatedPdfTemplateString = pdfTemplate.PreSvpQCFormMailGenerator(preSvpQCForm);
+            var redAlertQCUser = this.svpDataAccess.GetUserDetails(preSvpQCForm.CreatedBy);
+
+            string subject = $"Team ORA - Confirmation: Pre-SVP QC Form {preSvpQCForm.PreSvpQCNumber} Received ";
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertQCUser.PrimaryContact}, " +
+                    $"<br/><br/><br/>We acknowledge the receipt of your Pre-SVP QC Visit report for the village code {preSvpQCForm.VillageCode}" +
+                    $"Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
+                    $"<br/><br/>Team ORA"; 
+            string pdfName = $"{preSvpQCForm.PreSvpQCNumber}.pdf";
+
+            qcPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertQCUser.UserName, subject, body, pdfName);
         }
     }
 }
