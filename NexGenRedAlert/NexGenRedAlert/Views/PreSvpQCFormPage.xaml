@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.PreSvpQCFormPage"
+             Title="Pre-SVP QC Form">
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Margin="20,20,20,0" Spacing="10">
+                <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding PreSvpQC.VillageCode, Mode=OneWayToSource}"/>
+                <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                    <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
+                </Frame>
+
+                <Label x:Name="StakeholdersDescriptionLabel" Text="Describe the Stakeholders visited and Relationships established" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="StakeholdersDescriptionEntry" Text="{Binding PreSvpQC.StakeholdersDescription}" />
+
+                <Label x:Name="IpFacilitatorCommunicationSkillLevelLabel" Text="Communication skills of IP Facilitator:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="IpFacilitatorCommunicationSkillLevelPicker" Title="IP Facilitator Communication skill level ?" SelectedItem="{Binding PreSvpQC.IpFacilitatorCommunicationSkillLevel}" />
+
+                <Label x:Name="CVCStatusLabel" Text="What is the CVC Status ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="CVCStatusPicker" Title="Status of CVC ?" SelectedItem="{Binding PreSvpQC.CVCStatus}" />
+
+                <Label x:Name="WasLogisticArrangementsMadeLabel" Text="Was logistic arrangments made as per Pre-SVP guidelines ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="WasLogisticArrangementsMadePicker" Title="Was logisitic arrangements made ?" SelectedItem="{Binding PreSvpQC.WasLogisticArrangementsMade}" />
+
+                <Label x:Name="AreVillagersInterestedLabel" Text=" Are the villagers looking forward for the SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="AreVillagersInterestedPicker" Title="Are the Villagers looking forward for SVP ?" SelectedItem="{Binding PreSvpQC.AreVillagersInterested}" />
+
+                <Label x:Name="SummaryLabel" Text="Summary:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="SummaryEntry" Text="{Binding PreSvpQC.Summary}" />
+
+                <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitPreSvpQCForm}" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

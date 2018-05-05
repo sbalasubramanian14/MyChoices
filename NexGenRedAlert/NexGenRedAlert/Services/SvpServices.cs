@@ -139,5 +139,33 @@ namespace NexGenRedAlert.Services
                 throw;
             }
         }
+
+        public async Task<string> PostAsyncSavePreSvpQCForm(PreSvpQCForm preSvpQCForm)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                preSvpQCForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
+
+                var json = JsonConvert.SerializeObject(preSvpQCForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(WebServiceUrl + "SavePreSvpQCForm", httpContent);
+                string preSvpQCFormNumber = await result.Content.ReadAsStringAsync();
+                return preSvpQCFormNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
     }
 }
