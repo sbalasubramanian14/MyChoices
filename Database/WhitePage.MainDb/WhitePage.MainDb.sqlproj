@@ -166,6 +166,7 @@
     <Build Include="RedAlert\Auth\trRedAlertUser.sql" />
     <Build Include="RedAlert\Auth\dmnRedAlertRole.sql" />
     <Build Include="RedAlert\Ops\Tables\trPreSvpQC.sql" />
+    <Build Include="RedAlert\Ops\Tables\trSvpQC.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

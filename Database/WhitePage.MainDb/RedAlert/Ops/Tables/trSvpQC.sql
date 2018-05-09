@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [RedAlert].[trSvpQC]
 (
-	[PreSVPQCId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,	
-	[PreSvpQCNumber] VARCHAR(10) NOT NULL,
+	[SvpQCId] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,	
+	[SvpQCNumber] VARCHAR(10) NOT NULL,
 	[VillageCode] INT NOT NULL ,
 	[AreStakeholdersAware] VARCHAR(500) NOT NULL,
 	[WasStickersPutUp] VARCHAR(3) NOT NULL,
