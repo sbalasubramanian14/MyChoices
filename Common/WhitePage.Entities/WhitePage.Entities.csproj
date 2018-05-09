@@ -81,6 +81,7 @@
     <Compile Include="RedAlert\Svp.cs" />
     <Compile Include="RedAlert\PreSvp.cs" />
     <Compile Include="RedAlert\SerialNumbertrackerRA.cs" />
+    <Compile Include="RedAlert\SvpQC.cs" />
     <Compile Include="Security\Claim.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="Security\UserRole.cs" />
