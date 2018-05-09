@@ -9,6 +9,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         string SaveProgrammePlanningForm(ProgrammePlanning programmePlanningForm);
         string SaveRevisitForm(Revisit revisitForm);
         string SavePreSvpQCForm(PreSvpQC preSvpQCForm);
+        string SaveSvpQCForm(SvpQC svpQCForm);
         RedAlertUser GetUserDetails(string userCode);
     }
 }

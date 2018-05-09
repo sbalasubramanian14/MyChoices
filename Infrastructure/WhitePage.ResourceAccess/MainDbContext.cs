@@ -72,5 +72,6 @@ namespace WhitePage.ResourceAccess
         public DbSet<RedAlertUser> RedAlertUser { get; set; }
         public DbSet<Revisit> Revisit { get; set; }
         public DbSet<PreSvpQC> PreSvpQC { get; set; }
+        public DbSet<SvpQC> SvpQC { get; set; }
     }
 }

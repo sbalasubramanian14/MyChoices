@@ -56,6 +56,13 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             this.SendPreSvpQCFormResponseMail(preSvpQCForm);
             return preSvpQCNumber;
         }
+
+        public string SaveSvpQCForm(SvpQC svpQCForm)
+        {
+            var svpQCNumber = this.svpDataAccess.SaveSvpQCForm(svpQCForm);
+            return svpQCNumber;
+        }
+
         public void SendPlanningFormResponseMail(ProgrammePlanning programmePlanningForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PlanningFormMailGenerator(programmePlanningForm);

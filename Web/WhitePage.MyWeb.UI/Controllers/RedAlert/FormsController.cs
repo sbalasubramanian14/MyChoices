@@ -66,5 +66,15 @@ namespace WhitePage.MyWeb.UI.Controllers
             var updatedForm = this._svpBusinessAccess.SavePreSvpQCForm(preSvpQCForm);
             return Ok(updatedForm);
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult SaveSvpQCForm([FromBody] SvpQC svpQCForm)
+        {
+            svpQCForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
+
+            var updatedForm = this._svpBusinessAccess.SaveSvpQCForm(svpQCForm);
+            return Ok(updatedForm);
+        }
     }
 }
