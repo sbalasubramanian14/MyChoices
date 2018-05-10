@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.SvpQCFormTabbedPage"
+            Title="Svp QC Form"
+            BarBackgroundColor="{StaticResource DarkBlue}"
+            BarTextColor="White">
+  <!--Pages can be added as references or inline-->
+    <ContentPage x:Name="PageOne" Title="Page 1" >
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding SvpQC.VillageCode, Mode=OneWayToSource}" />
+                    <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                        <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
+                    </Frame>
+
+                    <Label x:Name="AreStakeholdersAwareLabel" Text="Local stakeholders aware of events of following two days ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="AreStakeholdersAwarePicker" Title="Are stakeholders aware ?" SelectedItem="{Binding SvpQC.AreStakeholdersAware}" />
+
+                    <Label x:Name="WasStickersPutUpLabel" Text="Was stickers put up in village ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasStickersPutUpPicker" Title="Was stickers put up ?" SelectedItem="{Binding SvpQC.WasStickersPutUp}" />
+
+                    <Label x:Name="WasProtocolFollowedLabel" Text="Was SVP done in line with protocol and guidlines ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasProtocolFollowedPicker" Title="Was protocol followed ?" SelectedItem="{Binding SvpQC.WasProtocolFollowed}" />
+
+                    <Label x:Name="WereEquipmentsWorkingProperlyLabel" Text="Was the public addressing system and projector working ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereEquipmentsWorkingProperlyPicker" Title="Were equipments working properly ?" SelectedItem="{Binding SvpQC.WereEquipmentsWorkingProperly}" />
+
+                    <Label x:Name="WereAllProgramStartedInTimeLabel" Text="Did all the programs start on time ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereAllProgramStartedInTimePicker" Title="Were all program started in time ?" SelectedItem="{Binding SvpQC.WereAllProgramStartedInTime}" />
+
+                    <Label x:Name="WasGuardianGirlConductedLabel" Text="Was the Guardian Girl's program conducted ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasGuardianGirlConductedPicker" Title="Was the Guardian Girl's program conducted ?" SelectedItem="{Binding SvpQC.WasGuardianGirlConducted}" />
+
+                    <Label x:Name="DidGirlsTakeOathLabel" Text="Did the girls take the Guardian Girl's oath and sign it ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidGirlsTakeOathPicker" Title="Did Girls take Oath and Signed ?" SelectedItem="{Binding SvpQC.DidGirlsTakeOath}" />
+
+                    <Label x:Name="GirlsParticipationCountLabel" Text="Girls Participation Count :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="GirlsParticipationCountEntry" Placeholder="Girls count" Keyboard="Numeric" Text="{Binding SvpQC.GirlsParticipationCount, Mode=OneWayToSource}" />
+
+                    <Label x:Name="WasCoolBoysConductedLabel" Text="Was the Cool Boy's program conducted ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasCoolBoysConductedPicker" Title="Was Cool Boys Conducted ?" SelectedItem="{Binding SvpQC.WasCoolBoysConducted}" />
+
+                    <Label x:Name="DidBoysTakeOathLabel" Text="Did the boys take the Cool Boy's oath and sign it ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidBoysTakeOathPicker" Title="Did boys take oath ?" SelectedItem="{Binding SvpQC.DidBoysTakeOath}" />
+
+                    <Label x:Name="BoysParticipationCountLabel" Text="Boys Participation Count :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="BoysParticipationCountEntry" Placeholder="Boys count" Keyboard="Numeric" Text="{Binding SvpQC.BoysParticipationCount, Mode=OneWayToSource}" />
+                    
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButton1" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="NextPage" ClassId="Page1" Text="Next Page" Clicked="OnClickChangeTab" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="PageTwo" Title="Page 2">
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="WasSkitConductedLabel" Text="Was the Skit conducted during the school program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasSkitConductedPicker" Title="Was Skit Conducted ?" SelectedItem="{Binding SvpQC.WasSkitConducted}" />
+
+                    <Label x:Name="WereFilmsUsedInSchoolProgramLabel" Text="Were the films used during the school program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereFilmsUsedInSchoolProgramPicker" Title="Were the films used during the school program ?" SelectedItem="{Binding SvpQC.WereFilmsUsedInSchoolProgram}" />
+
+                    <Label x:Name="WasMyRightsMentionedLabel" Text="Was MyRights mentioned during the school program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasMyRightsMentionedPicker" Title="Was MyRights Mentioned ?" SelectedItem="{Binding SvpQC.WasMyRightsMentioned}" />
+
+                    <Label x:Name="WasMotherProgramConductedLabel" Text="Was the Informed Mother program conducted ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasMotherProgramConductedPicker" Title="Was Informed Mother program conducted ?" SelectedItem="{Binding SvpQC.WasMotherProgramConducted}" />
+
+                    <Label x:Name="MothersParticipationCountLabel" Text="Mothers Participation Count :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="MothersParticipationCountEntry" Placeholder="Mothers count" Keyboard="Numeric" Text="{Binding SvpQC.MothersParticipationCount, Mode=OneWayToSource}" />
+
+                    <Label x:Name="WereFilmsUsedInMothersProgramLabel" Text="Were the films used during the school program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereFilmsUsedInMothersProgramPicker" Title="Were the films used during the school program ?" SelectedItem="{Binding SvpQC.WereFilmsUsedInMothersProgram}" />
+
+                    <Label x:Name="WasFathersProgramConductedLabel" Text="Was the Good Father program conducted ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasFathersProgramConductedPicker" Title="Was Good Father program conducted ?" SelectedItem="{Binding SvpQC.WasFathersProgramConducted}" />
+
+                    <Label x:Name="FathersParticipationCountLabel" Text="Fathers Participation Count :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="FathersParticipationCountEntry" Placeholder="Fathers count" Keyboard="Numeric" Text="{Binding SvpQC.FathersParticipationCount, Mode=OneWayToSource}" />
+
+                    <Label x:Name="WereFilmsUsedInFathersProgramLabel" Text="Were the films used during the Fathers program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereFilmsUsedInFathersProgramPicker" Title="Were the films used during the Father program ?" SelectedItem="{Binding SvpQC.WereFilmsUsedInFathersProgram}" />
+
+                    <Label x:Name="DidTeamMeetSarpanchLabel" Text="Did the team meet with the village Sarpanch ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidTeamMeetSarpanchPicker" Title="Were the films used during the school program ?" SelectedItem="{Binding SvpQC.DidTeamMeetSarpanch}" />
+
+                    <Label x:Name="DidTeamMeetPoliceLabel" Text="Did the team meet Police Officials ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidTeamMeetPolicePicker" Title="Did team meet police ?" SelectedItem="{Binding SvpQC.DidTeamMeetPolice}" />
+
+                    <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButton2" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="NextPage2" ClassId="Page2" Text="Next Page" Clicked="OnClickChangeTab" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="PageThree" Title="Page 3">
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+
+                    <Label x:Name="DidTeamMeetSchoolStaffLabel" Text="Did team meet school staff ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidTeamMeetSchoolStaffPicker" Title="Did team meet school staff ?"  SelectedItem="{Binding SvpQC.DidTeamMeetSchoolStaff, Mode=OneWayToSource}" />
+
+                    <Label x:Name="DidTeamMeetAnganwadiHeadLabel" Text="Did Team meet Anganwadi Head ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidTeamMeetAnganwadiHeadPicker" Title="Did Team meet Anganwadi Head ?"  SelectedItem="{Binding SvpQC.DidTeamMeetAnganwadiHead, Mode=OneWayToSource}" />
+
+                    <Label x:Name="DidTeamVisitedSchoolOnSecondDayLabel" Text="Did team visited school on second day ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DidTeamVisitedSchoolOnSecondDayPicker" Title="Did team visited school on second day ?"  SelectedItem="{Binding SvpQC.DidTeamVisitedSchoolOnSecondDay, Mode=OneWayToSource}" />
+
+                    <Label x:Name="SchoolChildrenFeedbackLabel" Text="Feedback from School Children :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SchoolChildrenFeedbackEditor" Text="{Binding SvpQC.SchoolChildrenFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="StakeholdersFeedbackLabel" Text="Feedback from Stakeholder :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="StakeholdersFeedbackEditor" Text="{Binding SvpQC.StakeholdersFeedback, Mode=TwoWay}" />
+
+                    <Label x:Name="WasRakshakIdentifiedLabel" Text="Was Rakshak appointed / identified ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasRakshakIdentifiedPicker" Title="Was Rakshak appointed / identified ?"  SelectedItem="{Binding SvpQC.WasRakshakIdentified, Mode=OneWayToSource}" />
+
+                    <Label x:Name="WasRakshakRegistrationDoneLabel" Text="Was Rakshak registration done ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasRakshakRegistrationDonePicker" Title="Was Rakshak registration done ?"  SelectedItem="{Binding SvpQC.WasRakshakRegistrationDone, Mode=OneWayToSource}" />
+
+                    <Label x:Name="PreviousAwarenessDescLabel" Text="Any other awareness program was conducted ? :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="PreviousAwarenessDescEditor" Text="{Binding SvpQC.PreviousAwarenessDesc, Mode=TwoWay}" />
+
+                    <Label x:Name="CVCStatusLabel" Text=" Describe CVC Status " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="CVCStatusPicker" Title="CVC Status"  SelectedItem="{Binding SvpQC.CVCStatus, Mode=OneWayToSource}" />
+
+                    <Label x:Name="WasCertificateGivenToSchoolLabel" Text="Was the certificate given by ORA to School ? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasCertificateGivenToSchoolPicker" Title="Was the certificate given by ORA to School ?"  SelectedItem="{Binding SvpQC.CVCStatus, Mode=OneWayToSource}" />
+
+                    <Label x:Name="FieldWorkerNamesLabel" Text="Field worker names :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="FieldWorkerNamesEditor" Text="{Binding SvpQC.FieldWorkerNames, Mode=TwoWay}" />
+
+                    <Label x:Name="SummaryLabel" Text="Summary :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SummaryEditor" Text="{Binding SvpQC.Summary, Mode=TwoWay}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButtonThree" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitSvpQCForm}" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>
