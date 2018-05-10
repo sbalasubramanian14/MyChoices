@@ -59,6 +59,10 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
         public string SaveSvpQCForm(SvpQC svpQCForm)
         {
+            svpQCForm.TotalParticipationCount= (short)(svpQCForm.GirlsParticipationCount
+                                                + svpQCForm.BoysParticipationCount
+                                                + svpQCForm.MothersParticipationCount
+                                                + svpQCForm.FathersParticipationCount);
             var svpQCNumber = this.svpDataAccess.SaveSvpQCForm(svpQCForm);
             return svpQCNumber;
         }
