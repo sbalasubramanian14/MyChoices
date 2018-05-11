@@ -68,7 +68,7 @@ namespace NexGenRedAlert.Models
         public short BoysParticipationCount { get { return _boysParticipationCount; } set { SetProperty(ref _boysParticipationCount, value); } }
 
         public string WasSkitConducted { get { return _wasSkitConducted; } set { SetProperty(ref _wasSkitConducted, value); } }
-        public string WereFilmsUsedInSchoolProgr { get { return _wereFilmsUsedInSchoolProgram; } set { SetProperty(ref _wereFilmsUsedInSchoolProgram, value); } }
+        public string WereFilmsUsedInSchoolProgram { get { return _wereFilmsUsedInSchoolProgram; } set { SetProperty(ref _wereFilmsUsedInSchoolProgram, value); } }
         public string WasMyRightsMentioned { get { return _wasMyRightsMentioned; } set { SetProperty(ref _wasMyRightsMentioned, value); } }
         public string WasMotherProgramConducted { get { return _wasMotherProgramConducted; } set { SetProperty(ref _wasMotherProgramConducted, value); } }
         public short MothersParticipationCount { get { return _mothersParticipationCount; } set { SetProperty(ref _mothersParticipationCount, value); } }

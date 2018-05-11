@@ -76,7 +76,7 @@
                     <Label x:Name="MothersParticipationCountLabel" Text="Mothers Participation Count :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Entry x:Name="MothersParticipationCountEntry" Placeholder="Mothers count" Keyboard="Numeric" Text="{Binding SvpQC.MothersParticipationCount, Mode=OneWayToSource}" />
 
-                    <Label x:Name="WereFilmsUsedInMothersProgramLabel" Text="Were the films used during the school program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Label x:Name="WereFilmsUsedInMothersProgramLabel" Text="Were the films used during the Mothers program ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Picker x:Name="WereFilmsUsedInMothersProgramPicker" Title="Were the films used during the school program ?" SelectedItem="{Binding SvpQC.WereFilmsUsedInMothersProgram}" />
 
                     <Label x:Name="WasFathersProgramConductedLabel" Text="Was the Good Father program conducted ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
@@ -93,9 +93,6 @@
 
                     <Label x:Name="DidTeamMeetPoliceLabel" Text="Did the team meet Police Officials ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Picker x:Name="DidTeamMeetPolicePicker" Title="Did team meet police ?" SelectedItem="{Binding SvpQC.DidTeamMeetPolice}" />
-
-                    <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
-                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <Button x:Name="ResetButton2" Text="Reset" Clicked="OnResetClicked" />
@@ -138,7 +135,7 @@
                     <Picker x:Name="CVCStatusPicker" Title="CVC Status"  SelectedItem="{Binding SvpQC.CVCStatus, Mode=OneWayToSource}" />
 
                     <Label x:Name="WasCertificateGivenToSchoolLabel" Text="Was the certificate given by ORA to School ? " FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
-                    <Picker x:Name="WasCertificateGivenToSchoolPicker" Title="Was the certificate given by ORA to School ?"  SelectedItem="{Binding SvpQC.CVCStatus, Mode=OneWayToSource}" />
+                    <Picker x:Name="WasCertificateGivenToSchoolPicker" Title="Was the certificate given by ORA to School ?"  SelectedItem="{Binding SvpQC.WasCertificateGivenToSchool, Mode=OneWayToSource}" />
 
                     <Label x:Name="FieldWorkerNamesLabel" Text="Field worker names :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="FieldWorkerNamesEditor" Text="{Binding SvpQC.FieldWorkerNames, Mode=TwoWay}" />
@@ -146,6 +143,9 @@
                     <Label x:Name="SummaryLabel" Text="Summary :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
                     <Editor x:Name="SummaryEditor" Text="{Binding SvpQC.Summary, Mode=TwoWay}" />
 
+                    <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                    
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <Button x:Name="ResetButtonThree" Text="Reset" Clicked="OnResetClicked" />
                         <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitSvpQCForm}" />
