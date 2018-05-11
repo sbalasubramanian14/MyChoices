@@ -44,5 +44,10 @@ namespace NexGenRedAlert.Views
         {
             await Navigation.PushAsync(new SvpQCFormTabbedPage());
         }
+
+        async void OpenPostSvpQCFormPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PostSvpQCFormTabbedPage());
+        }
     }
 }

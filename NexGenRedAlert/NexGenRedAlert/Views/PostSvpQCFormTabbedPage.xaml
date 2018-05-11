@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.PostSvpQCFormTabbedPage"
+            Title="Post-Svp QC Form"
+            BarBackgroundColor="{StaticResource DarkBlue}"
+            BarTextColor="White">
+    <ContentPage x:Name="PageOne" Title="Page 1">
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding PostSvpQC.VillageCode, Mode=OneWayToSource}" />
+                    <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                        <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
+                    </Frame>
+
+                    <Label x:Name="PostSvpQCDateLabel" Text="Post-Svp QC Date" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <DatePicker x:Name="PostSvpQCDatePicker" Format="D" TextColor="Black" Date="{Binding PostSvpQC.PostSvpQCDate, Mode=OneWayToSource}" />
+
+                    <Label x:Name="CVCStatusLabel" Text="Was the CVC formed/strengthened (if already existed) ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="CVCStatusPicker" Title="CVC Status ?" SelectedItem="{Binding PostSvpQC.CVCStatus}" />
+
+                    <Label x:Name="WasAnyAnotherClubFormedLabel" Text="Was any other committee/club formed to address the issues ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasAnyAnotherClubFormedPicker" Title="Was any another club formed ?" SelectedItem="{Binding PostSvpQC.WasAnyAnotherClubFormed}" />
+
+                    <Label x:Name="WasVillageLeadershipProActiveLabel" Text="Was village leadership proactive in Anti-Trafficking efforts ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasVillageLeadershipProActivePicker" Title="Was village leadership Pro-Active ?" SelectedItem="{Binding PostSvpQC.WasVillageLeadershipProActive}" />
+
+                    <Label x:Name="DoVillagersRememberSVPLabel" Text="Do the people in the village remember the SVP ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoVillagersRememberSVPPicker" Title="Do villagers remember SVP ?" SelectedItem="{Binding PostSvpQC.DoVillagersRememberSVP}" />
+
+                    <Label x:Name="TrafficCountBeforeSVPLabel" Text="Traffic count before SVP :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TrafficCountBeforeSVPEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvpQC.TrafficCountBeforeSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="TrafficCountAfterSVPLabel" Text="Traffic count after SVP :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="TrafficCountAfterSVPEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvpQC.TrafficCountAfterSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="ChildMarriageCountBeforeSVPLabel" Text="Child marriage count before SVP :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ChildMarriageCountBeforeSVPEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvpQC.ChildMarriageCountBeforeSVP, Mode=OneWayToSource}" />
+
+                    <Label x:Name="ChildMarriageCountAfterSVPLabel" Text="Child marriage count after SVP :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Entry x:Name="ChildMarriageCountAfterSVPEntry" Placeholder="Count" Keyboard="Numeric" Text="{Binding PostSvpQC.ChildMarriageCountAfterSVP, Mode=OneWayToSource}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButton1" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="NextPage" Text="Next Page" Clicked="OnClickChangeTab" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="PageTwo" Title="Page 2">
+        <ContentPage.Content>
+            <ScrollView >
+                <StackLayout Margin="20,20,20,0" Spacing="10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label x:Name="WasFollowUpDoneByNGOLabel" Text="Was any follow up done by the NGO in this village ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WasFollowUpDoneByNGOPicker" Title="Was follow up done by NGO ?"  SelectedItem="{Binding PostSvpQC.WasFollowUpDoneByNGO, Mode=OneWayToSource}" />
+
+                    <Label x:Name="AreInfoStickersIntactLabel" Text="Are stickers still intact providing helpline and other information ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="AreInfoStickersIntactPicker" Title="Are stickers intact ?"  SelectedItem="{Binding PostSvpQC.AreInfoStickersIntact, Mode=OneWayToSource}" />
+
+                    <Label x:Name="IsVillageSafeForGirlsLabel" Text="Would you classify this village as a Safe Village for girls ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="IsVillageSafeForGirlsPicker" Title="Is village safe for Girls ?"  SelectedItem="{Binding PostSvpQC.IsVillageSafeForGirls, Mode=OneWayToSource}" />
+
+                    <Label x:Name="SuccessStoryLabel" Text="Brief of summary of Success story of SVP :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SuccessStoryEditor" Text="{Binding PostSvpQC.SuccessStory, Mode=OneWayToSource}"/>
+
+                    <Label x:Name="IsFollowUpSvpRequiredDescLabel" Text="Do you think a follow-up SVP is needed in this location? Give reason :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="IsFollowUpSvpRequiredDescEditor" Text="{Binding PostSvpQC.IsFollowUpSvpRequiredDesc, Mode=OneWayToSource}"/>
+
+                    <Label x:Name="DoPeopleRememberHelplineLabel" Text="Do people remember the Helpline and still know how to use it ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="DoPeopleRememberHelplinePicker" Title="Do people remember the Helpline ?"  SelectedItem="{Binding PostSvpQC.DoPeopleRememberHelpline, Mode=OneWayToSource}" />
+
+                    <Label x:Name="WereIpFormsSubmittedLabel" Text="Were Pre-SVP and SVP forms sent by the NGO ?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Picker x:Name="WereIpFormsSubmittedPicker" Title="Were IP forms submitted ?"  SelectedItem="{Binding PostSvpQC.WereIpFormsSubmitted, Mode=OneWayToSource}" />
+
+                    <Label x:Name="RakshakStatusLabel" Text="Status of Rakshak :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="RakshakStatusEditor" Text="{Binding PostSvpQC.RakshakStatus, Mode=OneWayToSource}"/>
+
+                    <Label x:Name="FieldWorkerNamesLabel" Text="Field Worker Names :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="FieldWorkerNamesEditor" Text="{Binding PostSvpQC.FieldWorkerNames, Mode=OneWayToSource}"/>
+
+                    <Label x:Name="SummaryLabel" Text="Summary :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                    <Editor x:Name="SummaryEditor" Text="{Binding PostSvpQC.Summary, Mode=OneWayToSource}"/>
+
+                    <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="ResetButton2" Text="Reset" Clicked="OnResetClicked" />
+                        <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitPostSvpQCForm}" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

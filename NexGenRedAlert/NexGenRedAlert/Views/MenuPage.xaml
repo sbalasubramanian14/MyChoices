@@ -25,7 +25,7 @@
                 <StackLayout x:Name="QCFormsLayout" VerticalOptions="Start" Margin="20,0,20,0" IsVisible="{Binding IsQCFormsLayoutVisible}">
                     <Button x:Name="PreSVPQCButton" Text="Pre-SVP QC Form" Clicked="OpenPreSvpQCFormPage" />
                     <Button x:Name="SvpQCButton" Text="Svp QC Form" Clicked="OpenSvpQCFormPage" />
-                    <!--<Button x:Name="PostSvpQCButton" Text="Post Svp Form" Clicked="OpenSvpFormPage" />-->
+                    <Button x:Name="PostSvpQCButton" Text="Post Svp Form" Clicked="OpenPostSvpQCFormPage" />
                 </StackLayout>
 
                 <StackLayout x:Name="LogoutLayout" VerticalOptions="StartAndExpand"  Margin="20,0,20,0">
