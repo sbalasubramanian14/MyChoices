@@ -142,8 +142,8 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
             string subject = $"Team ORA - Confirmation: Pre-SVP QC Form {preSvpQCForm.PreSvpQCNumber} Received ";
             string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertQCUser.PrimaryContact}, " +
-                    $"<br/><br/><br/>We acknowledge the receipt of your Pre-SVP QC Visit report for the village code {preSvpQCForm.VillageCode}" +
-                    $"Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
+                    $"<br/><br/><br/>We acknowledge the receipt of your Pre-SVP QC Visit report for the village code {preSvpQCForm.VillageCode}." +
+                    $" Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
                     $"<br/><br/>Team ORA"; 
             string pdfName = $"{preSvpQCForm.PreSvpQCNumber}.pdf";
 
@@ -157,8 +157,8 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
             string subject = $"Team ORA - Confirmation: SVP QC Form {svpQCForm.SvpQCNumber} Received ";
             string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertQCUser.PrimaryContact}, " +
-                    $"<br/><br/><br/>We acknowledge the receipt of your SVP QC Visit report for the village code {svpQCForm.VillageCode}" +
-                    $"Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
+                    $"<br/><br/><br/>We acknowledge the receipt of your SVP QC Visit report for the village code {svpQCForm.VillageCode}." +
+                    $" Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
                     $"<br/><br/>Team ORA";
             string pdfName = $"{svpQCForm.SvpQCNumber}.pdf";
 
@@ -172,8 +172,8 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
             string subject = $"Team ORA - Confirmation: Post-SVP QC Form {postSvpQCForm.PostSvpQCNumber} Received ";
             string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertQCUser.PrimaryContact}, " +
-                    $"<br/><br/><br/>We acknowledge the receipt of your Post-SVP QC Visit report for the village code {postSvpQCForm.VillageCode}" +
-                    $"Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
+                    $"<br/><br/><br/>We acknowledge the receipt of your Post-SVP QC Visit report for the village code {postSvpQCForm.VillageCode}." +
+                    $" Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our programs better and better and our impact bigger and bigger !" +
                     $"<br/><br/>Team ORA";
             string pdfName = $"{postSvpQCForm.PostSvpQCNumber}.pdf";
 

@@ -402,16 +402,16 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Village Code :</td><td>");
             sb.Append(svpQCForm.VillageCode);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Stakeholder aware of following two day events :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Are Stakeholders aware of upcoming two day events :</td><td>");
             sb.Append(svpQCForm.AreStakeholdersAware);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was Stickers put up in the village ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were Stickers put up in the village ? :</td><td>");
             sb.Append(svpQCForm.WasStickersPutUp);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the SVP done in line with the protocol and guidelines ?</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the SVP done in line with the protocol and guidelines? :</td><td>");
             sb.Append(svpQCForm.WasProtocolFollowed);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the public addressing system and projector working ?</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the public addressing system and projector working?:</td><td>");
             sb.Append(svpQCForm.WereEquipmentsWorkingProperly);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Did all the programs start on time ? :</td><td>");
@@ -438,19 +438,19 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the Skit conducted during the school program ? :</td><td>");
             sb.Append(svpQCForm.WasSkitConducted);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the films used during the school program ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were the films used during the school program ? :</td><td>");
             sb.Append(svpQCForm.WereFilmsUsedInSchoolProgram);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was MyRights mentioned during the school program ? :</td><td>");
             sb.Append(svpQCForm.WasMyRightsMentioned);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the informed mother program conducted ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the informed Mother program conducted ? :</td><td>");
             sb.Append(svpQCForm.WasMotherProgramConducted);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many mothers attended the program ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many Mothers attended the program ? :</td><td>");
             sb.Append(svpQCForm.MothersParticipationCount);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the films used during the mother's program ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were the films used during the Mothers program ? :</td><td>");
             sb.Append(svpQCForm.WereFilmsUsedInMothersProgram);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the Good Father program conducted ? :</td><td>");
@@ -459,7 +459,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many Fathers attended the program ? :</td><td>");
             sb.Append(svpQCForm.FathersParticipationCount);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was the films used during the Father's program ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were the films used during the Father's program ? :</td><td>");
             sb.Append(svpQCForm.WereFilmsUsedInFathersProgram);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many people totally attended the program ? :</td><td>");
@@ -474,7 +474,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Did the team meet with the teachers/Head Master of the school ? :</td><td>");
             sb.Append(svpQCForm.DidTeamMeetSchoolStaff);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Did the team meet with the Anganwadi in charge of the village ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Did the team meet with the Anganwadi incharge of the village ? :</td><td>");
             sb.Append(svpQCForm.DidTeamMeetAnganwadiHead);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Did the team visit the school again on second day ? :</td><td>");
@@ -517,7 +517,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             StringBuilder sb = new StringBuilder();
             sb.Append("<br/><br/> <hr size='5' style='background-color:#E00'/><br/>" +
                 "<table cellpadding='10' style='border-spacing:15px 0rem; font-family:'Times New Roman', Times, serif; font-size:16px;'>" +
-                "<tr><td style='width:350px;word-wrap:break-word;'>Pre-SVP QC Number :</td><td>");
+                "<tr><td style='width:350px;word-wrap:break-word;'>Post-SVP QC Number :</td><td>");
             sb.Append(postSvpQCForm.PostSvpQCNumber);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Village Code :</td><td>");
@@ -532,7 +532,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was any other committee/club formed to address the issues ? :</td><td>");
             sb.Append(postSvpQCForm.WasAnyAnotherClubFormed);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was village leadership proactive in Anti-Trafficking efforts ?</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was village leadership proactive in Anti-Trafficking efforts? :</td><td>");
             sb.Append(postSvpQCForm.WasVillageLeadershipProActive);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Do villagers remember the SVP ? :</td><td>");
@@ -553,13 +553,13 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Was any follow up done by the NGO in this village ? :</td><td>");
             sb.Append(postSvpQCForm.WasFollowUpDoneByNGO);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Are stickers still intact providing helpline and other information ? :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Are stickers, providing helpline and other information, still intact ? :</td><td>");
             sb.Append(postSvpQCForm.AreInfoStickersIntact);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Would you classify this village as a Safe Village for girls ? :</td><td>");
             sb.Append(postSvpQCForm.IsVillageSafeForGirls);
             sb.Append("</td></tr>");
-            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Brief of summary of Success story :</td><td>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Brief summary of Success story :</td><td>");
             sb.Append(postSvpQCForm.SuccessStory);
             sb.Append("</td></tr>");
             sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Do you think a follow-up SVP is needed in this location ? Give reason. :</td><td>");
