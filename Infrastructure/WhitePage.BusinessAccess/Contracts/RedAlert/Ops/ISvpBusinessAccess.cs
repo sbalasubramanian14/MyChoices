@@ -10,6 +10,7 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         string SaveRevisitForm(Revisit revisitForm);
         string SavePreSvpQCForm(PreSvpQC preSvpQC);
         string SaveSvpQCForm(SvpQC svpQC);
+        string SaveRakshakRegistrationForm(RakshakRegistration rakshakRegistrationForm);        
         string SavePostSvpQCForm(PostSvpQC postSvpQC);
     }
 }

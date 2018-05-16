@@ -86,5 +86,16 @@ namespace WhitePage.MyWeb.UI.Controllers
             var updatedForm = this._svpBusinessAccess.SavePostSvpQCForm(postSvpQCForm);
             return Ok(updatedForm);
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult SaveRakshakRegistrationForm([FromBody] RakshakRegistration rakshakRegistrationForm)
+        {
+            rakshakRegistrationForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
+
+            var updatedForm = this._svpBusinessAccess.SaveRakshakRegistrationForm(rakshakRegistrationForm);
+            return Ok(updatedForm);
+        }
+
     }
 }

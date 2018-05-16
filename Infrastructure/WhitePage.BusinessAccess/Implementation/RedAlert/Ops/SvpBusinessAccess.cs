@@ -75,6 +75,12 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return postSvpQCNumber;
         }
 
+        public string SaveRakshakRegistrationForm(RakshakRegistration rakshakRegistrationForm)
+        {
+            var SaveRakshakRegistrationNumber = this.svpDataAccess.SaveRakshakRegistrationForm(rakshakRegistrationForm);
+            return SaveRakshakRegistrationNumber;
+        }
+
         public void SendPlanningFormResponseMail(ProgrammePlanning programmePlanningForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PlanningFormMailGenerator(programmePlanningForm);
