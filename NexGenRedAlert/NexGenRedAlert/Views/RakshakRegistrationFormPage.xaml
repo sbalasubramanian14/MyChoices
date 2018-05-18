@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NexGenRedAlert.Views.RakshakRegistrationFormPage"
+             Title="Rakshak Registration">
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Margin="20,20,20,0" Spacing="10">
+                <Label x:Name="VillageCodeLabel" Text="VillageCode:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="VillageCodeEntry" Placeholder="Village Code" Keyboard="Numeric" Unfocused="OnUnfocusedVillageCodeEntryAsync" Text="{Binding RakshakRegistration.VillageCode, Mode=OneWayToSource}"/>
+                <Frame x:Name="VillageProfileFrame"  IsVisible="False" Margin="0,10,0,0" >
+                    <Label x:Name="VillageProfileLabel" Text="" TextColor="{StaticResource Black}" FontSize="15" />
+                </Frame>
+
+                <Label x:Name="NameLabel" Text="Name of Rakshak :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="NameEntry" Placeholder="Name" Text="{Binding RakshakRegistration.Name, Mode=OneWayToSource}" />
+
+                <Label x:Name="AgeLabel" Text="Age of Rakshak:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="AgeEntry" Placeholder="Age" Keyboard="Numeric" Text="{Binding RakshakRegistration.Age, Mode=OneWayToSource}" />
+
+                <Label x:Name="GenderLabel" Text="Rakshak Gender :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="GenderPicker" Title="Choose Gender : " SelectedItem="{Binding RakshakRegistration.Gender}" />
+
+                <Label x:Name="EducationalQualificationLabel" Text="Rakshak Educational Qualification :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="EducationalQualificationEntry" Placeholder="Rakshak Educational Qualification" Text="{Binding RakshakRegistration.EducationalQualification}" />
+
+                <Label x:Name="PhoneNumberLabel" Text="Rakshak Phone Number :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="PhoneNumberEntry" Placeholder="Contact number" Keyboard="Numeric" Text="{Binding RakshakRegistration.PhoneNumber, Mode=OneWayToSource}" />
+
+                <Label x:Name="AlternatePhoneNumberLabel" Text="Alternate Phone Number :" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="AlternatePhoneNumberEntry" Placeholder="Alternate contact number" Keyboard="Numeric" Text="{Binding RakshakRegistration.AlternatePhoneNumber, Mode=OneWayToSource}" />
+
+                <Label x:Name="EmailIdLabel" Text="Rakshak E-Mail Id:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="EmailIdEntry" Placeholder="E-Mail ID (Optional)" Text="{Binding RakshakRegistration.EmailId}" />
+
+                <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitRakshakRegistrationForm}" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
