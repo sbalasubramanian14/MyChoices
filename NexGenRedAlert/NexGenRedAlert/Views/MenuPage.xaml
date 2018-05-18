@@ -20,6 +20,7 @@
                     <Button x:Name="preSvpButton" Text="Pre-Svp Form" Clicked="OpenPreSvpFormPage" />
                     <Button x:Name="SvpButton" Text="Svp Form" Clicked="OpenSvpFormPage" />
                     <Button x:Name="RevisitButton" Text="Revisit Form" Clicked="OpenRevisitFormPage" />
+                    <Button x:Name="RakshakRegistrationButton" Text="Rakshak Registration" Clicked="OpenRakshakRegistrationPage" />
                 </StackLayout>
             
                 <StackLayout x:Name="QCFormsLayout" VerticalOptions="Start" Margin="20,0,20,0" IsVisible="{Binding IsQCFormsLayoutVisible}">

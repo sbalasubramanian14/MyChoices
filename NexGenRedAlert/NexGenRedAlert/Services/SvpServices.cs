@@ -223,5 +223,33 @@ namespace NexGenRedAlert.Services
                 throw;
             }
         }
+
+        public async Task<string> PostAsyncSaveRakshakRegistrationForm(RakshakRegistrationForm rakshakRegistrationForm)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                rakshakRegistrationForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
+
+                var json = JsonConvert.SerializeObject(rakshakRegistrationForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(WebServiceUrl + "SaveRakshakRegistrationForm", httpContent);
+                string rakshakRegistrationFormNumber = await result.Content.ReadAsStringAsync();
+                return rakshakRegistrationFormNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
     }
 }

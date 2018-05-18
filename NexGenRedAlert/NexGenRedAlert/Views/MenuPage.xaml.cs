@@ -49,5 +49,10 @@ namespace NexGenRedAlert.Views
         {
             await Navigation.PushAsync(new PostSvpQCFormTabbedPage());
         }
+
+        async void OpenRakshakRegistrationPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RakshakRegistrationFormPage());
+        }
     }
 }
