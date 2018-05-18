@@ -9,8 +9,10 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         private ISvpDataAccess svpDataAccess;
         private static string ipCCMailId = "manjula@mychoicesfoundation.org";
         private static string qcCCMailId = "vivian@mychoicesfoundation.org";
+        private static string rkCCMailId = "manglesh@mychoicesfoundation.org";
         private PdfMailer ipPdfMailer = new PdfMailer(ipCCMailId);
         private PdfMailer qcPdfMailer = new PdfMailer(qcCCMailId);
+        private PdfMailer rkPdfMailer = new PdfMailer(rkCCMailId);
         private PdfTemplate pdfTemplate = new PdfTemplate();
 
         public SvpBusinessAccess(ISvpDataAccess svpDataAccess)
@@ -78,6 +80,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         public string SaveRakshakRegistrationForm(RakshakRegistration rakshakRegistrationForm)
         {
             var SaveRakshakRegistrationNumber = this.svpDataAccess.SaveRakshakRegistrationForm(rakshakRegistrationForm);
+            this.SendRakshakRegistrationFormResponseMail(rakshakRegistrationForm);
             return SaveRakshakRegistrationNumber;
         }
 
@@ -184,6 +187,21 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             string pdfName = $"{postSvpQCForm.PostSvpQCNumber}.pdf";
 
             qcPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertQCUser.UserName, subject, body, pdfName);
+        }
+        
+        public void SendRakshakRegistrationFormResponseMail(RakshakRegistration rakshakRegistrationForm)
+        {
+            var generatedPdfTemplateString = pdfTemplate.RakshakRegistrationFormMailGenerator(rakshakRegistrationForm);
+            var redAlertUser = this.svpDataAccess.GetUserDetails(rakshakRegistrationForm.CreatedBy);
+
+            string subject = $"Team ORA - Confirmation: Rakshak Registration Form {rakshakRegistrationForm.RakshakRegistrationNumber} Received ";
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertUser.Organization}, " +
+                    $"<br/><br/><br/>We acknowledge the receipt of your Rakshak Registration Form for the village code {rakshakRegistrationForm.VillageCode}." +
+                    $" Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our Villages safe !" +
+                    $"<br/><br/>Team ORA";
+            string pdfName = $"{rakshakRegistrationForm.RakshakRegistrationNumber}.pdf";
+
+            rkPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }
     }
 }

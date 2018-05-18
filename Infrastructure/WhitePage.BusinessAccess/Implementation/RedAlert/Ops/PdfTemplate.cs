@@ -584,5 +584,42 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
             return sb.ToString();
         }
+
+        public string RakshakRegistrationFormMailGenerator(RakshakRegistration rakshakRegistrationForm)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<br/><br/> <hr size='5' style='background-color:#E00'/><br/>" +
+                "<table cellpadding='10' style='border-spacing:15px 0rem; font-family:'Times New Roman', Times, serif; font-size:16px;'>" +
+                "<tr><td style='width:350px;word-wrap:break-word;'>Rakshak Registration Number :</td><td>");
+            sb.Append(rakshakRegistrationForm.RakshakRegistrationNumber);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Village Code  :</td><td>");
+            sb.Append(rakshakRegistrationForm.VillageCode);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'> Rakshak Name :</td><td>");
+            sb.Append(rakshakRegistrationForm.Name);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Rakshak Age:</td><td>");
+            sb.Append(rakshakRegistrationForm.Age);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Rakshak Gender  :</td><td>");
+            sb.Append(rakshakRegistrationForm.Gender);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Education :</td><td>");
+            sb.Append(rakshakRegistrationForm.EducationalQualification);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Rakshak Contact Number :</td><td>");
+            sb.Append(rakshakRegistrationForm.PhoneNumber);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Alternate Contact Number :</td><td>");
+            sb.Append(rakshakRegistrationForm.AlternatePhoneNumber);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Rakshak E-Mail ID  :</td><td>");
+            sb.Append(rakshakRegistrationForm.EmailId);
+            sb.Append("</td></tr>");
+            sb.Append("</table><br/><br/><hr size='5' style='background-color:#E00'/><br/>");
+
+            return sb.ToString();
+        }
     }
 }
