@@ -788,7 +788,7 @@ INSERT INTO @lookupDetails VALUES(45, 'SourceOfCase',		340, 'Awareness campaign'
 INSERT INTO @lookupDetails VALUES(45, 'SourceOfCase',		341, 'Other'	,	10,1)
 
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				342, 'Other (Default)'		,	1,1)
-INSERT INTO @lookupDetails VALUES(6, 'Religion',				343, 'Muslim'				,	2,1)
+INSERT INTO @lookupDetails VALUES(6, 'Religion',				343, 'Islam'				,	2,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				344, 'Christian'				,	3,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				345, 'Hindu'					,	4,1)
 INSERT INTO @lookupDetails VALUES(6, 'Religion',				346, 'Jain'					,	5,1)
