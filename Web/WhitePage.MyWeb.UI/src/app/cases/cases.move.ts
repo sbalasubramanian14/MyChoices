@@ -50,6 +50,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
     public isCategory4: boolean = false;
     public isUnresolved: boolean = false;
     public isReferred: boolean = false;
+    public isDuplicate: boolean = false;
     public isCloseStatus: boolean = false;
     public isCategory5: boolean = false;
 
@@ -133,6 +134,10 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             case "4": {
                 this.isReferred = true;
                 this.isCloseStatus = true;
+                break;
+            }
+            case "6": {
+                this.isDuplicate = true;
                 break;
             }
             case "5":
@@ -308,6 +313,9 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             CaseDescription: [this.caseBook.Manage.CaseDescription, Validators.required],
             ClientSignedRegistrationFormYesNoLookupId: [this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId == undefined ? null : this.caseBook.FamilyHouseHold.ClientSignedRegistrationFormYesNoLookupId.toString(), Validators.required]
         });
+        if (!isNullOrUndefined(this.caseBook.Manage.CaseClosureDate))
+            this.category3Form.patchValue({ CaseClosureDate: { date: this.caseBook.Manage.CaseClosureDate } });
+        this.isMainDataLoaded = true;
     }
 
     private loadCategory4Form() {
@@ -482,6 +490,7 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
 
         if (this.isCloseStatus) {
             this.caseBook.Manage.ReasonForClosureStatus = this.closedForm.controls['ReasonForClosureStatus'].value;
+            this.caseBook.Manage.CaseClosureDate = this.returnDate(this.closedForm.controls['CaseClosureDate'].value);
         }
 
         if (this.isReferred) {
@@ -593,6 +602,15 @@ export class CasesMoveComponent extends BaseCaseController implements OnInit, On
             }, (error: any) => {
                 this.toastr.error("Error while moving case, " + error);
             });
+    }
+
+    public updateDuplicate() {
+        this.caseBook.Case.CaseStausId = this.mainForm.controls['CaseStatusId'].value;
+        this.casesService.updatePrimaryInfo(this.caseBook).subscribe(data => {
+            this.getCaseById();
+        }, (error: any) => {
+            this.toastr.error("Error while moving case, " + error);
+        });
     }
 
     public caseStatusOptionList: Array<IOption> = [];

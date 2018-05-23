@@ -252,7 +252,7 @@
             </div>
         </form>
 
-        <form [formGroup]="category3Form" *ngIf="isCategory3">
+        <form [formGroup]="category3Form" *ngIf="isCategory3 && !isDuplicate">
             <div class="centered">
                 <div class="row">
                     <div class="col-md-12 d-flex flex-column">
@@ -947,6 +947,12 @@
             <div class="form-group text-center">
                 <button class="btn btn-primary" [disabled]="!category5Form.valid || !mainForm.valid" (click)="updateCategory5()">Update</button>
             </div>
+        </form>
+
+        <form [formGroup]="category3Form" *ngIf="isCategory3 && isDuplicate">
+                <div class="form-group text-center">
+                    <button class="btn btn-primary" (click)="updateDuplicate()">Update</button>
+                </div>
         </form>
     </div>
 </div>
