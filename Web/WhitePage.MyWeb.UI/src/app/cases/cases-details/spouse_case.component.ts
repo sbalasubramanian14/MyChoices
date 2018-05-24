@@ -102,12 +102,12 @@ export class SpouseCaseComponent implements OnInit {
 
             PrimaryEmergencyContactName: [this.caseBook.Spouse.PrimaryEmergencyContactName],
             PrimaryEmergencyRelationshipToClientLookupId: [this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.PrimaryEmergencyRelationshipToClientLookupId.toString()],
-            PrimaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.validationService.mobileValidator]],
+            PrimaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.PrimaryEmergencyContactPhoneNumber, [Validators.minLength(10), Validators.maxLength(13)]],
             PrimaryEmergencyContactAdress: [this.caseBook.Spouse.PrimaryEmergencyContactAdress],
 
             SecondaryEmergencyContactName: [this.caseBook.Spouse.SecondaryEmergencyContactName],
             SecondaryEmergencyRelationshipToClientLookupId: [this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId == undefined ? null : this.caseBook.Spouse.SecondaryEmergencyRelationshipToClientLookupId.toString()],
-            SecondaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), this.validationService.mobileValidator]],
+            SecondaryEmergencyContactPhoneNumber: [this.caseBook.Spouse.SecondaryEmergencyContactPhoneNumber, [Validators.minLength(10), Validators.maxLength(13)]],
             SecondaryEmergencyContactAdress: [this.caseBook.Spouse.SecondaryEmergencyContactAdress]
 
         });
