@@ -621,5 +621,63 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
 
             return sb.ToString();
         }
+
+        public string RakshakMonthlyReportFormMailGenerator(RakshakMonthlyReport rakshakMonthlyReport)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<br/><br/> <hr size='5' style='background-color:#E00'/><br/>" +
+              "<table cellpadding='10' style='border-spacing:15px 0rem; font-family:'Times New Roman', Times, serif; font-size:16px;'>" +
+              "<tr><td style='width:350px;word-wrap:break-word;'>Rakshak Montly Report Number :</td><td>");
+            sb.Append(rakshakMonthlyReport.RakshakMonthlyReportNumber);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Month And Year:</td><td>");
+            sb.Append(rakshakMonthlyReport.MonthAndYear);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many Rakshaks are currently working in your area of operation?</td><td>");
+            sb.Append(rakshakMonthlyReport.ActiveRakshakCount);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many Rakshak 'dropped out' this month?</td><td>");
+            sb.Append(rakshakMonthlyReport.DroppedRakshakCount);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many Rakshaks have been registered till date?</td><td>");
+            sb.Append(rakshakMonthlyReport.RegisteredRakshakCount);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were Rakshaks in your area been able to keep an eye on issues?:</td><td>");
+            sb.Append(rakshakMonthlyReport.WasRakshakActive);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were Rakshaks able to report any issues happening in their village?:</td><td>");
+            sb.Append(rakshakMonthlyReport.WasRakshakReportable);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many community meetings were conducted by Rakshaks?:</td><td>");
+            sb.Append(rakshakMonthlyReport.CommunityMeetingCount);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Were the community meeting helpful ? :</td><td>");
+            sb.Append(rakshakMonthlyReport.WasCommunityMeetingHelpful);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>What is the total attendance for all Community Meetings conducted this month?:</td><td>");
+            sb.Append(rakshakMonthlyReport.CommunityMeetingParticipationCount);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>How many hours have all Rakshaks spent working on activities this month?</td><td>");
+            sb.Append(rakshakMonthlyReport.WorkHoursSpent);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Have you heard about school dropouts - both male and female?:</td><td>");
+            sb.Append(rakshakMonthlyReport.WasSchoolDropoutsReported);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Did you hear about any trafficking or child marriage, domestic violence, etc.  cases from Rakshaks?:</td><td>");
+            sb.Append(rakshakMonthlyReport.WasProblemsReported);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Are you facing any challenges in managing Rakshaks?:</td><td>");
+            sb.Append(rakshakMonthlyReport.ChallengesInManagingRakshakDesc);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Share 1 or more story from the Rakshak?:</td><td>");
+            sb.Append(rakshakMonthlyReport.RakshakStoryDesc);
+            sb.Append("</td></tr>");
+            sb.Append("<tr><td style = 'width:350px; word-wrap: break-word;'>Who is your top performing Rakshak this month. Give examples on why?:</td><td>");
+            sb.Append(rakshakMonthlyReport.TopPerformingRakshakDesc);
+            sb.Append("</td></tr>");
+            sb.Append("</table><br/><br/><hr size='5' style='background-color:#E00'/><br/>");
+
+            return sb.ToString();
+        }
     }
 }

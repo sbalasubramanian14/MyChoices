@@ -26,7 +26,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                 Body = body,
                 IsBodyHtml = true
             };
-            mailMessage.CC.Add(_ccMailID);
+            //mailMessage.CC.Add(_ccMailID);
             mailMessage.Attachments.Add(new Attachment(new MemoryStream(pdfBytes), pdfName));
             SmtpClient smtp = new SmtpClient
             {

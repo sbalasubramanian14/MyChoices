@@ -84,6 +84,13 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return SaveRakshakRegistrationNumber;
         }
 
+        public string SaveRakshakMonthlyReportForm(RakshakMonthlyReport rakshakMonthlyReportForm)
+        {
+            var SaveRakshakRegistrationNumber = this.svpDataAccess.SaveRakshakMonthlyReportForm(rakshakMonthlyReportForm);
+            this.SendRakshakRegistrationMonthlyReportFormResponseMail(rakshakMonthlyReportForm);
+            return SaveRakshakRegistrationNumber;
+        }
+
         public void SendPlanningFormResponseMail(ProgrammePlanning programmePlanningForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PlanningFormMailGenerator(programmePlanningForm);
@@ -200,6 +207,21 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
                     $" Please find the attached PDF for the submitted details.<br/><br/>Let's strive to make our Villages safe !" +
                     $"<br/><br/>Team ORA";
             string pdfName = $"{rakshakRegistrationForm.RakshakRegistrationNumber}.pdf";
+
+            rkPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
+        }
+
+        public void SendRakshakRegistrationMonthlyReportFormResponseMail(RakshakMonthlyReport rakshakMonthlyReport)
+        {
+            var generatedPdfTemplateString = pdfTemplate.RakshakMonthlyReportFormMailGenerator(rakshakMonthlyReport);
+            var redAlertUser = this.svpDataAccess.GetUserDetails(rakshakMonthlyReport.CreatedBy);
+
+            string subject = $"Team ORA - Confirmation: Rakshak Monthly Report Form {rakshakMonthlyReport.RakshakMonthlyReportNumber} Received ";
+            string body = $"<img src='https://drive.google.com/uc?id=1Ri4dvgKuyRlK3MYxgqueIDO3OFyBKe5a'/> <br/>Dear {redAlertUser.Organization}, " +
+                    $"<br/><br/><br/>We acknowledge the receipt of your Rakshak Monthly Report Form  {rakshakMonthlyReport.RakshakMonthlyReportNumber}." +
+                    $" for the month of {rakshakMonthlyReport.MonthAndYear}!" +
+                    $"<br/><br/>Team ORA";
+            string pdfName = $"{rakshakMonthlyReport.RakshakMonthlyReportNumber}.pdf";
 
             rkPdfMailer.SendMailToUser(generatedPdfTemplateString, redAlertUser.UserName, subject, body, pdfName);
         }

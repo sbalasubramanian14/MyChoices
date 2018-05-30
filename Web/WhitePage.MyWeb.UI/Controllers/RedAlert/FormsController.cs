@@ -97,5 +97,14 @@ namespace WhitePage.MyWeb.UI.Controllers
             return Ok(updatedForm);
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult SaveRakshakMonthlyReportForm([FromBody] RakshakMonthlyReport RakshakMonthlyReportForm)
+        {
+            RakshakMonthlyReportForm.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
+
+            var updatedForm = this._svpBusinessAccess.SaveRakshakMonthlyReportForm(RakshakMonthlyReportForm);
+            return Ok(updatedForm);
+        }
     }
 }

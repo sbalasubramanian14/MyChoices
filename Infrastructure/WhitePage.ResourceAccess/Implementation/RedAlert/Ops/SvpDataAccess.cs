@@ -267,6 +267,38 @@ namespace WhitePage.ResourceAccess.Implementation.Ops
             return RakshakRegistrationObj.RakshakRegistrationNumber;
         }
 
+        public string SaveRakshakMonthlyReportForm(RakshakMonthlyReport rakshakMonthlyReportForm)
+        {
+            int newFormNumber = 1;
+
+            IQueryable<SerialNumbertrackerRA> queryableSerialNumberTrackerRAData = this.unitOfWork.DbContext.SerialNumbertrackerRA
+                                                                                                   .Where(x => x.UserCode == rakshakMonthlyReportForm.CreatedBy && x.FormType == "RM");
+            if (queryableSerialNumberTrackerRAData.Any())
+            {
+                newFormNumber = queryableSerialNumberTrackerRAData.Max(y => y.SerialValue) + 1; ;
+            }
+            string padding = "000";
+            string serialNumberComponent = padding.Remove(padding.Length - newFormNumber.ToString().Length) + (newFormNumber).ToString();
+            rakshakMonthlyReportForm.RakshakMonthlyReportNumber = "RM-" + rakshakMonthlyReportForm.CreatedBy + "-" + serialNumberComponent;
+
+            /*Form entry*/
+            RakshakMonthlyReport RakshakMontlyReportObj = this.unitOfWork.DbContext.RakshakMonthlyReport.Add(rakshakMonthlyReportForm);
+
+            /*Serial Number updation*/
+            SerialNumbertrackerRA serialNumbertrackerRAObj = new SerialNumbertrackerRA
+            {
+                FormType = "RM",
+                UserCode = rakshakMonthlyReportForm.CreatedBy,
+                SerialValue = newFormNumber,
+                GeneratedDate = DateTime.UtcNow.AddHours(5.5)
+            };
+            serialNumbertrackerRAObj = this.unitOfWork.DbContext.SerialNumbertrackerRA.Add(serialNumbertrackerRAObj);
+
+            this.unitOfWork.DbContext.SaveChanges();
+
+            return RakshakMontlyReportObj.RakshakMonthlyReportNumber;
+        }
+
         public RedAlertUser GetUserDetails(string userCode)
         {
             return this.unitOfWork.DbContext.RedAlertUser.FirstOrDefault(User => User.UserCode == userCode );
