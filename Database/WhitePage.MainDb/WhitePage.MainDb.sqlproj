@@ -170,6 +170,7 @@
     <Build Include="RedAlert\Ops\Tables\trPostSvpQC.sql" />
     <Build Include="RedAlert\Ops\Tables\trRakshakRegistration.sql" />
     <Build Include="RedAlert\Ops\Tables\trRakshakMonthlyReport.sql" />
+    <Build Include="RedAlert\Ops\Tables\IpFeedback.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

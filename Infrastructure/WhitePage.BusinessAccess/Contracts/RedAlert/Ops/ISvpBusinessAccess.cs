@@ -13,5 +13,6 @@ namespace WhitePage.BusinessAccess.Contracts.Ops
         string SaveRakshakRegistrationForm(RakshakRegistration rakshakRegistrationForm);
         string SaveRakshakMonthlyReportForm(RakshakMonthlyReport rakshakMonthlyReportForm);
         string SavePostSvpQCForm(PostSvpQC postSvpQC);
+        string SaveIpFeedbackForm(IpFeedback ipFeedback);
     }
 }

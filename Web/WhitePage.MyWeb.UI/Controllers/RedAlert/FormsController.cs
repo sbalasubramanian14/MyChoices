@@ -106,5 +106,16 @@ namespace WhitePage.MyWeb.UI.Controllers
             var updatedForm = this._svpBusinessAccess.SaveRakshakMonthlyReportForm(RakshakMonthlyReportForm);
             return Ok(updatedForm);
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult SaveIpFeedbackForm([FromBody] IpFeedback ipFeedback)
+        {
+            ipFeedback.CreatedDateTime = DateTime.UtcNow.AddHours(5.5);
+
+            var updatedForm = this._svpBusinessAccess.SaveIpFeedbackForm(ipFeedback);
+
+            return Ok(updatedForm);
+        }
     }
 }

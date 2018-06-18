@@ -13,6 +13,7 @@ namespace WhitePage.ResourceAccess.Contracts.Ops
         string SavePostSvpQCForm(PostSvpQC postSvpQCForm);
         string SaveRakshakRegistrationForm(RakshakRegistration rakshakRegistrationForm);
         string SaveRakshakMonthlyReportForm(RakshakMonthlyReport rakshakMonthlyReportForm);
+        string SaveIpFeedbackForm(IpFeedback ipFeedback);
         RedAlertUser GetUserDetails(string userCode);
     }
 }

@@ -91,6 +91,13 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
             return SaveRakshakRegistrationNumber;
         }
 
+        public string SaveIpFeedbackForm(IpFeedback ipFeedback)
+        {
+            string ipFeedbackNumber = this.svpDataAccess.SaveIpFeedbackForm(ipFeedback);
+
+            return ipFeedbackNumber;
+        }
+
         public void SendPlanningFormResponseMail(ProgrammePlanning programmePlanningForm)
         {
             var generatedPdfTemplateString = pdfTemplate.PlanningFormMailGenerator(programmePlanningForm);
