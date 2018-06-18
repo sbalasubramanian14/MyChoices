@@ -54,5 +54,10 @@ namespace NexGenRedAlert.Views
         {
             await Navigation.PushAsync(new RakshakRegistrationFormPage());
         }
+
+        async void OpenRakshakMonthlyReportPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RakshakMonthlyReportFormPage());
+        }
     }
 }

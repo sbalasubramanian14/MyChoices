@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NexGenRedAlert.Custom"
+             xmlns:picker="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             x:Class="NexGenRedAlert.Views.RakshakMonthlyReportFormPage"
+             Title="Rakshak Monthly Report">
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Margin="20,20,20,0" Spacing="10">
+                <Label x:Name="MonthAndYearLabel" Text="Month and Year" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <local:KeyboardDisabledEntry x:Name="RakshakMonthlyReportMonthAndYearEntry" Placeholder="Choose Month and Year" Focused="OnRakshakMonthlyReportMonthAndYearEntryFocused" Text="{ Binding RakshakMonthlyReport.MonthAndYear }" />
+                <local:CustomMonthYearPicker x:Name="RakshakMonthlyReportMonthAndYearPicker" ColumnHeaderHeight="50" HeaderBackgroundColor="Black" IsVisible="False" HorizontalOptions="Center" PickerHeight="200" PickerMode="Dialog"  PickerWidth="300" />
+
+                <Label x:Name="ActiveRakshakCountLabel" Text="How Many Rakshaks are currently working in your area of operation?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="ActiveRakshakCountEntry" Placeholder="Active Rakshak Count" Keyboard="Numeric" Text="{Binding RakshakMonthlyReport.ActiveRakshakCount, Mode=OneWayToSource}" />
+
+                <Label x:Name="DroppedoutRakshakCountLabel" Text="How many Rakshak 'dropped out' this month?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="DroppedoutRakshakCountEntry" Placeholder="Dropped out Rakshak Count" Keyboard="Numeric" Text="{Binding RakshakMonthlyReport.DroppedRakshakCount, Mode=OneWayToSource}" />
+
+                <Label x:Name="RegisteredRakshakCountLabel" Text="How many Rakshaks have been registered till date?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="RegisteredRakshakCountEntry" Placeholder="Registered Rakshak Count" Keyboard="Numeric" Text="{Binding RakshakMonthlyReport.RegisteredRakshakCount, Mode=OneWayToSource}" />
+
+                <Label x:Name="WasRakshakActiveLabel" Text="Were Rakshaks been able to keep an eye on issues?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="WasRakshakActiveListPicker" Title="Were Rakshaks been able to keep an eye on issues ?" SelectedItem="{Binding RakshakMonthlyReport.WasRakshakActive, Mode=OneWayToSource}">
+                </Picker>
+
+                <Label x:Name="WasRakshakReportableLabel" Text="Were Rakshaks able to report any issues?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="WasRakshakReportableListPicker" Title="Were Rakshaks able to report any issues?" SelectedItem="{Binding RakshakMonthlyReport.WasRakshakReportable, Mode=OneWayToSource}">
+                </Picker>
+
+                <Label x:Name="CommunityMeetingCountLabel" Text="How many Community Meetings were conducted?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry x:Name="CommunityMeetingCountEntry" Placeholder="Community Meeting Count" Keyboard="Numeric" Text="{Binding RakshakMonthlyReport.CommunityMeetingCount, Mode=OneWayToSource}" />
+
+                <Label x:Name="WasCommunityMeetingHelpfulLabel" Text="Were the community meetings helpful?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="WasCommunityMeetingHelpfulPicker" Title="Were the community meetings helpful?" SelectedItem="{Binding RakshakMonthlyReport.WasCommunityMeetingHelpful, Mode=OneWayToSource}">
+                </Picker>
+
+                <Label x:Name="CommunityMeetingTotalParticipationCountLabel" Text="What is the total attendance for all Community Meetings conducted this month?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry Placeholder="Community Meeting Participation Count" Keyboard="Numeric" Text="{Binding RakshakMonthlyReport.CommunityMeetingParticipationCount, Mode=OneWayToSource}" />
+
+                <Label x:Name="WorkHoursSpentLabel" Text="How many hours have all Rakshaks spent working on activities this month?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Entry Placeholder="Work Hours Spent by Rakshaks" Keyboard="Numeric" Text="{Binding RakshakMonthlyReport.WorkHoursSpent, Mode=OneWayToSource}" />
+
+                <Label x:Name="WasSchoolDropoutsReportedLabel" Text="Have you heard about school dropouts - both male and female?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="WasSchoolDropoutsReportedPicker" Title="Have you heard about school dropouts ?" SelectedItem="{Binding RakshakMonthlyReport.WasSchoolDropoutsReported, Mode=OneWayToSource}">
+                </Picker>
+
+                <Label x:Name="WasProblemsReportedLabel" Text="Did you hear about any trafficking or child marriage, domestic violence, etc.  cases from Rakshaks?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Picker x:Name="WasProblemsReportedPicker" Title="Did you heard any crime against women ?" SelectedItem="{Binding RakshakMonthlyReport.WasProblemsReported, Mode=OneWayToSource}">
+                </Picker>
+
+                <Label x:Name="RakshakEffectivenessLabel" Text="Overall, how effective are the Rakshaks in protecting girl child safety?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="RakshakEffectivenessEditor" Text="{Binding RakshakMonthlyReport.RakshakEffectivenessDesc, Mode=OneWayToSource}" />
+
+                <Label x:Name="ChallengesInManagingRakshakLabel" Text="Are you facing any challenges in managing Rakshaks?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="ChallengesInManaginRakshakEditor" Text="{Binding RakshakMonthlyReport.ChallengesInManagingRakshakDesc, Mode=OneWayToSource}" />
+
+                <Label x:Name="RakshakStoryLabel" Text="Share one or more story from the Rakshak:" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="RakshakStoryEditor" Text="{Binding RakshakMonthlyReport.RakshakStoryDesc, Mode=OneWayToSource}" />
+
+                <Label x:Name="TopPerformingRakshakLabel" Text="Who is your top performing Rakshak this month. Give examples on why?" FontSize="15" TextColor="{StaticResource PrimaryDark}"/>
+                <Editor x:Name="TopPerformingRakshakEditor" Text="{Binding RakshakMonthlyReport.TopPerformingRakshakDesc, Mode=OneWayToSource}" />
+
+                <ActivityIndicator x:Name="FormSubmissionIndicator" HeightRequest="40" VerticalOptions="Start"
+                          HorizontalOptions="Center" Color="{StaticResource Primary}" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitRakshakMonthlyReportForm}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

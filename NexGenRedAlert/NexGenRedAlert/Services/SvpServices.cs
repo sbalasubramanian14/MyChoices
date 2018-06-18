@@ -251,5 +251,33 @@ namespace NexGenRedAlert.Services
                 throw;
             }
         }
+
+        public async Task<string> PostAsyncSaveRakshakMonthlyReportForm(RakshakMonthlyReportForm rakshakMonthlyReportForm)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                rakshakMonthlyReportForm.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
+
+                var json = JsonConvert.SerializeObject(rakshakMonthlyReportForm);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(WebServiceUrl + "SaveRakshakMonthlyReportForm", httpContent);
+                string rakshakMonthlyReportNumber = await result.Content.ReadAsStringAsync();
+                return rakshakMonthlyReportNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
     }
 }
