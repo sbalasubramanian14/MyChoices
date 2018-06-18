@@ -9,7 +9,7 @@ namespace WhitePage.BusinessAccess.Implementation.Ops
         private ISvpDataAccess svpDataAccess;
         private static string ipCCMailId = "manjula@mychoicesfoundation.org";
         private static string qcCCMailId = "vivian@mychoicesfoundation.org";
-        private static string rkCCMailId = "manglesh@mychoicesfoundation.org";
+        private static string rkCCMailId = "mohammed@mychoicesfoundation.org";
         private PdfMailer ipPdfMailer = new PdfMailer(ipCCMailId);
         private PdfMailer qcPdfMailer = new PdfMailer(qcCCMailId);
         private PdfMailer rkPdfMailer = new PdfMailer(rkCCMailId);
