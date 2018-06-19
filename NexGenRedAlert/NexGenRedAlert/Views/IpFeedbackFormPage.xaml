@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="IP Feedback Form"
+             x:Class="NexGenRedAlert.Views.IpFeedbackFormPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,20,20,0" Spacing="10" VerticalOptions="StartAndExpand">
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="WasDifferenceMadeBySVPlabel">Has SVP made a difference in the area of operation?</Label>
+                <Picker Title="Has SVP made a difference in the area of operation?" SelectedItem="{Binding IpFeedback.WasDifferenceMadeBySVP}" x:Name="WasDifferenceMadeBySVPpicker"></Picker>
+
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="DidStateCoordinatorGaveSatisfiedGuidanceLabel">Are you satisfied with the guidance provided by the State Coordinator?</Label>
+                <Picker Title="Are you satisfied with the guidance provided by the State Coordinator?" SelectedItem="{Binding IpFeedback.DidStateCoordinatorGaveSatisfiedGuidance}" x:Name="DidStateCoordinatorGaveSatisfiedGuidancePicker"></Picker>
+
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="DidStateCoordinatorVisitLabel">Has the State Coordinator visited your area?</Label>
+                <Picker Title="Has the State Coordinator visited your area?" SelectedItem="{Binding IpFeedback.DidStateCoordinatorVisit}" x:Name="DidStateCoordinatorVisitPicker"></Picker>
+
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="WasStateCoordinatorHelpfulInFollowupLabel">Did State Coordinator help in Helpline case follow up?</Label>
+                <Picker Title="Did State Coordinator help in Helpline case follow up?"  SelectedItem="{Binding IpFeedback.WasStateCoordinatorHelpfulInFollowup}"  x:Name="WasStateCoordinatorHelpfulInFollowupPicker"></Picker>
+
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="StateCoordinatorRatingLabel">On a scale of 1 to 10, how would you rate your state coordinator:</Label>
+                <Grid HorizontalOptions="StartAndExpand">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Slider Grid.Row="0" Grid.Column="0"  Value="{Binding IpFeedback.StateCoordinatorRating}" x:Name="StateCoordinatorRatingSlider" Maximum="10" Minimum="1"></Slider>
+                        <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="{Binding Source={x:Reference StateCoordinatorRatingSlider}, Path=Value, StringFormat='{0:F0}'}}"></Label>
+                    </Grid>
+                </Grid>
+
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="AreasOfImprovementForStateCoordinatorDescLabel">Please suggest two areas of improvement which will make the program more effective.</Label>
+                <Editor Text="{Binding IpFeedback.AreasOfImprovementForStateCoordinatorDesc}" x:Name="AreasOfImprovementForStateCoordinatorDescEditor"></Editor>
+
+                <Label TextColor="{StaticResource PrimaryDark}" FontSize="15" x:Name="AreasOfImprovementForProgramDescLabel">Mention two ways in which State Coordinator’s role can be more effective?</Label>
+                <Editor Text="{Binding IpFeedback.AreasOfImprovementForProgramDesc}" FontSize="15" x:Name="AreasOfImprovementForProgramDescEditor"></Editor>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
+                    <Button x:Name="ResetButton" Text="Reset" Clicked="OnResetClicked" />
+                    <Button x:Name="Submit" Text="Submit" Command="{Binding SubmitIpFeedbackForm}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -279,5 +279,33 @@ namespace NexGenRedAlert.Services
                 throw;
             }
         }
+
+        public async Task<string> PostAsyncIpFeedbackForm(IpFeedbackForm ipFeedback)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                ipFeedback.CreatedBy = DependencyService.Get<ICredentialService>().UserCode;
+
+                var json = JsonConvert.SerializeObject(ipFeedback);
+                HttpContent httpContent = new StringContent(json);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(WebServiceUrl + "SaveIpFeedbackForm", httpContent);
+                string rakshakRegistrationFormNumber = await result.Content.ReadAsStringAsync();
+                return rakshakRegistrationFormNumber;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
+        }
     }
 }
