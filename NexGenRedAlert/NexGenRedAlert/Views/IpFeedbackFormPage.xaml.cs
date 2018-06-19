@@ -20,9 +20,9 @@ namespace NexGenRedAlert.Views
             "No"
         };
 
-		public IpFeedbackFormPage ()
-		{
-			InitializeComponent ();
+	public IpFeedbackFormPage ()
+	{
+	    InitializeComponent ();
 
             WasDifferenceMadeBySVPpicker.ItemsSource = YesOrNoList;
             DidStateCoordinatorGaveSatisfiedGuidancePicker.ItemsSource = YesOrNoList;
