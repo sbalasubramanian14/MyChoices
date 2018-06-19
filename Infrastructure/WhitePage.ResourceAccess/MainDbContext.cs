@@ -76,5 +76,6 @@ namespace WhitePage.ResourceAccess
         public DbSet<PostSvpQC> PostSvpQC { get; set; }
         public DbSet<RakshakRegistration> RakshakRegistration { get; set; }
         public DbSet<RakshakMonthlyReport> RakshakMonthlyReport { get; set; }
+        public DbSet<IpFeedback> ipFeedback { get; set; }
     }
 }
