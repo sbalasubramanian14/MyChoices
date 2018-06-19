@@ -22,6 +22,7 @@
                     <Button x:Name="RevisitButton" Text="Revisit Form" Clicked="OpenRevisitFormPage" />
                     <Button x:Name="RakshakRegistrationButton" Text="Rakshak Registration" Clicked="OpenRakshakRegistrationPage" />
                     <Button x:Name="RakshakMonthlyReportButton" Text="Rakshak Monthly Report" Clicked="OpenRakshakMonthlyReportPage" />
+                    <Button x:Name="IpFeedbackButton" Text="IP Feedback" Clicked="OpenIpFeedbackPage" />
                 </StackLayout>
             
                 <StackLayout x:Name="QCFormsLayout" VerticalOptions="Start" Margin="20,0,20,0" IsVisible="{Binding IsQCFormsLayoutVisible}">
